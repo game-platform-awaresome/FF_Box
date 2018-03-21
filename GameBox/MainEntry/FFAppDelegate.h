@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  FFAppDelegate.h
 //  GameBox
 //
 //  Created by 燚 on 2018/3/21.
@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface FFAppDelegate : UIResponder <UIApplicationDelegate>
+
 
 @property (strong, nonatomic) UIWindow *window;
 
 
 @end
-
