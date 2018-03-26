@@ -1,0 +1,84 @@
+//
+//  FFPerFixHeader.pch
+//  FF_185_Game_Box
+//
+//  Created by 燚 on 2017/10/30.
+//  Copyright © 2017年 Yi Shi. All rights reserved.
+//
+
+#ifndef FFPerFixHeader_pch
+#define FFPerFixHeader_pch
+
+/** 保存系统单利 */
+#define SAVEOBJECT_AT_USERDEFAULTS(object,key) [[NSUserDefaults standardUserDefaults] setObject:object forKey:key]; \
+[[NSUserDefaults standardUserDefaults] synchronize]
+
+/** 获取系统单利 */
+#define OBJECT_FOR_USERDEFAULTS(key) [[NSUserDefaults standardUserDefaults] objectForKey:key]
+
+/** wifi 下载 */
+#define WIFIDOWNLOAD @"WIFIDOWNLOAD"
+
+#define kSCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
+#define kSCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
+#define kNAVIGATION_HEIGHT CGRectGetMaxY(self.navigationController.navigationBar.frame)
+
+#define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:r / 255.0 green:g / 255.0 blue:b / 255.0 alpha:a]
+#define RGBCOLOR(r,g,b) RGBACOLOR(r,g,b,1)
+#define TABBARCOLOR RGBCOLOR(247,247,247)
+#define BOX_GRARCOLOR RGBCOLOR(230,230,230)
+#define NAVGATION_BAR_COLOR RGBCOLOR(250,121,34)
+#define BACKGROUND_COLOR RGBCOLOR(239, 240, 241)
+
+#ifdef DEBUG
+#define syLog(format, ...) NSLog(format, ## __VA_ARGS__)
+#define BOXLOG(log) syLog(@"GAME_BOX === %@",log);
+#else
+#define syLog(format, ...)
+#define BOXLOG(log)
+#endif
+
+/** 弱引用 */
+#define WeakSelf __weak typeof(self) weakSelf = self
+
+#define HIDE_TABBAR self.hidesBottomBarWhenPushed = YES
+#define SHOW_TABBAR self.hidesBottomBarWhenPushed = NO
+#define HIDE_PARNENT_TABBAR self.parentViewController.hidesBottomBarWhenPushed = YES
+#define SHOW_PARNENT_TABBAR self.parentViewController.hidesBottomBarWhenPushed = NO
+
+#define IMAGEURL @"http://www.185sy.com%@"
+
+/** uid */
+#define SSKEYCHAIN_UID ([SYKeychain passwordForService:@"tenoneTec.com" account:@"CurrentUid"])
+#define USER_NAME @"CurrentUserName"
+#define USER_PASSWORDK @"CurrentUserPassWord"
+#define SSKEYCHAIN_USER_NAME ([SYKeychain passwordForService:@"tenoneTec.com" account:USER_NAME])
+
+#define FF_is_login     if (SSKEYCHAIN_UID == nil || SSKEYCHAIN_UID.length < 1) {\
+                            BOX_MESSAGE(@"尚未登录");\
+                            return;\
+                        }\
+
+
+#define START_NET_WORK [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES]
+#define STOP_NET_WORK [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO]
+
+
+/** test */
+//#import "ZCNavigationController+Smoonth.h"
+
+
+
+//#import "FFStatisticsModel.h"
+
+#endif /* FFPerFixHeader_pch */
+
+
+
+
+
+
+
+
+
+

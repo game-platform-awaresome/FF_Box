@@ -80,7 +80,7 @@ typedef NS_ENUM(NSInteger, FFNetworkReachabilityStatus) {
                    Success:(SuccessBlock _Nullable)success
                    Failure:(FailureBlock _Nullable)failure;
 
-/** post file */ 
+/** post file */
 + (void)uploadImageWithURL:(NSString * _Nonnull)url
                     Params:(NSDictionary * _Nullable)params
                   FileData:(NSArray<NSData *> *_Nullable)fileDataArray
