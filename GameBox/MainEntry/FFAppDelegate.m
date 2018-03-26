@@ -13,7 +13,7 @@
 
 
 #import <UserNotifications/UserNotifications.h>
-
+#import <FFTools/FFDateFormatter.h>
 
 #define WEIXINAPPID @"wx7ec31aabe8cc710d"
 #define QQAPPID @"1106099979"
@@ -34,6 +34,8 @@
 
     //初始化数据
     [self initializeDataSource];
+
+    NSLog(@"%@",[FFDateFormatter stringFromeDate:[NSDate date]]);
 
     return YES;
 }

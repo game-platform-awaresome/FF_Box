@@ -8,7 +8,7 @@
 
 #import "FFNetWorkManager.h"
 #import <AFNetworking/AFNetworking.h>
-#import "FFDateFormatter.h"
+
 
 @implementation FFNetWorkManager
 

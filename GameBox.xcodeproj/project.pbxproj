@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0543CAF4C1A27767297E9250 /* libPods-GameBox.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C09ECF85CDCEAA38284810 /* libPods-GameBox.a */; };
+		B5623FFA20689CC80024DAA3 /* FFTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5623FF120689B2D0024DAA3 /* FFTools.framework */; };
 		B5E1E528206201CE008F49CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5E1E527206201CE008F49CA /* Assets.xcassets */; };
 		B5E1E52B206201CE008F49CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5E1E529206201CE008F49CA /* LaunchScreen.storyboard */; };
 		B5E1E52E206201CE008F49CA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E1E52D206201CE008F49CA /* main.m */; };
@@ -18,11 +19,28 @@
 		B5E1E54D20623009008F49CA /* cityData.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5E1E54B20623009008F49CA /* cityData.plist */; };
 		B5E1E55120623722008F49CA /* SYKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E1E55020623722008F49CA /* SYKeychain.m */; };
 		B5E1E55420623D0C008F49CA /* FFNetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E1E55320623D0C008F49CA /* FFNetWorkManager.m */; };
-		B5E1E557206241FC008F49CA /* FFDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E1E556206241FC008F49CA /* FFDateFormatter.m */; };
 		B5E1E55A20624C71008F49CA /* FFDeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E1E55920624C71008F49CA /* FFDeviceInfo.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		B5623FF020689B2D0024DAA3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B5623FEC20689B2A0024DAA3 /* FFTools.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B5623FE120689B2A0024DAA3;
+			remoteInfo = FFTools;
+		};
+		B5623FF320689B8C0024DAA3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B5623FEC20689B2A0024DAA3 /* FFTools.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = B5623FE020689B2A0024DAA3;
+			remoteInfo = FFTools;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		B5623FEC20689B2A0024DAA3 /* FFTools.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FFTools.xcodeproj; path = FFTools/FFTools.xcodeproj; sourceTree = "<group>"; };
 		B5E1E51B206201CD008F49CA /* GameBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5E1E527206201CE008F49CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B5E1E52A206201CE008F49CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -40,8 +58,6 @@
 		B5E1E55020623722008F49CA /* SYKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYKeychain.m; sourceTree = "<group>"; };
 		B5E1E55220623D0C008F49CA /* FFNetWorkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFNetWorkManager.h; sourceTree = "<group>"; };
 		B5E1E55320623D0C008F49CA /* FFNetWorkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFNetWorkManager.m; sourceTree = "<group>"; };
-		B5E1E555206241FC008F49CA /* FFDateFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFDateFormatter.h; sourceTree = "<group>"; };
-		B5E1E556206241FC008F49CA /* FFDateFormatter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFDateFormatter.m; sourceTree = "<group>"; };
 		B5E1E55820624C71008F49CA /* FFDeviceInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFDeviceInfo.h; sourceTree = "<group>"; };
 		B5E1E55920624C71008F49CA /* FFDeviceInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFDeviceInfo.m; sourceTree = "<group>"; };
 		C1C09ECF85CDCEAA38284810 /* libPods-GameBox.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GameBox.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -54,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5623FFA20689CC80024DAA3 /* FFTools.framework in Frameworks */,
 				0543CAF4C1A27767297E9250 /* libPods-GameBox.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -67,6 +84,22 @@
 				C1C09ECF85CDCEAA38284810 /* libPods-GameBox.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B5623FD620689A940024DAA3 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				B5623FEC20689B2A0024DAA3 /* FFTools.xcodeproj */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		B5623FED20689B2A0024DAA3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B5623FF120689B2D0024DAA3 /* FFTools.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		B5E1E512206201CD008F49CA = {
@@ -92,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				B5E1E53D206204E1008F49CA /* MainEntry */,
+				B5623FD620689A940024DAA3 /* Library */,
 				B5E1E54420622F97008F49CA /* BasicModel */,
 				B5E1E54820622FDB008F49CA /* Others */,
 				B5E1E53E20620606008F49CA /* Resource */,
@@ -126,8 +160,6 @@
 				B5E1E54620622FD1008F49CA /* FFBasicModel.m */,
 				B5E1E55220623D0C008F49CA /* FFNetWorkManager.h */,
 				B5E1E55320623D0C008F49CA /* FFNetWorkManager.m */,
-				B5E1E555206241FC008F49CA /* FFDateFormatter.h */,
-				B5E1E556206241FC008F49CA /* FFDateFormatter.m */,
 				B5E1E55820624C71008F49CA /* FFDeviceInfo.h */,
 				B5E1E55920624C71008F49CA /* FFDeviceInfo.m */,
 			);
@@ -180,6 +212,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				B5623FF420689B8C0024DAA3 /* PBXTargetDependency */,
 			);
 			name = GameBox;
 			productName = GameBox;
@@ -212,12 +245,28 @@
 			mainGroup = B5E1E512206201CD008F49CA;
 			productRefGroup = B5E1E51C206201CD008F49CA /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = B5623FED20689B2A0024DAA3 /* Products */;
+					ProjectRef = B5623FEC20689B2A0024DAA3 /* FFTools.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				B5E1E51A206201CD008F49CA /* GameBox */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		B5623FF120689B2D0024DAA3 /* FFTools.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FFTools.framework;
+			remoteRef = B5623FF020689B2D0024DAA3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		B5E1E519206201CD008F49CA /* Resources */ = {
@@ -289,7 +338,6 @@
 			files = (
 				B5E1E54720622FD1008F49CA /* FFBasicModel.m in Sources */,
 				B5E1E541206207FB008F49CA /* FFAppDelegate.m in Sources */,
-				B5E1E557206241FC008F49CA /* FFDateFormatter.m in Sources */,
 				B5E1E52E206201CE008F49CA /* main.m in Sources */,
 				B5E1E55120623722008F49CA /* SYKeychain.m in Sources */,
 				B5E1E55A20624C71008F49CA /* FFDeviceInfo.m in Sources */,
@@ -298,6 +346,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B5623FF420689B8C0024DAA3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FFTools;
+			targetProxy = B5623FF320689B8C0024DAA3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B5E1E529206201CE008F49CA /* LaunchScreen.storyboard */ = {
