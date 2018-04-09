@@ -7,13 +7,14 @@
 //
 
 #import "FFAppDelegate.h"
+#import "FFControllerManager.h"
 
 //third library
 #import "WXApi.h"
 
 
 #import <UserNotifications/UserNotifications.h>
-#import <FFTools/FFDateFormatter.h>
+//#import <FFTools/FFDateFormatter.h>
 
 #define WEIXINAPPID @"wx7ec31aabe8cc710d"
 #define QQAPPID @"1106099979"
@@ -35,7 +36,7 @@
     //初始化数据
     [self initializeDataSource];
 
-    NSLog(@"%@",[FFDateFormatter stringFromeDate:[NSDate date]]);
+//    NSLog(@"%@",[FFDateFormatter stringFromeDate:[NSDate date]]);
 
     return YES;
 }
@@ -78,8 +79,8 @@
 
     //初始化window
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-//    self.window.rootViewController = [FFControllerManager sharedManager].rootViewController;
-    self.window.rootViewController = [UIViewController new];
+    self.window.rootViewController = [FFControllerManager sharedManager].rootNavController;
+//    self.window.rootViewController = [UIViewController new];
     [self.window makeKeyAndVisible];
 
 //    [self addMaskView:isFirstInstall];
