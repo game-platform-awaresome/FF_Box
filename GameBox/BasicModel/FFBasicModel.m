@@ -7,13 +7,8 @@
 //
 
 #import "FFBasicModel.h"
-#import <AFNetworking/AFNetworking.h>
-#import <UIImage+AFNetworking.h>
 #import <objc/runtime.h>
-#import "AFHTTPSessionManager.h"
-#import <CommonCrypto/CommonDigest.h>
 
-#import "SYKeychain.h"
 
 
 @implementation FFBasicModel
@@ -84,7 +79,6 @@
 
             if(dict[name]) {
                 [weakSelf setValue:[NSString stringWithFormat:@"%@",dict[name]] forKey:name];
-
             }
         }
     }

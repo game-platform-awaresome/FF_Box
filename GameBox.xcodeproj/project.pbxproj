@@ -22,6 +22,8 @@
 		B58CB7D2207B12470099773D /* FFControllerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B58CB7D1207B12470099773D /* FFControllerManager.m */; };
 		B58CB7D6207B12AC0099773D /* FFMainTabbarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B58CB7D5207B12AC0099773D /* FFMainTabbarViewController.m */; };
 		B58CB7DB207B12DC0099773D /* FFCustomizeTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B58CB7DA207B12DC0099773D /* FFCustomizeTabBar.m */; };
+		B59D989F2084A2E20024B11D /* FFBasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B59D989E2084A2E20024B11D /* FFBasicViewController.m */; };
+		B59D98A22084A2FD0024B11D /* FFBasicSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = B59D98A12084A2FD0024B11D /* FFBasicSelectView.m */; };
 		B5E1E54320622E40008F49CA /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B5E1E54220622E40008F49CA /* README.md */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +51,10 @@
 		B58CB7D5207B12AC0099773D /* FFMainTabbarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFMainTabbarViewController.m; sourceTree = "<group>"; };
 		B58CB7D9207B12DC0099773D /* FFCustomizeTabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFCustomizeTabBar.h; sourceTree = "<group>"; };
 		B58CB7DA207B12DC0099773D /* FFCustomizeTabBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFCustomizeTabBar.m; sourceTree = "<group>"; };
+		B59D989D2084A2E20024B11D /* FFBasicViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBasicViewController.h; sourceTree = "<group>"; };
+		B59D989E2084A2E20024B11D /* FFBasicViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBasicViewController.m; sourceTree = "<group>"; };
+		B59D98A02084A2FD0024B11D /* FFBasicSelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBasicSelectView.h; sourceTree = "<group>"; };
+		B59D98A12084A2FD0024B11D /* FFBasicSelectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBasicSelectView.m; sourceTree = "<group>"; };
 		B5E1E51B206201CD008F49CA /* GameBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5E1E54220622E40008F49CA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C1C09ECF85CDCEAA38284810 /* libPods-GameBox.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GameBox.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,6 +88,8 @@
 				B58CB79C207B10830099773D /* MainEntry */,
 				B58CB7CF207B122D0099773D /* ControllerManager */,
 				B58CB795207B10830099773D /* BasicModel */,
+				B59D989A2084A2AC0024B11D /* BasicView */,
+				B59D989C2084A2C20024B11D /* BasicController */,
 				B58CB7A1207B10830099773D /* Others */,
 				B58CB7A8207B10830099773D /* Resource */,
 			);
@@ -168,6 +176,24 @@
 				B58CB7DA207B12DC0099773D /* FFCustomizeTabBar.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		B59D989A2084A2AC0024B11D /* BasicView */ = {
+			isa = PBXGroup;
+			children = (
+				B59D98A02084A2FD0024B11D /* FFBasicSelectView.h */,
+				B59D98A12084A2FD0024B11D /* FFBasicSelectView.m */,
+			);
+			path = BasicView;
+			sourceTree = "<group>";
+		};
+		B59D989C2084A2C20024B11D /* BasicController */ = {
+			isa = PBXGroup;
+			children = (
+				B59D989D2084A2E20024B11D /* FFBasicViewController.h */,
+				B59D989E2084A2E20024B11D /* FFBasicViewController.m */,
+			);
+			path = BasicController;
 			sourceTree = "<group>";
 		};
 		B5E1E512206201CD008F49CA = {
@@ -328,10 +354,12 @@
 				B58CB7AC207B10830099773D /* FFBasicModel.m in Sources */,
 				B58CB7AE207B10830099773D /* FFNetWorkManager.m in Sources */,
 				B58CB7D6207B12AC0099773D /* FFMainTabbarViewController.m in Sources */,
+				B59D989F2084A2E20024B11D /* FFBasicViewController.m in Sources */,
 				B58CB7AF207B10830099773D /* FFAppDelegate.m in Sources */,
 				B58CB7D2207B12470099773D /* FFControllerManager.m in Sources */,
 				B58CB7AD207B10830099773D /* FFDeviceInfo.m in Sources */,
 				B58CB7B4207B10830099773D /* SYKeychain.m in Sources */,
+				B59D98A22084A2FD0024B11D /* FFBasicSelectView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

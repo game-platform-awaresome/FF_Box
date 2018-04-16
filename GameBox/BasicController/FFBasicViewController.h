@@ -1,0 +1,37 @@
+//
+//  FFBasicViewController.h
+//  GameBox
+//
+//  Created by 燚 on 2018/4/16.
+//  Copyright © 2018年 Sans. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import <MJRefresh.h>
+
+@interface FFBasicViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+/** table view */
+@property (nonatomic, strong) UITableView *tableView;
+/** show array */
+@property (nonatomic, strong) NSMutableArray *showArray;
+
+/** initialize user interface */
+- (void)initUserInterface;
+/** initialize */
+- (void)initDataSource;
+
+/** refresh data */
+- (void)refreshData;
+/** load more data */
+- (void)loadMoreData;
+
+
+
+
+@end
+
+
+
+
+

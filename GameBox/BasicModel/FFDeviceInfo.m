@@ -41,29 +41,21 @@
 
 /** 签名 */
 + (NSString *)signWithParms:(NSDictionary *)params WithKeys:(NSArray *)keys {
-
     NSMutableString *signString = [NSMutableString string];
-
     [keys enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL * _Nonnull stop) {
-
         [signString appendString:obj];
         [signString appendString:@"="];
         if (params[obj] == nil) {
             syLog(@"尚未登录或者 参数错误");
             return ;
         }
-
         [signString appendString:params[obj]];
-
         if (idx < keys.count - 1) {
             [signString appendString:@"&"];
         }
     }];
-
     NSString *key = AppKey;
-
     [signString appendString:key];
-
     return [self md5:signString];
 }
 
@@ -72,13 +64,10 @@
     const char *cStr = [input UTF8String];
     unsigned char digest[CC_MD5_DIGEST_LENGTH];
     CC_MD5( cStr, (unsigned int)strlen(cStr), digest );
-
     NSMutableString *output = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
-
     for(int i = 0; i < CC_MD5_DIGEST_LENGTH; i++)
         //注意：这边如果是x则输出32位小写加密字符串，如果是X则输出32位大写字符串
         [output appendFormat:@"%02x", digest[i]];
-
     return  output;
 }
 
@@ -96,9 +85,7 @@
 + (NSString *)phoneType {
 
     struct utsname systemInfo;
-
     uname(&systemInfo);
-
     NSString *platform = [NSString stringWithCString:systemInfo.machine encoding:NSASCIIStringEncoding];
     if ([platform isEqualToString:@"iPhone5,1"]) return @"iPhone 5";
     if ([platform isEqualToString:@"iPhone5,2"]) return @"iPhone 5";
