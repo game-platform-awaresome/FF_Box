@@ -38,7 +38,6 @@
     return channel;
 }
 
-
 /** 签名 */
 + (NSString *)signWithParms:(NSDictionary *)params WithKeys:(NSArray *)keys {
     NSMutableString *signString = [NSMutableString string];
@@ -58,7 +57,6 @@
     [signString appendString:key];
     return [self md5:signString];
 }
-
 
 + (NSString *)md5:(NSString *)input {
     const char *cStr = [input UTF8String];
@@ -83,7 +81,6 @@
 
 /** 设备型号 */
 + (NSString *)phoneType {
-
     struct utsname systemInfo;
     uname(&systemInfo);
     NSString *platform = [NSString stringWithCString:systemInfo.machine encoding:NSASCIIStringEncoding];
@@ -99,7 +96,12 @@
     if ([platform isEqualToString:@"iPhone8,2"]) return @"iPhone 6s Plus";
     if ([platform isEqualToString:@"iPhone8,4"]) return @"iPhone SE";
     if ([platform isEqualToString:@"iPhone9,1"]) return @"iPhone 7";
+    if ([platform isEqualToString:@"iPhone9,3"]) return @"iPhone 7";
     if ([platform isEqualToString:@"iPhone9,2"]) return @"iPhone 7 Plus";
+    if ([platform isEqualToString:@"iPhone9,4"]) return @"iPhone 7 Plus";
+    if ([platform isEqualToString:@"iPhone10,1"]) return @"iPhone 8";
+    if ([platform isEqualToString:@"iPhone10,2"]) return @"iPhone 8 Plus";
+    if ([platform isEqualToString:@"iPhone10,3"]) return @"iPhone x";
     if ([platform isEqualToString:@"iPod1,1"])   return @"iPod Touch 1G";
     if ([platform isEqualToString:@"iPod2,1"])   return @"iPod Touch 2G";
     if ([platform isEqualToString:@"iPod3,1"])   return @"iPod Touch 3G";
@@ -144,21 +146,16 @@
 
 /** 设备 ip */
 + (NSString *)DeviceIP {
-
     NSString *address = @"error";
     struct ifaddrs *interfaces = NULL;
     struct ifaddrs *temp_addr = NULL;
     int success = 0;
-
     success = getifaddrs(&interfaces);
     if (success == 0) {
-
         temp_addr = interfaces;
         while(temp_addr != NULL) {
             if(temp_addr->ifa_addr->sa_family == AF_INET) {
-
                 if([[NSString stringWithUTF8String:temp_addr->ifa_name] isEqualToString:@"en0"]) {
-
                     address = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr->ifa_addr)->sin_addr)];
                 }
             }

@@ -1,0 +1,6 @@
+framework module FFTools {
+  umbrella header "FFTools.h"
+
+  export *
+  module * { export * }
+}

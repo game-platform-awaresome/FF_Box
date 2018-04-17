@@ -48,7 +48,6 @@
     //    NSArray *images = @[@"d_youxi_an", @"b_paihangbang_an-", @"a_libao_an", @"c_wode_an"];
     //    NSArray *selectImages = @[@"d_youxi_liang", @"b_paihangbang_liang", @"a_libao_liang", @"c_wode_liang"];
 
-
     NSMutableArray *viewControllers = [NSMutableArray arrayWithCapacity:4];
 
     [viewControllerNames enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -57,21 +56,17 @@
         Class classname = NSClassFromString(obj);
         viewController = [[classname alloc] init];
 
-        //        viewController = [[UIViewController alloc] init];
-
-        //        FFNavigationController *nav = [[FFNavigationController alloc] initWithRootViewController:viewController];
+        if (!viewController) {
+            viewController = [[UIViewController alloc] init];
+            syLog(@"%@ error",obj);
+        }
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:viewController];
         //设置title
         viewController.navigationItem.title = titles[idx];
         viewController.navigationController.tabBarItem.title = titles[idx];
-
         viewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:titles[idx] image:[[UIImage imageNamed:images[idx]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:selectImages[idx]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-
         [viewController.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:NAVGATION_BAR_COLOR} forState:UIControlStateSelected];
-
-
         [viewControllers addObject:nav];
-
     }];
     self.viewControllers = viewControllers;
 }

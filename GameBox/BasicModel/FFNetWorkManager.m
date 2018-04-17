@@ -14,7 +14,6 @@
 
 /** post */
 + (void)postRequestWithURL:(NSString *)url Params:(NSDictionary *)params Completion:(RequestCallBackBlock)completion {
-
     [self postRequestWithURL:url Params:params Success:^(NSDictionary *content) {
         if (completion) {
             completion(content,true);

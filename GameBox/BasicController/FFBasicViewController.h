@@ -8,13 +8,22 @@
 
 #import <UIKit/UIKit.h>
 #import <MJRefresh.h>
+#import <FFTools/FFTools.h>
+
+typedef void(^EndOfNetWorkRequestBlock)(BOOL success);
 
 @interface FFBasicViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 /** table view */
 @property (nonatomic, strong) UITableView *tableView;
+/** refresh header */
+@property (nonatomic, strong) MJRefreshNormalHeader *refreshHeader;
+/** lord more footer */
+@property (nonatomic, strong) MJRefreshBackFooter *refreshFooter;
 /** show array */
 @property (nonatomic, strong) NSMutableArray *showArray;
+/** End of network request block */
+@property (nonatomic, strong) EndOfNetWorkRequestBlock endOfNetWorkRequestBlock;
 
 /** initialize user interface */
 - (void)initUserInterface;

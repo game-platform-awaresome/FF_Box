@@ -24,6 +24,8 @@
 		B58CB7DB207B12DC0099773D /* FFCustomizeTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B58CB7DA207B12DC0099773D /* FFCustomizeTabBar.m */; };
 		B59D989F2084A2E20024B11D /* FFBasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B59D989E2084A2E20024B11D /* FFBasicViewController.m */; };
 		B59D98A22084A2FD0024B11D /* FFBasicSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = B59D98A12084A2FD0024B11D /* FFBasicSelectView.m */; };
+		B5D5057B20859E8D000B7B50 /* FFTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D5057A20859E8D000B7B50 /* FFTools.framework */; };
+		B5D505802085CB06000B7B50 /* FFBasicSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D5057F2085CB06000B7B50 /* FFBasicSelectViewController.m */; };
 		B5E1E54320622E40008F49CA /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B5E1E54220622E40008F49CA /* README.md */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +57,9 @@
 		B59D989E2084A2E20024B11D /* FFBasicViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBasicViewController.m; sourceTree = "<group>"; };
 		B59D98A02084A2FD0024B11D /* FFBasicSelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBasicSelectView.h; sourceTree = "<group>"; };
 		B59D98A12084A2FD0024B11D /* FFBasicSelectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBasicSelectView.m; sourceTree = "<group>"; };
+		B5D5057A20859E8D000B7B50 /* FFTools.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FFTools.framework; path = GameBox/FFTools.framework; sourceTree = "<group>"; };
+		B5D5057E2085CB06000B7B50 /* FFBasicSelectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBasicSelectViewController.h; sourceTree = "<group>"; };
+		B5D5057F2085CB06000B7B50 /* FFBasicSelectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBasicSelectViewController.m; sourceTree = "<group>"; };
 		B5E1E51B206201CD008F49CA /* GameBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5E1E54220622E40008F49CA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C1C09ECF85CDCEAA38284810 /* libPods-GameBox.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GameBox.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,6 +73,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0543CAF4C1A27767297E9250 /* libPods-GameBox.a in Frameworks */,
+				B5D5057B20859E8D000B7B50 /* FFTools.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +83,7 @@
 		76486CF296C9DFD1ABAED75C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B5D5057A20859E8D000B7B50 /* FFTools.framework */,
 				C1C09ECF85CDCEAA38284810 /* libPods-GameBox.a */,
 			);
 			name = Frameworks;
@@ -192,6 +199,8 @@
 			children = (
 				B59D989D2084A2E20024B11D /* FFBasicViewController.h */,
 				B59D989E2084A2E20024B11D /* FFBasicViewController.m */,
+				B5D5057E2085CB06000B7B50 /* FFBasicSelectViewController.h */,
+				B5D5057F2085CB06000B7B50 /* FFBasicSelectViewController.m */,
 			);
 			path = BasicController;
 			sourceTree = "<group>";
@@ -358,6 +367,7 @@
 				B58CB7AF207B10830099773D /* FFAppDelegate.m in Sources */,
 				B58CB7D2207B12470099773D /* FFControllerManager.m in Sources */,
 				B58CB7AD207B10830099773D /* FFDeviceInfo.m in Sources */,
+				B5D505802085CB06000B7B50 /* FFBasicSelectViewController.m in Sources */,
 				B58CB7B4207B10830099773D /* SYKeychain.m in Sources */,
 				B59D98A22084A2FD0024B11D /* FFBasicSelectView.m in Sources */,
 			);
@@ -488,6 +498,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JR27SLBFXN;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/GameBox",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/GameBox/Others/FFPerFixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/GameBox/MainEntry/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -505,6 +519,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JR27SLBFXN;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/GameBox",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/GameBox/Others/FFPerFixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/GameBox/MainEntry/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
