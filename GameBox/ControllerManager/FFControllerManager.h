@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "FFMainTabbarViewController.h"
 
+#define Current_NavController ([FFControllerManager sharedManager].currentNavController)
+
 @interface FFControllerManager : NSObject
 
 /** Root Navigation Controller */

@@ -8,6 +8,7 @@
 
 #import "FFMainTabbarViewController.h"
 #import "FFCustomizeTabBar.h"
+#import "FFControllerManager.h"
 //#import "FFInviteFriendViewController.h"
 //#import "FFLoginViewController.h"
 //#import "ZCNavigationController+Smoonth.h"
@@ -15,6 +16,8 @@
 
 @interface FFMainTabbarViewController () <FFCustomizeTabbarDelegate>
 
+
+@property (nonatomic, strong) NSArray<UINavigationController *> *childVCs;
 
 
 @end
@@ -38,8 +41,8 @@
 
 - (void)initializeDataSource {
     NSArray *viewControllerNames = @[@"FFHomeViewController", @"FFOpenServerViewController", @"FFDriveController", @"FFNewMineViewController"];
-    NSArray *titles = @[@"游戏", @"开服表", @"车站", @"我的"];
 
+    NSArray *titles = @[@"游戏", @"开服表", @"车站", @"我的"];
     NSArray *images = @[@"d_youxi_an", @"b_paihangbang_an-", @"Community_tab_image_an", @"c_wode_an"];
     NSArray *selectImages = @[@"d_youxi_liang", @"b_paihangbang_liang", @"Community_tab_image_liang", @"c_wode_liang"];
     //    NSArray *viewControllerNames = @[@"FFHomeViewController", @"FFRankListViewController", @"FFOpenServerViewController", @"FFNewMineViewController"];
@@ -48,7 +51,7 @@
     //    NSArray *images = @[@"d_youxi_an", @"b_paihangbang_an-", @"a_libao_an", @"c_wode_an"];
     //    NSArray *selectImages = @[@"d_youxi_liang", @"b_paihangbang_liang", @"a_libao_liang", @"c_wode_liang"];
 
-    NSMutableArray *viewControllers = [NSMutableArray arrayWithCapacity:4];
+    NSMutableArray *viewControllers = [NSMutableArray arrayWithCapacity:titles.count];
 
     [viewControllerNames enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         UIViewController *viewController = nil;
@@ -69,6 +72,7 @@
         [viewControllers addObject:nav];
     }];
     self.viewControllers = viewControllers;
+    self.childVCs = viewControllers;
 }
 
 - (void)viewDidLoad {
@@ -76,6 +80,15 @@
     // Do any additional setup after loading the view.
 }
 
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
+//    [super tabBar:tabBar didSelectItem:item];
+
+}
+
+- (void)setSelectedViewController:(__kindof UIViewController *)selectedViewController {
+    [super setSelectedViewController:selectedViewController];
+    [FFControllerManager sharedManager].currentNavController = selectedViewController;
+}
 
 #pragma mark - delegate
 - (void)CustomizeTabBar:(FFCustomizeTabBar *)tabBar didSelectCenterButton:(id)sender {
