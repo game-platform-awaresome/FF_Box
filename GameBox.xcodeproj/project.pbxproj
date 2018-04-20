@@ -33,6 +33,8 @@
 		B5D5059420884164000B7B50 /* FFClassifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D5059320884164000B7B50 /* FFClassifyViewController.m */; };
 		B5D5059A20886D7D000B7B50 /* FFOpenServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D5059920886D7D000B7B50 /* FFOpenServiceViewController.m */; };
 		B5D5059E208875E8000B7B50 /* FFOSChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D5059D208875E8000B7B50 /* FFOSChildViewController.m */; };
+		B5D505A920898D25000B7B50 /* FFDriveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D505A820898D25000B7B50 /* FFDriveViewController.m */; };
+		B5D505AE20898D69000B7B50 /* FFMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D505AD20898D69000B7B50 /* FFMineViewController.m */; };
 		B5E1E54320622E40008F49CA /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B5E1E54220622E40008F49CA /* README.md */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +83,10 @@
 		B5D5059920886D7D000B7B50 /* FFOpenServiceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFOpenServiceViewController.m; sourceTree = "<group>"; };
 		B5D5059C208875E8000B7B50 /* FFOSChildViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFOSChildViewController.h; sourceTree = "<group>"; };
 		B5D5059D208875E8000B7B50 /* FFOSChildViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFOSChildViewController.m; sourceTree = "<group>"; };
+		B5D505A720898D25000B7B50 /* FFDriveViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFDriveViewController.h; sourceTree = "<group>"; };
+		B5D505A820898D25000B7B50 /* FFDriveViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFDriveViewController.m; sourceTree = "<group>"; };
+		B5D505AC20898D69000B7B50 /* FFMineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFMineViewController.h; sourceTree = "<group>"; };
+		B5D505AD20898D69000B7B50 /* FFMineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFMineViewController.m; sourceTree = "<group>"; };
 		B5E1E51B206201CD008F49CA /* GameBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5E1E54220622E40008F49CA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C1C09ECF85CDCEAA38284810 /* libPods-GameBox.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GameBox.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -233,6 +239,7 @@
 				B5D505822086F1A3000B7B50 /* FFHomeClass */,
 				B5D5059520886D1A000B7B50 /* FFOpenServiceClass */,
 				B5D5059F20887B00000B7B50 /* FFDriveClass */,
+				B5D505AA20898D34000B7B50 /* FFMineClass */,
 			);
 			path = GeneralClass;
 			sourceTree = "<group>";
@@ -333,6 +340,8 @@
 		B5D505A220887B23000B7B50 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				B5D505A720898D25000B7B50 /* FFDriveViewController.h */,
+				B5D505A820898D25000B7B50 /* FFDriveViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -342,6 +351,23 @@
 			children = (
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		B5D505AA20898D34000B7B50 /* FFMineClass */ = {
+			isa = PBXGroup;
+			children = (
+				B5D505AB20898D44000B7B50 /* Controller */,
+			);
+			path = FFMineClass;
+			sourceTree = "<group>";
+		};
+		B5D505AB20898D44000B7B50 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B5D505AC20898D69000B7B50 /* FFMineViewController.h */,
+				B5D505AD20898D69000B7B50 /* FFMineViewController.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		B5E1E512206201CD008F49CA = {
@@ -504,6 +530,8 @@
 				B58CB7AE207B10830099773D /* FFNetWorkManager.m in Sources */,
 				B5D5059E208875E8000B7B50 /* FFOSChildViewController.m in Sources */,
 				B5D505872086F1D8000B7B50 /* FFHomeViewController.m in Sources */,
+				B5D505AE20898D69000B7B50 /* FFMineViewController.m in Sources */,
+				B5D505A920898D25000B7B50 /* FFDriveViewController.m in Sources */,
 				B5D5059420884164000B7B50 /* FFClassifyViewController.m in Sources */,
 				B58CB7D6207B12AC0099773D /* FFMainTabbarViewController.m in Sources */,
 				B5D5059A20886D7D000B7B50 /* FFOpenServiceViewController.m in Sources */,

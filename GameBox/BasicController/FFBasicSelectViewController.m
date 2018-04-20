@@ -26,9 +26,21 @@
 - (void)initUserInterface {
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
+    [self.view addSubview:self.selectView];
+    [self.view addSubview:self.scrollView];
 }
 
 - (void)initDataSource {
+    self.selectViewHight = 44;
+    self.SelectViewFrame = CGRectMake(0, kNAVIGATION_HEIGHT, kSCREEN_WIDTH, self.selectViewHight);
+}
+
+#pragma mark - responds
+- (void)respondsToRightButton {
+
+}
+
+- (void)respondsToLeftButton {
 
 }
 
@@ -110,6 +122,21 @@
     _isAnimatining = NO;
 }
 
+#pragma mark - layout subviews
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    self.selectView.frame = self.SelectViewFrame;
+    CGFloat hight = kSCREEN_HEIGHT - CGRectGetMaxY(self.selectView.frame) - self.tabBarController.tabBar.frame.size.height;
+    self.scrollView.frame = CGRectMake(0, CGRectGetMaxY(self.selectView.frame), kSCREEN_WIDTH, hight);
+    if (self.selectChildViewControllers.count > 0) {
+        [self.scrollView setContentSize:CGSizeMake(kSCREEN_WIDTH * self.selectView.headerTitleArray.count, hight)];
+        int index = 0;
+        for (UIViewController *vc in self.selectChildViewControllers) {
+            vc.view.frame = CGRectMake(kSCREEN_WIDTH * index++, 0, kSCREEN_WIDTH, hight);
+        }
+    }
+}
+
 #pragma mark - setter
 - (void)setSelectChildViewControllers:(NSArray<UIViewController *> *)selectChildViewControllers {
     _selectChildViewControllers = selectChildViewControllers;
@@ -134,15 +161,26 @@
 
 - (FFBasicSelectView *)selectView {
     if (!_selectView) {
-        _selectView = [[FFBasicSelectView alloc] initWithFrame:CGRectMake(0, kNAVIGATION_HEIGHT, kSCREEN_WIDTH, 50)];
+        _selectView = [[FFBasicSelectView alloc] initWithFrame:CGRectMake(0, kNAVIGATION_HEIGHT, kSCREEN_WIDTH, self.selectViewHight)];
         _selectView.delegate = self;
         _selectView.lineColor = [UIColor colorWithWhite:0.9 alpha:1];
     }
     return _selectView;
 }
 
+- (UIBarButtonItem *)rightButton {
+    if (!_rightButton) {
+        _rightButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:(UIBarButtonItemStyleDone) target:self action:@selector(respondsToRightButton)];
+    }
+    return _rightButton;
+}
 
-
+- (UIBarButtonItem *)leftButton {
+    if (!_leftButton) {
+        _rightButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:(UIBarButtonItemStyleDone) target:self action:@selector(respondsToLeftButton)];
+    }
+    return _leftButton;
+}
 
 
 

@@ -28,31 +28,13 @@
 
 - (void)initUserInterface {
     [super initUserInterface];
-
-    [self.view addSubview:self.selectView];
-    [self.view addSubview:self.scrollView];
 }
 
 - (void)initDataSource {
+    [super initDataSource];
     self.selectView.headerTitleArray = @[@"今日开服",@"即将开服",@"已经开服"];
     self.selectChildViewControllers = @[self.todayOpenVC,self.soonOpenVC,self.alredayOpenVC];
 }
-
-- (void)viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
-    self.selectView.frame = CGRectMake(0, kNAVIGATION_HEIGHT, kSCREEN_WIDTH, 44);
-    CGFloat hight = kSCREEN_HEIGHT - CGRectGetMaxY(self.selectView.frame) - self.tabBarController.tabBar.frame.size.height;
-    self.scrollView.frame = CGRectMake(0, CGRectGetMaxY(self.selectView.frame), kSCREEN_WIDTH, hight);
-    if (self.selectChildViewControllers.count > 0) {
-        [self.scrollView setContentSize:CGSizeMake(kSCREEN_WIDTH * self.selectView.headerTitleArray.count, hight)];
-        int index = 0;
-        for (UIViewController *vc in self.selectChildViewControllers) {
-            vc.view.frame = CGRectMake(kSCREEN_WIDTH * index++, 0, kSCREEN_WIDTH, hight);
-        }
-    }
-}
-
-
 
 
 

@@ -49,10 +49,6 @@ completion(@{@"status":@"404",@"msg":@"请求超时"},false);\
 }\
 }
 
-#define BOX_SIGN(dict, pamarasKey) [FFBasicModel signWithParms:dict WithKeys:pamarasKey]
-
-
-
 typedef void(^RequestCallBackBlock)(NSDictionary * _Nonnull content, BOOL success);
 typedef void(^SuccessBlock)(NSDictionary * _Nonnull content);
 typedef void(^FailureBlock)(NSError * _Nonnull error);

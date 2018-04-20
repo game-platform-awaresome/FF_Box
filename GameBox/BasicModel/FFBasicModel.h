@@ -9,12 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "FFNetWorkManager.h"
 
-#define Channel             ([FFBasicModel channel])
-#define DeviceID            ([FFBasicModel deviceID])
-#define PhoneType           ([FFBasicModel phoneType])
-#define AppVersion          ([FFBasicModel appVersion])
-
-
 @interface FFBasicModel : NSObject
 
 

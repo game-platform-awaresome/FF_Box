@@ -50,6 +50,15 @@
 
 }
 
+#pragma mark - responds
+- (void)respondsToRightButton {
+
+}
+
+- (void)respondsToLeftButton {
+
+}
+
 #pragma mark - table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -118,7 +127,19 @@
     return _refreshFooter;
 }
 
+- (UIBarButtonItem *)rightButton {
+    if (!_rightButton) {
+        _rightButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:(UIBarButtonItemStyleDone) target:self action:@selector(respondsToRightButton)];
+    }
+    return _rightButton;
+}
 
+- (UIBarButtonItem *)leftButton {
+    if (!_leftButton) {
+        _rightButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:(UIBarButtonItemStyleDone) target:self action:@selector(respondsToLeftButton)];
+    }
+    return _leftButton;
+}
 
 
 

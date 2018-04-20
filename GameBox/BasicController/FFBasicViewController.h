@@ -25,6 +25,11 @@ typedef void(^EndOfNetWorkRequestBlock)(BOOL success);
 /** End of network request block */
 @property (nonatomic, strong) EndOfNetWorkRequestBlock endOfNetWorkRequestBlock;
 
+/** uinavigation left button  */
+@property (nonatomic, strong) UIBarButtonItem *leftButton;
+/** uinavigation rigth button */
+@property (nonatomic, strong) UIBarButtonItem *rightButton;
+
 /** initialize user interface */
 - (void)initUserInterface;
 /** initialize */
@@ -35,6 +40,8 @@ typedef void(^EndOfNetWorkRequestBlock)(BOOL success);
 /** load more data */
 - (void)loadMoreData;
 
+- (void)respondsToRightButton;
+- (void)respondsToLeftButton;
 
 
 

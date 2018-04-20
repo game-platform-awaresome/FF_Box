@@ -64,12 +64,6 @@
 #define STOP_NET_WORK [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO]
 
 
-/** test */
-//#import "ZCNavigationController+Smoonth.h"
-
-
-
-//#import "FFStatisticsModel.h"
 
 #endif /* FFPerFixHeader_pch */
 
