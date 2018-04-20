@@ -35,6 +35,7 @@
 		B5D5059E208875E8000B7B50 /* FFOSChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D5059D208875E8000B7B50 /* FFOSChildViewController.m */; };
 		B5D505A920898D25000B7B50 /* FFDriveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D505A820898D25000B7B50 /* FFDriveViewController.m */; };
 		B5D505AE20898D69000B7B50 /* FFMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D505AD20898D69000B7B50 /* FFMineViewController.m */; };
+		B5D505EB2089DAFE000B7B50 /* FFStatisticsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D505EA2089DAFE000B7B50 /* FFStatisticsModel.m */; };
 		B5E1E54320622E40008F49CA /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B5E1E54220622E40008F49CA /* README.md */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +88,8 @@
 		B5D505A820898D25000B7B50 /* FFDriveViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFDriveViewController.m; sourceTree = "<group>"; };
 		B5D505AC20898D69000B7B50 /* FFMineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFMineViewController.h; sourceTree = "<group>"; };
 		B5D505AD20898D69000B7B50 /* FFMineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFMineViewController.m; sourceTree = "<group>"; };
+		B5D505E92089DAFE000B7B50 /* FFStatisticsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFStatisticsModel.h; sourceTree = "<group>"; };
+		B5D505EA2089DAFE000B7B50 /* FFStatisticsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFStatisticsModel.m; sourceTree = "<group>"; };
 		B5E1E51B206201CD008F49CA /* GameBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5E1E54220622E40008F49CA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C1C09ECF85CDCEAA38284810 /* libPods-GameBox.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GameBox.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,6 +127,7 @@
 				B58CB795207B10830099773D /* BasicModel */,
 				B59D989A2084A2AC0024B11D /* BasicView */,
 				B59D989C2084A2C20024B11D /* BasicController */,
+				B5D505E82089DAA6000B7B50 /* GeneralModel */,
 				B5D505812086F17A000B7B50 /* GeneralClass */,
 				B58CB7A1207B10830099773D /* Others */,
 				B58CB7A8207B10830099773D /* Resource */,
@@ -370,6 +374,15 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		B5D505E82089DAA6000B7B50 /* GeneralModel */ = {
+			isa = PBXGroup;
+			children = (
+				B5D505E92089DAFE000B7B50 /* FFStatisticsModel.h */,
+				B5D505EA2089DAFE000B7B50 /* FFStatisticsModel.m */,
+			);
+			path = GeneralModel;
+			sourceTree = "<group>";
+		};
 		B5E1E512206201CD008F49CA = {
 			isa = PBXGroup;
 			children = (
@@ -523,6 +536,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5D505EB2089DAFE000B7B50 /* FFStatisticsModel.m in Sources */,
 				B58CB7B1207B10830099773D /* main.m in Sources */,
 				B5D5058B208715C0000B7B50 /* FFRecommentViewController.m in Sources */,
 				B58CB7DB207B12DC0099773D /* FFCustomizeTabBar.m in Sources */,
