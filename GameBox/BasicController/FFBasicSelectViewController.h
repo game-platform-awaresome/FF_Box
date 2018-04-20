@@ -18,6 +18,7 @@
 
 /** select View */
 @property (nonatomic, strong) FFBasicSelectView *selectView;
+@property (nonatomic, assign) CGFloat selectViewHight;
 
 /** child controllers */
 @property (nonatomic, strong) NSArray<UIViewController *> *selectChildViewControllers;
@@ -33,6 +34,8 @@
 - (void)initDataSource;
 
 
+- (void)childControllerAdd:(UIViewController *)controller;
+- (void)childControllerRemove:(UIViewController *)controller;
 
 
 @end

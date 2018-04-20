@@ -77,6 +77,7 @@ const NSInteger ButtonTag = 10086;
 }
 
 #pragma mark - responds
+/** responds button */
 - (void)respondsToTitleButton:(UIButton *)sender {
     if (isAnimation) {
 
@@ -88,8 +89,8 @@ const NSInteger ButtonTag = 10086;
     }
 }
 
-
 #pragma mark - method
+/** create button */
 - (void)creatTitleButtonWithTitleArray:(NSArray<NSString *> *)titleArray {
     if (titleArray == nil || titleArray.count == 0) {
         return;
@@ -111,7 +112,6 @@ const NSInteger ButtonTag = 10086;
 
         [self.scrollView addSubview:button];
     }];
-    //    [self.scrollView.layer addSublayer:self.lineLayer];
     [self setSelectTitleIndex:0];
 }
 
@@ -131,9 +131,24 @@ const NSInteger ButtonTag = 10086;
 @synthesize cursorColor = _cursorColor;
 @synthesize cursorCenter_Y = _cursorCenter_Y;
 #pragma mark - setter
+/** set frame */
 - (void)setFrame:(CGRect)frame {
     [super setFrame:frame];
     totalFrame = frame;
+    [self setButtonsHight:frame.size.height];
+}
+
+/** set button hight */
+- (void)setButtonsHight:(CGFloat)hight {
+    if (self.titleButtonArray.count > 0) {
+        for (UIButton *button in self.titleButtonArray) {
+            CGRect frame = button.frame;
+            frame.size.height = hight;
+            button.frame = frame;
+        }
+        self.cursorCenter_Y = hight - 4;
+        self.lineView.frame = CGRectMake(0, hight - 2, kSCREEN_WIDTH, 2);
+    }
 }
 
 - (void)setSelectTitleIndex:(NSInteger)selectTitleIndex {
@@ -161,16 +176,15 @@ const NSInteger ButtonTag = 10086;
     }];
 }
 
+
 - (void)setTitleSize:(CGSize)titleSize {
     if (_canScrollTitle) {
         _titleSize = titleSize;
 
         self.scrollView.contentSize = CGSizeMake(titleSize.width * self.titleButtonArray.count, totalFrame.size.height);
-
         [self.titleButtonArray enumerateObjectsUsingBlock:^(UIButton * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             obj.frame = CGRectMake(idx * titleSize.width, 0, titleSize.width, titleSize.height);
         }];
-
         [self setSelectTitleIndex:_selectTitleIndex];
     }
 }
@@ -228,7 +242,6 @@ const NSInteger ButtonTag = 10086;
 
 - (void)setLineColor:(UIColor *)lineColor {
     if (lineColor) {
-        self.lineView.frame = CGRectMake(0, self.frame.size.height - 2, kSCREEN_WIDTH, 2);
         self.lineView.backgroundColor = lineColor;
     }
 }
@@ -294,4 +307,11 @@ const NSInteger ButtonTag = 10086;
 }
 
 
+
 @end
+
+
+
+
+
+

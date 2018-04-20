@@ -27,6 +27,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self initDataSource];
+    [self initUserInterface];
 }
 
 

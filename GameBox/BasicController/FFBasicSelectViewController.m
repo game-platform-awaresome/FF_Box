@@ -35,7 +35,24 @@
 #pragma mark - select view delegate
 - (void)FFSelectHeaderView:(FFBasicSelectView *)view didSelectTitleWithIndex:(NSUInteger)idx {
 
+    if (_isAnimatining || self.lastViewController == self.selectChildViewControllers[idx] || self.selectChildViewControllers.count == 0) {
+        return;
+    }
 
+    if (idx > self.selectChildViewControllers.count) {
+        syLog(@"选择的标题大于可以选择的控制器!!!");
+        return;
+    }
+
+    if (self.lastViewController != nil) {
+        [self childControllerAdd:self.selectChildViewControllers[idx]];
+        [self childControllerRemove:self.lastViewController];
+    } else {
+        [self childControllerAdd:self.selectChildViewControllers[idx]];
+    }
+
+    self.lastViewController = self.selectChildViewControllers[idx];
+    [self.scrollView setContentOffset:CGPointMake(kSCREEN_WIDTH * idx, 0) animated:NO];
 }
 
 #pragma mark - scroll view delegate
@@ -97,7 +114,10 @@
 - (void)setSelectChildViewControllers:(NSArray<UIViewController *> *)selectChildViewControllers {
     _selectChildViewControllers = selectChildViewControllers;
     self.scrollView.contentSize = CGSizeMake(kSCREEN_WIDTH * selectChildViewControllers.count, kSCREEN_HEIGHT);
+    [self childControllerAdd:self.selectChildViewControllers[0]];
+    [self.scrollView addSubview:self.selectChildViewControllers[0].view];
 }
+
 
 #pragma mark - getter
 - (UIScrollView *)scrollView {
@@ -107,6 +127,7 @@
         _scrollView.pagingEnabled = YES;
         _scrollView.showsVerticalScrollIndicator = NO;
         _scrollView.showsHorizontalScrollIndicator = NO;
+        _scrollView.bounces = NO;
     }
     return _scrollView;
 }

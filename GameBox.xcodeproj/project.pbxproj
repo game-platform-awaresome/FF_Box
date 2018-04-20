@@ -28,6 +28,11 @@
 		B5D505802085CB06000B7B50 /* FFBasicSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D5057F2085CB06000B7B50 /* FFBasicSelectViewController.m */; };
 		B5D505872086F1D8000B7B50 /* FFHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D505862086F1D8000B7B50 /* FFHomeViewController.m */; };
 		B5D5058B208715C0000B7B50 /* FFRecommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D5058A208715C0000B7B50 /* FFRecommentViewController.m */; };
+		B5D5058E2088406A000B7B50 /* FFNewGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D5058D2088406A000B7B50 /* FFNewGameViewController.m */; };
+		B5D5059120884126000B7B50 /* FFGameGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D5059020884126000B7B50 /* FFGameGuideViewController.m */; };
+		B5D5059420884164000B7B50 /* FFClassifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D5059320884164000B7B50 /* FFClassifyViewController.m */; };
+		B5D5059A20886D7D000B7B50 /* FFOpenServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D5059920886D7D000B7B50 /* FFOpenServiceViewController.m */; };
+		B5D5059E208875E8000B7B50 /* FFOSChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D5059D208875E8000B7B50 /* FFOSChildViewController.m */; };
 		B5E1E54320622E40008F49CA /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B5E1E54220622E40008F49CA /* README.md */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +71,16 @@
 		B5D505862086F1D8000B7B50 /* FFHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFHomeViewController.m; sourceTree = "<group>"; };
 		B5D50589208715C0000B7B50 /* FFRecommentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFRecommentViewController.h; sourceTree = "<group>"; };
 		B5D5058A208715C0000B7B50 /* FFRecommentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFRecommentViewController.m; sourceTree = "<group>"; };
+		B5D5058C2088406A000B7B50 /* FFNewGameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFNewGameViewController.h; sourceTree = "<group>"; };
+		B5D5058D2088406A000B7B50 /* FFNewGameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFNewGameViewController.m; sourceTree = "<group>"; };
+		B5D5058F20884126000B7B50 /* FFGameGuideViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFGameGuideViewController.h; sourceTree = "<group>"; };
+		B5D5059020884126000B7B50 /* FFGameGuideViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFGameGuideViewController.m; sourceTree = "<group>"; };
+		B5D5059220884164000B7B50 /* FFClassifyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFClassifyViewController.h; sourceTree = "<group>"; };
+		B5D5059320884164000B7B50 /* FFClassifyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFClassifyViewController.m; sourceTree = "<group>"; };
+		B5D5059820886D7D000B7B50 /* FFOpenServiceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFOpenServiceViewController.h; sourceTree = "<group>"; };
+		B5D5059920886D7D000B7B50 /* FFOpenServiceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFOpenServiceViewController.m; sourceTree = "<group>"; };
+		B5D5059C208875E8000B7B50 /* FFOSChildViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFOSChildViewController.h; sourceTree = "<group>"; };
+		B5D5059D208875E8000B7B50 /* FFOSChildViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFOSChildViewController.m; sourceTree = "<group>"; };
 		B5E1E51B206201CD008F49CA /* GameBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5E1E54220622E40008F49CA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C1C09ECF85CDCEAA38284810 /* libPods-GameBox.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GameBox.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -216,6 +231,8 @@
 			isa = PBXGroup;
 			children = (
 				B5D505822086F1A3000B7B50 /* FFHomeClass */,
+				B5D5059520886D1A000B7B50 /* FFOpenServiceClass */,
+				B5D5059F20887B00000B7B50 /* FFDriveClass */,
 			);
 			path = GeneralClass;
 			sourceTree = "<group>";
@@ -251,8 +268,80 @@
 			children = (
 				B5D50589208715C0000B7B50 /* FFRecommentViewController.h */,
 				B5D5058A208715C0000B7B50 /* FFRecommentViewController.m */,
+				B5D5058C2088406A000B7B50 /* FFNewGameViewController.h */,
+				B5D5058D2088406A000B7B50 /* FFNewGameViewController.m */,
+				B5D5058F20884126000B7B50 /* FFGameGuideViewController.h */,
+				B5D5059020884126000B7B50 /* FFGameGuideViewController.m */,
+				B5D5059220884164000B7B50 /* FFClassifyViewController.h */,
+				B5D5059320884164000B7B50 /* FFClassifyViewController.m */,
 			);
 			path = HomeChildController;
+			sourceTree = "<group>";
+		};
+		B5D5059520886D1A000B7B50 /* FFOpenServiceClass */ = {
+			isa = PBXGroup;
+			children = (
+				B5D5059720886D58000B7B50 /* Controller */,
+				B5D5059620886D4C000B7B50 /* View */,
+			);
+			path = FFOpenServiceClass;
+			sourceTree = "<group>";
+		};
+		B5D5059620886D4C000B7B50 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B5D5059720886D58000B7B50 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B5D5059820886D7D000B7B50 /* FFOpenServiceViewController.h */,
+				B5D5059920886D7D000B7B50 /* FFOpenServiceViewController.m */,
+				B5D5059B20887518000B7B50 /* ChildController */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B5D5059B20887518000B7B50 /* ChildController */ = {
+			isa = PBXGroup;
+			children = (
+				B5D5059C208875E8000B7B50 /* FFOSChildViewController.h */,
+				B5D5059D208875E8000B7B50 /* FFOSChildViewController.m */,
+			);
+			path = ChildController;
+			sourceTree = "<group>";
+		};
+		B5D5059F20887B00000B7B50 /* FFDriveClass */ = {
+			isa = PBXGroup;
+			children = (
+				B5D505A220887B23000B7B50 /* Controller */,
+				B5D505A320887B2B000B7B50 /* Model */,
+				B5D505A020887B13000B7B50 /* View */,
+			);
+			path = FFDriveClass;
+			sourceTree = "<group>";
+		};
+		B5D505A020887B13000B7B50 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B5D505A220887B23000B7B50 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B5D505A320887B2B000B7B50 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		B5E1E512206201CD008F49CA = {
@@ -413,13 +502,18 @@
 				B58CB7DB207B12DC0099773D /* FFCustomizeTabBar.m in Sources */,
 				B58CB7AC207B10830099773D /* FFBasicModel.m in Sources */,
 				B58CB7AE207B10830099773D /* FFNetWorkManager.m in Sources */,
+				B5D5059E208875E8000B7B50 /* FFOSChildViewController.m in Sources */,
 				B5D505872086F1D8000B7B50 /* FFHomeViewController.m in Sources */,
+				B5D5059420884164000B7B50 /* FFClassifyViewController.m in Sources */,
 				B58CB7D6207B12AC0099773D /* FFMainTabbarViewController.m in Sources */,
+				B5D5059A20886D7D000B7B50 /* FFOpenServiceViewController.m in Sources */,
 				B59D989F2084A2E20024B11D /* FFBasicViewController.m in Sources */,
 				B58CB7AF207B10830099773D /* FFAppDelegate.m in Sources */,
+				B5D5059120884126000B7B50 /* FFGameGuideViewController.m in Sources */,
 				B58CB7D2207B12470099773D /* FFControllerManager.m in Sources */,
 				B58CB7AD207B10830099773D /* FFDeviceInfo.m in Sources */,
 				B5D505802085CB06000B7B50 /* FFBasicSelectViewController.m in Sources */,
+				B5D5058E2088406A000B7B50 /* FFNewGameViewController.m in Sources */,
 				B58CB7B4207B10830099773D /* SYKeychain.m in Sources */,
 				B59D98A22084A2FD0024B11D /* FFBasicSelectView.m in Sources */,
 			);

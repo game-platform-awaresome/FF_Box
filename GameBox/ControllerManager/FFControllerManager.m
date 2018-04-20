@@ -52,6 +52,7 @@ static FFControllerManager *manager = nil;
 - (UINavigationController *)rootNavController {
     if (!_rootNavController) {
         _rootNavController = [[UINavigationController alloc] initWithRootViewController:self.mainTabbarController];
+        _rootNavController.navigationBar.hidden = YES;
     }
     return _rootNavController;
 }
