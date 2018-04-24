@@ -6,8 +6,15 @@
 //  Copyright © 2018年 Sans. All rights reserved.
 //
 
-#import "FFBasicViewController.h"
+#import "FFBasicTableViewController.h"
 
-@interface FFGameGuideViewController : FFBasicViewController
+@interface FFGameGuideViewController : FFBasicTableViewController
+
+
+
+
+
+
+
 
 @end

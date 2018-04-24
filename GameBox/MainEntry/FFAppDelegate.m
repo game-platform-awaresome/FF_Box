@@ -16,6 +16,8 @@
 #import <UserNotifications/UserNotifications.h>
 //#import <FFTools/FFDateFormatter.h>
 
+#import "FFMapModel.h"
+
 #define WEIXINAPPID @"wx7ec31aabe8cc710d"
 #define QQAPPID @"1106099979"
 
@@ -107,8 +109,8 @@
 
 
 - (void)initializeDataSource {
-//
-//    [FFMapModel getMap];
+
+    [FFMapModel getMap];
 //
 //    //注册微信
 //    [WXApi registerApp:WEIXINAPPID];

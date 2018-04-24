@@ -10,39 +10,32 @@
 
 @interface FFBasicSelectViewController () <UIScrollViewDelegate>
 
+
 @end
+
 
 @implementation FFBasicSelectViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initDataSource];
-    [self initUserInterface];
 }
 
 
 
 #pragma mark - method
 - (void)initUserInterface {
-    self.view.backgroundColor = [UIColor whiteColor];
-    self.automaticallyAdjustsScrollViewInsets = NO;
+    [super initUserInterface];
     [self.view addSubview:self.selectView];
     [self.view addSubview:self.scrollView];
 }
 
 - (void)initDataSource {
+    [super initDataSource];
     self.selectViewHight = 44;
     self.SelectViewFrame = CGRectMake(0, kNAVIGATION_HEIGHT, kSCREEN_WIDTH, self.selectViewHight);
 }
 
-#pragma mark - responds
-- (void)respondsToRightButton {
 
-}
-
-- (void)respondsToLeftButton {
-
-}
 
 #pragma mark - select view delegate
 - (void)FFSelectHeaderView:(FFBasicSelectView *)view didSelectTitleWithIndex:(NSUInteger)idx {
@@ -168,19 +161,6 @@
     return _selectView;
 }
 
-- (UIBarButtonItem *)rightButton {
-    if (!_rightButton) {
-        _rightButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:(UIBarButtonItemStyleDone) target:self action:@selector(respondsToRightButton)];
-    }
-    return _rightButton;
-}
-
-- (UIBarButtonItem *)leftButton {
-    if (!_leftButton) {
-        _rightButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:(UIBarButtonItemStyleDone) target:self action:@selector(respondsToLeftButton)];
-    }
-    return _leftButton;
-}
 
 
 

@@ -13,6 +13,8 @@
 #import "FFGameGuideViewController.h"
 #import "FFClassifyViewController.h"
 
+
+
 @interface FFHomeViewController ()
 
 /** 4 sub-controllers */
@@ -30,6 +32,11 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 //    syLog(@"home nav = %@",self.navigationController);
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+//    [FFWaitingManager stopWatiting];
 }
 
 - (void)viewDidLoad {

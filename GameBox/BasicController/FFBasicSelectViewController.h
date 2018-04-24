@@ -6,10 +6,10 @@
 //  Copyright © 2018年 Sans. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "FFBasicViewController.h"
 #import "FFBasicSelectView.h"
 
-@interface FFBasicSelectViewController : UIViewController <FFBasicSelectViewDelegate>
+@interface FFBasicSelectViewController : FFBasicViewController <FFBasicSelectViewDelegate>
 
 /** scroll view */
 @property (nonatomic, strong) UIScrollView *scrollView;
@@ -24,21 +24,12 @@
 /** child controllers */
 @property (nonatomic, strong) NSArray<UIViewController *> *selectChildViewControllers;
 @property (nonatomic, strong) NSArray<NSString *> *selectChildVCNames;
-/** uinavigation left button  */
-@property (nonatomic, strong) UIBarButtonItem *leftButton;
-/** uinavigation rigth button */
-@property (nonatomic, strong) UIBarButtonItem *rightButton;
 
-
-//method
-- (void)initUserInterface;
-- (void)initDataSource;
 
 - (void)childControllerAdd:(UIViewController *)controller;
 - (void)childControllerRemove:(UIViewController *)controller;
 
-- (void)respondsToRightButton;
-- (void)respondsToLeftButton;
+
 
 
 

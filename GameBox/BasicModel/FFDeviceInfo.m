@@ -34,7 +34,6 @@
     NSString *path = [[NSBundle mainBundle] pathForResource:@"GameBoxConfig" ofType:@"plist"];
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:path];
     channel = (dict[@"channelID"] != nil) ? dict[@"channelID"] : @"185";
-    syLog(@"GAME_BOX === channel == %@",channel);
     return channel;
 }
 
@@ -130,7 +129,6 @@
     if ([platform isEqualToString:@"i386"])      return @"iPhone Simulator";
     if ([platform isEqualToString:@"x86_64"])    return @"iPhone Simulator";
     return platform;
-
 }
 
 /** 系统版本 */
