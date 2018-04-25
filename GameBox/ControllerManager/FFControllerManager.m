@@ -64,12 +64,6 @@ static FFControllerManager *manager = nil;
     return _mainTabbarController;
 }
 
-- (UINavigationController *)currentNavController {
-    if (!_currentNavController) {
-        _currentNavController = self.rootNavController;
-    }
-    return _currentNavController;
-}
 
 
 

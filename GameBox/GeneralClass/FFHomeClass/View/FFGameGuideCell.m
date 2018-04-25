@@ -6,10 +6,10 @@
 //  Copyright © 2018年 Yi Shi. All rights reserved.
 //
 
-#import "FFRaidersTableCell.h"
-#import "UIImageView+WebCache.h"
+#import "FFGameGuideCell.h"
+#import <UIImageView+WebCache.h>
 
-@interface FFRaidersTableCell ()
+@interface FFGameGuideCell ()
 
 
 @property (weak, nonatomic) IBOutlet UILabel *gameNameLabel;
@@ -24,7 +24,7 @@
 @end
 
 
-@implementation FFRaidersTableCell
+@implementation FFGameGuideCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];

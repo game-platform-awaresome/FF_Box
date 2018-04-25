@@ -72,6 +72,29 @@
     }];
 }
 
+//=======================================================================================//
+/** classify game list */ 
++ (void)classifyGameListWithPage:(NSString *)page Completion:(RequestCallBackBlock)completion {
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:Channel forKey:@"channel"];
+    [dict setObject:@"2" forKey:@"system"];
+    [dict setObject:page forKey:@"page"];
+    [self postRequestWithURL:[self map].GAME_CLASS Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        REQUEST_COMPLETION;
+    }];
+}
+
+/** classify with id */
++ (void)classifyWithID:(NSString *)classifyID Page:(NSString *)page Completion:(RequestCallBackBlock)completion {
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:classifyID forKey:@"classId"];
+    [dict setObject:Channel forKey:@"channel"];
+    [dict setObject:@"2" forKey:@"system"];
+    [dict setObject:page forKey:@"page"];
+    [self postRequestWithURL:[self map].GAME_CLASS_INFO Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        REQUEST_COMPLETION;
+    }];
+}
 
 
 

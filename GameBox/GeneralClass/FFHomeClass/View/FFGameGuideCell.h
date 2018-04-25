@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FFRaidersTableCell : UITableViewCell
+@interface FFGameGuideCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *gameLogoImageView;
 

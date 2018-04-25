@@ -40,12 +40,6 @@
 
 /** 弱引用 */
 #define WeakSelf __weak typeof(self) weakSelf = self
-
-#define HIDE_TABBAR self.hidesBottomBarWhenPushed = YES
-#define SHOW_TABBAR self.hidesBottomBarWhenPushed = NO
-#define HIDE_PARNENT_TABBAR self.parentViewController.hidesBottomBarWhenPushed = YES
-#define SHOW_PARNENT_TABBAR self.parentViewController.hidesBottomBarWhenPushed = NO
-
 #define IMAGEURL @"http://www.185sy.com%@"
 
 /** uid */

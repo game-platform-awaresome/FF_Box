@@ -49,6 +49,40 @@
 
 }
 
+- (void)hideTabbar {
+    self.parentViewController.hidesBottomBarWhenPushed = YES;
+    self.hidesBottomBarWhenPushed = YES;
+}
+
+- (void)showTabbar {
+    self.parentViewController.hidesBottomBarWhenPushed = NO;
+    self.hidesBottomBarWhenPushed = NO;
+}
+
+- (void)pushViewController:(UIViewController *)vc HideTabbar:(BOOL)hideTabbar {
+    [self hideTabbar];
+    [self.navigationController pushViewController:vc animated:YES];
+    if (!hideTabbar) {
+        [self showTabbar];
+    }
+}
+
+- (void)pushViewController:(UIViewController *)viewController {
+    [self hideTabbar];
+    [self.navigationController pushViewController:viewController animated:YES];
+    if (self.navigationController.viewControllers.count <= 2) {
+        [self showTabbar];
+    }
+}
+
+- (void)returnHideTabbarPushViewController:(UIViewController *)viewController {
+    [self pushViewController:viewController HideTabbar:YES];
+}
+
+- (void)returnShowTabbarPushViewController:(UIViewController *)viewController {
+    [self pushViewController:viewController HideTabbar:NO];
+}
+
 #pragma mark - responds
 - (void)respondsToRightButton {
 
@@ -88,6 +122,9 @@
     return _hud;
 }
 
+- (UINavigationController *)currentNav {
+    return [FFControllerManager sharedManager].currentNavController;
+}
 
 
 

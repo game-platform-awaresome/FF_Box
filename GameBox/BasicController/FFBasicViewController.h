@@ -19,6 +19,8 @@ typedef void(^EndOfNetWorkRequestBlock)(BOOL success);
 /** End of network request block */
 @property (nonatomic, strong) EndOfNetWorkRequestBlock endOfNetWorkRequestBlock;
 
+@property (nonatomic, strong) UINavigationController *currentNav;
+
 /** uinavigation left button  */
 @property (nonatomic, strong) UIBarButtonItem *leftButton;
 /** uinavigation rigth button */
@@ -42,6 +44,17 @@ typedef void(^EndOfNetWorkRequestBlock)(BOOL success);
 - (void)refreshData;
 /** load more data */
 - (void)loadMoreData;
+
+/** hide tabbar when navgationcontroller pushed */
+- (void)hideTabbar;
+/** show tabbar when navgationcontroller pushed */
+- (void)showTabbar;
+
+/** push view controller hide tabbar */
+- (void)pushViewController:(UIViewController *)vc HideTabbar:(BOOL)hideTabbar;
+- (void)pushViewController:(UIViewController *)viewController;
+- (void)returnShowTabbarPushViewController:(UIViewController *)viewController;
+- (void)returnHideTabbarPushViewController:(UIViewController *)viewController;
 
 
 

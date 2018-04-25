@@ -40,8 +40,8 @@
 }
 
 - (void)initializeDataSource {
-    NSArray *viewControllerNames = @[@"FFHomeViewController", @"FFOpenServiceViewController", @"FFDriveViewController", @"FFMineViewController"];
-
+//    NSArray *viewControllerNames = @[@"FFHomeViewController", @"FFOpenServiceViewController", @"FFDriveViewController", @"FFMineViewController"];
+    NSArray *viewControllerNames = @[@"FFHomeViewController", @"FFOpenServiceViewController", @"FFDriveViewController", @"FFClassifyDetailViewController"];
     NSArray *titles = @[@"游戏", @"开服表", @"车站", @"我的"];
     NSArray *images = @[@"d_youxi_an", @"b_paihangbang_an-", @"Community_tab_image_an", @"c_wode_an"];
     NSArray *selectImages = @[@"d_youxi_liang", @"b_paihangbang_liang", @"Community_tab_image_liang", @"c_wode_liang"];
@@ -73,6 +73,7 @@
     }];
     self.viewControllers = viewControllers;
     self.childVCs = viewControllers;
+    [FFControllerManager sharedManager].currentNavController = viewControllers.firstObject;
 }
 
 - (void)viewDidLoad {

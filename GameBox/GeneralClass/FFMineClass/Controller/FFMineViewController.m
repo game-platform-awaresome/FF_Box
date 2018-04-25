@@ -53,9 +53,9 @@
 - (void)respondsToRightButton {
     UIViewController *vc = [UIViewController new];
     vc.view.backgroundColor = [UIColor whiteColor];
-    HIDE_TABBAR;
+    [self hideTabbar];
     [Current_NavController pushViewController:vc animated:YES];
-    SHOW_TABBAR;
+    [self showTabbar];
 }
 
 #pragma mark - table view data source

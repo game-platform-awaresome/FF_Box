@@ -25,9 +25,11 @@
 /** game guide list */
 + (void)gameGuideListWithPage:(NSString * _Nonnull)page Completion:(RequestCallBackBlock _Nullable)completion;
 
-
-
-
+//=======================================================================================//
+/** classify game list */
++ (void)classifyGameListWithPage:(NSString * _Nonnull)page Completion:(RequestCallBackBlock _Nullable)completion;
+/** classify with id */
++ (void)classifyWithID:(NSString *_Nonnull)classifyID Page:(NSString *_Nonnull)page Completion:(RequestCallBackBlock _Nullable)completion;
 
 
 

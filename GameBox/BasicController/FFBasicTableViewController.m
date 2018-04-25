@@ -33,8 +33,15 @@
 }
 
 - (void)initDataSource {
-    [super initDataSource];
     BOX_REGISTER_CELL;
+}
+
+- (void)refreshData {
+
+}
+
+- (void)loadMoreData {
+
 }
 
 #pragma mark - method
@@ -73,26 +80,13 @@
 //    UIImageView *imageView = [cell valueForKey:@"gameLogo"];
 //    NSDictionary *dict = self.showArray[indexPath.row];
 //
-//    Class FFGameViewController = NSClassFromString(@"FFGameViewController");
-//
-//    id vc = [FFGameViewController performSelector:@selector(sharedController)];
-//    if (dict[@"gamename"]) {
-//        [vc setValue:dict[@"gamename"] forKey:@"gameName"];
-//    }
-//
-//    if (dict[@"gameName"]) {
-//        [vc setValue:dict[@"gameName"] forKey:@"gameName"];
-//    }
-//
-//    if (dict[@"id"]) {
-//        [vc setValue:dict[@"id"] forKey:@"gameID"];
-//    } else {
-//        return;
-//    }
-//
-//    if (imageView) {
-//        [vc setValue:imageView.image forKey:@"gameLogo"];
-//    }
+    Class FFGameViewController = NSClassFromString(@"FFGameViewController");
+    id vc = [FFGameViewController performSelector:@selector(sharedController)];
+
+    if (vc) {
+        [self pushViewController:vc];
+    }
+
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

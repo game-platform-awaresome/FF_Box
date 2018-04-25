@@ -7,6 +7,7 @@
 //
 
 #import "FFNewGameViewController.h"
+#import "FFGameViewController.h"
 #import "FFCustomizeCell.h"
 #import <FFTools/FFTools.h>
 
@@ -157,8 +158,11 @@
 //    HIDE_TABBAR;
 //    HIDE_PARNENT_TABBAR;
 //    [self.navigationController pushViewController:[FFGameViewController sharedController] animated:YES];
-//    SHOW_TABBAR;
 //    SHOW_PARNENT_TABBAR;
+
+    [self hideTabbar];
+    [self.currentNav pushViewController:[FFGameViewController sharedController] animated:YES];
+    [self showTabbar];
 }
 
 
