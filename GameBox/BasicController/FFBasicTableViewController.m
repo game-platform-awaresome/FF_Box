@@ -22,6 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self begainRefresData];
 }
 
 - (void)initUserInterface {
@@ -34,6 +35,11 @@
 - (void)initDataSource {
     [super initDataSource];
     BOX_REGISTER_CELL;
+}
+
+#pragma mark - method
+- (void)begainRefresData {
+    [self.tableView.mj_header beginRefreshing];
 }
 
 #pragma mark - table view data source

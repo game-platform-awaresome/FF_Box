@@ -26,46 +26,82 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-
-
 }
 
 - (void)initUserInterface {
     [super initUserInterface];
+    self.tableView.showsVerticalScrollIndicator = YES;
 }
 
+- (void)initDataSource {
+    [super initDataSource];
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    self.tableView.frame = self.view.bounds;
+}
 
 #pragma mark - method
 - (void)refreshData {
+    self.currentPage = 1;
+    [self startWaiting];
+    [FFGameModel newGameListWithPage:New_page Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        [self stopWaiting];
+        if (success) {
+//            syLog(@"new game == %@",content);
+            self.showArray = [content[@"data"] mutableCopy];
+            [self clearUpData:self.showArray];
+        } else {
 
+        }
+
+        if (self.showArray && self.showArray.count > 0) {
+            self.tableView.backgroundView = nil;
+        } else {
+            self.tableView.backgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"wuwangluo"]];
+        }
+
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
+        [self.tableView reloadData];
+    }];
 }
 
 - (void)loadMoreData {
-
+    [FFGameModel newGameListWithPage:Next_page Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        if (success) {
+            NSArray *dataArray = content[@"data"];
+            if (dataArray.count > 0) {
+                [self.showArray addObjectsFromArray:dataArray];
+                [self clearUpData:self.showArray];
+                [self.tableView.mj_footer endRefreshing];
+                [self.tableView reloadData];
+            } else {
+                [self.tableView.mj_footer endRefreshingWithNoMoreData];
+            }
+        } else {
+            [self.tableView.mj_footer endRefreshing];
+        }
+    }];
 }
 
 /** sort array with time */
 - (NSMutableArray *)clearUpData:(NSMutableArray *)array {
-
     NSMutableSet *set = [NSMutableSet set];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
 
     for (NSDictionary *obj in array) {
-
         NSString *timeStr = obj[@"addtime"];
         NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeStr.integerValue];
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         formatter.dateFormat = @"YYYY-MM-dd";
         timeStr = [formatter stringFromDate:date];
-        
-
-        NSMutableArray *sortArray = [dict[timeStr] mutableCopy];
-        if (sortArray == nil || ![sortArray isKindOfClass:[NSMutableArray class]]) {
-            sortArray = [NSMutableArray array];
+        NSMutableArray *array = dict[timeStr];
+        if (array == nil) {
+            array = [NSMutableArray array];
         }
-
-        [sortArray addObject:obj];
+        [array addObject:obj];
         [dict setObject:array forKey:timeStr];
         [set addObject:timeStr];
     }

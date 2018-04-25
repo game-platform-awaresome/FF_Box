@@ -20,8 +20,43 @@
 }
 
 - (void)initUserInterface {
-    self.view.backgroundColor = [UIColor grayColor];
+    [super initUserInterface];
+    self.tableView.showsVerticalScrollIndicator = YES;
 }
+
+- (void)initDataSource {
+    [super initDataSource];
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    self.tableView.frame = self.view.bounds;
+}
+
+#pragma amrk - method
+- (void)refreshData {
+    self.currentPage = 1;
+    [FFGameModel gameGuideListWithPage:New_page Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        syLog(@"game guide list === %@",content);
+        if (success) {
+            self.showArray = [content[@"data"][@"list"] mutableCopy];
+        }
+        [self.tableView reloadData];
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
+    }];
+}
+
+- (void)loadMoreData {
+
+}
+
+#pragma mark - getter
+
+
+
+
+
 
 
 @end

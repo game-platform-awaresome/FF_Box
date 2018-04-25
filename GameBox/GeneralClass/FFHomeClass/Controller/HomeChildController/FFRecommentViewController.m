@@ -10,7 +10,6 @@
 
 @interface FFRecommentViewController ()
 
-@property (nonatomic, assign) NSUInteger currentPage;
 
 @end
 
@@ -22,9 +21,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-
-    [self.tableView.mj_header beginRefreshing];
 }
 
 - (void)initUserInterface {
@@ -43,8 +39,8 @@
 #pragma mark - method
 - (void)refreshData {
     [self startWaiting];
-    _currentPage = 1;
-    [FFGameModel recommentGameListWithPage:[NSString stringWithFormat:@"%lu",_currentPage] Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+    self.currentPage = 1;
+    [FFGameModel recommentGameListWithPage:[NSString stringWithFormat:@"%lu",self.currentPage] Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         [self stopWaiting];
         if (success) {
 //            self.carouselView.rollingArray = content[@"data"][@"banner"];
@@ -72,7 +68,7 @@
 }
 
 - (void)loadMoreData {
-    [FFGameModel recommentGameListWithPage:[NSString stringWithFormat:@"%lu",++_currentPage] Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+    [FFGameModel recommentGameListWithPage:[NSString stringWithFormat:@"%lu",++self.currentPage] Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         if (success) {
             NSMutableArray *array = [content[@"data"][@"gamelist"] mutableCopy];
             if (array.count == 0) {

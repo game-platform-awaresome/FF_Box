@@ -10,6 +10,8 @@
 #import <MJRefresh.h>
 
 #define BOX_REGISTER_CELL [self.tableView registerNib:[UINib nibWithNibName:CELL_IDE bundle:nil] forCellReuseIdentifier:CELL_IDE]
+#define New_page ([NSString stringWithFormat:@"%lu",self.currentPage])
+#define Next_page ([NSString stringWithFormat:@"%lu",++self.currentPage])
 
 @interface FFBasicTableViewController : FFBasicViewController <UITableViewDataSource, UITableViewDelegate>
 
@@ -21,7 +23,10 @@
 @property (nonatomic, strong) MJRefreshBackFooter *refreshFooter;
 /** show array */
 @property (nonatomic, strong) NSMutableArray *showArray;
+/** current page */
+@property (nonatomic, assign) NSUInteger currentPage;
 
+- (void)begainRefresData;
 
 
 @end

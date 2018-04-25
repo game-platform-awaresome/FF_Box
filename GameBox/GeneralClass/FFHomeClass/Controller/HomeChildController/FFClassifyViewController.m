@@ -20,8 +20,38 @@
 }
 
 - (void)initUserInterface {
+    [super initUserInterface];
     self.view.backgroundColor = [UIColor blueColor];
 }
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    self.tableView.frame = self.view.bounds;
+}
+
+#pragma amrk - method
+- (void)refreshData {
+    [self.tableView.mj_header endRefreshing];
+}
+
+- (void)loadMoreData {
+
+}
+
+
+#pragma mark - setter
+
+
+#pragma mark - getter
+
+
+
+
+
 
 @end
+
+
+
+
+

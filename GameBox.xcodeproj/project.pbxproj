@@ -30,6 +30,9 @@
 		B5D1042A208F156000CA1949 /* FFGameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D10429208F156000CA1949 /* FFGameModel.m */; };
 		B5D1042D208F162500CA1949 /* FFMapModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D1042C208F162500CA1949 /* FFMapModel.m */; };
 		B5D10431208F3CB300CA1949 /* FFWaitingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D10430208F3CB300CA1949 /* FFWaitingManager.m */; };
+		B5D104352090167D00CA1949 /* FFRankListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D104342090167D00CA1949 /* FFRankListViewController.m */; };
+		B5D10439209022F800CA1949 /* FFRaidersTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5D10437209022F800CA1949 /* FFRaidersTableCell.xib */; };
+		B5D1043A209022F800CA1949 /* FFRaidersTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D10438209022F800CA1949 /* FFRaidersTableCell.m */; };
 		B5D5057B20859E8D000B7B50 /* FFTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D5057A20859E8D000B7B50 /* FFTools.framework */; };
 		B5D505802085CB06000B7B50 /* FFBasicSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D5057F2085CB06000B7B50 /* FFBasicSelectViewController.m */; };
 		B5D505872086F1D8000B7B50 /* FFHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D505862086F1D8000B7B50 /* FFHomeViewController.m */; };
@@ -84,6 +87,11 @@
 		B5D1042C208F162500CA1949 /* FFMapModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFMapModel.m; sourceTree = "<group>"; };
 		B5D1042F208F3CB300CA1949 /* FFWaitingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFWaitingManager.h; sourceTree = "<group>"; };
 		B5D10430208F3CB300CA1949 /* FFWaitingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFWaitingManager.m; sourceTree = "<group>"; };
+		B5D104332090167D00CA1949 /* FFRankListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFRankListViewController.h; sourceTree = "<group>"; };
+		B5D104342090167D00CA1949 /* FFRankListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFRankListViewController.m; sourceTree = "<group>"; };
+		B5D10436209022F800CA1949 /* FFRaidersTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFRaidersTableCell.h; sourceTree = "<group>"; };
+		B5D10437209022F800CA1949 /* FFRaidersTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FFRaidersTableCell.xib; sourceTree = "<group>"; };
+		B5D10438209022F800CA1949 /* FFRaidersTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFRaidersTableCell.m; sourceTree = "<group>"; };
 		B5D5057A20859E8D000B7B50 /* FFTools.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FFTools.framework; path = GameBox/FFTools.framework; sourceTree = "<group>"; };
 		B5D5057E2085CB06000B7B50 /* FFBasicSelectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBasicSelectViewController.h; sourceTree = "<group>"; };
 		B5D5057F2085CB06000B7B50 /* FFBasicSelectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBasicSelectViewController.m; sourceTree = "<group>"; };
@@ -278,6 +286,15 @@
 			path = WaitingManager;
 			sourceTree = "<group>";
 		};
+		B5D104322090164900CA1949 /* FFRankListClass */ = {
+			isa = PBXGroup;
+			children = (
+				B5D104332090167D00CA1949 /* FFRankListViewController.h */,
+				B5D104342090167D00CA1949 /* FFRankListViewController.m */,
+			);
+			path = FFRankListClass;
+			sourceTree = "<group>";
+		};
 		B5D505812086F17A000B7B50 /* GeneralClass */ = {
 			isa = PBXGroup;
 			children = (
@@ -285,6 +302,7 @@
 				B5D5059520886D1A000B7B50 /* FFOpenServiceClass */,
 				B5D5059F20887B00000B7B50 /* FFDriveClass */,
 				B5D505AA20898D34000B7B50 /* FFMineClass */,
+				B5D104322090164900CA1949 /* FFRankListClass */,
 			);
 			path = GeneralClass;
 			sourceTree = "<group>";
@@ -301,6 +319,9 @@
 		B5D505832086F1AF000B7B50 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B5D10436209022F800CA1949 /* FFRaidersTableCell.h */,
+				B5D10438209022F800CA1949 /* FFRaidersTableCell.m */,
+				B5D10437209022F800CA1949 /* FFRaidersTableCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -521,6 +542,7 @@
 				B58CB7B2207B10830099773D /* cityData.plist in Resources */,
 				B58CB7B3207B10830099773D /* GameBoxConfig.plist in Resources */,
 				B58CB7B6207B10830099773D /* LaunchScreen.storyboard in Resources */,
+				B5D10439209022F800CA1949 /* FFRaidersTableCell.xib in Resources */,
 				B5E1E54320622E40008F49CA /* README.md in Resources */,
 				B58CB7B5207B10830099773D /* Assets.xcassets in Resources */,
 			);
@@ -585,7 +607,9 @@
 				B5D10425208F13D400CA1949 /* FFCustomizeCell.m in Sources */,
 				B5D1042D208F162500CA1949 /* FFMapModel.m in Sources */,
 				B5D10431208F3CB300CA1949 /* FFWaitingManager.m in Sources */,
+				B5D104352090167D00CA1949 /* FFRankListViewController.m in Sources */,
 				B58CB7B1207B10830099773D /* main.m in Sources */,
+				B5D1043A209022F800CA1949 /* FFRaidersTableCell.m in Sources */,
 				B5D5058B208715C0000B7B50 /* FFRecommentViewController.m in Sources */,
 				B58CB7DB207B12DC0099773D /* FFCustomizeTabBar.m in Sources */,
 				B58CB7AC207B10830099773D /* FFBasicModel.m in Sources */,
