@@ -29,8 +29,8 @@
 
 @end
 
-@implementation FFClassifyViewController
 
+@implementation FFClassifyViewController
 
 
 - (void)viewDidLoad {
@@ -149,7 +149,6 @@
     if (vc) {
         [self pushViewController:vc];
     }
-
 }
 
 #pragma mark - respons
