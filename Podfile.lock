@@ -28,6 +28,14 @@ DEPENDENCIES:
   - SDWebImage (~> 4.1.0)
   - WechatOpenSDK (~> 1.8.0)
 
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - AFNetworking
+    - MBProgressHUD
+    - MJRefresh
+    - SDWebImage
+    - WechatOpenSDK
+
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
@@ -37,4 +45,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 75b9ca970b25041f12ee1767feffd6ca3132b06e
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.5.0
