@@ -129,8 +129,6 @@
         _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, kSCREEN_HEIGHT)];
         _webView.UIDelegate = self;
         _webView.navigationDelegate = self;
-
-
         [_webView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew| NSKeyValueObservingOptionOld context:nil];
     }
     return _webView;

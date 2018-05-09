@@ -163,7 +163,6 @@
     // Free memory
     freeifaddrs(interfaces);
     return address;
-
 }
 
 
