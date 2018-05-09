@@ -10,4 +10,6 @@
 
 @interface FFHomeViewController : FFBasicSelectViewController
 
+@property (nonatomic, strong) UIView *navigationView;
+
 @end

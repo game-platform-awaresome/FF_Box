@@ -114,26 +114,13 @@
     self.selectView.userInteractionEnabled = YES;
     _isAnimatining = NO;
 }
-
 #pragma mark - layout subviews
-- (void)viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
-    self.selectView.frame = self.SelectViewFrame;
-    CGFloat hight = kSCREEN_HEIGHT - CGRectGetMaxY(self.selectView.frame) - self.tabBarController.tabBar.frame.size.height;
-    self.scrollView.frame = CGRectMake(0, CGRectGetMaxY(self.selectView.frame), kSCREEN_WIDTH, hight);
-    if (self.selectChildViewControllers.count > 0) {
-        [self.scrollView setContentSize:CGSizeMake(kSCREEN_WIDTH * self.selectView.headerTitleArray.count, hight)];
-        int index = 0;
-        for (UIViewController *vc in self.selectChildViewControllers) {
-            vc.view.frame = CGRectMake(kSCREEN_WIDTH * index++, 0, kSCREEN_WIDTH, hight);
-        }
-    }
-}
+
 
 #pragma mark - setter
 - (void)setSelectChildViewControllers:(NSArray<UIViewController *> *)selectChildViewControllers {
     _selectChildViewControllers = selectChildViewControllers;
-    self.scrollView.contentSize = CGSizeMake(kSCREEN_WIDTH * selectChildViewControllers.count, kSCREEN_HEIGHT);
+    self.scrollView.contentSize = CGSizeMake(kSCREEN_WIDTH * selectChildViewControllers.count, 0);
     [self childControllerAdd:self.selectChildViewControllers[0]];
     [self.scrollView addSubview:self.selectChildViewControllers[0].view];
 }

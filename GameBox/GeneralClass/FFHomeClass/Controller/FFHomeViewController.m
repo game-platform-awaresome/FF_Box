@@ -13,7 +13,7 @@
 #import "FFGameGuideViewController.h"
 #import "FFClassifyViewController.h"
 
-
+#import "FFBasicSelectView.h"
 
 @interface FFHomeViewController ()
 
@@ -22,6 +22,8 @@
 @property (nonatomic, strong) FFNewGameViewController   *hNewGameVC;
 @property (nonatomic, strong) FFGameGuideViewController *hGameGuideVC;
 @property (nonatomic, strong) FFClassifyViewController  *hClassifyVC;
+
+@property (nonatomic, strong) FFBasicSelectView *homeSelectView;
 
 
 @end
@@ -32,6 +34,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 //    syLog(@"home nav = %@",self.navigationController);
+    self.navigationController.navigationBar.hidden = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -45,7 +48,22 @@
 }
 
 - (void)initUserInterface {
-    [super initUserInterface];
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.automaticallyAdjustsScrollViewInsets = NO;
+
+    [self.view addSubview:self.navigationView];
+    [self.navigationView addSubview:self.homeSelectView];
+    [self.view addSubview:self.scrollView];
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    self.scrollView.frame = CGRectMake(0, 64, kSCREEN_WIDTH, kSCREEN_HEIGHT - 64 - CGRectGetHeight(self.tabBarController.tabBar.frame));
+    int idx = 0;
+    for (UIViewController *vc in self.selectChildViewControllers) {
+        vc.view.frame = CGRectMake(kSCREEN_WIDTH * idx, 0, kSCREEN_WIDTH, self.scrollView.bounds.size.height);
+        idx++;
+    }
 }
  
 - (void)initDataSource {
@@ -86,7 +104,23 @@
 }
 
 
+- (UIView *)navigationView {
+    if (!_navigationView) {
+        _navigationView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 64)];
+        _navigationView.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1];
+    }
+    return _navigationView;
+}
 
+
+- (FFBasicSelectView *)homeSelectView {
+    if (!_homeSelectView) {
+        _homeSelectView = [[FFBasicSelectView alloc] initWithFrame:CGRectMake(0, kNAVIGATION_HEIGHT, kSCREEN_WIDTH, self.selectViewHight)];
+        _homeSelectView.delegate = self;
+        _homeSelectView.lineColor = [UIColor clearColor];
+    }
+    return _homeSelectView;
+}
 
 
 
