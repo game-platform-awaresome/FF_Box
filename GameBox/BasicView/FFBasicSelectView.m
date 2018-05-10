@@ -112,7 +112,6 @@ const NSInteger ButtonTag = 10086;
 
         [self.scrollView addSubview:button];
     }];
-    [self setSelectTitleIndex:0];
 }
 
 - (UIButton *)creatButtonWithIndex:(NSUInteger)idx WidthTitle:(NSString *)title {
@@ -136,6 +135,7 @@ const NSInteger ButtonTag = 10086;
     [super setFrame:frame];
     totalFrame = frame;
     [self setButtonsHight:frame.size.height];
+    self.lineView.frame = CGRectMake(0, frame.size.height - 2, kSCREEN_WIDTH, 2);
 }
 
 /** set button hight */
@@ -206,6 +206,17 @@ const NSInteger ButtonTag = 10086;
     _headerTitleArray = headerTitleArray;
     //creat title button
     [self creatTitleButtonWithTitleArray:_headerTitleArray];
+
+    if (_cursorWidthEqualToTitleWidth) {
+        NSDictionary *attribute = @{NSFontAttributeName: [UIFont systemFontOfSize:14]};
+        CGSize retSize = [self.titleButtonArray[0].titleLabel.text boundingRectWithSize:CGSizeMake(kSCREEN_WIDTH / self.titleButtonArray.count, 30) options: NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attribute context:nil].size;
+        self.cursorView.bounds = CGRectMake(0, 0, (retSize.width + 5), _cursorView.bounds.size.height);
+    } else {
+        self.cursorView.bounds = CGRectMake(0, 0, _cursorView.bounds.size.width, _cursorView.bounds.size.height);
+    }
+
+    [self setButtonHighlightedWintIndex:_selectTitleIndex];
+    self.cursorView.center = CGPointMake(self.titleButtonArray[0].center.x, self.cursorView.center.y);
 }
 
 - (void)setShowCursorView:(BOOL)showCursorView {
@@ -306,8 +317,8 @@ const NSInteger ButtonTag = 10086;
 
 - (UIView *)lineView {
     if (!_lineView) {
-        _lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-        _lineView.backgroundColor = [UIColor clearColor];
+        _lineView = [[UIView alloc] initWithFrame:CGRectMake(0, totalFrame.size.height - 1, kSCREEN_WIDTH, 1)];
+        _lineView.backgroundColor = [UIColor grayColor];
     }
     return _lineView;
 }

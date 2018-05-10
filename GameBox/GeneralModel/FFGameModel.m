@@ -10,6 +10,7 @@
 #import "FFDeviceInfo.h"
 #import "FFMapModel.h"
 
+
 @implementation FFGameModel
 
 + (FFMapModel *)map {
@@ -96,9 +97,29 @@
     }];
 }
 
+#pragma mark - game servers
+/**
+ * 主页的游戏服列表
+ * @parma type 服务器类型;
+ * @parma page 页数.起始页为1;
+ */
++ (void)GameServersWithType:(FFGameServersType)type Page:(NSString *)page Completion:(RequestCallBackBlock)completion {
+    Mutable_Dict(4);
+    [dict setObject:page forKey:@"page"];
+    SS_CHANNEL;
+    [dict setObject:[NSString stringWithFormat:@"%ld",type] forKey:@"platform"];
+    SS_SYSTEM;
+    [FFNetWorkManager postRequestWithURL:Map.GAME_NEWINDEX Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        REQUEST_COMPLETION;
+    }];
+}
+
+
+
 
 
 @end
+
 
 
 

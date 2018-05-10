@@ -160,7 +160,6 @@ const NSUInteger HomeButtonTag = 10086;
 #pragma mark - setter
 - (void)setFrame:(CGRect)frame {
     [super setFrame:frame];
-    syLog(@"set frame ==== 111111111111");
     self.totalFrame = frame;
 }
 /** 设置总共的尺寸 */
@@ -182,7 +181,15 @@ const NSUInteger HomeButtonTag = 10086;
     //设置 button frame
     [self setButtonArrayFrame];
     //选择第一个下标
-    [self setSelectTitleIndex:_selectTitleIndex];
+//    [self setSelectTitleIndex:_selectTitleIndex];
+    if (_cursorWidthEqualToTitleWidth) {
+        self.cursorView.bounds = CGRectMake(0, 0, (_titleWidthArray[0].floatValue + 5), _cursorView.bounds.size.height);
+    } else {
+        self.cursorView.bounds = CGRectMake(0, 0, _cursorView.bounds.size.width, _cursorView.bounds.size.height);
+    }
+
+    [self setButtonHighlightedWintIndex:_selectTitleIndex];
+    self.cursorView.center = CGPointMake(self.buttonArray[0].center.x, self.cursorView.center.y);
 }
 
 - (void)setTitleNormalColor:(UIColor *)titleNormalColor {

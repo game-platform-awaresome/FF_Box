@@ -81,8 +81,10 @@
 //    NSDictionary *dict = self.showArray[indexPath.row];
 //
     Class FFGameViewController = NSClassFromString(@"FFGameViewController");
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
     id vc = [FFGameViewController performSelector:@selector(sharedController)];
-
+#pragma clang diagnostic pop
     if (vc) {
         [self pushViewController:vc];
     }

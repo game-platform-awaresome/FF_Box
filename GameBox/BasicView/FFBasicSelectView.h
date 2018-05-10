@@ -62,7 +62,7 @@
 - (void)setCursorX:(CGFloat)x;
 
 /** change title array */ 
-- (void)changeTitleTextWithArray:(NSArray<NSString *> *)titleArray;
+//- (void)changeTitleTextWithArray:(NSArray<NSString *> *)titleArray;
 
 
 

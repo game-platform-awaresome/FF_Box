@@ -171,7 +171,8 @@ static FFMapModel *model = nil;
       @"RANKNOTICE":@"http://api.185sy.com/index.php?g=api&m=userbox&a=rankNotice",
       @"USER_RANKING":@"http://api.185sy.com/index.php?g=api&m=userbox&a=userRanking",
       @"COMMENT_REPLY_LIST":@"http://api.185sy.com/index.php?g=api&m=comment&a=get_replay_comment",
-      @"USER_APP_LOGIN":@"http://api.185sy.com/index.php?g=api&m=comment&a=user_login_app"
+      @"USER_APP_LOGIN":@"http://api.185sy.com/index.php?g=api&m=comment&a=user_login_app",
+      @"GAME_NEWINDEX":@"http://www.185sy.com/api-game-newIndex"
       };
     return mapDict;
 }

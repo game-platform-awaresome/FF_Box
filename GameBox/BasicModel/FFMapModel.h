@@ -8,6 +8,8 @@
 
 #import "FFBasicModel.h"
 
+#define Map [FFMapModel map]
+
 @interface FFMapModel : FFBasicModel
 
 @property (nonatomic, strong) NSString *DOAMIN;
@@ -138,6 +140,8 @@
 @property (nonatomic, strong) NSString *USER_RANKING;
 @property (nonatomic, strong) NSString *RANKNOTICE;
 @property (nonatomic, strong) NSString *USER_APP_LOGIN;
+
+@property (nonatomic, strong) NSString *GAME_NEWINDEX;
 
 
 + (instancetype)map;

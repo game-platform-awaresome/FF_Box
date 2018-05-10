@@ -13,6 +13,12 @@
 #define REQUEST_STATUS NSString *status = content[@"status"]
 #define CONTENT_DATA ((content[@"data"]) ? (content[@"data"]) : content)
 
+#define Mutable_Dict(integer) NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:integer]
+#define Mutable_dict NSMutableDictionary *dict = [NSMutableDictionary dictionary]
+#define Pamaras_Key(key) NSArray *pamarasKey = key
+#define SS_DICT Mutable_Dict(pamarasKey.count + 1)
+
+
 #define REQUEST_COMPLETION \
 REQUEST_STATUS;\
 if (success) {\

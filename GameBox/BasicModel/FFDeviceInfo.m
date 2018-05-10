@@ -22,9 +22,6 @@
 #define KEYCHAINSERVICE @"tenoneTec.com"
 #define DEVICEID @"deviceID%forBOX"
 
-#define AppID @"1013"
-#define AppKey @"709931298992c123ba79f9394032e91e"
-
 
 @implementation FFDeviceInfo
 

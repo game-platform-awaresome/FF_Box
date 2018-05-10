@@ -72,7 +72,18 @@
 - (void)initDataSource {
     [super initDataSource];
     self.homeSelectView.titleArray = @[@"BT服",@"折扣"];
-    self.selectChildViewControllers = @[self.hRecommentVC,self.hNewGameVC];
+    self.selectChildViewControllers = @[[self creatControllerWithString:@"FFBTServerViewController"],
+                                        [self creatControllerWithString:@"FFZKServerViewController"]];
+}
+
+- (UIViewController *)creatControllerWithString:(NSString *)controllerString {
+    Class ControllerClass = NSClassFromString(controllerString);
+    id viewController = [[ControllerClass alloc] init];
+    if (viewController == nil) {
+        viewController = [[UIViewController alloc] init];
+        syLog(@"\n!\n%s error message : %@ is not exist \n!",__func__,controllerString);
+    }
+    return viewController;
 }
 
 #pragma mark - select view delegate

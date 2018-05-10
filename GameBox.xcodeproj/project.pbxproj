@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		0543CAF4C1A27767297E9250 /* libPods-GameBox.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C09ECF85CDCEAA38284810 /* libPods-GameBox.a */; };
 		B5781AE020A3F4DE00CB1464 /* FFHomeSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5781ADE20A3F4DD00CB1464 /* FFHomeSelectView.m */; };
+		B5781AE320A42CED00CB1464 /* FFUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5781AE220A42CED00CB1464 /* FFUserModel.m */; };
+		B5781AE520A440C900CB1464 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = B5781AE420A440C800CB1464 /* Podfile */; };
+		B5781AEB20A44B5100CB1464 /* FFBTServerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5781AEA20A44B5100CB1464 /* FFBTServerViewController.m */; };
+		B5781AEE20A44D8D00CB1464 /* FFBTServerHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5781AED20A44D8D00CB1464 /* FFBTServerHeaderView.m */; };
 		B58CB7AC207B10830099773D /* FFBasicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B58CB797207B10830099773D /* FFBasicModel.m */; };
 		B58CB7AD207B10830099773D /* FFDeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B58CB799207B10830099773D /* FFDeviceInfo.m */; };
 		B58CB7AE207B10830099773D /* FFNetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B58CB79B207B10830099773D /* FFNetWorkManager.m */; };
@@ -56,6 +60,13 @@
 /* Begin PBXFileReference section */
 		B5781ADE20A3F4DD00CB1464 /* FFHomeSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFHomeSelectView.m; sourceTree = "<group>"; };
 		B5781ADF20A3F4DE00CB1464 /* FFHomeSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFHomeSelectView.h; sourceTree = "<group>"; };
+		B5781AE120A42CED00CB1464 /* FFUserModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFUserModel.h; sourceTree = "<group>"; };
+		B5781AE220A42CED00CB1464 /* FFUserModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFUserModel.m; sourceTree = "<group>"; };
+		B5781AE420A440C800CB1464 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		B5781AE920A44B5100CB1464 /* FFBTServerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBTServerViewController.h; sourceTree = "<group>"; };
+		B5781AEA20A44B5100CB1464 /* FFBTServerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBTServerViewController.m; sourceTree = "<group>"; };
+		B5781AEC20A44D8D00CB1464 /* FFBTServerHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBTServerHeaderView.h; sourceTree = "<group>"; };
+		B5781AED20A44D8D00CB1464 /* FFBTServerHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBTServerHeaderView.m; sourceTree = "<group>"; };
 		B58CB796207B10830099773D /* FFBasicModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFBasicModel.h; sourceTree = "<group>"; };
 		B58CB797207B10830099773D /* FFBasicModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFBasicModel.m; sourceTree = "<group>"; };
 		B58CB798207B10830099773D /* FFDeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFDeviceInfo.h; sourceTree = "<group>"; };
@@ -158,6 +169,33 @@
 				C1C09ECF85CDCEAA38284810 /* libPods-GameBox.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B5781AE620A44AF300CB1464 /* FFBTServerClass */ = {
+			isa = PBXGroup;
+			children = (
+				B5781AE820A44B2C00CB1464 /* View */,
+				B5781AE720A44B2400CB1464 /* Controller */,
+			);
+			path = FFBTServerClass;
+			sourceTree = "<group>";
+		};
+		B5781AE720A44B2400CB1464 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B5781AE920A44B5100CB1464 /* FFBTServerViewController.h */,
+				B5781AEA20A44B5100CB1464 /* FFBTServerViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B5781AE820A44B2C00CB1464 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B5781AEC20A44D8D00CB1464 /* FFBTServerHeaderView.h */,
+				B5781AED20A44D8D00CB1464 /* FFBTServerHeaderView.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		B58CB794207B10830099773D /* GameBox */ = {
@@ -344,6 +382,7 @@
 			children = (
 				B5D1043F20904DC200CA1949 /* FFGameClass */,
 				B5D505822086F1A3000B7B50 /* FFHomeClass */,
+				B5781AE620A44AF300CB1464 /* FFBTServerClass */,
 				B5D5059520886D1A000B7B50 /* FFOpenServiceClass */,
 				B5D5059F20887B00000B7B50 /* FFDriveClass */,
 				B5D505AA20898D34000B7B50 /* FFMineClass */,
@@ -495,6 +534,8 @@
 				B5D505EA2089DAFE000B7B50 /* FFStatisticsModel.m */,
 				B5D10428208F156000CA1949 /* FFGameModel.h */,
 				B5D10429208F156000CA1949 /* FFGameModel.m */,
+				B5781AE120A42CED00CB1464 /* FFUserModel.h */,
+				B5781AE220A42CED00CB1464 /* FFUserModel.m */,
 			);
 			path = GeneralModel;
 			sourceTree = "<group>";
@@ -503,6 +544,7 @@
 			isa = PBXGroup;
 			children = (
 				B5E1E54220622E40008F49CA /* README.md */,
+				B5781AE420A440C800CB1464 /* Podfile */,
 				B58CB794207B10830099773D /* GameBox */,
 				B5E1E51C206201CD008F49CA /* Products */,
 				BE21CAB11E85AE02A6E497CF /* Pods */,
@@ -593,6 +635,7 @@
 				B58CB7B6207B10830099773D /* LaunchScreen.storyboard in Resources */,
 				B5D10439209022F800CA1949 /* FFGameGuideCell.xib in Resources */,
 				B5E1E54320622E40008F49CA /* README.md in Resources */,
+				B5781AE520A440C900CB1464 /* Podfile in Resources */,
 				B58CB7B5207B10830099773D /* Assets.xcassets in Resources */,
 				B5D10447209066FD00CA1949 /* FFClassifyTableCell.xib in Resources */,
 			);
@@ -653,6 +696,7 @@
 				B5D104352090167D00CA1949 /* FFRankListViewController.m in Sources */,
 				B58CB7B1207B10830099773D /* main.m in Sources */,
 				B5D1043A209022F800CA1949 /* FFGameGuideCell.m in Sources */,
+				B5781AEB20A44B5100CB1464 /* FFBTServerViewController.m in Sources */,
 				B5D5058B208715C0000B7B50 /* FFRecommentViewController.m in Sources */,
 				B58CB7DB207B12DC0099773D /* FFCustomizeTabBar.m in Sources */,
 				B58CB7AC207B10830099773D /* FFBasicModel.m in Sources */,
@@ -660,6 +704,7 @@
 				B5D5059E208875E8000B7B50 /* FFOSChildViewController.m in Sources */,
 				B5D10421208F0DD900CA1949 /* FFBasicViewController.m in Sources */,
 				B5D505872086F1D8000B7B50 /* FFHomeViewController.m in Sources */,
+				B5781AEE20A44D8D00CB1464 /* FFBTServerHeaderView.m in Sources */,
 				B5D505AE20898D69000B7B50 /* FFMineViewController.m in Sources */,
 				B5D1042A208F156000CA1949 /* FFGameModel.m in Sources */,
 				B5D505A920898D25000B7B50 /* FFDriveViewController.m in Sources */,
@@ -674,6 +719,7 @@
 				B5D5059120884126000B7B50 /* FFGameGuideViewController.m in Sources */,
 				B58CB7D2207B12470099773D /* FFControllerManager.m in Sources */,
 				B58CB7AD207B10830099773D /* FFDeviceInfo.m in Sources */,
+				B5781AE320A42CED00CB1464 /* FFUserModel.m in Sources */,
 				B5D505802085CB06000B7B50 /* FFBasicSelectViewController.m in Sources */,
 				B5D5058E2088406A000B7B50 /* FFNewGameViewController.m in Sources */,
 				B58CB7B4207B10830099773D /* SYKeychain.m in Sources */,

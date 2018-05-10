@@ -8,6 +8,20 @@
 
 #import "FFStatisticsModel.h"
 
+
+
 @implementation FFStatisticsModel
+
+
+/** app install statistic */
++ (void)installStatistic {
+
+
+}
+
+/** app start statistic */
++ (void)startStatistic {
+
+}
 
 @end
