@@ -21,8 +21,10 @@
 
 /** delegate */
 @property (nonatomic, weak) id<FFBasicSelectViewDelegate> delegate;
-/**  select title text */
+/**  select title text array */
 @property (nonatomic, strong) NSArray<NSString *> *headerTitleArray;
+/** select button Array */
+@property (nonatomic, strong) NSMutableArray<UIButton *> *titleButtonArray;
 
 /** default is gray color */
 @property (nonatomic, strong) UIColor *titleNormalColor;
@@ -49,8 +51,6 @@
 
 @property (nonatomic, assign) BOOL showCursorView;
 
-/** select button Array */
-@property (nonatomic, strong) NSMutableArray<UIButton *> *titleButtonArray;
 
 
 - (instancetype)initWithFrame:(CGRect)frame;

@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		0543CAF4C1A27767297E9250 /* libPods-GameBox.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C09ECF85CDCEAA38284810 /* libPods-GameBox.a */; };
+		B5781AE020A3F4DE00CB1464 /* FFHomeSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5781ADE20A3F4DD00CB1464 /* FFHomeSelectView.m */; };
 		B58CB7AC207B10830099773D /* FFBasicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B58CB797207B10830099773D /* FFBasicModel.m */; };
 		B58CB7AD207B10830099773D /* FFDeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B58CB799207B10830099773D /* FFDeviceInfo.m */; };
 		B58CB7AE207B10830099773D /* FFNetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B58CB79B207B10830099773D /* FFNetWorkManager.m */; };
 		B58CB7AF207B10830099773D /* FFAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B58CB79E207B10830099773D /* FFAppDelegate.m */; };
-		B58CB7B0207B10830099773D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B58CB79F207B10830099773D /* Info.plist */; };
 		B58CB7B1207B10830099773D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B58CB7A0207B10830099773D /* main.m */; };
 		B58CB7B2207B10830099773D /* cityData.plist in Resources */ = {isa = PBXBuildFile; fileRef = B58CB7A2207B10830099773D /* cityData.plist */; };
 		B58CB7B3207B10830099773D /* GameBoxConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = B58CB7A4207B10830099773D /* GameBoxConfig.plist */; };
@@ -54,6 +54,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B5781ADE20A3F4DD00CB1464 /* FFHomeSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFHomeSelectView.m; sourceTree = "<group>"; };
+		B5781ADF20A3F4DE00CB1464 /* FFHomeSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFHomeSelectView.h; sourceTree = "<group>"; };
 		B58CB796207B10830099773D /* FFBasicModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFBasicModel.h; sourceTree = "<group>"; };
 		B58CB797207B10830099773D /* FFBasicModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFBasicModel.m; sourceTree = "<group>"; };
 		B58CB798207B10830099773D /* FFDeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFDeviceInfo.h; sourceTree = "<group>"; };
@@ -362,6 +364,8 @@
 		B5D505832086F1AF000B7B50 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B5781ADF20A3F4DE00CB1464 /* FFHomeSelectView.h */,
+				B5781ADE20A3F4DD00CB1464 /* FFHomeSelectView.m */,
 				B5D10436209022F800CA1949 /* FFGameGuideCell.h */,
 				B5D10438209022F800CA1949 /* FFGameGuideCell.m */,
 				B5D10437209022F800CA1949 /* FFGameGuideCell.xib */,
@@ -584,7 +588,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5D10426208F13D400CA1949 /* FFCustomizeCell.xib in Resources */,
-				B58CB7B0207B10830099773D /* Info.plist in Resources */,
 				B58CB7B2207B10830099773D /* cityData.plist in Resources */,
 				B58CB7B3207B10830099773D /* GameBoxConfig.plist in Resources */,
 				B58CB7B6207B10830099773D /* LaunchScreen.storyboard in Resources */,
@@ -642,6 +645,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5D505EB2089DAFE000B7B50 /* FFStatisticsModel.m in Sources */,
+				B5781AE020A3F4DE00CB1464 /* FFHomeSelectView.m in Sources */,
 				B5D10425208F13D400CA1949 /* FFCustomizeCell.m in Sources */,
 				B5D10448209066FD00CA1949 /* FFClassifyTableCell.m in Sources */,
 				B5D1042D208F162500CA1949 /* FFMapModel.m in Sources */,

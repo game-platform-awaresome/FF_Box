@@ -178,9 +178,15 @@ const NSInteger ButtonTag = 10086;
 
 
 - (void)setTitleSize:(CGSize)titleSize {
+    _titleSize = titleSize;
+    if (_titleButtonArray.count > 0) {
+        int i = 0;
+        for (UIButton *button in _titleButtonArray) {
+            button.frame = CGRectMake(titleSize.width * i, 0, titleSize.width, titleSize.height);
+            i++;
+        }
+    }
     if (_canScrollTitle) {
-        _titleSize = titleSize;
-
         self.scrollView.contentSize = CGSizeMake(titleSize.width * self.titleButtonArray.count, totalFrame.size.height);
         [self.titleButtonArray enumerateObjectsUsingBlock:^(UIButton * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             obj.frame = CGRectMake(idx * titleSize.width, 0, titleSize.width, titleSize.height);
