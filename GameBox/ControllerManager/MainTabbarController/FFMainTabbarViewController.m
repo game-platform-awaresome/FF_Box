@@ -7,20 +7,16 @@
 //
 
 #import "FFMainTabbarViewController.h"
-#import "FFCustomizeTabBar.h"
 #import "FFControllerManager.h"
-//#import "FFInviteFriendViewController.h"
-//#import "FFLoginViewController.h"
-//#import "ZCNavigationController+Smoonth.h"
-
+#import "FFCustomizeTabBar.h"
 
 @interface FFMainTabbarViewController () <FFCustomizeTabbarDelegate>
-
 
 @property (nonatomic, strong) NSArray<UINavigationController *> *childVCs;
 
 
 @end
+
 
 @implementation FFMainTabbarViewController
 
@@ -34,25 +30,30 @@
 }
 
 - (void)initializeUserInterface {
-    FFCustomizeTabBar *tabbar = [[FFCustomizeTabBar alloc] init];
-    tabbar.customizeDelegate = self;
-    [self setValue:tabbar forKey:@"tabBar"];
+    Class TabbarClass = NSClassFromString(@"FFCustomizeTabBar");
+    if (TabbarClass) {
+        id tabbar = [[TabbarClass alloc] init];
+        [tabbar setValue:self forKey:@"customizeDelegate"];
+        [self setValue:tabbar forKey:@"tabBar"];
+    } else {
+        syLog(@"custom tabbar error : custom tabbar not exist");
+    }
 }
 
 - (void)initializeDataSource {
-//    NSArray *viewControllerNames = @[@"FFHomeViewController", @"FFOpenServiceViewController", @"FFDriveViewController", @"FFMineViewController"];
-    NSArray *viewControllerNames = @[@"FFHomeViewController", @"FFOpenServiceViewController", @"FFDriveViewController", @"FFClassifyDetailViewController"];
-    NSArray *titles = @[@"游戏", @"开服表", @"车站", @"我的"];
-    NSArray *images = @[@"d_youxi_an", @"b_paihangbang_an-", @"Community_tab_image_an", @"c_wode_an"];
-    NSArray *selectImages = @[@"d_youxi_liang", @"b_paihangbang_liang", @"Community_tab_image_liang", @"c_wode_liang"];
-    //    NSArray *viewControllerNames = @[@"FFHomeViewController", @"FFRankListViewController", @"FFOpenServerViewController", @"FFNewMineViewController"];
-    //    NSArray *titles = @[@"游戏", @"排行榜", @"开服表", @"我的"];
+    NSArray *viewControllerNames = @[@"FFHomeViewController",
+                                     @"FFOpenServiceViewController",
+                                     @"FFDriveViewController",
+                                     @"FFClassifyDetailViewController"];
 
-    //    NSArray *images = @[@"d_youxi_an", @"b_paihangbang_an-", @"a_libao_an", @"c_wode_an"];
-    //    NSArray *selectImages = @[@"d_youxi_liang", @"b_paihangbang_liang", @"a_libao_liang", @"c_wode_liang"];
+    NSArray *titles = @[@"游戏", @"开服表", @"车站", @"我的"];
+
+    if (viewControllerNames.count != titles.count) {
+        syLog(@"%s error : Array count number not equal",__func__);
+        return;
+    }
 
     NSMutableArray *viewControllers = [NSMutableArray arrayWithCapacity:titles.count];
-
     [viewControllerNames enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         UIViewController *viewController = nil;
 
@@ -61,19 +62,42 @@
 
         if (!viewController) {
             viewController = [[UIViewController alloc] init];
-            syLog(@"%@ error",obj);
+            syLog(@"%s error : %@ not exist",__func__,obj);
         }
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:viewController];
         //设置title
         viewController.navigationItem.title = titles[idx];
         viewController.navigationController.tabBarItem.title = titles[idx];
-        viewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:titles[idx] image:[[UIImage imageNamed:images[idx]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:selectImages[idx]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+
+        UIImage *normalImage = [self creatImageWith:idx Normal:YES];
+        UIImage *selectImage = [self creatImageWith:idx Normal:NO];
+
+        viewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:titles[idx] image:[normalImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[selectImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+
         [viewController.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:NAVGATION_BAR_COLOR} forState:UIControlStateSelected];
+
         [viewControllers addObject:nav];
     }];
+
     self.viewControllers = viewControllers;
     self.childVCs = viewControllers;
     [FFControllerManager sharedManager].currentNavController = viewControllers.firstObject;
+}
+
+
+- (UIImage *)creatImageWith:(NSUInteger)idx Normal:(BOOL)Normal {
+    Class ImageManager = NSClassFromString(@"FFImageManager");
+    SEL selector = Normal ? NSSelectorFromString([NSString stringWithFormat:@"Tabbar_%ld_Normal",idx]) : NSSelectorFromString([NSString stringWithFormat:@"Tabbar_%ld_Select",idx]);
+    if ([ImageManager respondsToSelector:selector]) {
+        IMP imp = [ImageManager methodForSelector:selector];
+        UIImage *(*func)(void) = (void *)imp;
+        UIImage *image = func();
+        if (!image) syLog(@"Tabbar image error : index == %ld image is null",idx);
+        return image;
+    } else {
+        syLog(@"\n ! \n tabbar iamge error :  %s not exist \n ! \n",sel_getName(selector));
+        return nil;
+    }
 }
 
 - (void)viewDidLoad {
@@ -119,7 +143,6 @@
 
 
 @end
-
 
 
 

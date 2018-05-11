@@ -38,7 +38,6 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-//    [FFWaitingManager stopWatiting];
 }
 
 - (void)viewDidLoad {

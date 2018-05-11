@@ -111,6 +111,7 @@
     SS_SYSTEM;
     [FFNetWorkManager postRequestWithURL:Map.GAME_NEWINDEX Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         REQUEST_COMPLETION;
+
     }];
 }
 

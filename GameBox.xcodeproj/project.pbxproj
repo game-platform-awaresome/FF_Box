@@ -13,6 +13,11 @@
 		B5781AE520A440C900CB1464 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = B5781AE420A440C800CB1464 /* Podfile */; };
 		B5781AEB20A44B5100CB1464 /* FFBTServerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5781AEA20A44B5100CB1464 /* FFBTServerViewController.m */; };
 		B5781AEE20A44D8D00CB1464 /* FFBTServerHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5781AED20A44D8D00CB1464 /* FFBTServerHeaderView.m */; };
+		B5781AF220A535B900CB1464 /* FFServersModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5781AF120A535B900CB1464 /* FFServersModel.m */; };
+		B5781AF720A573F200CB1464 /* FFZKServerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5781AF620A573F200CB1464 /* FFZKServerViewController.m */; };
+		B5781AFA20A57B1C00CB1464 /* FFBasicBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5781AF920A57B1C00CB1464 /* FFBasicBannerView.m */; };
+		B5781AFE20A57D3600CB1464 /* FFImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B5781AFD20A57D3600CB1464 /* FFImageManager.m */; };
+		B5781B0020A5903700CB1464 /* ImageAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5781AFF20A5903700CB1464 /* ImageAssets.xcassets */; };
 		B58CB7AC207B10830099773D /* FFBasicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B58CB797207B10830099773D /* FFBasicModel.m */; };
 		B58CB7AD207B10830099773D /* FFDeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B58CB799207B10830099773D /* FFDeviceInfo.m */; };
 		B58CB7AE207B10830099773D /* FFNetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B58CB79B207B10830099773D /* FFNetWorkManager.m */; };
@@ -62,11 +67,20 @@
 		B5781ADF20A3F4DE00CB1464 /* FFHomeSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFHomeSelectView.h; sourceTree = "<group>"; };
 		B5781AE120A42CED00CB1464 /* FFUserModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFUserModel.h; sourceTree = "<group>"; };
 		B5781AE220A42CED00CB1464 /* FFUserModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFUserModel.m; sourceTree = "<group>"; };
-		B5781AE420A440C800CB1464 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		B5781AE420A440C800CB1464 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		B5781AE920A44B5100CB1464 /* FFBTServerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBTServerViewController.h; sourceTree = "<group>"; };
 		B5781AEA20A44B5100CB1464 /* FFBTServerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBTServerViewController.m; sourceTree = "<group>"; };
 		B5781AEC20A44D8D00CB1464 /* FFBTServerHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBTServerHeaderView.h; sourceTree = "<group>"; };
 		B5781AED20A44D8D00CB1464 /* FFBTServerHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBTServerHeaderView.m; sourceTree = "<group>"; };
+		B5781AF020A535B900CB1464 /* FFServersModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFServersModel.h; sourceTree = "<group>"; };
+		B5781AF120A535B900CB1464 /* FFServersModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFServersModel.m; sourceTree = "<group>"; };
+		B5781AF520A573F200CB1464 /* FFZKServerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFZKServerViewController.h; sourceTree = "<group>"; };
+		B5781AF620A573F200CB1464 /* FFZKServerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFZKServerViewController.m; sourceTree = "<group>"; };
+		B5781AF820A57B1C00CB1464 /* FFBasicBannerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBasicBannerView.h; sourceTree = "<group>"; };
+		B5781AF920A57B1C00CB1464 /* FFBasicBannerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBasicBannerView.m; sourceTree = "<group>"; };
+		B5781AFC20A57D3600CB1464 /* FFImageManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFImageManager.h; sourceTree = "<group>"; };
+		B5781AFD20A57D3600CB1464 /* FFImageManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFImageManager.m; sourceTree = "<group>"; };
+		B5781AFF20A5903700CB1464 /* ImageAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ImageAssets.xcassets; sourceTree = "<group>"; };
 		B58CB796207B10830099773D /* FFBasicModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFBasicModel.h; sourceTree = "<group>"; };
 		B58CB797207B10830099773D /* FFBasicModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFBasicModel.m; sourceTree = "<group>"; };
 		B58CB798207B10830099773D /* FFDeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFDeviceInfo.h; sourceTree = "<group>"; };
@@ -174,6 +188,7 @@
 		B5781AE620A44AF300CB1464 /* FFBTServerClass */ = {
 			isa = PBXGroup;
 			children = (
+				B5781AEF20A535A100CB1464 /* Model */,
 				B5781AE820A44B2C00CB1464 /* View */,
 				B5781AE720A44B2400CB1464 /* Controller */,
 			);
@@ -198,12 +213,48 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		B5781AEF20A535A100CB1464 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B5781AF020A535B900CB1464 /* FFServersModel.h */,
+				B5781AF120A535B900CB1464 /* FFServersModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B5781AF320A573C500CB1464 /* FFZKServerClass */ = {
+			isa = PBXGroup;
+			children = (
+				B5781AF420A573DA00CB1464 /* Controller */,
+			);
+			path = FFZKServerClass;
+			sourceTree = "<group>";
+		};
+		B5781AF420A573DA00CB1464 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B5781AF520A573F200CB1464 /* FFZKServerViewController.h */,
+				B5781AF620A573F200CB1464 /* FFZKServerViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B5781AFB20A57D1A00CB1464 /* ImageManager */ = {
+			isa = PBXGroup;
+			children = (
+				B5781AFC20A57D3600CB1464 /* FFImageManager.h */,
+				B5781AFD20A57D3600CB1464 /* FFImageManager.m */,
+			);
+			path = ImageManager;
+			sourceTree = "<group>";
+		};
 		B58CB794207B10830099773D /* GameBox */ = {
 			isa = PBXGroup;
 			children = (
 				B58CB79C207B10830099773D /* MainEntry */,
 				B58CB7CF207B122D0099773D /* ControllerManager */,
 				B5D1042E208F3CB300CA1949 /* WaitingManager */,
+				B5781AFB20A57D1A00CB1464 /* ImageManager */,
 				B58CB795207B10830099773D /* BasicModel */,
 				B59D989A2084A2AC0024B11D /* BasicView */,
 				B59D989C2084A2C20024B11D /* BasicController */,
@@ -265,6 +316,7 @@
 			isa = PBXGroup;
 			children = (
 				B58CB7A9207B10830099773D /* Assets.xcassets */,
+				B5781AFF20A5903700CB1464 /* ImageAssets.xcassets */,
 				B58CB7AA207B10830099773D /* LaunchScreen.storyboard */,
 			);
 			path = Resource;
@@ -304,6 +356,8 @@
 			children = (
 				B59D98A02084A2FD0024B11D /* FFBasicSelectView.h */,
 				B59D98A12084A2FD0024B11D /* FFBasicSelectView.m */,
+				B5781AF820A57B1C00CB1464 /* FFBasicBannerView.h */,
+				B5781AF920A57B1C00CB1464 /* FFBasicBannerView.m */,
 				B5D10423208F13D400CA1949 /* FFCustomizeCell.h */,
 				B5D10422208F13D400CA1949 /* FFCustomizeCell.m */,
 				B5D10424208F13D400CA1949 /* FFCustomizeCell.xib */,
@@ -383,6 +437,7 @@
 				B5D1043F20904DC200CA1949 /* FFGameClass */,
 				B5D505822086F1A3000B7B50 /* FFHomeClass */,
 				B5781AE620A44AF300CB1464 /* FFBTServerClass */,
+				B5781AF320A573C500CB1464 /* FFZKServerClass */,
 				B5D5059520886D1A000B7B50 /* FFOpenServiceClass */,
 				B5D5059F20887B00000B7B50 /* FFDriveClass */,
 				B5D505AA20898D34000B7B50 /* FFMineClass */,
@@ -633,6 +688,7 @@
 				B58CB7B2207B10830099773D /* cityData.plist in Resources */,
 				B58CB7B3207B10830099773D /* GameBoxConfig.plist in Resources */,
 				B58CB7B6207B10830099773D /* LaunchScreen.storyboard in Resources */,
+				B5781B0020A5903700CB1464 /* ImageAssets.xcassets in Resources */,
 				B5D10439209022F800CA1949 /* FFGameGuideCell.xib in Resources */,
 				B5E1E54320622E40008F49CA /* README.md in Resources */,
 				B5781AE520A440C900CB1464 /* Podfile in Resources */,
@@ -697,8 +753,10 @@
 				B58CB7B1207B10830099773D /* main.m in Sources */,
 				B5D1043A209022F800CA1949 /* FFGameGuideCell.m in Sources */,
 				B5781AEB20A44B5100CB1464 /* FFBTServerViewController.m in Sources */,
+				B5781AFE20A57D3600CB1464 /* FFImageManager.m in Sources */,
 				B5D5058B208715C0000B7B50 /* FFRecommentViewController.m in Sources */,
 				B58CB7DB207B12DC0099773D /* FFCustomizeTabBar.m in Sources */,
+				B5781AF720A573F200CB1464 /* FFZKServerViewController.m in Sources */,
 				B58CB7AC207B10830099773D /* FFBasicModel.m in Sources */,
 				B58CB7AE207B10830099773D /* FFNetWorkManager.m in Sources */,
 				B5D5059E208875E8000B7B50 /* FFOSChildViewController.m in Sources */,
@@ -707,6 +765,7 @@
 				B5781AEE20A44D8D00CB1464 /* FFBTServerHeaderView.m in Sources */,
 				B5D505AE20898D69000B7B50 /* FFMineViewController.m in Sources */,
 				B5D1042A208F156000CA1949 /* FFGameModel.m in Sources */,
+				B5781AFA20A57B1C00CB1464 /* FFBasicBannerView.m in Sources */,
 				B5D505A920898D25000B7B50 /* FFDriveViewController.m in Sources */,
 				B5D1044320904E1E00CA1949 /* FFGameViewController.m in Sources */,
 				B5D5059420884164000B7B50 /* FFClassifyViewController.m in Sources */,
@@ -715,6 +774,7 @@
 				B59D989F2084A2E20024B11D /* FFBasicTableViewController.m in Sources */,
 				B58CB7AF207B10830099773D /* FFAppDelegate.m in Sources */,
 				B5D1044B2090694200CA1949 /* FFWebViewController.m in Sources */,
+				B5781AF220A535B900CB1464 /* FFServersModel.m in Sources */,
 				B5D1043E20904DB700CA1949 /* FFClassifyDetailViewController.m in Sources */,
 				B5D5059120884126000B7B50 /* FFGameGuideViewController.m in Sources */,
 				B58CB7D2207B12470099773D /* FFControllerManager.m in Sources */,

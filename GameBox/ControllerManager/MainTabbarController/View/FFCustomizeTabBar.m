@@ -101,11 +101,19 @@
 - (UIButton *)centerBtn {
     if (!_centerBtn) {
         _centerBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
-        [_centerBtn setImage:[UIImage imageNamed:@"tabBar_CenterButton"] forState:UIControlStateNormal];
         [_centerBtn addTarget:self action:@selector(clickCenterBtn:) forControlEvents:UIControlEventTouchUpInside];
-#ifdef DEBUG
-        //        _centerBtn.backgroundColor = [UIColor orangeColor];
-#endif
+
+        Class ImageManager = NSClassFromString(@"FFImageManager");
+        SEL selector = NSSelectorFromString(@"Tabbar_Center_button");
+        if ([ImageManager respondsToSelector:selector]) {
+            IMP imp = [ImageManager methodForSelector:selector];
+            UIImage *(*func)(void) = (void *)imp;
+            UIImage *image = func();
+            if (!image) syLog(@"Tabbar center button image is nil");
+            [_centerBtn setImage:image forState:UIControlStateNormal];
+        } else {
+            syLog(@"\n ! \n tabbar iamge error :  %s not exist \n ! \n",sel_getName(selector));
+        }
     }
     return _centerBtn;
 }

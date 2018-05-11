@@ -7,13 +7,11 @@
 //
 
 #import "FFBasicTableViewController.h"
-
+#import "FFServersModel.h"
 
 @interface FFBTServerViewController : FFBasicTableViewController
 
-
-
-
+@property (nonatomic, assign) FFGameServersType type;
 
 
 @end

@@ -1,4 +1,5 @@
-//
+
+BOX_REGISTER_CELL;//
 //  FFBasicViewController.m
 //  GameBox
 //

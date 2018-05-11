@@ -47,7 +47,6 @@
 - (void)refreshData {
     Reset_page;
     if (self.classifyID == nil) {
-        syLog(@"!!!!!!!!!!!!!!1");
         [self.tableView.mj_header endRefreshing];
         return;
     }

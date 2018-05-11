@@ -34,7 +34,6 @@ static FFMapModel *model = nil;
 }
 
 + (void)getMap {
-
     [FFNetWorkManager postRequestWithURL:map_url Params:nil Success:^(NSDictionary * _Nonnull content) {
         NSDictionary *dict = content[@"data"];
         syLog(@"map === %@",content);
@@ -63,8 +62,6 @@ static FFMapModel *model = nil;
     NSString *filePath = [path stringByAppendingPathComponent:@"FFMapUrl.plist"];
     return filePath;
 }
-
-
 
 
 #pragma mark - getter

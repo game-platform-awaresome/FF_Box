@@ -28,7 +28,7 @@
 static FFWaitingManager *manager = nil;
 @implementation FFWaitingManager
 
-/** 简单单利 */
+/** instancetype */
 + (instancetype)SharedManager {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{

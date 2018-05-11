@@ -13,9 +13,7 @@
 
 - (void)CustomizeTabBar:(FFCustomizeTabBar *)tabBar didSelectCenterButton:(id)sender;
 
-
 @end
-
 
 @interface FFCustomizeTabBar : UITabBar
 
