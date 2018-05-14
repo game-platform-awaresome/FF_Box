@@ -12,7 +12,7 @@
 #import <UIImageView+WebCache.h>
 
 #define CELL_IDE @"FFCustomizeCell"
-
+#define CELL_SRCELL @"FFSRcommentCell"
 
 @interface FFBTServerViewController ()
 
@@ -74,17 +74,29 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.model.sectionArray[section].gameArray.count;
+    return (self.model.sectionArray[section].type == SectionOfBoutique) ? 1 : self.model.sectionArray[section].gameArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    id cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDE forIndexPath:indexPath];
+    id cell = nil;
+    if (self.model.sectionArray[indexPath.section].type == SectionOfBoutique) {
+        cell = [tableView dequeueReusableCellWithIdentifier:CELL_SRCELL forIndexPath:indexPath];
+        [cell setValue:self.model.sectionArray[indexPath.section] forKey:@"model"];
+    } else {
+        cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDE forIndexPath:indexPath];
+        [cell setValue:self.model.sectionArray[indexPath.section].gameArray[indexPath.row] forKey:@"dict"];
+    }
+
     [cell setValue:@3 forKey:@"selectionStyle"];
 //    [cell setValue:self.showArray[indexPath.row] forKey:@"dict"];
     return cell;
 }
 
 #pragma mark - table veiw delegate
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return (self.model.sectionArray[indexPath.section].type == SectionOfBoutique) ? 120 : 80;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 30;
 }
@@ -165,6 +177,7 @@
     self.tableView.mj_footer = self.refreshFooter;
     [self.view addSubview:self.tableView];
     BOX_REGISTER_CELL;
+    [self.tableView registerClass:NSClassFromString(CELL_SRCELL) forCellReuseIdentifier:CELL_SRCELL];
     self.tableView.tableHeaderView = self.tableHeaderView;
 }
 

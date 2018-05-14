@@ -13,6 +13,9 @@
 
 @implementation FFImageManager
 
+/**  gameLogoPlaceholderImage */
++ (UIImage *)gameLogoPlaceholderImage {RETURN_IMAGE(@"gameLogoPlaceholderImage");}
+
 /** tabbar */
 + (UIImage *)Tabbar_0_Normal            {RETURN_IMAGE(@"Tabbar_Game_Normal");}
 + (UIImage *)Tabbar_0_Select            {RETURN_IMAGE(@"Tabbar_Game_Select");}

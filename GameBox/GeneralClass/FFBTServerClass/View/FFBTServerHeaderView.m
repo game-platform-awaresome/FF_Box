@@ -109,6 +109,7 @@
             [self.buttonArray addObject:button];
         }];
     }
+    [self layoutButtons];
 }
 
 - (void)setImageArray:(NSArray<UIImage *> *)imageArray {
@@ -147,7 +148,8 @@
 
 - (void)layoutButtons {
     for (UIButton * button in self.buttonArray) {
-        [button layoutButtonWithImageStyle:(FFButtonImageOnTop) imageTitleSpace:0];
+        [button layoutButtonWithImageStyle:(FFButtonImageOnTop) imageTitleSpace:4];
+        button.titleLabel.font = [UIFont systemFontOfSize:15];
     }
 }
 

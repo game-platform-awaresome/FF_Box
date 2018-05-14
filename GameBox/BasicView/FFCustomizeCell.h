@@ -17,6 +17,8 @@
 @end
 
 
+#warning Missing model;
+
 @interface FFCustomizeCell : UITableViewCell
 
 /** 游戏信息 */

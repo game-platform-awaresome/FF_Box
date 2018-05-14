@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0543CAF4C1A27767297E9250 /* libPods-GameBox.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C09ECF85CDCEAA38284810 /* libPods-GameBox.a */; };
+		B52ED09B20A9A38700C8CAF4 /* FFSRcommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B52ED09920A9A38700C8CAF4 /* FFSRcommentCell.m */; };
 		B5781AE020A3F4DE00CB1464 /* FFHomeSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5781ADE20A3F4DD00CB1464 /* FFHomeSelectView.m */; };
 		B5781AE320A42CED00CB1464 /* FFUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5781AE220A42CED00CB1464 /* FFUserModel.m */; };
 		B5781AE520A440C900CB1464 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = B5781AE420A440C800CB1464 /* Podfile */; };
@@ -65,6 +66,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B52ED09820A9A38700C8CAF4 /* FFSRcommentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFSRcommentCell.h; sourceTree = "<group>"; };
+		B52ED09920A9A38700C8CAF4 /* FFSRcommentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFSRcommentCell.m; sourceTree = "<group>"; };
 		B5781ADE20A3F4DD00CB1464 /* FFHomeSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFHomeSelectView.m; sourceTree = "<group>"; };
 		B5781ADF20A3F4DE00CB1464 /* FFHomeSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFHomeSelectView.h; sourceTree = "<group>"; };
 		B5781AE120A42CED00CB1464 /* FFUserModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFUserModel.h; sourceTree = "<group>"; };
@@ -215,6 +218,8 @@
 			children = (
 				B5781AEC20A44D8D00CB1464 /* FFBTServerHeaderView.h */,
 				B5781AED20A44D8D00CB1464 /* FFBTServerHeaderView.m */,
+				B52ED09820A9A38700C8CAF4 /* FFSRcommentCell.h */,
+				B52ED09920A9A38700C8CAF4 /* FFSRcommentCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -781,6 +786,7 @@
 				B5781AEB20A44B5100CB1464 /* FFBTServerViewController.m in Sources */,
 				B5781AFE20A57D3600CB1464 /* FFImageManager.m in Sources */,
 				B5D5058B208715C0000B7B50 /* FFRecommentViewController.m in Sources */,
+				B52ED09B20A9A38700C8CAF4 /* FFSRcommentCell.m in Sources */,
 				B58CB7DB207B12DC0099773D /* FFCustomizeTabBar.m in Sources */,
 				B5781AF720A573F200CB1464 /* FFZKServerViewController.m in Sources */,
 				B58CB7AC207B10830099773D /* FFBasicModel.m in Sources */,

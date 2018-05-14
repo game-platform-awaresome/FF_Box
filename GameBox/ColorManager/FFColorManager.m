@@ -60,6 +60,10 @@ UIColor *HexColorToUIColor(NSString *hexColorString) {
 
 @implementation FFColorManager
 
++ (UIColor *)current_version_main_color {
+    return [FFColorManager blue_dark];
+}
+
 + (UIColor *)navigationColor {
     return RGBColor(250, 121, 34);
 }
@@ -74,6 +78,12 @@ UIColor *HexColorToUIColor(NSString *hexColorString) {
 
 + (UIColor *)textColorDark {
     return RGBColor(55, 60, 65);
+}
++ (UIColor *)textColorMiddle {
+    return RGBColor(100, 100, 100);
+}
++ (UIColor *)textColorLight {
+    return RGBColor(155, 155, 155);
 }
 
 + (UIColor *)tabbar_item_color {

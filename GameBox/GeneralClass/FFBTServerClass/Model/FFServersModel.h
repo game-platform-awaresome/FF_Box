@@ -29,7 +29,7 @@ typedef enum : NSUInteger {
 // ??使用 CGFloat error ????
 @property (nonatomic, strong) NSString *sectionFooterHeight;
 
-@property (nonatomic, strong) NSArray *gameArray;
+@property (nonatomic, strong) NSMutableArray *gameArray;
 @property (nonatomic, strong) NSDictionary *gameSlide;
 
 

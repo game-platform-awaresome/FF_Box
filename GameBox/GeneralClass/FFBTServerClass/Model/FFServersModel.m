@@ -24,7 +24,7 @@
 }
 
 - (void)setGameArray:(NSArray *)gameArray {
-    _gameArray = ([gameArray isKindOfClass:[NSArray class]]) ? gameArray : nil;
+    _gameArray = ([gameArray isKindOfClass:[NSArray class]]) ? [gameArray mutableCopy] : [NSMutableArray array];
 }
 
 - (void)setGameSlide:(NSDictionary *)gameSlide {

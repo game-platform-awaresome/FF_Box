@@ -8,12 +8,17 @@
 
 #import "FFNetWorkManager.h"
 
+
 typedef enum : NSUInteger {
     BT_SERVERS = 1,
     ZK_SERVERS
 } FFGameServersType;
 
+
+
+#pragma mark - game model
 @interface FFGameModel : FFNetWorkManager
+
 
 /** recomment game list */
 + (void)recommentGameListWithPage:(NSString * _Nonnull)page

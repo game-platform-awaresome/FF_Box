@@ -10,6 +10,9 @@
 
 @interface FFImageManager : NSObject
 
+/** game logo placeholder image */
++(UIImage *)gameLogoPlaceholderImage;
+
 /** tabbar */
 + (UIImage *)Tabbar_0_Normal;
 + (UIImage *)Tabbar_0_Select;

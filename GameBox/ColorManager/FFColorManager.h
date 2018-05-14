@@ -14,10 +14,14 @@ UIColor *RGBColor(float red, float green, float blue);
 
 @interface FFColorManager : NSObject
 
++ (UIColor *)current_version_main_color;
+
 + (UIColor *)navigationColor;
 + (UIColor *)tabbarColor;
 + (UIColor *)backgroundColor;
 + (UIColor *)textColorDark;
++ (UIColor *)textColorMiddle;
++ (UIColor *)textColorLight;
 + (UIColor *)tabbar_item_color;
 
 + (UIColor *)home_select_view_color;
