@@ -53,7 +53,7 @@
 #define USER_PASSWORDK @"CurrentUserPassWord"
 #define SSKEYCHAIN_USER_NAME ([SYKeychain passwordForService:@"tenoneTec.com" account:USER_NAME])
 
-#define FF_is_login     if (SSKEYCHAIN_UID == nil || SSKEYCHAIN_UID.length < 1) {\
+#define USER_IS_LOGIN   if (SSKEYCHAIN_UID == nil || SSKEYCHAIN_UID.length < 1) {\
                             BOX_MESSAGE(@"尚未登录");\
                             return;\
                         }\

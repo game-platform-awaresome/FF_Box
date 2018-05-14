@@ -59,7 +59,7 @@
                       Completion:(RequestCallBackBlock)completion;
 
 /**
- * 修改密码
+ * 用户 - 修改密码
  * @param oldPassword   旧密码
  * @param newPassword   新密码
  */
@@ -67,17 +67,110 @@
                           NewPassword:(NSString *)newPassword
                            Completion:(RequestCallBackBlock)completion;
 #pragma makr - ================================ 签到 ================================
+/** 用户 - 签到初始化 */
++ (BOOL)signInitWithCompletion:(RequestCallBackBlock)completion;
+/** 用户 - 签到 */
++ (BOOL)doSignWithCompletion:(RequestCallBackBlock)completion;
 
 #pragma mark - ================================ 绑定手机 ================================
-/** 绑定手机 */
-+ (void)userBindingPhoneNumber:(NSString *)phoneNumber
+/** 用户 - 绑定手机 */
++ (BOOL)userBindingPhoneNumber:(NSString *)phoneNumber
                           Code:(NSString *)code
                     Completion:(RequestCallBackBlock)completion;
 
-/** 解绑手机 */
-+ (void)userUnbindingPhoneNumber:(NSString *)phoneNumber
+/** 用户 - 解绑手机 */
++ (BOOL)userUnbindingPhoneNumber:(NSString *)phoneNumber
                             Code:(NSString *)code
                       Completion:(RequestCallBackBlock)completion;
+
+#pragma mark - ======================= 获取 vip 选项 =======================
+/** 用户 - 获取 VIP 选项 */
++ (void)vipGetOptionWithCompletion:(RequestCallBackBlock)completion;
+
+#pragma mark - ======================= 邀请好友 =======================
+/** 用户 - 邀请好友 */
++ (BOOL)inviteFriendWithCompletion:(RequestCallBackBlock)completion;
+
+
+#pragma mark - ======================= 客服中心 =======================
+/** 客服中心 */
++ (void)customerServiceWithCompletion:(RequestCallBackBlock)completion;
+
+#pragma mark - ======================= 我的收藏 =======================
+/** 用户 - 我的收藏 */
++ (BOOL)myCollectionGameWithPage:(NSString *)page Completion:(RequestCallBackBlock)completion;
+
+#pragma mark - ======================= 找回密码 =======================
+/** 获取手机验证码 */
++ (void)userSendMessageWithPhoneNumber:(NSString *)phoneNumber
+                                  Type:(NSString *)type
+                            Completion:(RequestCallBackBlock)completion;
+/** 检验验证码 */
++ (void)userCheckMessageWithPhoneNumber:(NSString *)phoneNumber
+                            MessageCode:(NSString *)messageCode
+                             Completion:(RequestCallBackBlock)completion;
+
+/** 重置密码 */
++ (void)userForgetPasswordWithUserID:(NSString *)userID
+                            Password:(NSString *)password
+                          RePassword:(NSString *)rePassword
+                               Token:(NSString *)token
+                          Completion:(RequestCallBackBlock)completion;
+
+#pragma mark - ======================= 修改昵称 =======================
+/** 修改昵称 */
++ (BOOL)userModifyNicknameWithUserID:(NSString *)userID
+                            NickName:(NSString *)nickName
+                          Completion:(RequestCallBackBlock)completion;
+
+#pragma mark - ======================= 上传头像 =======================
+/** 用户 - 上传头像 */
++ (BOOL)userUploadPortraitWithImage:(id)image Completion:(RequestCallBackBlock)completion;
+
+
+#pragma mark - ======================= 用户币 =======================
+/** 用户 - 各种币 */
++ (BOOL)userCoinWithCompletion:(RequestCallBackBlock)completion;
+
+/** 用户 - 金币中心 */
++ (BOOL)coinCenterWithCompletion:(RequestCallBackBlock)completion;
+
+/** 用户 - 金币明细 */
++ (BOOL)coinDetailWithPage:(NSString *)page Completion:(RequestCallBackBlock)completion;
+
+/** 用户 - 兑换平台币信息 */
++ (BOOL)coinExchangeInfoCompletion:(RequestCallBackBlock)completion;
+
+/** 用户 - 兑换平台币 */
++ (BOOL)coinExchangePlatformCounts:(NSString *)platform_counts
+                        Completion:(RequestCallBackBlock)completion;
+
+/** 用户 - 平台币明细 */
++ (BOOL)coinPlatformDetailWithPage:(NSString *)page
+                        Completion:(RequestCallBackBlock)completion;
+
+/** 用户 - 我的奖品 */
++ (BOOL)myPrizeCompletion:(RequestCallBackBlock)completion;
+
+#pragma mark - ======================= 申请转游 =======================
+/** 用户 - 申请转游戏 */
++ (BOOL)transferGameApplyWithOriginAppName:(NSString *)origin_appname
+                          OriginServerName:(NSString *)origin_servername
+                            OriginRoleName:(NSString *)origin_rolename
+                                NewAppName:(NSString *)new_appname
+                             NewServerName:(NSString *)new_servername
+                               NewRoleName:(NSString *)new_rolename
+                                  QQNumber:(NSString *)qq
+                                    Mobile:(NSString *)mobile
+                                Completion:(RequestCallBackBlock)completion;
+
+/** 用户 - 转游戏记录 */
++ (BOOL)transferGameListWithPage:(NSString *)page
+                      Completion:(RequestCallBackBlock)completion;
+
+/** 转游须知 */
++ (void)transferGameoticeCompletion:(RequestCallBackBlock)completion;
+
 
 
 ///** 登录 */
