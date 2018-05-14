@@ -24,8 +24,8 @@
 
 @property (nonatomic, strong) NSArray *bannerArray;
 
-
-
+@property (nonatomic, strong) NSArray<NSString *> *titleArray;
+@property (nonatomic, strong) NSArray<UIImage *>  *imageArray;
 
 - (instancetype)init;
 

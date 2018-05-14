@@ -31,6 +31,8 @@
 		B58CB7D2207B12470099773D /* FFControllerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B58CB7D1207B12470099773D /* FFControllerManager.m */; };
 		B58CB7D6207B12AC0099773D /* FFMainTabbarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B58CB7D5207B12AC0099773D /* FFMainTabbarViewController.m */; };
 		B58CB7DB207B12DC0099773D /* FFCustomizeTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B58CB7DA207B12DC0099773D /* FFCustomizeTabBar.m */; };
+		B590959820A9401B009CD99A /* FFMineViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B590959720A9401B009CD99A /* FFMineViewModel.m */; };
+		B590959C20A95CA2009CD99A /* FFColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B590959B20A95CA2009CD99A /* FFColorManager.m */; };
 		B59D989F2084A2E20024B11D /* FFBasicTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B59D989E2084A2E20024B11D /* FFBasicTableViewController.m */; };
 		B59D98A22084A2FD0024B11D /* FFBasicSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = B59D98A12084A2FD0024B11D /* FFBasicSelectView.m */; };
 		B5D10421208F0DD900CA1949 /* FFBasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D10420208F0DD900CA1949 /* FFBasicViewController.m */; };
@@ -104,6 +106,10 @@
 		B58CB7D5207B12AC0099773D /* FFMainTabbarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFMainTabbarViewController.m; sourceTree = "<group>"; };
 		B58CB7D9207B12DC0099773D /* FFCustomizeTabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFCustomizeTabBar.h; sourceTree = "<group>"; };
 		B58CB7DA207B12DC0099773D /* FFCustomizeTabBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFCustomizeTabBar.m; sourceTree = "<group>"; };
+		B590959620A9401B009CD99A /* FFMineViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFMineViewModel.h; sourceTree = "<group>"; };
+		B590959720A9401B009CD99A /* FFMineViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFMineViewModel.m; sourceTree = "<group>"; };
+		B590959A20A95CA2009CD99A /* FFColorManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFColorManager.h; sourceTree = "<group>"; };
+		B590959B20A95CA2009CD99A /* FFColorManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFColorManager.m; sourceTree = "<group>"; };
 		B59D989D2084A2E20024B11D /* FFBasicTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBasicTableViewController.h; sourceTree = "<group>"; };
 		B59D989E2084A2E20024B11D /* FFBasicTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBasicTableViewController.m; sourceTree = "<group>"; };
 		B59D98A02084A2FD0024B11D /* FFBasicSelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBasicSelectView.h; sourceTree = "<group>"; };
@@ -255,6 +261,7 @@
 				B58CB7CF207B122D0099773D /* ControllerManager */,
 				B5D1042E208F3CB300CA1949 /* WaitingManager */,
 				B5781AFB20A57D1A00CB1464 /* ImageManager */,
+				B590959920A95C89009CD99A /* ColorManager */,
 				B58CB795207B10830099773D /* BasicModel */,
 				B59D989A2084A2AC0024B11D /* BasicView */,
 				B59D989C2084A2C20024B11D /* BasicController */,
@@ -349,6 +356,24 @@
 				B58CB7DA207B12DC0099773D /* FFCustomizeTabBar.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		B590959520A93FEC009CD99A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B590959620A9401B009CD99A /* FFMineViewModel.h */,
+				B590959720A9401B009CD99A /* FFMineViewModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B590959920A95C89009CD99A /* ColorManager */ = {
+			isa = PBXGroup;
+			children = (
+				B590959A20A95CA2009CD99A /* FFColorManager.h */,
+				B590959B20A95CA2009CD99A /* FFColorManager.m */,
+			);
+			path = ColorManager;
 			sourceTree = "<group>";
 		};
 		B59D989A2084A2AC0024B11D /* BasicView */ = {
@@ -568,6 +593,7 @@
 		B5D505AA20898D34000B7B50 /* FFMineClass */ = {
 			isa = PBXGroup;
 			children = (
+				B590959520A93FEC009CD99A /* Model */,
 				B5D505AB20898D44000B7B50 /* Controller */,
 			);
 			path = FFMineClass;
@@ -762,11 +788,13 @@
 				B5D5059E208875E8000B7B50 /* FFOSChildViewController.m in Sources */,
 				B5D10421208F0DD900CA1949 /* FFBasicViewController.m in Sources */,
 				B5D505872086F1D8000B7B50 /* FFHomeViewController.m in Sources */,
+				B590959820A9401B009CD99A /* FFMineViewModel.m in Sources */,
 				B5781AEE20A44D8D00CB1464 /* FFBTServerHeaderView.m in Sources */,
 				B5D505AE20898D69000B7B50 /* FFMineViewController.m in Sources */,
 				B5D1042A208F156000CA1949 /* FFGameModel.m in Sources */,
 				B5781AFA20A57B1C00CB1464 /* FFBasicBannerView.m in Sources */,
 				B5D505A920898D25000B7B50 /* FFDriveViewController.m in Sources */,
+				B590959C20A95CA2009CD99A /* FFColorManager.m in Sources */,
 				B5D1044320904E1E00CA1949 /* FFGameViewController.m in Sources */,
 				B5D5059420884164000B7B50 /* FFClassifyViewController.m in Sources */,
 				B58CB7D6207B12AC0099773D /* FFMainTabbarViewController.m in Sources */,

@@ -13,5 +13,7 @@
 
 @property (nonatomic, assign) FFGameServersType type;
 
+@property (nonatomic, strong) NSArray *selectButtonArray;
+@property (nonatomic, strong) NSArray *selectImageArray;
 
 @end

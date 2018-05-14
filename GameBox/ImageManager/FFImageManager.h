@@ -24,6 +24,14 @@
 /** banner placeholder image */
 + (UIImage *)Basic_Banner_placeholder;
 
+/** home view image */
++ (UIImage *)Home_new_game;
++ (UIImage *)Home_hight_vip;
++ (UIImage *)Home_discount;
++ (UIImage *)Home_classify;
++ (UIImage *)Home_activity;
+
+
 
 
 @end

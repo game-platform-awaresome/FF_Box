@@ -8,6 +8,7 @@
 
 #import "FFWebViewController.h"
 #import <WebKit/WebKit.h>
+#import "FFColorManager.h"
 
 @interface FFWebViewController ()<WKUIDelegate,WKNavigationDelegate,UIWebViewDelegate>
 
@@ -139,7 +140,7 @@
         //        _progressView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"webView_progress"]];
 
         _progressView = [[UIImageView alloc] init];
-        _progressView.backgroundColor = RGBCOLOR(111, 177, 218);
+        _progressView.backgroundColor = [FFColorManager web_waitng_color];
         _progressView.frame = CGRectMake(0, CGRectGetMaxY(self.navigationController.navigationBar.frame), 0, 3);
     }
     return _progressView;

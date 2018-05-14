@@ -44,7 +44,7 @@
     NSArray *viewControllerNames = @[@"FFHomeViewController",
                                      @"FFOpenServiceViewController",
                                      @"FFDriveViewController",
-                                     @"FFClassifyDetailViewController"];
+                                     @"FFMineViewController"];
 
     NSArray *titles = @[@"游戏", @"开服表", @"车站", @"我的"];
 
@@ -74,7 +74,7 @@
 
         viewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:titles[idx] image:[normalImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[selectImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
 
-        [viewController.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:NAVGATION_BAR_COLOR} forState:UIControlStateSelected];
+        [viewController.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[self tabbarItemColor]} forState:UIControlStateSelected];
 
         [viewControllers addObject:nav];
     }];
@@ -99,6 +99,25 @@
         return nil;
     }
 }
+
+- (UIColor *)tabbarItemColor {
+    Class ColorManager = NSClassFromString(@"FFColorManager");
+    SEL selector = NSSelectorFromString(@"tabbar_item_color");
+    if ([ColorManager respondsToSelector:selector]) {
+        IMP imp = [ColorManager methodForSelector:selector];
+        UIColor *(*get_tabbar_item_color)(void) = (void *)imp;
+        UIColor *tabbar_item_color = get_tabbar_item_color();
+        if (!tabbar_item_color)  return [UIColor blackColor];
+        return tabbar_item_color;
+    } else {
+        return [UIColor blackColor];
+    }
+}
+
+
+
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];

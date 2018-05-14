@@ -8,6 +8,7 @@
 
 #import "FFCustomizeCell.h"
 #import <UIImageView+WebCache.h>
+#import "FFColorManager.h"
 
 
 @interface FFCustomizeCell ()
@@ -40,9 +41,10 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.gameDownload.userInteractionEnabled = NO;
-    [self setLabel:self.label1 BackgroundColor:RGBCOLOR(173, 170, 217)];
-    [self setLabel:self.label2 BackgroundColor:RGBCOLOR(77, 180, 180)];
-    [self setLabel:self.label3 BackgroundColor:RGBCOLOR(247, 189, 52)];
+    
+    [self setLabel:self.label1 BackgroundColor:[FFColorManager custom_cell_text1_color]];
+    [self setLabel:self.label2 BackgroundColor:[FFColorManager custom_cell_text2_color]];
+    [self setLabel:self.label3 BackgroundColor:[FFColorManager custom_cell_text3_color]];
 
     self.gameNumber.font = [UIFont systemFontOfSize:12];
     self.gameNumber.textColor = [UIColor lightGrayColor];

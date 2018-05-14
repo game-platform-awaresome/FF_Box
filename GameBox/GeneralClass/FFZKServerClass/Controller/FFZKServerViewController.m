@@ -25,6 +25,16 @@
     return ZK_SERVERS;
 }
 
+- (NSArray *)selectButtonArray {
+    return @[@"新游",@"活动",@"折扣",@"分类"];
+}
+
+- (NSArray *)selectImageArray {
+    return @[[FFImageManager Home_new_game],
+             [FFImageManager Home_activity],
+             [FFImageManager Home_discount],
+             [FFImageManager Home_classify]];
+}
 
 
 

@@ -11,6 +11,7 @@
 #import "FFClassifyTableCell.h"
 #import <UIButton+WebCache.h>
 
+
 #define BTNTAG 1700
 #define SECTIONTAG 2700
 #define CELL_IDE @"FFClassifyTableCell"
@@ -123,7 +124,7 @@
     view.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
 
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 2, kSCREEN_WIDTH, 26)];
-    label.backgroundColor = RGBCOLOR(247, 247, 247);
+    label.backgroundColor = [FFColorManager tabbarColor];
     NSString *string = self.showArray[section][@"className"];
 
     UIButton *button = [UIButton buttonWithType:(UIButtonTypeCustom)];
@@ -190,14 +191,14 @@
         }
 
         self.headerView.bounds = CGRectMake(0, 0, kSCREEN_WIDTH, kSCREEN_WIDTH / 4 * height1);
-        self.headerView.backgroundColor = RGBCOLOR(247, 247, 247);
+        self.headerView.backgroundColor = [FFColorManager tabbarColor];
 
         NSInteger idx = 0;
         for (NSDictionary *obj in _classifyArray) {
             NSString *title = obj[@"name"];
             //            背景视图
             UIView *view = [[UIView alloc] initWithFrame:CGRectMake(kSCREEN_WIDTH / 4 * (idx % 4), kSCREEN_WIDTH / 4 * (idx / 4), kSCREEN_WIDTH / 4, kSCREEN_WIDTH / 4 )];
-            view.backgroundColor = RGBCOLOR(247, 247, 247);
+            view.backgroundColor = [FFColorManager tabbarColor];
 
             UIButton *button = [UIButton buttonWithType:(UIButtonTypeCustom)];
 

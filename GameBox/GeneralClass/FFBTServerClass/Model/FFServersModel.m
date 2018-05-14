@@ -58,7 +58,7 @@
         case SectionOfBoutique:         self.sectionHeaderTitle = @"精品推荐";    break;
         case SectionOfNewArrival:       self.sectionHeaderTitle = @"新品上架";    break;
         case SectionOfPopulayWeekly:    self.sectionHeaderTitle = @"每周热门";    break;
-        case SectionOfRecommentGame:    self.sectionHeaderTitle = @"推荐游戏";    break;
+        case SectionOfRecommentGame:    self.sectionHeaderTitle = @"游戏列表";    break;
         default:
             break;
     }

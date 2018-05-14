@@ -126,6 +126,20 @@
     return [FFControllerManager sharedManager].currentNavController;
 }
 
+- (UIBarButtonItem *)leftButton {
+    if (!_leftButton) {
+        _leftButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:(UIBarButtonItemStyleDone) target:self action:@selector(respondsToLeftButton)];
+    }
+    return _leftButton;
+}
+
+- (UIBarButtonItem *)rightButton {
+    if (!_rightButton) {
+        _rightButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:(UIBarButtonItemStyleDone) target:self action:@selector(respondsToRightButton)];
+    }
+    return _rightButton;
+}
+
 
 
 

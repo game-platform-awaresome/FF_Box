@@ -121,6 +121,17 @@
     return BT_SERVERS;
 }
 
+- (NSArray *)selectButtonArray {
+    return @[@"新游",@"活动",@"满V",@"分类"];
+}
+
+- (NSArray *)selectImageArray {
+    return @[[FFImageManager Home_new_game],
+             [FFImageManager Home_activity],
+             [FFImageManager Home_hight_vip],
+             [FFImageManager Home_classify]];
+}
+
 - (FFServersModel *)model {
     if (!_model) {
         _model = [[FFServersModel alloc] init];
@@ -131,7 +142,9 @@
 - (FFBTServerHeaderView *)tableHeaderView {
     if (!_tableHeaderView) {
         _tableHeaderView = [[FFBTServerHeaderView alloc] init];
-        _tableHeaderView.backgroundColor = COLOR_BLUE_DARK;
+        _tableHeaderView.backgroundColor = [FFColorManager blue_dark];
+        _tableHeaderView.titleArray = self.selectButtonArray;
+        _tableHeaderView.imageArray = self.selectImageArray;
     }
     return _tableHeaderView;
 }

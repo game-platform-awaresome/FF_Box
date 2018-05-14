@@ -7,6 +7,7 @@
 //
 
 #import "FFHomeSelectView.h"
+#import "FFColorManager.h"
 
 const NSUInteger HomeButtonTag = 10086;
 
@@ -18,6 +19,7 @@ const NSUInteger HomeButtonTag = 10086;
 @property (nonatomic, strong) CALayer *lineLayer;
 @property (nonatomic, strong) UIView *lineView;
 @property (nonatomic, assign) BOOL isAnimating;
+
 
 
 @property (nonatomic, strong) NSMutableArray<NSNumber *> *titleWidthArray;
@@ -58,7 +60,7 @@ const NSUInteger HomeButtonTag = 10086;
 
 - (void)initDataSource {
     _titleNormalColor = [UIColor grayColor];
-    _titleSelectColor = COLOR_BLUE_DARK;
+    _titleSelectColor = [FFColorManager home_select_view_color];
     _titleBackGroundColor = [UIColor clearColor];
     _cursorWidthEqualToTitleWidth = YES;
     _selectTitleIndex = 0;
@@ -68,8 +70,8 @@ const NSUInteger HomeButtonTag = 10086;
     self.showCursorView = YES;
     self.totalFrame = CGRectMake(0, 0, kSCREEN_WIDTH, 44);
     self.cursorView.bounds = CGRectMake(0, 0, 0, 3);
-    self.lineColor = COLOR_BLUE_DARK;
-    self.cursorColor = COLOR_BLUE_DARK;
+    self.lineColor = [FFColorManager blue_dark];
+    self.cursorColor = [FFColorManager home_select_view_color];
 }
 
 #pragma mark - method
@@ -253,7 +255,7 @@ const NSUInteger HomeButtonTag = 10086;
     if (!_cursorView) {
         _cursorView = [[UIView alloc] init];
         _cursorView.center = CGPointMake(self.buttonArray[0].center.x, _totalFrame.size.height - 4);
-        _cursorView.backgroundColor = COLOR_BLUE_DARK;
+        _cursorView.backgroundColor = [FFColorManager home_select_view_lineColor];
         _cursorView.layer.cornerRadius = 1;
         _cursorView.layer.masksToBounds = YES;
     }

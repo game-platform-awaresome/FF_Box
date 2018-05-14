@@ -24,16 +24,6 @@
 #define kNAVIGATION_HEIGHT CGRectGetMaxY(self.navigationController.navigationBar.frame)
 #define kTABBAR_HEIGHT CGRectGetHeight(self.tabBarController.tabBar.frame)
 
-#define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:r / 255.0 green:g / 255.0 blue:b / 255.0 alpha:a]
-#define RGBCOLOR(r,g,b) RGBACOLOR(r,g,b,1)
-#define TABBARCOLOR RGBCOLOR(247,247,247)
-#define BOX_GRARCOLOR RGBCOLOR(230,230,230)
-#define NAVGATION_BAR_COLOR RGBCOLOR(250,121,34)
-#define BACKGROUND_COLOR RGBCOLOR(239, 240, 241)
-// RGB Color
-#define TEXTCOLOR RGBCOLOR(55,60,65)
-#define COLOR_BLUE_DARK RGBCOLOR(54, 145, 224)
-#define COLOR_BLUE_LIGHT RGBCOLOR(42, 179, 231)
 
 #ifdef DEBUG
 #define syLog(format, ...) NSLog(format, ## __VA_ARGS__)

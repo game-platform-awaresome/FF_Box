@@ -26,7 +26,11 @@
 /** banner placeholder image */
 + (UIImage *)Basic_Banner_placeholder   {RETURN_IMAGE(@"Basic_Banner_placeholder");}
 
-
++ (UIImage *)Home_new_game      {RETURN_IMAGE(@"Home_new_game");}
++ (UIImage *)Home_hight_vip     {RETURN_IMAGE(@"Home_hight_vip");}
++ (UIImage *)Home_discount      {RETURN_IMAGE(@"Home_discount");}
++ (UIImage *)Home_classify      {RETURN_IMAGE(@"Home_classify");}
++ (UIImage *)Home_activity      {RETURN_IMAGE(@"Home_activity");}
 
 
 
