@@ -28,6 +28,7 @@ UIColor *RGBColor(float red, float green, float blue);
 + (UIColor *)home_select_view_color;
 + (UIColor *)home_select_view_lineColor;
 + (UIColor *)home_select_View_separat_lineColor;
++ (UIColor *)home_search_view_background_color;
 
 + (UIColor *)custom_cell_text1_color;
 + (UIColor *)custom_cell_text2_color;
@@ -41,7 +42,7 @@ UIColor *RGBColor(float red, float green, float blue);
 + (UIColor *)gray_color;
 
 
-
++ (UIColor *)tableview_background_color;
 /**
  // RGB Color
  #define TEXTCOLOR RGBCOLOR(55,60,65) */

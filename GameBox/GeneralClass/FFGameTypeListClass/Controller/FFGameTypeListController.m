@@ -1,22 +1,20 @@
 //
-//  FFRankListViewController.m
+//  FFGameTypeController.m
 //  GameBox
 //
-//  Created by 燚 on 2018/4/25.
+//  Created by 燚 on 2018/5/15.
 //  Copyright © 2018年 Sans. All rights reserved.
 //
 
-#import "FFRankListViewController.h"
+#import "FFGameTypeListController.h"
 
-@interface FFRankListViewController ()
+@interface FFGameTypeListController ()
 
-
-@property (nonatomic, strong) NSString *gameType;
 
 
 @end
 
-@implementation FFRankListViewController
+@implementation FFGameTypeListController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -25,13 +23,8 @@
 
 - (void)initUserInterface {
     [super initUserInterface];
+    self.tableView.frame = CGRectMake(0, kNAVIGATION_HEIGHT, kSCREEN_WIDTH, kSCREEN_HEIGHT - kNAVIGATION_HEIGHT);
 }
-
-- (void)initDataSource {
-    [super initDataSource];
-    [self setGameType:@"2"];
-}
-
 
 #pragma mark - method
 - (void)refreshData {
@@ -40,9 +33,9 @@
     [FFGameModel gameListWithPage:New_page ServerType:self.gameServerType GameType:self.gameType Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         [self stopWaiting];
 
+        syLog(@"???????????????? == %@",content);
         if (success) {
             self.showArray = [content[@"data"] mutableCopy];
-            [self.tableView reloadData];
         } else {
 
         }
@@ -55,11 +48,12 @@
 
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
+        [self.tableView reloadData];
     }];
 }
 
 - (void)loadMoreData {
-    [FFGameModel gameListWithPage:New_page ServerType:self.gameServerType GameType:self.gameType Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+    [FFGameModel gameListWithPage:Next_page ServerType:self.gameServerType GameType:self.gameType Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         if (success) {
             NSArray *dataArray = content[@"data"];
             if (dataArray.count > 0) {
@@ -85,15 +79,4 @@
     return @"1";
 }
 
-
-
-
 @end
-
-
-
-
-
-
-
-

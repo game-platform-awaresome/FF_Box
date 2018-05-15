@@ -52,15 +52,16 @@
 #pragma mark - load data
 - (void)refreshData {
     [self startWaiting];
+    syLog(@"%s",__func__);
     Reset_page;
     [FFGameModel GameServersWithType:self.type Page:New_page Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         [self stopWaiting];
         if (success) {
-            syLog(@"message  :  bt server data == %@",content);
+//            syLog(@"message  :  bt server data == %@",content);
             /** init net data */
             self.model.contentDataDict = CONTENT_DATA;
         } else {
-            syLog(@"error : %s : %@",__func__,content);
+//            syLog(@"error : %s : %@",__func__,content);
         }
 
         /** set banner */
@@ -146,7 +147,9 @@
     [self pushViewController:vc];
 }
 
-
+- (void)FFBTServerHeaderView:(FFBTServerHeaderView *)headerView didSelectSearchViewWithInfo:(id)info {
+    syLog(@"搜索!!!!!!!!!!!!");
+}
 
 
 #pragma mark - setter
@@ -173,8 +176,8 @@
 
 - (NSArray *)selectControllerName {
     return @[@"FFBTNewGameController",
-             @"FFGameGuideViewController",
-             @"UIViewController",
+             @"FFActivityViewController",
+             @"FFHeightVipController",
              @"FFBTClassifyController"];
 }
 
@@ -205,7 +208,7 @@
 - (FFBTServerHeaderView *)tableHeaderView {
     if (!_tableHeaderView) {
         _tableHeaderView = [[FFBTServerHeaderView alloc] init];
-        _tableHeaderView.backgroundColor = [FFColorManager blue_dark];
+        _tableHeaderView.backgroundColor = [UIColor whiteColor];
         _tableHeaderView.titleArray = self.selectButtonArray;
         _tableHeaderView.imageArray = self.selectImageArray;
         _tableHeaderView.controllerName = self.selectControllerName;
@@ -218,6 +221,7 @@
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, kSCREEN_HEIGHT - kTABBAR_HEIGHT - KSTATUBAR_HEIGHT - 44) style:(UITableViewStyleGrouped)];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+//    self.tableView.backgroundColor = [FFColorManager tableview_background_color];
     self.tableView.showsVerticalScrollIndicator = YES;
     self.tableView.showsHorizontalScrollIndicator = NO;
     self.tableView.tableFooterView = [UIView new];
@@ -229,6 +233,10 @@
     self.tableView.mj_header = self.refreshHeader;
     self.tableView.mj_footer = self.refreshFooter;
     [self.view addSubview:self.tableView];
+    [self registCell];
+}
+
+- (void)registCell {
     BOX_REGISTER_CELL;
     [self.tableView registerClass:NSClassFromString(CELL_SRCELL) forCellReuseIdentifier:CELL_SRCELL];
     self.tableView.tableHeaderView = self.tableHeaderView;

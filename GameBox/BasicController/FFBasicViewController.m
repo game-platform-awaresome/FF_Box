@@ -63,6 +63,7 @@
 - (void)pushViewController:(UIViewController *)vc HideTabbar:(BOOL)hideTabbar {
     [self hideTabbar];
     [self.currentNav pushViewController:vc animated:YES];
+//    [self.navigationController pushViewController:vc animated:YES];
     if (!hideTabbar) {
         [self showTabbar];
     }
@@ -70,7 +71,8 @@
 
 - (void)pushViewController:(UIViewController *)viewController {
     [self hideTabbar];
-    [self.navigationController pushViewController:viewController animated:YES];
+    [self.currentNav pushViewController:viewController animated:YES];
+//    [self.navigationController pushViewController:viewController animated:YES];
     if (self.navigationController.viewControllers.count <= 2) {
         [self showTabbar];
     }

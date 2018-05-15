@@ -43,33 +43,33 @@
 - (void)refreshData {
     self.currentPage = 1;
     [self startWaiting];
-    [FFGameModel gameGuideListWithPage:New_page Completion:^(NSDictionary * _Nonnull content, BOOL success) {
-        syLog(@"game guide list === %@",content);
-        [self stopWaiting];
-        if (success) {
-            self.showArray = [content[@"data"][@"list"] mutableCopy];
-        }
-        [self.tableView reloadData];
-        [self.tableView.mj_header endRefreshing];
-        [self.tableView.mj_footer endRefreshing];
-    }];
+//    [FFGameModel gameGuideListWithPage:New_page Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+//        syLog(@"game guide list === %@",content);
+//        [self stopWaiting];
+//        if (success) {
+//            self.showArray = [content[@"data"][@"list"] mutableCopy];
+//        }
+//        [self.tableView reloadData];
+//        [self.tableView.mj_header endRefreshing];
+//        [self.tableView.mj_footer endRefreshing];
+//    }];
 }
 
 - (void)loadMoreData {
-    [FFGameModel gameGuideListWithPage:New_page Completion:^(NSDictionary * _Nonnull content, BOOL success) {
-        if (success) {
-            NSArray *array = content[@"data"][@"list"];
-            if (array.count > 0) {
-                [self.showArray addObjectsFromArray:array];
-                [self.tableView.mj_footer endRefreshing];
-            } else {
-                [self.tableView.mj_footer endRefreshingWithNoMoreData];
-            }
-        } else {
-            [self.tableView.mj_footer endRefreshingWithNoMoreData];
-        }
-        [self.tableView reloadData];
-    }];
+//    [FFGameModel gameGuideListWithPage:New_page Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+//        if (success) {
+//            NSArray *array = content[@"data"][@"list"];
+//            if (array.count > 0) {
+//                [self.showArray addObjectsFromArray:array];
+//                [self.tableView.mj_footer endRefreshing];
+//            } else {
+//                [self.tableView.mj_footer endRefreshingWithNoMoreData];
+//            }
+//        } else {
+//            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+//        }
+//        [self.tableView reloadData];
+//    }];
 }
 
 

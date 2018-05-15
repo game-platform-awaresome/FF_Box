@@ -26,6 +26,10 @@ typedef enum : NSUInteger {
     FFCollectionTypeCancel
 } FFCollectionType;
 
+typedef enum : NSUInteger {
+    FFActivity = 1,
+    FFGuide
+} FFActivityType;
 
 #pragma mark - game model
 @interface FFGameModel : FFNetWorkManager
@@ -150,14 +154,30 @@ typedef enum : NSUInteger {
 + (void)getGameDownloadUrlWithTag:(NSString * _Nonnull)gameTag
                        Completion:(RequestCallBackBlock _Nullable)completion;
 
-#pragma mark - game guide list
+#pragma mark - game guide and activity list
+/**
+ * 游戏攻略或者活动
+ * @parma page          页数,起始页为1
+ * @parma serverType    服务器类型
+ * @parma type          活动或者攻略
+ */
++ (void)gameGuideAndActivityWithPage:(NSString * _Nonnull)page
+                          ServerType:(FFGameServersType)serverType
+                                Type:(FFActivityType)type
+                          Completion:(RequestCallBackBlock _Nullable)completion;
 /**
  * 游戏攻略
  */
 + (void)gameGuideListWithPage:(NSString * _Nonnull)page
+                   ServerType:(FFGameServersType)serverType
                    Completion:(RequestCallBackBlock _Nullable)completion;
 
-
+/**
+ * 游戏活动
+ */
++ (void)gameActivityWithPage:(NSString * _Nonnull)page
+                  ServerType:(FFGameServersType)serverType
+                  Completion:(RequestCallBackBlock _Nullable)completion;
 
 
 

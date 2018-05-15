@@ -59,6 +59,7 @@ const NSUInteger HomeButtonTag = 10086;
 }
 
 - (void)initDataSource {
+    self.backgroundColor = [UIColor whiteColor];
     _titleNormalColor = [UIColor grayColor];
     _titleSelectColor = [FFColorManager home_select_view_color];
     _titleBackGroundColor = [UIColor clearColor];

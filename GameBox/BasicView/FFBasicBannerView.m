@@ -51,7 +51,6 @@
 
 - (void)initUserInterface {
     [self addSubview:self.collectionView];
-    [self addSubview:self.pageControl];
 }
 
 #pragma mark - setter
@@ -75,6 +74,12 @@
 - (void)setFrame:(CGRect)frame {
     [super setFrame:frame];
     self.collectionView.frame = self.bounds;
+    if (self.bounds.size.height < 1) {
+        [self.pageControl removeFromSuperview];
+    } else {
+        self.pageControl.center = CGPointMake(kSCREEN_WIDTH / 2, self.bounds.size.height - 20);
+        [self addSubview:self.pageControl];
+    }
     self.layout.itemSize = CGSizeMake(self.bounds.size.width, self.bounds.size.height);
 }
 

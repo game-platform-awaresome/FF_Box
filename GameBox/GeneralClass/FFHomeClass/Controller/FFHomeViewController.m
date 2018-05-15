@@ -58,10 +58,10 @@
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    self.scrollView.frame = CGRectMake(0, 64, kSCREEN_WIDTH, kSCREEN_HEIGHT - 64 - CGRectGetHeight(self.tabBarController.tabBar.frame));
+    self.scrollView.frame = CGRectMake(0, KSTATUBAR_HEIGHT + 44, kSCREEN_WIDTH, kSCREEN_HEIGHT - 44 - KSTATUBAR_HEIGHT - kTABBAR_HEIGHT);
     int idx = 0;
     for (UIViewController *vc in self.selectChildViewControllers) {
-        vc.view.frame = CGRectMake(kSCREEN_WIDTH * idx, 0, kSCREEN_WIDTH, self.scrollView.bounds.size.height);
+        vc.view.frame = CGRectMake(kSCREEN_WIDTH * idx, 0, kSCREEN_WIDTH, kSCREEN_HEIGHT - 44 - KSTATUBAR_HEIGHT - kTABBAR_HEIGHT);
         idx++;
     }
 }

@@ -16,6 +16,8 @@ static FFGameViewController *controller = nil;
 @implementation FFGameViewController
 
 
+
+
 + (instancetype)sharedController {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -32,7 +34,10 @@ static FFGameViewController *controller = nil;
     self.navBarBGAlpha = @"0.0";
 }
 
-
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.hidden = YES;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

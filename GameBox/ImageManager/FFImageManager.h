@@ -33,6 +33,10 @@
 + (UIImage *)Home_discount;
 + (UIImage *)Home_classify;
 + (UIImage *)Home_activity;
++ (UIImage *)Home_search_image;
++ (UIImage *)Home_message_light;
++ (UIImage *)Home_message_dark;
+
 
 
 

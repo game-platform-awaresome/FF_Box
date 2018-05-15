@@ -26,5 +26,7 @@ typedef void(^PushViewControllerBlock)(UIViewController *vc);
 
 - (void)setNavigationTitle:(NSString *)title;
 
+- (void)registCell;
+
 
 @end

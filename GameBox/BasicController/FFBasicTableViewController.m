@@ -79,16 +79,23 @@
 
 //    UIImageView *imageView = [cell valueForKey:@"gameLogo"];
 //    NSDictionary *dict = self.showArray[indexPath.row];
-//
-    Class FFGameViewController = NSClassFromString(@"FFGameViewController");
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wundeclared-selector"
-    id vc = [FFGameViewController performSelector:@selector(sharedController)];
-#pragma clang diagnostic pop
-    if (vc) {
-        [self pushViewController:vc];
-    }
 
+
+    Class FFGameViewController = NSClassFromString(@"FFGameViewController");
+
+    SEL selector = NSSelectorFromString(@"sharedController");
+    if ([FFGameViewController respondsToSelector:selector]) {
+        IMP imp = [FFGameViewController methodForSelector:selector];
+        UIViewController *(*func)(void) = (void *)imp;
+        UIViewController *vc = func();
+        if (vc) {
+            [self pushViewController:vc];
+        } else {
+            syLog(@"\n ! %s \n present error :  %s not exist \n ! \n",__func__,sel_getName(selector));
+        }
+    } else {
+        syLog(@"\n ! %s \n present error :  %s not exist \n ! \n",__func__,sel_getName(selector));
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -103,6 +110,7 @@
         _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:(UITableViewStylePlain)];
         _tableView.dataSource = self;
         _tableView.delegate = self;
+        _tableView.backgroundColor = [FFColorManager tableview_background_color];
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.showsHorizontalScrollIndicator = NO;
         _tableView.tableFooterView = [UIView new];

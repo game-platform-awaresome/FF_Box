@@ -15,19 +15,24 @@
 
 - (void)FFBTServerHeaderView:(FFBTServerHeaderView *)headerView didSelectButtonWithInfo:(id)info;
 
+- (void)FFBTServerHeaderView:(FFBTServerHeaderView *)headerView didSelectSearchViewWithInfo:(id)info;
+
 @end
 
 @interface FFBTServerHeaderView : UIView
 
 @property (nonatomic, weak) id<FFBTServerHeaderViewDelegate> delegate;
 
+@property (nonatomic, strong) UIView *searchView;
 @property (nonatomic, strong) UIImageView *searchBarView;
+
 
 @property (nonatomic, strong) NSArray *bannerArray;
 
 @property (nonatomic, strong) NSArray<NSString *> *titleArray;
 @property (nonatomic, strong) NSArray<UIImage *>  *imageArray;
 @property (nonatomic, strong) NSArray<NSString *> *controllerName;
+
 
 - (instancetype)init;
 

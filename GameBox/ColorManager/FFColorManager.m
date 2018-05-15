@@ -104,7 +104,9 @@ UIColor *HexColorToUIColor(NSString *hexColorString) {
 + (UIColor *)home_select_View_separat_lineColor {
     return [UIColor colorWithWhite:0.85 alpha:1];
 }
-
++ (UIColor *)home_search_view_background_color {
+    return [UIColor colorWithWhite:0.9 alpha:1];
+}
 
 + (UIColor *)custom_cell_text1_color {
     return RGBColor(173, 170, 217);
@@ -132,6 +134,10 @@ UIColor *HexColorToUIColor(NSString *hexColorString) {
 
 
 
+
++ (UIColor *)tableview_background_color {
+    return [UIColor whiteColor];
+}
 
 
 @end

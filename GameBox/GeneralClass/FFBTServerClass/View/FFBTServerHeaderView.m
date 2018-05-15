@@ -20,8 +20,6 @@
 
 @property (nonatomic, strong) UIView *selectButtonView;
 
-@property (nonatomic, strong) UISearchBar *searchBar;
-
 @property (nonatomic, strong) NSMutableArray<UIButton *> *buttonArray;
 
 @property (nonatomic, strong) UIView *buttonView;
@@ -47,11 +45,14 @@
 }
 
 - (void)initUserInterface {
-    [self addSubview:self.searchBarView];
+    [self addSubview:self.searchView];
+    [self.searchView addSubview:self.searchBarView];
     [self addSubview:self.bannerView];
     [self addSubview:self.selectButtonView];
     [self setSelfBounds];
 }
+
+
 
 
 #pragma makr - Banner view delegate
@@ -71,6 +72,12 @@
     }
 }
 
+- (void)respondsToSearchView:(UITapGestureRecognizer *)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(FFBTServerHeaderView:didSelectSearchViewWithInfo:)]) {
+        [self.delegate FFBTServerHeaderView:self didSelectSearchViewWithInfo:nil];
+    }
+}
+
 #pragma mark - setter
 - (void)setBannerArray:(NSArray *)bannerArray {
     if ([bannerArray isKindOfClass:[NSArray class]] && bannerArray.count > 0) {
@@ -80,8 +87,11 @@
     }
 
     if (self.bannerView.rollingArray) {
-        self.bannerView.frame = CGRectMake(0, CGRectGetMaxY(self.searchBarView.frame), kSCREEN_WIDTH, kSCREEN_WIDTH * 0.4);
+        [self addSubview:self.bannerView];
         self.selectButtonView.frame = CGRectMake(0, CGRectGetMaxY(self.bannerView.frame), kSCREEN_WIDTH, 100);
+    } else {
+        [self.bannerView removeFromSuperview];
+        self.selectButtonView.frame = CGRectMake(0, 44, kSCREEN_WIDTH, 100);
     }
     [self setSelfBounds];
 }
@@ -157,21 +167,33 @@
 }
 
 
-
-
 #pragma mark - getter
+- (UIView *)searchView {
+    if (!_searchView) {
+        _searchView = [[UIView alloc] initWithFrame:CGRectMake(kSCREEN_WIDTH * 0.05, 4, kSCREEN_WIDTH * 0.9, 36)];
+        _searchView.backgroundColor = [FFColorManager home_search_view_background_color];
+        _searchView.layer.cornerRadius = _searchView.bounds.size.height / 2;
+        _searchView.layer.masksToBounds = YES;
+
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(respondsToSearchView:)];
+        tap.numberOfTapsRequired = 1;
+        tap.numberOfTouchesRequired = 1;
+        [_searchView addGestureRecognizer:tap];
+    }
+    return _searchView;
+}
 - (UIImageView *)searchBarView {
     if (!_searchBarView) {
-        _searchBarView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 40)];
-        _searchBarView.backgroundColor = [UIColor lightGrayColor];
-        [_searchBarView addSubview:self.searchBar];
+        _searchBarView = [[UIImageView alloc] initWithImage:[FFImageManager Home_search_image]];
+//        _searchBarView.bounds = CGRectMake(0, 0, 20, 20);
+        _searchBarView.center = CGPointMake(self.searchView.bounds.size.width / 2, self.searchView.bounds.size.height / 2);
     }
     return _searchBarView;
 }
 
 - (FFBasicBannerView *)bannerView {
     if (!_bannerView) {
-        _bannerView = [[FFBasicBannerView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.searchBarView.frame), kSCREEN_WIDTH, 0)];
+        _bannerView = [[FFBasicBannerView alloc] initWithFrame:CGRectMake(0, 44, kSCREEN_WIDTH, kSCREEN_WIDTH * 0.4)];
         _bannerView.delegate = self;
         _bannerView.layer.masksToBounds = YES;
     }
@@ -180,20 +202,13 @@
 
 - (UIView *)selectButtonView {
     if (!_selectButtonView) {
-        _selectButtonView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.bannerView.frame), kSCREEN_WIDTH, 100)];
+        _selectButtonView = [[UIView alloc] initWithFrame:CGRectMake(0, 44, kSCREEN_WIDTH, 100)];
         _selectButtonView.backgroundColor = [UIColor whiteColor];
     }
     return _selectButtonView;
 }
 
-- (UISearchBar *)searchBar {
-    if (!_searchBar) {
-        _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 40)];
-//        _searchBar.barTintColor = [UIColor lightGrayColor];
-        _searchBar.backgroundColor = [UIColor redColor];
-    }
-    return _searchBar;
-}
+
 
 
 

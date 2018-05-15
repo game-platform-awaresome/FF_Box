@@ -204,19 +204,29 @@
     }];
 }
 
-#pragma mark - game guide list
-/**
- * 游戏攻略
- */
-+ (void)gameGuideListWithPage:(NSString *)page Completion:(RequestCallBackBlock)completion {
+#pragma mark - game guide and activity list
++ (void)gameGuideAndActivityWithPage:(NSString *)page ServerType:(FFGameServersType)serverType Type:(FFActivityType)type Completion:(RequestCallBackBlock)completion {
     Mutable_Dict(4);
     SS_SYSTEM;
-    [dict setObject:@"2" forKey:@"type"];
+    [dict setObject:[NSString stringWithFormat:@"%ld",type] forKey:@"type"];
     [dict setObject:Channel forKey:@"channel_id"];
     [dict setObject:page forKey:@"page"];
     [FFNetWorkManager postRequestWithURL:Map.INDEX_ARTICLE Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         REQUEST_COMPLETION;
     }];
+}
+/**
+ * 游戏攻略
+ */
++ (void)gameGuideListWithPage:(NSString *)page ServerType:(FFGameServersType)serverType Completion:(RequestCallBackBlock)completion {
+    [self gameGuideAndActivityWithPage:page ServerType:serverType Type:FFGuide Completion:completion];
+}
+
+/**
+ * 游戏活动
+ */
++ (void)gameActivityWithPage:(NSString *)page ServerType:(FFGameServersType)serverType Completion:(RequestCallBackBlock)completion {
+    [self gameGuideAndActivityWithPage:page ServerType:serverType Type:FFActivity Completion:completion];
 }
 
 
