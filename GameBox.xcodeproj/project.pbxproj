@@ -19,8 +19,8 @@
 		B523828220AADF9D0087733A /* FFHeightVipController.m in Sources */ = {isa = PBXBuildFile; fileRef = B523828120AADF9D0087733A /* FFHeightVipController.m */; };
 		B523828720AADFCE0087733A /* FFDiscountController.m in Sources */ = {isa = PBXBuildFile; fileRef = B523828620AADFCE0087733A /* FFDiscountController.m */; };
 		B523828B20AB0C7F0087733A /* FFBasicScrollSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = B523828A20AB0C7F0087733A /* FFBasicScrollSelectController.m */; };
-		B523829420AB11850087733A /* FFActivityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B523829220AB11850087733A /* FFActivityCell.xib */; };
-		B523829520AB11850087733A /* FFActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B523829320AB11850087733A /* FFActivityCell.m */; };
+		B523829920AB11D20087733A /* FFActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B523829720AB11D20087733A /* FFActivityCell.m */; };
+		B523829A20AB11D20087733A /* FFActivityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B523829820AB11D20087733A /* FFActivityCell.xib */; };
 		B52ED09B20A9A38700C8CAF4 /* FFSRcommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B52ED09920A9A38700C8CAF4 /* FFSRcommentCell.m */; };
 		B5781AE020A3F4DE00CB1464 /* FFHomeSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5781ADE20A3F4DD00CB1464 /* FFHomeSelectView.m */; };
 		B5781AE320A42CED00CB1464 /* FFUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5781AE220A42CED00CB1464 /* FFUserModel.m */; };
@@ -101,9 +101,9 @@
 		B523828620AADFCE0087733A /* FFDiscountController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFDiscountController.m; sourceTree = "<group>"; };
 		B523828920AB0C7F0087733A /* FFBasicScrollSelectController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBasicScrollSelectController.h; sourceTree = "<group>"; };
 		B523828A20AB0C7F0087733A /* FFBasicScrollSelectController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBasicScrollSelectController.m; sourceTree = "<group>"; };
-		B523829120AB11840087733A /* FFActivityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFActivityCell.h; sourceTree = "<group>"; };
-		B523829220AB11850087733A /* FFActivityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FFActivityCell.xib; sourceTree = "<group>"; };
-		B523829320AB11850087733A /* FFActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFActivityCell.m; sourceTree = "<group>"; };
+		B523829620AB11D20087733A /* FFActivityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFActivityCell.h; sourceTree = "<group>"; };
+		B523829720AB11D20087733A /* FFActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFActivityCell.m; sourceTree = "<group>"; };
+		B523829820AB11D20087733A /* FFActivityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FFActivityCell.xib; sourceTree = "<group>"; };
 		B52ED09820A9A38700C8CAF4 /* FFSRcommentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFSRcommentCell.h; sourceTree = "<group>"; };
 		B52ED09920A9A38700C8CAF4 /* FFSRcommentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFSRcommentCell.m; sourceTree = "<group>"; };
 		B5781ADE20A3F4DD00CB1464 /* FFHomeSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFHomeSelectView.m; sourceTree = "<group>"; };
@@ -327,6 +327,9 @@
 		B523827020AABE370087733A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B523829620AB11D20087733A /* FFActivityCell.h */,
+				B523829720AB11D20087733A /* FFActivityCell.m */,
+				B523829820AB11D20087733A /* FFActivityCell.xib */,
 				B5D10436209022F800CA1949 /* FFGameGuideCell.h */,
 				B5D10438209022F800CA1949 /* FFGameGuideCell.m */,
 				B5D10437209022F800CA1949 /* FFGameGuideCell.xib */,
@@ -681,9 +684,6 @@
 			children = (
 				B5781ADF20A3F4DE00CB1464 /* FFHomeSelectView.h */,
 				B5781ADE20A3F4DD00CB1464 /* FFHomeSelectView.m */,
-				B523829120AB11840087733A /* FFActivityCell.h */,
-				B523829320AB11850087733A /* FFActivityCell.m */,
-				B523829220AB11850087733A /* FFActivityCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -903,7 +903,7 @@
 				B58CB7B3207B10830099773D /* GameBoxConfig.plist in Resources */,
 				B58CB7B6207B10830099773D /* LaunchScreen.storyboard in Resources */,
 				B5781B0020A5903700CB1464 /* ImageAssets.xcassets in Resources */,
-				B523829420AB11850087733A /* FFActivityCell.xib in Resources */,
+				B523829A20AB11D20087733A /* FFActivityCell.xib in Resources */,
 				B5D10439209022F800CA1949 /* FFGameGuideCell.xib in Resources */,
 				B5E1E54320622E40008F49CA /* README.md in Resources */,
 				B5781AE520A440C900CB1464 /* Podfile in Resources */,
@@ -994,7 +994,7 @@
 				B523825920AA85FF0087733A /* FFBTNewGameController.m in Sources */,
 				B523826E20AABD220087733A /* FFActivityViewController.m in Sources */,
 				B5D1044320904E1E00CA1949 /* FFGameViewController.m in Sources */,
-				B523829520AB11850087733A /* FFActivityCell.m in Sources */,
+				B523829920AB11D20087733A /* FFActivityCell.m in Sources */,
 				B5D5059420884164000B7B50 /* FFClassifyViewController.m in Sources */,
 				B58CB7D6207B12AC0099773D /* FFMainTabbarViewController.m in Sources */,
 				B5D5059A20886D7D000B7B50 /* FFOpenServiceViewController.m in Sources */,
