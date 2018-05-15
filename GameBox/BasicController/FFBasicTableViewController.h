@@ -30,7 +30,7 @@
 
 - (void)begainRefresData;
 
-
+- (void)resetTableView;
 
 @end
 

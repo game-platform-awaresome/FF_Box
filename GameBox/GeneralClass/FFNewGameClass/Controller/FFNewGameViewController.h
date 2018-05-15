@@ -10,4 +10,8 @@
 
 @interface FFNewGameViewController : FFBasicTableViewController
 
+
+@property (nonatomic, assign) FFGameServersType serverType;
+
+
 @end

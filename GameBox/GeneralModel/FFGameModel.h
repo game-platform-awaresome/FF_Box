@@ -14,42 +14,26 @@ typedef enum : NSUInteger {
     ZK_SERVERS
 } FFGameServersType;
 
+typedef enum : NSUInteger {
+    FFOpenServerTypeToday = 1,
+    FFOpenServerTypeTomorrow,
+    FFOpenServerTypeAlready
+} FFOpenServerType;
+
+
+typedef enum : NSUInteger {
+    FFCollectionTypeCollection = 1,
+    FFCollectionTypeCancel
+} FFCollectionType;
 
 
 #pragma mark - game model
 @interface FFGameModel : FFNetWorkManager
 
 
-/** recomment game list */
+/** 旧主页游戏列表接口 */
 + (void)recommentGameListWithPage:(NSString * _Nonnull)page
                        Completion:(RequestCallBackBlock _Nullable)completion;
-
-//=======================================================================================//
-/** game list with type */
-+ (void)gameListWithPage:(NSString * _Nonnull)page
-                GameType:(NSString * _Nonnull)gameType
-              Completion:(RequestCallBackBlock _Nullable)completion;
-/** new game list */
-+ (void)newGameListWithPage:(NSString * _Nonnull)page
-                 Completion:(RequestCallBackBlock _Nullable)completion;
-/** rank game list */
-+ (void)rankGameListWithPage:(NSString * _Nonnull)page
-                  Completion:(RequestCallBackBlock _Nullable)completion;
-
-//=======================================================================================//
-/** game guide list */
-+ (void)gameGuideListWithPage:(NSString * _Nonnull)page
-                   Completion:(RequestCallBackBlock _Nullable)completion;
-
-//=======================================================================================//
-/** classify game list */
-+ (void)classifyGameListWithPage:(NSString * _Nonnull)page
-                      Completion:(RequestCallBackBlock _Nullable)completion;
-/** classify with id */
-+ (void)classifyWithID:(NSString *_Nonnull)classifyID
-                  Page:(NSString *_Nonnull)page
-            Completion:(RequestCallBackBlock _Nullable)completion;
-
 
 #pragma mark - game servers
 /**
@@ -57,9 +41,126 @@ typedef enum : NSUInteger {
  * @parma type 服务器类型;
  * @parma page 页数.起始页为1;
  */
-+ (void)GameServersWithType:(FFGameServersType)type
-                       Page:(NSString * _Nonnull )page
++ (void)GameServersWithType:(FFGameServersType)serverType
+                       Page:(NSString * _Nonnull)page
                  Completion:(RequestCallBackBlock _Nullable)completion;
+
+#pragma mark - game list with type (新游/热门/排行)
+/**
+ * 游戏列表
+ * @parma serverType    服务器类型;
+ * @parma page          页数.起始页为1;
+ */
++ (void)gameListWithPage:(NSString * _Nonnull)page
+              ServerType:(FFGameServersType)serverType
+                GameType:(NSString * _Nonnull)gameType
+              Completion:(RequestCallBackBlock _Nullable)completion;
+/**
+ * 新游列表
+ * @parma serverType    服务器类型;
+ * @parma page          页数.起始页为1;
+ */
++ (void)newGameListWithPage:(NSString * _Nonnull)page
+                 ServerType:(FFGameServersType)serverType
+                 Completion:(RequestCallBackBlock _Nullable)completion;
+/**
+ * 排行榜
+ * @parma serverType    服务器类型;
+ * @parma page          页数.起始页为1;
+ */
++ (void)rankGameListWithPage:(NSString * _Nonnull)page
+                  ServerType:(FFGameServersType)serverType
+                  Completion:(RequestCallBackBlock _Nullable)completion;
+
+#pragma mark - open servers
+/**
+ * 开服表
+ * @parma page          页数.起始页为1;
+ * @parma serverType    服务器类型;
+ * @parma openType      开服的时间
+ */
++ (void)openServersListWithPage:(NSString * _Nonnull)page
+                     ServerType:(FFGameServersType)serverType
+                       OpenType:(FFOpenServerType)openType
+                     Completion:(RequestCallBackBlock _Nullable)completion;
+/**
+ * BT 服开服表
+ * @parma page          页数.起始页为1;
+ * @parma openType      开服的时间
+ */
++ (void)BTopenServersListWithPage:(NSString * _Nonnull)page
+                         OpenType:(FFOpenServerType)openType
+                       Completion:(RequestCallBackBlock _Nullable)completion;
+/**
+ * 折扣 服开服表
+ * @parma page          页数.起始页为1;
+ * @parma openType      开服的时间
+ */
++ (void)ZKopenServersListWithPage:(NSString * _Nonnull)page
+                         OpenType:(FFOpenServerType)openType
+                       Completion:(RequestCallBackBlock _Nullable)completion;
+/**
+ * 单一游戏开服列表
+ */
++ (void)openServersWithGameID:(NSString * _Nonnull)gameID
+                   Completion:(RequestCallBackBlock _Nullable)completion;
+
+#pragma mark - Game details infomation
+/**
+ * 游戏详情
+ * @parma gameID        游戏 ID
+ */
++ (void)gameDetailsWithGameID:(NSString * _Nonnull)gameID
+                   Completion:(RequestCallBackBlock _Nullable)completion;
+
+#pragma mark - collection game
+/**
+ * 游戏收藏
+ * @parma gameID        游戏 ID
+ */
++ (void)collectionGameWithGameID:(NSString * _Nonnull)gameID
+                  CollectionType:(FFCollectionType)collectionType
+                      Completion:(RequestCallBackBlock _Nullable)completion;
+
+#pragma mark - game classify
+/**
+ * 游戏分类
+ * @parma page          页数.起始页为1;
+ * @parma serverType    服务器类型
+ */
++ (void)gameClassifyListWithPage:(NSString * _Nonnull)page
+                      ServerType:(FFGameServersType)serverType
+                      Completion:(RequestCallBackBlock _Nullable)completion;
+/**
+ * 单个游戏分类详情
+ * @parma classifyID    分类 ID;
+ * @parma serverType    服务器类型
+ * @parma page          页数.起始页为1;
+ */
++ (void)gameclassifyWithClassifyID:(NSString * _Nonnull)classifyID
+                              Page:(NSString * _Nonnull)page
+                        ServerType:(FFGameServersType)serverType
+                        Completion:(RequestCallBackBlock _Nullable)completion;
+
+#pragma mark - get channel download game url
+/**
+ * 获取子渠道下载地址
+ * @parma gameTag        游戏的 TAG 标签
+ */
++ (void)getGameDownloadUrlWithTag:(NSString * _Nonnull)gameTag
+                       Completion:(RequestCallBackBlock _Nullable)completion;
+
+#pragma mark - game guide list
+/**
+ * 游戏攻略
+ */
++ (void)gameGuideListWithPage:(NSString * _Nonnull)page
+                   Completion:(RequestCallBackBlock _Nullable)completion;
+
+
+
+
+
 
 
 

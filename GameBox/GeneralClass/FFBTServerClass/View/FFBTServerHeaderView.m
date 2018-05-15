@@ -66,6 +66,9 @@
 #pragma mark - responds to button
 - (void)respondsToTitleButton:(UIButton *)sender {
     syLog(@"点击按钮  === %@",self.buttonArray[sender.tag - BTN_TAG]);
+    if (self.delegate && [self.delegate respondsToSelector:@selector(FFBTServerHeaderView:didSelectButtonWithInfo:)]) {
+        [self.delegate FFBTServerHeaderView:self didSelectButtonWithInfo:[NSNumber numberWithInteger:(sender.tag - BTN_TAG)]];
+    }
 }
 
 #pragma mark - setter

@@ -19,6 +19,10 @@
     // Do any additional setup after loading the view.
 }
 
+#pragma mark - setter
+- (void)setNavigationTitle:(NSString *)title {
+    self.navigationItem.title = @"折扣服";
+}
 
 #pragma mark - getter
 - (FFGameServersType)type {
@@ -34,6 +38,12 @@
              [FFImageManager Home_activity],
              [FFImageManager Home_discount],
              [FFImageManager Home_classify]];
+}
+- (NSArray *)selectControllerName {
+    return @[@"FFZKNewGameController",
+             @"FFGameGuideViewController",
+             @"UIViewController",
+             @"FFZKClassifyController"];
 }
 
 

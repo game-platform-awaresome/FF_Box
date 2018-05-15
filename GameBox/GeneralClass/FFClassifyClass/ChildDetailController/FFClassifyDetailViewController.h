@@ -13,4 +13,8 @@
 /** 分类 */
 @property (nonatomic, strong) NSDictionary *dict;
 
+/** 类型 */
+@property (nonatomic, assign) FFGameServersType gameServersType;
+
+
 @end

@@ -33,6 +33,10 @@
 
 @implementation FFClassifyViewController
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = NO;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -42,6 +46,7 @@
 
 - (void)initUserInterface {
     [super initUserInterface];
+    self.navigationItem.title = @"分类";
     self.tableView.showsVerticalScrollIndicator = YES;
 }
 
@@ -51,15 +56,13 @@
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    self.tableView.frame = self.view.bounds;
 }
 
 #pragma amrk - method
 - (void)refreshData {
     self.currentPage = 1;
     [self startWaiting];
-    [FFGameModel classifyGameListWithPage:New_page Completion:^(NSDictionary * _Nonnull content, BOOL success) {
-        syLog(@"classify game list === %@", content);
+    [FFGameModel gameClassifyListWithPage:New_page ServerType:self.gameServersType Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         [self stopWaiting];
         if (success) {
             self.classifyArray = [content[@"data"][@"class"] mutableCopy];
@@ -231,6 +234,10 @@
 }
 
 #pragma mark - getter
+- (FFGameServersType)gameServersType {
+    return BT_SERVERS;
+}
+
 - (UIView *)headerView {
     if (!_headerView) {
         _headerView = [[UIView alloc]init];
@@ -242,6 +249,7 @@
 - (FFClassifyDetailViewController *)detailViewController {
     if (!_detailViewController) {
         _detailViewController = [[FFClassifyDetailViewController alloc] init];
+        _detailViewController.gameServersType = self.gameServersType;
     }
     return _detailViewController;
 }

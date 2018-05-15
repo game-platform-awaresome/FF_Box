@@ -51,7 +51,10 @@
         return;
     }
     [self startWaiting];
-    [FFGameModel classifyWithID:self.classifyID Page:New_page Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+
+
+
+    [FFGameModel gameclassifyWithClassifyID:self.classifyID Page:New_page ServerType:self.gameServersType Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         [self stopWaiting];
         _isRefresh = YES;
         syLog(@"refresh data");
@@ -68,7 +71,7 @@
 }
 
 - (void)loadMoreData {
-    [FFGameModel classifyWithID:self.classifyID Page:Next_page Completion:^(NSDictionary * _Nullable content, BOOL success) {
+    [FFGameModel gameclassifyWithClassifyID:self.classifyID Page:New_page ServerType:self.gameServersType Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         if (success) {
             NSMutableArray *array = [content[@"data"] mutableCopy];
             if (array == nil || array.count == 0) {

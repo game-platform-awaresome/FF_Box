@@ -17,11 +17,7 @@
 
 @interface FFHomeViewController () <FFHomeSelectViewDelegate>
 
-/** 4 sub-controllers */
-@property (nonatomic, strong) FFRecommentViewController *hRecommentVC;
-@property (nonatomic, strong) FFNewGameViewController   *hNewGameVC;
-@property (nonatomic, strong) FFGameGuideViewController *hGameGuideVC;
-@property (nonatomic, strong) FFClassifyViewController  *hClassifyVC;
+
 
 @property (nonatomic, strong) FFHomeSelectView *homeSelectView;
 
@@ -49,6 +45,8 @@
     self.navigationItem.title = nil;
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
+
+    self.navigationItem.title = @"游戏";
 
     [self setSelectTitleView];
 
@@ -150,38 +148,9 @@
 
 
 #pragma mark - getter
-- (FFRecommentViewController *)hRecommentVC {
-    if (!_hRecommentVC) {
-        _hRecommentVC = [[FFRecommentViewController alloc] init];
-    }
-    return _hRecommentVC;
-}
-
-- (FFNewGameViewController *)hNewGameVC {
-    if (!_hNewGameVC) {
-        _hNewGameVC =[[FFNewGameViewController alloc] init];
-    }
-    return _hNewGameVC;
-}
-
-- (FFGameGuideViewController *)hGameGuideVC {
-    if (!_hGameGuideVC) {
-        _hGameGuideVC = [[FFGameGuideViewController alloc] init];
-    }
-    return _hGameGuideVC;
-}
-
-- (FFClassifyViewController *)hClassifyVC {
-    if (!_hClassifyVC) {
-        _hClassifyVC = [FFClassifyViewController new];
-    }
-    return _hClassifyVC;
-}
-
-
 - (UIView *)navigationView {
     if (!_navigationView) {
-        _navigationView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 64)];
+        _navigationView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, KSTATUBAR_HEIGHT + 44)];
         _navigationView.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1];
     }
     return _navigationView;
@@ -190,9 +159,9 @@
 
 - (FFHomeSelectView *)homeSelectView {
     if (!_homeSelectView) {
-        _homeSelectView = [[FFHomeSelectView alloc] initWithFrame:CGRectMake(0, 20, kSCREEN_WIDTH, 44)];
+        _homeSelectView = [[FFHomeSelectView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, KSTATUBAR_HEIGHT + 44)];
         _homeSelectView.delegate = self;
-        _homeSelectView.lineColor = [UIColor clearColor];
+        _homeSelectView.lineColor = [FFColorManager home_select_View_separat_lineColor];
     }
     return _homeSelectView;
 }

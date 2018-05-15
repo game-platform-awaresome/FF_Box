@@ -29,6 +29,7 @@ static FFGameViewController *controller = nil;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
+    self.navBarBGAlpha = @"0.0";
 }
 
 

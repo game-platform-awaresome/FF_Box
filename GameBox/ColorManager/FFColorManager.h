@@ -15,6 +15,7 @@ UIColor *RGBColor(float red, float green, float blue);
 @interface FFColorManager : NSObject
 
 + (UIColor *)current_version_main_color;
++ (UIColor *)view_default_background_color;
 
 + (UIColor *)navigationColor;
 + (UIColor *)tabbarColor;
@@ -26,6 +27,7 @@ UIColor *RGBColor(float red, float green, float blue);
 
 + (UIColor *)home_select_view_color;
 + (UIColor *)home_select_view_lineColor;
++ (UIColor *)home_select_View_separat_lineColor;
 
 + (UIColor *)custom_cell_text1_color;
 + (UIColor *)custom_cell_text2_color;

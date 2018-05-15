@@ -10,4 +10,6 @@
 
 @interface FFClassifyViewController : FFBasicTableViewController
 
+@property (nonatomic, assign) FFGameServersType gameServersType;
+
 @end

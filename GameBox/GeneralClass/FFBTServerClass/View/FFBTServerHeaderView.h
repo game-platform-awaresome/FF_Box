@@ -13,6 +13,7 @@
 
 - (void)FFBTServerHeaderView:(FFBTServerHeaderView *)headerView didSelectImageWithInfo:(NSDictionary *)info;
 
+- (void)FFBTServerHeaderView:(FFBTServerHeaderView *)headerView didSelectButtonWithInfo:(id)info;
 
 @end
 
@@ -26,6 +27,7 @@
 
 @property (nonatomic, strong) NSArray<NSString *> *titleArray;
 @property (nonatomic, strong) NSArray<UIImage *>  *imageArray;
+@property (nonatomic, strong) NSArray<NSString *> *controllerName;
 
 - (instancetype)init;
 

@@ -11,10 +11,13 @@
 #import "FFBTServerHeaderView.h"
 #import <UIImageView+WebCache.h>
 
+//childe controller
+
+
 #define CELL_IDE @"FFCustomizeCell"
 #define CELL_SRCELL @"FFSRcommentCell"
 
-@interface FFBTServerViewController ()
+@interface FFBTServerViewController () <FFBTServerHeaderViewDelegate>
 
 
 @property (nonatomic, strong) NSArray *bannerArray;
@@ -22,6 +25,8 @@
 @property (nonatomic, strong) FFServersModel *model;
 
 @property (nonatomic, strong) FFBTServerHeaderView *tableHeaderView;
+
+@property (nonatomic, strong) NSMutableArray * childController;
 
 @end
 
@@ -35,6 +40,7 @@
 - (void)initUserInterface {
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
+    [self setNavigationTitle:nil];
     [self resetTableView];
 }
 
@@ -124,8 +130,29 @@
     }
 }
 
-#pragma mark - setter
+#pragma mark - select header delegate
+- (void)FFBTServerHeaderView:(FFBTServerHeaderView *)headerView didSelectImageWithInfo:(NSDictionary *)info {
 
+}
+
+- (void)FFBTServerHeaderView:(FFBTServerHeaderView *)headerView didSelectButtonWithInfo:(id)info {
+    id vc = nil;
+    if ([info isKindOfClass:[NSString class]]) {
+        Class Controller = NSClassFromString(info);
+        vc = [[Controller alloc] init];
+    } else if ([info isKindOfClass:[NSNumber class]]) {
+        vc = self.childController[((NSNumber *)info).integerValue];
+    }
+    [self pushViewController:vc];
+}
+
+
+
+
+#pragma mark - setter
+- (void)setNavigationTitle:(NSString *)title {
+    self.navigationItem.title = @"BT服";
+}
 
 
 #pragma mark - getter
@@ -144,6 +171,30 @@
              [FFImageManager Home_classify]];
 }
 
+- (NSArray *)selectControllerName {
+    return @[@"FFBTNewGameController",
+             @"FFGameGuideViewController",
+             @"UIViewController",
+             @"FFBTClassifyController"];
+}
+
+- (NSMutableArray *)childController {
+    if (!_childController) {
+        _childController = [NSMutableArray arrayWithCapacity:self.selectControllerName.count];
+        for (NSString *className in self.selectControllerName) {
+            Class Controller = NSClassFromString(className);
+            id vc = [[Controller alloc] init];
+            if (vc) {
+                [_childController addObject:vc];
+            } else {
+                syLog(@"%s error : %@ controller is not exist",__func__,className);
+                [_childController addObject:[UIViewController new]];
+            }
+        }
+    }
+    return _childController;
+}
+
 - (FFServersModel *)model {
     if (!_model) {
         _model = [[FFServersModel alloc] init];
@@ -157,12 +208,14 @@
         _tableHeaderView.backgroundColor = [FFColorManager blue_dark];
         _tableHeaderView.titleArray = self.selectButtonArray;
         _tableHeaderView.imageArray = self.selectImageArray;
+        _tableHeaderView.controllerName = self.selectControllerName;
+        _tableHeaderView.delegate = self;
     }
     return _tableHeaderView;
 }
 
 - (void)resetTableView {
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, kSCREEN_HEIGHT - kTABBAR_HEIGHT - kNAVIGATION_HEIGHT) style:(UITableViewStyleGrouped)];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, kSCREEN_HEIGHT - kTABBAR_HEIGHT - KSTATUBAR_HEIGHT - 44) style:(UITableViewStyleGrouped)];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.showsVerticalScrollIndicator = YES;
@@ -180,6 +233,9 @@
     [self.tableView registerClass:NSClassFromString(CELL_SRCELL) forCellReuseIdentifier:CELL_SRCELL];
     self.tableView.tableHeaderView = self.tableHeaderView;
 }
+
+
+
 
 @end
 

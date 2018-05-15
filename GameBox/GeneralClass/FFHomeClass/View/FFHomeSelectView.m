@@ -70,7 +70,7 @@ const NSUInteger HomeButtonTag = 10086;
     self.showCursorView = YES;
     self.totalFrame = CGRectMake(0, 0, kSCREEN_WIDTH, 44);
     self.cursorView.bounds = CGRectMake(0, 0, 0, 3);
-    self.lineColor = [FFColorManager blue_dark];
+    self.lineColor = [FFColorManager textColorDark];
     self.cursorColor = [FFColorManager home_select_view_color];
 }
 
@@ -88,7 +88,7 @@ const NSUInteger HomeButtonTag = 10086;
         }
         [_titleWidthArray addObject:width];
     }
-    self.ButtonSize = CGSizeMake(Max_width + 2, self.bounds.size.height);
+    self.ButtonSize = CGSizeMake(Max_width + 2, self.bounds.size.height - KSTATUBAR_HEIGHT);
 }
 
 /** create button */
@@ -143,7 +143,7 @@ const NSUInteger HomeButtonTag = 10086;
     CGFloat width = self.ButtonSize.width + 20;
     for (UIButton *button in self.buttonArray) {
         button.bounds = CGRectMake(0, 0, width, self.ButtonSize.height);
-        button.center = CGPointMake(20 + width / 2 + idx * width, self.ButtonSize.height / 2);
+        button.center = CGPointMake(20 + width / 2 + idx * width, self.ButtonSize.height / 2 + KSTATUBAR_HEIGHT);
         idx++;
     }
 }
@@ -169,9 +169,15 @@ const NSUInteger HomeButtonTag = 10086;
     _totalFrame = CGRectMake(0, 0, totalFrame.size.width, totalFrame.size.height);
     _titleSize.height = totalFrame.size.height;
     self.scrollView.frame = _totalFrame;
+    self.lineView.frame = CGRectMake(0, totalFrame.size.height - 2, kSCREEN_WIDTH, 2);
+    [self bringSubviewToFront:self.lineView];
 }
 - (void)setTitleSize:(CGSize)titleSize {
     _titleSize = titleSize;
+}
+
+- (void)setLineColor:(UIColor *)lineColor {
+    self.lineView.backgroundColor = lineColor;
 }
 
 - (void)setTitleArray:(NSArray<NSString *> *)titleArray {
@@ -191,7 +197,7 @@ const NSUInteger HomeButtonTag = 10086;
     }
 
     [self setButtonHighlightedWintIndex:_selectTitleIndex];
-    self.cursorView.center = CGPointMake(self.buttonArray[0].center.x, self.cursorView.center.y);
+    self.cursorView.center = CGPointMake(self.buttonArray[0].center.x, self.bounds.size.height - 3);
 }
 
 - (void)setTitleNormalColor:(UIColor *)titleNormalColor {
@@ -283,15 +289,14 @@ const NSUInteger HomeButtonTag = 10086;
 - (CALayer *)lineLayer {
     if (!_lineLayer) {
         _lineLayer = [[CALayer alloc] init];
-        _lineLayer.bounds = CGRectMake(0, 0, _totalFrame.size.width, 2);
+        _lineLayer.bounds = CGRectMake(0, 0, _totalFrame.size.width, 1);
     }
     return _lineLayer;
 }
 
 - (UIView *)lineView {
     if (!_lineView) {
-        _lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-        _lineView.backgroundColor = [UIColor clearColor];
+        _lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 1)];
     }
     return _lineView;
 }

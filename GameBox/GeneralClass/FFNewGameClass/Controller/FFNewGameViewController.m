@@ -25,29 +25,33 @@
 
 @implementation FFNewGameViewController
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = NO;
+    self.navBarBGAlpha = @"1.0";
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 }
 
 - (void)initUserInterface {
-    [super initUserInterface];
+    self.view.backgroundColor = [FFColorManager view_default_background_color];
+    self.navigationItem.title = @"新游";
+    [self resetTableView];
     self.tableView.showsVerticalScrollIndicator = YES;
 }
 
 - (void)initDataSource {
-    [super initDataSource];
-}
 
-- (void)viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
-    self.tableView.frame = self.view.bounds;
 }
 
 #pragma mark - method
 - (void)refreshData {
     self.currentPage = 1;
     [self startWaiting];
-    [FFGameModel newGameListWithPage:New_page Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+    [FFGameModel newGameListWithPage:New_page ServerType:self.serverType Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         [self stopWaiting];
         if (success) {
 //            syLog(@"new game == %@",content);
@@ -70,7 +74,7 @@
 }
 
 - (void)loadMoreData {
-    [FFGameModel newGameListWithPage:Next_page Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+    [FFGameModel newGameListWithPage:Next_page ServerType:self.serverType Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         if (success) {
             NSArray *dataArray = content[@"data"];
             if (dataArray.count > 0) {
@@ -132,6 +136,10 @@
     return 20;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 0;
+}
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 20)];
     label.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
@@ -160,11 +168,30 @@
 //    [self.navigationController pushViewController:[FFGameViewController sharedController] animated:YES];
 //    SHOW_PARNENT_TABBAR;
 
-    [self hideTabbar];
-    [self.currentNav pushViewController:[FFGameViewController sharedController] animated:YES];
-    [self showTabbar];
+    [self pushViewController:[FFGameViewController sharedController]];
 }
 
+
+#pragma mark - getter
+- (void)resetTableView {
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kNAVIGATION_HEIGHT, kSCREEN_WIDTH, kSCREEN_HEIGHT - kNAVIGATION_HEIGHT) style:(UITableViewStyleGrouped)];
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    self.tableView.showsVerticalScrollIndicator = YES;
+    self.tableView.showsHorizontalScrollIndicator = NO;
+    self.tableView.tableFooterView = [UIView new];
+    if (@available(iOS 11.0, *)) {
+        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentScrollableAxes;
+    } 
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.tableView.mj_header = self.refreshHeader;
+    self.tableView.mj_footer = self.refreshFooter;
+    self.tableView.sectionHeaderHeight = 20;
+    self.tableView.sectionFooterHeight = 0;
+    self.tableView.tableFooterView = [UIView new];
+    [self.view addSubview:self.tableView];
+    BOX_REGISTER_CELL;
+}
 
 
 

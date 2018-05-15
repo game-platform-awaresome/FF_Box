@@ -64,6 +64,10 @@ UIColor *HexColorToUIColor(NSString *hexColorString) {
     return [FFColorManager blue_dark];
 }
 
++ (UIColor *)view_default_background_color {
+    return [UIColor whiteColor];
+}
+
 + (UIColor *)navigationColor {
     return RGBColor(250, 121, 34);
 }
@@ -90,12 +94,15 @@ UIColor *HexColorToUIColor(NSString *hexColorString) {
     return [FFColorManager blue_dark];
 }
 
-
+#pragma mark - home view
 + (UIColor *)home_select_view_color {
     return [FFColorManager blue_dark];
 }
 + (UIColor *)home_select_view_lineColor {
     return [FFColorManager blue_dark];
+}
++ (UIColor *)home_select_View_separat_lineColor {
+    return [UIColor colorWithWhite:0.85 alpha:1];
 }
 
 

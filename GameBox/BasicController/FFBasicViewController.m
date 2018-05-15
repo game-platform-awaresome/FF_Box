@@ -20,6 +20,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+//    self.navigationController.navigationBar.hidden = NO;
     self.navBarBGAlpha = @"1.0";
 }
 
@@ -61,7 +62,7 @@
 
 - (void)pushViewController:(UIViewController *)vc HideTabbar:(BOOL)hideTabbar {
     [self hideTabbar];
-    [self.navigationController pushViewController:vc animated:YES];
+    [self.currentNav pushViewController:vc animated:YES];
     if (!hideTabbar) {
         [self showTabbar];
     }

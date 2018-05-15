@@ -19,11 +19,11 @@
 /** wifi 下载 */
 #define WIFIDOWNLOAD @"WIFIDOWNLOAD"
 
-#define kSCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
-#define kSCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
-#define kNAVIGATION_HEIGHT CGRectGetMaxY(self.navigationController.navigationBar.frame)
-#define kTABBAR_HEIGHT CGRectGetHeight(self.tabBarController.tabBar.frame)
-
+#define kSCREEN_WIDTH       [UIScreen mainScreen].bounds.size.width
+#define kSCREEN_HEIGHT      [UIScreen mainScreen].bounds.size.height
+#define kNAVIGATION_HEIGHT  CGRectGetMaxY(self.navigationController.navigationBar.frame)
+#define kTABBAR_HEIGHT      CGRectGetHeight(self.tabBarController.tabBar.frame)
+#define KSTATUBAR_HEIGHT    CGRectGetHeight([[UIApplication sharedApplication] statusBarFrame])
 
 #ifdef DEBUG
 #define syLog(format, ...) NSLog(format, ## __VA_ARGS__)
