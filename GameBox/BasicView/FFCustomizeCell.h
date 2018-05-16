@@ -17,7 +17,6 @@
 @end
 
 
-#warning Missing model;
 
 @interface FFCustomizeCell : UITableViewCell
 

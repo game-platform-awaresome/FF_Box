@@ -47,8 +47,9 @@ UIColor *RGBColor(float red, float green, float blue);
  // RGB Color
  #define TEXTCOLOR RGBCOLOR(55,60,65) */
 
-
-
+#pragma mark - game view controller
++ (UIColor *)game_controller_navigation_color;
++ (UIColor *)game_header_setview_BKColor;
 
 
 

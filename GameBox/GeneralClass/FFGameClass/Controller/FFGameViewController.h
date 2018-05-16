@@ -6,10 +6,16 @@
 //  Copyright © 2018年 Sans. All rights reserved.
 //
 
-#import "FFBasicViewController.h"
+#import "FFBasicScrollSelectController.h"
 
-@interface FFGameViewController : FFBasicViewController
+@interface FFGameViewController : FFBasicScrollSelectController
 
+/** game id */
+@property (nonatomic, strong) NSString *gid;
+
+/** instancetype */ 
 + (instancetype)sharedController;
+
+
 
 @end

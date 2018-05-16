@@ -35,6 +35,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    self.navBarBGAlpha = @"1.0";
     self.navigationController.navigationBar.hidden = NO;
 }
 
@@ -48,6 +49,7 @@
     [super initUserInterface];
     self.navigationItem.title = @"分类";
     self.tableView.showsVerticalScrollIndicator = YES;
+    self.tableView.frame = CGRectMake(0, kNAVIGATION_HEIGHT, kSCREEN_WIDTH, kSCREEN_HEIGHT - kNAVIGATION_HEIGHT);
 }
 
 - (void)initDataSource {

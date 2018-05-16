@@ -14,6 +14,7 @@
 @interface FFBasicTableViewController ()
 
 
+
 @end
 
 
@@ -76,19 +77,17 @@
     if ([cell isKindOfClass:FFFpackageCell]) {
         return;
     }
-
-//    UIImageView *imageView = [cell valueForKey:@"gameLogo"];
-//    NSDictionary *dict = self.showArray[indexPath.row];
-
-
+    
+    NSDictionary *dict = [cell valueForKey:@"dict"];
     Class FFGameViewController = NSClassFromString(@"FFGameViewController");
-
     SEL selector = NSSelectorFromString(@"sharedController");
     if ([FFGameViewController respondsToSelector:selector]) {
         IMP imp = [FFGameViewController methodForSelector:selector];
         UIViewController *(*func)(void) = (void *)imp;
         UIViewController *vc = func();
         if (vc) {
+            NSString *gid = (dict[@"id"]) ? dict[@"id"] : dict[@"gid"];
+            [vc setValue:gid forKey:@"gid"];
             [self pushViewController:vc];
         } else {
             syLog(@"\n ! %s \n present error :  %s not exist \n ! \n",__func__,sel_getName(selector));
@@ -115,7 +114,7 @@
         _tableView.showsHorizontalScrollIndicator = NO;
         _tableView.tableFooterView = [UIView new];
         if (@available(iOS 11.0, *)) {
-            _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentScrollableAxes;
+            _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         } else {
 
         }

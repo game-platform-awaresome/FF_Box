@@ -15,7 +15,7 @@
 #define Next_page ([NSString stringWithFormat:@"%lu",++self.currentPage])
 
 
-@interface FFBasicTableViewController : FFBasicViewController <UITableViewDataSource, UITableViewDelegate>
+@interface FFBasicTableViewController : FFBasicViewController <UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>
 
 /** table view */
 @property (nonatomic, strong) UITableView *tableView;
@@ -31,6 +31,8 @@
 - (void)begainRefresData;
 
 - (void)resetTableView;
+
+
 
 @end
 

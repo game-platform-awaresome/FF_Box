@@ -140,6 +140,15 @@ UIColor *HexColorToUIColor(NSString *hexColorString) {
 }
 
 
+
+#pragma mark - game view controller
++ (UIColor *)game_controller_navigation_color {
+    return [UIColor whiteColor];
+}
++ (UIColor *)game_header_setview_BKColor {
+    return [UIColor whiteColor];
+}
+
 @end
 
 

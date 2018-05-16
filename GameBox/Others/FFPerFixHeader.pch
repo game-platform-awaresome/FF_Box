@@ -21,7 +21,7 @@
 
 #define kSCREEN_WIDTH       [UIScreen mainScreen].bounds.size.width
 #define kSCREEN_HEIGHT      [UIScreen mainScreen].bounds.size.height
-#define kNAVIGATION_HEIGHT  CGRectGetMaxY(self.navigationController.navigationBar.frame)
+#define kNAVIGATION_HEIGHT  CGRectGetMaxY([FFControllerManager sharedManager].currentNavController.navigationBar.frame)
 #define kTABBAR_HEIGHT      CGRectGetHeight(self.tabBarController.tabBar.frame)
 #define KSTATUBAR_HEIGHT    CGRectGetHeight([[UIApplication sharedApplication] statusBarFrame])
 

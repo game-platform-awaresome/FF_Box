@@ -39,6 +39,19 @@
 
 
 
+#pragma mark - game view
++ (UIImage *)Game_header_background_image;
+
 
 
 @end
+
+
+
+
+
+
+
+
+
+

@@ -11,6 +11,9 @@
 #import "FFColorManager.h"
 
 
+#warning missing model
+
+
 @interface FFCustomizeCell ()
 
 /** 游戏名称 */
@@ -99,7 +102,6 @@
 
 - (void)setDict:(NSDictionary *)dict {
     _dict = dict;
-
 //    syLog(@"game cell dict === %@",dict);
     //设置名称
     self.gameName.text = _dict[@"gamename"];
