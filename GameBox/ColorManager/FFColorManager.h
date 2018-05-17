@@ -33,6 +33,8 @@ UIColor *RGBColor(float red, float green, float blue);
 + (UIColor *)custom_cell_text1_color;
 + (UIColor *)custom_cell_text2_color;
 + (UIColor *)custom_cell_text3_color;
++ (NSArray<UIColor *> *)text_color_array;
+
 
 + (UIColor *)web_waitng_color;
 
@@ -50,8 +52,17 @@ UIColor *RGBColor(float red, float green, float blue);
 #pragma mark - game view controller
 + (UIColor *)game_controller_navigation_color;
 + (UIColor *)game_header_setview_BKColor;
-
++ (UIColor *)game_header_label_color;
++ (UIColor *)game_select_line_color;
++ (UIColor *)game_select_normal_color;
++ (UIColor *)game_select__color;
++ (UIColor *)game_select_cursor_color;
 
 
 
 @end
+
+
+
+
+

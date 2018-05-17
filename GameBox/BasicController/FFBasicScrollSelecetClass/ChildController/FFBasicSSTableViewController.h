@@ -17,4 +17,7 @@
 @property (nonatomic, assign) BOOL isTouch;
 
 
+- (void)refresh;
+
+
 @end

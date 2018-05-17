@@ -41,8 +41,12 @@
 
 #pragma mark - game view
 + (UIImage *)Game_header_background_image;
-
-
++ (UIImage *)Game_header_discount_iamge;
++ (UIImage *)Game_header_stars_half;
++ (UIImage *)Game_header_stars_light;
++ (UIImage *)Game_header_stars_dark;
++ (UIImage *)Game_header_QQ;
++ (UIImage *)Game_detail_header_placeholder;
 
 @end
 

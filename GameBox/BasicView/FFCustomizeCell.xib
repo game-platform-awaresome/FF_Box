@@ -29,7 +29,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50万 + 下载" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QjL-i5-hDA">
-                                <rect key="frame" x="76" y="48.5" width="338" height="20.5"/>
+                                <rect key="frame" x="76" y="48.5" width="92" height="20.5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="uI6-Th-oq7"/>
                                 </constraints>
@@ -68,7 +68,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100M" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BNc-fm-BfM">
-                                <rect key="frame" x="165.5" y="8" width="43" height="20"/>
+                                <rect key="frame" x="149.5" y="8" width="43" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -92,13 +92,13 @@
                             <constraint firstItem="xNC-ZO-Ydd" firstAttribute="top" secondItem="xfK-V7-JfP" secondAttribute="top" id="FQi-zt-iE5"/>
                             <constraint firstItem="ZHe-Q8-F7J" firstAttribute="centerY" secondItem="3KS-7A-E3b" secondAttribute="centerY" id="Hm7-fp-WxV"/>
                             <constraint firstItem="R6N-xd-bZs" firstAttribute="centerY" secondItem="xfK-V7-JfP" secondAttribute="centerY" id="Kbv-Vt-KvO"/>
-                            <constraint firstItem="ZHe-Q8-F7J" firstAttribute="leading" secondItem="QjL-i5-hDA" secondAttribute="trailing" constant="8" id="MMe-Zi-NOl"/>
+                            <constraint firstItem="ZHe-Q8-F7J" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="QjL-i5-hDA" secondAttribute="trailing" constant="8" id="MMe-Zi-NOl"/>
                             <constraint firstItem="u6O-Oy-QWi" firstAttribute="leading" secondItem="xfK-V7-JfP" secondAttribute="trailing" constant="8" id="Pbp-Do-93A"/>
                             <constraint firstItem="u6O-Oy-QWi" firstAttribute="centerY" secondItem="xfK-V7-JfP" secondAttribute="centerY" id="RWX-hf-e2Y"/>
                             <constraint firstItem="xfK-V7-JfP" firstAttribute="centerY" secondItem="3KS-7A-E3b" secondAttribute="centerY" id="RWX-tK-nsB"/>
                             <constraint firstItem="qfh-CC-4WJ" firstAttribute="leading" secondItem="u6O-Oy-QWi" secondAttribute="trailing" constant="4" id="XGr-Sk-dQF"/>
                             <constraint firstItem="R6N-xd-bZs" firstAttribute="leading" secondItem="qfh-CC-4WJ" secondAttribute="trailing" constant="4" id="blp-hl-6cj"/>
-                            <constraint firstItem="BNc-fm-BfM" firstAttribute="leading" secondItem="xNC-ZO-Ydd" secondAttribute="trailing" constant="20" id="cG7-e7-SpE"/>
+                            <constraint firstItem="BNc-fm-BfM" firstAttribute="leading" secondItem="xNC-ZO-Ydd" secondAttribute="trailing" constant="4" id="cG7-e7-SpE"/>
                             <constraint firstItem="xfK-V7-JfP" firstAttribute="leading" secondItem="3KS-7A-E3b" secondAttribute="leading" constant="8" id="cWx-BS-Ybx"/>
                             <constraint firstItem="BNc-fm-BfM" firstAttribute="centerY" secondItem="xNC-ZO-Ydd" secondAttribute="centerY" id="eWK-4r-8Su"/>
                             <constraint firstItem="xNC-ZO-Ydd" firstAttribute="leading" secondItem="xfK-V7-JfP" secondAttribute="trailing" constant="8" id="fu4-MM-SIv"/>
@@ -106,6 +106,7 @@
                             <constraint firstItem="QjL-i5-hDA" firstAttribute="leading" secondItem="xfK-V7-JfP" secondAttribute="trailing" constant="8" id="wtI-Jc-SrB"/>
                             <constraint firstAttribute="trailing" secondItem="ZHe-Q8-F7J" secondAttribute="trailing" constant="8" id="y7a-ry-Sqr"/>
                             <constraint firstItem="QjL-i5-hDA" firstAttribute="bottom" secondItem="xfK-V7-JfP" secondAttribute="bottom" id="yM4-s9-jdW"/>
+                            <constraint firstItem="ZHe-Q8-F7J" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="R6N-xd-bZs" secondAttribute="trailing" constant="8" id="z56-FJ-XL9"/>
                         </constraints>
                     </view>
                 </subviews>

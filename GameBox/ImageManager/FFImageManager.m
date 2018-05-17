@@ -38,13 +38,14 @@
 + (UIImage *)Home_message_light             {RETURN_IMAGE(@"Home_message_light");}
 + (UIImage *)Home_message_dark              {RETURN_IMAGE(@"Home_message_dark");}
 
-
 #pragma mark - game view
 + (UIImage *)Game_header_background_image   {RETURN_IMAGE(@"Game_header_background_image");}
-
-
-
-
++ (UIImage *)Game_header_discount_iamge     {RETURN_IMAGE(@"Game_header_discount_image");}
++ (UIImage *)Game_header_stars_half         {RETURN_IMAGE(@"Game_header_stars_half");}
++ (UIImage *)Game_header_stars_light        {RETURN_IMAGE(@"Game_header_stars_light");}
++ (UIImage *)Game_header_stars_dark         {RETURN_IMAGE(@"Game_header_stars_dark");}
++ (UIImage *)Game_header_QQ                 {RETURN_IMAGE(@"Game_header_QQ");}
++ (UIImage *)Game_detail_header_placeholder {RETURN_IMAGE(@"");}
 
 @end
 

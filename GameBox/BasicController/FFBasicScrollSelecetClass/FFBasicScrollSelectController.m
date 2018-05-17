@@ -60,14 +60,9 @@
     self.view.backgroundColor = [FFColorManager view_default_background_color];
     self.title = @"";
     self.canScroll = YES;
-
     self.automaticallyAdjustsScrollViewInsets = NO;
-//    self.tableView.mj_header = self.refreshHeader;
-//    self.tableView.refreshControl = self.refreshController;
-
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.navigationView];
-
 }
 
 - (void)initDataSource {
@@ -121,48 +116,19 @@
         _isRefreshing = NO;
         [self refreshData];
     }
-
 }
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    syLog(@"111111111111");
-
-
-}
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    //下拉放大 必须实现
-    if (_stretchableTableHeaderView) {
-        [_stretchableTableHeaderView scrollViewDidScroll:scrollView];
-    }
-
-    //计算导航栏的透明度
-//    CGFloat minAlphaOffset = 0;
-    CGFloat maxAlphaOffset = self.headerView.bounds.size.height - kNAVIGATION_HEIGHT;
-
-    CGFloat offset = scrollView.contentOffset.y;
-//    syLog(@"offset === %lf",offset);
-//    syLog(@"max  === %lf",maxAlphaOffset);
-    CGFloat alpha = offset / maxAlphaOffset;
-
-//    syLog(@"alpha  === %lf",alpha);
-    self.navigationView.alpha = alpha;
-
-    //根据导航栏透明度设置title
-    if (alpha > 0.5) {
-        self.title = @"name";
-    } else {
-        self.title = @"";
-    }
-
-    if (offset < -100 && !_isRefreshing) {
+    
+    if (scrollView.contentOffset.y < -100 && !_isRefreshing) {
         _isRefreshing = YES;
         AudioServicesPlaySystemSound(1519);
     }
 
     //子控制器和主控制器之间的滑动状态切换
     CGFloat tabOffsetY = [_tableView rectForSection:0].origin.y - kNAVIGATION_HEIGHT;
-    if (offset >= tabOffsetY) {
+    if (scrollView.contentOffset.y > tabOffsetY) {
         scrollView.contentOffset = CGPointMake(0, tabOffsetY);
         [self setChildControlelrScroll:YES];
         if (_canScroll) {
@@ -175,13 +141,14 @@
     }
 }
 
-//下拉放大必须实现
-- (void)viewDidLayoutSubviews {
-    if (_stretchableTableHeaderView) {
-        [_stretchableTableHeaderView resizeView];
-    }
+
+- (void)showNavigationTitle {
+
 }
 
+- (void)hideNavigationTitle {
+
+}
 
 #pragma mark - setter
 - (void)setHeaderView:(UIView *)headerView {
@@ -235,6 +202,8 @@
         if (@available(iOS 11.0, *)) {
             _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
+
+        _canScroll = YES;
     }
     return _tableView;
 }
@@ -271,13 +240,13 @@
     return _navigationView;
 }
 
-- (FFStretchableTableHeaderView *)stretchableTableHeaderView {
-    if (!_stretchableTableHeaderView) {
-        _stretchableTableHeaderView = [FFStretchableTableHeaderView new];
+- (FFBasicSSSelectView *)selectView {
+    if (!_selectView) {
+        _selectView = [[FFBasicSSSelectView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 45)];
+        _selectView.backgroundColor = [UIColor whiteColor];
     }
-    return _stretchableTableHeaderView;
+    return _selectView;
 }
-
 
 
 

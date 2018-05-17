@@ -8,12 +8,27 @@
 
 #import <UIKit/UIKit.h>
 
+
+typedef void(^RespondsToQQGroupButtonBlock)(void);
+
 @interface FFGameHeaderView : UIView
 
 @property (nonatomic, strong) UIImageView *backgroundView;
+
+@property (nonatomic, strong) RespondsToQQGroupButtonBlock qqGroupButtonBlock;
 
 
 - (void)refreshBackgroundHeight:(CGFloat)height;
 
 
+- (void)refresh;
+- (void)showNavigationTitle;
+- (void)hideNavigationTitle;
+
+
 @end
+
+
+
+
+

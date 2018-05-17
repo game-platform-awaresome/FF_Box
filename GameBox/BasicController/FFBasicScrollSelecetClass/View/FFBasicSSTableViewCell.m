@@ -56,7 +56,7 @@ static FFBasicSSTableViewCell *cell = nil;
 
 - (void)setFrame:(CGRect)frame {
     [super setFrame:frame];
-    syLog(@"cell frame === %@",NSStringFromCGRect(frame));
+//    syLog(@"cell frame === %@",NSStringFromCGRect(frame));
 
     self.scrollView.frame = CGRectMake(0, 0, kSCREEN_WIDTH, frame.size.height);
 

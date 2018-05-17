@@ -8,8 +8,8 @@
 
 #import "FFBasicTableViewController.h"
 #import "FFBasicSSTableViewCell.h"
+#import "FFBasicSSSelectView.h"
 #import <MJRefresh.h>
-#import "FFStretchableTableHeaderView.h"
 
 @interface FFBasicSSTableView : UITableView
 
@@ -26,11 +26,6 @@
 /** lord more footer */
 @property (nonatomic, strong) MJRefreshBackFooter *refreshFooter;
 
-
-//下拉头部放大控件
-@property (strong, nonatomic) FFStretchableTableHeaderView *stretchableTableHeaderView;
-
-
 @property (nonatomic, strong) UIView *headerView;
 @property (nonatomic, strong) UIView *footerView;
 @property (nonatomic, strong) UIView *sectionView;
@@ -38,11 +33,30 @@
 
 @property (nonatomic, strong) UIView *navigationView;
 
-
 @property (nonatomic, strong) NSArray<FFBasicSSTableViewController *> *selectChildConttoller;
+
+
+@property (nonatomic, strong) FFBasicSSSelectView *selectView;
+
+
+@property (nonatomic, assign) BOOL canRestView;
+
+- (void)showNavigationTitle;
+- (void)hideNavigationTitle;
+
+
 
 
 
 
 
 @end
+
+
+
+
+
+
+
+
+

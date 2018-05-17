@@ -49,6 +49,9 @@
     }
 }
 
+- (void)refresh {
+    
+}
 
 - (void)viewDidLayoutSubviews {
     self.tableView.frame = self.view.bounds;

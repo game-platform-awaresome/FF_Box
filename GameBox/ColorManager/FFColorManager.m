@@ -109,13 +109,16 @@ UIColor *HexColorToUIColor(NSString *hexColorString) {
 }
 
 + (UIColor *)custom_cell_text1_color {
-    return RGBColor(173, 170, 217);
+    return RGBColor(90, 190, 240);
 }
 + (UIColor *)custom_cell_text2_color {
-    return RGBColor(77, 180, 180);
+    return RGBColor(251, 169, 52);
 }
 + (UIColor *)custom_cell_text3_color {
-    return RGBColor(247, 189, 52);
+    return RGBColor(252, 125, 126);
+}
++ (NSArray *)text_color_array {
+    return  @[[self custom_cell_text1_color],[self custom_cell_text2_color],[self custom_cell_text3_color]];
 }
 
 + (UIColor *)web_waitng_color {
@@ -148,6 +151,26 @@ UIColor *HexColorToUIColor(NSString *hexColorString) {
 + (UIColor *)game_header_setview_BKColor {
     return [UIColor whiteColor];
 }
+
++ (UIColor *)game_header_label_color {
+    return [self game_header_setview_BKColor];
+}
+
++ (UIColor *)game_select_line_color {
+    return [UIColor colorWithWhite:0.85 alpha:1];
+}
++ (UIColor *)game_select_normal_color {
+    return [UIColor blackColor];
+}
+
++ (UIColor *)game_select__color {
+    return [self blue_dark];
+}
+
++ (UIColor *)game_select_cursor_color {
+    return [self blue_dark];
+}
+
 
 @end
 

@@ -37,7 +37,7 @@ static FFCurrentGameModel *model;
 
 + (instancetype)refreshCurrentGameWithGameID:(NSString *)gameID Completion:(RefreshCompleteBlock)block {
     [FFGameModel gameDetailsWithGameID:gameID Completion:^(NSDictionary * _Nonnull content, BOOL success) {
-        syLog(@"game info ==== %@",content);
+//        syLog(@"game info ==== %@",content);
         if (success) {
             [CURRENT_GAME setInfoWithDictionary:content];
         }
@@ -120,6 +120,7 @@ static FFCurrentGameModel *model;
     [self setGame_type:GAMEINFO(@"types")];
     [self setGame_version:GAMEINFO(@"version")];
     [self setGame_vip_amount:GAMEINFO(@"vip")];
+    [self setGame_discount:GAMEINFO(@"discount")];
 }
 
 /** 请求评论 */
@@ -153,6 +154,11 @@ static FFCurrentGameModel *model;
 /** vip 价格 */
 - (void)setGame_vip_amount:(NSString *)game_vip_amount {
     SET_VALUE(_game_vip_amount, game_vip_amount);
+}
+
+/** 折扣 */
+- (void)setGame_discount:(NSString *)game_discount {
+    SET_VALUE(_game_discount, game_discount);
 }
 
 

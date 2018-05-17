@@ -60,21 +60,21 @@
         _rigthLayout.constant = 8;
         self.gameName.font = [UIFont systemFontOfSize:13];
         [self.gameName sizeToFit];
-        self.gameSize.font = [UIFont systemFontOfSize:13];
+        self.gameSize.font = [UIFont systemFontOfSize:12];
         self.gameSize.textColor = [UIColor lightGrayColor];
     } else if (kSCREEN_WIDTH == 375) {
         _lefLayout.constant = 20;
         _rigthLayout.constant = 20;
         self.gameName.font = [UIFont systemFontOfSize:14];
         [self.gameName sizeToFit];
-        self.gameSize.font = [UIFont systemFontOfSize:14];
+        self.gameSize.font = [UIFont systemFontOfSize:13];
         self.gameSize.textColor = [UIColor lightGrayColor];
     } else if (kSCREEN_WIDTH == 414) {
         _lefLayout.constant = 30;
         _rigthLayout.constant = 30;
         self.gameName.font = [UIFont systemFontOfSize:16];
         [self.gameName sizeToFit];
-        self.gameSize.font = [UIFont systemFontOfSize:16];
+        self.gameSize.font = [UIFont systemFontOfSize:15];
         self.gameSize.textColor = [UIColor lightGrayColor];
     }
     
@@ -90,7 +90,7 @@
     label.font = [UIFont systemFontOfSize:12];
     label.textColor = [UIColor whiteColor];
     label.text = @"";
-//    label.backgroundColor = backgroundColor;
+    label.backgroundColor = backgroundColor;
     label.layer.cornerRadius = 3;
     label.layer.masksToBounds = YES;
     [label sizeToFit];
@@ -117,7 +117,7 @@
     }
     [array enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (idx < 3) {
-            labelArray[idx].text = obj;
+            labelArray[idx].text = [NSString stringWithFormat:@" %@ ",obj];
         }
     }];
 

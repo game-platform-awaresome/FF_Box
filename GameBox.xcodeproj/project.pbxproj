@@ -27,7 +27,10 @@
 		B52382AD20AC34FE0087733A /* FFCustomizeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B52382AA20AC34FD0087733A /* FFCustomizeCell.m */; };
 		B52382AE20AC34FE0087733A /* FFCustomizeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B52382AC20AC34FE0087733A /* FFCustomizeCell.xib */; };
 		B52382B220AC44610087733A /* FFGameHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B52382B120AC44610087733A /* FFGameHeaderView.m */; };
-		B52382B520AC47D30087733A /* FFStretchableTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B52382B420AC47D30087733A /* FFStretchableTableHeaderView.m */; };
+		B52382B820AD70F10087733A /* FFBasicSSSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = B52382B720AD70F10087733A /* FFBasicSSSelectView.m */; };
+		B52382BC20ADAD280087733A /* FFGameDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52382BB20ADAD280087733A /* FFGameDetailViewController.m */; };
+		B52382BE20ADAD570087733A /* FFStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B52382BD20ADAD570087733A /* FFStoryboard.storyboard */; };
+		B52382C320ADB0F60087733A /* FFGameDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B52382C220ADB0F60087733A /* FFGameDetailHeaderView.m */; };
 		B52ED09B20A9A38700C8CAF4 /* FFSRcommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B52ED09920A9A38700C8CAF4 /* FFSRcommentCell.m */; };
 		B5781AE020A3F4DE00CB1464 /* FFHomeSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5781ADE20A3F4DD00CB1464 /* FFHomeSelectView.m */; };
 		B5781AE320A42CED00CB1464 /* FFUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5781AE220A42CED00CB1464 /* FFUserModel.m */; };
@@ -120,8 +123,13 @@
 		B52382AC20AC34FE0087733A /* FFCustomizeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FFCustomizeCell.xib; sourceTree = "<group>"; };
 		B52382B020AC44610087733A /* FFGameHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFGameHeaderView.h; sourceTree = "<group>"; };
 		B52382B120AC44610087733A /* FFGameHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFGameHeaderView.m; sourceTree = "<group>"; };
-		B52382B320AC47D30087733A /* FFStretchableTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFStretchableTableHeaderView.h; sourceTree = "<group>"; };
-		B52382B420AC47D30087733A /* FFStretchableTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFStretchableTableHeaderView.m; sourceTree = "<group>"; };
+		B52382B620AD70F10087733A /* FFBasicSSSelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBasicSSSelectView.h; sourceTree = "<group>"; };
+		B52382B720AD70F10087733A /* FFBasicSSSelectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBasicSSSelectView.m; sourceTree = "<group>"; };
+		B52382BA20ADAD280087733A /* FFGameDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFGameDetailViewController.h; sourceTree = "<group>"; };
+		B52382BB20ADAD280087733A /* FFGameDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFGameDetailViewController.m; sourceTree = "<group>"; };
+		B52382BD20ADAD570087733A /* FFStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FFStoryboard.storyboard; sourceTree = "<group>"; };
+		B52382C120ADB0F60087733A /* FFGameDetailHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFGameDetailHeaderView.h; sourceTree = "<group>"; };
+		B52382C220ADB0F60087733A /* FFGameDetailHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFGameDetailHeaderView.m; sourceTree = "<group>"; };
 		B52ED09820A9A38700C8CAF4 /* FFSRcommentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFSRcommentCell.h; sourceTree = "<group>"; };
 		B52ED09920A9A38700C8CAF4 /* FFSRcommentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFSRcommentCell.m; sourceTree = "<group>"; };
 		B5781ADE20A3F4DD00CB1464 /* FFHomeSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFHomeSelectView.m; sourceTree = "<group>"; };
@@ -414,8 +422,8 @@
 			children = (
 				B523829F20ABCEF00087733A /* FFBasicSSTableViewCell.h */,
 				B52382A020ABCEF00087733A /* FFBasicSSTableViewCell.m */,
-				B52382B320AC47D30087733A /* FFStretchableTableHeaderView.h */,
-				B52382B420AC47D30087733A /* FFStretchableTableHeaderView.m */,
+				B52382B620AD70F10087733A /* FFBasicSSSelectView.h */,
+				B52382B720AD70F10087733A /* FFBasicSSSelectView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -445,6 +453,24 @@
 				B52382B120AC44610087733A /* FFGameHeaderView.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		B52382B920ADACF10087733A /* ChildController */ = {
+			isa = PBXGroup;
+			children = (
+				B52382BA20ADAD280087733A /* FFGameDetailViewController.h */,
+				B52382BB20ADAD280087733A /* FFGameDetailViewController.m */,
+			);
+			path = ChildController;
+			sourceTree = "<group>";
+		};
+		B52382C020ADB0DF0087733A /* ChildView */ = {
+			isa = PBXGroup;
+			children = (
+				B52382C120ADB0F60087733A /* FFGameDetailHeaderView.h */,
+				B52382C220ADB0F60087733A /* FFGameDetailHeaderView.m */,
+			);
+			path = ChildView;
 			sourceTree = "<group>";
 		};
 		B5781AE620A44AF300CB1464 /* FFBTServerClass */ = {
@@ -583,6 +609,7 @@
 				B58CB7A9207B10830099773D /* Assets.xcassets */,
 				B5781AFF20A5903700CB1464 /* ImageAssets.xcassets */,
 				B58CB7AA207B10830099773D /* LaunchScreen.storyboard */,
+				B52382BD20ADAD570087733A /* FFStoryboard.storyboard */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -695,6 +722,8 @@
 				B52382A620AC30620087733A /* Model */,
 				B52382AF20AC44490087733A /* View */,
 				B5D1044020904DD800CA1949 /* Controller */,
+				B52382B920ADACF10087733A /* ChildController */,
+				B52382C020ADB0DF0087733A /* ChildView */,
 			);
 			path = FFGameClass;
 			sourceTree = "<group>";
@@ -958,6 +987,7 @@
 				B58CB7B2207B10830099773D /* cityData.plist in Resources */,
 				B58CB7B3207B10830099773D /* GameBoxConfig.plist in Resources */,
 				B58CB7B6207B10830099773D /* LaunchScreen.storyboard in Resources */,
+				B52382BE20ADAD570087733A /* FFStoryboard.storyboard in Resources */,
 				B5781B0020A5903700CB1464 /* ImageAssets.xcassets in Resources */,
 				B52382AE20AC34FE0087733A /* FFCustomizeCell.xib in Resources */,
 				B523829A20AB11D20087733A /* FFActivityCell.xib in Resources */,
@@ -1029,6 +1059,7 @@
 				B5781AEB20A44B5100CB1464 /* FFBTServerViewController.m in Sources */,
 				B5781AFE20A57D3600CB1464 /* FFImageManager.m in Sources */,
 				B5D5058B208715C0000B7B50 /* FFRecommentViewController.m in Sources */,
+				B52382B820AD70F10087733A /* FFBasicSSSelectView.m in Sources */,
 				B52ED09B20A9A38700C8CAF4 /* FFSRcommentCell.m in Sources */,
 				B58CB7DB207B12DC0099773D /* FFCustomizeTabBar.m in Sources */,
 				B5781AF720A573F200CB1464 /* FFZKServerViewController.m in Sources */,
@@ -1053,7 +1084,6 @@
 				B523825920AA85FF0087733A /* FFBTNewGameController.m in Sources */,
 				B523826E20AABD220087733A /* FFActivityViewController.m in Sources */,
 				B52382A920AC30780087733A /* FFCurrentGameModel.m in Sources */,
-				B52382B520AC47D30087733A /* FFStretchableTableHeaderView.m in Sources */,
 				B5D1044320904E1E00CA1949 /* FFGameViewController.m in Sources */,
 				B523829920AB11D20087733A /* FFActivityCell.m in Sources */,
 				B5D5059420884164000B7B50 /* FFClassifyViewController.m in Sources */,
@@ -1070,8 +1100,10 @@
 				B52382B220AC44610087733A /* FFGameHeaderView.m in Sources */,
 				B5D5059120884126000B7B50 /* FFGameGuideViewController.m in Sources */,
 				B58CB7D2207B12470099773D /* FFControllerManager.m in Sources */,
+				B52382BC20ADAD280087733A /* FFGameDetailViewController.m in Sources */,
 				B58CB7AD207B10830099773D /* FFDeviceInfo.m in Sources */,
 				B5781AE320A42CED00CB1464 /* FFUserModel.m in Sources */,
+				B52382C320ADB0F60087733A /* FFGameDetailHeaderView.m in Sources */,
 				B5D505802085CB06000B7B50 /* FFBasicSelectViewController.m in Sources */,
 				B5D5058E2088406A000B7B50 /* FFNewGameViewController.m in Sources */,
 				B58CB7B4207B10830099773D /* SYKeychain.m in Sources */,

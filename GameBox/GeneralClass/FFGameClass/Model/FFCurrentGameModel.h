@@ -88,7 +88,8 @@ typedef void(^GameActivityCallBackBlock)(NSDictionary *content, BOOL success);
 @property (nonatomic, strong) NSArray *like;
 /** 回调信息 */
 @property (nonatomic, strong) NSString *call_back_message;
-
+/** 折扣 */ 
+@property (nonatomic, strong) NSString *game_discount;
 
 /** 游戏信息单例 */
 + (instancetype)CurrentGame;
