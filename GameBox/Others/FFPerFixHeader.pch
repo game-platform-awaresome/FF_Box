@@ -53,6 +53,26 @@
 #define STOP_NET_WORK [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO]
 
 
+//////////////////////////////
+#define FF_is_login     if (SSKEYCHAIN_UID == nil || SSKEYCHAIN_UID.length < 1) {\
+BOX_MESSAGE(@"尚未登录");\
+return;\
+}\
+
+#define HIDE_TABBAR self.hidesBottomBarWhenPushed = YES
+#define SHOW_TABBAR self.hidesBottomBarWhenPushed = NO
+#define HIDE_PARNENT_TABBAR self.parentViewController.hidesBottomBarWhenPushed = YES
+#define SHOW_PARNENT_TABBAR self.parentViewController.hidesBottomBarWhenPushed = NO
+#import "SYKeychain.h"
+
+
+#define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:r / 255.0 green:g / 255.0 blue:b / 255.0 alpha:a]
+#define RGBCOLOR(r,g,b) RGBACOLOR(r,g,b,1)
+#define TABBARCOLOR RGBCOLOR(247,247,247)
+#define BOX_GRARCOLOR RGBCOLOR(230,230,230)
+#define NAVGATION_BAR_COLOR RGBCOLOR(250,121,34)
+#define BACKGROUND_COLOR RGBCOLOR(239, 240, 241)
+
 
 #endif /* FFPerFixHeader_pch */
 

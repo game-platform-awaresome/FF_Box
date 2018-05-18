@@ -16,5 +16,7 @@ target 'GameBox' do
   pod 'MJRefresh', '~> 3.1.12'
   pod 'MBProgressHUD', '~> 1.0.0'
   pod 'WechatOpenSDK', '~> 1.8.0'
-
+  pod 'Masonry', '~> 1.1.0'
+  #pod 'TencentOpenApiSDK', '~> 2.9.5'
+  
 end

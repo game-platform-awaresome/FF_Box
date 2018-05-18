@@ -8,7 +8,7 @@
 
 #import "FFBasicSelectView.h"
 
-const NSInteger ButtonTag = 10086;
+#define ButtonTag 10086
 
 @interface FFBasicSelectView () <UIScrollViewDelegate>
 

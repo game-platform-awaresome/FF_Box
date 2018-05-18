@@ -42,8 +42,8 @@
 
 - (void)initializeDataSource {
     NSArray *viewControllerNames = @[@"FFHomeViewController",
-                                     @"FFOpenServiceViewController",
-                                     @"FFDriveViewController",
+                                     @"FFOpenServerViewController",
+                                     @"FFDriveController",
                                      @"FFMineViewController"];
 
     NSArray *titles = @[@"游戏", @"开服表", @"车站", @"我的"];

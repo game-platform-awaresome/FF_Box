@@ -47,7 +47,7 @@ static FFBasicSSTableViewCell *cell = nil;
 }
 
 - (void)initUserInterface {
-    self.backgroundColor = [UIColor blackColor];
+    self.backgroundColor = [UIColor whiteColor];
 
 //    _canHorizontalScroll = YES;
     [self.contentView addSubview:self.scrollView];
@@ -76,7 +76,10 @@ static FFBasicSSTableViewCell *cell = nil;
 }
 
 #pragma mark - custom method
-
+- (void)selectViewWithIndex:(NSUInteger)idx {
+    [self childControllerAdd:self.selectChildViewControllers[idx]];
+    [self.scrollView setContentOffset:CGPointMake(idx * kSCREEN_WIDTH, 0)];
+}
 
 #pragma mark - setter
 - (void)setDataArray:(NSArray<FFBasicSSTableViewController *> *)dataArray {
@@ -106,17 +109,8 @@ static FFBasicSSTableViewCell *cell = nil;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-//    syLog(@"%s",__func__);
+
     CGFloat x = scrollView.contentOffset.x;
-
-//    if (!self.canHorizontalScroll) {
-//        [scrollView setContentOffset:CGPointZero];
-//    }
-
-    
-    //设置选择视图的浮标
-//    [self.selectView setCursorX:(x / scrollView.contentSize.width * kSCREEN_WIDTH)];
-
     CGFloat index = x / kSCREEN_WIDTH;
     NSInteger afterIndex = index * 10000;
     NSInteger i = afterIndex / 10000;
@@ -135,6 +129,10 @@ static FFBasicSSTableViewCell *cell = nil;
             [self childControllerAdd:self.selectChildViewControllers[0]];
             [self childControllerRemove:self.selectChildViewControllers[i + 1]];
         }
+    }
+
+    if (self.scrolledBlock) {
+        self.scrolledBlock(scrollView.contentOffset.x / scrollView.contentSize.width * kSCREEN_WIDTH);
     }
 }
 

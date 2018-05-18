@@ -114,6 +114,7 @@
     self.selectView.userInteractionEnabled = YES;
     _isAnimatining = NO;
 }
+
 #pragma mark - layout subviews
 
 

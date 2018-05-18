@@ -11,7 +11,7 @@
 
 
 typedef void(^CellScrollViewScrollBlock)(BOOL isScroll);
-
+typedef void(^CellScrollViewScrolled)(CGFloat offset_x);
 
 
 @interface FFBasicSSTableViewCell : UITableViewCell
@@ -24,11 +24,11 @@ typedef void(^CellScrollViewScrollBlock)(BOOL isScroll);
 @property (nonatomic, assign) BOOL canHorizontalScroll;
 
 @property (nonatomic, strong) CellScrollViewScrollBlock scrollBlock;
-
+@property (nonatomic, strong) CellScrollViewScrolled    scrolledBlock;
 
 + (instancetype)cell;
 
-
+- (void)selectViewWithIndex:(NSUInteger)idx;
 
 
 

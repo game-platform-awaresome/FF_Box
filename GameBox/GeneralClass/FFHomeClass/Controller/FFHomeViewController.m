@@ -13,13 +13,11 @@
 #import "FFGameGuideViewController.h"
 #import "FFClassifyViewController.h"
 
-#import "FFHomeSelectView.h"
+//#import "FFHomeSelectView.h"
 
 @interface FFHomeViewController () <FFHomeSelectViewDelegate>
 
 
-
-@property (nonatomic, strong) FFHomeSelectView *homeSelectView;
 
 
 @end

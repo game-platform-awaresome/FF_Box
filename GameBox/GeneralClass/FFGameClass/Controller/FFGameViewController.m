@@ -16,6 +16,8 @@
 
 @property (nonatomic, strong) FFGameHeaderView *gameHeaderView;
 
+@property (nonatomic, strong) NSArray *childsControllerName;
+@property (nonatomic, strong) NSMutableArray<FFBasicSSTableViewController *> *childsControllerArray;
 
 
 @end
@@ -47,33 +49,29 @@ static FFGameViewController *controller = nil;
 
 - (void)initUserInterface {
     [super initUserInterface];
+//    self.view.backgroundColor = [UIColor blackColor];
     [self setSelectViewInfo];
     [self setNormalView];
 }
 
 - (void)setNormalView {
-    self.headerView = self.gameHeaderView;
-    [self.navigationController.navigationBar setTintColor:[UIColor colorWithWhite:(1) alpha:1]];
-    [self.view addSubview:self.navigationView];
-
-    self.selectChildConttoller = @[[self creatControllerWithName:@"FFGameDetailViewController"],
-                                   [self creatController],
-                                   [self creatController],
-                                   [self creatController]];
-
+    self.navigationController.navigationBar.hidden = NO;
+    self.navBarBGAlpha = @"0.0";
     self.headerView = self.gameHeaderView;
     self.sectionView = self.selectView;
+    [self.navigationController.navigationBar setTintColor:[UIColor colorWithWhite:1 alpha:1]];
 
     self.footerView = [[UIView alloc] initWithFrame:CGRectMake(0, kSCREEN_HEIGHT - 60, kSCREEN_WIDTH, 60)];
     self.footerView.backgroundColor = [UIColor orangeColor];
     [self.view addSubview:self.footerView];
     [self.view addSubview:self.tableView];
-    self.tableView.alpha = 0;
-    self.footerView.alpha = 0;
-    [UIView animateWithDuration:0.7 animations:^{
-        self.tableView.alpha = 1;
-        self.footerView.alpha = 1;
-    }];
+
+//    self.tableView.alpha = 0;
+//    self.footerView.alpha = 0;
+//    [UIView animateWithDuration:0.7 animations:^{
+//        self.tableView.alpha = 1;
+//        self.footerView.alpha = 1;
+//    }];
     [self.view bringSubviewToFront:self.navigationView];
 }
 
@@ -104,14 +102,26 @@ static FFGameViewController *controller = nil;
 - (void)initDataSource {
     [super initDataSource];
 
+    self.childsControllerName = @[@"FFGameDetailViewController",
+                                  @"FFGameCommentListViewController",
+                                  @"FFGameDetailViewController",
+                                  @"FFGameDetailViewController",
+                                  @"FFGameDetailViewController"];
+
     [self.gameHeaderView setQqGroupButtonBlock:^{
         syLog(@"玩家 QQ 群");
     }];
 
+    //点击了 select view 的下标后 滑动cell 的 scroll view 到指定位置
     [self.selectView setSelectBlock:^(NSUInteger idx) {
-        syLog(@"选择了 下标  %lu",idx);
+        [[FFBasicSSTableViewCell cell] selectViewWithIndex:idx];
     }];
 
+    //cell 横向滑动的时候 移动 select view 的游标
+    WeakSelf;
+    [[FFBasicSSTableViewCell cell] setScrolledBlock:^(CGFloat offset_x) {
+        [weakSelf.selectView setCursorView_X:(offset_x)];
+    }];
 }
 
 - (FFBasicSSTableViewController *)creatController {
@@ -127,6 +137,9 @@ static FFGameViewController *controller = nil;
     if (![vc isKindOfClass:[FFBasicSSTableViewController class]]) {
         vc = [[UIViewController alloc] init];
     }
+    [self addChildViewController:vc];
+
+    syLog(@"self navigation controller = %@",self.navigationController);
     return vc;
 }
 
@@ -135,14 +148,14 @@ static FFGameViewController *controller = nil;
 - (void)refreshData {
     if (self.gid.length > 0) {
         [self startWaiting];
+        WeakSelf;
         [FFCurrentGameModel refreshCurrentGameWithGameID:self.gid Completion:^(BOOL success) {
-            [self stopWaiting];
+            [weakSelf stopWaiting];
             if (success) {
-                [self setNormalView];
-                [self.gameHeaderView refresh];
-                [self.selectChildConttoller[0] refresh];
+                [weakSelf setNormalView];
+                [weakSelf.gameHeaderView refresh];
             } else {
-                [self.currentNav popViewControllerAnimated:YES];
+                [weakSelf.currentNav popViewControllerAnimated:YES];
             }
         }];
     }
@@ -174,10 +187,21 @@ static FFGameViewController *controller = nil;
 - (void)removeAllview {
     [self.tableView removeFromSuperview];
     self.tableView = nil;
-    self.navigationView = nil;
+    self.navigationView.alpha = 0;
     self.footerView = nil;
     [self hideNavigationTitle];
 }
+
+- (void)setChildsControllerName:(NSArray *)childsControllerName {
+    _childsControllerName = childsControllerName;
+    NSMutableArray *array = [NSMutableArray arrayWithCapacity:childsControllerName.count];
+    for (NSString *name in childsControllerName) {
+        id vc = [self creatControllerWithName:name];
+        [array addObject:vc];
+    }
+    self.selectChildConttoller = array.copy;
+}
+
 
 
 

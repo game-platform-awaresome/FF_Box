@@ -31,6 +31,83 @@
 		B52382BC20ADAD280087733A /* FFGameDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52382BB20ADAD280087733A /* FFGameDetailViewController.m */; };
 		B52382BE20ADAD570087733A /* FFStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B52382BD20ADAD570087733A /* FFStoryboard.storyboard */; };
 		B52382C320ADB0F60087733A /* FFGameDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B52382C220ADB0F60087733A /* FFGameDetailHeaderView.m */; };
+		B52382C720AE82830087733A /* FFGameDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B52382C520AE82830087733A /* FFGameDetailCell.m */; };
+		B52382C820AE82830087733A /* FFGameDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B52382C620AE82830087733A /* FFGameDetailCell.xib */; };
+		B52382CB20AE84050087733A /* FFGameCommentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52382CA20AE84050087733A /* FFGameCommentListViewController.m */; };
+		B523831820AE9EF40087733A /* FFDriveAllInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52382D120AE9EF40087733A /* FFDriveAllInfoViewController.m */; };
+		B523831920AE9EF40087733A /* FFDriveAttentionInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52382D320AE9EF40087733A /* FFDriveAttentionInfoViewController.m */; };
+		B523831A20AE9EF40087733A /* FFDriveDetailInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52382D520AE9EF40087733A /* FFDriveDetailInfoViewController.m */; };
+		B523831B20AE9EF40087733A /* FFDriveHotInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52382D720AE9EF40087733A /* FFDriveHotInfoViewController.m */; };
+		B523831C20AE9EF40087733A /* FFDriveMyNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52382D920AE9EF40087733A /* FFDriveMyNewsViewController.m */; };
+		B523831D20AE9EF40087733A /* FFDrivePostStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52382DB20AE9EF40087733A /* FFDrivePostStatusViewController.m */; };
+		B523831E20AE9EF40087733A /* FFDriveThroughInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52382DD20AE9EF40087733A /* FFDriveThroughInfoViewController.m */; };
+		B523831F20AE9EF40087733A /* FFGifThumbnailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52382DF20AE9EF40087733A /* FFGifThumbnailViewController.m */; };
+		B523832020AE9EF40087733A /* FFMyDynamicsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52382E120AE9EF40087733A /* FFMyDynamicsViewController.m */; };
+		B523832120AE9EF40087733A /* FFDetailMineInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52382E320AE9EF40087733A /* FFDetailMineInfoTableViewController.m */; };
+		B523832220AE9EF40087733A /* FFDriveController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52382E520AE9EF40087733A /* FFDriveController.m */; };
+		B523832320AE9EF40087733A /* FFDriveAttentionNumbersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52382E920AE9EF40087733A /* FFDriveAttentionNumbersViewController.m */; };
+		B523832420AE9EF40087733A /* FFDriveFansNumbersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52382EB20AE9EF40087733A /* FFDriveFansNumbersViewController.m */; };
+		B523832520AE9EF40087733A /* FFDriveNumbersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52382ED20AE9EF40087733A /* FFDriveNumbersViewController.m */; };
+		B523832620AE9EF40087733A /* FFMineBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52382EF20AE9EF40087733A /* FFMineBaseTableViewController.m */; };
+		B523832720AE9EF40087733A /* FFDriveMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52382F120AE9EF40087733A /* FFDriveMineViewController.m */; };
+		B523832820AE9EF40087733A /* MyStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B52382F220AE9EF40087733A /* MyStoryboard.storyboard */; };
+		B523832920AE9EF40087733A /* FFDriveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B52382F520AE9EF40087733A /* FFDriveModel.m */; };
+		B523832A20AE9EF40087733A /* FFDriveUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B52382F720AE9EF40087733A /* FFDriveUserModel.m */; };
+		B523832B20AE9EF40087733A /* FFDynamicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B52382F920AE9EF40087733A /* FFDynamicModel.m */; };
+		B523832C20AE9EF40087733A /* FFPostStatusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B52382FB20AE9EF40087733A /* FFPostStatusModel.m */; };
+		B523832D20AE9EF40087733A /* DriveInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B52382FE20AE9EF40087733A /* DriveInfoCell.m */; };
+		B523832E20AE9EF40087733A /* DriveInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B52382FF20AE9EF40087733A /* DriveInfoCell.xib */; };
+		B523832F20AE9EF40087733A /* FFDetailFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = B523830120AE9EF40087733A /* FFDetailFooterView.m */; };
+		B523833020AE9EF40087733A /* FFDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B523830320AE9EF40087733A /* FFDetailHeaderView.m */; };
+		B523833120AE9EF40087733A /* FFDriveCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B523830520AE9EF40087733A /* FFDriveCommentCell.m */; };
+		B523833220AE9EF40087733A /* FFDriveCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B523830620AE9EF40087733A /* FFDriveCommentCell.xib */; };
+		B523833320AE9EF40087733A /* FFDriveReplyView.m in Sources */ = {isa = PBXBuildFile; fileRef = B523830820AE9EF40087733A /* FFDriveReplyView.m */; };
+		B523833420AE9EF40087733A /* FFDriveFansCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B523830B20AE9EF40087733A /* FFDriveFansCell.m */; };
+		B523833520AE9EF40087733A /* FFDriveFansCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B523830C20AE9EF40087733A /* FFDriveFansCell.xib */; };
+		B523833620AE9EF40087733A /* FFDriveMyNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B523830E20AE9EF40087733A /* FFDriveMyNewsCell.m */; };
+		B523833720AE9EF40087733A /* FFDriveMyNewsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B523830F20AE9EF40087733A /* FFDriveMyNewsCell.xib */; };
+		B523833820AE9EF40087733A /* FFDrivePersonalHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = B523831120AE9EF40087733A /* FFDrivePersonalHeader.m */; };
+		B523833920AE9EF40087733A /* FFMineViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B523831320AE9EF40087733A /* FFMineViewCell.m */; };
+		B523833A20AE9EF40087733A /* FFPostStatusImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B523831520AE9EF40087733A /* FFPostStatusImageCell.m */; };
+		B523833B20AE9EF40087733A /* FFSelectHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B523831720AE9EF40087733A /* FFSelectHeaderView.m */; };
+		B523833E20AE9F680087733A /* FFViewFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = B523833C20AE9F680087733A /* FFViewFactory.m */; };
+		B523836F20AE9FAC0087733A /* NSBundle+ZLPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = B523834120AE9FAB0087733A /* NSBundle+ZLPhotoBrowser.m */; };
+		B523837020AE9FAC0087733A /* ZLPhotoActionSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = B523834320AE9FAB0087733A /* ZLPhotoActionSheet.xib */; };
+		B523837120AE9FAC0087733A /* ZLPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B523834420AE9FAB0087733A /* ZLPhotoBrowser.bundle */; };
+		B523837220AE9FAC0087733A /* ZLPhotoBrowserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B523834520AE9FAB0087733A /* ZLPhotoBrowserCell.xib */; };
+		B523837320AE9FAC0087733A /* ToastUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = B523834720AE9FAB0087733A /* ToastUtils.m */; };
+		B523837420AE9FAC0087733A /* UIButton+EnlargeTouchArea.m in Sources */ = {isa = PBXBuildFile; fileRef = B523834920AE9FAB0087733A /* UIButton+EnlargeTouchArea.m */; };
+		B523837520AE9FAC0087733A /* UIImage+ZLPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = B523834B20AE9FAB0087733A /* UIImage+ZLPhotoBrowser.m */; };
+		B523837620AE9FAC0087733A /* ZLBigImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B523834D20AE9FAB0087733A /* ZLBigImageCell.m */; };
+		B523837720AE9FAC0087733A /* ZLCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B523834F20AE9FAB0087733A /* ZLCollectionCell.m */; };
+		B523837820AE9FAC0087733A /* ZLCustomCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = B523835120AE9FAB0087733A /* ZLCustomCamera.m */; };
+		B523837920AE9FAC0087733A /* ZLEditVideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = B523835420AE9FAB0087733A /* ZLEditVideoController.m */; };
+		B523837A20AE9FAC0087733A /* ZLEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B523835620AE9FAB0087733A /* ZLEditViewController.m */; };
+		B523837B20AE9FAC0087733A /* ZLForceTouchPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B523835820AE9FAB0087733A /* ZLForceTouchPreviewController.m */; };
+		B523837C20AE9FAC0087733A /* ZLNoAuthorityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B523835A20AE9FAB0087733A /* ZLNoAuthorityViewController.m */; };
+		B523837D20AE9FAC0087733A /* ZLPhotoActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = B523835C20AE9FAB0087733A /* ZLPhotoActionSheet.m */; };
+		B523837E20AE9FAC0087733A /* ZLPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = B523835E20AE9FAB0087733A /* ZLPhotoBrowser.m */; };
+		B523837F20AE9FAC0087733A /* ZLPhotoBrowserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B523836020AE9FAB0087733A /* ZLPhotoBrowserCell.m */; };
+		B523838020AE9FAC0087733A /* ZLPhotoConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = B523836220AE9FAB0087733A /* ZLPhotoConfiguration.m */; };
+		B523838120AE9FAC0087733A /* ZLPhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B523836420AE9FAB0087733A /* ZLPhotoManager.m */; };
+		B523838220AE9FAC0087733A /* ZLPhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B523836620AE9FAB0087733A /* ZLPhotoModel.m */; };
+		B523838320AE9FAC0087733A /* ZLPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B523836820AE9FAB0087733A /* ZLPlayer.m */; };
+		B523838420AE9FAC0087733A /* ZLProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B523836A20AE9FAB0087733A /* ZLProgressHUD.m */; };
+		B523838520AE9FAC0087733A /* ZLShowBigImgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B523836C20AE9FAB0087733A /* ZLShowBigImgViewController.m */; };
+		B523838620AE9FAC0087733A /* ZLThumbnailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B523836E20AE9FAB0087733A /* ZLThumbnailViewController.m */; };
+		B523838920AEA00E0087733A /* FFSharedController.m in Sources */ = {isa = PBXBuildFile; fileRef = B523838820AEA00E0087733A /* FFSharedController.m */; };
+		B523838F20AEA0C70087733A /* FLAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = B523838C20AEA0C70087733A /* FLAnimatedImage.m */; };
+		B523839020AEA0C70087733A /* FLAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B523838E20AEA0C70087733A /* FLAnimatedImageView.m */; };
+		B523839820AEA2710087733A /* YBPopupMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = B523839320AEA2710087733A /* YBPopupMenu.m */; };
+		B523839920AEA2710087733A /* YBPopupMenuPath.m in Sources */ = {isa = PBXBuildFile; fileRef = B523839520AEA2710087733A /* YBPopupMenuPath.m */; };
+		B523839A20AEA2710087733A /* YBRectConst.m in Sources */ = {isa = PBXBuildFile; fileRef = B523839720AEA2710087733A /* YBRectConst.m */; };
+		B523839C20AEA71A0087733A /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B523839B20AEA71A0087733A /* TencentOpenAPI.framework */; };
+		B52383A320AEAAD30087733A /* FFOpenServerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52383A220AEAAD30087733A /* FFOpenServerViewController.m */; };
+		B52383A720AEAC400087733A /* FFBasicOpenServerController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52383A620AEAC400087733A /* FFBasicOpenServerController.m */; };
+		B52383B020AEAE170087733A /* FFBTOpenServerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52383AF20AEAE170087733A /* FFBTOpenServerViewController.m */; };
+		B52383B920AEB2CE0087733A /* FFOpenServerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B52383B720AEB2CE0087733A /* FFOpenServerCell.xib */; };
+		B52383BA20AEB2CE0087733A /* FFOpenServerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B52383B820AEB2CE0087733A /* FFOpenServerCell.m */; };
+		B52383BD20AEB6590087733A /* FFZKOpenServerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52383BC20AEB6590087733A /* FFZKOpenServerViewController.m */; };
 		B52ED09B20A9A38700C8CAF4 /* FFSRcommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B52ED09920A9A38700C8CAF4 /* FFSRcommentCell.m */; };
 		B5781AE020A3F4DE00CB1464 /* FFHomeSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5781ADE20A3F4DD00CB1464 /* FFHomeSelectView.m */; };
 		B5781AE320A42CED00CB1464 /* FFUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5781AE220A42CED00CB1464 /* FFUserModel.m */; };
@@ -130,6 +207,150 @@
 		B52382BD20ADAD570087733A /* FFStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FFStoryboard.storyboard; sourceTree = "<group>"; };
 		B52382C120ADB0F60087733A /* FFGameDetailHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFGameDetailHeaderView.h; sourceTree = "<group>"; };
 		B52382C220ADB0F60087733A /* FFGameDetailHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFGameDetailHeaderView.m; sourceTree = "<group>"; };
+		B52382C420AE82830087733A /* FFGameDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFGameDetailCell.h; sourceTree = "<group>"; };
+		B52382C520AE82830087733A /* FFGameDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFGameDetailCell.m; sourceTree = "<group>"; };
+		B52382C620AE82830087733A /* FFGameDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FFGameDetailCell.xib; sourceTree = "<group>"; };
+		B52382C920AE84040087733A /* FFGameCommentListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFGameCommentListViewController.h; sourceTree = "<group>"; };
+		B52382CA20AE84050087733A /* FFGameCommentListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFGameCommentListViewController.m; sourceTree = "<group>"; };
+		B52382D020AE9EF40087733A /* FFDriveAllInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFDriveAllInfoViewController.h; sourceTree = "<group>"; };
+		B52382D120AE9EF40087733A /* FFDriveAllInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFDriveAllInfoViewController.m; sourceTree = "<group>"; };
+		B52382D220AE9EF40087733A /* FFDriveAttentionInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFDriveAttentionInfoViewController.h; sourceTree = "<group>"; };
+		B52382D320AE9EF40087733A /* FFDriveAttentionInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFDriveAttentionInfoViewController.m; sourceTree = "<group>"; };
+		B52382D420AE9EF40087733A /* FFDriveDetailInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFDriveDetailInfoViewController.h; sourceTree = "<group>"; };
+		B52382D520AE9EF40087733A /* FFDriveDetailInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFDriveDetailInfoViewController.m; sourceTree = "<group>"; };
+		B52382D620AE9EF40087733A /* FFDriveHotInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFDriveHotInfoViewController.h; sourceTree = "<group>"; };
+		B52382D720AE9EF40087733A /* FFDriveHotInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFDriveHotInfoViewController.m; sourceTree = "<group>"; };
+		B52382D820AE9EF40087733A /* FFDriveMyNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFDriveMyNewsViewController.h; sourceTree = "<group>"; };
+		B52382D920AE9EF40087733A /* FFDriveMyNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFDriveMyNewsViewController.m; sourceTree = "<group>"; };
+		B52382DA20AE9EF40087733A /* FFDrivePostStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFDrivePostStatusViewController.h; sourceTree = "<group>"; };
+		B52382DB20AE9EF40087733A /* FFDrivePostStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFDrivePostStatusViewController.m; sourceTree = "<group>"; };
+		B52382DC20AE9EF40087733A /* FFDriveThroughInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFDriveThroughInfoViewController.h; sourceTree = "<group>"; };
+		B52382DD20AE9EF40087733A /* FFDriveThroughInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFDriveThroughInfoViewController.m; sourceTree = "<group>"; };
+		B52382DE20AE9EF40087733A /* FFGifThumbnailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFGifThumbnailViewController.h; sourceTree = "<group>"; };
+		B52382DF20AE9EF40087733A /* FFGifThumbnailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFGifThumbnailViewController.m; sourceTree = "<group>"; };
+		B52382E020AE9EF40087733A /* FFMyDynamicsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFMyDynamicsViewController.h; sourceTree = "<group>"; };
+		B52382E120AE9EF40087733A /* FFMyDynamicsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFMyDynamicsViewController.m; sourceTree = "<group>"; };
+		B52382E220AE9EF40087733A /* FFDetailMineInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFDetailMineInfoTableViewController.h; sourceTree = "<group>"; };
+		B52382E320AE9EF40087733A /* FFDetailMineInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFDetailMineInfoTableViewController.m; sourceTree = "<group>"; };
+		B52382E420AE9EF40087733A /* FFDriveController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFDriveController.h; sourceTree = "<group>"; };
+		B52382E520AE9EF40087733A /* FFDriveController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFDriveController.m; sourceTree = "<group>"; };
+		B52382E820AE9EF40087733A /* FFDriveAttentionNumbersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFDriveAttentionNumbersViewController.h; sourceTree = "<group>"; };
+		B52382E920AE9EF40087733A /* FFDriveAttentionNumbersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFDriveAttentionNumbersViewController.m; sourceTree = "<group>"; };
+		B52382EA20AE9EF40087733A /* FFDriveFansNumbersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFDriveFansNumbersViewController.h; sourceTree = "<group>"; };
+		B52382EB20AE9EF40087733A /* FFDriveFansNumbersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFDriveFansNumbersViewController.m; sourceTree = "<group>"; };
+		B52382EC20AE9EF40087733A /* FFDriveNumbersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFDriveNumbersViewController.h; sourceTree = "<group>"; };
+		B52382ED20AE9EF40087733A /* FFDriveNumbersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFDriveNumbersViewController.m; sourceTree = "<group>"; };
+		B52382EE20AE9EF40087733A /* FFMineBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFMineBaseTableViewController.h; sourceTree = "<group>"; };
+		B52382EF20AE9EF40087733A /* FFMineBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFMineBaseTableViewController.m; sourceTree = "<group>"; };
+		B52382F020AE9EF40087733A /* FFDriveMineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFDriveMineViewController.h; sourceTree = "<group>"; };
+		B52382F120AE9EF40087733A /* FFDriveMineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFDriveMineViewController.m; sourceTree = "<group>"; };
+		B52382F220AE9EF40087733A /* MyStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyStoryboard.storyboard; sourceTree = "<group>"; };
+		B52382F420AE9EF40087733A /* FFDriveModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFDriveModel.h; sourceTree = "<group>"; };
+		B52382F520AE9EF40087733A /* FFDriveModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFDriveModel.m; sourceTree = "<group>"; };
+		B52382F620AE9EF40087733A /* FFDriveUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFDriveUserModel.h; sourceTree = "<group>"; };
+		B52382F720AE9EF40087733A /* FFDriveUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFDriveUserModel.m; sourceTree = "<group>"; };
+		B52382F820AE9EF40087733A /* FFDynamicModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFDynamicModel.h; sourceTree = "<group>"; };
+		B52382F920AE9EF40087733A /* FFDynamicModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFDynamicModel.m; sourceTree = "<group>"; };
+		B52382FA20AE9EF40087733A /* FFPostStatusModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFPostStatusModel.h; sourceTree = "<group>"; };
+		B52382FB20AE9EF40087733A /* FFPostStatusModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFPostStatusModel.m; sourceTree = "<group>"; };
+		B52382FD20AE9EF40087733A /* DriveInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DriveInfoCell.h; sourceTree = "<group>"; };
+		B52382FE20AE9EF40087733A /* DriveInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DriveInfoCell.m; sourceTree = "<group>"; };
+		B52382FF20AE9EF40087733A /* DriveInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DriveInfoCell.xib; sourceTree = "<group>"; };
+		B523830020AE9EF40087733A /* FFDetailFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFDetailFooterView.h; sourceTree = "<group>"; };
+		B523830120AE9EF40087733A /* FFDetailFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFDetailFooterView.m; sourceTree = "<group>"; };
+		B523830220AE9EF40087733A /* FFDetailHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFDetailHeaderView.h; sourceTree = "<group>"; };
+		B523830320AE9EF40087733A /* FFDetailHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFDetailHeaderView.m; sourceTree = "<group>"; };
+		B523830420AE9EF40087733A /* FFDriveCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFDriveCommentCell.h; sourceTree = "<group>"; };
+		B523830520AE9EF40087733A /* FFDriveCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFDriveCommentCell.m; sourceTree = "<group>"; };
+		B523830620AE9EF40087733A /* FFDriveCommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FFDriveCommentCell.xib; sourceTree = "<group>"; };
+		B523830720AE9EF40087733A /* FFDriveReplyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFDriveReplyView.h; sourceTree = "<group>"; };
+		B523830820AE9EF40087733A /* FFDriveReplyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFDriveReplyView.m; sourceTree = "<group>"; };
+		B523830A20AE9EF40087733A /* FFDriveFansCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFDriveFansCell.h; sourceTree = "<group>"; };
+		B523830B20AE9EF40087733A /* FFDriveFansCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFDriveFansCell.m; sourceTree = "<group>"; };
+		B523830C20AE9EF40087733A /* FFDriveFansCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FFDriveFansCell.xib; sourceTree = "<group>"; };
+		B523830D20AE9EF40087733A /* FFDriveMyNewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFDriveMyNewsCell.h; sourceTree = "<group>"; };
+		B523830E20AE9EF40087733A /* FFDriveMyNewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFDriveMyNewsCell.m; sourceTree = "<group>"; };
+		B523830F20AE9EF40087733A /* FFDriveMyNewsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FFDriveMyNewsCell.xib; sourceTree = "<group>"; };
+		B523831020AE9EF40087733A /* FFDrivePersonalHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFDrivePersonalHeader.h; sourceTree = "<group>"; };
+		B523831120AE9EF40087733A /* FFDrivePersonalHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFDrivePersonalHeader.m; sourceTree = "<group>"; };
+		B523831220AE9EF40087733A /* FFMineViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFMineViewCell.h; sourceTree = "<group>"; };
+		B523831320AE9EF40087733A /* FFMineViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFMineViewCell.m; sourceTree = "<group>"; };
+		B523831420AE9EF40087733A /* FFPostStatusImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFPostStatusImageCell.h; sourceTree = "<group>"; };
+		B523831520AE9EF40087733A /* FFPostStatusImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFPostStatusImageCell.m; sourceTree = "<group>"; };
+		B523831620AE9EF40087733A /* FFSelectHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFSelectHeaderView.h; sourceTree = "<group>"; };
+		B523831720AE9EF40087733A /* FFSelectHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFSelectHeaderView.m; sourceTree = "<group>"; };
+		B523833C20AE9F680087733A /* FFViewFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFViewFactory.m; sourceTree = "<group>"; };
+		B523833D20AE9F680087733A /* FFViewFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFViewFactory.h; sourceTree = "<group>"; };
+		B523834020AE9FAB0087733A /* NSBundle+ZLPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+ZLPhotoBrowser.h"; sourceTree = "<group>"; };
+		B523834120AE9FAB0087733A /* NSBundle+ZLPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+ZLPhotoBrowser.m"; sourceTree = "<group>"; };
+		B523834320AE9FAB0087733A /* ZLPhotoActionSheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLPhotoActionSheet.xib; sourceTree = "<group>"; };
+		B523834420AE9FAB0087733A /* ZLPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ZLPhotoBrowser.bundle; sourceTree = "<group>"; };
+		B523834520AE9FAB0087733A /* ZLPhotoBrowserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLPhotoBrowserCell.xib; sourceTree = "<group>"; };
+		B523834620AE9FAB0087733A /* ToastUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToastUtils.h; sourceTree = "<group>"; };
+		B523834720AE9FAB0087733A /* ToastUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToastUtils.m; sourceTree = "<group>"; };
+		B523834820AE9FAB0087733A /* UIButton+EnlargeTouchArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+EnlargeTouchArea.h"; sourceTree = "<group>"; };
+		B523834920AE9FAB0087733A /* UIButton+EnlargeTouchArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+EnlargeTouchArea.m"; sourceTree = "<group>"; };
+		B523834A20AE9FAB0087733A /* UIImage+ZLPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ZLPhotoBrowser.h"; sourceTree = "<group>"; };
+		B523834B20AE9FAB0087733A /* UIImage+ZLPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ZLPhotoBrowser.m"; sourceTree = "<group>"; };
+		B523834C20AE9FAB0087733A /* ZLBigImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLBigImageCell.h; sourceTree = "<group>"; };
+		B523834D20AE9FAB0087733A /* ZLBigImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLBigImageCell.m; sourceTree = "<group>"; };
+		B523834E20AE9FAB0087733A /* ZLCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLCollectionCell.h; sourceTree = "<group>"; };
+		B523834F20AE9FAB0087733A /* ZLCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLCollectionCell.m; sourceTree = "<group>"; };
+		B523835020AE9FAB0087733A /* ZLCustomCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLCustomCamera.h; sourceTree = "<group>"; };
+		B523835120AE9FAB0087733A /* ZLCustomCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLCustomCamera.m; sourceTree = "<group>"; };
+		B523835220AE9FAB0087733A /* ZLDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLDefine.h; sourceTree = "<group>"; };
+		B523835320AE9FAB0087733A /* ZLEditVideoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLEditVideoController.h; sourceTree = "<group>"; };
+		B523835420AE9FAB0087733A /* ZLEditVideoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLEditVideoController.m; sourceTree = "<group>"; };
+		B523835520AE9FAB0087733A /* ZLEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLEditViewController.h; sourceTree = "<group>"; };
+		B523835620AE9FAB0087733A /* ZLEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLEditViewController.m; sourceTree = "<group>"; };
+		B523835720AE9FAB0087733A /* ZLForceTouchPreviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLForceTouchPreviewController.h; sourceTree = "<group>"; };
+		B523835820AE9FAB0087733A /* ZLForceTouchPreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLForceTouchPreviewController.m; sourceTree = "<group>"; };
+		B523835920AE9FAB0087733A /* ZLNoAuthorityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLNoAuthorityViewController.h; sourceTree = "<group>"; };
+		B523835A20AE9FAB0087733A /* ZLNoAuthorityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLNoAuthorityViewController.m; sourceTree = "<group>"; };
+		B523835B20AE9FAB0087733A /* ZLPhotoActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoActionSheet.h; sourceTree = "<group>"; };
+		B523835C20AE9FAB0087733A /* ZLPhotoActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPhotoActionSheet.m; sourceTree = "<group>"; };
+		B523835D20AE9FAB0087733A /* ZLPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoBrowser.h; sourceTree = "<group>"; };
+		B523835E20AE9FAB0087733A /* ZLPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPhotoBrowser.m; sourceTree = "<group>"; };
+		B523835F20AE9FAB0087733A /* ZLPhotoBrowserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoBrowserCell.h; sourceTree = "<group>"; };
+		B523836020AE9FAB0087733A /* ZLPhotoBrowserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPhotoBrowserCell.m; sourceTree = "<group>"; };
+		B523836120AE9FAB0087733A /* ZLPhotoConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoConfiguration.h; sourceTree = "<group>"; };
+		B523836220AE9FAB0087733A /* ZLPhotoConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPhotoConfiguration.m; sourceTree = "<group>"; };
+		B523836320AE9FAB0087733A /* ZLPhotoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoManager.h; sourceTree = "<group>"; };
+		B523836420AE9FAB0087733A /* ZLPhotoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPhotoManager.m; sourceTree = "<group>"; };
+		B523836520AE9FAB0087733A /* ZLPhotoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPhotoModel.h; sourceTree = "<group>"; };
+		B523836620AE9FAB0087733A /* ZLPhotoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPhotoModel.m; sourceTree = "<group>"; };
+		B523836720AE9FAB0087733A /* ZLPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPlayer.h; sourceTree = "<group>"; };
+		B523836820AE9FAB0087733A /* ZLPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPlayer.m; sourceTree = "<group>"; };
+		B523836920AE9FAB0087733A /* ZLProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLProgressHUD.h; sourceTree = "<group>"; };
+		B523836A20AE9FAB0087733A /* ZLProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLProgressHUD.m; sourceTree = "<group>"; };
+		B523836B20AE9FAB0087733A /* ZLShowBigImgViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLShowBigImgViewController.h; sourceTree = "<group>"; };
+		B523836C20AE9FAB0087733A /* ZLShowBigImgViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLShowBigImgViewController.m; sourceTree = "<group>"; };
+		B523836D20AE9FAB0087733A /* ZLThumbnailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLThumbnailViewController.h; sourceTree = "<group>"; };
+		B523836E20AE9FAB0087733A /* ZLThumbnailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLThumbnailViewController.m; sourceTree = "<group>"; };
+		B523838720AEA00E0087733A /* FFSharedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFSharedController.h; sourceTree = "<group>"; };
+		B523838820AEA00E0087733A /* FFSharedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFSharedController.m; sourceTree = "<group>"; };
+		B523838B20AEA0C70087733A /* FLAnimatedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImage.h; sourceTree = "<group>"; };
+		B523838C20AEA0C70087733A /* FLAnimatedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimatedImage.m; sourceTree = "<group>"; };
+		B523838D20AEA0C70087733A /* FLAnimatedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImageView.h; sourceTree = "<group>"; };
+		B523838E20AEA0C70087733A /* FLAnimatedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimatedImageView.m; sourceTree = "<group>"; };
+		B523839220AEA2710087733A /* YBPopupMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBPopupMenu.h; sourceTree = "<group>"; };
+		B523839320AEA2710087733A /* YBPopupMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBPopupMenu.m; sourceTree = "<group>"; };
+		B523839420AEA2710087733A /* YBPopupMenuPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBPopupMenuPath.h; sourceTree = "<group>"; };
+		B523839520AEA2710087733A /* YBPopupMenuPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBPopupMenuPath.m; sourceTree = "<group>"; };
+		B523839620AEA2710087733A /* YBRectConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBRectConst.h; sourceTree = "<group>"; };
+		B523839720AEA2710087733A /* YBRectConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBRectConst.m; sourceTree = "<group>"; };
+		B523839B20AEA71A0087733A /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TencentOpenAPI.framework; path = GameBox/TencentOpenAPI.framework; sourceTree = "<group>"; };
+		B52383A120AEAAD30087733A /* FFOpenServerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFOpenServerViewController.h; sourceTree = "<group>"; };
+		B52383A220AEAAD30087733A /* FFOpenServerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFOpenServerViewController.m; sourceTree = "<group>"; };
+		B52383A520AEAC400087733A /* FFBasicOpenServerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBasicOpenServerController.h; sourceTree = "<group>"; };
+		B52383A620AEAC400087733A /* FFBasicOpenServerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBasicOpenServerController.m; sourceTree = "<group>"; };
+		B52383AE20AEAE170087733A /* FFBTOpenServerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBTOpenServerViewController.h; sourceTree = "<group>"; };
+		B52383AF20AEAE170087733A /* FFBTOpenServerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBTOpenServerViewController.m; sourceTree = "<group>"; };
+		B52383B620AEB2CE0087733A /* FFOpenServerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFOpenServerCell.h; sourceTree = "<group>"; };
+		B52383B720AEB2CE0087733A /* FFOpenServerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FFOpenServerCell.xib; sourceTree = "<group>"; };
+		B52383B820AEB2CE0087733A /* FFOpenServerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFOpenServerCell.m; sourceTree = "<group>"; };
+		B52383BB20AEB6590087733A /* FFZKOpenServerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFZKOpenServerViewController.h; sourceTree = "<group>"; };
+		B52383BC20AEB6590087733A /* FFZKOpenServerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFZKOpenServerViewController.m; sourceTree = "<group>"; };
 		B52ED09820A9A38700C8CAF4 /* FFSRcommentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFSRcommentCell.h; sourceTree = "<group>"; };
 		B52ED09920A9A38700C8CAF4 /* FFSRcommentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFSRcommentCell.m; sourceTree = "<group>"; };
 		B5781ADE20A3F4DD00CB1464 /* FFHomeSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFHomeSelectView.m; sourceTree = "<group>"; };
@@ -240,6 +461,7 @@
 			files = (
 				0543CAF4C1A27767297E9250 /* libPods-GameBox.a in Frameworks */,
 				B5D5057B20859E8D000B7B50 /* FFTools.framework in Frameworks */,
+				B523839C20AEA71A0087733A /* TencentOpenAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,6 +471,7 @@
 		76486CF296C9DFD1ABAED75C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B523839B20AEA71A0087733A /* TencentOpenAPI.framework */,
 				B5D5057A20859E8D000B7B50 /* FFTools.framework */,
 				C1C09ECF85CDCEAA38284810 /* libPods-GameBox.a */,
 			);
@@ -460,6 +683,8 @@
 			children = (
 				B52382BA20ADAD280087733A /* FFGameDetailViewController.h */,
 				B52382BB20ADAD280087733A /* FFGameDetailViewController.m */,
+				B52382C920AE84040087733A /* FFGameCommentListViewController.h */,
+				B52382CA20AE84050087733A /* FFGameCommentListViewController.m */,
 			);
 			path = ChildController;
 			sourceTree = "<group>";
@@ -467,10 +692,290 @@
 		B52382C020ADB0DF0087733A /* ChildView */ = {
 			isa = PBXGroup;
 			children = (
+				B52382CC20AE9E380087733A /* OldVIew */,
 				B52382C120ADB0F60087733A /* FFGameDetailHeaderView.h */,
 				B52382C220ADB0F60087733A /* FFGameDetailHeaderView.m */,
+				B52382C420AE82830087733A /* FFGameDetailCell.h */,
+				B52382C520AE82830087733A /* FFGameDetailCell.m */,
+				B52382C620AE82830087733A /* FFGameDetailCell.xib */,
 			);
 			path = ChildView;
+			sourceTree = "<group>";
+		};
+		B52382CC20AE9E380087733A /* OldVIew */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = OldVIew;
+			sourceTree = "<group>";
+		};
+		B52382CD20AE9EF40087733A /* DriveClass */ = {
+			isa = PBXGroup;
+			children = (
+				B523833D20AE9F680087733A /* FFViewFactory.h */,
+				B523833C20AE9F680087733A /* FFViewFactory.m */,
+				B523838720AEA00E0087733A /* FFSharedController.h */,
+				B523838820AEA00E0087733A /* FFSharedController.m */,
+				B52382CE20AE9EF40087733A /* Controller */,
+				B52382F320AE9EF40087733A /* Model */,
+				B52382FC20AE9EF40087733A /* View */,
+			);
+			path = DriveClass;
+			sourceTree = "<group>";
+		};
+		B52382CE20AE9EF40087733A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B52382CF20AE9EF40087733A /* ChildClass */,
+				B52382E220AE9EF40087733A /* FFDetailMineInfoTableViewController.h */,
+				B52382E320AE9EF40087733A /* FFDetailMineInfoTableViewController.m */,
+				B52382E420AE9EF40087733A /* FFDriveController.h */,
+				B52382E520AE9EF40087733A /* FFDriveController.m */,
+				B52382E620AE9EF40087733A /* MineCenterController */,
+				B52382F220AE9EF40087733A /* MyStoryboard.storyboard */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B52382CF20AE9EF40087733A /* ChildClass */ = {
+			isa = PBXGroup;
+			children = (
+				B52382D020AE9EF40087733A /* FFDriveAllInfoViewController.h */,
+				B52382D120AE9EF40087733A /* FFDriveAllInfoViewController.m */,
+				B52382D220AE9EF40087733A /* FFDriveAttentionInfoViewController.h */,
+				B52382D320AE9EF40087733A /* FFDriveAttentionInfoViewController.m */,
+				B52382D420AE9EF40087733A /* FFDriveDetailInfoViewController.h */,
+				B52382D520AE9EF40087733A /* FFDriveDetailInfoViewController.m */,
+				B52382D620AE9EF40087733A /* FFDriveHotInfoViewController.h */,
+				B52382D720AE9EF40087733A /* FFDriveHotInfoViewController.m */,
+				B52382D820AE9EF40087733A /* FFDriveMyNewsViewController.h */,
+				B52382D920AE9EF40087733A /* FFDriveMyNewsViewController.m */,
+				B52382DA20AE9EF40087733A /* FFDrivePostStatusViewController.h */,
+				B52382DB20AE9EF40087733A /* FFDrivePostStatusViewController.m */,
+				B52382DC20AE9EF40087733A /* FFDriveThroughInfoViewController.h */,
+				B52382DD20AE9EF40087733A /* FFDriveThroughInfoViewController.m */,
+				B52382DE20AE9EF40087733A /* FFGifThumbnailViewController.h */,
+				B52382DF20AE9EF40087733A /* FFGifThumbnailViewController.m */,
+				B52382E020AE9EF40087733A /* FFMyDynamicsViewController.h */,
+				B52382E120AE9EF40087733A /* FFMyDynamicsViewController.m */,
+			);
+			path = ChildClass;
+			sourceTree = "<group>";
+		};
+		B52382E620AE9EF40087733A /* MineCenterController */ = {
+			isa = PBXGroup;
+			children = (
+				B52382E720AE9EF40087733A /* FFDriveMineChildController */,
+				B52382F020AE9EF40087733A /* FFDriveMineViewController.h */,
+				B52382F120AE9EF40087733A /* FFDriveMineViewController.m */,
+			);
+			path = MineCenterController;
+			sourceTree = "<group>";
+		};
+		B52382E720AE9EF40087733A /* FFDriveMineChildController */ = {
+			isa = PBXGroup;
+			children = (
+				B52382E820AE9EF40087733A /* FFDriveAttentionNumbersViewController.h */,
+				B52382E920AE9EF40087733A /* FFDriveAttentionNumbersViewController.m */,
+				B52382EA20AE9EF40087733A /* FFDriveFansNumbersViewController.h */,
+				B52382EB20AE9EF40087733A /* FFDriveFansNumbersViewController.m */,
+				B52382EC20AE9EF40087733A /* FFDriveNumbersViewController.h */,
+				B52382ED20AE9EF40087733A /* FFDriveNumbersViewController.m */,
+				B52382EE20AE9EF40087733A /* FFMineBaseTableViewController.h */,
+				B52382EF20AE9EF40087733A /* FFMineBaseTableViewController.m */,
+			);
+			path = FFDriveMineChildController;
+			sourceTree = "<group>";
+		};
+		B52382F320AE9EF40087733A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B52382F420AE9EF40087733A /* FFDriveModel.h */,
+				B52382F520AE9EF40087733A /* FFDriveModel.m */,
+				B52382F620AE9EF40087733A /* FFDriveUserModel.h */,
+				B52382F720AE9EF40087733A /* FFDriveUserModel.m */,
+				B52382F820AE9EF40087733A /* FFDynamicModel.h */,
+				B52382F920AE9EF40087733A /* FFDynamicModel.m */,
+				B52382FA20AE9EF40087733A /* FFPostStatusModel.h */,
+				B52382FB20AE9EF40087733A /* FFPostStatusModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B52382FC20AE9EF40087733A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B52382FD20AE9EF40087733A /* DriveInfoCell.h */,
+				B52382FE20AE9EF40087733A /* DriveInfoCell.m */,
+				B52382FF20AE9EF40087733A /* DriveInfoCell.xib */,
+				B523830020AE9EF40087733A /* FFDetailFooterView.h */,
+				B523830120AE9EF40087733A /* FFDetailFooterView.m */,
+				B523830220AE9EF40087733A /* FFDetailHeaderView.h */,
+				B523830320AE9EF40087733A /* FFDetailHeaderView.m */,
+				B523830420AE9EF40087733A /* FFDriveCommentCell.h */,
+				B523830520AE9EF40087733A /* FFDriveCommentCell.m */,
+				B523830620AE9EF40087733A /* FFDriveCommentCell.xib */,
+				B523830720AE9EF40087733A /* FFDriveReplyView.h */,
+				B523830820AE9EF40087733A /* FFDriveReplyView.m */,
+				B523830920AE9EF40087733A /* FFMineView */,
+				B523831420AE9EF40087733A /* FFPostStatusImageCell.h */,
+				B523831520AE9EF40087733A /* FFPostStatusImageCell.m */,
+				B523831620AE9EF40087733A /* FFSelectHeaderView.h */,
+				B523831720AE9EF40087733A /* FFSelectHeaderView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B523830920AE9EF40087733A /* FFMineView */ = {
+			isa = PBXGroup;
+			children = (
+				B523830A20AE9EF40087733A /* FFDriveFansCell.h */,
+				B523830B20AE9EF40087733A /* FFDriveFansCell.m */,
+				B523830C20AE9EF40087733A /* FFDriveFansCell.xib */,
+				B523830D20AE9EF40087733A /* FFDriveMyNewsCell.h */,
+				B523830E20AE9EF40087733A /* FFDriveMyNewsCell.m */,
+				B523830F20AE9EF40087733A /* FFDriveMyNewsCell.xib */,
+				B523831020AE9EF40087733A /* FFDrivePersonalHeader.h */,
+				B523831120AE9EF40087733A /* FFDrivePersonalHeader.m */,
+				B523831220AE9EF40087733A /* FFMineViewCell.h */,
+				B523831320AE9EF40087733A /* FFMineViewCell.m */,
+			);
+			path = FFMineView;
+			sourceTree = "<group>";
+		};
+		B523833F20AE9FAB0087733A /* PhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				B523834020AE9FAB0087733A /* NSBundle+ZLPhotoBrowser.h */,
+				B523834120AE9FAB0087733A /* NSBundle+ZLPhotoBrowser.m */,
+				B523834220AE9FAB0087733A /* resource */,
+				B523834620AE9FAB0087733A /* ToastUtils.h */,
+				B523834720AE9FAB0087733A /* ToastUtils.m */,
+				B523834820AE9FAB0087733A /* UIButton+EnlargeTouchArea.h */,
+				B523834920AE9FAB0087733A /* UIButton+EnlargeTouchArea.m */,
+				B523834A20AE9FAB0087733A /* UIImage+ZLPhotoBrowser.h */,
+				B523834B20AE9FAB0087733A /* UIImage+ZLPhotoBrowser.m */,
+				B523834C20AE9FAB0087733A /* ZLBigImageCell.h */,
+				B523834D20AE9FAB0087733A /* ZLBigImageCell.m */,
+				B523834E20AE9FAB0087733A /* ZLCollectionCell.h */,
+				B523834F20AE9FAB0087733A /* ZLCollectionCell.m */,
+				B523835020AE9FAB0087733A /* ZLCustomCamera.h */,
+				B523835120AE9FAB0087733A /* ZLCustomCamera.m */,
+				B523835220AE9FAB0087733A /* ZLDefine.h */,
+				B523835320AE9FAB0087733A /* ZLEditVideoController.h */,
+				B523835420AE9FAB0087733A /* ZLEditVideoController.m */,
+				B523835520AE9FAB0087733A /* ZLEditViewController.h */,
+				B523835620AE9FAB0087733A /* ZLEditViewController.m */,
+				B523835720AE9FAB0087733A /* ZLForceTouchPreviewController.h */,
+				B523835820AE9FAB0087733A /* ZLForceTouchPreviewController.m */,
+				B523835920AE9FAB0087733A /* ZLNoAuthorityViewController.h */,
+				B523835A20AE9FAB0087733A /* ZLNoAuthorityViewController.m */,
+				B523835B20AE9FAB0087733A /* ZLPhotoActionSheet.h */,
+				B523835C20AE9FAB0087733A /* ZLPhotoActionSheet.m */,
+				B523835D20AE9FAB0087733A /* ZLPhotoBrowser.h */,
+				B523835E20AE9FAB0087733A /* ZLPhotoBrowser.m */,
+				B523835F20AE9FAB0087733A /* ZLPhotoBrowserCell.h */,
+				B523836020AE9FAB0087733A /* ZLPhotoBrowserCell.m */,
+				B523836120AE9FAB0087733A /* ZLPhotoConfiguration.h */,
+				B523836220AE9FAB0087733A /* ZLPhotoConfiguration.m */,
+				B523836320AE9FAB0087733A /* ZLPhotoManager.h */,
+				B523836420AE9FAB0087733A /* ZLPhotoManager.m */,
+				B523836520AE9FAB0087733A /* ZLPhotoModel.h */,
+				B523836620AE9FAB0087733A /* ZLPhotoModel.m */,
+				B523836720AE9FAB0087733A /* ZLPlayer.h */,
+				B523836820AE9FAB0087733A /* ZLPlayer.m */,
+				B523836920AE9FAB0087733A /* ZLProgressHUD.h */,
+				B523836A20AE9FAB0087733A /* ZLProgressHUD.m */,
+				B523836B20AE9FAB0087733A /* ZLShowBigImgViewController.h */,
+				B523836C20AE9FAB0087733A /* ZLShowBigImgViewController.m */,
+				B523836D20AE9FAB0087733A /* ZLThumbnailViewController.h */,
+				B523836E20AE9FAB0087733A /* ZLThumbnailViewController.m */,
+			);
+			path = PhotoBrowser;
+			sourceTree = "<group>";
+		};
+		B523834220AE9FAB0087733A /* resource */ = {
+			isa = PBXGroup;
+			children = (
+				B523834320AE9FAB0087733A /* ZLPhotoActionSheet.xib */,
+				B523834420AE9FAB0087733A /* ZLPhotoBrowser.bundle */,
+				B523834520AE9FAB0087733A /* ZLPhotoBrowserCell.xib */,
+			);
+			path = resource;
+			sourceTree = "<group>";
+		};
+		B523838A20AEA0C70087733A /* FLAnimatedImage */ = {
+			isa = PBXGroup;
+			children = (
+				B523838B20AEA0C70087733A /* FLAnimatedImage.h */,
+				B523838C20AEA0C70087733A /* FLAnimatedImage.m */,
+				B523838D20AEA0C70087733A /* FLAnimatedImageView.h */,
+				B523838E20AEA0C70087733A /* FLAnimatedImageView.m */,
+			);
+			path = FLAnimatedImage;
+			sourceTree = "<group>";
+		};
+		B523839120AEA2710087733A /* YBPopupMenu */ = {
+			isa = PBXGroup;
+			children = (
+				B523839220AEA2710087733A /* YBPopupMenu.h */,
+				B523839320AEA2710087733A /* YBPopupMenu.m */,
+				B523839420AEA2710087733A /* YBPopupMenuPath.h */,
+				B523839520AEA2710087733A /* YBPopupMenuPath.m */,
+				B523839620AEA2710087733A /* YBRectConst.h */,
+				B523839720AEA2710087733A /* YBRectConst.m */,
+			);
+			path = YBPopupMenu;
+			sourceTree = "<group>";
+		};
+		B523839D20AEAA620087733A /* FFOpenServerClass */ = {
+			isa = PBXGroup;
+			children = (
+				B523839E20AEAA720087733A /* Model */,
+				B52383A820AEACF40087733A /* View */,
+				B523839F20AEAA7A0087733A /* Controller */,
+			);
+			path = FFOpenServerClass;
+			sourceTree = "<group>";
+		};
+		B523839E20AEAA720087733A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B52383B620AEB2CE0087733A /* FFOpenServerCell.h */,
+				B52383B820AEB2CE0087733A /* FFOpenServerCell.m */,
+				B52383B720AEB2CE0087733A /* FFOpenServerCell.xib */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B523839F20AEAA7A0087733A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B52383A120AEAAD30087733A /* FFOpenServerViewController.h */,
+				B52383A220AEAAD30087733A /* FFOpenServerViewController.m */,
+				B52383A420AEABEF0087733A /* ChildController */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B52383A420AEABEF0087733A /* ChildController */ = {
+			isa = PBXGroup;
+			children = (
+				B52383AE20AEAE170087733A /* FFBTOpenServerViewController.h */,
+				B52383AF20AEAE170087733A /* FFBTOpenServerViewController.m */,
+				B52383BB20AEB6590087733A /* FFZKOpenServerViewController.h */,
+				B52383BC20AEB6590087733A /* FFZKOpenServerViewController.m */,
+				B52383A520AEAC400087733A /* FFBasicOpenServerController.h */,
+				B52383A620AEAC400087733A /* FFBasicOpenServerController.m */,
+			);
+			path = ChildController;
+			sourceTree = "<group>";
+		};
+		B52383A820AEACF40087733A /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		B5781AE620A44AF300CB1464 /* FFBTServerClass */ = {
@@ -597,6 +1102,9 @@
 		B58CB7A5207B10830099773D /* Third_Library */ = {
 			isa = PBXGroup;
 			children = (
+				B523839120AEA2710087733A /* YBPopupMenu */,
+				B523838A20AEA0C70087733A /* FLAnimatedImage */,
+				B523833F20AE9FAB0087733A /* PhotoBrowser */,
 				B58CB7A6207B10830099773D /* SYKeychain.h */,
 				B58CB7A7207B10830099773D /* SYKeychain.m */,
 			);
@@ -740,8 +1248,10 @@
 		B5D505812086F17A000B7B50 /* GeneralClass */ = {
 			isa = PBXGroup;
 			children = (
+				B52382CD20AE9EF40087733A /* DriveClass */,
 				B5D1043F20904DC200CA1949 /* FFGameClass */,
 				B5D505822086F1A3000B7B50 /* FFHomeClass */,
+				B523839D20AEAA620087733A /* FFOpenServerClass */,
 				B5781AE620A44AF300CB1464 /* FFBTServerClass */,
 				B5781AF320A573C500CB1464 /* FFZKServerClass */,
 				B523827A20AADE400087733A /* FFGameTypeListClass */,
@@ -984,17 +1494,27 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B52383B920AEB2CE0087733A /* FFOpenServerCell.xib in Resources */,
+				B523833220AE9EF40087733A /* FFDriveCommentCell.xib in Resources */,
 				B58CB7B2207B10830099773D /* cityData.plist in Resources */,
+				B523837020AE9FAC0087733A /* ZLPhotoActionSheet.xib in Resources */,
+				B523833520AE9EF40087733A /* FFDriveFansCell.xib in Resources */,
+				B52382C820AE82830087733A /* FFGameDetailCell.xib in Resources */,
 				B58CB7B3207B10830099773D /* GameBoxConfig.plist in Resources */,
 				B58CB7B6207B10830099773D /* LaunchScreen.storyboard in Resources */,
+				B523832E20AE9EF40087733A /* DriveInfoCell.xib in Resources */,
 				B52382BE20ADAD570087733A /* FFStoryboard.storyboard in Resources */,
+				B523837120AE9FAC0087733A /* ZLPhotoBrowser.bundle in Resources */,
 				B5781B0020A5903700CB1464 /* ImageAssets.xcassets in Resources */,
 				B52382AE20AC34FE0087733A /* FFCustomizeCell.xib in Resources */,
+				B523832820AE9EF40087733A /* MyStoryboard.storyboard in Resources */,
 				B523829A20AB11D20087733A /* FFActivityCell.xib in Resources */,
 				B5D10439209022F800CA1949 /* FFGameGuideCell.xib in Resources */,
+				B523833720AE9EF40087733A /* FFDriveMyNewsCell.xib in Resources */,
 				B5E1E54320622E40008F49CA /* README.md in Resources */,
 				B5781AE520A440C900CB1464 /* Podfile in Resources */,
 				B58CB7B5207B10830099773D /* Assets.xcassets in Resources */,
+				B523837220AE9FAC0087733A /* ZLPhotoBrowserCell.xib in Resources */,
 				B5D10447209066FD00CA1949 /* FFClassifyTableCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1045,66 +1565,132 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B523833820AE9EF40087733A /* FFDrivePersonalHeader.m in Sources */,
+				B52383A720AEAC400087733A /* FFBasicOpenServerController.m in Sources */,
+				B523832D20AE9EF40087733A /* DriveInfoCell.m in Sources */,
 				B5D505EB2089DAFE000B7B50 /* FFStatisticsModel.m in Sources */,
+				B523833020AE9EF40087733A /* FFDetailHeaderView.m in Sources */,
 				B5781AE020A3F4DE00CB1464 /* FFHomeSelectView.m in Sources */,
+				B523837E20AE9FAC0087733A /* ZLPhotoBrowser.m in Sources */,
 				B523826A20AABCCA0087733A /* FFGAViewController.m in Sources */,
+				B523833E20AE9F680087733A /* FFViewFactory.m in Sources */,
+				B523839A20AEA2710087733A /* YBRectConst.m in Sources */,
+				B523831820AE9EF40087733A /* FFDriveAllInfoViewController.m in Sources */,
+				B523836F20AE9FAC0087733A /* NSBundle+ZLPhotoBrowser.m in Sources */,
 				B5D10448209066FD00CA1949 /* FFClassifyTableCell.m in Sources */,
 				B5D1042D208F162500CA1949 /* FFMapModel.m in Sources */,
+				B52383BD20AEB6590087733A /* FFZKOpenServerViewController.m in Sources */,
 				B52382A520AC04890087733A /* FFBasicSSTableViewController.m in Sources */,
+				B52382C720AE82830087733A /* FFGameDetailCell.m in Sources */,
+				B523837320AE9FAC0087733A /* ToastUtils.m in Sources */,
 				B5D10431208F3CB300CA1949 /* FFWaitingManager.m in Sources */,
+				B523838220AE9FAC0087733A /* ZLPhotoModel.m in Sources */,
 				B5D104352090167D00CA1949 /* FFRankListViewController.m in Sources */,
+				B523833920AE9EF40087733A /* FFMineViewCell.m in Sources */,
+				B523832520AE9EF40087733A /* FFDriveNumbersViewController.m in Sources */,
 				B58CB7B1207B10830099773D /* main.m in Sources */,
+				B523838120AE9FAC0087733A /* ZLPhotoManager.m in Sources */,
 				B52382AD20AC34FE0087733A /* FFCustomizeCell.m in Sources */,
+				B523831A20AE9EF40087733A /* FFDriveDetailInfoViewController.m in Sources */,
 				B5D1043A209022F800CA1949 /* FFGameGuideCell.m in Sources */,
 				B5781AEB20A44B5100CB1464 /* FFBTServerViewController.m in Sources */,
+				B523831920AE9EF40087733A /* FFDriveAttentionInfoViewController.m in Sources */,
 				B5781AFE20A57D3600CB1464 /* FFImageManager.m in Sources */,
+				B523839820AEA2710087733A /* YBPopupMenu.m in Sources */,
 				B5D5058B208715C0000B7B50 /* FFRecommentViewController.m in Sources */,
 				B52382B820AD70F10087733A /* FFBasicSSSelectView.m in Sources */,
 				B52ED09B20A9A38700C8CAF4 /* FFSRcommentCell.m in Sources */,
+				B52383B020AEAE170087733A /* FFBTOpenServerViewController.m in Sources */,
+				B523833A20AE9EF40087733A /* FFPostStatusImageCell.m in Sources */,
+				B523832320AE9EF40087733A /* FFDriveAttentionNumbersViewController.m in Sources */,
+				B523837620AE9FAC0087733A /* ZLBigImageCell.m in Sources */,
+				B523832020AE9EF40087733A /* FFMyDynamicsViewController.m in Sources */,
 				B58CB7DB207B12DC0099773D /* FFCustomizeTabBar.m in Sources */,
+				B523838320AE9FAC0087733A /* ZLPlayer.m in Sources */,
+				B523831D20AE9EF40087733A /* FFDrivePostStatusViewController.m in Sources */,
 				B5781AF720A573F200CB1464 /* FFZKServerViewController.m in Sources */,
+				B523832C20AE9EF40087733A /* FFPostStatusModel.m in Sources */,
+				B523831F20AE9EF40087733A /* FFGifThumbnailViewController.m in Sources */,
+				B523837B20AE9FAC0087733A /* ZLForceTouchPreviewController.m in Sources */,
+				B523839920AEA2710087733A /* YBPopupMenuPath.m in Sources */,
+				B523837820AE9FAC0087733A /* ZLCustomCamera.m in Sources */,
+				B523837C20AE9FAC0087733A /* ZLNoAuthorityViewController.m in Sources */,
 				B523825C20AA86110087733A /* FFZKNewGameController.m in Sources */,
+				B523837420AE9FAC0087733A /* UIButton+EnlargeTouchArea.m in Sources */,
 				B523828720AADFCE0087733A /* FFDiscountController.m in Sources */,
 				B58CB7AC207B10830099773D /* FFBasicModel.m in Sources */,
 				B523826120AAB6850087733A /* FFBTClassifyController.m in Sources */,
 				B523827920AACA670087733A /* FFGuideViewController.m in Sources */,
 				B58CB7AE207B10830099773D /* FFNetWorkManager.m in Sources */,
 				B52382A120ABCEF00087733A /* FFBasicSSTableViewCell.m in Sources */,
+				B523839020AEA0C70087733A /* FLAnimatedImageView.m in Sources */,
 				B5D5059E208875E8000B7B50 /* FFOSChildViewController.m in Sources */,
+				B523837F20AE9FAC0087733A /* ZLPhotoBrowserCell.m in Sources */,
+				B523831C20AE9EF40087733A /* FFDriveMyNewsViewController.m in Sources */,
+				B523837720AE9FAC0087733A /* ZLCollectionCell.m in Sources */,
+				B523832120AE9EF40087733A /* FFDetailMineInfoTableViewController.m in Sources */,
+				B523832B20AE9EF40087733A /* FFDynamicModel.m in Sources */,
+				B523837D20AE9FAC0087733A /* ZLPhotoActionSheet.m in Sources */,
+				B523832420AE9EF40087733A /* FFDriveFansNumbersViewController.m in Sources */,
+				B52383BA20AEB2CE0087733A /* FFOpenServerCell.m in Sources */,
 				B5D10421208F0DD900CA1949 /* FFBasicViewController.m in Sources */,
 				B5D505872086F1D8000B7B50 /* FFHomeViewController.m in Sources */,
+				B523833320AE9EF40087733A /* FFDriveReplyView.m in Sources */,
 				B590959820A9401B009CD99A /* FFMineViewModel.m in Sources */,
 				B5781AEE20A44D8D00CB1464 /* FFBTServerHeaderView.m in Sources */,
+				B523832920AE9EF40087733A /* FFDriveModel.m in Sources */,
 				B523827E20AADECA0087733A /* FFGameTypeListController.m in Sources */,
 				B5D505AE20898D69000B7B50 /* FFMineViewController.m in Sources */,
+				B523837A20AE9FAC0087733A /* ZLEditViewController.m in Sources */,
 				B5D1042A208F156000CA1949 /* FFGameModel.m in Sources */,
 				B5781AFA20A57B1C00CB1464 /* FFBasicBannerView.m in Sources */,
+				B523831B20AE9EF40087733A /* FFDriveHotInfoViewController.m in Sources */,
 				B5D505A920898D25000B7B50 /* FFDriveViewController.m in Sources */,
 				B590959C20A95CA2009CD99A /* FFColorManager.m in Sources */,
 				B523825920AA85FF0087733A /* FFBTNewGameController.m in Sources */,
+				B523838620AE9FAC0087733A /* ZLThumbnailViewController.m in Sources */,
 				B523826E20AABD220087733A /* FFActivityViewController.m in Sources */,
 				B52382A920AC30780087733A /* FFCurrentGameModel.m in Sources */,
 				B5D1044320904E1E00CA1949 /* FFGameViewController.m in Sources */,
 				B523829920AB11D20087733A /* FFActivityCell.m in Sources */,
+				B523838920AEA00E0087733A /* FFSharedController.m in Sources */,
+				B523833B20AE9EF40087733A /* FFSelectHeaderView.m in Sources */,
 				B5D5059420884164000B7B50 /* FFClassifyViewController.m in Sources */,
 				B58CB7D6207B12AC0099773D /* FFMainTabbarViewController.m in Sources */,
+				B523837520AE9FAC0087733A /* UIImage+ZLPhotoBrowser.m in Sources */,
 				B5D5059A20886D7D000B7B50 /* FFOpenServiceViewController.m in Sources */,
+				B523831E20AE9EF40087733A /* FFDriveThroughInfoViewController.m in Sources */,
 				B59D989F2084A2E20024B11D /* FFBasicTableViewController.m in Sources */,
+				B523838420AE9FAC0087733A /* ZLProgressHUD.m in Sources */,
 				B523828220AADF9D0087733A /* FFHeightVipController.m in Sources */,
+				B523833420AE9EF40087733A /* FFDriveFansCell.m in Sources */,
 				B58CB7AF207B10830099773D /* FFAppDelegate.m in Sources */,
+				B523838F20AEA0C70087733A /* FLAnimatedImage.m in Sources */,
+				B52382CB20AE84050087733A /* FFGameCommentListViewController.m in Sources */,
+				B523832F20AE9EF40087733A /* FFDetailFooterView.m in Sources */,
 				B523828B20AB0C7F0087733A /* FFBasicScrollSelectController.m in Sources */,
 				B5D1044B2090694200CA1949 /* FFWebViewController.m in Sources */,
 				B5781AF220A535B900CB1464 /* FFServersModel.m in Sources */,
+				B523832A20AE9EF40087733A /* FFDriveUserModel.m in Sources */,
+				B523832620AE9EF40087733A /* FFMineBaseTableViewController.m in Sources */,
+				B52383A320AEAAD30087733A /* FFOpenServerViewController.m in Sources */,
 				B523826420AAB6950087733A /* FFZKClassifyController.m in Sources */,
+				B523838520AE9FAC0087733A /* ZLShowBigImgViewController.m in Sources */,
 				B5D1043E20904DB700CA1949 /* FFClassifyDetailViewController.m in Sources */,
 				B52382B220AC44610087733A /* FFGameHeaderView.m in Sources */,
 				B5D5059120884126000B7B50 /* FFGameGuideViewController.m in Sources */,
+				B523833120AE9EF40087733A /* FFDriveCommentCell.m in Sources */,
 				B58CB7D2207B12470099773D /* FFControllerManager.m in Sources */,
 				B52382BC20ADAD280087733A /* FFGameDetailViewController.m in Sources */,
 				B58CB7AD207B10830099773D /* FFDeviceInfo.m in Sources */,
+				B523833620AE9EF40087733A /* FFDriveMyNewsCell.m in Sources */,
+				B523837920AE9FAC0087733A /* ZLEditVideoController.m in Sources */,
 				B5781AE320A42CED00CB1464 /* FFUserModel.m in Sources */,
 				B52382C320ADB0F60087733A /* FFGameDetailHeaderView.m in Sources */,
+				B523838020AE9FAC0087733A /* ZLPhotoConfiguration.m in Sources */,
+				B523832720AE9EF40087733A /* FFDriveMineViewController.m in Sources */,
 				B5D505802085CB06000B7B50 /* FFBasicSelectViewController.m in Sources */,
+				B523832220AE9EF40087733A /* FFDriveController.m in Sources */,
 				B5D5058E2088406A000B7B50 /* FFNewGameViewController.m in Sources */,
 				B58CB7B4207B10830099773D /* SYKeychain.m in Sources */,
 				B59D98A22084A2FD0024B11D /* FFBasicSelectView.m in Sources */,

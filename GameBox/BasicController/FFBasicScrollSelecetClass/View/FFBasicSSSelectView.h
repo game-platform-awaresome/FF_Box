@@ -28,9 +28,9 @@ typedef void(^SelectIndexBlock)(NSUInteger idx);
 
 - (instancetype)initWithFrame:(CGRect)frame;
 
-
 - (void)setButtonSubscriptWithIdx:(NSUInteger)idx Title:(NSString *)title;
 
+- (void)setCursorView_X:(CGFloat)x;
 
 
 @end

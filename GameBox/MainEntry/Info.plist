@@ -43,6 +43,16 @@
 	</array>
     <key>NSAppTransportSecurity</key>
     <dict>
+        <key>NSExceptionDomains</key>
+        <dict>
+            <key>preguntapp.mx</key>
+            <dict>
+                <key>NSExceptionRequiresForwardSecrecy</key>
+                <true/>
+                <key>NSIncludesSubdomains</key>
+                <true/>
+            </dict>
+        </dict>
         <key>NSAllowsArbitraryLoads</key>
         <true/>
     </dict>

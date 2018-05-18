@@ -63,6 +63,10 @@ NS_ASSUME_NONNULL_BEGIN
     } completion:^(BOOL finished) {
         if (finished) _isAnimation = NO;
     }];
+
+    if (self.selectBlock) {
+        self.selectBlock(sender.tag - Button_tag);
+    }
 }
 
 #pragma mark - method
@@ -92,6 +96,13 @@ NS_ASSUME_NONNULL_BEGIN
     _lastButton = button;
 }
 
+- (void)setCursorView_X:(CGFloat)x {
+    CGFloat count = (float)self.buttonArray.count;
+    x += self.buttonArray[0].center.x;
+    self.cursorView.center = CGPointMake(x, self.cursorView.center.y);
+    NSInteger index = x / (kSCREEN_WIDTH / count);
+    [self setButtonHighlightedWintIndex:index];
+}
 
 #pragma mark - setter
 - (void)setTitleArray:(NSArray<NSString *> *)titleArray {

@@ -11,6 +11,11 @@
 #import <SDWebImage/SDWebImageDownloader.h>
 
 
+
+#import "FFDeviceInfo.h"
+#import "FFNetWorkManager.h"
+#import "FFMapModel.h"
+
 #define SET_VALUE(original,new) (original = (new ? [NSString stringWithFormat:@"%@",new] : nil))
 #define GAMEINFO(key) (_gameinfo[key])
 
@@ -33,6 +38,7 @@ static FFCurrentGameModel *model;
         }
     });
     return model;
+//    return nil;
 }
 
 + (instancetype)refreshCurrentGameWithGameID:(NSString *)gameID Completion:(RefreshCompleteBlock)block {
@@ -190,7 +196,13 @@ static FFCurrentGameModel *model;
 /** 显示图数组 */
 - (void)setShowImageArray:(NSArray *)showImageArray {
     if (showImageArray && [showImageArray isKindOfClass:[NSArray class]] && showImageArray.count > 0) {
-        _showImageArray = showImageArray.copy;
+        NSMutableArray *array = [NSMutableArray arrayWithCapacity:showImageArray.count];
+        [showImageArray enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (obj.length > 0) {
+                [array addObject:[NSString stringWithFormat:IMAGEURL,obj]];
+            }
+        }];
+        _showImageArray = array.copy;
     }
 }
 
@@ -260,6 +272,97 @@ static FFCurrentGameModel *model;
 /** 用户是否评分 */
 - (void)setPlayer_is_score:(NSString *)player_is_score {
     SET_VALUE(_player_is_score, player_is_score);
+}
+
+
+#pragma mark - comment
+/** 获取当前游戏评论列表 */
+- (void)getCommentListWithPage:(NSString *)page Completion:(CommentListBlock)completion {
+    Mutable_Dict(6);
+
+    if (SSKEYCHAIN_UID != nil && SSKEYCHAIN_UID.length != 0) {
+        [dict setObject:SSKEYCHAIN_UID forKey:@"uid"];
+    } else {
+        [dict setObject:@"0" forKey:@"uid"];
+    }
+    [dict setObject:Channel forKey:@"channel"];
+    [dict setObject:CURRENT_GAME.game_id forKey:@"dynamics_id"];
+    [dict setObject:@"2" forKey:@"type"];
+    [dict setObject:page forKey:@"page"];
+    [dict setObject:@"2" forKey:@"comment_type"];
+    [dict setObject:(BOX_SIGN(dict, (@[@"uid",@"channel",@"dynamics_id",@"type",@"page"]))) forKey:@"sign"];
+
+    [FFNetWorkManager postRequestWithURL:Map.COMMENT_LIST Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        NEW_REQUEST_COMPLETION;
+    }];
+
+}
+
+/** 发表评论 */
+- (void)sendCommentWithText:(NSString *)text ToUid:(NSString *)toUid is_fake:(NSString *)is_fake isGameID:(NSString *)is_gameID Completion:(CommentListBlock)completion {
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:5];
+    [dict setObject:SSKEYCHAIN_UID forKey:@"uid"];
+    (toUid != nil) ? [dict setObject:toUid forKey:@"to_uid"] : [dict setObject:@"0" forKey:@"to_uid"];
+    [dict setObject:Channel forKey:@"channel"];
+    [dict setObject:CURRENT_GAME.game_id forKey:@"dynamics_id"];
+    [dict setObject:text forKey:@"content"];
+    [dict setObject:@"2" forKey:@"comment_type"];
+    if (is_fake) {
+        [dict setObject:is_fake forKey:@"is_fake"];
+    }
+
+    if (is_gameID) {
+        [dict setObject:@"1" forKey:@"is_game_id"];
+    }
+
+    [dict setObject:(BOX_SIGN(dict, (@[@"uid",@"to_uid",@"channel",@"dynamics_id",@"content"]))) forKey:@"sign"];
+
+    syLog(@"write comment === %@",dict);
+
+    [FFNetWorkManager postRequestWithURL:Map.COMMENT Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        NEW_REQUEST_COMPLETION;
+    }];
+}
+
+/** 删除评论 */
+- (void)deleteCommentWithCommentID:(NSString *)commentId Completion:(GameCompletionBlck)completion {
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:5];
+    [dict setObject:SSKEYCHAIN_UID forKey:@"uid"];
+    [dict setObject:Channel forKey:@"channel"];
+    [dict setObject:commentId forKey:@"comment_id"];
+    [dict setObject:(BOX_SIGN(dict, (@[@"uid",@"channel",@"comment_id"]))) forKey:@"sign"];
+    [FFNetWorkManager postRequestWithURL:Map.COMMENT_DEL Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        NEW_REQUEST_COMPLETION;
+    }];
+}
+
+/** 评论赞的接口 */
+- (void)likeCommentWithCommentID:(NSString *)commentid Completion:(GameCompletionBlck)completion {
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:5];
+    [dict setObject:SSKEYCHAIN_UID forKey:@"uid"];
+    [dict setObject:Channel forKey:@"channel"];
+    [dict setObject:commentid forKey:@"comment_id"];
+    [dict setObject:@"1" forKey:@"type"];
+
+    [dict setObject:(BOX_SIGN(dict, (@[@"uid",@"channel",@"comment_id",@"type"]))) forKey:@"sign"];
+
+    [FFNetWorkManager postRequestWithURL:Map.COMMENT_LIKE Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        NEW_REQUEST_COMPLETION;
+    }];
+}
+
+/** 取消赞 */
+- (void)cancelLikeCommentWithCommentID:(NSString *)commentid Type:(NSString *)type Completion:(GameCompletionBlck)completion {
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:5];
+    [dict setObject:SSKEYCHAIN_UID forKey:@"uid"];
+    [dict setObject:Channel forKey:@"channel"];
+    [dict setObject:commentid forKey:@"comment_id"];
+    [dict setObject:type forKey:@"type"];
+    [dict setObject:(BOX_SIGN(dict, (@[@"uid",@"channel",@"comment_id",@"type"]))) forKey:@"sign"];
+
+    [FFNetWorkManager postRequestWithURL:Map.CANCEL_COMMENT_LIKE Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        NEW_REQUEST_COMPLETION;
+    }];
 }
 
 

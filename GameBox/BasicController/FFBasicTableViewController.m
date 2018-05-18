@@ -71,6 +71,8 @@
 #pragma mark - table view delegate 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+
+//    return;
     id cell = [tableView cellForRowAtIndexPath:indexPath];
 
     Class FFFpackageCell = NSClassFromString(@"FFpackageCell");

@@ -99,6 +99,7 @@ typedef void(^GameActivityCallBackBlock)(NSDictionary *content, BOOL success);
 + (instancetype)refreshCurrentGameWithGameModel:(FFCurrentGameModel *)gameModel Completion:(RefreshCompleteBlock)block;
 
 
+#pragma mark - comment
 
 
 

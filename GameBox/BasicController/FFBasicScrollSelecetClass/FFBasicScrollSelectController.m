@@ -160,7 +160,7 @@
 - (void)setSectionView:(UIView *)sectionView {
     _sectionView = sectionView;
     self.sectionHeaderHeight = sectionView.bounds.size.height;
-    [self.tableView reloadData];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:(UITableViewRowAnimationNone)];
 }
 
 - (void)setFooterView:(UIView *)footerView {

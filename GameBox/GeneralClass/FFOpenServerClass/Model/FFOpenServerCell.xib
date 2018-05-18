@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FFOpenServerCell" rowHeight="81" id="KGk-i7-Jjw" customClass="FFOpenServerCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r2v-Nb-SqK">
+                        <rect key="frame" x="295" y="24" width="60" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="gWH-sZ-3Eb"/>
+                            <constraint firstAttribute="width" constant="60" id="qbX-mL-Nmn"/>
+                        </constraints>
+                        <state key="normal" title="提醒"/>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="游戏名称" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NeE-x0-PK0">
+                        <rect key="frame" x="88" y="9" width="199" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="fY2-ut-aQa"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="04 - 11 18:00 (10分钟前)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ISI-vx-Xwt">
+                        <rect key="frame" x="88" y="49" width="197" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="Rrd-L7-ZjW"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qtX-WT-syK">
+                        <rect key="frame" x="20" y="9" width="60" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="60" id="2Ld-Fb-V7g"/>
+                            <constraint firstAttribute="width" constant="60" id="5RJ-z6-scO"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="NeE-x0-PK0" firstAttribute="leading" secondItem="qtX-WT-syK" secondAttribute="trailing" constant="8" id="DQr-IK-Khr"/>
+                    <constraint firstItem="qtX-WT-syK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="LDc-7h-obM"/>
+                    <constraint firstItem="ISI-vx-Xwt" firstAttribute="bottom" secondItem="qtX-WT-syK" secondAttribute="bottom" id="LWw-Qr-SUy"/>
+                    <constraint firstItem="qtX-WT-syK" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="QQ0-Q0-KLS"/>
+                    <constraint firstItem="NeE-x0-PK0" firstAttribute="top" secondItem="qtX-WT-syK" secondAttribute="top" id="Zjp-As-u8n"/>
+                    <constraint firstItem="r2v-Nb-SqK" firstAttribute="leading" secondItem="ISI-vx-Xwt" secondAttribute="trailing" constant="10" id="cIr-Gj-fCQ"/>
+                    <constraint firstAttribute="trailing" secondItem="r2v-Nb-SqK" secondAttribute="trailing" constant="20" id="clw-UN-MmT"/>
+                    <constraint firstItem="r2v-Nb-SqK" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="dtS-Pd-NeC"/>
+                    <constraint firstItem="r2v-Nb-SqK" firstAttribute="leading" secondItem="NeE-x0-PK0" secondAttribute="trailing" constant="8" id="rq2-dc-XMw"/>
+                    <constraint firstItem="ISI-vx-Xwt" firstAttribute="leading" secondItem="qtX-WT-syK" secondAttribute="trailing" constant="8" id="w49-va-NBr"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="gameLogo" destination="qtX-WT-syK" id="fGD-ym-1cY"/>
+                <outlet property="gameNameLabel" destination="NeE-x0-PK0" id="dq3-2l-OTk"/>
+                <outlet property="remindButton" destination="r2v-Nb-SqK" id="LM1-Lm-Fna"/>
+                <outlet property="startTimeLabel" destination="ISI-vx-Xwt" id="fty-Ir-3dF"/>
+            </connections>
+            <point key="canvasLocation" x="-50.5" y="38"/>
+        </tableViewCell>
+    </objects>
+</document>

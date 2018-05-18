@@ -181,7 +181,7 @@
     UIImageView *imageView = [[UIImageView alloc]initWithFrame:cell.bounds];
     imageView.backgroundColor = [UIColor orangeColor];
 
-    [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:IMAGEURL,self.imageArray[indexPath.row]]] placeholderImage:[FFImageManager Game_detail_header_placeholder]];
+    [imageView sd_setImageWithURL:[NSURL URLWithString:self.imageArray[indexPath.row]] placeholderImage:[FFImageManager Game_detail_header_placeholder]];
 
     [cell.contentView addSubview:imageView];
 

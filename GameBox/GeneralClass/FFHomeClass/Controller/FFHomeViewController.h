@@ -7,9 +7,11 @@
 //
 
 #import "FFBasicSelectViewController.h"
+#import "FFHomeSelectView.h"
 
 @interface FFHomeViewController : FFBasicSelectViewController
 
 @property (nonatomic, strong) UIView *navigationView;
+@property (nonatomic, strong) FFHomeSelectView *homeSelectView;
 
 @end

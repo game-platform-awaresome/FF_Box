@@ -117,6 +117,7 @@ const NSUInteger HomeButtonTag = 10086;
     [button setTitle:title forState:(UIControlStateNormal)];
     [button setTitleColor:self.titleNormalColor forState:(UIControlStateNormal)];
     button.tag = HomeButtonTag + idx;
+    button.titleLabel.font = self.titleNormalFont;
     button.backgroundColor = self.titleBackGroundColor;
     [button addTarget:self action:@selector(respondsToTitleButton:) forControlEvents:(UIControlEventTouchUpInside)];
     return button;
