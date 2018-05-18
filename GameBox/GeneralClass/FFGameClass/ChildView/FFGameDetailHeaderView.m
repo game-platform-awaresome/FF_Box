@@ -199,7 +199,7 @@
         
         _layout = [[UICollectionViewFlowLayout alloc]init];
         _layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        _layout.itemSize = CGSizeMake(self.bounds.size.height * 0.7 , self.bounds.size.height - 10);
+        _layout.itemSize = CGSizeMake(self.bounds.size.width * 0.4 , self.bounds.size.height - 10);
         _layout.minimumLineSpacing = 10;
         _layout.minimumInteritemSpacing = 10;
         _layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
@@ -207,6 +207,15 @@
 
     }
     return _layout;
+}
+
+- (FFCustomLayout *)customLayout {
+    if (!_customLayout) {
+        _customLayout = [[FFCustomLayout alloc]init];
+        _customLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        _customLayout.itemSize = CGSizeMake(self.bounds.size.height * 0.7 , self.bounds.size.height - 10);
+    }
+    return _customLayout;
 }
 
 - (UICollectionView *)collectionView {
@@ -223,13 +232,6 @@
     return _collectionView;
 }
 
-- (FFCustomLayout *)customLayout {
-    if (!_customLayout) {
-        _customLayout = [[FFCustomLayout alloc]init];
-        _customLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        _customLayout.itemSize = CGSizeMake(self.bounds.size.height * 0.7 , self.bounds.size.height - 10);
-    }
-    return _customLayout;
-}
+
 
 @end

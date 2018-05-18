@@ -14,6 +14,15 @@
 
 @implementation FFBasicSSTableViewController
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if (self.canRefresh) {
+        [self refreshData];
+//        [self.tableView.mj_header beginRefreshing];
+    }
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -21,7 +30,9 @@
     self.tableView.mj_header = nil;
 }
 
-
+- (void)refreshData {
+    self.canRefresh = NO;
+}
 
 #pragma makr - scroll view delegate
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {

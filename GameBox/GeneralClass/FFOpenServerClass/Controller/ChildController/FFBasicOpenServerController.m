@@ -25,7 +25,7 @@
 
 - (void)initDataSource {
     [super initDataSource];
-    [self.tableView registerNib:[UINib nibWithNibName:kCAEmitterLayerLine bundle:nil] forCellReuseIdentifier:CELL_IDE];
+    [self.tableView registerNib:[UINib nibWithNibName:CELL_IDE bundle:nil] forCellReuseIdentifier:CELL_IDE];
 }
 
 - (void)initUserInterface {
@@ -79,16 +79,8 @@
 
 #pragma mark - table view delegate
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"???????"];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"???????"];
-    }
-
-    cell.textLabel.text = self.showArray[indexPath.row][@"gamename"];
-//    FFOpenServerCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDE];
-//
-//    cell.dict = self.showArray[indexPath.row];
-
+    FFOpenServerCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDE];
+    cell.dict = self.showArray[indexPath.row];
     return cell;
 }
 

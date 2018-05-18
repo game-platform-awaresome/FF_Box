@@ -103,6 +103,7 @@ static FFCurrentGameModel *model;
 
 //设置信息
 - (void)setGameInfo {
+    syLog(@"gameinf o === %@",self.gameinfo);
     [self setGame_introduction:GAMEINFO(@"abstract")];
     [self setGame_is_collection:GAMEINFO(@"collect")];
     [self setGame_short_introduction:GAMEINFO(@"content")];
@@ -149,6 +150,7 @@ static FFCurrentGameModel *model;
 
 /** 游戏特征 */
 - (void)setGame_feature:(NSString *)game_feature {
+    syLog(@"game -- feature  === %@",game_feature);
     SET_VALUE(_game_feature, game_feature);
 }
 

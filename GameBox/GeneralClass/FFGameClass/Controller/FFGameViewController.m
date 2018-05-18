@@ -19,6 +19,7 @@
 @property (nonatomic, strong) NSArray *childsControllerName;
 @property (nonatomic, strong) NSMutableArray<FFBasicSSTableViewController *> *childsControllerArray;
 
+@property (nonatomic, assign) NSUInteger currentIndex;
 
 @end
 
@@ -40,6 +41,8 @@ static FFGameViewController *controller = nil;
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
     self.navBarBGAlpha = @"0.0";
+
+    
 }
 
 - (void)viewDidLoad {
@@ -89,7 +92,9 @@ static FFGameViewController *controller = nil;
     self.navigationView.alpha = alpha;
 
     CGFloat offset_y = scrollView.contentOffset.y;
+
     [self.gameHeaderView refreshBackgroundHeight:offset_y];
+
     //根据导航栏透明度设置title
     if (offset_y > 120) {
         [self showNavigationTitle];
@@ -104,9 +109,9 @@ static FFGameViewController *controller = nil;
 
     self.childsControllerName = @[@"FFGameDetailViewController",
                                   @"FFGameCommentListViewController",
-                                  @"FFGameDetailViewController",
-                                  @"FFGameDetailViewController",
-                                  @"FFGameDetailViewController"];
+                                  @"FFGameGiftViewController",
+                                  @"FFGameOpenServerViewController",
+                                  @"FFGameDetailGuideViewController"];
 
     [self.gameHeaderView setQqGroupButtonBlock:^{
         syLog(@"玩家 QQ 群");
@@ -115,21 +120,18 @@ static FFGameViewController *controller = nil;
     //点击了 select view 的下标后 滑动cell 的 scroll view 到指定位置
     [self.selectView setSelectBlock:^(NSUInteger idx) {
         [[FFBasicSSTableViewCell cell] selectViewWithIndex:idx];
+        _currentIndex = idx;
     }];
 
     //cell 横向滑动的时候 移动 select view 的游标
     WeakSelf;
     [[FFBasicSSTableViewCell cell] setScrolledBlock:^(CGFloat offset_x) {
         [weakSelf.selectView setCursorView_X:(offset_x)];
+        NSUInteger idx = offset_x / kSCREEN_WIDTH;
+        _currentIndex = idx;
     }];
 }
 
-- (FFBasicSSTableViewController *)creatController {
-    FFBasicSSTableViewController *vc = [FFBasicSSTableViewController new];
-    UIColor *color = RGBColor(arc4random() % 255, arc4random() % 255, arc4random() % 255);
-    vc.view.backgroundColor = color;
-    return vc;
-}
 
 - (FFBasicSSTableViewController *)creatControllerWithName:(NSString *)name {
     Class ViewController = NSClassFromString(name);
@@ -138,8 +140,6 @@ static FFGameViewController *controller = nil;
         vc = [[UIViewController alloc] init];
     }
     [self addChildViewController:vc];
-
-    syLog(@"self navigation controller = %@",self.navigationController);
     return vc;
 }
 
@@ -154,11 +154,21 @@ static FFGameViewController *controller = nil;
             if (success) {
                 [weakSelf setNormalView];
                 [weakSelf.gameHeaderView refresh];
+                [weakSelf setChildsRefresh];
             } else {
                 [weakSelf.currentNav popViewControllerAnimated:YES];
             }
         }];
     }
+}
+
+- (void)setChildsRefresh {
+    WeakSelf;
+    for (FFBasicSSTableViewController *vc in weakSelf.selectChildConttoller) {
+        vc.canRefresh = YES;
+    }
+    [weakSelf.selectChildConttoller[_currentIndex] refreshData];
+
 }
 
 
@@ -177,6 +187,8 @@ static FFGameViewController *controller = nil;
     if ([_gid isEqualToString:gid]) {
         return;
     }
+
+    _currentIndex = 0;
 
     [self removeAllview];
     _gid = gid;
@@ -199,7 +211,7 @@ static FFGameViewController *controller = nil;
         id vc = [self creatControllerWithName:name];
         [array addObject:vc];
     }
-    self.selectChildConttoller = array.copy;
+    self.selectChildConttoller = array;
 }
 
 

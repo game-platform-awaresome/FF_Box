@@ -49,6 +49,9 @@
     self.collectionView.frame = CGRectMake(0, 44, kSCREEN_WIDTH, self.view.bounds.size.height - 44);
     CGRect frame = CGRectMake(0, 0, kSCREEN_WIDTH, self.collectionView.frame.size.height);
     self.layout.itemSize = frame.size;
+    self.todayOpenServerController.view.frame = frame;
+    self.yesterdayOpenServeController.view.frame = frame;
+    self.tomorrowOpenserverController.view.frame = frame;
 }
 
 

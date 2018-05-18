@@ -16,6 +16,7 @@
 //判断手指是否离开
 @property (nonatomic, assign) BOOL isTouch;
 
+@property (nonatomic, assign) BOOL canRefresh;
 
 - (void)refresh;
 

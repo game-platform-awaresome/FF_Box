@@ -230,7 +230,17 @@
 }
 
 
-
+/** 单一游戏攻略 */
++ (void)gameGuideWithGameID:(NSString *)gameID Completion:(RequestCallBackBlock)completion {
+    Mutable_Dict(4);
+    [dict setObject:gameID forKey:@"game_id"];
+    [dict setObject:@"1" forKey:@"type"];
+    SS_CHANNEL;
+    [dict setObject:@"1" forKey:@"page"];
+    [FFNetWorkManager postRequestWithURL:Map.GAME_GONGLUE Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        REQUEST_COMPLETION;
+    }];
+}
 
 
 

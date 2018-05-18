@@ -160,7 +160,8 @@
 - (void)setSectionView:(UIView *)sectionView {
     _sectionView = sectionView;
     self.sectionHeaderHeight = sectionView.bounds.size.height;
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:(UITableViewRowAnimationNone)];
+//    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:(UITableViewRowAnimationNone)];
+//    [self.tableView reloadData];
 }
 
 - (void)setFooterView:(UIView *)footerView {
@@ -181,7 +182,9 @@
 - (void)setChildControlelrScroll:(BOOL)scroll {
     if (self.selectChildConttoller.count > 0) {
         for (FFBasicSSTableViewController *vc in self.selectChildConttoller) {
-            vc.canScroll = scroll;
+            if (vc) {
+                vc.canScroll = scroll;
+            }
         }
     }
 }

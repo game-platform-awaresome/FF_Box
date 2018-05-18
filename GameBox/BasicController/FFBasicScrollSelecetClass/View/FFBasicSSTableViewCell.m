@@ -59,11 +59,16 @@ static FFBasicSSTableViewCell *cell = nil;
 //    syLog(@"cell frame === %@",NSStringFromCGRect(frame));
 
     self.scrollView.frame = CGRectMake(0, 0, kSCREEN_WIDTH, frame.size.height);
+    [self setChildeView];
 
+}
+
+- (void)setChildeView {
     if (self.dataArray.count > 0) {
         int i = 0;
         for (UIViewController *vc in self.dataArray) {
-            vc.view.frame = CGRectMake(kSCREEN_WIDTH * i++, 0, kSCREEN_WIDTH, frame.size.height);
+            vc.view.frame = CGRectMake(kSCREEN_WIDTH * i, 0, kSCREEN_WIDTH, self.frame.size.height);
+            i++;
         }
     }
 }
@@ -87,6 +92,7 @@ static FFBasicSSTableViewCell *cell = nil;
     self.scrollView.contentSize = CGSizeMake(kSCREEN_WIDTH * dataArray.count, 0);
 
     self.selectChildViewControllers = dataArray;
+    [self setChildeView];
     [self.scrollView addSubview:self.selectChildViewControllers[0].view];
 }
 

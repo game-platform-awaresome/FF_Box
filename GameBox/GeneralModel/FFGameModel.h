@@ -180,6 +180,9 @@ typedef enum : NSUInteger {
                   Completion:(RequestCallBackBlock _Nullable)completion;
 
 
+/** 单一游戏攻略 */
++ (void)gameGuideWithGameID:(NSString * _Nonnull)gameID
+                 Completion:(RequestCallBackBlock _Nullable)completion;
 
 
 

@@ -10,4 +10,8 @@
 
 @interface FFGameDetailCell : UITableViewCell
 
+
+@property (nonatomic, strong) id content;
+
+
 @end
