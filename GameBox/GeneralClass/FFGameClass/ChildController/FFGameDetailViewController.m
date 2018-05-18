@@ -58,6 +58,7 @@
     for (int i = 0; i < 6; i++) {
         [self.sectionArray[i] refreshDataWith:i];
     }
+
     [self.tableView reloadData];
 }
 

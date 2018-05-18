@@ -32,6 +32,10 @@
 
 - (void)refreshData {
     self.canRefresh = NO;
+    
+    self.canScroll = YES;
+    [self.tableView setContentOffset:CGPointMake(0, 0)];
+    self.canScroll = NO;
 }
 
 #pragma makr - scroll view delegate
