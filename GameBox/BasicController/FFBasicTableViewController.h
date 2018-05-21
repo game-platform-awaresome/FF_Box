@@ -28,6 +28,7 @@
 /** current page */
 @property (nonatomic, assign) NSUInteger currentPage;
 
+
 - (void)begainRefresData;
 
 - (void)resetTableView;

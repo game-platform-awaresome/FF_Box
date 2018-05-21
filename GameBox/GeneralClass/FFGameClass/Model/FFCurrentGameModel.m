@@ -11,7 +11,7 @@
 #import <SDWebImage/SDWebImageDownloader.h>
 
 
-
+#import "FFUserModel.h"
 #import "FFDeviceInfo.h"
 #import "FFNetWorkManager.h"
 #import "FFMapModel.h"
@@ -103,7 +103,7 @@ static FFCurrentGameModel *model;
 
 //设置信息
 - (void)setGameInfo {
-    syLog(@"gameinf o === %@",self.gameinfo);
+//    syLog(@"gameinf o === %@",self.gameinfo);
     [self setGame_introduction:GAMEINFO(@"abstract")];
     [self setGame_is_collection:GAMEINFO(@"collect")];
     [self setGame_short_introduction:GAMEINFO(@"content")];
@@ -130,18 +130,6 @@ static FFCurrentGameModel *model;
     [self setGame_discount:GAMEINFO(@"discount")];
 }
 
-/** 请求评论 */
-- (void)getCommentNumber {
-//    [FFGameModel getCommentNumberWithComoletion:^(NSDictionary *content, BOOL success) {
-//        syLog(@"comment number === %@",content);
-//        if (success) {
-//            NSString *string = [NSString stringWithFormat:@"%@",content[@"data"]];
-//            if (_commentNumberBlock) {
-//                _commentNumberBlock(string);
-//            }
-//        }
-//    }];
-}
 
 /** 游戏简介 */
 - (void)setGame_introduction:(NSString *)game_introduction {
@@ -150,7 +138,7 @@ static FFCurrentGameModel *model;
 
 /** 游戏特征 */
 - (void)setGame_feature:(NSString *)game_feature {
-    syLog(@"game -- feature  === %@",game_feature);
+//    syLog(@"game -- feature  === %@",game_feature);
     SET_VALUE(_game_feature, game_feature);
 }
 
@@ -278,32 +266,49 @@ static FFCurrentGameModel *model;
 
 
 #pragma mark - comment
-/** 获取当前游戏评论列表 */
-- (void)getCommentListWithPage:(NSString *)page Completion:(CommentListBlock)completion {
-    Mutable_Dict(6);
-
-    if (SSKEYCHAIN_UID != nil && SSKEYCHAIN_UID.length != 0) {
-        [dict setObject:SSKEYCHAIN_UID forKey:@"uid"];
-    } else {
-        [dict setObject:@"0" forKey:@"uid"];
-    }
+/** 请求评论 */
+- (void)getCommentNumber {
+    Mutable_Dict(4);
     [dict setObject:Channel forKey:@"channel"];
-    [dict setObject:CURRENT_GAME.game_id forKey:@"dynamics_id"];
-    [dict setObject:@"2" forKey:@"type"];
-    [dict setObject:page forKey:@"page"];
     [dict setObject:@"2" forKey:@"comment_type"];
-    [dict setObject:(BOX_SIGN(dict, (@[@"uid",@"channel",@"dynamics_id",@"type",@"page"]))) forKey:@"sign"];
-
-    [FFNetWorkManager postRequestWithURL:Map.COMMENT_LIST Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
-        NEW_REQUEST_COMPLETION;
+    [dict setObject:CURRENT_GAME.game_id forKey:@"dynamics_id"];
+    [dict setObject:BOX_SIGN(dict, (@[@"channel",@"comment_type",@"dynamics_id"])) forKey:@"sign"];
+    [FFNetWorkManager postRequestWithURL:Map.COMMENT_COUNTS Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        REQUEST_STATUS;
+        if (success && status.integerValue == 1 && _commentNumberBlock) {
+            NSString *string = [NSString stringWithFormat:@"%@",content[@"data"]];
+            _commentNumberBlock(string);
+        }
     }];
 
 }
 
-/** 发表评论 */
+/** 获取当前游戏评论列表 */
+- (void)getCommentListWithPage:(NSString *)page Completion:(CommentListBlock)completion {
+    Mutable_Dict(6);
+    Pamaras_Key((@[@"uid",@"channel",@"dynamics_id",@"type",@"page"]));
+    [dict setObject:[FFUserModel currentUser].uid forKey:@"uid"];
+    [dict setObject:Channel forKey:@"channel"];
+    [dict setObject:self.game_id forKey:@"dynamics_id"];
+    [dict setObject:@"2" forKey:@"type"];
+    [dict setObject:page forKey:@"page"];
+    [dict setObject:@"2" forKey:@"comment_type"];
+    SS_SIGN;
+    [FFNetWorkManager postRequestWithURL:Map.COMMENT_LIST Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        NEW_REQUEST_COMPLETION;
+    }];
+}
+/**
+ * 发送评论
+ * @pamra   text 内容
+ * @pamra   toUID 回复评论的用户 uid, 不是回复的填写空
+ * @pamra   is_fage 如果服务器有这个参数就传
+ * @pamra   is_gameID 是否是游戏评论.
+ */
 - (void)sendCommentWithText:(NSString *)text ToUid:(NSString *)toUid is_fake:(NSString *)is_fake isGameID:(NSString *)is_gameID Completion:(CommentListBlock)completion {
-    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:5];
-    [dict setObject:SSKEYCHAIN_UID forKey:@"uid"];
+    Mutable_Dict(10);
+    Pamaras_Key((@[@"uid",@"to_uid",@"channel",@"dynamics_id",@"content"]));
+    [dict setObject:[FFUserModel currentUser].uid forKey:@"uid"];
     (toUid != nil) ? [dict setObject:toUid forKey:@"to_uid"] : [dict setObject:@"0" forKey:@"to_uid"];
     [dict setObject:Channel forKey:@"channel"];
     [dict setObject:CURRENT_GAME.game_id forKey:@"dynamics_id"];
@@ -312,13 +317,10 @@ static FFCurrentGameModel *model;
     if (is_fake) {
         [dict setObject:is_fake forKey:@"is_fake"];
     }
-
     if (is_gameID) {
         [dict setObject:@"1" forKey:@"is_game_id"];
     }
-
-    [dict setObject:(BOX_SIGN(dict, (@[@"uid",@"to_uid",@"channel",@"dynamics_id",@"content"]))) forKey:@"sign"];
-
+    SS_SIGN;
     syLog(@"write comment === %@",dict);
 
     [FFNetWorkManager postRequestWithURL:Map.COMMENT Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
@@ -329,7 +331,7 @@ static FFCurrentGameModel *model;
 /** 删除评论 */
 - (void)deleteCommentWithCommentID:(NSString *)commentId Completion:(GameCompletionBlck)completion {
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:5];
-    [dict setObject:SSKEYCHAIN_UID forKey:@"uid"];
+    [dict setObject:[FFUserModel currentUser].uid forKey:@"uid"];
     [dict setObject:Channel forKey:@"channel"];
     [dict setObject:commentId forKey:@"comment_id"];
     [dict setObject:(BOX_SIGN(dict, (@[@"uid",@"channel",@"comment_id"]))) forKey:@"sign"];
@@ -341,13 +343,11 @@ static FFCurrentGameModel *model;
 /** 评论赞的接口 */
 - (void)likeCommentWithCommentID:(NSString *)commentid Completion:(GameCompletionBlck)completion {
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:5];
-    [dict setObject:SSKEYCHAIN_UID forKey:@"uid"];
+    [dict setObject:[FFUserModel currentUser].uid forKey:@"uid"];
     [dict setObject:Channel forKey:@"channel"];
     [dict setObject:commentid forKey:@"comment_id"];
     [dict setObject:@"1" forKey:@"type"];
-
     [dict setObject:(BOX_SIGN(dict, (@[@"uid",@"channel",@"comment_id",@"type"]))) forKey:@"sign"];
-
     [FFNetWorkManager postRequestWithURL:Map.COMMENT_LIKE Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         NEW_REQUEST_COMPLETION;
     }];
@@ -356,12 +356,11 @@ static FFCurrentGameModel *model;
 /** 取消赞 */
 - (void)cancelLikeCommentWithCommentID:(NSString *)commentid Type:(NSString *)type Completion:(GameCompletionBlck)completion {
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:5];
-    [dict setObject:SSKEYCHAIN_UID forKey:@"uid"];
+    [dict setObject:[FFUserModel currentUser].uid forKey:@"uid"];
     [dict setObject:Channel forKey:@"channel"];
     [dict setObject:commentid forKey:@"comment_id"];
     [dict setObject:type forKey:@"type"];
     [dict setObject:(BOX_SIGN(dict, (@[@"uid",@"channel",@"comment_id",@"type"]))) forKey:@"sign"];
-
     [FFNetWorkManager postRequestWithURL:Map.CANCEL_COMMENT_LIKE Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         NEW_REQUEST_COMPLETION;
     }];

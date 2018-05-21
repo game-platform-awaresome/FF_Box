@@ -288,6 +288,25 @@
     }];
 }
 
+#pragma mark - get game comment list
+/**
+ * 游戏评论列表
+ */
++ (void)gameCommentListWithGameID:(NSString *)gameID Page:(NSString *)page Completion:(RequestCallBackBlock)completion {
+    Mutable_Dict(6);
+    Pamaras_Key((@[@"uid",@"channel",@"dynamics_id",@"type",@"page"]));
+    [dict setObject:[FFUserModel currentUser].uid forKey:@"uid"];
+    [dict setObject:Channel forKey:@"channel"];
+    [dict setObject:gameID forKey:@"dynamics_id"];
+    [dict setObject:@"2" forKey:@"type"];
+    [dict setObject:page forKey:@"page"];
+    [dict setObject:@"2" forKey:@"comment_type"];
+    SS_SIGN;
+    [FFNetWorkManager postRequestWithURL:Map.COMMENT_LIST Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        NEW_REQUEST_COMPLETION;
+    }];
+}
+
 
 
 @end

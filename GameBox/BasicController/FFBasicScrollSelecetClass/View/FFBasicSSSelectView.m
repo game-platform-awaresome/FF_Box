@@ -149,16 +149,19 @@ NS_ASSUME_NONNULL_BEGIN
     if (self.buttonArray.count > idx) {
         UIButton *button = self.buttonArray[idx];
         CGRect frame = [button convertRect:button.titleLabel.frame toView:self];
+        CGRect btnFrame = button.frame;
         self.subscriptLabel.text = title;
         [self.subscriptLabel sizeToFit];
         CGRect labelBounds = self.subscriptLabel.bounds;
         labelBounds.size.width += 4;
         labelBounds.size.height += 2;
         frame.size = labelBounds.size;
-        frame.origin.x += frame.size.width + 2;
-        frame.origin.y -= labelBounds.size.height;
+        frame.origin.x = btnFrame.origin.x + btnFrame.size.width / 2 + 15;
+        frame.origin.y = btnFrame.size.height / 2 - 16;
         self.subscriptLabel.layer.cornerRadius = labelBounds.size.height / 2;
         self.subscriptLabel.frame = frame;
+
+        syLog(@"frame == %@",NSStringFromCGRect(frame));
         [self addSubview:self.subscriptLabel];
     }
 }

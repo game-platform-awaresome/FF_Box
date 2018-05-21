@@ -32,7 +32,7 @@
 }
 
 - (void)setContent:(id)content {
-    syLog(@"ddddddddddd == %@",content);
+//    syLog(@"ddddddddddd == %@",content);
     if ([content isKindOfClass:[NSString class]]) {
         _contentLabel.text = content;
     }

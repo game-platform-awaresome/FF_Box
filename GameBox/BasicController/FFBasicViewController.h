@@ -27,6 +27,8 @@ typedef void(^EndOfNetWorkRequestBlock)(BOOL success);
 /** uinavigation rigth button */
 @property (nonatomic, strong) UIBarButtonItem *rightButton;
 
+@property (nonatomic, assign) BOOL canRefresh;
+
 /** initialize user interface */
 - (void)initUserInterface;
 /** initialize */

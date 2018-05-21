@@ -91,6 +91,8 @@ typedef void(^GameActivityCallBackBlock)(NSDictionary *content, BOOL success);
 /** 折扣 */ 
 @property (nonatomic, strong) NSString *game_discount;
 
+@property (nonatomic, strong) CommentNumberBlock commentNumberBlock;
+
 /** 游戏信息单例 */
 + (instancetype)CurrentGame;
 /** 根据游戏 id 刷新游戏数据 */
@@ -100,9 +102,42 @@ typedef void(^GameActivityCallBackBlock)(NSDictionary *content, BOOL success);
 
 
 #pragma mark - comment
-
-
-
-
+/** 获取评论的数目 */
+- (void)getCommentNumber;
+/**
+ * 发送评论
+ * @pamra   text 内容
+ * @pamra   toUID 回复评论的用户 uid, 不是回复的填写空
+ * @pamra   is_fage 如果服务器有这个参数就传
+ * @pamra   is_gameID 是否是游戏评论.
+ */
+- (void)sendCommentWithText:(NSString *)text
+                      ToUid:(NSString *)toUid
+                    is_fake:(NSString *)is_fake
+                   isGameID:(NSString *)is_gameID
+                 Completion:(CommentListBlock)completion;
+/**
+ * 删除评论
+ */
+- (void)deleteCommentWithCommentID:(NSString *)commentId
+                        Completion:(GameCompletionBlck)completion;
+/**
+ * 评论赞的接口
+ */
+- (void)likeCommentWithCommentID:(NSString *)commentid
+                      Completion:(GameCompletionBlck)completion;
+/** 取消赞 */
+- (void)cancelLikeCommentWithCommentID:(NSString *)commentid
+                                  Type:(NSString *)type
+                            Completion:(GameCompletionBlck)completion;
 
 @end
+
+
+
+
+
+
+
+
+

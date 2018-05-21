@@ -9,31 +9,40 @@
 #import "FFGameCommentListViewController.h"
 #import "FFCurrentGameModel.h"
 #import "FFGameModel.h"
+#import <MJRefresh/MJRefresh.h>
 
 
 #import "FFDriveCommentCell.h"
 #define CELL_IDE @"FFDriveCommentCell"
+#define BOX_REGISTER_CELL [self.tableView registerNib:[UINib nibWithNibName:CELL_IDE bundle:nil] forCellReuseIdentifier:CELL_IDE]
+#define Reset_page (self.currentPage = 1)
+#define New_page ([NSString stringWithFormat:@"%lu",self.currentPage])
+#define Next_page ([NSString stringWithFormat:@"%lu",++self.currentPage])
 
-@interface FFGameCommentListViewController ()
-
-/** 当前评论数 */
-@property (nonatomic, assign) NSInteger currentComments;
-
-@property (nonatomic, strong) NSString *topic_id;
+@interface FFGameCommentListViewController () <FFDriveCommentCellDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) NSIndexPath *currentIndexPath;
 
 @property (nonatomic, assign) BOOL isLiking;
 
-/** 加载全部 */
-@property (nonatomic, assign) BOOL isAll;
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) NSMutableArray *showArray;
+@property (nonatomic, assign) NSUInteger currentPage;
 
+@property (nonatomic, strong) MJRefreshNormalHeader *refreshHeader;
+@property (nonatomic, strong) MJRefreshBackFooter *refreshFooter;
 
 @end
 
 @implementation FFGameCommentListViewController
 
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if (self.canRefresh) {
+        [self refreshData];
+    }
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -42,71 +51,76 @@
 
 - (void)initUserInterface {
     [super initUserInterface];
-    self.navigationItem.title = @"更多评论";
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.estimatedRowHeight = 200;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    [self.view addSubview:self.tableView];
 }
 
 - (void)initDataSource {
-    [self.tableView registerNib:[UINib nibWithNibName:CELL_IDE bundle:nil] forCellReuseIdentifier:CELL_IDE];
-    [self.tableView.mj_header beginRefreshing];
+    BOX_REGISTER_CELL;
 }
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    self.tableView.frame = self.view.bounds;
+}
+
 /**刷新数据*/
-- (void)refreshNewData {
-    self.currentPage = 1;
-    WeakSelf;
+- (void)refreshData {
+    self.canScroll = YES;
+    [self.tableView setContentOffset:CGPointMake(0, 0)];
+    self.canScroll = NO;
+    self.canRefresh = NO;
+    Reset_page;
+    [FFGameModel gameCommentListWithGameID:CURRENT_GAME.game_id Page:New_page Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        //刷新评论数
+        [CURRENT_GAME getCommentNumber];
+        syLog(@"comment %@",content);
+        if (success) {
+            NSArray *array = content[@"data"][@"list"];
+            if (array.count > 0) {
+                self.showArray = [NSMutableArray arrayWithArray:array];
+            } else {
+                self.showArray = nil;
+            }
+        } else {
 
-//    [CURRENT_GAME getcomment]
-
-//    [CURRENT_GAME getCommentListWithPage:New_page Completion:^(NSDictionary *content, BOOL success) {
-//        syLog(@"game comment ========== %@",content);
-//        //刷新评论数
-//        syLog(@"刷新评论数目");
-//        [CURRENT_GAME getCommentNumber];
-//        if (success) {
-//            NSArray *array = content[@"data"][@"list"];
-//            if (array.count > 0) {
-//                weakSelf.showArray = [NSMutableArray arrayWithArray:array];
-//            } else {
-//                weakSelf.showArray = nil;
-//            }
-//        } else {
-//
-//        }
-//        [weakSelf.tableView.mj_header endRefreshing];
-//        [weakSelf.tableView.mj_footer endRefreshing];
-//        [weakSelf.tableView reloadData];
-//    }];
-
+        }
+        [self.tableView.mj_footer endRefreshing];
+        [self.tableView reloadData];
+    }];
 }
 
 /** 加载更多数据 */
 - (void)loadMoreData {
-    self.currentPage++;
-    WeakSelf;
-//    [CURRENT_GAME getCommentListWithPage:[NSString stringWithFormat:@"%lu",_currentPage] Completion:^(NSDictionary *content, BOOL success) {
-//        syLog(@"game add comment ========== %@",content);
-//        if (success) {
-//            NSArray *array = content[@"data"][@"list"];
-//            if (array.count > 0) {
-//                [weakSelf.showArray addObjectsFromArray:array];
-//                [weakSelf.tableView.mj_footer endRefreshing];
-//            } else {
-//                [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
-//            }
-//        } else {
-//            [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
-//        }
-//        [weakSelf.tableView reloadData];
-//    }];
+    [FFGameModel gameCommentListWithGameID:CURRENT_GAME.game_id Page:Next_page Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        if (success) {
+            NSArray *array = content[@"data"][@"list"];
+            if (array.count > 0) {
+                [self.showArray addObjectsFromArray:array];
+                [self.tableView.mj_footer endRefreshing];
+            } else {
+                [self.tableView.mj_footer endRefreshingWithNoMoreData];
+            }
+        } else {
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+        }
+        [self.tableView reloadData];
+    }];
+}
 
+#pragma mark - table iew
+#pragma mark - table view data source
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.showArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     FFDriveCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDE];
-//    cell.delegate = self;
+    cell.delegate = self;
     cell.dict = self.showArray[indexPath.row];
 
     return cell;
@@ -178,15 +192,16 @@
     if (desTitle) {
         //删除评论
         NSString *commentID = [NSString stringWithFormat:@"%@",dict[@"id"]];
-//        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
-//        [CURRENT_GAME deleteCommentWithCommentID:commentID Completion:^(NSDictionary *content, BOOL success) {
-//            [hud hideAnimated:YES];
-//            if (success) {
-//                [UIAlertController showAlertMessage:@"删除成功" dismissTime:0.7 dismissBlock:nil];
-//                [self.tableView.mj_header beginRefreshing];
-//            }
-//        }];
+        [self startWaiting];
+        [CURRENT_GAME deleteCommentWithCommentID:commentID Completion:^(NSDictionary *content, BOOL success) {
+            [self stopWaiting];
+            if (success) {
+                [UIAlertController showAlertMessage:@"删除成功" dismissTime:0.7 dismissBlock:nil];
+                [self refreshData];
+            }
+        }];
     } else {
+#warning resend message
         //回复评论
 //        FFReplyToCommentController *controller = [FFReplyToCommentController replyCommentWithCommentDict:dict Completion:^(NSDictionary *content, BOOL success) {
 //            [self.navigationController popViewControllerAnimated:YES];
@@ -243,37 +258,92 @@
 /** 点赞 */
 - (void)likeWithCommentID:(NSString *)commentID Dict:(NSDictionary *)dict andIndexPath:(NSIndexPath *)indexPath {
     WeakSelf;
-//    [CURRENT_GAME likeCommentWithCommentID:commentID Completion:^(NSDictionary *content, BOOL success) {
-//        syLog(@"like returen --- %@",content);
-//        weakSelf.isLiking = NO;
-//        if (success) {
-//            NSMutableDictionary *rdict = [dict mutableCopy];
-//            [rdict setObject:@"1" forKey:@"like_type"];
-//            NSString *likes = [NSString stringWithFormat:@"%@",rdict[@"likes"]];
-//            [rdict setObject:[NSString stringWithFormat:@"%lu",(likes.integerValue + 1)] forKey:@"likes"];
-//            [weakSelf.showArray setObject:rdict atIndexedSubscript:indexPath.row];
-//        }
-//        [weakSelf.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:(UITableViewRowAnimationNone)];
-//    }];
+    [CURRENT_GAME likeCommentWithCommentID:commentID Completion:^(NSDictionary *content, BOOL success) {
+        syLog(@"like returen --- %@",content);
+        weakSelf.isLiking = NO;
+        if (success) {
+            NSMutableDictionary *rdict = [dict mutableCopy];
+            [rdict setObject:@"1" forKey:@"like_type"];
+            NSString *likes = [NSString stringWithFormat:@"%@",rdict[@"likes"]];
+            [rdict setObject:[NSString stringWithFormat:@"%lu",(likes.integerValue + 1)] forKey:@"likes"];
+            [weakSelf.showArray setObject:rdict atIndexedSubscript:indexPath.row];
+        }
+        [weakSelf.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:(UITableViewRowAnimationNone)];
+    }];
 }
 
 /** 取消赞 */
 - (void)cancelLikeWithCommentID:(NSString *)commentID Dict:(NSDictionary *)dict andIndexPath:(NSIndexPath *)indexPath {
     WeakSelf;
-//    [CURRENT_GAME cancelLikeCommentWithCommentID:commentID Type:@"1" Completion:^(NSDictionary *content, BOOL success) {
-//        syLog(@"like returen --- %@",content);
-//        weakSelf.isLiking = NO;
-//        if (success) {
-//            NSMutableDictionary *rdict = [dict mutableCopy];
-//            [rdict setObject:@"2" forKey:@"like_type"];
-//            NSString *likes = [NSString stringWithFormat:@"%@",rdict[@"likes"]];
-//            [rdict setObject:[NSString stringWithFormat:@"%lu",(likes.integerValue - 1)] forKey:@"likes"];
-//            [weakSelf.showArray setObject:rdict atIndexedSubscript:indexPath.row];
-//        }
-//        [weakSelf.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:(UITableViewRowAnimationNone)];
-//    }];
+    [CURRENT_GAME cancelLikeCommentWithCommentID:commentID Type:@"1" Completion:^(NSDictionary *content, BOOL success) {
+        weakSelf.isLiking = NO;
+        if (success) {
+            NSMutableDictionary *rdict = [dict mutableCopy];
+            [rdict setObject:@"2" forKey:@"like_type"];
+            NSString *likes = [NSString stringWithFormat:@"%@",rdict[@"likes"]];
+            [rdict setObject:[NSString stringWithFormat:@"%lu",(likes.integerValue - 1)] forKey:@"likes"];
+            [weakSelf.showArray setObject:rdict atIndexedSubscript:indexPath.row];
+        }
+        [weakSelf.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:(UITableViewRowAnimationNone)];
+    }];
 }
 
+#pragma makr - scroll view delegate
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    self.isTouch = YES;
+}
+
+//用于判断手指是否离开了 要做到当用户手指离开了，tableview滑道顶部，也不显示出主控制器
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
+    self.isTouch = NO;
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (!self.canScroll) {
+        [scrollView setContentOffset:CGPointZero];
+    }
+
+    CGFloat offsetY = scrollView.contentOffset.y;
+
+    if (offsetY < 0) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"FFSSControllerTableScroll" object:@1];
+        self.canScroll = NO;
+        scrollView.contentOffset = CGPointZero;
+    }
+}
+
+
+#pragma mark - commentView;
+
+#pragma mark - getter
+- (UITableView *)tableView {
+    if (!_tableView) {
+        _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:(UITableViewStylePlain)];
+        _tableView.dataSource = self;
+        _tableView.delegate = self;
+        _tableView.backgroundColor = [FFColorManager tableview_background_color];
+        _tableView.showsVerticalScrollIndicator = NO;
+        _tableView.showsHorizontalScrollIndicator = NO;
+        _tableView.tableFooterView = [UIView new];
+        if (@available(iOS 11.0, *)) {
+            _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        } else {
+
+        }
+        _tableView.mj_footer = self.refreshFooter;
+        
+    }
+    return _tableView;
+}
+
+
+
+- (MJRefreshBackFooter *)refreshFooter {
+    if (!_refreshFooter) {
+        _refreshFooter = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    }
+    return _refreshFooter;
+}
 
 
 

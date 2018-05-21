@@ -44,6 +44,13 @@ static FFUserModel *model;
     return _username;
 }
 
+- (NSString *)uid {
+    if (!_uid) {
+        _uid = @"0";
+    }
+    return _uid;
+}
+
 #pragma mark - ================================ 注册和登录 ================================
 /** 登录 */
 + (void)userLoginWithUsername:(NSString *)username Password:(NSString *)password Completion:(RequestCallBackBlock)completion {

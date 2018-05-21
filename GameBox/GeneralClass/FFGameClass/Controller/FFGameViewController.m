@@ -159,14 +159,18 @@ static FFGameViewController *controller = nil;
         NSUInteger idx = offset_x / kSCREEN_WIDTH;
         _currentIndex = idx;
     }];
+
+    [CURRENT_GAME setCommentNumberBlock:^(NSString *commentNumber) {
+        [self.selectView setButtonSubscriptWithIdx:1 Title:commentNumber];
+    }];
 }
 
 
 - (FFBasicSSTableViewController *)creatControllerWithName:(NSString *)name {
     Class ViewController = NSClassFromString(name);
     id vc = [[ViewController alloc] init];
-    if (![vc isKindOfClass:[FFBasicSSTableViewController class]]) {
-        vc = [[UIViewController alloc] init];
+    if (![vc isKindOfClass:[FFBasicViewController class]]) {
+        vc = [[FFBasicViewController alloc] init];
     }
     [self addChildViewController:vc];
     return vc;
@@ -193,7 +197,7 @@ static FFGameViewController *controller = nil;
 
 - (void)setChildsRefresh {
     WeakSelf;
-    for (FFBasicSSTableViewController *vc in weakSelf.selectChildConttoller) {
+    for (FFBasicViewController *vc in weakSelf.selectChildConttoller) {
         vc.canRefresh = YES;
     }
     [weakSelf.selectChildConttoller[_currentIndex] refreshData];
@@ -284,7 +288,6 @@ static FFGameViewController *controller = nil;
     self.selectView.selectColor = [FFColorManager game_select__color];
     self.selectView.cursorColor = [FFColorManager game_select_cursor_color];
     self.selectView.titleArray = @[@"详情",@"评论",@"礼包",@"开服",@"攻略"];
-    [self.selectView setButtonSubscriptWithIdx:1 Title:@"12"];
 }
 
 

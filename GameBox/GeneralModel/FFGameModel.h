@@ -196,6 +196,17 @@ typedef enum : NSUInteger {
 + (void)getGameGiftWithPackageID:(NSString * _Nonnull)packageID
                       Completion:(RequestCallBackBlock _Nullable)completion;
 
+#pragma mark - get game comment list
+/**
+ * 游戏评论列表
+ */
++ (void)gameCommentListWithGameID:(NSString * _Nonnull)gameID
+                             Page:(NSString * _Nonnull)page
+                       Completion:(RequestCallBackBlock _Nullable)completion;
+
+
+
+
 
 @end
 
