@@ -7,9 +7,9 @@
 //
 
 #import "FFGameDetailViewController.h"
-#import "FFGameDetailHeaderView.h"
 #import "FFCurrentGameModel.h"
 #import "FFGameDetailSectionModel.h"
+#import "FFGameDetailHeaderView.h"
 
 #import "FFGameDetailCell.h"
 
@@ -21,6 +21,7 @@
 
 @property (nonatomic, strong) NSMutableArray<FFGameDetailSectionModel *> *sectionArray;
 
+@property (nonatomic, assign) BOOL isAnimation;
 
 @end
 
@@ -28,8 +29,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-
     BOX_REGISTER_CELL;
 }
 
@@ -37,7 +36,7 @@
 //    [super initUserInterface];
     [self resetTableView];
     self.automaticallyAdjustsScrollViewInsets = NO;
-
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 - (void)initDataSource {
@@ -77,18 +76,38 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     FFGameDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDE];
-
     cell.content = self.sectionArray[indexPath.section].contentString;
+    cell.layer.masksToBounds = YES;
 
     return cell;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
+    if (_isAnimation) {
+        return;
+    }
+    FFGameDetailSectionModel *model = self.sectionArray[indexPath.section];
+    _isAnimation = YES;
+    [tableView beginUpdates];
+    model.openUp = !model.openUp;
+    [tableView endUpdates];
+    _isAnimation = NO;
+
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, kSCREEN_WIDTH - 10, 44)];
     label.backgroundColor = [UIColor whiteColor];
-
     label.text = [NSString stringWithFormat:@"      %@ :",self.sectionArray[section].sectionHeaderTitle];
+    label.layer.masksToBounds = YES;
+
+    CALayer *layer = [[CALayer alloc] init];
+    layer.frame = CGRectMake(0, 0, kSCREEN_WIDTH, 1);
+    layer.backgroundColor = [FFColorManager light_gray_color].CGColor;
+    [label.layer addSublayer:layer];
+
     return label;
 }
 
@@ -99,7 +118,18 @@
     label.textAlignment = NSTextAlignmentCenter;
     [label sizeToFit];
     label.center = CGPointMake(kSCREEN_WIDTH / 2, 22);
+    label.layer.masksToBounds = YES;
     return label;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    FFGameDetailSectionModel *model = self.sectionArray[indexPath.section];
+    if (model.openUp) {
+        return model.openUpHeight;
+    } else {
+        return model.normalHeight;
+    }
+
 }
 
 #pragma mark - setter

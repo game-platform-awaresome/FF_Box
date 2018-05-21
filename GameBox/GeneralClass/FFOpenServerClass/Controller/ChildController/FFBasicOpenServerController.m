@@ -12,7 +12,7 @@
 
 #define CELL_IDE @"FFOpenServerCell"
 
-@interface FFBasicOpenServerController ()
+@interface FFBasicOpenServerController ()<FFopenServerCellDelegate>
 
 @end
 
@@ -47,6 +47,7 @@
 - (void)refreshData {
     self.currentPage = 1;
     [FFGameModel openServersListWithPage:New_page ServerType:self.gameServerType OpenType:self.openServerType Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        syLog(@"open servers === %@",content);
         if (success) {
             self.showArray = [content[@"data"] mutableCopy];
             [self.tableView reloadData];
@@ -81,8 +82,33 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     FFOpenServerCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDE];
     cell.dict = self.showArray[indexPath.row];
+    cell.delegate = self;
     return cell;
 }
+
+#pragma mark - table view delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+
+    NSDictionary *dict = self.showArray[indexPath.row];
+    Class FFGameViewController = NSClassFromString(@"FFGameViewController");
+    SEL selector = NSSelectorFromString(@"sharedController");
+    if ([FFGameViewController respondsToSelector:selector]) {
+        IMP imp = [FFGameViewController methodForSelector:selector];
+        UIViewController *(*func)(void) = (void *)imp;
+        UIViewController *vc = func();
+        if (vc) {
+            NSString *gid = (dict[@"id"]) ? dict[@"id"] : dict[@"gid"];
+            [vc setValue:gid forKey:@"gid"];
+            [self pushViewController:vc];
+        } else {
+            syLog(@"\n ! %s \n present error :  %s not exist \n ! \n",__func__,sel_getName(selector));
+        }
+    } else {
+        syLog(@"\n ! %s \n present error :  %s not exist \n ! \n",__func__,sel_getName(selector));
+    }
+}
+
 
 
 

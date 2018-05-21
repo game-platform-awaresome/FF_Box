@@ -24,6 +24,7 @@ UIColor *RGBColor(float red, float green, float blue);
 + (UIColor *)textColorMiddle;
 + (UIColor *)textColorLight;
 + (UIColor *)tabbar_item_color;
++ (UIColor *)light_gray_color;
 
 + (UIColor *)home_select_view_color;
 + (UIColor *)home_select_view_lineColor;

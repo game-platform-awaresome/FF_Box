@@ -47,6 +47,9 @@
 + (UIImage *)Game_header_stars_dark;
 + (UIImage *)Game_header_QQ;
 + (UIImage *)Game_detail_header_placeholder;
++ (UIImage *)Game_detail_footer_collection;
++ (UIImage *)Game_detail_footer_nocollection;
++ (UIImage *)Game_detail_footer_comment;
 
 @end
 

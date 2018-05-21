@@ -94,6 +94,10 @@ UIColor *HexColorToUIColor(NSString *hexColorString) {
     return [FFColorManager blue_dark];
 }
 
++ (UIColor *)light_gray_color {
+    return [UIColor colorWithWhite:0.85 alpha:1];
+}
+
 #pragma mark - home view
 + (UIColor *)home_select_view_color {
     return [FFColorManager blue_dark];

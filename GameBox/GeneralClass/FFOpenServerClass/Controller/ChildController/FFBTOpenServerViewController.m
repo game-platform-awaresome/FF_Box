@@ -8,11 +8,11 @@
 
 #import "FFBTOpenServerViewController.h"
 #import "FFBasicOpenServerController.h"
-#import "FFBasicSelectView.h"
+#import "FFOpenServerSelectView.h"
 
 #define COLLECTION_CELL_IDE @"OPENSERVERCOLLECTIONCELL"
 
-@interface FFBTOpenServerViewController () <UICollectionViewDelegate, UICollectionViewDataSource, FFBasicSelectViewDelegate>
+@interface FFBTOpenServerViewController () <UICollectionViewDelegate, UICollectionViewDataSource, FFOpenServerSelectViewDelegate>
 
 
 @property (nonatomic, strong) UICollectionViewFlowLayout *layout;
@@ -22,7 +22,7 @@
 @property (nonatomic, strong) FFBasicOpenServerController *todayOpenServerController;
 @property (nonatomic, strong) FFBasicOpenServerController *tomorrowOpenserverController;
 
-@property (nonatomic, strong) FFBasicSelectView *selectView;
+@property (nonatomic, strong) FFOpenServerSelectView *selectView;
 
 @end
 
@@ -35,7 +35,7 @@
 
 - (void)initDataSource {
     [super initDataSource];
-    self.selectView.headerTitleArray = @[@"今日开服",@"即将开服",@"已经开服"];
+    self.selectView.titleArray = @[@"今日开服",@"即将开服",@"已经开服"];
 }
 
 - (void)initUserInterface {
@@ -56,7 +56,7 @@
 
 
 #pragma mark  - select view delegate
-- (void)FFSelectHeaderView:(FFBasicSelectView *)view didSelectTitleWithIndex:(NSUInteger)idx {
+- (void)FFOpenServerSelectView:(FFBasicSelectView *)view didSelectTitleWithIndex:(NSUInteger)idx {
     [self.collectionView setContentOffset:CGPointMake(idx * kSCREEN_WIDTH, 0)];
 }
 
@@ -121,7 +121,7 @@
         _yesterdayOpenServeController.gameServerType = self.gameServerType;
         _yesterdayOpenServeController.openServerType = FFOpenServerTypeAlready;
         [self addChildViewController:_yesterdayOpenServeController];
-        [_yesterdayOpenServeController didMoveToParentViewController:self];
+//        [_yesterdayOpenServeController didMoveToParentViewController:self];
     }
     return _yesterdayOpenServeController;
 }
@@ -132,7 +132,7 @@
         _todayOpenServerController.gameServerType = self.gameServerType;
         _todayOpenServerController.openServerType = FFOpenServerTypeToday;
         [self addChildViewController:_todayOpenServerController];
-        [_todayOpenServerController didMoveToParentViewController:self];
+//        [_todayOpenServerController didMoveToParentViewController:self];
     }
     return _todayOpenServerController;
 }
@@ -143,16 +143,17 @@
         _tomorrowOpenserverController.gameServerType = self.gameServerType;
         _tomorrowOpenserverController.openServerType = FFOpenServerTypeTomorrow;
         [self addChildViewController:_tomorrowOpenserverController];
-        [_tomorrowOpenserverController didMoveToParentViewController:self];
+//        [_tomorrowOpenserverController didMoveToParentViewController:self];
     }
     return _tomorrowOpenserverController;
 }
 
-- (FFBasicSelectView *)selectView {
+- (FFOpenServerSelectView *)selectView {
     if (!_selectView) {
-        _selectView = [[FFBasicSelectView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 44)];
+        _selectView = [[FFOpenServerSelectView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 44)];
         _selectView.delegate = self;
-        _selectView.lineColor = [UIColor colorWithWhite:0.9 alpha:1];
+        _selectView.selectColor = [FFColorManager blue_dark];
+        _selectView.normolColor = [FFColorManager textColorLight];
     }
     return _selectView;
 }

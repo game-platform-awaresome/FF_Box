@@ -13,7 +13,7 @@
 @interface FFMainTabbarViewController () <FFCustomizeTabbarDelegate>
 
 @property (nonatomic, strong) NSArray<UINavigationController *> *childVCs;
-
+@property (nonatomic, strong) NSMutableArray <UIViewController *> *vcs;
 
 @end
 
@@ -54,6 +54,7 @@
     }
 
     NSMutableArray *viewControllers = [NSMutableArray arrayWithCapacity:titles.count];
+    _vcs = [NSMutableArray arrayWithCapacity:titles.count];
     [viewControllerNames enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         UIViewController *viewController = nil;
 
@@ -64,6 +65,8 @@
             viewController = [[UIViewController alloc] init];
             syLog(@"%s error : %@ not exist",__func__,obj);
         }
+
+        [_vcs addObject:viewController];
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:viewController];
         //设置title
         viewController.navigationItem.title = titles[idx];
@@ -81,6 +84,7 @@
 
     self.viewControllers = viewControllers;
     self.childVCs = viewControllers;
+    [FFControllerManager sharedManager].viewController = _vcs.firstObject;
     [FFControllerManager sharedManager].currentNavController = viewControllers.firstObject;
 }
 
@@ -131,7 +135,10 @@
 
 - (void)setSelectedViewController:(__kindof UIViewController *)selectedViewController {
     [super setSelectedViewController:selectedViewController];
+    syLog(@"???????????? == %lu",self.selectedIndex);
+    [FFControllerManager sharedManager].viewController = _vcs[self.selectedIndex];
     [FFControllerManager sharedManager].currentNavController = selectedViewController;
+
 }
 
 #pragma mark - delegate

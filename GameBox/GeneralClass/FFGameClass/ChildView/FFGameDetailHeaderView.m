@@ -179,8 +179,6 @@
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CELLIDE forIndexPath:indexPath];
 
     UIImageView *imageView = [[UIImageView alloc]initWithFrame:cell.bounds];
-    imageView.backgroundColor = [UIColor orangeColor];
-
     [imageView sd_setImageWithURL:[NSURL URLWithString:self.imageArray[indexPath.row]] placeholderImage:[FFImageManager Game_detail_header_placeholder]];
 
     [cell.contentView addSubview:imageView];
@@ -196,7 +194,6 @@
 #pragma mark - getter
 - (UICollectionViewFlowLayout *)layout {
     if (!_layout) {
-        
         _layout = [[UICollectionViewFlowLayout alloc]init];
         _layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         _layout.itemSize = CGSizeMake(self.bounds.size.width * 0.4 , self.bounds.size.height - 10);
@@ -204,7 +201,6 @@
         _layout.minimumInteritemSpacing = 10;
         _layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
         _layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-
     }
     return _layout;
 }

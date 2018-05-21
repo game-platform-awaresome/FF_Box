@@ -45,7 +45,12 @@
 + (UIImage *)Game_header_stars_light        {RETURN_IMAGE(@"Game_header_stars_light");}
 + (UIImage *)Game_header_stars_dark         {RETURN_IMAGE(@"Game_header_stars_dark");}
 + (UIImage *)Game_header_QQ                 {RETURN_IMAGE(@"Game_header_QQ");}
-+ (UIImage *)Game_detail_header_placeholder {RETURN_IMAGE(@"");}
++ (UIImage *)Game_detail_header_placeholder {RETURN_IMAGE(@"Game_detail_header_placeholder");}
++ (UIImage *)Game_detail_footer_collection  {RETURN_IMAGE(@"Game_detail_footer_collection");}
++ (UIImage *)Game_detail_footer_nocollection{RETURN_IMAGE(@"Game_detail_footer_nocollection");}
++ (UIImage *)Game_detail_footer_comment     {RETURN_IMAGE(@"Game_detail_footer_comment");}
+
+
 
 @end
 

@@ -7,6 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+@class FFOpenServerCell;
+
+@protocol FFopenServerCellDelegate <NSObject>
+
+- (void)FFOpenServerCell:(FFOpenServerCell *)cell clickRemindButton:(BOOL)addRemind;
+
+@end
 
 @interface FFOpenServerCell : UITableViewCell
 
@@ -15,5 +22,11 @@
 
 /** 游戏数据 */
 @property (nonatomic, strong) NSDictionary *dict;
+
+
+@property (nonatomic, strong) id<FFopenServerCellDelegate> delegate;
+
+
+
 
 @end

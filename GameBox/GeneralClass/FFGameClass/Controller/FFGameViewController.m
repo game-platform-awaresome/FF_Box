@@ -9,12 +9,13 @@
 #import "FFGameViewController.h"
 #import "FFCurrentGameModel.h"
 #import "FFGameHeaderView.h"
+#import "FFGameFooterView.h"
 
-
-@interface FFGameViewController ()
+@interface FFGameViewController () <FFGameDetailFooterViewDelegate>
 
 
 @property (nonatomic, strong) FFGameHeaderView *gameHeaderView;
+@property (nonatomic, strong) FFGameFooterView *gameFooterView;
 
 @property (nonatomic, strong) NSArray *childsControllerName;
 @property (nonatomic, strong) NSMutableArray<FFBasicSSTableViewController *> *childsControllerArray;
@@ -59,13 +60,11 @@ static FFGameViewController *controller = nil;
 
 - (void)setNormalView {
     self.navigationController.navigationBar.hidden = NO;
+    [self.navigationController.navigationBar setTintColor:[UIColor colorWithWhite:1 alpha:1]];
     self.navBarBGAlpha = @"0.0";
     self.headerView = self.gameHeaderView;
-    self.sectionView = self.selectView;
-    [self.navigationController.navigationBar setTintColor:[UIColor colorWithWhite:1 alpha:1]];
+    self.footerView = self.gameFooterView;
 
-    self.footerView = [[UIView alloc] initWithFrame:CGRectMake(0, kSCREEN_HEIGHT - 60, kSCREEN_WIDTH, 60)];
-    self.footerView.backgroundColor = [UIColor orangeColor];
     [self.view addSubview:self.footerView];
     [self.view addSubview:self.tableView];
 
@@ -182,6 +181,21 @@ static FFGameViewController *controller = nil;
     [self.gameHeaderView hideNavigationTitle];
 }
 
+
+#pragma mark - delegate
+- (void)FFGameDetailFooterView:(FFGameFooterView *)detailFooter clickShareBtn:(UIButton *)sender {
+    syLog(@"评论");
+}
+
+- (void)FFGameDetailFooterView:(FFGameFooterView *)detailFooter clickCollecBtn:(UIButton *)sender {
+    syLog(@"收藏");
+}
+
+- (void)FFGameDetailFooterView:(FFGameFooterView *)detailFooter clickDownLoadBtn:(UIButton *)sender {
+    syLog(@"下载");
+}
+
+
 #pragma mark - setter
 - (void)setGid:(NSString *)gid {
     if ([_gid isEqualToString:gid]) {
@@ -223,6 +237,14 @@ static FFGameViewController *controller = nil;
         _gameHeaderView = [[FFGameHeaderView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 250)];
     }
     return _gameHeaderView;
+}
+
+- (FFGameFooterView *)gameFooterView {
+    if (!_gameFooterView) {
+        _gameFooterView = [[FFGameFooterView alloc] initWithFrame:CGRectMake(0, kSCREEN_HEIGHT - 50, kSCREEN_WIDTH, 50)];
+        _gameFooterView.delegate = self;
+    }
+    return _gameFooterView;
 }
 
 - (void)setSelectViewInfo {

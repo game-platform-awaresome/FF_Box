@@ -50,12 +50,19 @@
 
 }
 
+
 - (void)hideTabbar {
+    if (self.parentViewController.parentViewController) {
+        self.parentViewController.parentViewController.hidesBottomBarWhenPushed = YES;
+    }
     self.parentViewController.hidesBottomBarWhenPushed = YES;
     self.hidesBottomBarWhenPushed = YES;
 }
 
 - (void)showTabbar {
+    if (self.parentViewController.parentViewController) {
+        self.parentViewController.parentViewController.hidesBottomBarWhenPushed = NO;
+    }
     self.parentViewController.hidesBottomBarWhenPushed = NO;
     self.hidesBottomBarWhenPushed = NO;
 }

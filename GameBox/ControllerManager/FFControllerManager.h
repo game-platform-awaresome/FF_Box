@@ -17,6 +17,8 @@
 @property (nonatomic, strong) UINavigationController *rootNavController;
 /** Current Navigation Controller */
 @property (nonatomic, strong) UINavigationController *currentNavController;
+/** Current View Controller */
+@property (nonatomic, strong) UIViewController *viewController;
 /** Main Tabbar Controller */
 @property (nonatomic, strong) FFMainTabbarViewController *mainTabbarController;
 

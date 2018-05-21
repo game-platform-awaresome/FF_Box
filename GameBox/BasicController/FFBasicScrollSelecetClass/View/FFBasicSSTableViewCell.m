@@ -157,10 +157,9 @@ static FFBasicSSTableViewCell *cell = nil;
 - (UIScrollView *)scrollView {
     if (!_scrollView) {
         _scrollView = [[UIScrollView alloc] init];
-
         _scrollView.delegate = self;
         _scrollView.pagingEnabled = YES;
-        _scrollView.backgroundColor = [FFColorManager blue_dark];
+        _scrollView.backgroundColor = [UIColor whiteColor];
     }
     return _scrollView;
 }

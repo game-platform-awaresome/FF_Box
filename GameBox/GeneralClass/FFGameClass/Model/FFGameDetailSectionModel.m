@@ -64,5 +64,22 @@
 }
 
 
+- (float)normalHeight {
+    return 100;
+}
+
+- (float)openUpHeight {
+    return 200;
+}
+
+
+
+
+
+
+
+
+
+
 
 @end
