@@ -10,7 +10,7 @@
 #import "FFDeviceInfo.h"
 #import "FFMapModel.h"
 #import "FFUserModel.h"
-
+#import <CommonCrypto/CommonDigest.h>
 
 #define SS_SERVER_TYPE [dict setObject:[NSString stringWithFormat:@"%ld",serverType] forKey:@"platform"]
 
@@ -242,7 +242,51 @@
     }];
 }
 
+#pragma mark - gift (游戏礼包)
+/** 根据游戏 id 获取游戏礼包列表 */
++ (void)gameGiftWithGameID:(NSString *)gameID Completion:(RequestCallBackBlock)completion {
+    Mutable_Dict(5);
+    [dict setObject:gameID forKey:@"game_id"];
+    [dict setObject:@"1" forKey:@"page"];
+    SS_CHANNEL;
+    [dict setObject:[FFUserModel currentUser].username forKey:@"username"];
+    [dict setObject:DeviceID forKey:@"device_id"];
+    [FFNetWorkManager postRequestWithURL:Map.GAME_PACK Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        REQUEST_COMPLETION;
+    }];
+}
 
++ (void)getGameGiftWithPackageID:(NSString *)packageID Completion:(RequestCallBackBlock)completion {
+    Mutable_dict;
+
+    [dict setObject:[FFUserModel currentUser].username forKey:@"username"];
+    [dict setObject:[FFDeviceInfo DeviceIP] forKey:@"ip"];
+    [dict setObject:@"2" forKey:@"terminal_type"];
+    [dict setObject:packageID forKey:@"pid"];
+    [dict setObject:[FFDeviceInfo deviceID] forKey:@"device_id"];
+
+    NSString *signStr = [NSString stringWithFormat:@"device_id%@ip%@pid%@terminal_type2username%@",[FFDeviceInfo deviceID],[FFDeviceInfo DeviceIP],packageID,[FFUserModel currentUser].username];
+
+    const char *cstr = [signStr cStringUsingEncoding:NSUTF8StringEncoding];
+
+    NSData *data = [NSData dataWithBytes:cstr length:signStr.length];
+    //使用对应的CC_SHA1,CC_SHA256,CC_SHA384,CC_SHA512的长度分别是20,32,48,64
+    uint8_t digest[CC_SHA1_DIGEST_LENGTH];
+    //使用对应的CC_SHA256,CC_SHA384,CC_SHA512
+    CC_SHA1(data.bytes, (unsigned int)data.length, digest);
+    NSMutableString *cha1str = [NSMutableString stringWithCapacity:CC_SHA1_DIGEST_LENGTH * 2];
+
+    for(int i = 0; i < CC_SHA1_DIGEST_LENGTH; i++)
+        [cha1str appendFormat:@"%02x", digest[i]];
+
+    NSString *sign = [cha1str uppercaseString];
+    [dict setObject:sign forKey:@"sign"];
+    [dict setObject:Channel forKey:@"channel_id"];
+
+    [FFNetWorkManager postRequestWithURL:Map.PACKS_LINGQU Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        REQUEST_COMPLETION;
+    }];
+}
 
 
 

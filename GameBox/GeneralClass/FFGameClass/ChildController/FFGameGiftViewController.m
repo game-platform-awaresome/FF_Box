@@ -7,8 +7,13 @@
 //
 
 #import "FFGameGiftViewController.h"
+#import "FFCurrentGameModel.h"
+#import "FFpackageCell.h"
+#import <FFTools/FFTools.h>
 
-@interface FFGameGiftViewController ()
+#define CELL_IDE @"FFpackageCell"
+
+@interface FFGameGiftViewController ()<FFpackageCellDelegate>
 
 @end
 
@@ -16,12 +21,72 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    self.tableView.mj_footer = nil;
+    BOX_REGISTER_CELL;
 }
 
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    self.tableView.frame = self.view.bounds;
+}
+
+- (void)refreshData {
+    [FFGameModel gameGiftWithGameID:CURRENT_GAME.game_id Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        if (success) {
+            self.showArray = [content[@"data"][@"list"] mutableCopy];
+            [self.tableView reloadData];
+        }
+    }];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    FFpackageCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDE];
+    cell.dict = self.showArray[indexPath.row];
+    cell.delegate = self;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//    cell.gameLogo
+    return cell;
+}
 
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    NSDictionary *dict = self.showArray[indexPath.row];
+
+//    self.detailViewController.pid = [NSString stringWithFormat:@"%@",dict[@"id"]];
+//
+//    HIDE_TABBAR;
+//    HIDE_PARNENT_TABBAR;
+//    [self.navigationController pushViewController:self.detailViewController animated:YES];
+
+}
+
+#pragma mark - cell delegate
+- (void)FFpackageCell:(FFpackageCell *)cell select:(NSInteger)idx {
+    syLog(@"领取礼包");
+    NSString *str = self.showArray[idx][@"card"];
+
+    if ([str isKindOfClass:[NSNull class]]) {
+        [FFGameModel getGameGiftWithPackageID:cell.dict[@"id"] Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+            if (success) {
+                NSMutableDictionary *dict = [self.showArray[idx] mutableCopy];
+                [dict setObject:content[@"data"] forKey:@"card"];
+                [self.showArray replaceObjectAtIndex:idx withObject:dict];
+                [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:idx inSection:0]] withRowAnimation:(UITableViewRowAnimationNone)];
+                [UIAlertController showAlertMessage:@"领取成功" dismissTime:0.7 dismissBlock:nil];
+            } else {
+                [UIAlertController showAlertMessage:@"领取失败" dismissTime:0.7 dismissBlock:nil];
+            }
+        }];
+
+    } else {
+        UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+        pasteboard.string = str;
+        [UIAlertController showAlertMessage:@"已复制礼包兑换码" dismissTime:0.7 dismissBlock:nil];
+    }
+}
 
 
 

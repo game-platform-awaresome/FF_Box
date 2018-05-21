@@ -22,6 +22,9 @@
 
 @property (nonatomic, assign) NSUInteger currentIndex;
 
+@property (nonatomic, strong) UIImage *lastNaviImage;
+@property (nonatomic, strong) UIImage *lastShadowImage;
+
 @end
 
 static FFGameViewController *controller = nil;
@@ -41,9 +44,40 @@ static FFGameViewController *controller = nil;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
-    self.navBarBGAlpha = @"1.0";
+    self.navBarBGAlpha = @"0.0";
+    [self naviTransParent];
+}
 
-    
+
+
+
+- (void)naviTransParent {
+    UIView *barBackgroundView;// _UIBarBackground
+    UIImageView *backgroundImageView;// UIImageView
+    UIView *backgroundEffectView;// UIVisualEffectView
+
+    if (@available(iOS 10.0, *)) {//
+        barBackgroundView = [self.self.navigationController.navigationBar.subviews objectAtIndex:0];
+        if (barBackgroundView.subviews.count > 1) {
+            backgroundImageView = [barBackgroundView.subviews objectAtIndex:0];
+            backgroundEffectView = [barBackgroundView.subviews objectAtIndex:1];
+        }
+    } else {
+        for (UIView *view in self.self.navigationController.navigationBar.subviews) {
+            if ([view isKindOfClass:NSClassFromString(@"_UINavigationBarBackground")]) {
+                barBackgroundView = view;
+            }
+        }
+        for (UIView *otherView in barBackgroundView.subviews) {
+            if ([otherView isKindOfClass:NSClassFromString(@"UIImageView")]) {
+                backgroundImageView = (UIImageView *)otherView;
+            }else if ([otherView isKindOfClass:NSClassFromString(@"_UIBackdropView")]) {
+                backgroundEffectView = otherView;
+            }
+        }
+    }
+
+    barBackgroundView.alpha = 0;
 }
 
 - (void)viewDidLoad {
@@ -62,18 +96,13 @@ static FFGameViewController *controller = nil;
     self.navigationController.navigationBar.hidden = NO;
     [self.navigationController.navigationBar setTintColor:[UIColor colorWithWhite:1 alpha:1]];
     self.navBarBGAlpha = @"0.0";
+    [self naviTransParent];
     self.headerView = self.gameHeaderView;
     self.footerView = self.gameFooterView;
     self.sectionView = self.selectView;
     [self.view addSubview:self.footerView];
     [self.view addSubview:self.tableView];
 
-//    self.tableView.alpha = 0;
-//    self.footerView.alpha = 0;
-//    [UIView animateWithDuration:0.7 animations:^{
-//        self.tableView.alpha = 1;
-//        self.footerView.alpha = 1;
-//    }];
     [self.view bringSubviewToFront:self.navigationView];
 }
 
@@ -117,13 +146,14 @@ static FFGameViewController *controller = nil;
     }];
 
     //点击了 select view 的下标后 滑动cell 的 scroll view 到指定位置
+    WeakSelf;
     [self.selectView setSelectBlock:^(NSUInteger idx) {
         [[FFBasicSSTableViewCell cell] selectViewWithIndex:idx];
         _currentIndex = idx;
+        [weakSelf naviTransParent];
     }];
 
     //cell 横向滑动的时候 移动 select view 的游标
-    WeakSelf;
     [[FFBasicSSTableViewCell cell] setScrolledBlock:^(CGFloat offset_x) {
         [weakSelf.selectView setCursorView_X:(offset_x)];
         NSUInteger idx = offset_x / kSCREEN_WIDTH;
@@ -203,9 +233,9 @@ static FFGameViewController *controller = nil;
     }
 
     _currentIndex = 0;
-
-    [self removeAllview];
     _gid = gid;
+    [self removeAllview];
+    [[FFBasicSSTableViewCell cell] selectViewWithIndex:0];
     //刷新游戏
     [self refreshData];
 }

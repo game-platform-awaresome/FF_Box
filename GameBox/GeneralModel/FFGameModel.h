@@ -171,25 +171,30 @@ typedef enum : NSUInteger {
 + (void)gameGuideListWithPage:(NSString * _Nonnull)page
                    ServerType:(FFGameServersType)serverType
                    Completion:(RequestCallBackBlock _Nullable)completion;
-
 /**
  * 游戏活动
  */
 + (void)gameActivityWithPage:(NSString * _Nonnull)page
                   ServerType:(FFGameServersType)serverType
                   Completion:(RequestCallBackBlock _Nullable)completion;
-
-
-/** 单一游戏攻略 */
+/**
+ * 单一游戏攻略
+ */
 + (void)gameGuideWithGameID:(NSString * _Nonnull)gameID
                  Completion:(RequestCallBackBlock _Nullable)completion;
 
 
-
-
-
-
-
+#pragma mark - game gift (游戏礼包)
+/**
+ * 根据游戏 id 获取游戏礼包列表
+ */
++ (void)gameGiftWithGameID:(NSString * _Nonnull)gameID
+                Completion:(RequestCallBackBlock _Nullable)completion;
+/**
+ * 根据 礼包 id 获取礼包
+ */
++ (void)getGameGiftWithPackageID:(NSString * _Nonnull)packageID
+                      Completion:(RequestCallBackBlock _Nullable)completion;
 
 
 @end

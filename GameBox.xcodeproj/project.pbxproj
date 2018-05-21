@@ -10,6 +10,8 @@
 		0543CAF4C1A27767297E9250 /* libPods-GameBox.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C09ECF85CDCEAA38284810 /* libPods-GameBox.a */; };
 		B51BCFB120B2BD8A005B9DE1 /* FFGameOpenCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B51BCFAF20B2BD8A005B9DE1 /* FFGameOpenCell.m */; };
 		B51BCFB220B2BD8A005B9DE1 /* FFGameOpenCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B51BCFB020B2BD8A005B9DE1 /* FFGameOpenCell.xib */; };
+		B51BCFB620B2C8AB005B9DE1 /* FFpackageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B51BCFB320B2C8AA005B9DE1 /* FFpackageCell.m */; };
+		B51BCFB720B2C8AB005B9DE1 /* FFpackageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B51BCFB420B2C8AB005B9DE1 /* FFpackageCell.xib */; };
 		B523825920AA85FF0087733A /* FFBTNewGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = B523825820AA85FF0087733A /* FFBTNewGameController.m */; };
 		B523825C20AA86110087733A /* FFZKNewGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = B523825B20AA86110087733A /* FFZKNewGameController.m */; };
 		B523826120AAB6850087733A /* FFBTClassifyController.m in Sources */ = {isa = PBXBuildFile; fileRef = B523826020AAB6850087733A /* FFBTClassifyController.m */; };
@@ -173,6 +175,9 @@
 		B51BCFAE20B2BD8A005B9DE1 /* FFGameOpenCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFGameOpenCell.h; sourceTree = "<group>"; };
 		B51BCFAF20B2BD8A005B9DE1 /* FFGameOpenCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFGameOpenCell.m; sourceTree = "<group>"; };
 		B51BCFB020B2BD8A005B9DE1 /* FFGameOpenCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FFGameOpenCell.xib; sourceTree = "<group>"; };
+		B51BCFB320B2C8AA005B9DE1 /* FFpackageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFpackageCell.m; sourceTree = "<group>"; };
+		B51BCFB420B2C8AB005B9DE1 /* FFpackageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FFpackageCell.xib; sourceTree = "<group>"; };
+		B51BCFB520B2C8AB005B9DE1 /* FFpackageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFpackageCell.h; sourceTree = "<group>"; };
 		B523825720AA85FF0087733A /* FFBTNewGameController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBTNewGameController.h; sourceTree = "<group>"; };
 		B523825820AA85FF0087733A /* FFBTNewGameController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBTNewGameController.m; sourceTree = "<group>"; };
 		B523825A20AA86110087733A /* FFZKNewGameController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFZKNewGameController.h; sourceTree = "<group>"; };
@@ -729,6 +734,9 @@
 				B51BCFAE20B2BD8A005B9DE1 /* FFGameOpenCell.h */,
 				B51BCFAF20B2BD8A005B9DE1 /* FFGameOpenCell.m */,
 				B51BCFB020B2BD8A005B9DE1 /* FFGameOpenCell.xib */,
+				B51BCFB520B2C8AB005B9DE1 /* FFpackageCell.h */,
+				B51BCFB320B2C8AA005B9DE1 /* FFpackageCell.m */,
+				B51BCFB420B2C8AB005B9DE1 /* FFpackageCell.xib */,
 			);
 			path = ChildView;
 			sourceTree = "<group>";
@@ -1498,6 +1506,7 @@
 				B58CB7B2207B10830099773D /* cityData.plist in Resources */,
 				B523837020AE9FAC0087733A /* ZLPhotoActionSheet.xib in Resources */,
 				B523833520AE9EF40087733A /* FFDriveFansCell.xib in Resources */,
+				B51BCFB720B2C8AB005B9DE1 /* FFpackageCell.xib in Resources */,
 				B52382C820AE82830087733A /* FFGameDetailCell.xib in Resources */,
 				B58CB7B3207B10830099773D /* GameBoxConfig.plist in Resources */,
 				B58CB7B6207B10830099773D /* LaunchScreen.storyboard in Resources */,
@@ -1693,6 +1702,7 @@
 				B52383D120AECD100087733A /* FFGameOpenServerViewController.m in Sources */,
 				B523838020AE9FAC0087733A /* ZLPhotoConfiguration.m in Sources */,
 				B523832720AE9EF40087733A /* FFDriveMineViewController.m in Sources */,
+				B51BCFB620B2C8AB005B9DE1 /* FFpackageCell.m in Sources */,
 				B5D505802085CB06000B7B50 /* FFBasicSelectViewController.m in Sources */,
 				B523832220AE9EF40087733A /* FFDriveController.m in Sources */,
 				B5D5058E2088406A000B7B50 /* FFNewGameViewController.m in Sources */,

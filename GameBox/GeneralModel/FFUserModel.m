@@ -36,6 +36,14 @@ static FFUserModel *model;
     return model;
 }
 
+#pragma mark - getter
+- (NSString *)username {
+    if (!_username) {
+        _username = @"";
+    }
+    return _username;
+}
+
 #pragma mark - ================================ 注册和登录 ================================
 /** 登录 */
 + (void)userLoginWithUsername:(NSString *)username Password:(NSString *)password Completion:(RequestCallBackBlock)completion {
@@ -423,6 +431,7 @@ static FFUserModel *model;
         NEW_REQUEST_COMPLETION;
     }];
 }
+
 
 
 
