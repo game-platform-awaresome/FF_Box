@@ -12,11 +12,7 @@
 @interface FFGameGuideCell ()
 
 
-@property (weak, nonatomic) IBOutlet UILabel *gameNameLabel;
-
-@property (weak, nonatomic) IBOutlet UILabel *authorLabel;
-
-@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 
@@ -56,11 +52,12 @@
 }
 
 - (void)setAutor:(NSString *)string {
-    if (string == nil || string.length == 0 || [string isKindOfClass:[NSNull class]]) {
-        self.authorLabel.text = @" ";
-    } else {
-        self.authorLabel.text = [NSString stringWithFormat:@"%@",string];
-    }
+//    syLog(@"setAutor == %@",string);
+//    if (string == nil || string.length == 0 || [string isKindOfClass:[NSNull class]]) {
+//        self.authorLabel.text = @" ";
+//    } else {
+//        self.authorLabel.text = [NSString stringWithFormat:@"%@",string];
+//    }
 }
 
 - (void)setTime:(NSString *)string {
@@ -73,18 +70,19 @@
 
 - (void)setcontent:(NSString *)string {
     if (string == nil || string.length == 0 || [string isKindOfClass:[NSNull class]]) {
-        self.contentLabel.text = @" ";
+        self.nameLabel.text = @" ";
     } else {
-        self.contentLabel.text = [NSString stringWithFormat:@"%@",string];
+        self.nameLabel.text = [NSString stringWithFormat:@"%@",string];
     }
 }
 
 - (void)setGameName:(NSString *)string {
-    if (string == nil || string.length == 0 || [string isKindOfClass:[NSNull class]]) {
-        self.gameNameLabel.text = @" ";
-    } else {
-        self.gameNameLabel.text = [NSString stringWithFormat:@"%@",string];
-    }
+//    syLog(@"setGameName == %@",string);
+//    if (string == nil || string.length == 0 || [string isKindOfClass:[NSNull class]]) {
+//        self.gameNameLabel.text = @" ";
+//    } else {
+//        self.gameNameLabel.text = [NSString stringWithFormat:@"%@",string];
+//    }
 }
 
 

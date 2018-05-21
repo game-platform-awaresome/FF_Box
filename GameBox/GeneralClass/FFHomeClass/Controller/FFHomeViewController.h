@@ -14,4 +14,7 @@
 @property (nonatomic, strong) UIView *navigationView;
 @property (nonatomic, strong) FFHomeSelectView *homeSelectView;
 
+@property (nonatomic, strong) UIImage *naviBarImage;
+@property (nonatomic, strong) UIImage *naviBarlineImage;
+
 @end

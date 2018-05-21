@@ -6,7 +6,7 @@
 //  Copyright © 2018年 Sans. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 typedef enum : NSUInteger {
     SecTionTypeGameIntroduction,
@@ -23,8 +23,8 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, assign) BOOL openUp;
 
-@property (nonatomic, assign) float openUpHeight;
-@property (nonatomic, assign) float normalHeight;
+@property (nonatomic, assign) CGFloat openUpHeight;
+@property (nonatomic, assign) CGFloat normalHeight;
 
 @property (nonatomic, assign) SecTionType sectionType;
 
@@ -41,6 +41,8 @@ typedef enum : NSUInteger {
 
 - (void)refreshDataWith:(SecTionType)type;
 
+@property (nonatomic, strong) UIView *sectionHeaderView;
+@property (nonatomic, strong) UIView *sectionFooterView;
 
 
 

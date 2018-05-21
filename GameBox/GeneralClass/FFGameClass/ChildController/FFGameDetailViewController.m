@@ -76,9 +76,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     FFGameDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDE];
+
     cell.content = self.sectionArray[indexPath.section].contentString;
     cell.layer.masksToBounds = YES;
-
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     return cell;
 }
 
@@ -88,48 +90,33 @@
     if (_isAnimation) {
         return;
     }
+
+
+
+
     FFGameDetailSectionModel *model = self.sectionArray[indexPath.section];
+    if (model.openUpHeight == 100) {
+        return;
+    }
     _isAnimation = YES;
     [tableView beginUpdates];
     model.openUp = !model.openUp;
     [tableView endUpdates];
     _isAnimation = NO;
+//    [tableView reloadSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:(UITableViewRowAnimationNone)];
 
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, kSCREEN_WIDTH - 10, 44)];
-    label.backgroundColor = [UIColor whiteColor];
-    label.text = [NSString stringWithFormat:@"      %@ :",self.sectionArray[section].sectionHeaderTitle];
-    label.layer.masksToBounds = YES;
-
-    CALayer *layer = [[CALayer alloc] init];
-    layer.frame = CGRectMake(0, 0, kSCREEN_WIDTH, 1);
-    layer.backgroundColor = [FFColorManager light_gray_color].CGColor;
-    [label.layer addSublayer:layer];
-
-    return label;
+    return self.sectionArray[section].sectionHeaderView;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 44)];
-    label.backgroundColor = [UIColor whiteColor];
-    label.text = self.sectionArray[section].sectionFooterTitle;
-    label.textAlignment = NSTextAlignmentCenter;
-    [label sizeToFit];
-    label.center = CGPointMake(kSCREEN_WIDTH / 2, 22);
-    label.layer.masksToBounds = YES;
-    return label;
+    return self.sectionArray[section].sectionFooterView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    FFGameDetailSectionModel *model = self.sectionArray[indexPath.section];
-    if (model.openUp) {
-        return model.openUpHeight;
-    } else {
-        return model.normalHeight;
-    }
-
+    return self.sectionArray[indexPath.section].openUp ? self.sectionArray[indexPath.section].openUpHeight : self.sectionArray[indexPath.section].normalHeight;
 }
 
 #pragma mark - setter

@@ -10,6 +10,7 @@
 #import <UIImageView+WebCache.h>
 #import "FFBoxModel.h"
 #import "FFColorManager.h"
+#import "FFCurrentGameModel.h"
 
 @interface FFOpenServerCell ()
 
@@ -51,7 +52,8 @@
 }
 
 - (void)respondsToremindButtn:(UIButton *)sender {
-    if ([sender.titleLabel.text isEqualToString:@"提醒"]) {
+
+    if ([sender.titleLabel.text isEqualToString:@"提醒我"]) {
         [FFBoxModel addNotificationWithDict:_dict Completion:^(NSDictionary *content, BOOL success) {
             if (success) {
                 NSMutableDictionary *dict = [_dict mutableCopy];
@@ -101,7 +103,11 @@
 - (void)setOpenServerTime {
     //设置开服时间
     //游戏名称
-    self.gameNameLabel.text = [NSString stringWithFormat:@"%@ - %@服",_dict[@"gamename"],_dict[@"server_id"]];
+
+    NSString *gameName = _dict[@"gamename"] ? _dict[@"gamename"] : CURRENT_GAME.game_name;
+    self.gameNameLabel.text = [NSString stringWithFormat:@"%@ - %@服",gameName,_dict[@"server_id"]];
+
+
     NSString *timeStr = _dict[@"start_time"];
     NSDate *starDate = [NSDate dateWithTimeIntervalSince1970:timeStr.integerValue];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];

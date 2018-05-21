@@ -66,16 +66,18 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     FFGameGuideCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDE];
     cell.dict = self.showArray[indexPath.row];
+    cell.gameLogoImageView.image = CURRENT_GAME.game_logo_image;
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 120;
+    return 80;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     self.webViewController.webURL = self.showArray[indexPath.row][@"info_url"];
+    self.hidesBottomBarWhenPushed = YES;
     [self pushViewController:self.webViewController];
 }
 

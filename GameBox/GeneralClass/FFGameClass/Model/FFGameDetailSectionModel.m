@@ -8,6 +8,7 @@
 
 #import "FFGameDetailSectionModel.h"
 #import "FFCurrentGameModel.h"
+#import "FFColorManager.h"
 
 @implementation FFGameDetailSectionModel
 
@@ -42,7 +43,6 @@
             break;
         case SecTionTypeVip:
             self.sectionHeaderTitle = @"VIP 价格";
-            syLog(@"sdlakfjaslkj === %@",CURRENT_GAME.game_vip_amount);
             self.contentString = CURRENT_GAME.game_vip_amount;
             break;
         case SecTionTypeLike:
@@ -63,20 +63,56 @@
     self.sectionFooterTitle = openUp ? @"收起" :@"展开";
 }
 
+- (void)setContentString:(NSString *)contentString {
+    _contentString = contentString;
+    _openUpHeight = [self heightForString:contentString] + 10.f;
+}
 
-- (float)normalHeight {
+- (CGFloat)normalHeight {
     return 100;
 }
 
-- (float)openUpHeight {
-    return 200;
+- (CGFloat)openUpHeight {
+    return (_openUpHeight < 100) ? 100.f : _openUpHeight;
 }
 
 
 
+#pragma mark - other
+/** 计算字符串需要的尺寸 */
+- (CGSize)sizeForString:(NSString *)string Width:(CGFloat)width Height:(CGFloat)height {
+    NSDictionary *attribute = @{NSFontAttributeName: [UIFont systemFontOfSize:14]};
+    CGSize retSize = [string boundingRectWithSize:CGSizeMake(width, height)
+                                          options:\
+                      NSStringDrawingTruncatesLastVisibleLine |
+                      NSStringDrawingUsesLineFragmentOrigin |
+                      NSStringDrawingUsesFontLeading
+                                       attributes:attribute
+                                          context:nil].size;
+    return retSize;
+}
+
+- (CGFloat)heightForString:(NSString *)string {
+    return [self sizeForString:string Width:kSCREEN_WIDTH Height:MAXFLOAT].height;
+}
 
 
+- (UIView *)sectionHeaderView {
+    if (!_sectionHeaderView) {
+        _sectionHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 44)];
 
+        CALayer *layer = [[CALayer alloc] init];
+        layer.frame = CGRectMake(0, 0, kSCREEN_WIDTH, 1);
+        layer.backgroundColor = [FFColorManager light_gray_color].CGColor;
+        [_sectionHeaderView.layer addSublayer:layer];
+
+        CALayer *layer2 = [[CALayer alloc] init];
+        layer2.frame = CGRectMake(0, 43, kSCREEN_WIDTH, 1);
+        layer2.backgroundColor = [FFColorManager light_gray_color].CGColor;
+        [_sectionHeaderView.layer addSublayer:layer2];
+    }
+    return _sectionHeaderView;
+}
 
 
 

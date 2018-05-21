@@ -41,7 +41,7 @@ static FFGameViewController *controller = nil;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
-    self.navBarBGAlpha = @"0.0";
+    self.navBarBGAlpha = @"1.0";
 
     
 }
@@ -64,7 +64,7 @@ static FFGameViewController *controller = nil;
     self.navBarBGAlpha = @"0.0";
     self.headerView = self.gameHeaderView;
     self.footerView = self.gameFooterView;
-
+    self.sectionView = self.selectView;
     [self.view addSubview:self.footerView];
     [self.view addSubview:self.tableView];
 

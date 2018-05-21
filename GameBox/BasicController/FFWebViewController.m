@@ -9,6 +9,7 @@
 #import "FFWebViewController.h"
 #import <WebKit/WebKit.h>
 #import "FFColorManager.h"
+#import <FFTools/FFTools.h>
 
 @interface FFWebViewController ()<WKUIDelegate,WKNavigationDelegate,UIWebViewDelegate>
 
@@ -26,10 +27,13 @@
 @implementation FFWebViewController
 
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+//    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = NO;
+    self.navBarBGAlpha = @"1.0";
 }
 
 - (void)viewDidLoad {
+    self.navBarBGAlpha = @"1.0";
     [super viewDidLoad];
     [self.view addSubview:self.webView];
     self.automaticallyAdjustsScrollViewInsets = YES;

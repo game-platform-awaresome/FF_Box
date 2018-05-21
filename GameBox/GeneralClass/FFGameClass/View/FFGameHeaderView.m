@@ -59,7 +59,9 @@
 
 - (void)refresh {
     //logo
-    [self.logoImageView sd_setImageWithURL:[NSURL URLWithString:CURRENT_GAME.game_logo_url] placeholderImage:[FFImageManager gameLogoPlaceholderImage]];
+    [self.logoImageView sd_setImageWithURL:[NSURL URLWithString:CURRENT_GAME.game_logo_url] placeholderImage:[FFImageManager gameLogoPlaceholderImage] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        CURRENT_GAME.game_logo_image = image;
+    }];
     //game name logo
     self.gameNameLabel.text = CURRENT_GAME.game_name;
     //discount

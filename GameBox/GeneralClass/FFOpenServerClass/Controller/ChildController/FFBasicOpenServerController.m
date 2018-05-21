@@ -82,7 +82,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     FFOpenServerCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDE];
     cell.dict = self.showArray[indexPath.row];
-    cell.delegate = self;
     return cell;
 }
 
