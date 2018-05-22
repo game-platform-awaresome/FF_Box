@@ -9,6 +9,7 @@
 #import "FFMineViewController.h"
 #import "FFControllerManager.h"
 #import "FFMineViewModel.h"
+#import "FFUserModel.h"
 
 @interface FFMineViewController ()
 
@@ -156,6 +157,10 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 24;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
 }
 
 

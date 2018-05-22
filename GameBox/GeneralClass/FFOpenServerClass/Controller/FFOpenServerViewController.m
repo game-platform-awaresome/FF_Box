@@ -18,6 +18,11 @@
 
 @implementation FFOpenServerViewController
 
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    self.hidesBottomBarWhenPushed = NO;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.

@@ -9,6 +9,7 @@
 #import "FFMainTabbarViewController.h"
 #import "FFControllerManager.h"
 #import "FFCustomizeTabBar.h"
+#import "FFNavigationController.h"
 
 @interface FFMainTabbarViewController () <FFCustomizeTabbarDelegate>
 

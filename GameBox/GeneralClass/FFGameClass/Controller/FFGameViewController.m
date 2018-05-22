@@ -25,6 +25,9 @@
 @property (nonatomic, strong) UIImage *lastNaviImage;
 @property (nonatomic, strong) UIImage *lastShadowImage;
 
+@property (nonatomic, strong) UIColor *lastNavColor;
+@property (nonatomic, assign) BOOL isResetNavColor;
+
 @end
 
 static FFGameViewController *controller = nil;
@@ -46,9 +49,16 @@ static FFGameViewController *controller = nil;
     self.navigationController.navigationBar.hidden = NO;
     self.navBarBGAlpha = @"0.0";
     [self naviTransParent];
+    if (_isResetNavColor) {
+        [self resetNavColor];
+    } else {
+        [self.navigationController.navigationBar setTintColor:self.lastNavColor];
+    }
 }
 
-
+- (void)resetNavColor {
+    [self.navigationController.navigationBar setTintColor:[UIColor colorWithWhite:1 alpha:1]];
+}
 
 
 - (void)naviTransParent {
@@ -114,8 +124,8 @@ static FFGameViewController *controller = nil;
     CGFloat maxAlphaOffset = self.headerView.bounds.size.height - kNAVIGATION_HEIGHT;
     CGFloat offset = scrollView.contentOffset.y;
     CGFloat alpha = offset / maxAlphaOffset;
-
-    [self.navigationController.navigationBar setTintColor:[UIColor colorWithWhite:(1 - alpha) alpha:1]];
+    self.lastNavColor = [UIColor colorWithWhite:(1 - alpha) alpha:1];
+    [self.navigationController.navigationBar setTintColor:self.lastNavColor];
 
     self.navigationView.alpha = alpha;
 

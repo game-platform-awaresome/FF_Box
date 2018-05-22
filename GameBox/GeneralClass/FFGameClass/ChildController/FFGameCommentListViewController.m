@@ -8,9 +8,10 @@
 
 #import "FFGameCommentListViewController.h"
 #import "FFCurrentGameModel.h"
+#import "FFUserModel.h"
 #import "FFGameModel.h"
 #import <MJRefresh/MJRefresh.h>
-
+#import "FFLoginViewController.h"
 
 #import "FFDriveCommentCell.h"
 #define CELL_IDE @"FFDriveCommentCell"
@@ -129,14 +130,14 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
-//    if (SSKEYCHAIN_UID == nil) {
-////        BOX_MESSAGE(@"尚未登录");
-//        return;
-//    }
-//
-//    if (self.isLiking) {
-//        return;
-//    }
+    self.hidesBottomBarWhenPushed = YES;
+    if (![FFUserModel currentUser].isLogin) {
+        [self pushViewController:[FFLoginViewController new]];
+        return;
+    }
+    if (self.isLiking) {
+        return;
+    }
 
     [self showCellSelectionWithIndexPath:indexPath];
 }
@@ -239,6 +240,12 @@
 #pragma mark - cell delegate
 - (void)FFDriveCommentCell:(FFDriveCommentCell *)cell didClickLikeButtonWith:(NSDictionary *)dict {
     syLog(@"评论点赞 %@",dict);
+
+    if (![FFUserModel currentUser].isLogin) {
+        [self pushViewController:[FFLoginViewController new]];
+        return;
+    }
+
     if (self.isLiking) {
         return;
     }

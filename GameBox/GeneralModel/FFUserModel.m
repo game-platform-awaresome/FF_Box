@@ -14,9 +14,12 @@
 
 #define FF_UID [FFUserModel currentUser].uid
 
-#define IS_LOGIN    if (FF_UID == nil || FF_UID.length < 1) {\
+#define IS_LOGIN    if (FF_UID == nil || [FF_UID isEqualToString:@"0"]) {\
                         return NO;\
                     }
+
+#define KEYCHAINSERVICE @"tenoneTec.com"
+#define DEVICEID @"CurrentUid"
 
 @interface FFUserModel ()
 
@@ -36,6 +39,39 @@ static FFUserModel *model;
     return model;
 }
 
+#pragma mark - class method
++ (BOOL)setUID:(NSString *)uid {
+    return [SYKeychain setPassword:uid forService:KEYCHAINSERVICE account:DEVICEID];
+}
++ (NSString *)uid {
+    return SSKEYCHAIN_UID;
+}
++ (BOOL)deleteUID {
+    return [SYKeychain deletePasswordForService:KEYCHAINSERVICE account:DEVICEID];
+}
+
++ (NSString *)UserName {
+    return [SYKeychain passwordForService:KEYCHAINSERVICE account:USER_NAME];
+}
++ (BOOL)setUserName:(NSString *)userName {
+    return [SYKeychain setPassword:userName forService:KEYCHAINSERVICE account:USER_NAME];
+}
++ (BOOL)deleteUserName {
+    return [SYKeychain deletePasswordForService:KEYCHAINSERVICE account:USER_NAME];
+}
+
+
++ (BOOL)setPassWord:(NSString *)passWord {
+    return [SYKeychain setPassword:passWord forService:KEYCHAINSERVICE account:USER_PASSWORDK];
+}
++ (NSString *)passWord {
+    return [SYKeychain passwordForService:KEYCHAINSERVICE account:USER_PASSWORDK];
+}
++ (BOOL)deletePassWord {
+    return [SYKeychain deletePasswordForService:KEYCHAINSERVICE account:USER_PASSWORDK];
+}
+
+
 #pragma mark - getter
 - (NSString *)username {
     if (!_username) {
@@ -49,6 +85,10 @@ static FFUserModel *model;
         _uid = @"0";
     }
     return _uid;
+}
+
+- (BOOL)isLogin {
+    return (![_uid isEqualToString:@"0"]);
 }
 
 #pragma mark - ================================ 注册和登录 ================================
@@ -67,6 +107,16 @@ static FFUserModel *model;
         //回调
         NEW_REQUEST_COMPLETION;
 #warning login statistics
+        syLog(@"login content == %@",content);
+        if (success && (status.integerValue == 1)) {
+            NSDictionary *dict = CONTENT_DATA;
+            //设置用户模型
+            [[FFUserModel currentUser] setAllPropertyWithDict:dict];
+            //保存 UID
+            [FFUserModel setUID:[FFUserModel currentUser].uid];
+            [FFUserModel setUserName:[FFUserModel currentUser].username];
+            [FFUserModel setPassWord:password];
+        }
     }];
 }
 

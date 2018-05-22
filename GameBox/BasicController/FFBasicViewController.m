@@ -52,11 +52,12 @@
 
 
 - (void)hideTabbar {
-    self.hidesBottomBarWhenPushed = YES;
     if (self.parentViewController.parentViewController) {
         self.parentViewController.parentViewController.hidesBottomBarWhenPushed = YES;
     }
+    self.navigationController.topViewController.hidesBottomBarWhenPushed = YES;
     self.parentViewController.hidesBottomBarWhenPushed = YES;
+    self.hidesBottomBarWhenPushed = YES;
 }
 
 - (void)showTabbar {
@@ -64,6 +65,7 @@
         self.parentViewController.parentViewController.hidesBottomBarWhenPushed = NO;
     }
     self.parentViewController.hidesBottomBarWhenPushed = NO;
+    self.navigationController.topViewController.hidesBottomBarWhenPushed = NO;
     self.hidesBottomBarWhenPushed = NO;
 }
 
@@ -89,6 +91,10 @@
 
 - (void)returnShowTabbarPushViewController:(UIViewController *)viewController {
     [self pushViewController:viewController HideTabbar:NO];
+}
+
+- (void)showLoginViewController {
+    
 }
 
 #pragma mark - responds

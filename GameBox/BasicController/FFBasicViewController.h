@@ -59,7 +59,13 @@ typedef void(^EndOfNetWorkRequestBlock)(BOOL success);
 - (void)returnShowTabbarPushViewController:(UIViewController *)viewController;
 - (void)returnHideTabbarPushViewController:(UIViewController *)viewController;
 
-
+- (void)showLoginViewController;
 
 
 @end
+
+
+
+
+
+

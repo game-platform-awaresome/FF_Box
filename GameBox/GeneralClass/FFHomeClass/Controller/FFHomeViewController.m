@@ -12,6 +12,7 @@
 #import "FFNewGameViewController.h"
 #import "FFGameGuideViewController.h"
 #import "FFClassifyViewController.h"
+#import "FFLoginViewController.h"
 
 //#import "FFHomeSelectView.h"
 
@@ -28,6 +29,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
+    self.hidesBottomBarWhenPushed = NO;  
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -37,6 +39,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+
 }
 
 - (void)initUserInterface {
@@ -52,6 +55,7 @@
     [self.navigationView addSubview:self.homeSelectView];
 //    [self.navigationController.navigationBar addSubview:self.selectView];
     [self.view addSubview:self.scrollView];
+
 }
 
 - (void)viewDidLayoutSubviews {

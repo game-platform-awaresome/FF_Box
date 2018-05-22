@@ -77,7 +77,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     self.webViewController.webURL = self.showArray[indexPath.row][@"info_url"];
-    self.hidesBottomBarWhenPushed = YES;
+
     [self pushViewController:self.webViewController];
 }
 

@@ -68,7 +68,7 @@
             }
 
             if ([name isEqualToString:@"isLogin"]) {
-                [weakSelf setValue:@"1" forKey:name];
+//                [weakSelf setValue:@YES forKey:name];
                 continue;
             }
 

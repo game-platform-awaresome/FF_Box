@@ -7,6 +7,7 @@
 //
 
 #import "FFControllerManager.h"
+#import "FFLoginViewController.h"
 
 static FFControllerManager *manager = nil;
 
@@ -64,6 +65,12 @@ static FFControllerManager *manager = nil;
     return _mainTabbarController;
 }
 
+- (FFLoginViewController *)loginViewController {
+    if (!_loginViewController) {
+        _loginViewController = [FFLoginViewController new];
+    }
+    return _loginViewController;
+}
 
 
 

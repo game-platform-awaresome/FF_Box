@@ -8,11 +8,12 @@
 
 #import "FFBasicModel.h"
 
+#define CURRENT_USER [FFUserModel currentUser]
 
 @interface FFUserModel : FFBasicModel
 
 /** 是否登录 */
-@property (nonatomic, strong) NSString *isLogin;
+//@property (nonatomic, strong) NSString *isLogin;
 /** uid */
 @property (nonatomic, strong) NSString *uid;
 /** 用户名 */
@@ -30,8 +31,24 @@
 /** 邀请奖励 */
 @property (nonatomic, strong) NSString *recom_bonus;
 
+@property (nonatomic, assign) BOOL isLogin;
+
 /** 当前用户 */
 + (FFUserModel *)currentUser;
+
+#pragma mark - 类方法
++ (BOOL)setUID:(NSString *)uid;
++ (NSString *)uid;
++ (BOOL)deleteUID;
+
++ (BOOL)setUserName:(NSString *)userName;
++ (NSString *)UserName;
++ (BOOL)deleteUserName;
+
++ (BOOL)setPassWord:(NSString *)passWord;
++ (NSString *)passWord;
++ (BOOL)deletePassWord;
+
 
 #pragma mark - ================================ 注册和登录 ================================
 /**
@@ -42,7 +59,6 @@
 + (void)userLoginWithUsername:(NSString *)username
                      Password:(NSString *)password
                    Completion:(RequestCallBackBlock)completion;
-
 /**
  * 用户注册接口
  * @param userName      用户名
@@ -57,7 +73,6 @@
                         PassWord:(NSString * )passWord
                             Type:(NSString * )type
                       Completion:(RequestCallBackBlock)completion;
-
 /**
  * 用户 - 修改密码
  * @param oldPassword   旧密码
