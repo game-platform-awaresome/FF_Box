@@ -7,6 +7,8 @@
 //
 
 #import "FFMineViewModel.h"
+#import "FFColorManager.h"
+#import "FFDeviceInfo.h"
 
 @implementation FFMineInfoModel
 
@@ -41,34 +43,70 @@
     return self.infoDict[self.showArray[indexPath.section][indexPath.row]];
 }
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NewMineCell"];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:(UITableViewCellStyleValue1) reuseIdentifier:@"NewMineCell"];
+    }
+
+    NSDictionary *dict = [self cellInfoWithIndexpath:indexPath];
+
+    cell.textLabel.text = dict[@"title"];
+    cell.textLabel.font = [UIFont systemFontOfSize:14];
+
+    if (indexPath.section == 0) {
+        cell.detailTextLabel.text = @"";
+    } else {
+        if (dict[@"attributeString"]) {
+            cell.detailTextLabel.attributedText = dict[@"attributeString"];
+            cell.detailTextLabel.font = [UIFont systemFontOfSize:14];
+        } else {
+            cell.detailTextLabel.text = dict[@"subTitle"];
+            cell.detailTextLabel.textColor = [UIColor lightGrayColor];
+            cell.detailTextLabel.font = [UIFont systemFontOfSize:14];
+        }
+    }
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
+    if (dict[@"subimage"]) {
+        cell.imageView.image = [UIImage imageNamed:dict[@"subimage"]];
+    } else {
+        cell.imageView.image = nil;
+        syLog(@"no image === T@%@",dict);
+    }
+
+    CALayer *layer = [[CALayer alloc] init];
+    layer.frame = CGRectMake(0, cell.frame.size.height - 1, kSCREEN_WIDTH, 1);
+    layer.backgroundColor = [FFColorManager backgroundColor].CGColor;
+    [cell.contentView.layer addSublayer:layer];
+    return cell;
+}
+
 #pragma mark -  method
 - (BOOL)is185 {
-
-    return YES;
+    return [Channel isEqualToString:@"185"];
 }
 
 #pragma mark - getter
 - (NSMutableArray<NSArray *> *)showArray {
-    if ([self is185]) {
-        _showArray = [@[@[@"FFResignViewController"],
-                            @[@"FFSignInViewController",@"FFEvervDayComment",@"FFDrivePostStatusViewController",
-                              @"FFInviteFriendViewController",@"FFInviteRankListViewController"],
-                            @[@"FFExchangeCoinController",@"FFLotteryViewController",@"FFGoldDetailViewController",
-                              @"FFPlatformDetailViewController"],
-                            @[@"FFRRebateViewController",@"FFTransferServerViewController"],
-                            @[@"FFMyPackageViewController",@"FFMyCollectionViewController",@"FFRActivityViewController"],
-                            @[@"FFMyNewsViewController",@"FFCustomerServiceViewController"],
-                            @[@"FFChangePasswordViewController",@"FFBindMobileViewController",@"FFAboutViewController"]] mutableCopy];
-    } else {
-        _showArray = [@[@[@"FFResignViewController"],
-                            @[@"FFSignInViewController",@"FFEvervDayComment",@"FFDrivePostStatusViewController",
-                              @"FFInviteFriendViewController"],
-                            @[@"FFExchangeCoinController",@"FFLotteryViewController",@"FFGoldDetailViewController",
-                              @"FFPlatformDetailViewController"],
-                            @[@"FFRRebateViewController",@"FFTransferServerViewController"],
-                            @[@"FFMyPackageViewController",@"FFMyCollectionViewController",@"FFRActivityViewController"],
-                            @[@"FFMyNewsViewController",@"FFCustomerServiceViewController"],
-                            @[@"FFChangePasswordViewController",@"FFBindMobileViewController"]] mutableCopy];
+    if (!_showArray) {
+        _showArray = \
+        [self is185] ? \
+        [@[@[@"FFResignViewController"],
+        @[@"FFSignInViewController",@"FFEvervDayComment",@"FFDrivePostStatusViewController", @"FFInviteFriendViewController",@"FFInviteRankListViewController"],
+        @[@"FFExchangeCoinController",@"FFLotteryViewController",@"FFGoldDetailViewController", @"FFPlatformDetailViewController"],
+        @[@"FFRRebateViewController",@"FFTransferServerViewController"],
+        @[@"FFMyPackageViewController",@"FFMyCollectionViewController",@"FFRActivityViewController"],
+        @[@"FFMyNewsViewController",@"FFCustomerServiceViewController"],
+        @[@"FFChangePasswordViewController",@"FFBindMobileViewController",@"FFAboutViewController"]] mutableCopy] :\
+                                                      \
+        [@[@[@"FFResignViewController"],
+        @[@"FFSignInViewController",@"FFEvervDayComment",@"FFDrivePostStatusViewController", @"FFInviteFriendViewController"],
+        @[@"FFExchangeCoinController",@"FFLotteryViewController",@"FFGoldDetailViewController", @"FFPlatformDetailViewController"],
+        @[@"FFRRebateViewController",@"FFTransferServerViewController"],
+        @[@"FFMyPackageViewController",@"FFMyCollectionViewController",@"FFRActivityViewController"],
+        @[@"FFMyNewsViewController",@"FFCustomerServiceViewController"],
+        @[@"FFChangePasswordViewController",@"FFBindMobileViewController"]] mutableCopy];
     }
     return _showArray;
 }

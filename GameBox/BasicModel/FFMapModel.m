@@ -33,7 +33,7 @@ static FFMapModel *model = nil;
     return model;
 }
 
-+ (void)getMap {
++ (void)getMapCompletion:(Completion)completion {
     [FFNetWorkManager postRequestWithURL:map_url Params:nil Success:^(NSDictionary * _Nonnull content) {
         NSDictionary *dict = content[@"data"];
         syLog(@"map === %@",content);
@@ -42,7 +42,13 @@ static FFMapModel *model = nil;
         BOXLOG(@"map plist writeing");
         [dict writeToFile:[FFMapModel plistPath] atomically:YES];
         BOXLOG(@"map plist writesuccess");
+        if (completion) {
+            completion();
+        }
     } Failure:^(NSError * _Nonnull error) {
+        if (completion) {
+            completion();
+        }
         BOXLOG(@"map url initialize failure");
         NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:[FFMapModel plistPath]];
         if (dict == nil) {
@@ -51,7 +57,7 @@ static FFMapModel *model = nil;
         [[FFMapModel map] setAllPropertyWithDict:dict];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             BOXLOG(@"map url reinitialize");
-            [FFMapModel getMap];
+            [FFMapModel getMapCompletion:nil];
         });
     }];
 }
@@ -100,7 +106,7 @@ static FFMapModel *model = nil;
       @"PACKS_SLIDE":@"http://www.185sy.com/api-packs-get_slide",
       @"USER_CHECKMSG":@"http://www.185sy.com/api-user-check_smscode",
       @"USER_FINDPWD":@"http://www.185sy.com/api-user-forget_password",
-      @"USER_LOGIN":@"http://www.185sy.com/api-user-login",
+      @"USER_LOGIN":@"http://api.185sy.com/index.php?g=api&m=userbox&a=login",
       @"USER_MODIFYNN":@"http://www.185sy.com/api-user-modify_nicename",
       @"USER_MODIFYPWD":@"http://www.185sy.com/api-user-modify_password",
       @"USER_PACK":@"http://www.185sy.com/api-packs-get_list_by_user",

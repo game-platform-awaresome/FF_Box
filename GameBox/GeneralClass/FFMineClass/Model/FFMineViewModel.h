@@ -30,6 +30,8 @@
 
 - (NSUInteger)itemNumberWithSection:(NSUInteger)section;
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+
 
 @end
 

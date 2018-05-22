@@ -50,6 +50,10 @@
 + (UIImage *)Game_detail_footer_nocollection{RETURN_IMAGE(@"Game_detail_footer_nocollection");}
 + (UIImage *)Game_detail_footer_comment     {RETURN_IMAGE(@"Game_detail_footer_comment");}
 
+#pragma makr - mine view
++ (UIImage *)Mine_not_login_avatar          {RETURN_IMAGE(@"Mine_not_login_avatar");}
++ (UIImage *)Mine_setting_image             {RETURN_IMAGE(@"Mine_setting_image");}
+
 
 
 @end

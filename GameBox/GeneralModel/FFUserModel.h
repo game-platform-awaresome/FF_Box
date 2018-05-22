@@ -24,12 +24,14 @@
 @property (nonatomic, strong) NSString *platform_money;
 /** 金币 */
 @property (nonatomic, strong) NSString *coin;
+/** 邀请奖励 */
+@property (nonatomic, strong) NSString *recom_bonus;
 /** 头像地址 */
 @property (nonatomic, strong) NSString *icon_url;
 /** 昵称 */
 @property (nonatomic, strong) NSString *nick_name;
-/** 邀请奖励 */
-@property (nonatomic, strong) NSString *recom_bonus;
+/** 是否是 vip */
+@property (nonatomic, strong) NSString *is_vip;
 
 @property (nonatomic, assign) BOOL isLogin;
 
@@ -49,6 +51,8 @@
 + (NSString *)passWord;
 + (BOOL)deletePassWord;
 
+/** 退出登录 */
++ (void)signOut;
 
 #pragma mark - ================================ 注册和登录 ================================
 /**

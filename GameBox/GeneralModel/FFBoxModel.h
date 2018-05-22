@@ -6,17 +6,34 @@
 //  Copyright © 2018年 Sans. All rights reserved.
 //
 
-#import "FFBasicModel.h"
+#import "FFNetWorkManager.h"
 
-typedef void (^Completion)(NSDictionary *  content, BOOL success);
+typedef void (^MapCompletion)(void);
+typedef void (^NotiCompletion)(NSDictionary *  content, BOOL success);
 
 
+@interface FFBoxModel : FFNetWorkManager
 
-@interface FFBoxModel : FFBasicModel
+/** check box version */
++ (void)checkBoxVersionCompletion:(void(^)(NSDictionary *  content, BOOL success))completion;
 
+/** update box */
++ (void)boxUpdateWithUrl:(NSString *)url;
+
+/** first login */
++ (BOOL)isFirstLogin;
+
+/** first install */
++ (BOOL)isFirstInstall;
+
+/** app  announcement */
++ (void)appAnnouncement;
+
++ (void)login;
++ (NSArray *)notificationList;
 
 /** 注册本地通知 */
-+ (void)addNotificationWithDict:(NSDictionary *)dict Completion:(Completion)completion;
++ (void)addNotificationWithDict:(NSDictionary *)dict Completion:(NotiCompletion)completion;
 /** is add notification */
 + (BOOL)isAddNotificationWithDict:(NSDictionary *)dict;
 /** notification identifier */
@@ -27,7 +44,14 @@ typedef void (^Completion)(NSDictionary *  content, BOOL success);
 + (void)deleteNotificationWith:(id)dict;
 + (void)deleteAllNotification;
 
+/** advertising  */
++ (void)postAdvertisingImage;
 
++ (id *)addAdvertisinImage;
+
++ (NSData *)getAdvertisingImage;
+
++ (void)UnreadMessagesWithCompletion:(MapCompletion)completion;
 
 
 @end

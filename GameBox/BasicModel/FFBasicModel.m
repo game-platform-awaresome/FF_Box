@@ -57,6 +57,10 @@
 
     if (dict == nil) {
         for (NSString *name in names) {
+            if ([name isEqualToString:@"isLogin"]) {
+                    [weakSelf setValue:@NO forKey:name];
+                continue;
+            }
             [weakSelf setValue:nil forKey:name];
         }
     } else {

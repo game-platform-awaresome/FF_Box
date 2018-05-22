@@ -8,7 +8,7 @@
 
 #import "FFNewPasswordViewController.h"
 #import "FFUserModel.h"
-#import "FFViewFactory.h"
+#import <FFTools/FFTools.h>
 
 @interface FFNewPasswordViewController ()<UITextFieldDelegate>
 
@@ -49,25 +49,25 @@
 - (void)respondsToCompleteBtn {
     //密码太短
     if (self.passWord.text.length < 6 || self.affimPassWord.text.length < 6) {
-        BOX_MESSAGE(@"密码长度太短");
+        [UIAlertController showAlertMessage:@"密码长度太短" dismissTime:0.8 dismissBlock:nil];
         return;
     }
 
     if (![self.passWord.text isEqualToString:self.affimPassWord.text]) {
-        BOX_MESSAGE(@"两次密码不相同");
+        [UIAlertController showAlertMessage:@"两次密码不相同" dismissTime:0.8 dismissBlock:nil];
         return;
     }
 
     syLog(@"%@",self.userToken);
 
-    BOX_START_ANIMATION;
+    [self startWaiting];
     [FFUserModel userForgetPasswordWithUserID:self.userId Password:self.passWord.text RePassword:self.affimPassWord.text Token:self.userToken Completion:^(NSDictionary * _Nullable content, BOOL success) {
-        BOX_STOP_ANIMATION;
+        [self stopWaiting];
         if (success) {
             [self.navigationController popToRootViewControllerAnimated:YES];
-            BOX_MESSAGE(@"修改成功");
+            [UIAlertController showAlertMessage:@"修改成功" dismissTime:0.8 dismissBlock:nil];
         } else {
-            BOX_MESSAGE(content[@"msg"]);
+            [UIAlertController showAlertMessage:content[@"msg"] dismissTime:0.8 dismissBlock:nil];
         }
     }];
 
@@ -144,7 +144,7 @@
         _completeBtn.bounds = CGRectMake(0, 0, kSCREEN_WIDTH * 0.8, 44);
         _completeBtn.center = CGPointMake(kSCREEN_WIDTH / 2, 250);
         [_completeBtn setTitle:@"完成" forState:(UIControlStateNormal)];
-        [_completeBtn setBackgroundColor:[UIColor orangeColor]];
+        [_completeBtn setBackgroundColor:[FFColorManager blue_dark]];
         _completeBtn.layer.cornerRadius = 4;
         _completeBtn.layer.masksToBounds = YES;
         [_completeBtn addTarget:self action:@selector(respondsToCompleteBtn) forControlEvents:(UIControlEventTouchUpInside)];

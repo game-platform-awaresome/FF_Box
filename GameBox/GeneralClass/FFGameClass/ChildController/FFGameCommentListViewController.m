@@ -131,6 +131,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     self.hidesBottomBarWhenPushed = YES;
+    [self hideTabbar];
     if (![FFUserModel currentUser].isLogin) {
         [self pushViewController:[FFLoginViewController new]];
         return;

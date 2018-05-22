@@ -8,6 +8,9 @@
 
 #import "FFBasicViewController.h"
 
+
+#define NOTIFICATION_LOGIN_SUCCESS @"LOGINVIEW_LOGIN_SUCCESS"
+
 @interface FFLoginViewController : FFBasicViewController
 
 

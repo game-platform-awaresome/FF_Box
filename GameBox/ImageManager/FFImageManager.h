@@ -51,6 +51,11 @@
 + (UIImage *)Game_detail_footer_nocollection;
 + (UIImage *)Game_detail_footer_comment;
 
+#pragma makr - mine view
++ (UIImage *)Mine_not_login_avatar;
++ (UIImage *)Mine_setting_image;
+
+
 @end
 
 

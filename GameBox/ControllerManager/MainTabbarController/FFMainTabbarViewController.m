@@ -136,7 +136,6 @@
 
 - (void)setSelectedViewController:(__kindof UIViewController *)selectedViewController {
     [super setSelectedViewController:selectedViewController];
-    syLog(@"???????????? == %lu",self.selectedIndex);
     [FFControllerManager sharedManager].viewController = _vcs[self.selectedIndex];
     [FFControllerManager sharedManager].currentNavController = selectedViewController;
 

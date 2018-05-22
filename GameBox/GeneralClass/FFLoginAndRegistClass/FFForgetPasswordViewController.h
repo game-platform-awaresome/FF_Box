@@ -6,8 +6,8 @@
 //  Copyright © 2017年 Yi Shi. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "FFBasicViewController.h"
 
-@interface FFForgetPasswordViewController : UIViewController
+@interface FFForgetPasswordViewController : FFBasicViewController
 
 @end

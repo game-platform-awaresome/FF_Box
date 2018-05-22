@@ -71,6 +71,31 @@ static FFUserModel *model;
     return [SYKeychain deletePasswordForService:KEYCHAINSERVICE account:USER_PASSWORDK];
 }
 
++ (void)signOut {
+//    NSArray *keys = OBJECT_FOR_USERDEFAULTS(USER_INFO_KEYS);
+//    //移除 keychain 中的数据
+//    [keys enumerateObjectsUsingBlock:^(NSString * key, NSUInteger idx, BOOL * _Nonnull stop) {
+//        [SYKeychain deletePasswordForService:KEYCHAINSERVICE account:key];
+//    }];
+
+
+    //移除 UID
+    [FFUserModel deleteUID];
+    //移除 userName
+    [FFUserModel deleteUserName];
+    //清空密码
+    [FFUserModel deletePassWord];
+
+    //移除所有 key
+//    [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_INFO_KEYS];
+
+    //清空 usermodel
+    [model setAllPropertyWithDict:nil];
+
+    //删除头像
+//    [[NSFileManager defaultManager] removeItemAtPath:[FFUserModel avatarDataPath] error:nil];
+    [FFUserModel currentUser].isLogin = NO;
+}
 
 #pragma mark - getter
 - (NSString *)username {
@@ -87,8 +112,30 @@ static FFUserModel *model;
     return _uid;
 }
 
+- (NSString *)platform_money {
+    if (!_platform_money) {
+        _platform_money = @"0";
+    }
+    return _platform_money;
+}
+
+- (NSString *)coin {
+    if (!_coin) {
+        _coin = @"0";
+    }
+    return _coin;
+}
+
+- (NSString *)recom_bonus {
+    if (!_recom_bonus) {
+        _recom_bonus = @"0";
+    }
+    return _recom_bonus;
+}
+
+
 - (BOOL)isLogin {
-    return (![_uid isEqualToString:@"0"]);
+    return (![self.uid isEqualToString:@"0"]);
 }
 
 #pragma mark - ================================ 注册和登录 ================================

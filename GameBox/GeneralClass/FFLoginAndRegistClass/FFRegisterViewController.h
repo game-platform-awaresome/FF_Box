@@ -6,8 +6,13 @@
 //  Copyright © 2017年 Yi Shi. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "FFBasicViewController.h"
 
-@interface FFRegisterViewController : UIViewController
+typedef void(^RegistCompletionBlock)(NSString *username, NSString *password);
+
+@interface FFRegisterViewController : FFBasicViewController
+
+@property (nonatomic, strong) RegistCompletionBlock registCompletionBlcok;
+
 
 @end

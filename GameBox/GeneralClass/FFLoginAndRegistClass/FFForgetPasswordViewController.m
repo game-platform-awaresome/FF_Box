@@ -8,7 +8,7 @@
 
 #import "FFForgetPasswordViewController.h"
 #import "FFUserModel.h"
-#import "FFViewFactory.h"
+#import <FFTools/FFTools.h>
 #import "FFNewPasswordViewController.h"
 
 
@@ -65,33 +65,32 @@
 #pragma mark - responds
 /** 下一步 */
 - (void)respondsToNext {
-    NSString *MOBILE = @"^1(3[0-9]|4[0-9]|5[0-9]|8[0-9]|7[0-9])\\d{8}$";
+    NSString *MOBILE = @"^1\\d{10}$";
 
     NSPredicate *regextestmobile = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", MOBILE];
     //手机号有误
     if (![regextestmobile evaluateWithObject:self.phoneNumber.text]) {
-        BOX_MESSAGE(@"手机号码有误");
+        [UIAlertController showAlertMessage:@"手机号码有误" dismissTime:0.7 dismissBlock:nil];
         return;
     }
 
     //验证码长度
     if (self.securityCode.text.length < 4) {
-        BOX_MESSAGE(@"验证码长度有误");
+        [UIAlertController showAlertMessage:@"验证码长度有误" dismissTime:0.7 dismissBlock:nil];
         return;
     }
 
-    BOX_START_ANIMATION;
+    [self startWaiting];
     [FFUserModel userCheckMessageWithPhoneNumber:self.phoneNumber.text MessageCode:self.securityCode.text Completion:^(NSDictionary *content, BOOL success) {
-        BOX_STOP_ANIMATION;
+        [self stopWaiting];
         if (success) {
             FFNewPasswordViewController *newPassword = [FFNewPasswordViewController new];
             newPassword.userId = content[@"data"][@"id"];
             newPassword.userToken = content[@"data"][@"token"];
-            HIDE_TABBAR;
-            HIDE_PARNENT_TABBAR;
-            [self.navigationController pushViewController:newPassword animated:YES];
+            self.hidesBottomBarWhenPushed = YES;
+            [self pushViewController:newPassword];
         } else {
-            BOX_MESSAGE(content[@"msg"]);
+            [UIAlertController showAlertMessage:content[@"msg"] dismissTime:0.7 dismissBlock:nil];
         }
     }];
 }
@@ -103,21 +102,21 @@
     NSPredicate *regextestmobile = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", MOBILE];
     //手机号有误
     if (![regextestmobile evaluateWithObject:self.phoneNumber.text]) {
-        BOX_MESSAGE(@"手机号码有误");
+        [UIAlertController showAlertMessage:@"手机号码有误" dismissTime:0.7 dismissBlock:nil];
         return;
     }
 
-    BOX_START_ANIMATION;
+    [self startWaiting];
     [FFUserModel userSendMessageWithPhoneNumber:self.phoneNumber.text Type:@"2" Completion:^(NSDictionary *content, BOOL success) {
-        BOX_STOP_ANIMATION;
+        [self stopWaiting];
         _currnetTime = 59;
         syLog(@"send message === %@",content);
         if (success) {
             self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(refreshTime) userInfo:nil repeats:YES];
-            BOX_MESSAGE(@"验证码已发送");
+            [UIAlertController showAlertMessage:content[@"验证码已发送"] dismissTime:0.7 dismissBlock:nil];
             syLog(@"开启计时器");
         } else {
-            BOX_MESSAGE(content[@"msg"]);
+            [UIAlertController showAlertMessage:content[@"msg"] dismissTime:0.7 dismissBlock:nil];
         }
     }];
 }
@@ -210,7 +209,7 @@
         _sendCodeBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
         _sendCodeBtn.frame = CGRectMake(0, 0, kSCREEN_WIDTH * 0.2, 44);
         [_sendCodeBtn setTitle:@"发送" forState:(UIControlStateNormal)];
-        [_sendCodeBtn setBackgroundColor:[UIColor orangeColor]];
+        [_sendCodeBtn setBackgroundColor:[FFColorManager blue_dark]];
         _sendCodeBtn.layer.cornerRadius = 4;
         _sendCodeBtn.layer.masksToBounds = YES;
         [_sendCodeBtn addTarget:self action:@selector(respondsToSendCodeBtn) forControlEvents:(UIControlEventTouchUpInside)];
@@ -224,7 +223,7 @@
         _next.bounds = CGRectMake(0, 0, kSCREEN_WIDTH * 0.8, 44);
         _next.center = CGPointMake(kSCREEN_WIDTH / 2, 250);
         [_next setTitle:@"下一步" forState:(UIControlStateNormal)];
-        [_next setBackgroundColor:[UIColor orangeColor]];
+        [_next setBackgroundColor:[FFColorManager blue_dark]];
         _next.layer.cornerRadius = 4;
         _next.layer.masksToBounds = YES;
         [_next addTarget:self action:@selector(respondsToNext) forControlEvents:(UIControlEventTouchUpInside)];

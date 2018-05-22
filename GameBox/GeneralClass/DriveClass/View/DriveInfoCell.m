@@ -415,7 +415,9 @@
                         self.gifImage = [UIImage imageWithData:data];
                         self.normalImage = [UIImage imageWithData:data];
                     }
-                    [_images addObject:imageView.image];
+                    if (imageView.image) {
+                        [_images addObject:imageView.image];
+                    }
                 }];
             }
 

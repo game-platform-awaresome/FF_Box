@@ -10,6 +10,8 @@
 
 #define Map [FFMapModel map]
 
+typedef void(^Completion)(void);
+
 @interface FFMapModel : FFBasicModel
 
 @property (nonatomic, strong) NSString *DOAMIN;
@@ -146,6 +148,8 @@
 
 + (instancetype)map;
 
-+ (void)getMap;
++ (void)getMapCompletion:(Completion)completion;
+
 
 @end
+

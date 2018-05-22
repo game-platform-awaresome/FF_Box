@@ -6,9 +6,9 @@
 //  Copyright © 2017年 Yi Shi. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "FFBasicViewController.h"
 
-@interface FFNewPasswordViewController : UIViewController
+@interface FFNewPasswordViewController : FFBasicViewController
 
 /** 用户id */
 @property (nonatomic, strong) NSString *userId;

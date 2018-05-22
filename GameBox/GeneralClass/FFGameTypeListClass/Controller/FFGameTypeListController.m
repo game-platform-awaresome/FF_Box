@@ -32,8 +32,6 @@
     [self startWaiting];
     [FFGameModel gameListWithPage:New_page ServerType:self.gameServerType GameType:self.gameType Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         [self stopWaiting];
-
-        syLog(@"???????????????? == %@",content);
         if (success) {
             self.showArray = [content[@"data"] mutableCopy];
         } else {
@@ -78,5 +76,6 @@
 - (NSString *)gameType {
     return @"1";
 }
+
 
 @end

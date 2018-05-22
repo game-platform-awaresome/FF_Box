@@ -7,7 +7,6 @@
 //
 
 #import "FFRegisterViewController.h"
-#import "FFViewFactory.h"
 #import "FFUserModel.h"
 #import <FFTools/FFTools.h>
 #import "FFWebViewController.h"
@@ -86,7 +85,6 @@
 }
 
 - (void)initUserInterFace {
-//    self.view.backgroundColor = [UIColor colorWithRed:221 / 255.0 green:217 / 255.0 blue:217/255.0 alpha:1];
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.userName];
     [self.view addSubview:self.securityCode];
@@ -190,8 +188,6 @@
     [self.navigationController pushViewController:webVC animated:YES];
 }
 
-
-
 - (void)resPondsToButtonIndex:(NSUInteger)index {
     syLog(@"select index == %lu",index);
     switch (index) {
@@ -226,22 +222,23 @@
 
     //用户名太短,返回
     if (self.userName.text.length < 6) {
-        BOX_MESSAGE(@"用户名长度太短");
+        [UIAlertController showAlertMessage:@"用户名长度太短" dismissTime:0.7 dismissBlock:nil];
         _isRegisting = NO;
         return;
     }
     //密码太短
     if (self.passWord.text.length < 6) {
-        BOX_MESSAGE(@"密码长度太短");
+        [UIAlertController showAlertMessage:@"密码长度太短" dismissTime:0.7 dismissBlock:nil];
         _isRegisting = NO;
         return;
     }
     //用户协议
     if (self.selectProtocolButton.selected == NO) {
-        BOX_MESSAGE(@"请同意用户协议");
+        [UIAlertController showAlertMessage:@"请同意用户协议" dismissTime:0.7 dismissBlock:nil];
         _isRegisting = NO;
         return;
     }
+
     NSString *userName = nil;
     NSString *code = nil;
     NSString *phoneNumber = nil;
@@ -259,13 +256,13 @@
         NSPredicate *regextestmobile = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", MOBILE];
         //手机号有误
         if (![regextestmobile evaluateWithObject:self.userName.text]) {
-            BOX_MESSAGE(@"手机号码有误");
+            [UIAlertController showAlertMessage:@"手机号码有误" dismissTime:0.7 dismissBlock:nil];
             _isRegisting = NO;
             return;
         }
         //验证码长度不正确
         if (self.securityCode.text.length < 4) {
-            BOX_MESSAGE(@"验证码长度有误");
+            [UIAlertController showAlertMessage:@"验证码长度有误" dismissTime:0.7 dismissBlock:nil];
             _isRegisting = NO;
             return;
         }
@@ -276,11 +273,24 @@
         type = @"2";
     }
 
+    [self startWaiting];
+    [FFUserModel userRegisterWithUserName:userName Code:code PhoneNumber:phoneNumber PassWord:passWord Type:type Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        [self stopWaiting];
+        if (success) {
+            NSString *loginName = ([userName isEqualToString:@""] || userName.length == 0) ? phoneNumber : userName;
+            [UIAlertController showAlertMessage:@"注册成功" dismissTime:0.7 dismissBlock:^{
+                [self.navigationController popViewControllerAnimated:YES];
+                if (self.registCompletionBlcok) {
+                    self.registCompletionBlcok(loginName,passWord);
+                }
+            }];
+        } else {
+            [UIAlertController showAlertMessage:content[@"msg"] dismissTime:0.7 dismissBlock:nil];
+        }
+    }];
 
-    BOX_START_ANIMATION;
-//    [FFUserModel userRegisterWithUserName:userName Code:code PhoneNumber:phoneNumber PassWord:passWord Type:type Completion:^(NSDictionary *content, BOOL success)
-//     {
-//
+
+
 //         _isRegisting = NO;
 //         BOX_STOP_ANIMATION;
 //         if (success) {
@@ -333,11 +343,9 @@
 - (void)respondsToSendMessageBtn {
 
     NSString *MOBILE = @"^1\\d{10}$";
-
     NSPredicate *regextestmobile = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", MOBILE];
-
     if (![regextestmobile evaluateWithObject:self.userName.text]) {
-        BOX_MESSAGE(@"手机号码有误");
+        [UIAlertController showAlertMessage:@"手机号码有误" dismissTime:0.7 dismissBlock:nil];
         return;
     }
 
@@ -345,9 +353,9 @@
         if (success) {
             _currnetTime = 59;
             self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(refreshTime) userInfo:nil repeats:YES];
-            BOX_MESSAGE(@"验证码已发送");
+            [UIAlertController showAlertMessage:@"验证码已发送" dismissTime:0.7 dismissBlock:nil];
         } else {
-            BOX_MESSAGE(content[@"msg"]);
+            [UIAlertController showAlertMessage:content[@"msg"] dismissTime:0.7 dismissBlock:nil];
         }
     }];
 }
@@ -513,8 +521,8 @@
         _selectProtocolButton.selected = YES;
         [_selectProtocolButton setTitle:@"用户协议" forState:(UIControlStateNormal)];
         [_selectProtocolButton setTitle:@"用户协议" forState:(UIControlStateSelected)];
-        [_selectProtocolButton setTitleColor:[UIColor blueColor] forState:(UIControlStateNormal)];
-        [_selectProtocolButton setTitleColor:[UIColor blueColor] forState:(UIControlStateSelected)];
+        [_selectProtocolButton setTitleColor:[FFColorManager blue_light] forState:(UIControlStateNormal)];
+        [_selectProtocolButton setTitleColor:[FFColorManager blue_light] forState:(UIControlStateSelected)];
         [_selectProtocolButton addTarget:self action:@selector(respondsToSelectProtocolButton) forControlEvents:(UIControlEventTouchUpInside)];
         _selectProtocolButton.titleLabel.font = [UIFont systemFontOfSize:13];
     }
@@ -541,7 +549,7 @@
         [_registerBtn setTitle:@"注册" forState:(UIControlStateNormal)];
         [_registerBtn setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
         [_registerBtn setTitleColor:[UIColor blueColor] forState:(UIControlStateHighlighted)];
-        [_registerBtn setBackgroundColor:[UIColor orangeColor]];
+        [_registerBtn setBackgroundColor:[FFColorManager blue_dark]];
         _registerBtn.layer.cornerRadius = 4;
         _registerBtn.layer.masksToBounds = YES;
         [_registerBtn addTarget:self action:@selector(respondsToRegisterBtn) forControlEvents:(UIControlEventTouchUpInside)];
@@ -553,7 +561,7 @@
 - (UIButton *)sendMessageBtn {
     if (!_sendMessageBtn) {
         _sendMessageBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        _sendMessageBtn.backgroundColor = [UIColor orangeColor];
+        _sendMessageBtn.backgroundColor = [FFColorManager blue_dark];
         [_sendMessageBtn setTitle:@"发送验证码" forState:(UIControlStateNormal)];
         [_sendMessageBtn addTarget:self action:@selector(respondsToSendMessageBtn) forControlEvents:(UIControlEventTouchUpInside)];
         _sendMessageBtn.bounds = CGRectMake(0, 0, kSCREEN_WIDTH * 0.3, 44);

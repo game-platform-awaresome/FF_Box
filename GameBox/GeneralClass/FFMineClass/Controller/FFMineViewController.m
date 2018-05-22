@@ -7,13 +7,17 @@
 //
 
 #import "FFMineViewController.h"
+#import "FFMineHeaderView.h"
+
+#import "FFLoginViewController.h"
+
 #import "FFControllerManager.h"
 #import "FFMineViewModel.h"
 #import "FFUserModel.h"
 
 @interface FFMineViewController ()
 
-@property (nonatomic, strong) UIView *headerView;
+@property (nonatomic, strong) FFMineHeaderView *headerView;
 
 
 @property (nonatomic, strong) FFMineViewModel *viewModel;
@@ -23,9 +27,14 @@
 
 @implementation FFMineViewController
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navBarBGAlpha = @"0.0";
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
 }
 
 - (void)viewDidLoad {
@@ -33,51 +42,62 @@
 }
 
 - (void)initUserInterface {
+    self.title = @"个人中心";
     self.navigationItem.title = @"";
     self.view.backgroundColor = [UIColor whiteColor];
+
+    [self.view addSubview:self.headerView];
+
     [self resetTableView];
     [self.view addSubview:self.tableView];
 
-    [self.rightButton setTitle:@"设置"];
+    [self.rightButton setImage:[FFImageManager Mine_setting_image]];
     self.navigationItem.rightBarButtonItem = self.rightButton;
 }
 
-- (void)resetTableView {
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, kSCREEN_HEIGHT - kTABBAR_HEIGHT) style:(UITableViewStyleGrouped)];
-    self.tableView.dataSource = self;
-    self.tableView.delegate = self;
-    self.tableView.showsVerticalScrollIndicator = YES;
-    self.tableView.showsHorizontalScrollIndicator = NO;
-    self.tableView.tableFooterView = [UIView new];
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    if (@available(iOS 11.0, *)) {
-        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-    }
-
-    self.tableView.mj_header = self.refreshHeader;
-
-    self.tableView.sectionHeaderHeight = 0;
-    self.tableView.sectionFooterHeight = 0;
-
-    self.tableView.tableHeaderView = self.headerView;
-    self.tableView.tableFooterView = [UIView new];
-}
-
-
 - (void)initDataSource {
-    self.showArray = [@[@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@""] mutableCopy];
+    //添加登录成功的通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(respondsToLoginSuccess:) name:NOTIFICATION_LOGIN_SUCCESS object:nil];
+
+    WeakSelf;
+    //登录
+    [self.headerView setLoginBlock:^BOOL{
+        [weakSelf pushViewController:[FFLoginViewController new]];
+        return YES;
+    }];
+    //开通 VIP
+    [self.headerView setOpenVip:^{
+        [weakSelf openVip];
+    }];
+    //修改昵称
+    [self.headerView setModifyNickName:^NSString *{
+        return [NSString stringWithFormat:@"test"];
+    }];
+    //修改头像
+    [self.headerView setModifyAratarBlock:^{
+        syLog(@"修改头像");
+    }];
 }
 
+#pragma mark - method
 - (void)begainRefresData {
 
 }
 
+- (void)openVip {
+    syLog(@"开通 VIP");
+}
+
+#pragma mmark - notification
+- (void)respondsToLoginSuccess:(NSNotification *)noti {
+    [self.headerView refreshUserInterface];
+}
 
 #pragma mark - refresh
 - (void)refreshData {
+    [self.headerView refreshUserInterface];
     [self.tableView.mj_header endRefreshing];
 }
-
 - (void)loadMoreData {
     [self.tableView.mj_footer endRefreshingWithNoMoreData];
 }
@@ -85,9 +105,8 @@
 
 #pragma mark - responds
 - (void)respondsToRightButton {
-    UIViewController *vc = [UIViewController new];
-    vc.navBarBGAlpha = @"1.0";
-    vc.view.backgroundColor = [UIColor whiteColor];
+    Class FFSettingViewController = NSClassFromString(@"FFSettingViewController");
+    id vc = [FFSettingViewController new];
     [self pushViewController:vc];
 }
 
@@ -95,72 +114,25 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return [self.viewModel sectionNumber];
 }
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.viewModel itemNumberWithSection:section];
 }
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NewMineCell"];
-
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:(UITableViewCellStyleValue1) reuseIdentifier:@"NewMineCell"];
-    }
-
-    NSDictionary *dict = [self.viewModel cellInfoWithIndexpath:indexPath];
-    
-    cell.textLabel.text = dict[@"title"];
-    cell.textLabel.font = [UIFont systemFontOfSize:14];
-
-    if (indexPath.section == 0) {
-
-    } else {
-        if (dict[@"attributeString"]) {
-            cell.detailTextLabel.attributedText = dict[@"attributeString"];
-            cell.detailTextLabel.font = [UIFont systemFontOfSize:14];
-        } else {
-            cell.detailTextLabel.text = dict[@"subTitle"];
-            cell.detailTextLabel.textColor = [UIColor lightGrayColor];
-            cell.detailTextLabel.font = [UIFont systemFontOfSize:14];
-        }
-    }
-
-
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    if (dict[@"subimage"]) {
-        cell.imageView.image = [UIImage imageNamed:dict[@"subimage"]];
-    } else {
-        cell.imageView.image = nil;
-        syLog(@"no image === T@%@",dict);
-    }
-
-    CALayer *layer = [[CALayer alloc] init];
-    layer.frame = CGRectMake(0, cell.frame.size.height - 1, kSCREEN_WIDTH, 1);
-    layer.backgroundColor = [FFColorManager backgroundColor].CGColor;
-    [cell.contentView.layer addSublayer:layer];
-
-    return cell;
+    return [self.viewModel tableView:tableView cellForRowAtIndexPath:indexPath];
 }
 
 #pragma mark - table veiw delegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 44;
 }
-
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (section == 0) {
-        return 24;
-    } else {
-        return 0;
-    }
+    return 0;
 }
-
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 24;
 }
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 
@@ -172,14 +144,29 @@
     return _viewModel;
 }
 
-- (UIView *)headerView {
+- (FFMineHeaderView *)headerView {
     if (!_headerView) {
-        _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, kSCREEN_WIDTH * 0.6)];
-        _headerView.backgroundColor = [UIColor blackColor];
+        _headerView = [[FFMineHeaderView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 235)];
     }
     return _headerView;
 }
 
+- (void)resetTableView {
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 235, kSCREEN_WIDTH, kSCREEN_HEIGHT - kTABBAR_HEIGHT - 235) style:(UITableViewStyleGrouped)];
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    self.tableView.showsVerticalScrollIndicator = YES;
+    self.tableView.showsHorizontalScrollIndicator = NO;
+    self.tableView.tableFooterView = [UIView new];
+    if (@available(iOS 11.0, *)) {
+        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
+    self.tableView.sectionHeaderHeight = 0;
+    self.tableView.sectionFooterHeight = 0;
+    self.tableView.tableFooterView = [UIView new];
+    self.tableView.mj_header = self.refreshHeader;
+    self.automaticallyAdjustsScrollViewInsets = NO;
+}
 
 
 

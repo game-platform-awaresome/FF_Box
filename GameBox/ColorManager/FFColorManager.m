@@ -176,6 +176,15 @@ UIColor *HexColorToUIColor(NSString *hexColorString) {
 }
 
 
+#pragma mark - navigationbar color
++ (UIColor *)navigation_bar_white_color {
+    return [UIColor colorWithWhite:1 alpha:1];
+}
++ (UIColor *)navigation_bar_black_color {
+    return [UIColor colorWithWhite:0.15 alpha:1];
+}
+
+
 @end
 
 

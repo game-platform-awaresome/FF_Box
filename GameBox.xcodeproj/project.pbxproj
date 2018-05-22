@@ -17,6 +17,8 @@
 		B51BCFC320B2F705005B9DE1 /* FFForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B51BCFBE20B2F705005B9DE1 /* FFForgetPasswordViewController.m */; };
 		B51BCFC420B2F705005B9DE1 /* FFRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B51BCFC020B2F705005B9DE1 /* FFRegisterViewController.m */; };
 		B51BCFC720B2F92C005B9DE1 /* FFNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B51BCFC620B2F92C005B9DE1 /* FFNavigationController.m */; };
+		B51BCFCB20B3C5CF005B9DE1 /* FFSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B51BCFC920B3C5CF005B9DE1 /* FFSettingViewController.m */; };
+		B51BCFCF20B3EA6F005B9DE1 /* FFMineHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B51BCFCE20B3EA6F005B9DE1 /* FFMineHeaderView.m */; };
 		B523825920AA85FF0087733A /* FFBTNewGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = B523825820AA85FF0087733A /* FFBTNewGameController.m */; };
 		B523825C20AA86110087733A /* FFZKNewGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = B523825B20AA86110087733A /* FFZKNewGameController.m */; };
 		B523826120AAB6850087733A /* FFBTClassifyController.m in Sources */ = {isa = PBXBuildFile; fileRef = B523826020AAB6850087733A /* FFBTClassifyController.m */; };
@@ -193,6 +195,10 @@
 		B51BCFC020B2F705005B9DE1 /* FFRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFRegisterViewController.m; sourceTree = "<group>"; };
 		B51BCFC520B2F92C005B9DE1 /* FFNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFNavigationController.h; sourceTree = "<group>"; };
 		B51BCFC620B2F92C005B9DE1 /* FFNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFNavigationController.m; sourceTree = "<group>"; };
+		B51BCFC920B3C5CF005B9DE1 /* FFSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFSettingViewController.m; sourceTree = "<group>"; };
+		B51BCFCA20B3C5CF005B9DE1 /* FFSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFSettingViewController.h; sourceTree = "<group>"; };
+		B51BCFCD20B3EA6F005B9DE1 /* FFMineHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFMineHeaderView.h; sourceTree = "<group>"; };
+		B51BCFCE20B3EA6F005B9DE1 /* FFMineHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFMineHeaderView.m; sourceTree = "<group>"; };
 		B523825720AA85FF0087733A /* FFBTNewGameController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBTNewGameController.h; sourceTree = "<group>"; };
 		B523825820AA85FF0087733A /* FFBTNewGameController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBTNewGameController.m; sourceTree = "<group>"; };
 		B523825A20AA86110087733A /* FFZKNewGameController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFZKNewGameController.h; sourceTree = "<group>"; };
@@ -529,6 +535,24 @@
 				B51BCFBA20B2F705005B9DE1 /* FFNewPasswordViewController.m */,
 			);
 			path = FFLoginAndRegistClass;
+			sourceTree = "<group>";
+		};
+		B51BCFC820B3C5A7005B9DE1 /* FFSettingClass */ = {
+			isa = PBXGroup;
+			children = (
+				B51BCFCA20B3C5CF005B9DE1 /* FFSettingViewController.h */,
+				B51BCFC920B3C5CF005B9DE1 /* FFSettingViewController.m */,
+			);
+			path = FFSettingClass;
+			sourceTree = "<group>";
+		};
+		B51BCFCC20B3EA57005B9DE1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B51BCFCD20B3EA6F005B9DE1 /* FFMineHeaderView.h */,
+				B51BCFCE20B3EA6F005B9DE1 /* FFMineHeaderView.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		B523825520AA73CF0087733A /* FFNewGameClass */ = {
@@ -1334,6 +1358,7 @@
 				B523825D20AA86940087733A /* FFClassifyClass */,
 				B523826620AABC860087733A /* FFGuideAndActivityClass */,
 				B51BCFB820B2F6B2005B9DE1 /* FFLoginAndRegistClass */,
+				B51BCFC820B3C5A7005B9DE1 /* FFSettingClass */,
 			);
 			path = GeneralClass;
 			sourceTree = "<group>";
@@ -1414,6 +1439,7 @@
 		B5D505AA20898D34000B7B50 /* FFMineClass */ = {
 			isa = PBXGroup;
 			children = (
+				B51BCFCC20B3EA57005B9DE1 /* View */,
 				B590959520A93FEC009CD99A /* Model */,
 				B5D505AB20898D44000B7B50 /* Controller */,
 			);
@@ -1618,6 +1644,7 @@
 				B523839A20AEA2710087733A /* YBRectConst.m in Sources */,
 				B523831820AE9EF40087733A /* FFDriveAllInfoViewController.m in Sources */,
 				B523836F20AE9FAC0087733A /* NSBundle+ZLPhotoBrowser.m in Sources */,
+				B51BCFCB20B3C5CF005B9DE1 /* FFSettingViewController.m in Sources */,
 				B5D10448209066FD00CA1949 /* FFClassifyTableCell.m in Sources */,
 				B5D1042D208F162500CA1949 /* FFMapModel.m in Sources */,
 				B52383BD20AEB6590087733A /* FFZKOpenServerViewController.m in Sources */,
@@ -1712,6 +1739,7 @@
 				B523833420AE9EF40087733A /* FFDriveFansCell.m in Sources */,
 				B58CB7AF207B10830099773D /* FFAppDelegate.m in Sources */,
 				B523838F20AEA0C70087733A /* FLAnimatedImage.m in Sources */,
+				B51BCFCF20B3EA6F005B9DE1 /* FFMineHeaderView.m in Sources */,
 				B51BCFC720B2F92C005B9DE1 /* FFNavigationController.m in Sources */,
 				B52382CB20AE84050087733A /* FFGameCommentListViewController.m in Sources */,
 				B523832F20AE9EF40087733A /* FFDetailFooterView.m in Sources */,

@@ -10,18 +10,19 @@
 #import "FFControllerManager.h"
 
 //third library
-#import "WXApi.h"
-
+#import <WXApi.h>
+#import <TencentOpenAPI/TencentOAuth.h>
 
 #import <UserNotifications/UserNotifications.h>
 //#import <FFTools/FFDateFormatter.h>
 
 #import "FFMapModel.h"
+#import "FFBoxModel.h"
 
 #define WEIXINAPPID @"wx7ec31aabe8cc710d"
 #define QQAPPID @"1106099979"
 
-@interface FFAppDelegate ()
+@interface FFAppDelegate () <UNUserNotificationCenterDelegate>
 
 
 @end
@@ -110,67 +111,61 @@
 
 - (void)initializeDataSource {
 
-    [FFMapModel getMap];
-//
-//    //注册微信
-//    [WXApi registerApp:WEIXINAPPID];
-//    //注册QQ
-//    TencentOAuth *oAuth = [[TencentOAuth alloc] initWithAppId:QQAPPID andDelegate:nil];
-//    [oAuth isSessionValid];
-//    //注册畅言SDK
-//    BOXLOG(@"register ChagnyanSDK");
-//    [ChangyanSDK registerApp:@"cysYKUClL"
-//                      appKey:@"6c88968800e8b236e5c69b8634db704d"
-//                 redirectUrl:nil
-//        anonymousAccessToken:nil];
-//
-//
-//    //注册通知
-//    [self resignNotifacation];
-//
+    //获取接口
+    [FFMapModel getMapCompletion:^{
+        //登录
+        [FFBoxModel login];
+    }];
+
+    //注册微信
+    [WXApi registerApp:WEIXINAPPID];
+    //注册QQ
+    TencentOAuth *oAuth = [[TencentOAuth alloc] initWithAppId:QQAPPID andDelegate:nil];
+    [oAuth isSessionValid];
+
+
+    //注册通知
+    [self resignNotifacation];
+
 //    //公告
 //    [FFBoxModel appAnnouncement];
-//
+
 //    //注册统计
 //    [FFStatisticsModel reigstStatics];
-//
-//    //检查更新
-//    [FFBoxModel checkBoxVersionCompletion:^(NSDictionary *content, BOOL success) {
-//        syLog(@"box version ==== %@",content);
-//        if (success) {
-//            if ([content[@"data"] isKindOfClass:[NSString class]]) {
-//                [FFBoxModel boxUpdateWithUrl:content[@"data"]];
-//            }
-//        }
-//    }];
-//
-//    //登录
-//    [FFBoxModel login];
+
+    //检查更新
+    [FFBoxModel checkBoxVersionCompletion:^(NSDictionary *content, BOOL success) {
+        syLog(@"box version ==== %@",content);
+        if (success) {
+            if ([content[@"data"] isKindOfClass:[NSString class]]) {
+                [FFBoxModel boxUpdateWithUrl:content[@"data"]];
+            }
+        }
+    }];
 }
 
 /** 注册通知 */
-//- (void)resignNotifacation {
-//    if (@available(iOS 10.0, *)) {
-//        UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
-//        center.delegate = self;
-//
-//        [center requestAuthorizationWithOptions:(UNAuthorizationOptionAlert + UNAuthorizationOptionSound)completionHandler:^(BOOL granted, NSError * _Nullable error) {
-//            if (granted == YES) {
-//                SAVEOBJECT_AT_USERDEFAULTS([NSNumber numberWithBool:granted], @"NOTIFICATIONSETTING");
-//            } else {
-//                SAVEOBJECT_AT_USERDEFAULTS([NSNumber numberWithBool:NO], @"NOTIFICATIONSETTING");
-//            }
-//        }];
-//
-//        [center getNotificationSettingsWithCompletionHandler:^(UNNotificationSettings * _Nonnull settings) {
-//
-//        }];
-//    } else {
-//
-//    }
-//}
-//
-//
+- (void)resignNotifacation {
+    if (@available(iOS 10.0, *)) {
+        UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+        center.delegate = self;
+
+        [center requestAuthorizationWithOptions:(UNAuthorizationOptionAlert + UNAuthorizationOptionSound)completionHandler:^(BOOL granted, NSError * _Nullable error) {
+            if (granted == YES) {
+                SAVEOBJECT_AT_USERDEFAULTS([NSNumber numberWithBool:granted], @"NOTIFICATIONSETTING");
+            } else {
+                SAVEOBJECT_AT_USERDEFAULTS([NSNumber numberWithBool:NO], @"NOTIFICATIONSETTING");
+            }
+        }];
+
+        [center getNotificationSettingsWithCompletionHandler:^(UNNotificationSettings * _Nonnull settings) {
+
+        }];
+    } else {
+
+    }
+}
+
 //- (void)addMaskView:(BOOL)add {
 //    if (add) {
 //        [FFMaskView addMaskViewWithWindow:self.window];

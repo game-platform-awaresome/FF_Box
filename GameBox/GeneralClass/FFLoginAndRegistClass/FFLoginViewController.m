@@ -72,9 +72,17 @@
 - (void)respondsToBtn:(UIButton *)sender {
     self.hidesBottomBarWhenPushed = YES;
     if ([sender.titleLabel.text isEqualToString:@"忘记密码"]) {
+
         [self pushViewController:[FFForgetPasswordViewController new]];
     } else {
-        [self pushViewController:[FFRegisterViewController new]];
+        FFRegisterViewController *registerViewController =[FFRegisterViewController new];
+        [registerViewController setRegistCompletionBlcok:^(NSString *username, NSString *password) {
+            syLog(@"注册完成 :: username == %@ password == %@",username,password);
+            self.userName.text = username;
+            self.passWord.text = password;
+            [self respondsToLogin];
+        }];
+        [self pushViewController:registerViewController];
     }
 }
 
@@ -106,6 +114,7 @@
         _isLogging = NO;
         if (success) {
             [UIAlertController showAlertMessage:@"登录成功" dismissTime:0.7 dismissBlock:^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOGIN_SUCCESS object:nil userInfo:nil];
                 [self.navigationController popViewControllerAnimated:YES];
             }];
         } else {
@@ -126,9 +135,9 @@
         [self.userName resignFirstResponder];
         [self.passWord becomeFirstResponder];
     }
-
     return YES;
 }
+
 
 //限制用户名和密码长度
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
