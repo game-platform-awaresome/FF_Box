@@ -21,7 +21,14 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 //    self.navigationController.navigationBar.hidden = NO;
+    [self.navigationController.navigationBar setTintColor:[FFColorManager navigation_bar_black_color]];
+    [self.navigationController.navigationBar setBarTintColor:[FFColorManager navigation_bar_white_color]];
     self.navBarBGAlpha = @"1.0";
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+//    self.hidesBottomBarWhenPushed = YES;
 }
 
 

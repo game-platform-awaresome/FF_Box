@@ -121,7 +121,7 @@
         _showArray = \
         [self is185] ? \
         [@[@[@"FFResignViewController"],
-        @[@"FFSignInViewController",@"FFEvervDayComment",@"FFDrivePostStatusViewController", @"FFInviteFriendViewController",@"FFInviteRankListViewController"],
+        @[@"FFSignInViewController",@"FFEverydayCommentController",@"FFDrivePostStatusViewController", @"FFInviteFriendViewController",@"FFInviteRankListViewController"],
         @[@"FFExchangeCoinController",@"FFLotteryViewController",@"FFGoldDetailViewController", @"FFPlatformDetailViewController"],
         @[@"FFRRebateViewController",@"FFTransferServerViewController"],
         @[@"FFMyPackageViewController",@"FFMyCollectionViewController",@"FFRActivityViewController"],
@@ -129,7 +129,7 @@
         @[@"FFChangePasswordViewController",@"FFBindMobileViewController",@"FFAboutViewController"]] mutableCopy] :\
                                                       \
         [@[@[@"FFResignViewController"],
-        @[@"FFSignInViewController",@"FFEvervDayComment",@"FFDrivePostStatusViewController", @"FFInviteFriendViewController"],
+        @[@"FFSignInViewController",@"FFEverydayCommentController",@"FFDrivePostStatusViewController", @"FFInviteFriendViewController"],
         @[@"FFExchangeCoinController",@"FFLotteryViewController",@"FFGoldDetailViewController", @"FFPlatformDetailViewController"],
         @[@"FFRRebateViewController",@"FFTransferServerViewController"],
         @[@"FFMyPackageViewController",@"FFMyCollectionViewController",@"FFRActivityViewController"],
@@ -163,7 +163,7 @@
 
                        @"FFSignInViewController":       @{@"title":@"签到",@"subTitle":@"+5金币,坚持有惊喜",
                                                           @"subimage":[FFImageManager Mine_sign_in]},
-                       @"FFEvervDayComment":             @{@"title":@"每日评论",@"subTitle":@"+3到10金币,每日一次",
+                       @"FFEverydayCommentController":  @{@"title":@"每日评论",@"subTitle":@"+3到10金币,每日一次",
                                                            @"subimage":[FFImageManager Mine_everyday_comment]},
                        @"FFDrivePostStatusViewController":@{@"title":@"每日发车",@"subTitle":@"每次成功发车可获得5-30金币",
                                                             @"subimage":[FFImageManager Mine_everyday_drive]},

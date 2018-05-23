@@ -29,7 +29,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
-    self.hidesBottomBarWhenPushed = NO;  
+    self.hidesBottomBarWhenPushed = NO;
+    self.navBarBGAlpha = @"0";
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
