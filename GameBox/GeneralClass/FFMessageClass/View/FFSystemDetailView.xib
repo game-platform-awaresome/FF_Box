@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FFSystemDetailController"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="FFSystemDetailView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p0i-SQ-FVU">
+                    <rect key="frame" x="8" y="38" width="359" height="24"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xFp-fL-C9V">
+                    <rect key="frame" x="8" y="70" width="359" height="0.0"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lwd-z8-OcG">
+                    <rect key="frame" x="8" y="80" width="359" height="0.0"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fid-p0-USi">
+                    <rect key="frame" x="12" y="92" width="351" height="475"/>
+                </scrollView>
+                <button hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qhg-98-PWu">
+                    <rect key="frame" x="77" y="550" width="199" height="44"/>
+                    <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="2Zl-rP-DQK"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <state key="normal" title="领取">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="respondsToReceiveButton:" destination="-1" eventType="touchUpInside" id="9OR-n6-VO3"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="qhg-98-PWu" secondAttribute="bottom" constant="80" id="1kt-hs-tsf"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Fid-p0-USi" secondAttribute="bottom" constant="100" id="33z-bL-2Vd"/>
+                <constraint firstItem="xFp-fL-C9V" firstAttribute="top" secondItem="p0i-SQ-FVU" secondAttribute="bottom" constant="8" id="7Gd-pU-joR"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="qhg-98-PWu" secondAttribute="trailing" constant="88" id="E16-BJ-xXw"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="xFp-fL-C9V" secondAttribute="trailing" constant="8" id="IUw-gR-0Wh"/>
+                <constraint firstItem="lwd-z8-OcG" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="8" id="Mmr-DF-aVP"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="p0i-SQ-FVU" secondAttribute="trailing" constant="8" id="PMQ-VT-c6h"/>
+                <constraint firstItem="p0i-SQ-FVU" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="18" id="Pym-XT-w2n"/>
+                <constraint firstItem="Fid-p0-USi" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="12" id="agP-gz-Irc"/>
+                <constraint firstItem="p0i-SQ-FVU" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="8" id="ebo-PR-qgu"/>
+                <constraint firstItem="qhg-98-PWu" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="88" id="eiG-Qw-1IL"/>
+                <constraint firstItem="Fid-p0-USi" firstAttribute="top" secondItem="lwd-z8-OcG" secondAttribute="bottom" constant="12" id="geD-fg-FMt"/>
+                <constraint firstItem="lwd-z8-OcG" firstAttribute="top" secondItem="xFp-fL-C9V" secondAttribute="bottom" constant="10" id="nR8-gj-RiK"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="lwd-z8-OcG" secondAttribute="trailing" constant="8" id="pf7-YV-Kef"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Fid-p0-USi" secondAttribute="trailing" constant="12" id="vZb-JD-Pdy"/>
+                <constraint firstItem="xFp-fL-C9V" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="8" id="yB0-b5-Lrt"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="descLabel" destination="lwd-z8-OcG" id="nMr-ih-1Rk"/>
+                <outlet property="receiveButton" destination="qhg-98-PWu" id="b6a-g2-vax"/>
+                <outlet property="scrollView" destination="Fid-p0-USi" id="gfw-Wk-0Fq"/>
+                <outlet property="timeLabel" destination="xFp-fL-C9V" id="ZLF-hi-ChU"/>
+                <outlet property="titleLabel" destination="p0i-SQ-FVU" id="ayp-pe-NDE"/>
+            </connections>
+            <point key="canvasLocation" x="33.5" y="54.5"/>
+        </view>
+    </objects>
+</document>
