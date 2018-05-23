@@ -123,16 +123,16 @@
         [@[@[@"FFResignViewController"],
         @[@"FFSignInViewController",@"FFEverydayCommentController",@"FFDrivePostStatusViewController", @"FFInviteFriendViewController",@"FFInviteRankListViewController"],
         @[@"FFExchangeCoinController",@"FFLotteryViewController",@"FFGoldDetailViewController", @"FFPlatformDetailViewController"],
-        @[@"FFRRebateViewController",@"FFTransferServerViewController"],
-        @[@"FFMyPackageViewController",@"FFMyCollectionViewController",@"FFRActivityViewController"],
+        @[@"FFRRebateViewController",@"FFTransferGameViewController"],
+        @[@"FFMyPackageViewController",@"FFMyCollectionViewController",@"FFActivityViewController"],
         @[@"FFMyNewsViewController",@"FFCustomerServiceViewController"],
         @[@"FFModifyPasswordController",@"FFBindMobileViewController",@"FFAboutViewController"]] mutableCopy] :\
                                                       \
         [@[@[@"FFResignViewController"],
         @[@"FFSignInViewController",@"FFEverydayCommentController",@"FFDrivePostStatusViewController", @"FFInviteFriendViewController"],
         @[@"FFExchangeCoinController",@"FFLotteryViewController",@"FFGoldDetailViewController", @"FFPlatformDetailViewController"],
-        @[@"FFRRebateViewController",@"FFTransferServerViewController"],
-        @[@"FFMyPackageViewController",@"FFMyCollectionViewController",@"FFRActivityViewController"],
+        @[@"FFRRebateViewController",@"FFTransferGameViewController"],
+        @[@"FFMyPackageViewController",@"FFMyCollectionViewController",@"FFActivityViewController"],
         @[@"FFMyNewsViewController",@"FFCustomerServiceViewController"],
         @[@"FFModifyPasswordController",@"FFBindMobileViewController"]] mutableCopy];
     }
@@ -183,14 +183,14 @@
 
                        @"FFRRebateViewController":       @{@"title":@"返利申请",@"subTitle":@"充值有奖,元宝/钻石返还",
                                                            @"subimage":[FFImageManager Mine_rebate_apply]},
-                       @"FFTransferServerViewController":@{@"title":@"转游申请",
+                       @"FFTransferGameViewController":  @{@"title":@"转游申请",
                                                            @"subimage":[FFImageManager Mine_transfer_game]},
 
                        @"FFMyPackageViewController":     @{@"title":@"我的礼包",
                                                            @"subimage":[FFImageManager MIne_package],},
                        @"FFMyCollectionViewController":  @{@"title":@"我的收藏",
                                                            @"subimage":[FFImageManager Mine_collection]},
-                       @"FFRActivityViewController":     @{@"title":@"活动中心",
+                       @"FFActivityViewController":      @{@"title":@"活动中心",
                                                            @"subimage":[FFImageManager Mine_activiity_center]},
 
                        @"FFMyNewsViewController":        @{@"title":@"我的消息",

@@ -7,8 +7,10 @@
 //
 
 #import "FFApplyTransferView.h"
-#import "FFViewFactory.h"
+#import "FFColorManager.h"
+#import <FFTools/FFTools.h>
 
+#define BOX_MESSAGE(Message) [UIAlertController showAlertMessage:Message dismissTime:0.7 dismissBlock:nil]
 
 @interface FFApplyTransferView () <UITextFieldDelegate>
 
@@ -49,6 +51,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+
+    [self.sureButton setBackgroundColor:[FFColorManager blue_dark]];
 }
 
 /**

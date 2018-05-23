@@ -292,11 +292,10 @@ static FFUserModel *model;
 
 #pragma mark - ======================= 客服中心 =======================
 + (void)customerServiceWithCompletion:(void (^)(NSDictionary *, BOOL))completion {
-    Pamaras_Key((@[@"channel"]));
-    SS_DICT;
-    [dict setObject:Channel forKey:@"channel"];
-    SS_SIGN;
-    [FFNetWorkManager postRequestWithURL:Map.CUSTOMER_SERVICE Params:nil Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+    Mutable_Dict(2);
+    SS_CHANNEL;
+    [dict setObject:BOX_SIGN(dict, (@[@"channel"])) forKey:@"sign"];
+    [FFNetWorkManager postRequestWithURL:Map.CUSTOMER_SERVICE Params:dict Completion:^(NSDictionary *content, BOOL success) {
         NEW_REQUEST_COMPLETION;
     }];
 }

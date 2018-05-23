@@ -287,6 +287,18 @@
         REQUEST_COMPLETION;
     }];
 }
+/**
+ * 我的礼包
+ */
++ (void)getUserGiftPackageWithPage:(NSString *)page Completion:(RequestCallBackBlock)completion {
+    Mutable_Dict(3);
+    [dict setObject:Channel forKey:@"channel_id"];
+    [dict setObject:page forKey:@"page"];
+    [dict setObject:CURRENT_USER.username forKey:@"username"];
+    [FFNetWorkManager postRequestWithURL:Map.USER_PACK Params:dict Completion:^(NSDictionary *content, BOOL success) {
+        REQUEST_COMPLETION;
+    }];
+}
 
 #pragma mark - get game comment list
 /**

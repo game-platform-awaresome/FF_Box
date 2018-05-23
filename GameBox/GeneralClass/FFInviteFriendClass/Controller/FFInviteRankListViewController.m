@@ -19,7 +19,7 @@
 
 #define FLOATSIZE 50
 
-@interface FFInviteRankListViewController () <FFSelectHeaderViewDelegate>
+@interface FFInviteRankListViewController () <FFSelectHeaderViewDelegate,UIScrollViewDelegate>
 
 @property (nonatomic, strong) UILabel *remindLabel;
 @property (nonatomic, strong) FFSelectHeaderView *headerView;
@@ -88,12 +88,8 @@
         [self.todayListViewController.tableView reloadData];
     }];
 
-
-
     [self addChildViewController:self.todayListViewController];
     [self addChildViewController:self.yesterdayListViewController];
-
-
 
     [[FFInviteModel sharedModel] setRewardBlock:^(BOOL success) {
         if (success) {
@@ -126,6 +122,15 @@
     self.scrollView.contentSize = CGSizeMake(kSCREEN_WIDTH * 2, kSCREEN_HEIGHT - CGRectGetMaxY(self.headerView.frame));
     self.todayListViewController.view.frame = CGRectMake(kSCREEN_WIDTH * self.today_view_x, 0, kSCREEN_WIDTH, self.scrollView.frame.size.height);
     self.yesterdayListViewController.view.frame = CGRectMake(kSCREEN_WIDTH * self.yesterday_view_x, 0, kSCREEN_WIDTH, self.scrollView.frame.size.height);
+}
+
+#pragma mark - scrollview delegate
+#pragma mark - scroll view delegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    CGFloat x = scrollView.contentOffset.x;
+    //设置选择视图的浮标
+    [self.headerView setCursorX:(x / scrollView.contentSize.width * kSCREEN_WIDTH)];
+
 }
 
 #pragma mark - header view delegate
@@ -214,6 +219,7 @@
     if (!_scrollView) {
         _scrollView = [[UIScrollView alloc] init];
         _scrollView.pagingEnabled = YES;
+        _scrollView.delegate = self;
     }
     return _scrollView;
 }
