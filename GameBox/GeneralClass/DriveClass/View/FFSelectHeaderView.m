@@ -7,6 +7,7 @@
 //
 
 #import "FFSelectHeaderView.h"
+#import "FFColorManager.h"
 
 #define ButtonTag 10086
 
@@ -72,7 +73,7 @@
 - (void)initDataSource {
     _titleSize = CGSizeMake(0, 0);
     _titleNormalColor = [UIColor grayColor];
-    _titleSelectColor = [UIColor orangeColor];
+    _titleSelectColor = [FFColorManager blue_dark];
     _titleBackGroundColor = [UIColor clearColor];
     _cursorWidthEqualToTitleWidth = YES;
     _selectTitleIndex = 0;
@@ -264,7 +265,7 @@
 
 - (UIColor *)cursorColor {
     if (!_cursorColor) {
-        _cursorColor = [UIColor orangeColor];
+        _cursorColor = [FFColorManager blue_dark];
     }
     return _cursorColor;
 }

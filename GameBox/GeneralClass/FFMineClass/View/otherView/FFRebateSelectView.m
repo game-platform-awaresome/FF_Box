@@ -7,6 +7,7 @@
 //
 
 #import "FFRebateSelectView.h"
+#import "FFColorManager.h"
 
 #define BTNTAG 1400
 #define BUTTON_SIZE [_buttons[_index].titleLabel.text boundingRectWithSize:CGSizeMake(kSCREEN_WIDTH / _buttons.count, 30)\
@@ -163,7 +164,7 @@ attributes:attribute context:nil].size
         CGSize retSize = [_buttons[0].titleLabel.text boundingRectWithSize:CGSizeMake(kSCREEN_WIDTH / _buttons.count, 30) options: NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attribute context:nil].size;
         _seleView.bounds = CGRectMake(0, 0, (retSize.width + 10), 3);
         _seleView.center = CGPointMake(_buttons[0].center.x, self.line.center.y);
-        _seleView.backgroundColor = [UIColor orangeColor];
+        _seleView.backgroundColor = [FFColorManager blue_dark];
         _seleView.layer.cornerRadius = 1;
         _seleView.layer.masksToBounds = YES;
     }
@@ -172,7 +173,7 @@ attributes:attribute context:nil].size
 
 - (UIColor *)textColor {
     if (!_textColor) {
-        _textColor = [UIColor orangeColor];
+        _textColor = [FFColorManager blue_dark];
     }
     return _textColor;
 }

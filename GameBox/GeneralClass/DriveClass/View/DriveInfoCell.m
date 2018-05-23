@@ -150,7 +150,6 @@
         syLog(@"attention === %@",content);
         STOP_NET_WORK;
         if (success) {
-//            [self refreshNewData];
             if (self.model.attention.integerValue == 0) {
                 self.model.attention = @"1";
             } else {

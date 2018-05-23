@@ -77,7 +77,7 @@ UIColor *HexColorToUIColor(NSString *hexColorString) {
 }
 
 + (UIColor *)backgroundColor {
-    return RGBColor(239, 240, 241);
+    return RGBColor(255, 255, 255);
 }
 
 + (UIColor *)textColorDark {

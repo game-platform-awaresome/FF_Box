@@ -43,6 +43,19 @@
 		B51BD06720B51952005B9DE1 /* FFTransferNotesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B51BD06520B51952005B9DE1 /* FFTransferNotesCell.xib */; };
 		B51BD06A20B519F8005B9DE1 /* FFInviteListNotesController.m in Sources */ = {isa = PBXBuildFile; fileRef = B51BD06920B519F8005B9DE1 /* FFInviteListNotesController.m */; };
 		B51BD06D20B539D4005B9DE1 /* FFInviteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B51BD06B20B539D4005B9DE1 /* FFInviteModel.m */; };
+		B51BD07720B53A5F005B9DE1 /* FFApplyRebateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B51BD07220B53A5F005B9DE1 /* FFApplyRebateViewController.m */; };
+		B51BD07820B53A5F005B9DE1 /* FFRebateNoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B51BD07420B53A5F005B9DE1 /* FFRebateNoticeViewController.m */; };
+		B51BD07920B53A5F005B9DE1 /* FFRebateRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B51BD07620B53A5F005B9DE1 /* FFRebateRecordViewController.m */; };
+		B51BD07C20B53A80005B9DE1 /* FFRRebateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B51BD07B20B53A80005B9DE1 /* FFRRebateViewController.m */; };
+		B51BD08420B53AC8005B9DE1 /* FFRebateRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B51BD07F20B53AC8005B9DE1 /* FFRebateRecordCell.m */; };
+		B51BD08520B53AC8005B9DE1 /* RebateTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B51BD08020B53AC8005B9DE1 /* RebateTableViewCell.m */; };
+		B51BD08620B53AC8005B9DE1 /* RebateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B51BD08120B53AC8005B9DE1 /* RebateTableViewCell.xib */; };
+		B51BD08720B53AC8005B9DE1 /* FFRebateRecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B51BD08320B53AC8005B9DE1 /* FFRebateRecordCell.xib */; };
+		B51BD08D20B53B15005B9DE1 /* FFRebateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B51BD08A20B53B15005B9DE1 /* FFRebateModel.m */; };
+		B51BD08E20B53B15005B9DE1 /* FFApplyRebateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B51BD08C20B53B15005B9DE1 /* FFApplyRebateModel.m */; };
+		B51BD09320B53F41005B9DE1 /* FFAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B51BD09220B53F41005B9DE1 /* FFAboutViewController.m */; };
+		B51BD09720B540BC005B9DE1 /* FFBindMobileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B51BD09620B540BC005B9DE1 /* FFBindMobileViewController.m */; };
+		B51BD09B20B54678005B9DE1 /* FFModifyPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = B51BD09A20B54678005B9DE1 /* FFModifyPasswordController.m */; };
 		B523825920AA85FF0087733A /* FFBTNewGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = B523825820AA85FF0087733A /* FFBTNewGameController.m */; };
 		B523825C20AA86110087733A /* FFZKNewGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = B523825B20AA86110087733A /* FFZKNewGameController.m */; };
 		B523826120AAB6850087733A /* FFBTClassifyController.m in Sources */ = {isa = PBXBuildFile; fileRef = B523826020AAB6850087733A /* FFBTClassifyController.m */; };
@@ -264,6 +277,30 @@
 		B51BD06920B519F8005B9DE1 /* FFInviteListNotesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFInviteListNotesController.m; sourceTree = "<group>"; };
 		B51BD06B20B539D4005B9DE1 /* FFInviteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFInviteModel.m; sourceTree = "<group>"; };
 		B51BD06C20B539D4005B9DE1 /* FFInviteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFInviteModel.h; sourceTree = "<group>"; };
+		B51BD07120B53A5F005B9DE1 /* FFApplyRebateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFApplyRebateViewController.h; sourceTree = "<group>"; };
+		B51BD07220B53A5F005B9DE1 /* FFApplyRebateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFApplyRebateViewController.m; sourceTree = "<group>"; };
+		B51BD07320B53A5F005B9DE1 /* FFRebateNoticeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFRebateNoticeViewController.h; sourceTree = "<group>"; };
+		B51BD07420B53A5F005B9DE1 /* FFRebateNoticeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFRebateNoticeViewController.m; sourceTree = "<group>"; };
+		B51BD07520B53A5F005B9DE1 /* FFRebateRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFRebateRecordViewController.h; sourceTree = "<group>"; };
+		B51BD07620B53A5F005B9DE1 /* FFRebateRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFRebateRecordViewController.m; sourceTree = "<group>"; };
+		B51BD07A20B53A80005B9DE1 /* FFRRebateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFRRebateViewController.h; sourceTree = "<group>"; };
+		B51BD07B20B53A80005B9DE1 /* FFRRebateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFRRebateViewController.m; sourceTree = "<group>"; };
+		B51BD07E20B53AC8005B9DE1 /* RebateTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RebateTableViewCell.h; sourceTree = "<group>"; };
+		B51BD07F20B53AC8005B9DE1 /* FFRebateRecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFRebateRecordCell.m; sourceTree = "<group>"; };
+		B51BD08020B53AC8005B9DE1 /* RebateTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RebateTableViewCell.m; sourceTree = "<group>"; };
+		B51BD08120B53AC8005B9DE1 /* RebateTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RebateTableViewCell.xib; sourceTree = "<group>"; };
+		B51BD08220B53AC8005B9DE1 /* FFRebateRecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFRebateRecordCell.h; sourceTree = "<group>"; };
+		B51BD08320B53AC8005B9DE1 /* FFRebateRecordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FFRebateRecordCell.xib; sourceTree = "<group>"; };
+		B51BD08920B53B15005B9DE1 /* FFApplyRebateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFApplyRebateModel.h; sourceTree = "<group>"; };
+		B51BD08A20B53B15005B9DE1 /* FFRebateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFRebateModel.m; sourceTree = "<group>"; };
+		B51BD08B20B53B15005B9DE1 /* FFRebateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFRebateModel.h; sourceTree = "<group>"; };
+		B51BD08C20B53B15005B9DE1 /* FFApplyRebateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFApplyRebateModel.m; sourceTree = "<group>"; };
+		B51BD09120B53F41005B9DE1 /* FFAboutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFAboutViewController.h; sourceTree = "<group>"; };
+		B51BD09220B53F41005B9DE1 /* FFAboutViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFAboutViewController.m; sourceTree = "<group>"; };
+		B51BD09520B540BC005B9DE1 /* FFBindMobileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBindMobileViewController.h; sourceTree = "<group>"; };
+		B51BD09620B540BC005B9DE1 /* FFBindMobileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBindMobileViewController.m; sourceTree = "<group>"; };
+		B51BD09920B54678005B9DE1 /* FFModifyPasswordController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFModifyPasswordController.h; sourceTree = "<group>"; };
+		B51BD09A20B54678005B9DE1 /* FFModifyPasswordController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFModifyPasswordController.m; sourceTree = "<group>"; };
 		B523825720AA85FF0087733A /* FFBTNewGameController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBTNewGameController.h; sourceTree = "<group>"; };
 		B523825820AA85FF0087733A /* FFBTNewGameController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBTNewGameController.m; sourceTree = "<group>"; };
 		B523825A20AA86110087733A /* FFZKNewGameController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFZKNewGameController.h; sourceTree = "<group>"; };
@@ -626,6 +663,7 @@
 		B51BCFD020B5088D005B9DE1 /* ChildController */ = {
 			isa = PBXGroup;
 			children = (
+				B51BD06E20B539F5005B9DE1 /* FFRebateClass */,
 				B51BD04420B50CD0005B9DE1 /* FFSignClass */,
 				B51BD04820B51010005B9DE1 /* FFEveryDayCommentCLass */,
 			);
@@ -732,6 +770,90 @@
 				B51BD06920B519F8005B9DE1 /* FFInviteListNotesController.m */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		B51BD06E20B539F5005B9DE1 /* FFRebateClass */ = {
+			isa = PBXGroup;
+			children = (
+				B51BD08820B53AF9005B9DE1 /* Model */,
+				B51BD07D20B53AAF005B9DE1 /* View */,
+				B51BD06F20B53A57005B9DE1 /* Controller */,
+			);
+			path = FFRebateClass;
+			sourceTree = "<group>";
+		};
+		B51BD06F20B53A57005B9DE1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B51BD07A20B53A80005B9DE1 /* FFRRebateViewController.h */,
+				B51BD07B20B53A80005B9DE1 /* FFRRebateViewController.m */,
+				B51BD07020B53A5F005B9DE1 /* RebateChildViewController */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B51BD07020B53A5F005B9DE1 /* RebateChildViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B51BD07120B53A5F005B9DE1 /* FFApplyRebateViewController.h */,
+				B51BD07220B53A5F005B9DE1 /* FFApplyRebateViewController.m */,
+				B51BD07320B53A5F005B9DE1 /* FFRebateNoticeViewController.h */,
+				B51BD07420B53A5F005B9DE1 /* FFRebateNoticeViewController.m */,
+				B51BD07520B53A5F005B9DE1 /* FFRebateRecordViewController.h */,
+				B51BD07620B53A5F005B9DE1 /* FFRebateRecordViewController.m */,
+			);
+			path = RebateChildViewController;
+			sourceTree = "<group>";
+		};
+		B51BD07D20B53AAF005B9DE1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B51BD08220B53AC8005B9DE1 /* FFRebateRecordCell.h */,
+				B51BD07F20B53AC8005B9DE1 /* FFRebateRecordCell.m */,
+				B51BD08320B53AC8005B9DE1 /* FFRebateRecordCell.xib */,
+				B51BD07E20B53AC8005B9DE1 /* RebateTableViewCell.h */,
+				B51BD08020B53AC8005B9DE1 /* RebateTableViewCell.m */,
+				B51BD08120B53AC8005B9DE1 /* RebateTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B51BD08820B53AF9005B9DE1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B51BD08920B53B15005B9DE1 /* FFApplyRebateModel.h */,
+				B51BD08C20B53B15005B9DE1 /* FFApplyRebateModel.m */,
+				B51BD08B20B53B15005B9DE1 /* FFRebateModel.h */,
+				B51BD08A20B53B15005B9DE1 /* FFRebateModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B51BD08F20B53E17005B9DE1 /* FFAboutClass */ = {
+			isa = PBXGroup;
+			children = (
+				B51BD09120B53F41005B9DE1 /* FFAboutViewController.h */,
+				B51BD09220B53F41005B9DE1 /* FFAboutViewController.m */,
+			);
+			path = FFAboutClass;
+			sourceTree = "<group>";
+		};
+		B51BD09420B54073005B9DE1 /* FFBindMobileClass */ = {
+			isa = PBXGroup;
+			children = (
+				B51BD09520B540BC005B9DE1 /* FFBindMobileViewController.h */,
+				B51BD09620B540BC005B9DE1 /* FFBindMobileViewController.m */,
+			);
+			path = FFBindMobileClass;
+			sourceTree = "<group>";
+		};
+		B51BD09820B5463A005B9DE1 /* FFmodifyPasswordClass */ = {
+			isa = PBXGroup;
+			children = (
+				B51BD09920B54678005B9DE1 /* FFModifyPasswordController.h */,
+				B51BD09A20B54678005B9DE1 /* FFModifyPasswordController.m */,
+			);
+			path = FFmodifyPasswordClass;
 			sourceTree = "<group>";
 		};
 		B523825520AA73CF0087733A /* FFNewGameClass */ = {
@@ -1544,6 +1666,9 @@
 				B51BCFB820B2F6B2005B9DE1 /* FFLoginAndRegistClass */,
 				B51BCFC820B3C5A7005B9DE1 /* FFSettingClass */,
 				B51BD04C20B51478005B9DE1 /* FFInviteFriendClass */,
+				B51BD09820B5463A005B9DE1 /* FFmodifyPasswordClass */,
+				B51BD09420B54073005B9DE1 /* FFBindMobileClass */,
+				B51BD08F20B53E17005B9DE1 /* FFAboutClass */,
 			);
 			path = GeneralClass;
 			sourceTree = "<group>";
@@ -1750,6 +1875,7 @@
 				B51BCFB220B2BD8A005B9DE1 /* FFGameOpenCell.xib in Resources */,
 				B523833220AE9EF40087733A /* FFDriveCommentCell.xib in Resources */,
 				B58CB7B2207B10830099773D /* cityData.plist in Resources */,
+				B51BD08720B53AC8005B9DE1 /* FFRebateRecordCell.xib in Resources */,
 				B523837020AE9FAC0087733A /* ZLPhotoActionSheet.xib in Resources */,
 				B523833520AE9EF40087733A /* FFDriveFansCell.xib in Resources */,
 				B51BCFB720B2C8AB005B9DE1 /* FFpackageCell.xib in Resources */,
@@ -1769,6 +1895,7 @@
 				B51BD06720B51952005B9DE1 /* FFTransferNotesCell.xib in Resources */,
 				B5E1E54320622E40008F49CA /* README.md in Resources */,
 				B5781AE520A440C900CB1464 /* Podfile in Resources */,
+				B51BD08620B53AC8005B9DE1 /* RebateTableViewCell.xib in Resources */,
 				B58CB7B5207B10830099773D /* Assets.xcassets in Resources */,
 				B51BD03120B50976005B9DE1 /* FFCoinDetailCell.xib in Resources */,
 				B51BD03920B50976005B9DE1 /* FFPlatformCell.xib in Resources */,
@@ -1826,6 +1953,7 @@
 			files = (
 				B523833820AE9EF40087733A /* FFDrivePersonalHeader.m in Sources */,
 				B52383A720AEAC400087733A /* FFBasicOpenServerController.m in Sources */,
+				B51BD09320B53F41005B9DE1 /* FFAboutViewController.m in Sources */,
 				B51BD05220B5158E005B9DE1 /* FFInviteRankListViewController.m in Sources */,
 				B523832D20AE9EF40087733A /* DriveInfoCell.m in Sources */,
 				B5D505EB2089DAFE000B7B50 /* FFStatisticsModel.m in Sources */,
@@ -1836,6 +1964,7 @@
 				B523837E20AE9FAC0087733A /* ZLPhotoBrowser.m in Sources */,
 				B523826A20AABCCA0087733A /* FFGAViewController.m in Sources */,
 				B523833E20AE9F680087733A /* FFViewFactory.m in Sources */,
+				B51BD09720B540BC005B9DE1 /* FFBindMobileViewController.m in Sources */,
 				B51BCFC120B2F705005B9DE1 /* FFLoginViewController.m in Sources */,
 				B523839A20AEA2710087733A /* YBRectConst.m in Sources */,
 				B523831820AE9EF40087733A /* FFDriveAllInfoViewController.m in Sources */,
@@ -1854,6 +1983,8 @@
 				B51BD03A20B50976005B9DE1 /* FFApplyTransferView.m in Sources */,
 				B5D104352090167D00CA1949 /* FFRankListViewController.m in Sources */,
 				B523833920AE9EF40087733A /* FFMineViewCell.m in Sources */,
+				B51BD08520B53AC8005B9DE1 /* RebateTableViewCell.m in Sources */,
+				B51BD07920B53A5F005B9DE1 /* FFRebateRecordViewController.m in Sources */,
 				B523832520AE9EF40087733A /* FFDriveNumbersViewController.m in Sources */,
 				B58CB7B1207B10830099773D /* main.m in Sources */,
 				B51BD04720B50CF7005B9DE1 /* FFSignInViewController.m in Sources */,
@@ -1898,6 +2029,7 @@
 				B51BCFC420B2F705005B9DE1 /* FFRegisterViewController.m in Sources */,
 				B523839020AEA0C70087733A /* FLAnimatedImageView.m in Sources */,
 				B51BCFC220B2F705005B9DE1 /* FFNewPasswordViewController.m in Sources */,
+				B51BD07720B53A5F005B9DE1 /* FFApplyRebateViewController.m in Sources */,
 				B532510920B299FE007D7239 /* FFGameFooterView.m in Sources */,
 				B523837F20AE9FAC0087733A /* ZLPhotoBrowserCell.m in Sources */,
 				B523831C20AE9EF40087733A /* FFDriveMyNewsViewController.m in Sources */,
@@ -1933,6 +2065,7 @@
 				B51BD06620B51952005B9DE1 /* FFTransferNotesCell.m in Sources */,
 				B523829920AB11D20087733A /* FFActivityCell.m in Sources */,
 				B523838920AEA00E0087733A /* FFSharedController.m in Sources */,
+				B51BD09B20B54678005B9DE1 /* FFModifyPasswordController.m in Sources */,
 				B523833B20AE9EF40087733A /* FFSelectHeaderView.m in Sources */,
 				B5D5059420884164000B7B50 /* FFClassifyViewController.m in Sources */,
 				B58CB7D6207B12AC0099773D /* FFMainTabbarViewController.m in Sources */,
@@ -1946,12 +2079,15 @@
 				B523833420AE9EF40087733A /* FFDriveFansCell.m in Sources */,
 				B58CB7AF207B10830099773D /* FFAppDelegate.m in Sources */,
 				B523838F20AEA0C70087733A /* FLAnimatedImage.m in Sources */,
+				B51BD07C20B53A80005B9DE1 /* FFRRebateViewController.m in Sources */,
 				B51BCFCF20B3EA6F005B9DE1 /* FFMineHeaderView.m in Sources */,
 				B51BCFC720B2F92C005B9DE1 /* FFNavigationController.m in Sources */,
 				B51BD05720B515F0005B9DE1 /* FFYesterDayListViewController.m in Sources */,
 				B52382CB20AE84050087733A /* FFGameCommentListViewController.m in Sources */,
+				B51BD07820B53A5F005B9DE1 /* FFRebateNoticeViewController.m in Sources */,
 				B523832F20AE9EF40087733A /* FFDetailFooterView.m in Sources */,
 				B532510320B25BE0007D7239 /* FFOpenServerSelectView.m in Sources */,
+				B51BD08E20B53B15005B9DE1 /* FFApplyRebateModel.m in Sources */,
 				B51BD03820B50976005B9DE1 /* FFPlatformCell.m in Sources */,
 				B523828B20AB0C7F0087733A /* FFBasicScrollSelectController.m in Sources */,
 				B5D1044B2090694200CA1949 /* FFWebViewController.m in Sources */,
@@ -1964,6 +2100,8 @@
 				B523826420AAB6950087733A /* FFZKClassifyController.m in Sources */,
 				B523838520AE9FAC0087733A /* ZLShowBigImgViewController.m in Sources */,
 				B5D1043E20904DB700CA1949 /* FFClassifyDetailViewController.m in Sources */,
+				B51BD08D20B53B15005B9DE1 /* FFRebateModel.m in Sources */,
+				B51BD08420B53AC8005B9DE1 /* FFRebateRecordCell.m in Sources */,
 				B52382B220AC44610087733A /* FFGameHeaderView.m in Sources */,
 				B5D5059120884126000B7B50 /* FFGameGuideViewController.m in Sources */,
 				B523833120AE9EF40087733A /* FFDriveCommentCell.m in Sources */,

@@ -80,7 +80,7 @@
 
     CALayer *layer = [[CALayer alloc] init];
     layer.frame = CGRectMake(0, cell.frame.size.height - 1, kSCREEN_WIDTH, 1);
-    layer.backgroundColor = [FFColorManager backgroundColor].CGColor;
+    layer.backgroundColor = [FFColorManager home_select_View_separat_lineColor].CGColor;
     [cell.contentView.layer addSublayer:layer];
     return cell;
 }
@@ -126,7 +126,7 @@
         @[@"FFRRebateViewController",@"FFTransferServerViewController"],
         @[@"FFMyPackageViewController",@"FFMyCollectionViewController",@"FFRActivityViewController"],
         @[@"FFMyNewsViewController",@"FFCustomerServiceViewController"],
-        @[@"FFChangePasswordViewController",@"FFBindMobileViewController",@"FFAboutViewController"]] mutableCopy] :\
+        @[@"FFModifyPasswordController",@"FFBindMobileViewController",@"FFAboutViewController"]] mutableCopy] :\
                                                       \
         [@[@[@"FFResignViewController"],
         @[@"FFSignInViewController",@"FFEverydayCommentController",@"FFDrivePostStatusViewController", @"FFInviteFriendViewController"],
@@ -134,7 +134,7 @@
         @[@"FFRRebateViewController",@"FFTransferServerViewController"],
         @[@"FFMyPackageViewController",@"FFMyCollectionViewController",@"FFRActivityViewController"],
         @[@"FFMyNewsViewController",@"FFCustomerServiceViewController"],
-        @[@"FFChangePasswordViewController",@"FFBindMobileViewController"]] mutableCopy];
+        @[@"FFModifyPasswordController",@"FFBindMobileViewController"]] mutableCopy];
     }
     return _showArray;
 }
@@ -198,7 +198,7 @@
                        @"FFCustomerServiceViewController":@{@"title":@"客服中心", @"subTitle":@"寻求帮助,问题反馈",
                                                             @"subimage":[FFImageManager Mine_customer_service]},
 
-                       @"FFChangePasswordViewController":@{@"title":@"修改密码",
+                       @"FFModifyPasswordController":    @{@"title":@"修改密码",
                                                            @"subimage":[FFImageManager Mine_modify_password]},
                        @"FFBindMobileViewController":    @{@"title":@"绑定手机",
                                                            @"subimage":[FFImageManager Mine_binding_phone]},

@@ -13,6 +13,8 @@
 #import "FFColorManager.h"
 #import "FFImageManager.h"
 
+#define BOX_MESSAGE(Message) [UIAlertController showAlertMessage:Message dismissTime:0.7 dismissBlock:nil]
+
 typedef void(^EndOfNetWorkRequestBlock)(BOOL success);
 
 @interface FFBasicViewController : UIViewController
