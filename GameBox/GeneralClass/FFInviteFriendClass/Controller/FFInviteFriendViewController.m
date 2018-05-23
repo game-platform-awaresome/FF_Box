@@ -35,6 +35,8 @@
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
     self.navBarBGAlpha = @"0.0";
+
+    [self.navigationController.navigationBar setTintColor:[FFColorManager navigation_bar_white_color]];
     [self initDataSource];
 }
 
@@ -44,19 +46,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initUserInterface];
 }
 
 - (void)initUserInterface {
     self.view.backgroundColor = NAVGATION_BAR_COLOR;
-    self.navigationItem.title = @"邀请好友";
+//    self.navigationItem.title = @"邀请好友";
     [self.view addSubview:self.imageBackGround];
     self.navigationItem.rightBarButtonItem = self.rankListButton;
-}
-
-- (void)viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
-    self.imageBackGround.frame = CGRectMake(0, kNAVIGATION_HEIGHT - 2, kSCREEN_WIDTH, kSCREEN_HEIGHT - kNAVIGATION_HEIGHT + 2);
 }
 
 - (BOOL)initDataSource {
@@ -100,9 +96,8 @@
 #pragma mark - getter
 - (UIImageView *)imageBackGround {
     if (!_imageBackGround) {
-        _imageBackGround = [[UIImageView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.navigationController.navigationBar.frame) - 2, kSCREEN_WIDTH, kSCREEN_HEIGHT - CGRectGetMaxY(self.navigationController.navigationBar.frame) + 2)];
-
-        _imageBackGround.image = [UIImage imageNamed:@"New_invite_friend_background"];
+        _imageBackGround = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, kSCREEN_HEIGHT)];
+        _imageBackGround.image = [FFImageManager InviteFriend_Background_image];
         _imageBackGround.userInteractionEnabled = YES;
         [_imageBackGround addSubview:self.upBackGround];
         [_imageBackGround addSubview:self.downBackGround];
@@ -114,7 +109,7 @@
 - (UIImageView *)upBackGround {
     if (!_upBackGround) {
         _upBackGround  = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH * 0.88, kSCREEN_WIDTH * 0.52)];
-        _upBackGround.center = CGPointMake(kSCREEN_WIDTH / 2, kSCREEN_WIDTH * 0.925);
+        _upBackGround.center = CGPointMake(kSCREEN_WIDTH / 2, kSCREEN_WIDTH * 0.925 + 64);
 
         _upBackGround.image = [UIImage imageNamed:@"New_invite_friend_up_background"];
 
@@ -146,7 +141,7 @@
 - (UIImageView *)downBackGround {
     if (!_downBackGround) {
         _downBackGround  = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH * 0.88, kSCREEN_WIDTH * 0.213)];
-        _downBackGround.center = CGPointMake(kSCREEN_WIDTH / 2, kSCREEN_WIDTH * 1.30);
+        _downBackGround.center = CGPointMake(kSCREEN_WIDTH / 2, kSCREEN_WIDTH * 1.30 + 64);
         _downBackGround.image = [UIImage imageNamed:@"New_invite_friend_down_background"];
 
         UIImageView *left = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH * 0.167, kSCREEN_WIDTH * 0.055)];
@@ -188,7 +183,7 @@
     if (!_inviteButton) {
         _inviteButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
         _inviteButton.bounds = CGRectMake(0, 0, kSCREEN_WIDTH * 0.88, kSCREEN_WIDTH * 0.12);
-        _inviteButton.center = CGPointMake(kSCREEN_WIDTH / 2, kSCREEN_WIDTH * 1.49);
+        _inviteButton.center = CGPointMake(kSCREEN_WIDTH / 2, kSCREEN_WIDTH * 1.49 + 64);
         //        [_inviteButton setTitle:@"立即邀请好友" forState:(UIControlStateNormal)];
         [_inviteButton setBackgroundImage:[UIImage imageNamed:@"New_invite_friend_invite_button"] forState:(UIControlStateNormal)];
         [_inviteButton addTarget:self action:@selector(respondsToInviteButton) forControlEvents:(UIControlEventTouchUpInside)];

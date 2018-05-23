@@ -454,8 +454,8 @@ static BOOL respondsSuccess;
 
         _tableView.tableFooterView = [UIView new];
 
-        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 2)];
-        line.backgroundColor = [UIColor grayColor];
+        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 1)];
+        line.backgroundColor = [UIColor colorWithWhite:0.88 alpha:1];
         _tableView.tableHeaderView = line;
 
         [_tableView registerNib:[UINib nibWithNibName:CELL_IDE bundle:nil] forCellReuseIdentifier:CELL_IDE];

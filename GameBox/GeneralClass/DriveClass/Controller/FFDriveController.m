@@ -38,6 +38,10 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navBarBGAlpha = @"1.0";
+
+    [self.navigationController.navigationBar setBarTintColor:[FFColorManager navigation_bar_white_color]];
+    [self.navigationController.navigationBar setTintColor:[FFColorManager navigation_bar_black_color]];
+    
     //请求新信息
     [self getNews];
 }
@@ -46,7 +50,6 @@
     if (_isGetNews) {
         return;
     }
-
     _isGetNews = YES;
     [FFDriveModel myNewNumbersComplete:^(NSDictionary *content, BOOL success) {
         NSString *string = content[@"data"][@"count"];
@@ -72,18 +75,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeRedIdentifier) name:@"isRefreshMyNewsData" object:nil];
-    [self initDataSource];
-    [self initUserInterface];
 }
 
 - (void)initUserInterface {
     self.view.backgroundColor = [UIColor whiteColor];
 
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
-    self.navigationController.navigationBar.barTintColor = NAVGATION_BAR_COLOR;
-    self.navigationController.navigationBar.translucent = YES;
-    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
 
     self.navigationItem.title = @"秋名山";
 

@@ -33,6 +33,8 @@
 
 @property (nonatomic, strong) UIButton *openVipButton;
 
+@property (nonatomic, strong) UIButton *goldCenterButton;
+@property (nonatomic, strong) UIButton *platformButton;
 
 @end
 
@@ -67,6 +69,14 @@
     [self.nameButton setTitle:CURRENT_USER.nick_name forState:(UIControlStateNormal)];
 
     CURRENT_USER.is_vip.boolValue ? [self setNotOpenViewFram] : [self setOpenVipFrame];
+
+    CGRect frame = self.goldMoneyLabel.frame;
+    frame.size.height = 44;
+    self.goldCenterButton.frame = frame;
+
+    frame = self.platformMoneyLabel.frame;
+    frame.size.height = 44;
+    self.platformButton.frame = frame;
 }
 
 - (void)setNotLoginView {
@@ -75,6 +85,8 @@
     self.nameButton.center = CGPointMake(CGRectGetMaxX(self.avatarImageView.frame) + 10 + self.nameButton.bounds.size.width / 2, 110);
     [self.nameButton setTitle:@"登录/注册" forState:(UIControlStateNormal)];
     [self setNotOpenViewFram];
+    self.goldCenterButton.frame = CGRectZero;
+    self.platformButton.frame = CGRectZero;
 }
 
 - (void)setOpenVipFrame {
@@ -187,6 +199,8 @@
         [_coinView addSubview:self.inviteModeyLabel];
         [_coinView addSubview:self.inviteLabel];
         [_coinView addSubview:self.openVipButton];
+        [_coinView addSubview:self.goldCenterButton];
+        [_coinView addSubview:self.platformButton];
     }
     return _coinView;
 }
@@ -227,7 +241,8 @@
 - (UILabel *)goldMoneyLabel {
     if (!_goldMoneyLabel) {
         _goldMoneyLabel = [self creatLabel];
-        _goldLabel.text = @"0";
+        _goldMoneyLabel.textColor = [FFColorManager blue_dark];
+        _goldMoneyLabel.text = @"0";
     }
     return _goldMoneyLabel;
 }
@@ -235,6 +250,7 @@
 - (UILabel *)platformMoneyLabel {
     if (!_platformMoneyLabel) {
         _platformMoneyLabel = [self creatLabel];
+        _platformMoneyLabel.textColor = [FFColorManager blue_dark];
         _platformMoneyLabel.text = @"0";
     }
     return _platformMoneyLabel;
@@ -243,6 +259,7 @@
 - (UILabel *)inviteModeyLabel {
     if (!_inviteModeyLabel) {
         _inviteModeyLabel = [self creatLabel];
+        _inviteModeyLabel.textColor = [FFColorManager blue_dark];
         _inviteModeyLabel.text = @"0";
     }
     return _inviteModeyLabel;
@@ -262,7 +279,27 @@
     return _openVipButton;
 }
 
+- (UIButton *)goldCenterButton {
+    if (!_goldCenterButton) {
+        _goldCenterButton = [UIButton createButtonWithAction:^(UIButton * _Nonnull button) {
+            if (self.goldCenter) {
+                self.goldCenter();
+            }
+        }];
+    }
+    return _goldCenterButton;
+}
 
+- (UIButton *)platformButton {
+    if (!_platformButton) {
+        _platformButton = [UIButton createButtonWithAction:^(UIButton * _Nonnull button) {
+            if (self.platform) {
+                self.platform();
+            }
+        }];
+    }
+    return _platformButton;
+}
 
 
 

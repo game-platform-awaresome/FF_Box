@@ -9,13 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "FFSelectHeaderView.h"
 #import "FFDriveModel.h"
-
+#import "FFBasicViewController.h"
 #import "FFDrivePostStatusViewController.h"
 #import <FFTools/FFTools.h>
 
 #import "FFDriveThroughInfoViewController.h"
 
-@interface FFDriveController : UIViewController
+@interface FFDriveController : FFBasicViewController
 
 @property (nonatomic, strong) FFSelectHeaderView *selectHeaderView;
 
@@ -25,10 +25,6 @@
 @property (nonatomic, strong) UIBarButtonItem *throughtBarbutton;
 @property (nonatomic, strong) FFDriveThroughInfoViewController *throughtViewController;
 
-
-- (void)initUserInterface;
-
-- (void)initDataSource;
 
 - (void)setFchildControllerWithClassNames:(NSArray *)classNames;
 

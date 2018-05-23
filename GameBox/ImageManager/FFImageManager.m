@@ -74,6 +74,9 @@
 + (UIImage *)Mine_sign_in                   {RETURN_IMAGE(@"Mine_sign_in");}
 + (UIImage *)Mine_transfer_game             {RETURN_IMAGE(@"Mine_transfer_game");}
 
+#pragma mark - invite viwe
++ (UIImage *)InviteFriend_Background_image  {RETURN_IMAGE(@"InviteFriend_Background_image");}
+
 
 @end
 

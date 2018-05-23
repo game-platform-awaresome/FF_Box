@@ -75,6 +75,10 @@
 + (UIImage *)Mine_sign_in;
 + (UIImage *)Mine_transfer_game;
 
+
+#pragma mark - invite viwe
++ (UIImage *)InviteFriend_Background_image;
+
 @end
 
 

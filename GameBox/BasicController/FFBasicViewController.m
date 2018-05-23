@@ -9,6 +9,7 @@
 #import "FFBasicViewController.h"
 #import "FFWaitingManager.h"
 
+
 @interface FFBasicViewController ()
 
 @property (nonatomic, strong) MBProgressHUD *hud;
@@ -104,6 +105,10 @@
     
 }
 
+- (void)addFLoatView {
+    [self.view addSubview:self.floatImageView];
+}
+
 #pragma mark - responds
 - (void)respondsToRightButton {
 
@@ -111,6 +116,53 @@
 
 - (void)respondsToLeftButton {
 
+}
+
+#pragma mark - GestureRecognize
+- (void)respondsToFloatImageViewTap:(UITapGestureRecognizer *)sender {
+
+}
+
+- (void)respondsToFloatImageViewPan:(UIPanGestureRecognizer *)sender {
+    //返回在横坐标上、纵坐标上拖动了多少像素
+    CGPoint point = [sender translationInView:self.view];
+
+    CGFloat centerX = 0;
+    CGFloat centerY = 0;
+
+    centerX = self.floatImageView.center.x + point.x;
+    centerY = self.floatImageView.center.y + point.y;
+
+    CGFloat KWidth = kSCREEN_WIDTH;
+    CGFloat KHeight = kSCREEN_HEIGHT;
+
+    //确定特殊的centerY
+    if (centerY - self.floatImageViewSize / 2 < kNAVIGATION_HEIGHT ) {
+        centerY = self.floatImageViewSize / 2 + kNAVIGATION_HEIGHT;
+    }
+
+    if (centerY + self.floatImageViewSize / 2 > KHeight ) {
+        centerY = KHeight - self.floatImageViewSize / 2;
+    }
+
+    //确定特殊的centerX
+    if (centerX - self.floatImageViewSize / 2 < 0) {
+        centerX = self.floatImageViewSize / 2;
+    }
+    if (centerX + self.floatImageViewSize / 2 > KWidth) {
+        centerX = KWidth - self.floatImageViewSize / 2;
+    }
+
+    //设置悬浮窗的边界
+
+    self.floatImageView.center = CGPointMake(centerX, centerY);
+
+    if(sender.state == UIGestureRecognizerStateEnded || sender.state == UIGestureRecognizerStateCancelled) {
+        //判断是是否在边缘(在边缘的话隐藏)
+
+    }
+    //拖动完之后，每次都要用setTranslation:方法制0这样才不至于不受控制般滑动出视图
+    [sender setTranslation:CGPointMake(0, 0) inView:self.view];
 }
 
 #pragma mark - hud
@@ -161,6 +213,28 @@
     return _rightButton;
 }
 
+- (CGFloat)floatImageViewSize {
+    return 50;
+}
+
+- (UIImageView *)floatImageView {
+    if (!_floatImageView) {
+        _floatImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kSCREEN_WIDTH * 0.8, self.view.bounds.size.height * 0.8, self.floatImageViewSize, self.floatImageViewSize)];
+
+        _floatImageView.image = [UIImage imageNamed:@"Mine_list_invte"];
+        _floatImageView.layer.cornerRadius = self.floatImageViewSize / 2;
+        _floatImageView.layer.masksToBounds = YES;
+        _floatImageView.userInteractionEnabled = YES;
+
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(respondsToFloatImageViewTap:)];
+        tap.numberOfTapsRequired = 1;
+        tap.numberOfTouchesRequired = 1;
+        [_floatImageView addGestureRecognizer:tap];
+        UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(respondsToFloatImageViewPan:)];
+        [_floatImageView addGestureRecognizer:pan];
+    }
+    return _floatImageView;
+}
 
 
 

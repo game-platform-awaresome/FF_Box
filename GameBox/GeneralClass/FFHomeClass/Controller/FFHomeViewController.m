@@ -56,8 +56,10 @@
     [self.navigationView addSubview:self.homeSelectView];
 //    [self.navigationController.navigationBar addSubview:self.selectView];
     [self.view addSubview:self.scrollView];
-
+    [self addFLoatView];
 }
+
+
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
@@ -84,6 +86,17 @@
         syLog(@"\n!\n%s error message : %@ is not exist \n!",__func__,controllerString);
     }
     return viewController;
+}
+
+#pragma mark - responds
+- (void)respondsToFloatImageViewTap:(UITapGestureRecognizer *)sender {
+    Class MissonVC = NSClassFromString(@"FFMissionCenterViewController");
+    if (MissonVC) {
+        id vc = [[MissonVC alloc] init];
+        [self pushViewController:vc];
+    } else {
+        syLog(@"%s error- > FFMissionCenterViewController not exist",__func__);
+    }
 }
 
 #pragma mark - select view delegate

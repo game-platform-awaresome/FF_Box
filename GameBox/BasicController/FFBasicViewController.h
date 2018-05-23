@@ -31,6 +31,11 @@ typedef void(^EndOfNetWorkRequestBlock)(BOOL success);
 
 @property (nonatomic, assign) BOOL canRefresh;
 
+/** float view */
+@property (nonatomic, strong) UIImageView *floatImageView;
+@property (nonatomic, assign) CGFloat floatImageViewSize;
+
+
 /** initialize user interface */
 - (void)initUserInterface;
 /** initialize */
@@ -62,6 +67,8 @@ typedef void(^EndOfNetWorkRequestBlock)(BOOL success);
 - (void)returnHideTabbarPushViewController:(UIViewController *)viewController;
 
 - (void)showLoginViewController;
+- (void)addFLoatView;
+- (void)respondsToFloatImageViewTap:(UITapGestureRecognizer *)sender;
 
 
 @end

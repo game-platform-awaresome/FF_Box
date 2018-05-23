@@ -119,11 +119,6 @@
     }
 }
 
-
-
-
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -143,16 +138,39 @@
 
 #pragma mark - delegate
 - (void)CustomizeTabBar:(FFCustomizeTabBar *)tabBar didSelectCenterButton:(id)sender {
-    syLog(@"tabbar click center button");
-    //    UINavigationController *nav = (UINavigationController *)self.selectedViewController;
-    //    nav.childViewControllers[0].hidesBottomBarWhenPushed = YES;
-    //    FFInviteFriendViewController *vc = [FFInviteFriendViewController new];
-    //    if ([vc initDataSource]) {
-    //        [nav pushViewController:[FFInviteFriendViewController new] animated:YES];
-    //    } else{
-    //        [nav pushViewController:[FFLoginViewController new] animated:YES];
-    //    }
-    //    nav.childViewControllers[0].hidesBottomBarWhenPushed = NO;
+    Class FFUserrModel = NSClassFromString(@"FFUserModel");
+    SEL selector = NSSelectorFromString(@"currentUser");
+    if ([FFUserrModel respondsToSelector:selector]) {
+        IMP imp = [FFUserrModel methodForSelector:selector];
+        id (*func)(void) = (void *)imp;
+        id currentUser = func();
+        if (currentUser) {
+            NSNumber *number = [currentUser valueForKey:@"isLogin"];
+            if (number != nil) {
+                [self showInviteView:number.boolValue];
+            } else {
+                syLog(@"%s error -> isLogin not exist",__func__);
+            }
+        } else {
+            syLog(@"%s error -> current not exist",__func__);
+        }
+    } else {
+        syLog(@"%s error -> FFUserrModel not exist",__func__);
+    }
+}
+
+- (void)showInviteView:(BOOL)show {
+    NSString *className = show ? @"FFInviteFriendViewController" : @"FFLoginViweController";
+    Class ViewController = NSClassFromString(className);
+    if (ViewController) {
+        id vc = [[ViewController alloc] init];
+        UIViewController *topVc = [FFControllerManager sharedManager].currentNavController.topViewController;
+        topVc.hidesBottomBarWhenPushed = YES;
+        [[FFControllerManager sharedManager].currentNavController pushViewController:vc animated:YES];
+        topVc.hidesBottomBarWhenPushed = NO;
+    } else {
+        syLog(@"%s error -> %@ not exist",__func__,className);
+    }
 }
 
 #pragma mark - getter

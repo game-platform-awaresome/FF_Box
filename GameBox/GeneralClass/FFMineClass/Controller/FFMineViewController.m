@@ -81,6 +81,14 @@
     [self.headerView setModifyAratarBlock:^{
         syLog(@"修改头像");
     }];
+    //金币中心
+    [self.headerView setGoldCenter:^{
+        [weakSelf respondsToGoleCenter];
+    }];
+    //平台币
+    [self.headerView setPlatform:^{
+        [weakSelf respondsToPlaftform];
+    }];
 }
 
 #pragma mark - method
@@ -111,6 +119,26 @@
     Class FFSettingViewController = NSClassFromString(@"FFSettingViewController");
     id vc = [FFSettingViewController new];
     [self pushViewController:vc];
+}
+
+- (void)respondsToGoleCenter {
+    Class GoldCenter = NSClassFromString(@"FFGoldCenterViewController");
+    if (GoldCenter) {
+        id vc = [[GoldCenter alloc] init];
+        [self pushViewController:vc];
+    } else {
+        syLog(@"%s  error -> FFGoldCenterViewController not exist",__func__);
+    }
+}
+
+- (void)respondsToPlaftform {
+    Class GoldCenter = NSClassFromString(@"FFPlatformDetailViewController");
+    if (GoldCenter) {
+        id vc = [[GoldCenter alloc] init];
+        [self pushViewController:vc];
+    } else {
+        syLog(@"%s  error -> FFPlatformDetailViewController not exist",__func__);
+    }
 }
 #pragma mark - table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
