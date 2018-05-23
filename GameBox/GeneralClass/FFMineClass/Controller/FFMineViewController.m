@@ -37,14 +37,19 @@
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
 }
 
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 }
 
 - (void)initUserInterface {
-    self.title = @"个人中心";
-    self.navigationItem.title = @"";
-    self.view.backgroundColor = [UIColor whiteColor];
+    [super initUserInterface];
+
+    self.navigationItem.title = @"个人中心";
+    self.navigationItem.titleView = [UIView new];
 
     [self.view addSubview:self.headerView];
 
@@ -58,7 +63,6 @@
 - (void)initDataSource {
     //添加登录成功的通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(respondsToLoginSuccess:) name:NOTIFICATION_LOGIN_SUCCESS object:nil];
-
     WeakSelf;
     //登录
     [self.headerView setLoginBlock:^BOOL{
@@ -102,14 +106,12 @@
     [self.tableView.mj_footer endRefreshingWithNoMoreData];
 }
 
-
 #pragma mark - responds
 - (void)respondsToRightButton {
     Class FFSettingViewController = NSClassFromString(@"FFSettingViewController");
     id vc = [FFSettingViewController new];
     [self pushViewController:vc];
 }
-
 #pragma mark - table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return [self.viewModel sectionNumber];
@@ -133,8 +135,12 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    id vc = [self.viewModel didSelectRowAtIndexPath:indexPath];
+    if (vc) {
+        self.hidesBottomBarWhenPushed = YES;
+        [self pushViewController:vc];
+    }
 }
-
 
 #pragma mark - getter
 - (FFMineViewModel *)viewModel {
@@ -165,6 +171,7 @@
     self.tableView.sectionFooterHeight = 0;
     self.tableView.tableFooterView = [UIView new];
     self.tableView.mj_header = self.refreshHeader;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.automaticallyAdjustsScrollViewInsets = NO;
 }
 

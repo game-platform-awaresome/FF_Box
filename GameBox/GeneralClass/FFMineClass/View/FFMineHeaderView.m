@@ -15,7 +15,6 @@
 #import <FFTools/FFTools.h>
 
 
-
 @interface FFMineHeaderView ()
 
 @property (nonatomic, strong) UIImageView *avatarImageView;

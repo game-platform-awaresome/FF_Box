@@ -53,7 +53,26 @@
 #pragma makr - mine view
 + (UIImage *)Mine_not_login_avatar          {RETURN_IMAGE(@"Mine_not_login_avatar");}
 + (UIImage *)Mine_setting_image             {RETURN_IMAGE(@"Mine_setting_image");}
-
++ (UIImage *)Mine_about_us                  {RETURN_IMAGE(@"Mine_about_us");}
++ (UIImage *)Mine_activiity_center          {RETURN_IMAGE(@"Mine_activiity_center");}
++ (UIImage *)Mine_binding_phone             {RETURN_IMAGE(@"Mine_binding_phone");}
++ (UIImage *)Mine_collection                {RETURN_IMAGE(@"Mine_collection");}
++ (UIImage *)Mine_customer_service          {RETURN_IMAGE(@"Mine_customer_service");}
++ (UIImage *)Mine_everyday_comment          {RETURN_IMAGE(@"Mine_everyday_comment");}
++ (UIImage *)Mine_everyday_drive            {RETURN_IMAGE(@"Mine_everyday_drive");}
++ (UIImage *)Mine_flash_back                {RETURN_IMAGE(@"Mine_flash_back");}
++ (UIImage *)Mine_gold_exchange             {RETURN_IMAGE(@"Mine_gold_exchange");}
++ (UIImage *)Mine_gold_list                 {RETURN_IMAGE(@"Mine_gold_list");}
++ (UIImage *)Mine_gold_lottery              {RETURN_IMAGE(@"Mine_gold_lottery");};
++ (UIImage *)Mine_invite_firend             {RETURN_IMAGE(@"Mine_invite_firend");}
++ (UIImage *)Mine_invite_list               {RETURN_IMAGE(@"Mine_invite_list");}
++ (UIImage *)Mine_message                   {RETURN_IMAGE(@"Mine_message");}
++ (UIImage *)Mine_modify_password           {RETURN_IMAGE(@"Mine_modify_password");}
++ (UIImage *)MIne_package                   {RETURN_IMAGE(@"MIne_package");}
++ (UIImage *)Mine_platform_list             {RETURN_IMAGE(@"Mine_platform_list");}
++ (UIImage *)Mine_rebate_apply              {RETURN_IMAGE(@"Mine_rebate_apply");}
++ (UIImage *)Mine_sign_in                   {RETURN_IMAGE(@"Mine_sign_in");}
++ (UIImage *)Mine_transfer_game             {RETURN_IMAGE(@"Mine_transfer_game");}
 
 
 @end

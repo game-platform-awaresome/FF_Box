@@ -32,6 +32,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 
+- (id)didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 
 @end
 

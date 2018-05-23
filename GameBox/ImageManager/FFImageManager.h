@@ -54,7 +54,26 @@
 #pragma makr - mine view
 + (UIImage *)Mine_not_login_avatar;
 + (UIImage *)Mine_setting_image;
-
++ (UIImage *)Mine_about_us;
++ (UIImage *)Mine_activiity_center;
++ (UIImage *)Mine_binding_phone;
++ (UIImage *)Mine_collection;
++ (UIImage *)Mine_customer_service;
++ (UIImage *)Mine_everyday_comment;
++ (UIImage *)Mine_everyday_drive;
++ (UIImage *)Mine_flash_back;
++ (UIImage *)Mine_gold_exchange;
++ (UIImage *)Mine_gold_list;
++ (UIImage *)Mine_gold_lottery;
++ (UIImage *)Mine_invite_firend;
++ (UIImage *)Mine_invite_list;
++ (UIImage *)Mine_message;
++ (UIImage *)Mine_modify_password;
++ (UIImage *)MIne_package;
++ (UIImage *)Mine_platform_list;
++ (UIImage *)Mine_rebate_apply;
++ (UIImage *)Mine_sign_in;
++ (UIImage *)Mine_transfer_game;
 
 @end
 
