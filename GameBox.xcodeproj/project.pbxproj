@@ -38,11 +38,11 @@
 		B51BD05220B5158E005B9DE1 /* FFInviteRankListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B51BD05120B5158E005B9DE1 /* FFInviteRankListViewController.m */; };
 		B51BD05720B515F0005B9DE1 /* FFYesterDayListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B51BD05320B515EF005B9DE1 /* FFYesterDayListViewController.m */; };
 		B51BD05820B515F0005B9DE1 /* FFTodayInviteListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B51BD05520B515F0005B9DE1 /* FFTodayInviteListViewController.m */; };
-		B51BD05E20B51660005B9DE1 /* FFInviteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B51BD05C20B51660005B9DE1 /* FFInviteModel.m */; };
 		B51BD06220B5185E005B9DE1 /* FFBasicNotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B51BD06120B5185E005B9DE1 /* FFBasicNotesViewController.m */; };
 		B51BD06620B51952005B9DE1 /* FFTransferNotesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B51BD06420B51952005B9DE1 /* FFTransferNotesCell.m */; };
 		B51BD06720B51952005B9DE1 /* FFTransferNotesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B51BD06520B51952005B9DE1 /* FFTransferNotesCell.xib */; };
 		B51BD06A20B519F8005B9DE1 /* FFInviteListNotesController.m in Sources */ = {isa = PBXBuildFile; fileRef = B51BD06920B519F8005B9DE1 /* FFInviteListNotesController.m */; };
+		B51BD06D20B539D4005B9DE1 /* FFInviteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B51BD06B20B539D4005B9DE1 /* FFInviteModel.m */; };
 		B523825920AA85FF0087733A /* FFBTNewGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = B523825820AA85FF0087733A /* FFBTNewGameController.m */; };
 		B523825C20AA86110087733A /* FFZKNewGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = B523825B20AA86110087733A /* FFZKNewGameController.m */; };
 		B523826120AAB6850087733A /* FFBTClassifyController.m in Sources */ = {isa = PBXBuildFile; fileRef = B523826020AAB6850087733A /* FFBTClassifyController.m */; };
@@ -255,8 +255,6 @@
 		B51BD05420B515F0005B9DE1 /* FFTodayInviteListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFTodayInviteListViewController.h; sourceTree = "<group>"; };
 		B51BD05520B515F0005B9DE1 /* FFTodayInviteListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFTodayInviteListViewController.m; sourceTree = "<group>"; };
 		B51BD05620B515F0005B9DE1 /* FFYesterDayListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFYesterDayListViewController.h; sourceTree = "<group>"; };
-		B51BD05C20B51660005B9DE1 /* FFInviteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFInviteModel.m; sourceTree = "<group>"; };
-		B51BD05D20B51660005B9DE1 /* FFInviteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFInviteModel.h; sourceTree = "<group>"; };
 		B51BD06020B5185E005B9DE1 /* FFBasicNotesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBasicNotesViewController.h; sourceTree = "<group>"; };
 		B51BD06120B5185E005B9DE1 /* FFBasicNotesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBasicNotesViewController.m; sourceTree = "<group>"; };
 		B51BD06320B51952005B9DE1 /* FFTransferNotesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFTransferNotesCell.h; sourceTree = "<group>"; };
@@ -264,6 +262,8 @@
 		B51BD06520B51952005B9DE1 /* FFTransferNotesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FFTransferNotesCell.xib; sourceTree = "<group>"; };
 		B51BD06820B519F8005B9DE1 /* FFInviteListNotesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFInviteListNotesController.h; sourceTree = "<group>"; };
 		B51BD06920B519F8005B9DE1 /* FFInviteListNotesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFInviteListNotesController.m; sourceTree = "<group>"; };
+		B51BD06B20B539D4005B9DE1 /* FFInviteModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFInviteModel.m; sourceTree = "<group>"; };
+		B51BD06C20B539D4005B9DE1 /* FFInviteModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFInviteModel.h; sourceTree = "<group>"; };
 		B523825720AA85FF0087733A /* FFBTNewGameController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBTNewGameController.h; sourceTree = "<group>"; };
 		B523825820AA85FF0087733A /* FFBTNewGameController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBTNewGameController.m; sourceTree = "<group>"; };
 		B523825A20AA86110087733A /* FFZKNewGameController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFZKNewGameController.h; sourceTree = "<group>"; };
@@ -711,8 +711,8 @@
 		B51BD05B20B51653005B9DE1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B51BD05D20B51660005B9DE1 /* FFInviteModel.h */,
-				B51BD05C20B51660005B9DE1 /* FFInviteModel.m */,
+				B51BD06C20B539D4005B9DE1 /* FFInviteModel.h */,
+				B51BD06B20B539D4005B9DE1 /* FFInviteModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1906,7 +1906,6 @@
 				B523832B20AE9EF40087733A /* FFDynamicModel.m in Sources */,
 				B523837D20AE9FAC0087733A /* ZLPhotoActionSheet.m in Sources */,
 				B523832420AE9EF40087733A /* FFDriveFansNumbersViewController.m in Sources */,
-				B51BD05E20B51660005B9DE1 /* FFInviteModel.m in Sources */,
 				B52383BA20AEB2CE0087733A /* FFOpenServerCell.m in Sources */,
 				B5D10421208F0DD900CA1949 /* FFBasicViewController.m in Sources */,
 				B5D505872086F1D8000B7B50 /* FFHomeViewController.m in Sources */,
@@ -1943,6 +1942,7 @@
 				B523838420AE9FAC0087733A /* ZLProgressHUD.m in Sources */,
 				B51BD04F20B514B1005B9DE1 /* FFInviteFriendViewController.m in Sources */,
 				B523828220AADF9D0087733A /* FFHeightVipController.m in Sources */,
+				B51BD06D20B539D4005B9DE1 /* FFInviteModel.m in Sources */,
 				B523833420AE9EF40087733A /* FFDriveFansCell.m in Sources */,
 				B58CB7AF207B10830099773D /* FFAppDelegate.m in Sources */,
 				B523838F20AEA0C70087733A /* FLAnimatedImage.m in Sources */,
