@@ -45,8 +45,8 @@
 }
 
 - (void)viewWillLayoutSubviews {
-    self.selectView.frame = CGRectMake(0, 0, self.view.bounds.size.width, 44);
-    self.collectionView.frame = CGRectMake(0, 44, kSCREEN_WIDTH, self.view.bounds.size.height - 44);
+    self.selectView.frame = CGRectMake(0, 0, self.view.bounds.size.width, 50);
+    self.collectionView.frame = CGRectMake(0, CGRectGetMaxY(self.selectView.frame), kSCREEN_WIDTH, self.view.bounds.size.height - CGRectGetMaxY(self.selectView.frame));
     CGRect frame = CGRectMake(0, 0, kSCREEN_WIDTH, self.collectionView.frame.size.height);
     self.layout.itemSize = frame.size;
     self.todayOpenServerController.view.frame = frame;
@@ -150,7 +150,7 @@
 
 - (FFOpenServerSelectView *)selectView {
     if (!_selectView) {
-        _selectView = [[FFOpenServerSelectView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 44)];
+        _selectView = [[FFOpenServerSelectView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 50)];
         _selectView.delegate = self;
         _selectView.selectColor = [FFColorManager blue_dark];
         _selectView.normolColor = [FFColorManager textColorLight];

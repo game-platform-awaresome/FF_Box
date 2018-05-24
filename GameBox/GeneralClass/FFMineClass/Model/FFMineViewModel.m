@@ -55,18 +55,18 @@
     NSDictionary *dict = [self cellInfoWithIndexpath:indexPath];
 
     cell.textLabel.text = dict[@"title"];
-    cell.textLabel.font = [UIFont systemFontOfSize:14];
+    cell.textLabel.font = [UIFont systemFontOfSize:16];
 
     if (indexPath.section == 0) {
         cell.detailTextLabel.text = @"";
     } else {
         if (dict[@"attributeString"]) {
             cell.detailTextLabel.attributedText = dict[@"attributeString"];
-            cell.detailTextLabel.font = [UIFont systemFontOfSize:14];
+            cell.detailTextLabel.font = [UIFont systemFontOfSize:13];
         } else {
             cell.detailTextLabel.text = dict[@"subTitle"];
             cell.detailTextLabel.textColor = [UIColor lightGrayColor];
-            cell.detailTextLabel.font = [UIFont systemFontOfSize:14];
+            cell.detailTextLabel.font = [UIFont systemFontOfSize:13];
         }
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -79,7 +79,7 @@
     }
 
     CALayer *layer = [[CALayer alloc] init];
-    layer.frame = CGRectMake(0, cell.frame.size.height - 1, kSCREEN_WIDTH, 1);
+    layer.frame = CGRectMake(0, 60 - 0.5, kSCREEN_WIDTH, 0.5);
     layer.backgroundColor = [FFColorManager home_select_View_separat_lineColor].CGColor;
     [cell.contentView.layer addSublayer:layer];
     return cell;
@@ -108,6 +108,12 @@
         syLog(@"%s error name -> %@",__func__,self.showArray[indexPath.section][indexPath.row]);
         return nil;
     }
+}
+
+- (UIView *)viewForHeaderInSection {
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 1)];
+    view.backgroundColor = [FFColorManager view_separa_line_color];
+    return view;
 }
 
 #pragma mark -  method

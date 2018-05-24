@@ -106,7 +106,7 @@ typedef enum : NSUInteger {
         case CellIndexTypeInviteList:   className = @"FFInviteRankListViewController"; break;
         case CellIndexTypeGoldLottary:  className = @"FFLotteryViewController"; break;
         case CellIndexTypeGoldExchange: className = @"FFExchangeCoinController"; break;
-        case CellIndexTypeVip:          className = @""; break;
+        case CellIndexTypeVip:          className = @"FFOpenVipViewController"; break;
         default:
             break;
     }
@@ -247,17 +247,26 @@ typedef enum : NSUInteger {
 
 - (NSMutableDictionary *)dataDict {
     if (!_dataDict) {
-        _dataDict = @{@0:@{@"title":@"签到",@"subTitle":@"签到+5金币,vip额外+66金币",@"complete":@"0"},
-                      @1:@{@"title":@"每日评论",@"subTitle":@"每日首次评论奖励3-10金币",@"complete":@"0"},
-                      @2:@{@"title":@"每日发车",@"subTitle":@"每日首次发车成功奖励5-30金币",@"complete":@"0"},
-                      @3:@{@"title":@"邀请好友",@"subTitle":@"邀请最高奖励2000金币/人",@"complete":@"0"},
-                      @4:@{@"title":@"排行榜",@"subTitle":@"最高奖励1000金币",@"complete":@"3"},
-                      @5:@{@"title":@"金币抽奖",@"subTitle":@"最高得到500金币",@"complete":@"3"},
-                      @6:@{@"title":@"金币兑换",@"subTitle":@"赶紧换平台币来玩游戏吧",@"complete":@"3"},
-                      @7:@{@"title":@"成为VIP",@"subTitle":@"成为VIP可以获得更多每日金币",@"complete":@"3"}}.mutableCopy;
+        _dataDict = @{@0:@{@"title":@"签到",@"subTitle":@"签到+5金币,vip额外+66金币",
+                           @"complete":@"0",@"image":[FFImageManager Mission_sign_in]},
+                      @1:@{@"title":@"每日评论",@"subTitle":@"每日首次评论奖励3-10金币",
+                           @"complete":@"0",@"image":[FFImageManager Mission_comment]},
+                      @2:@{@"title":@"每日发车",@"subTitle":@"每日首次发车成功奖励5-30金币",
+                           @"complete":@"0",@"image":[FFImageManager Mission_drive]},
+                      @3:@{@"title":@"邀请好友",@"subTitle":@"邀请最高奖励2000金币/人",
+                           @"complete":@"0",@"image":[FFImageManager Mission_invite]},
+                      @4:@{@"title":@"排行榜",@"subTitle":@"最高奖励1000金币",
+                           @"complete":@"3",@"image":[FFImageManager Mission_invite_list]},
+                      @5:@{@"title":@"金币抽奖",@"subTitle":@"最高得到500金币",
+                           @"complete":@"3",@"image":[FFImageManager Mission_gold_lottary]},
+                      @6:@{@"title":@"金币兑换",@"subTitle":@"赶紧换平台币来玩游戏吧",
+                           @"complete":@"3",@"image":[FFImageManager Mission_gold_exchange]},
+                      @7:@{@"title":@"成为VIP",@"subTitle":@"成为VIP可以获得更多每日金币",
+                           @"complete":@"3",@"image":[FFImageManager Mission_vip]}}.mutableCopy;
     }
     return _dataDict;
 }
+
 
 
 

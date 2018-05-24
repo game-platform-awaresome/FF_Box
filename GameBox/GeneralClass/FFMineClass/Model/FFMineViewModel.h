@@ -34,6 +34,8 @@
 
 - (id)didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 
+- (UIView *)viewForHeaderInSection;
+
 @end
 
 

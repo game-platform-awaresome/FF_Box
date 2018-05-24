@@ -83,6 +83,16 @@
 
 #pragma mark - mission class
 + (UIImage *)Mission_header;
++ (UIImage *)Mission_comment;
++ (UIImage *)Mission_drive;
++ (UIImage *)Mission_gold_exchange;
++ (UIImage *)Mission_gold_lottary;
++ (UIImage *)Mission_invite_list;
++ (UIImage *)Mission_invite;
++ (UIImage *)Mission_sign_in;
++ (UIImage *)Mission_vip;
+
+
 
 
 @end

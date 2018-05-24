@@ -134,8 +134,8 @@
     } else {
         [self.remindButton setTitle:@"已开服" forState:(UIControlStateNormal)];
         [self.remindButton setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
-        [self.remindButton setBackgroundColor:[UIColor lightGrayColor]];
-        self.remindButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        [self.remindButton setBackgroundColor:[FFColorManager text_separa_line_color]];
+        self.remindButton.layer.borderColor = [FFColorManager text_separa_line_color].CGColor;
     }
 }
 

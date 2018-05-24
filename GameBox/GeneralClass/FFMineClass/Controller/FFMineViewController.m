@@ -50,12 +50,12 @@
 
     self.navigationItem.title = @"个人中心";
     self.navigationItem.titleView = [UIView new];
-
     [self.view addSubview:self.headerView];
-
     [self resetTableView];
+    self.tableView.frame = CGRectMake(0, CGRectGetMaxY(self.headerView.frame), kSCREEN_WIDTH, kSCREEN_HEIGHT - CGRectGetMaxY(self.headerView.frame) - kTABBAR_HEIGHT);
     [self.view addSubview:self.tableView];
-
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+//    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     [self.rightButton setImage:[FFImageManager Mine_setting_image]];
     self.navigationItem.rightBarButtonItem = self.rightButton;
 }
@@ -97,7 +97,14 @@
 }
 
 - (void)openVip {
-    syLog(@"开通 VIP");
+    NSString *className = CURRENT_USER.isLogin ? @"FFOpenVipViewController" : @"FFLoginViewController";
+    Class ViewController = NSClassFromString(className);
+    if (ViewController) {
+        id vc = [[ViewController alloc] init];
+        [self pushViewController:vc];
+    } else {
+        syLog(@"%s error -> %@ not exist",__func__,className);
+    }
 }
 
 #pragma mmark - notification
@@ -153,13 +160,16 @@
 
 #pragma mark - table veiw delegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 44;
+    return 60;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 0;
+    return 2;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 24;
+    return 0;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    return [self.viewModel viewForHeaderInSection];
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -186,21 +196,21 @@
 }
 
 - (void)resetTableView {
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 235, kSCREEN_WIDTH, kSCREEN_HEIGHT - kTABBAR_HEIGHT - 235) style:(UITableViewStyleGrouped)];
-    self.tableView.dataSource = self;
-    self.tableView.delegate = self;
-    self.tableView.showsVerticalScrollIndicator = YES;
-    self.tableView.showsHorizontalScrollIndicator = NO;
-    self.tableView.tableFooterView = [UIView new];
-    if (@available(iOS 11.0, *)) {
-        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-    }
-    self.tableView.sectionHeaderHeight = 0;
-    self.tableView.sectionFooterHeight = 0;
-    self.tableView.tableFooterView = [UIView new];
-    self.tableView.mj_header = self.refreshHeader;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.automaticallyAdjustsScrollViewInsets = NO;
+//    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 235, kSCREEN_WIDTH, kSCREEN_HEIGHT - kTABBAR_HEIGHT - 235) style:(UITableViewStyleGrouped)];
+//    self.tableView.dataSource = self;
+//    self.tableView.delegate = self;
+//    self.tableView.showsVerticalScrollIndicator = YES;
+//    self.tableView.showsHorizontalScrollIndicator = NO;
+//    self.tableView.tableFooterView = [UIView new];
+//    if (@available(iOS 11.0, *)) {
+//        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+//    }
+//    self.tableView.sectionHeaderHeight = 0;
+//    self.tableView.sectionFooterHeight = 0;
+//    self.tableView.tableFooterView = [UIView new];
+//    self.tableView.mj_header = self.refreshHeader;
+//    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+//    self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
 

@@ -80,14 +80,15 @@ UIColor *HexColorToUIColor(NSString *hexColorString) {
     return RGBColor(255, 255, 255);
 }
 
+//字体灰色
 + (UIColor *)textColorDark {
     return RGBColor(55, 60, 65);
 }
 + (UIColor *)textColorMiddle {
-    return RGBColor(100, 100, 100);
+    return RGBColor(102, 102, 102);
 }
 + (UIColor *)textColorLight {
-    return RGBColor(155, 155, 155);
+    return RGBColor(153, 153, 153);
 }
 
 + (UIColor *)tabbar_item_color {
@@ -129,8 +130,9 @@ UIColor *HexColorToUIColor(NSString *hexColorString) {
     return [self blue_dark];
 }
 
+/** 界面主蓝色 */ 
 + (UIColor *)blue_dark {
-    return RGBColor(54, 145, 224);
+    return RGBColor(41, 161, 247);
 }
 + (UIColor *)blue_light {
     return RGBColor(42, 179, 231);
@@ -184,6 +186,16 @@ UIColor *HexColorToUIColor(NSString *hexColorString) {
     return [UIColor colorWithWhite:0.15 alpha:1];
 }
 
+
+#pragma mark - separa color
+/** 界面灰色分割线 */
++ (UIColor *)view_separa_line_color {
+     return RGBColor(238, 238, 238);
+}
+/** 标签灰色分割线 */
++ (UIColor *)text_separa_line_color {
+     return RGBColor(188, 188, 188);
+}
 
 @end
 

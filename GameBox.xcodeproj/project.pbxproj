@@ -86,6 +86,8 @@
 		B51BD17220B650CE005B9DE1 /* FFSystemInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B51BD16620B650CE005B9DE1 /* FFSystemInfoCell.xib */; };
 		B51BD17720B6596C005B9DE1 /* FFMissionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B51BD17520B6596C005B9DE1 /* FFMissionCell.m */; };
 		B51BD17820B6596C005B9DE1 /* FFMissionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B51BD17620B6596C005B9DE1 /* FFMissionCell.xib */; };
+		B51BD17D20B69525005B9DE1 /* FFOpenVipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B51BD17C20B69525005B9DE1 /* FFOpenVipViewController.m */; };
+		B51BD18020B69675005B9DE1 /* FFPayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B51BD17F20B69675005B9DE1 /* FFPayModel.m */; };
 		B523825920AA85FF0087733A /* FFBTNewGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = B523825820AA85FF0087733A /* FFBTNewGameController.m */; };
 		B523825C20AA86110087733A /* FFZKNewGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = B523825B20AA86110087733A /* FFZKNewGameController.m */; };
 		B523826120AAB6850087733A /* FFBTClassifyController.m in Sources */ = {isa = PBXBuildFile; fileRef = B523826020AAB6850087733A /* FFBTClassifyController.m */; };
@@ -384,6 +386,10 @@
 		B51BD17420B6596C005B9DE1 /* FFMissionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFMissionCell.h; sourceTree = "<group>"; };
 		B51BD17520B6596C005B9DE1 /* FFMissionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFMissionCell.m; sourceTree = "<group>"; };
 		B51BD17620B6596C005B9DE1 /* FFMissionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FFMissionCell.xib; sourceTree = "<group>"; };
+		B51BD17B20B69525005B9DE1 /* FFOpenVipViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFOpenVipViewController.h; sourceTree = "<group>"; };
+		B51BD17C20B69525005B9DE1 /* FFOpenVipViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFOpenVipViewController.m; sourceTree = "<group>"; };
+		B51BD17E20B69675005B9DE1 /* FFPayModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFPayModel.h; sourceTree = "<group>"; };
+		B51BD17F20B69675005B9DE1 /* FFPayModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFPayModel.m; sourceTree = "<group>"; };
 		B523825720AA85FF0087733A /* FFBTNewGameController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBTNewGameController.h; sourceTree = "<group>"; };
 		B523825820AA85FF0087733A /* FFBTNewGameController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBTNewGameController.m; sourceTree = "<group>"; };
 		B523825A20AA86110087733A /* FFZKNewGameController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFZKNewGameController.h; sourceTree = "<group>"; };
@@ -1098,6 +1104,15 @@
 				B51BD17620B6596C005B9DE1 /* FFMissionCell.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		B51BD17A20B69508005B9DE1 /* FFOpenVipClass */ = {
+			isa = PBXGroup;
+			children = (
+				B51BD17B20B69525005B9DE1 /* FFOpenVipViewController.h */,
+				B51BD17C20B69525005B9DE1 /* FFOpenVipViewController.m */,
+			);
+			path = FFOpenVipClass;
 			sourceTree = "<group>";
 		};
 		B523825520AA73CF0087733A /* FFNewGameClass */ = {
@@ -1925,6 +1940,7 @@
 				B51BD09420B54073005B9DE1 /* FFBindMobileClass */,
 				B51BD08F20B53E17005B9DE1 /* FFAboutClass */,
 				B51BD12320B59556005B9DE1 /* FFMissionCenterClass */,
+				B51BD17A20B69508005B9DE1 /* FFOpenVipClass */,
 			);
 			path = GeneralClass;
 			sourceTree = "<group>";
@@ -2033,6 +2049,8 @@
 				B5781AE220A42CED00CB1464 /* FFUserModel.m */,
 				B532510420B26D96007D7239 /* FFBoxModel.h */,
 				B532510520B26D96007D7239 /* FFBoxModel.m */,
+				B51BD17E20B69675005B9DE1 /* FFPayModel.h */,
+				B51BD17F20B69675005B9DE1 /* FFPayModel.m */,
 			);
 			path = GeneralModel;
 			sourceTree = "<group>";
@@ -2248,6 +2266,7 @@
 				B51BD17120B650CE005B9DE1 /* FFSystemInfoCell.m in Sources */,
 				B523837320AE9FAC0087733A /* ToastUtils.m in Sources */,
 				B5D10431208F3CB300CA1949 /* FFWaitingManager.m in Sources */,
+				B51BD18020B69675005B9DE1 /* FFPayModel.m in Sources */,
 				B523838220AE9FAC0087733A /* ZLPhotoModel.m in Sources */,
 				B51BD03A20B50976005B9DE1 /* FFApplyTransferView.m in Sources */,
 				B5D104352090167D00CA1949 /* FFRankListViewController.m in Sources */,
@@ -2270,6 +2289,7 @@
 				B523831920AE9EF40087733A /* FFDriveAttentionInfoViewController.m in Sources */,
 				B5781AFE20A57D3600CB1464 /* FFImageManager.m in Sources */,
 				B51BD09F20B5486E005B9DE1 /* FFCustomerServiceViewController.m in Sources */,
+				B51BD17D20B69525005B9DE1 /* FFOpenVipViewController.m in Sources */,
 				B523839820AEA2710087733A /* YBPopupMenu.m in Sources */,
 				B5D5058B208715C0000B7B50 /* FFRecommentViewController.m in Sources */,
 				B52382B820AD70F10087733A /* FFBasicSSSelectView.m in Sources */,

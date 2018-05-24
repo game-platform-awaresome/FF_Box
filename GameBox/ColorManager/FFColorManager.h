@@ -36,6 +36,7 @@ UIColor *RGBColor(float red, float green, float blue);
 + (UIColor *)web_waitng_color;
 
 #pragma mark - main color
+/** 界面主蓝色 */ 
 + (UIColor *)blue_dark;
 + (UIColor *)blue_light;
 + (UIColor *)gray_color;
@@ -66,6 +67,13 @@ UIColor *RGBColor(float red, float green, float blue);
 #pragma mark - navigationbar color
 + (UIColor *)navigation_bar_white_color;
 + (UIColor *)navigation_bar_black_color;
+
+#pragma mark - separa color
+/** 界面灰色分割线 */
++ (UIColor *)view_separa_line_color;
+/** 标签灰色分割线 */
++ (UIColor *)text_separa_line_color;
+
 
 
 @end

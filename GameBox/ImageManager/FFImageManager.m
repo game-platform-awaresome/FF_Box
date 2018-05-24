@@ -80,7 +80,14 @@
 
 #pragma mark - mission class
 + (UIImage *)Mission_header                 {RETURN_IMAGE(@"Mission_header");}
-
++ (UIImage *)Mission_comment                {RETURN_IMAGE(@"Mission_comment");}
++ (UIImage *)Mission_drive                  {RETURN_IMAGE(@"Mission_drive");}
++ (UIImage *)Mission_gold_exchange          {RETURN_IMAGE(@"Mission_gold_exchange");}
++ (UIImage *)Mission_gold_lottary           {RETURN_IMAGE(@"Mission_gold_lottary");};
++ (UIImage *)Mission_invite_list            {RETURN_IMAGE(@"Mission_invite_list");}
++ (UIImage *)Mission_invite                 {RETURN_IMAGE(@"Mission_invite");}
++ (UIImage *)Mission_sign_in                {RETURN_IMAGE(@"Mission_sign_in");}
++ (UIImage *)Mission_vip                    {RETURN_IMAGE(@"Mission_vip");}
 
 @end
 

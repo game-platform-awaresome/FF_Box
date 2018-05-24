@@ -210,7 +210,7 @@
     label.textAlignment = NSTextAlignmentCenter;
     label.bounds = CGRectMake(0, 0, kSCREEN_WIDTH / 4, 20);
     label.textColor = [FFColorManager textColorMiddle];
-    label.font = [UIFont systemFontOfSize:13];
+    label.font = [UIFont systemFontOfSize:14];
     return label;
 }
 

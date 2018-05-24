@@ -17,6 +17,7 @@
 
 @property (weak, nonatomic) IBOutlet UIView *completeView;
 
+@property (weak, nonatomic) IBOutlet UIImageView *mImage;
 
 @end
 
@@ -60,6 +61,8 @@
         self.completeView.hidden = YES;
         self.accessoryType = UITableViewCellAccessoryNone;
     }
+
+    self.mImage.image = dict[@"image"];
 }
 
 

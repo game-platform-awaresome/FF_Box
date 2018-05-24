@@ -49,7 +49,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
 
-    self.navigationItem.title = @"游戏";
+    self.navigationItem.title = @"   ";
 
     [self setSelectTitleView];
 
