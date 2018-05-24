@@ -78,6 +78,10 @@
 + (UIImage *)InviteFriend_Background_image  {RETURN_IMAGE(@"InviteFriend_Background_image");}
 
 
+#pragma mark - mission class
++ (UIImage *)Mission_header                 {RETURN_IMAGE(@"Mission_header");}
+
+
 @end
 
 

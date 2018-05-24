@@ -84,6 +84,8 @@
 		B51BD17020B650CE005B9DE1 /* FFSystemDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B51BD16320B650CE005B9DE1 /* FFSystemDetailView.xib */; };
 		B51BD17120B650CE005B9DE1 /* FFSystemInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B51BD16520B650CE005B9DE1 /* FFSystemInfoCell.m */; };
 		B51BD17220B650CE005B9DE1 /* FFSystemInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B51BD16620B650CE005B9DE1 /* FFSystemInfoCell.xib */; };
+		B51BD17720B6596C005B9DE1 /* FFMissionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B51BD17520B6596C005B9DE1 /* FFMissionCell.m */; };
+		B51BD17820B6596C005B9DE1 /* FFMissionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B51BD17620B6596C005B9DE1 /* FFMissionCell.xib */; };
 		B523825920AA85FF0087733A /* FFBTNewGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = B523825820AA85FF0087733A /* FFBTNewGameController.m */; };
 		B523825C20AA86110087733A /* FFZKNewGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = B523825B20AA86110087733A /* FFZKNewGameController.m */; };
 		B523826120AAB6850087733A /* FFBTClassifyController.m in Sources */ = {isa = PBXBuildFile; fileRef = B523826020AAB6850087733A /* FFBTClassifyController.m */; };
@@ -379,6 +381,9 @@
 		B51BD16420B650CE005B9DE1 /* FFSystemInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFSystemInfoCell.h; sourceTree = "<group>"; };
 		B51BD16520B650CE005B9DE1 /* FFSystemInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFSystemInfoCell.m; sourceTree = "<group>"; };
 		B51BD16620B650CE005B9DE1 /* FFSystemInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FFSystemInfoCell.xib; sourceTree = "<group>"; };
+		B51BD17420B6596C005B9DE1 /* FFMissionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFMissionCell.h; sourceTree = "<group>"; };
+		B51BD17520B6596C005B9DE1 /* FFMissionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFMissionCell.m; sourceTree = "<group>"; };
+		B51BD17620B6596C005B9DE1 /* FFMissionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FFMissionCell.xib; sourceTree = "<group>"; };
 		B523825720AA85FF0087733A /* FFBTNewGameController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBTNewGameController.h; sourceTree = "<group>"; };
 		B523825820AA85FF0087733A /* FFBTNewGameController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBTNewGameController.m; sourceTree = "<group>"; };
 		B523825A20AA86110087733A /* FFZKNewGameController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFZKNewGameController.h; sourceTree = "<group>"; };
@@ -1018,6 +1023,7 @@
 		B51BD12320B59556005B9DE1 /* FFMissionCenterClass */ = {
 			isa = PBXGroup;
 			children = (
+				B51BD17320B658EB005B9DE1 /* View */,
 				B51BD12420B595EB005B9DE1 /* FFMissionCenterViewController.h */,
 				B51BD12520B595EB005B9DE1 /* FFMissionCenterViewController.m */,
 			);
@@ -1080,6 +1086,16 @@
 				B51BD16420B650CE005B9DE1 /* FFSystemInfoCell.h */,
 				B51BD16520B650CE005B9DE1 /* FFSystemInfoCell.m */,
 				B51BD16620B650CE005B9DE1 /* FFSystemInfoCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B51BD17320B658EB005B9DE1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B51BD17420B6596C005B9DE1 /* FFMissionCell.h */,
+				B51BD17520B6596C005B9DE1 /* FFMissionCell.m */,
+				B51BD17620B6596C005B9DE1 /* FFMissionCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2120,6 +2136,7 @@
 				B523833520AE9EF40087733A /* FFDriveFansCell.xib in Resources */,
 				B51BCFB720B2C8AB005B9DE1 /* FFpackageCell.xib in Resources */,
 				B51BD03F20B50976005B9DE1 /* FFTransferRecordCell.xib in Resources */,
+				B51BD17820B6596C005B9DE1 /* FFMissionCell.xib in Resources */,
 				B52382C820AE82830087733A /* FFGameDetailCell.xib in Resources */,
 				B58CB7B3207B10830099773D /* GameBoxConfig.plist in Resources */,
 				B58CB7B6207B10830099773D /* LaunchScreen.storyboard in Resources */,
@@ -2287,6 +2304,7 @@
 				B51BCFC420B2F705005B9DE1 /* FFRegisterViewController.m in Sources */,
 				B523839020AEA0C70087733A /* FLAnimatedImageView.m in Sources */,
 				B51BCFC220B2F705005B9DE1 /* FFNewPasswordViewController.m in Sources */,
+				B51BD17720B6596C005B9DE1 /* FFMissionCell.m in Sources */,
 				B51BD07720B53A5F005B9DE1 /* FFApplyRebateViewController.m in Sources */,
 				B532510920B299FE007D7239 /* FFGameFooterView.m in Sources */,
 				B523837F20AE9FAC0087733A /* ZLPhotoBrowserCell.m in Sources */,

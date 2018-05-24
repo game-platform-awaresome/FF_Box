@@ -319,6 +319,21 @@
     }];
 }
 
+#pragma mark - mission center
+/**
+ * 任务中心
+ */
++ (void)missionCenterInfoCompletion:(RequestCallBackBlock)completion {
+    Pamaras_Key((@[@"uid",@"channel"]));
+    Mutable_Dict(3);
+    [dict setObject:CURRENT_USER.uid forKey:@"uid"];
+    [dict setObject:Channel forKey:@"channel"];
+    SS_SIGN;
+    [FFNetWorkManager postRequestWithURL:Map.TASK_CENTER Params:dict Completion:^(NSDictionary *content, BOOL success) {
+        NEW_REQUEST_COMPLETION;
+    }];
+}
+
 
 
 @end

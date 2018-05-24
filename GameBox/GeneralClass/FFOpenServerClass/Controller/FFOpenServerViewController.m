@@ -35,6 +35,9 @@
                                         [FFZKOpenServerViewController new]];
 }
 
+- (void)addFLoatView {
+    
+}
 
 
 

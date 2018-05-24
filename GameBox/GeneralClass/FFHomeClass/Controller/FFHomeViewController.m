@@ -13,6 +13,7 @@
 #import "FFGameGuideViewController.h"
 #import "FFClassifyViewController.h"
 #import "FFLoginViewController.h"
+#import "FFUserModel.h"
 
 //#import "FFHomeSelectView.h"
 
@@ -90,12 +91,15 @@
 
 #pragma mark - responds
 - (void)respondsToFloatImageViewTap:(UITapGestureRecognizer *)sender {
-    Class MissonVC = NSClassFromString(@"FFMissionCenterViewController");
+
+    NSString *className = CURRENT_USER.isLogin ? @"FFMissionCenterViewController" : @"FFLoginViewController";
+
+    Class MissonVC = NSClassFromString(className);
     if (MissonVC) {
         id vc = [[MissonVC alloc] init];
         [self pushViewController:vc];
     } else {
-        syLog(@"%s error- > FFMissionCenterViewController not exist",__func__);
+        syLog(@"%s error- > %@ not exist",__func__,className);
     }
 }
 

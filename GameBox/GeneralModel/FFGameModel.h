@@ -209,7 +209,11 @@ typedef enum : NSUInteger {
                              Page:(NSString * _Nonnull)page
                        Completion:(RequestCallBackBlock _Nullable)completion;
 
-
+#pragma mark - mission center
+/**
+ * 任务中心
+ */
++ (void)missionCenterInfoCompletion:(RequestCallBackBlock _Nullable)completion;
 
 
 

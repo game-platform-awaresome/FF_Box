@@ -145,6 +145,8 @@ typedef void(^Completion)(void);
 
 @property (nonatomic, strong) NSString *GAME_NEWINDEX;
 
+@property (nonatomic, strong) NSString *TASK_CENTER;        //任务中心
+
 
 + (instancetype)map;
 

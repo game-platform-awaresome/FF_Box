@@ -40,6 +40,7 @@
 
 + (void)setGameDict:(NSDictionary *)dict {
     [FFGameViewController sharedController].gid = dict[@"id"];
+    [FFGameViewController sharedController].selectView.selectBlock(1);
 }
 
 

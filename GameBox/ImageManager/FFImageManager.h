@@ -79,6 +79,12 @@
 #pragma mark - invite viwe
 + (UIImage *)InviteFriend_Background_image;
 
+
+
+#pragma mark - mission class
++ (UIImage *)Mission_header;
+
+
 @end
 
 
