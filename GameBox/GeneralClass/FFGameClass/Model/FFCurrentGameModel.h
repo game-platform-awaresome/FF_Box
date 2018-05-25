@@ -22,6 +22,8 @@ typedef void(^GameActivityCallBackBlock)(NSDictionary *content, BOOL success);
 
 @interface FFCurrentGameModel : FFBasicModel
 
+/** 游戏活动回调 */
+@property (nonatomic, strong) GameActivityCallBackBlock activityCallBackBlock;
 
 /** 请求 game ID*/
 @property (nonatomic, strong) NSString *request_game_id;
@@ -130,6 +132,19 @@ typedef void(^GameActivityCallBackBlock)(NSDictionary *content, BOOL success);
 - (void)cancelLikeCommentWithCommentID:(NSString *)commentid
                                   Type:(NSString *)type
                             Completion:(GameCompletionBlck)completion;
+
+/** 请求游戏活动 */
+- (void)getGameActivity;
+
+
+/** 评论获取金币 */
++ (void)writeCommentGetCoinComoletion:(void(^)(NSDictionary *  content, BOOL success))completion;
+
+/** 请求是否可以评论 */
+- (void)gameCanCommentCompletion:(GameCompletionBlck)completion;
+
+
+
 
 @end
 

@@ -182,6 +182,11 @@ typedef enum : NSUInteger {
  */
 + (void)gameGuideWithGameID:(NSString * _Nonnull)gameID
                  Completion:(RequestCallBackBlock _Nullable)completion;
+/**
+ * 单一游戏活动
+ */
++ (void)gameActivityWithGameID:(NSString * _Nonnull)gameID
+                    Completion:(RequestCallBackBlock _Nullable)completion;
 
 
 #pragma mark - game gift (游戏礼包)

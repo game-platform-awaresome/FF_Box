@@ -74,7 +74,7 @@
     NSMutableArray *tabBarButtonArray = [NSMutableArray array];
     for (UIView *view in self.subviews) {
         if ([view isKindOfClass:[UIButton class]]) {
-            view.center = CGPointMake(kSCREEN_WIDTH / 2, barHeight - view.frame.size.height / 2 - 5);
+            view.center = CGPointMake(kSCREEN_WIDTH / 2, barHeight - view.frame.size.height / 2);
         } else if ([view isKindOfClass:NSClassFromString(@"UITabBarButton")]) {
             [tabBarButtonArray addObject:view];
         }

@@ -234,7 +234,6 @@
 		B5D10447209066FD00CA1949 /* FFClassifyTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5D10445209066FD00CA1949 /* FFClassifyTableCell.xib */; };
 		B5D10448209066FD00CA1949 /* FFClassifyTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D10446209066FD00CA1949 /* FFClassifyTableCell.m */; };
 		B5D1044B2090694200CA1949 /* FFWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D1044A2090694200CA1949 /* FFWebViewController.m */; };
-		B5D5057B20859E8D000B7B50 /* FFTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D5057A20859E8D000B7B50 /* FFTools.framework */; };
 		B5D505802085CB06000B7B50 /* FFBasicSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D5057F2085CB06000B7B50 /* FFBasicSelectViewController.m */; };
 		B5D505872086F1D8000B7B50 /* FFHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D505862086F1D8000B7B50 /* FFHomeViewController.m */; };
 		B5D5058B208715C0000B7B50 /* FFRecommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D5058A208715C0000B7B50 /* FFRecommentViewController.m */; };
@@ -246,6 +245,13 @@
 		B5D505EB2089DAFE000B7B50 /* FFStatisticsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D505EA2089DAFE000B7B50 /* FFStatisticsModel.m */; };
 		B5E1E54320622E40008F49CA /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B5E1E54220622E40008F49CA /* README.md */; };
 		B5F1492120B7E4BB00044873 /* FFGameGifTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F1492020B7E4BB00044873 /* FFGameGifTableViewCell.m */; };
+		B5F1492520B7F3F200044873 /* FFGameActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F1492420B7F3F200044873 /* FFGameActivityCell.m */; };
+		B5F1492820B8065500044873 /* FFWriteCommentController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F1492720B8065400044873 /* FFWriteCommentController.m */; };
+		B5F1493220B80CB300044873 /* FFSearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F1492C20B80CB300044873 /* FFSearchModel.m */; };
+		B5F1493320B80CB300044873 /* FFSearchResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F1492F20B80CB300044873 /* FFSearchResultController.m */; };
+		B5F1493420B80CB300044873 /* FFSearchShowControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F1493120B80CB300044873 /* FFSearchShowControllerViewController.m */; };
+		B5F1493720B80D8A00044873 /* FFSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F1493620B80D8A00044873 /* FFSearchController.m */; };
+		B5F1493920B8170A00044873 /* FFTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F1493820B8170A00044873 /* FFTools.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -664,7 +670,6 @@
 		B5D10446209066FD00CA1949 /* FFClassifyTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFClassifyTableCell.m; sourceTree = "<group>"; };
 		B5D104492090694200CA1949 /* FFWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFWebViewController.h; sourceTree = "<group>"; };
 		B5D1044A2090694200CA1949 /* FFWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFWebViewController.m; sourceTree = "<group>"; };
-		B5D5057A20859E8D000B7B50 /* FFTools.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FFTools.framework; path = GameBox/FFTools.framework; sourceTree = "<group>"; };
 		B5D5057E2085CB06000B7B50 /* FFBasicSelectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBasicSelectViewController.h; sourceTree = "<group>"; };
 		B5D5057F2085CB06000B7B50 /* FFBasicSelectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBasicSelectViewController.m; sourceTree = "<group>"; };
 		B5D505852086F1D8000B7B50 /* FFHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFHomeViewController.h; sourceTree = "<group>"; };
@@ -687,6 +692,19 @@
 		B5E1E54220622E40008F49CA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B5F1491F20B7E4BB00044873 /* FFGameGifTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFGameGifTableViewCell.h; sourceTree = "<group>"; };
 		B5F1492020B7E4BB00044873 /* FFGameGifTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFGameGifTableViewCell.m; sourceTree = "<group>"; };
+		B5F1492320B7F3F200044873 /* FFGameActivityCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFGameActivityCell.h; sourceTree = "<group>"; };
+		B5F1492420B7F3F200044873 /* FFGameActivityCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFGameActivityCell.m; sourceTree = "<group>"; };
+		B5F1492620B8065400044873 /* FFWriteCommentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFWriteCommentController.h; sourceTree = "<group>"; };
+		B5F1492720B8065400044873 /* FFWriteCommentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFWriteCommentController.m; sourceTree = "<group>"; };
+		B5F1492B20B80CB300044873 /* FFSearchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFSearchModel.h; sourceTree = "<group>"; };
+		B5F1492C20B80CB300044873 /* FFSearchModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFSearchModel.m; sourceTree = "<group>"; };
+		B5F1492E20B80CB300044873 /* FFSearchResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFSearchResultController.h; sourceTree = "<group>"; };
+		B5F1492F20B80CB300044873 /* FFSearchResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFSearchResultController.m; sourceTree = "<group>"; };
+		B5F1493020B80CB300044873 /* FFSearchShowControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFSearchShowControllerViewController.h; sourceTree = "<group>"; };
+		B5F1493120B80CB300044873 /* FFSearchShowControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFSearchShowControllerViewController.m; sourceTree = "<group>"; };
+		B5F1493520B80D8A00044873 /* FFSearchController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFSearchController.h; sourceTree = "<group>"; };
+		B5F1493620B80D8A00044873 /* FFSearchController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFSearchController.m; sourceTree = "<group>"; };
+		B5F1493820B8170A00044873 /* FFTools.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FFTools.framework; path = GameBox/FFTools.framework; sourceTree = "<group>"; };
 		C1C09ECF85CDCEAA38284810 /* libPods-GameBox.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GameBox.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9E7C73404CBBD7F21F68365 /* Pods-GameBox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameBox.release.xcconfig"; path = "Pods/Target Support Files/Pods-GameBox/Pods-GameBox.release.xcconfig"; sourceTree = "<group>"; };
 		EE677440EC57745993D7D0F0 /* Pods-GameBox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameBox.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GameBox/Pods-GameBox.debug.xcconfig"; sourceTree = "<group>"; };
@@ -698,8 +716,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0543CAF4C1A27767297E9250 /* libPods-GameBox.a in Frameworks */,
-				B5D5057B20859E8D000B7B50 /* FFTools.framework in Frameworks */,
 				B523839C20AEA71A0087733A /* TencentOpenAPI.framework in Frameworks */,
+				B5F1493920B8170A00044873 /* FFTools.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -709,8 +727,8 @@
 		76486CF296C9DFD1ABAED75C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B5F1493820B8170A00044873 /* FFTools.framework */,
 				B523839B20AEA71A0087733A /* TencentOpenAPI.framework */,
-				B5D5057A20859E8D000B7B50 /* FFTools.framework */,
 				C1C09ECF85CDCEAA38284810 /* libPods-GameBox.a */,
 			);
 			name = Frameworks;
@@ -935,6 +953,8 @@
 		B51BD0C620B54D3F005B9DE1 /* FFCommentClass */ = {
 			isa = PBXGroup;
 			children = (
+				B5F1492620B8065400044873 /* FFWriteCommentController.h */,
+				B5F1492720B8065400044873 /* FFWriteCommentController.m */,
 				B51BD0C720B54D5D005B9DE1 /* FFReplyToCommentController.h */,
 				B51BD0C820B54D5D005B9DE1 /* FFReplyToCommentController.m */,
 			);
@@ -1128,6 +1148,8 @@
 				B52382C620AE82830087733A /* FFGameDetailCell.xib */,
 				B5F1491F20B7E4BB00044873 /* FFGameGifTableViewCell.h */,
 				B5F1492020B7E4BB00044873 /* FFGameGifTableViewCell.m */,
+				B5F1492320B7F3F200044873 /* FFGameActivityCell.h */,
+				B5F1492420B7F3F200044873 /* FFGameActivityCell.m */,
 			);
 			name = GameDetailVIew;
 			path = GameDetailCell;
@@ -1918,6 +1940,7 @@
 		B5D505812086F17A000B7B50 /* GeneralClass */ = {
 			isa = PBXGroup;
 			children = (
+				B5F1492920B80BA000044873 /* FFSearchClass */,
 				B51BD0C620B54D3F005B9DE1 /* FFCommentClass */,
 				B52382CD20AE9EF40087733A /* DriveClass */,
 				B5D1043F20904DC200CA1949 /* FFGameClass */,
@@ -2079,6 +2102,37 @@
 				B5E1E51B206201CD008F49CA /* GameBox.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		B5F1492920B80BA000044873 /* FFSearchClass */ = {
+			isa = PBXGroup;
+			children = (
+				B5F1492D20B80CB300044873 /* Controller */,
+				B5F1492A20B80CB300044873 /* Model */,
+			);
+			path = FFSearchClass;
+			sourceTree = "<group>";
+		};
+		B5F1492A20B80CB300044873 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B5F1492B20B80CB300044873 /* FFSearchModel.h */,
+				B5F1492C20B80CB300044873 /* FFSearchModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B5F1492D20B80CB300044873 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B5F1492E20B80CB300044873 /* FFSearchResultController.h */,
+				B5F1492F20B80CB300044873 /* FFSearchResultController.m */,
+				B5F1493020B80CB300044873 /* FFSearchShowControllerViewController.h */,
+				B5F1493120B80CB300044873 /* FFSearchShowControllerViewController.m */,
+				B5F1493520B80D8A00044873 /* FFSearchController.h */,
+				B5F1493620B80D8A00044873 /* FFSearchController.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		BE21CAB11E85AE02A6E497CF /* Pods */ = {
@@ -2246,6 +2300,7 @@
 				B51BD16B20B650CE005B9DE1 /* FFMyNewsViewController.m in Sources */,
 				B51BD16D20B650CE005B9DE1 /* FFMyNewsCell.m in Sources */,
 				B5D505EB2089DAFE000B7B50 /* FFStatisticsModel.m in Sources */,
+				B5F1492820B8065500044873 /* FFWriteCommentController.m in Sources */,
 				B523833020AE9EF40087733A /* FFDetailHeaderView.m in Sources */,
 				B5781AE020A3F4DE00CB1464 /* FFHomeSelectView.m in Sources */,
 				B51BD03020B50976005B9DE1 /* FFCoinDetailCell.m in Sources */,
@@ -2254,6 +2309,7 @@
 				B523837E20AE9FAC0087733A /* ZLPhotoBrowser.m in Sources */,
 				B51BD11720B5628F005B9DE1 /* FFPlatformDetailViewController.m in Sources */,
 				B523826A20AABCCA0087733A /* FFGAViewController.m in Sources */,
+				B5F1493320B80CB300044873 /* FFSearchResultController.m in Sources */,
 				B523833E20AE9F680087733A /* FFViewFactory.m in Sources */,
 				B51BD09720B540BC005B9DE1 /* FFBindMobileViewController.m in Sources */,
 				B51BCFC120B2F705005B9DE1 /* FFLoginViewController.m in Sources */,
@@ -2274,6 +2330,7 @@
 				B5D10431208F3CB300CA1949 /* FFWaitingManager.m in Sources */,
 				B51BD18020B69675005B9DE1 /* FFPayModel.m in Sources */,
 				B523838220AE9FAC0087733A /* ZLPhotoModel.m in Sources */,
+				B5F1493220B80CB300044873 /* FFSearchModel.m in Sources */,
 				B51BD03A20B50976005B9DE1 /* FFApplyTransferView.m in Sources */,
 				B5D104352090167D00CA1949 /* FFRankListViewController.m in Sources */,
 				B51BD11320B5628F005B9DE1 /* FFMyPrizeViewController.m in Sources */,
@@ -2378,6 +2435,7 @@
 				B523837520AE9FAC0087733A /* UIImage+ZLPhotoBrowser.m in Sources */,
 				B523831E20AE9EF40087733A /* FFDriveThroughInfoViewController.m in Sources */,
 				B59D989F2084A2E20024B11D /* FFBasicTableViewController.m in Sources */,
+				B5F1492520B7F3F200044873 /* FFGameActivityCell.m in Sources */,
 				B523838420AE9FAC0087733A /* ZLProgressHUD.m in Sources */,
 				B51BD0D120B553D4005B9DE1 /* FFMyPackageViewController.m in Sources */,
 				B51BD04F20B514B1005B9DE1 /* FFInviteFriendViewController.m in Sources */,
@@ -2407,6 +2465,7 @@
 				B51BD04320B50A76005B9DE1 /* FFRebateSelectView.m in Sources */,
 				B532510620B26D96007D7239 /* FFBoxModel.m in Sources */,
 				B52383A320AEAAD30087733A /* FFOpenServerViewController.m in Sources */,
+				B5F1493420B80CB300044873 /* FFSearchShowControllerViewController.m in Sources */,
 				B523826420AAB6950087733A /* FFZKClassifyController.m in Sources */,
 				B523838520AE9FAC0087733A /* ZLShowBigImgViewController.m in Sources */,
 				B5D1043E20904DB700CA1949 /* FFClassifyDetailViewController.m in Sources */,
@@ -2422,6 +2481,7 @@
 				B523833620AE9EF40087733A /* FFDriveMyNewsCell.m in Sources */,
 				B523837920AE9FAC0087733A /* ZLEditVideoController.m in Sources */,
 				B5781AE320A42CED00CB1464 /* FFUserModel.m in Sources */,
+				B5F1493720B80D8A00044873 /* FFSearchController.m in Sources */,
 				B52382C320ADB0F60087733A /* FFGameDetailHeaderView.m in Sources */,
 				B52383D020AECD100087733A /* FFGameGiftViewController.m in Sources */,
 				B52383D120AECD100087733A /* FFGameOpenServerViewController.m in Sources */,
@@ -2563,7 +2623,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JR27SLBFXN;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				ENABLE_ONLY_ACTIVE_RESOURCES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2586,7 +2646,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JR27SLBFXN;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				ENABLE_ONLY_ACTIVE_RESOURCES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

@@ -242,6 +242,21 @@
     }];
 }
 
+/**
+ * 单一游戏活动
+ */
++ (void)gameActivityWithGameID:(NSString *)gameID
+                    Completion:(RequestCallBackBlock)completion {
+    Mutable_Dict(4);
+    [dict setObject:gameID forKey:@"game_id"];
+    [dict setObject:@"2" forKey:@"type"];
+    SS_CHANNEL;
+    [dict setObject:@"1" forKey:@"page"];
+    [FFNetWorkManager postRequestWithURL:Map.GAME_GONGLUE Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        REQUEST_COMPLETION;
+    }];
+}
+
 #pragma mark - gift (游戏礼包)
 /** 根据游戏 id 获取游戏礼包列表 */
 + (void)gameGiftWithGameID:(NSString *)gameID Completion:(RequestCallBackBlock)completion {

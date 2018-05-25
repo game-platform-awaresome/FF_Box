@@ -11,6 +11,11 @@
 #import "FFGameHeaderView.h"
 #import "FFGameFooterView.h"
 
+#import "FFWriteCommentController.h"
+
+#import "FFDeviceInfo.h"
+#import "FFUserModel.h"
+
 @interface FFGameViewController () <FFGameDetailFooterViewDelegate>
 
 
@@ -27,6 +32,8 @@
 
 @property (nonatomic, strong) UIColor *lastNavColor;
 @property (nonatomic, assign) BOOL isResetNavColor;
+
+@property (nonatomic, strong) FFWriteCommentController *writeComment;
 
 @end
 
@@ -202,6 +209,7 @@ static FFGameViewController *controller = nil;
             if (success) {
                 [weakSelf setNormalView];
                 [weakSelf.gameHeaderView refresh];
+                [weakSelf.gameFooterView refresh];
                 [weakSelf setChildsRefresh];
             } else {
                 [weakSelf.currentNav popViewControllerAnimated:YES];
@@ -234,14 +242,74 @@ static FFGameViewController *controller = nil;
 #pragma mark - delegate
 - (void)FFGameDetailFooterView:(FFGameFooterView *)detailFooter clickShareBtn:(UIButton *)sender {
     syLog(@"评论");
+    if (CURRENT_USER.isLogin) {
+        [self startWaiting];
+        //请求是否可以评论
+        WeakSelf;
+        [CURRENT_GAME gameCanCommentCompletion:^(NSDictionary *content, BOOL success) {
+            syLog(@"game is login -=== %@",content);
+            [self stopWaiting];
+            if (success) {
+                [weakSelf pushViewController:self.writeComment];
+            } else {
+                NSString *msg ;
+                if ([content[@"msg"] isEqualToString:@"404"]) {
+                    msg = @"网络不知道飞哪里去了";
+                } else {
+                    msg = [NSString stringWithFormat:@"%@",content[@"msg"]];
+                }
+                [UIAlertController showAlertMessage:msg dismissTime:0.9 dismissBlock:nil];
+            }
+        }];
+    } else {
+        NSString *className = @"FFLoginViewController";
+        Class ViewController = NSClassFromString(className);
+        if (ViewController) {
+            id vc = [[ViewController alloc] init];
+            [self pushViewController:vc];
+        } else {
+            syLog(@"%s error -> %@ not exist",__func__,className);
+        }
+    }
 }
 
 - (void)FFGameDetailFooterView:(FFGameFooterView *)detailFooter clickCollecBtn:(UIButton *)sender {
     syLog(@"收藏");
+    if (!CURRENT_USER.isLogin) {
+        BOX_MESSAGE(@"尚未登录");
+        return;
+    }
+    FFCollectionType type = CURRENT_GAME.game_is_collection.boolValue ? FFCollectionTypeCancel : FFCollectionTypeCollection;
+    [FFGameModel collectionGameWithGameID:CURRENT_GAME.game_id CollectionType:type Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        if (success) {
+            CURRENT_GAME.game_is_collection = [NSString stringWithFormat:@"%u", (type == FFCollectionTypeCancel) ? NO : YES];
+            [self.gameFooterView refresh];
+        } else {
+            BOX_MESSAGE(content[@"msg"]);
+        }
+    }];
 }
 
 - (void)FFGameDetailFooterView:(FFGameFooterView *)detailFooter clickDownLoadBtn:(UIButton *)sender {
-    syLog(@"下载");
+    syLog(@"下载游戏");
+
+    if ([Channel isEqualToString:@"185"]) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:CURRENT_GAME.game_download_url]];
+    } else {
+        [self startWaiting];
+        [FFGameModel getGameDownloadUrlWithTag:CURRENT_GAME.game_tag Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+            [self stopWaiting];
+            id contentData = content[@"data"];
+            if (contentData == nil || [contentData isKindOfClass:[NSNull class]] || ((NSArray *)contentData).count == 0) {
+                BOX_MESSAGE(@"暂无下载链接,请联系客服");
+            } else {
+                NSString *url = content[@"data"][@"download_url"];
+                syLog(@"downLoadUrl == %@",url);
+                ([url isKindOfClass:[NSString class]]) ? ([[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]]) : (BOX_MESSAGE(@"链接出错,请稍后尝试"));
+            }
+        }];
+    }
+//    [FFStatisticsModel customEventsWith:@"down_laod_game" Extra:@{@"game_name":CURRENT_GAME.game_name,@"game_id":CURRENT_GAME.game_id}];
 }
 
 
@@ -308,7 +376,22 @@ static FFGameViewController *controller = nil;
 
 
 
-
+- (FFWriteCommentController *)writeComment {
+    if (!_writeComment) {
+        _writeComment = [[FFWriteCommentController alloc] init];
+        WeakSelf;
+        [_writeComment setSendCommentCallBack:^(NSDictionary *dict, BOOL success) {
+            if (success) {
+                [weakSelf.selectChildConttoller[1] refreshData];
+                [weakSelf.navigationController popViewControllerAnimated:YES];
+                [UIAlertController showAlertMessage:@"评论成功" dismissTime:0.7 dismissBlock:nil];
+            } else {
+                [UIAlertController showAlertMessage:dict[@"msg"] dismissTime:0.7 dismissBlock:nil];
+            }
+        }];
+    }
+    return _writeComment;
+}
 
 
 

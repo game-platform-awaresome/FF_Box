@@ -12,6 +12,7 @@
 #import "FFGameDetailHeaderView.h"
 
 #import "FFGameDetailCell.h"
+#import "FFWebViewController.h"
 
 #define CELL_IDE @"FFGameDetailCell"
 
@@ -42,6 +43,13 @@
     for (int i = 0; i < 6; i++) {
         [self.sectionArray addObject:[FFGameDetailSectionModel initWithType:i]];
     }
+    WeakSelf;
+    [self.sectionArray[SecTionTypeActivity] setActivityBlock:^(NSDictionary *dict) {
+        FFWebViewController *webVC = [[FFWebViewController alloc] init];
+        webVC.webURL = dict[@"info_url"];
+        weakSelf.hidesBottomBarWhenPushed = YES;
+        [weakSelf pushViewController:webVC];
+    }];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -56,6 +64,10 @@
         [self.sectionArray[i] refreshDataWith:i];
         self.sectionArray[i].tableView = self.tableView;
     }
+
+    [CURRENT_GAME getGameActivity];
+    //刷新活动
+
 
     [self.tableView reloadData];
 }

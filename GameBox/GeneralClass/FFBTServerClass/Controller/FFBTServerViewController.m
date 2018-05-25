@@ -12,6 +12,7 @@
 #import <UIImageView+WebCache.h>
 #import "FFSRcommentCell.h"
 
+#import "FFSearchController.h"
 //childe controller
 
 
@@ -188,6 +189,10 @@
 
 - (void)FFBTServerHeaderView:(FFBTServerHeaderView *)headerView didSelectSearchViewWithInfo:(id)info {
     syLog(@"搜索!!!!!!!!!!!!");
+    FFSearchController *searchVC = [[FFSearchController alloc] init];
+    searchVC.ServerType = self.type;
+    self.hidesBottomBarWhenPushed = YES;
+    [self pushViewController:searchVC];
 }
 
 #pragma mark - cell delegate

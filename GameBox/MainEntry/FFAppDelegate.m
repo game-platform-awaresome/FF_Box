@@ -14,7 +14,6 @@
 #import <TencentOpenAPI/TencentOAuth.h>
 
 #import <UserNotifications/UserNotifications.h>
-//#import <FFTools/FFDateFormatter.h>
 
 #import "FFMapModel.h"
 #import "FFBoxModel.h"
@@ -75,23 +74,23 @@
 - (void)initializeUserInterface {
 
     //第一次安装
-//    BOOL isFirstInstall = [FFBoxModel isFirstInstall];
+    BOOL isFirstInstall = [FFBoxModel isFirstInstall];
 
     //加载蒙版
-
 
     //初始化window
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.rootViewController = [FFControllerManager sharedManager].rootNavController;
-//    self.window.rootViewController = [UIViewController new];
+    //    self.window.rootViewController = [UIViewController new];
     [self.window makeKeyAndVisible];
 
-//    [self addMaskView:isFirstInstall];
+
+    [self addMaskView:isFirstInstall];
 //
 //    //加载引导页
-//    if ([FFBoxModel isFirstLogin]) {
+    if ([FFBoxModel isFirstLogin]) {
 //        [self.window addSubview:[FFLaunchScreen new]];
-//    } else {
+    } else {
 //
 //        //广告
 //        NSData * data = [FFBoxModel getAdvertisingImage];
@@ -99,9 +98,9 @@
 //            [FFAdvertisingView initWithImage:data];
 //        }
 //
-//    }
+    }
 //
-//    //请求广告页面
+    //请求广告页面
 //    [FFBoxModel postAdvertisingImage];
 
 
@@ -127,8 +126,8 @@
     //注册通知
     [self resignNotifacation];
 
-//    //公告
-//    [FFBoxModel appAnnouncement];
+    //公告
+    [FFBoxModel appAnnouncement];
 
 //    //注册统计
 //    [FFStatisticsModel reigstStatics];
@@ -166,11 +165,11 @@
     }
 }
 
-//- (void)addMaskView:(BOOL)add {
+- (void)addMaskView:(BOOL)add {
 //    if (add) {
 //        [FFMaskView addMaskViewWithWindow:self.window];
 //    }
-//}
+}
 
 
 

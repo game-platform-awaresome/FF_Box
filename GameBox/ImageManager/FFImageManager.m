@@ -28,6 +28,9 @@
 + (UIImage *)Tabbar_Center_button           {RETURN_IMAGE(@"Tabbar_Center_button");}
 /** banner placeholder image */
 + (UIImage *)Basic_Banner_placeholder       {RETURN_IMAGE(@"Basic_Banner_placeholder");}
++ (UIImage *)General_back_black             {RETURN_IMAGE(@"General_back_black");}
++ (UIImage *)General_back_white             {RETURN_IMAGE(@"General_back_white");}
+
 
 + (UIImage *)Home_new_game                  {RETURN_IMAGE(@"Home_new_game");}
 + (UIImage *)Home_hight_vip                 {RETURN_IMAGE(@"Home_hight_vip");}

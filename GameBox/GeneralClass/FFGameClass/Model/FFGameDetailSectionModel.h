@@ -18,7 +18,7 @@ typedef enum : NSUInteger {
 } SecTionType;
 
 typedef void(^SelectLikeButtonBlock)(NSDictionary *info);
-
+typedef void(^SelectActivityBlock)(NSDictionary *dict);
 
 @interface FFGameDetailSectionModel : NSObject
 
@@ -42,7 +42,7 @@ typedef void(^SelectLikeButtonBlock)(NSDictionary *info);
 @property (nonatomic, strong) id cell;
 
 @property (nonatomic, strong) SelectLikeButtonBlock likeButtonBlock;
-
+@property (nonatomic, strong) SelectActivityBlock ActivityBlock;
 
 + (instancetype)initWithType:(SecTionType)type;
 

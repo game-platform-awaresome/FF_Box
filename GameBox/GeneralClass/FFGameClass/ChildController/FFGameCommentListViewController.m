@@ -12,6 +12,7 @@
 #import "FFGameModel.h"
 #import <MJRefresh/MJRefresh.h>
 #import "FFLoginViewController.h"
+#import "FFReplyToCommentController.h"
 
 #import "FFDriveCommentCell.h"
 #define CELL_IDE @"FFDriveCommentCell"
@@ -203,22 +204,34 @@
             }
         }];
     } else {
-#warning resend message
-        //回复评论
-//        FFReplyToCommentController *controller = [FFReplyToCommentController replyCommentWithCommentDict:dict Completion:^(NSDictionary *content, BOOL success) {
-//            [self.navigationController popViewControllerAnimated:YES];
-//            if (success) {
-//                [UIAlertController showAlertMessage:@"回复成功" dismissTime:0.7 dismissBlock:nil];
-//                [self.tableView.mj_header beginRefreshing];
-//            } else {
-//                [UIAlertController showAlertMessage:@"回复失败" dismissTime:0.7 dismissBlock:nil];
-//            }
-//            syLog(@"replay ==== %@",content);
-//        }];
-//
-//        HIDE_TABBAR;
-//        HIDE_PARNENT_TABBAR;
-//        [self.navigationController pushViewController:controller animated:YES];
+        WeakSelf;
+        [self startWaiting];
+        [CURRENT_GAME gameCanCommentCompletion:^(NSDictionary *content, BOOL success) {
+            [weakSelf stopWaiting];
+            if (success) {
+                //回复评论
+                FFReplyToCommentController *controller = [FFReplyToCommentController replyCommentWithCommentDict:dict Completion:^(NSDictionary *content, BOOL success) {
+                    [weakSelf.navigationController popViewControllerAnimated:YES];
+                    if (success) {
+                        [UIAlertController showAlertMessage:@"回复成功" dismissTime:0.7 dismissBlock:nil];
+                        [weakSelf refreshData];
+                    } else {
+                        [UIAlertController showAlertMessage:content[@"msg"] dismissTime:0.7 dismissBlock:nil];
+                    }
+                    syLog(@"replay ==== %@",content);
+                }];
+                [weakSelf pushViewController:controller];
+            } else {
+                NSString *msg ;
+                if ([content[@"msg"] isEqualToString:@"404"]) {
+                    msg = @"网络不知道飞哪里去了";
+                } else {
+                    msg = [NSString stringWithFormat:@"%@",content[@"msg"]];
+                }
+                [UIAlertController showAlertMessage:msg dismissTime:0.9 dismissBlock:nil];
+            }
+        }];
+
     }
 }
 

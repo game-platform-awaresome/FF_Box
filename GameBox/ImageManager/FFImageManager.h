@@ -26,6 +26,8 @@
 
 /** banner placeholder image */
 + (UIImage *)Basic_Banner_placeholder;
++ (UIImage *)General_back_black;
++ (UIImage *)General_back_white;
 
 /** home view image */
 + (UIImage *)Home_new_game;

@@ -366,6 +366,50 @@ static FFCurrentGameModel *model;
     }];
 }
 
+/** 游戏活动 */ 
+- (void)getGameActivity {
+    [FFGameModel gameActivityWithGameID:self.game_id Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        if (self.activityCallBackBlock) {
+            self.activityCallBackBlock(content, success);
+        }
+    }];
+}
+
+
++ (void)writeCommentGetCoinComoletion:(void (^)(NSDictionary *, BOOL))completion {
+//    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+//    [dict setObject:SSKEYCHAIN_UID forKey:@"uid"];
+//    [dict setObject:BOX_SIGN(dict, @[@"uid"]) forKey:@"sign"];
+//    [FFBasicModel postRequestWithURL:[FFMapModel map].COMMENT_COIN params:dict completion:^(NSDictionary *content, BOOL success) {
+//        REQUEST_COMPLETION;
+//    }];
+}
+
+
++ (void)getCommentNumberWithComoletion:(void (^)(NSDictionary *, BOOL))completion {
+//    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+//    [dict setObject:Channel forKey:@"channel"];
+//    [dict setObject:@"2" forKey:@"comment_type"];
+//    [dict setObject:CURRENT_GAME.game_id forKey:@"dynamics_id"];
+//    [dict setObject:BOX_SIGN(dict, (@[@"channel",@"comment_type",@"dynamics_id"])) forKey:@"sign"];
+//    [FFBasicModel postRequestWithURL:[FFMapModel map].COMMENT_COUNTS params:dict completion:^(NSDictionary *content, BOOL success) {
+//        NEW_REQUEST_COMPLETION;
+//    }];
+}
+
+/** 请求是否可以评论 */
+- (void)gameCanCommentCompletion:(GameCompletionBlck)completion {
+    Mutable_Dict(3);
+    [dict setObject:CURRENT_USER.username forKey:@"username"];
+    [dict setObject:self.game_id forKey:@"appid"];
+    [dict setObject:BOX_SIGN(dict, (@[@"username",@"appid"])) forKey:@"sign"];
+    [FFNetWorkManager postRequestWithURL:Map.USER_APP_LOGIN Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        NEW_REQUEST_COMPLETION;
+    }];
+}
+
+
+
 
 
 
