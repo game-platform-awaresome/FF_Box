@@ -220,6 +220,7 @@
 		B58CB7DB207B12DC0099773D /* FFCustomizeTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B58CB7DA207B12DC0099773D /* FFCustomizeTabBar.m */; };
 		B590959820A9401B009CD99A /* FFMineViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B590959720A9401B009CD99A /* FFMineViewModel.m */; };
 		B590959C20A95CA2009CD99A /* FFColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B590959B20A95CA2009CD99A /* FFColorManager.m */; };
+		B594A5B220B8260800F9F869 /* FFSearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B594A5B120B8260800F9F869 /* FFSearchModel.m */; };
 		B59D989F2084A2E20024B11D /* FFBasicTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B59D989E2084A2E20024B11D /* FFBasicTableViewController.m */; };
 		B59D98A22084A2FD0024B11D /* FFBasicSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = B59D98A12084A2FD0024B11D /* FFBasicSelectView.m */; };
 		B5D10421208F0DD900CA1949 /* FFBasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D10420208F0DD900CA1949 /* FFBasicViewController.m */; };
@@ -247,7 +248,6 @@
 		B5F1492120B7E4BB00044873 /* FFGameGifTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F1492020B7E4BB00044873 /* FFGameGifTableViewCell.m */; };
 		B5F1492520B7F3F200044873 /* FFGameActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F1492420B7F3F200044873 /* FFGameActivityCell.m */; };
 		B5F1492820B8065500044873 /* FFWriteCommentController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F1492720B8065400044873 /* FFWriteCommentController.m */; };
-		B5F1493220B80CB300044873 /* FFSearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F1492C20B80CB300044873 /* FFSearchModel.m */; };
 		B5F1493320B80CB300044873 /* FFSearchResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F1492F20B80CB300044873 /* FFSearchResultController.m */; };
 		B5F1493420B80CB300044873 /* FFSearchShowControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F1493120B80CB300044873 /* FFSearchShowControllerViewController.m */; };
 		B5F1493720B80D8A00044873 /* FFSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F1493620B80D8A00044873 /* FFSearchController.m */; };
@@ -644,6 +644,8 @@
 		B590959720A9401B009CD99A /* FFMineViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFMineViewModel.m; sourceTree = "<group>"; };
 		B590959A20A95CA2009CD99A /* FFColorManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFColorManager.h; sourceTree = "<group>"; };
 		B590959B20A95CA2009CD99A /* FFColorManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFColorManager.m; sourceTree = "<group>"; };
+		B594A5B020B8260800F9F869 /* FFSearchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFSearchModel.h; sourceTree = "<group>"; };
+		B594A5B120B8260800F9F869 /* FFSearchModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFSearchModel.m; sourceTree = "<group>"; };
 		B59D989D2084A2E20024B11D /* FFBasicTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBasicTableViewController.h; sourceTree = "<group>"; };
 		B59D989E2084A2E20024B11D /* FFBasicTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBasicTableViewController.m; sourceTree = "<group>"; };
 		B59D98A02084A2FD0024B11D /* FFBasicSelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBasicSelectView.h; sourceTree = "<group>"; };
@@ -696,8 +698,6 @@
 		B5F1492420B7F3F200044873 /* FFGameActivityCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFGameActivityCell.m; sourceTree = "<group>"; };
 		B5F1492620B8065400044873 /* FFWriteCommentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFWriteCommentController.h; sourceTree = "<group>"; };
 		B5F1492720B8065400044873 /* FFWriteCommentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFWriteCommentController.m; sourceTree = "<group>"; };
-		B5F1492B20B80CB300044873 /* FFSearchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFSearchModel.h; sourceTree = "<group>"; };
-		B5F1492C20B80CB300044873 /* FFSearchModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFSearchModel.m; sourceTree = "<group>"; };
 		B5F1492E20B80CB300044873 /* FFSearchResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFSearchResultController.h; sourceTree = "<group>"; };
 		B5F1492F20B80CB300044873 /* FFSearchResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFSearchResultController.m; sourceTree = "<group>"; };
 		B5F1493020B80CB300044873 /* FFSearchShowControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFSearchShowControllerViewController.h; sourceTree = "<group>"; };
@@ -1856,6 +1856,15 @@
 			path = ColorManager;
 			sourceTree = "<group>";
 		};
+		B594A5AF20B8260800F9F869 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B594A5B020B8260800F9F869 /* FFSearchModel.h */,
+				B594A5B120B8260800F9F869 /* FFSearchModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		B59D989A2084A2AC0024B11D /* BasicView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2107,19 +2116,10 @@
 		B5F1492920B80BA000044873 /* FFSearchClass */ = {
 			isa = PBXGroup;
 			children = (
+				B594A5AF20B8260800F9F869 /* Model */,
 				B5F1492D20B80CB300044873 /* Controller */,
-				B5F1492A20B80CB300044873 /* Model */,
 			);
 			path = FFSearchClass;
-			sourceTree = "<group>";
-		};
-		B5F1492A20B80CB300044873 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				B5F1492B20B80CB300044873 /* FFSearchModel.h */,
-				B5F1492C20B80CB300044873 /* FFSearchModel.m */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		B5F1492D20B80CB300044873 /* Controller */ = {
@@ -2330,7 +2330,6 @@
 				B5D10431208F3CB300CA1949 /* FFWaitingManager.m in Sources */,
 				B51BD18020B69675005B9DE1 /* FFPayModel.m in Sources */,
 				B523838220AE9FAC0087733A /* ZLPhotoModel.m in Sources */,
-				B5F1493220B80CB300044873 /* FFSearchModel.m in Sources */,
 				B51BD03A20B50976005B9DE1 /* FFApplyTransferView.m in Sources */,
 				B5D104352090167D00CA1949 /* FFRankListViewController.m in Sources */,
 				B51BD11320B5628F005B9DE1 /* FFMyPrizeViewController.m in Sources */,
@@ -2362,6 +2361,7 @@
 				B523833A20AE9EF40087733A /* FFPostStatusImageCell.m in Sources */,
 				B523832320AE9EF40087733A /* FFDriveAttentionNumbersViewController.m in Sources */,
 				B523837620AE9FAC0087733A /* ZLBigImageCell.m in Sources */,
+				B594A5B220B8260800F9F869 /* FFSearchModel.m in Sources */,
 				B523832020AE9EF40087733A /* FFMyDynamicsViewController.m in Sources */,
 				B58CB7DB207B12DC0099773D /* FFCustomizeTabBar.m in Sources */,
 				B52383D220AECD100087733A /* FFGameDetailGuideViewController.m in Sources */,
