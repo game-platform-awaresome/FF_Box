@@ -25,6 +25,8 @@
     [self.navigationController.navigationBar setTintColor:[FFColorManager navigation_bar_black_color]];
     [self.navigationController.navigationBar setBarTintColor:[FFColorManager navigation_bar_white_color]];
     self.navBarBGAlpha = @"1.0";
+
+//    syLog(@"%@ -> %s",NSStringFromClass([self class]),__func__);
 }
 
 - (void)viewDidDisappear:(BOOL)animated {

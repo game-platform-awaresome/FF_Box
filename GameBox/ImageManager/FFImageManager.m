@@ -37,6 +37,7 @@
 + (UIImage *)Home_search_image              {RETURN_IMAGE(@"Home_search_image");}
 + (UIImage *)Home_message_light             {RETURN_IMAGE(@"Home_message_light");}
 + (UIImage *)Home_message_dark              {RETURN_IMAGE(@"Home_message_dark");}
++ (UIImage *)Home_mission_center_image      {RETURN_IMAGE(@"Home_mission_center_image");}
 
 #pragma mark - game view
 + (UIImage *)Game_header_background_image   {RETURN_IMAGE(@"Game_header_background_image");}
@@ -73,6 +74,11 @@
 + (UIImage *)Mine_rebate_apply              {RETURN_IMAGE(@"Mine_rebate_apply");}
 + (UIImage *)Mine_sign_in                   {RETURN_IMAGE(@"Mine_sign_in");}
 + (UIImage *)Mine_transfer_game             {RETURN_IMAGE(@"Mine_transfer_game");}
++ (UIImage *)Mine_vip_no                    {RETURN_IMAGE(@"Mine_vip_no");}
++ (UIImage *)Mine_vip_yes                   {RETURN_IMAGE(@"Mine_vip_yes");}
+
+
+
 
 #pragma mark - invite viwe
 + (UIImage *)InviteFriend_Background_image  {RETURN_IMAGE(@"InviteFriend_Background_image");}

@@ -8,10 +8,22 @@
 
 #import <UIKit/UIKit.h>
 #import "FFServersModel.h"
+@class FFSRcommentCell;
+
+@protocol FFSRcommentCellDelegate <NSObject>
+
+
+- (void)FFSRcommentCell:(FFSRcommentCell *)cell didSelectItemInfo:(id)info;
+
+
+@end
 
 @interface FFSRcommentCell : UITableViewCell
 
 @property (nonatomic, strong) FFTopGameModel *model;
 
+@property (nonatomic, strong) id <FFSRcommentCellDelegate> delegate;
+
+@property (nonatomic, strong) NSArray *gameArray;
 
 @end

@@ -38,7 +38,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navBarBGAlpha = @"1.0";
-
     [self.navigationController.navigationBar setBarTintColor:[FFColorManager navigation_bar_white_color]];
     [self.navigationController.navigationBar setTintColor:[FFColorManager navigation_bar_black_color]];
     
@@ -79,18 +78,13 @@
 
 - (void)initUserInterface {
     self.view.backgroundColor = [UIColor whiteColor];
-
     self.automaticallyAdjustsScrollViewInsets = NO;
-
-    self.navigationItem.title = @"秋名山";
-
+    self.navigationItem.title = @"车站";
     [self addSubViews];
 }
 
 - (void)initDataSource {
-
     self.selectHeaderView.headerTitleArray = @[@"全部",@"热门",@"关注",@"我的",@"消息"];
-
     [self setFchildControllerWithClassNames:@[@"FFDriveAllInfoViewController",
                                               @"FFDriveHotInfoViewController",
                                               @"FFDriveAttentionInfoViewController",
@@ -128,23 +122,19 @@
     if (_isAnimation || lastController == self.fChildControllers[idx]) {
         return;
     }
-
     if (lastController != nil) {
         [self hAddChildViewController:self.fChildControllers[idx]];
         [self hChildControllerRemove:lastController];
     } else {
         [self hAddChildViewController:self.fChildControllers[idx]];
     }
-
     lastController = self.fChildControllers[idx];
-
     [self.scrollView setContentOffset:CGPointMake(kSCREEN_WIDTH * idx, 0) animated:NO];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     CGFloat x = scrollView.contentOffset.x;
     //设置选择视图的浮标
-//    [self.selectHeaderView reomveLabelWithX:(x / scrollView.contentSize.width * kSCREEN_WIDTH)];
     [self.selectHeaderView setCursorX:(x / scrollView.contentSize.width * kSCREEN_WIDTH)];
 
     CGFloat index = x / kSCREEN_WIDTH;
@@ -273,8 +263,7 @@
 
 - (UIButton *)postStatusButton {
     if (!_postStatusButton) {
-        
-        _postStatusButton = [UIButton createButtonBounds:CGRectMake(0, 0, 80, 80) center:CGPointMake(kSCREEN_WIDTH - 50, self.view.bounds.size.height - 100) title:nil imageName:@"Community_Post_Status" action:^(UIButton *button) {
+        _postStatusButton = [UIButton createButtonBounds:CGRectMake(0, 0, 80, 80) center:CGPointMake(kSCREEN_WIDTH - 50, self.view.bounds.size.height - 100) title:nil imageName:@"Driver_drive" action:^(UIButton *button) {
             [self respondsToPostStatusButton];
         }];
 

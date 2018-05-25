@@ -29,11 +29,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    BOX_REGISTER_CELL;
 }
 
 - (void)initUserInterface {
-//    [super initUserInterface];
     [self resetTableView];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -56,6 +54,7 @@
     self.tableView.tableHeaderView = self.headerView;
     for (int i = 0; i < 6; i++) {
         [self.sectionArray[i] refreshDataWith:i];
+        self.sectionArray[i].tableView = self.tableView;
     }
 
     [self.tableView reloadData];
@@ -74,41 +73,23 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
-    FFGameDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDE];
-
-    cell.content = self.sectionArray[indexPath.section].contentString;
-    cell.layer.masksToBounds = YES;
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    return cell;
+    return self.sectionArray[indexPath.section].cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self.sectionArray[indexPath.section] modelTableView:tableView didSelectRowAtIndexPath:indexPath];
+}
 
-    if (_isAnimation) {
-        return;
-    }
-
-
-
-
-    FFGameDetailSectionModel *model = self.sectionArray[indexPath.section];
-    if (model.openUpHeight == 100) {
-        return;
-    }
-    _isAnimation = YES;
-    [tableView beginUpdates];
-    model.openUp = !model.openUp;
-    [tableView endUpdates];
-    _isAnimation = NO;
-//    [tableView reloadSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:(UITableViewRowAnimationNone)];
-
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return self.sectionArray[section].sectionHeaderHeight;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     return self.sectionArray[section].sectionHeaderView;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return self.sectionArray[section].sectionFooterHeight;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
@@ -118,6 +99,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return self.sectionArray[indexPath.section].openUp ? self.sectionArray[indexPath.section].openUpHeight : self.sectionArray[indexPath.section].normalHeight;
 }
+
 
 #pragma mark - setter
 
@@ -135,19 +117,23 @@
 - (void)resetTableView {
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 0,0) style:(UITableViewStyleGrouped)];
     BOX_REGISTER_CELL;
+    [self.tableView registerClass:NSClassFromString(@"FFSRcommentCell") forCellReuseIdentifier:@"FFSRcommentCell"];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
 
     self.tableView.showsVerticalScrollIndicator = NO;
     self.tableView.showsHorizontalScrollIndicator = NO;
-    self.tableView.sectionHeaderHeight = 44;
-    self.tableView.sectionFooterHeight = 44;
-    self.tableView.tableFooterView = [UIView new];
+    self.tableView.sectionHeaderHeight = 0;
+    self.tableView.sectionFooterHeight = 0;
+
+
+//    self.tableView.tableFooterView = [UIView new];
     if (@available(iOS 11.0, *)) {
         self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentScrollableAxes;
     } else {
 
     }
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
 }
 

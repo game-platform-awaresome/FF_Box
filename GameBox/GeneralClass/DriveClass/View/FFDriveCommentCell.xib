@@ -86,10 +86,9 @@
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZFl-Qj-AWg">
-                        <rect key="frame" x="425" y="161.5" width="30" height="15"/>
+                        <rect key="frame" x="439" y="161.5" width="16" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="NHd-6K-CZC"/>
-                            <constraint firstAttribute="width" constant="30" id="POr-8i-Tn4"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <state key="normal" image="Community_Like">
@@ -97,7 +96,7 @@
                         </state>
                     </button>
                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sl3-N0-a9I">
-                        <rect key="frame" x="385" y="165.5" width="30" height="15"/>
+                        <rect key="frame" x="399" y="165.5" width="30" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="2kH-dR-BIO"/>
                             <constraint firstAttribute="width" constant="30" id="xRB-ur-nvm"/>

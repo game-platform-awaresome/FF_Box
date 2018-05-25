@@ -50,7 +50,8 @@
 
 - (void)initUserInterface {
     self.view.backgroundColor = NAVGATION_BAR_COLOR;
-//    self.navigationItem.title = @"邀请好友";
+    self.navigationItem.title = @"邀请好友";
+    self.navigationItem.titleView = [UIView new];
     [self.view addSubview:self.imageBackGround];
     self.navigationItem.rightBarButtonItem = self.rankListButton;
 }

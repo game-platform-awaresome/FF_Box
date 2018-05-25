@@ -88,10 +88,10 @@
 
     if (self.bannerView.rollingArray) {
         [self addSubview:self.bannerView];
-        self.selectButtonView.frame = CGRectMake(0, CGRectGetMaxY(self.bannerView.frame), kSCREEN_WIDTH, 100);
+        self.selectButtonView.frame = CGRectMake(0, CGRectGetMaxY(self.bannerView.frame) + 10, kSCREEN_WIDTH, 100);
     } else {
         [self.bannerView removeFromSuperview];
-        self.selectButtonView.frame = CGRectMake(0, 44, kSCREEN_WIDTH, 100);
+        self.selectButtonView.frame = CGRectMake(0, 54, kSCREEN_WIDTH, 100);
     }
     [self setSelfBounds];
 }
@@ -170,9 +170,9 @@
 #pragma mark - getter
 - (UIView *)searchView {
     if (!_searchView) {
-        _searchView = [[UIView alloc] initWithFrame:CGRectMake(kSCREEN_WIDTH * 0.05, 4, kSCREEN_WIDTH * 0.9, 36)];
+        _searchView = [[UIView alloc] initWithFrame:CGRectMake(kSCREEN_WIDTH * 0.05, 5, kSCREEN_WIDTH * 0.9, 30)];
         _searchView.backgroundColor = [FFColorManager home_search_view_background_color];
-        _searchView.layer.cornerRadius = _searchView.bounds.size.height / 2;
+        _searchView.layer.cornerRadius = 8;
         _searchView.layer.masksToBounds = YES;
 
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(respondsToSearchView:)];
@@ -193,7 +193,7 @@
 
 - (FFBasicBannerView *)bannerView {
     if (!_bannerView) {
-        _bannerView = [[FFBasicBannerView alloc] initWithFrame:CGRectMake(0, 44, kSCREEN_WIDTH, kSCREEN_WIDTH * 0.4)];
+        _bannerView = [[FFBasicBannerView alloc] initWithFrame:CGRectMake(4, 44, kSCREEN_WIDTH - 8, kSCREEN_WIDTH * 0.4)];
         _bannerView.delegate = self;
         _bannerView.layer.masksToBounds = YES;
     }

@@ -237,7 +237,6 @@
 - (UIBarButtonItem *)rightButton {
     if (!_rightButton) {
         _rightButton = [[UIBarButtonItem alloc] initWithTitle:@"须知" style:(UIBarButtonItemStyleDone) target:self action:@selector(respondsToRightButton)];
-//        _rightButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@""] style:(UIBarButtonItemStyleDone) target:self action:@selector(respondsToRightButton)];
     }
     return _rightButton;
 }

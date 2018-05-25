@@ -6,13 +6,10 @@
 //  Copyright © 2018年 Yi Shi. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "FFSelectHeaderView.h"
 #import "FFDriveModel.h"
 #import "FFBasicViewController.h"
 #import "FFDrivePostStatusViewController.h"
-#import <FFTools/FFTools.h>
-
 #import "FFDriveThroughInfoViewController.h"
 
 @interface FFDriveController : FFBasicViewController

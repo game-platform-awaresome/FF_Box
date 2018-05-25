@@ -170,9 +170,14 @@ static FFGameViewController *controller = nil;
         _currentIndex = idx;
     }];
 
+
     [CURRENT_GAME setCommentNumberBlock:^(NSString *commentNumber) {
         [self.selectView setButtonSubscriptWithIdx:1 Title:commentNumber];
     }];
+
+    
+
+
 }
 
 
@@ -291,6 +296,7 @@ static FFGameViewController *controller = nil;
     return _gameFooterView;
 }
 
+
 - (void)setSelectViewInfo {
     self.selectView.headerLineColor = [FFColorManager game_select_line_color];
     self.selectView.footerLineColor = [FFColorManager game_select_line_color];
@@ -299,6 +305,10 @@ static FFGameViewController *controller = nil;
     self.selectView.cursorColor = [FFColorManager game_select_cursor_color];
     self.selectView.titleArray = @[@"详情",@"评论",@"礼包",@"开服",@"攻略"];
 }
+
+
+
+
 
 
 

@@ -55,6 +55,7 @@
     self.tableView.frame = CGRectMake(0, CGRectGetMaxY(self.headerView.frame), kSCREEN_WIDTH, kSCREEN_HEIGHT - CGRectGetMaxY(self.headerView.frame) - kTABBAR_HEIGHT);
     [self.view addSubview:self.tableView];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.mj_footer = nil;
 //    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     [self.rightButton setImage:[FFImageManager Mine_setting_image]];
     self.navigationItem.rightBarButtonItem = self.rightButton;
@@ -77,9 +78,9 @@
     [self.headerView setModifyNickName:^NSString *{
         return [NSString stringWithFormat:@"test"];
     }];
-    //修改头像
+    //显示个人信息详情
     [self.headerView setModifyAratarBlock:^{
-        syLog(@"修改头像");
+        [weakSelf showDetailInfo];
     }];
     //金币中心
     [self.headerView setGoldCenter:^{
@@ -104,6 +105,18 @@
         [self pushViewController:vc];
     } else {
         syLog(@"%s error -> %@ not exist",__func__,className);
+    }
+}
+
+- (void)showDetailInfo {
+//    FFDriveMineViewController
+    Class ViewController = NSClassFromString(@"FFDriveMineViewController");
+    if (ViewController) {
+        id vc = [[ViewController alloc] init];
+        [vc setValue:CURRENT_USER.uid forKey:@"uid"];
+        [self pushViewController:vc];
+    } else {
+        syLog(@"%s error -> %@ not exist",__func__,@"FFDriveMineViewController");
     }
 }
 

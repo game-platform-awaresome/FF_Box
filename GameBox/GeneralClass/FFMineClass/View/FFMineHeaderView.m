@@ -18,6 +18,8 @@
 @interface FFMineHeaderView ()
 
 @property (nonatomic, strong) UIImageView *avatarImageView;
+@property (nonatomic, strong) UIImageView *vipImageView;
+
 @property (nonatomic, strong) UIButton *nameButton;
 @property (nonatomic, assign) BOOL isLogin;
 
@@ -36,6 +38,7 @@
 @property (nonatomic, strong) UIButton *goldCenterButton;
 @property (nonatomic, strong) UIButton *platformButton;
 
+
 @end
 
 
@@ -52,6 +55,7 @@
 - (void)initUserInterface {
     self.backgroundColor = [FFColorManager blue_dark];
     [self addSubview:self.avatarImageView];
+    [self addSubview:self.vipImageView];
     [self addSubview:self.nameButton];
     [self addSubview:self.coinView];
     [self refreshUserInterface];
@@ -65,6 +69,9 @@
 - (void)setLoginView {
     [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:CURRENT_USER.icon_url] placeholderImage:nil];
     self.avatarImageView.center = CGPointMake(kSCREEN_WIDTH / 2, 82);
+
+    self.vipImageView.center = CGPointMake(CGRectGetMaxX(self.avatarImageView.frame) - 10, CGRectGetMaxY(self.avatarImageView.frame) - 10);
+
     self.nameButton.center = CGPointMake(kSCREEN_WIDTH / 2, CGRectGetMaxY(self.avatarImageView.frame) + self.nameButton.bounds.size.height / 2);
     [self.nameButton setTitle:CURRENT_USER.nick_name forState:(UIControlStateNormal)];
 
@@ -77,6 +84,8 @@
     frame = self.platformMoneyLabel.frame;
     frame.size.height = 44;
     self.platformButton.frame = frame;
+
+    self.vipImageView.hidden = NO;
 }
 
 - (void)setNotLoginView {
@@ -87,14 +96,18 @@
     [self setNotOpenViewFram];
     self.goldCenterButton.frame = CGRectZero;
     self.platformButton.frame = CGRectZero;
+
+    self.vipImageView.hidden = YES;
 }
 
 - (void)setOpenVipFrame {
+    self.vipImageView.image = [FFImageManager Mine_vip_no];
     [self setCoinviewWithWideth:kSCREEN_WIDTH / 4];
     self.openVipButton.hidden = NO;
 }
 
 - (void)setNotOpenViewFram {
+    self.vipImageView.image = [FFImageManager Mine_vip_yes];
     [self setCoinviewWithWideth:kSCREEN_WIDTH / 3];
     self.openVipButton.hidden = YES;
 }
@@ -166,6 +179,13 @@
         [_avatarImageView addGestureRecognizer:tap];
     }
     return _avatarImageView;
+}
+
+- (UIImageView *)vipImageView {
+    if (!_vipImageView) {
+        _vipImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 21, 21)];
+    }
+    return _vipImageView;
 }
 
 - (UIButton *)nameButton {

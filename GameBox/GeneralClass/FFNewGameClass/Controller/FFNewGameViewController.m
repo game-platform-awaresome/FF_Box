@@ -54,7 +54,7 @@
     [FFGameModel newGameListWithPage:New_page ServerType:self.serverType Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         [self stopWaiting];
         if (success) {
-//            syLog(@"new game == %@",content);
+            syLog(@"new game == %@",content);
             self.showArray = [content[@"data"] mutableCopy];
             [self clearUpData:self.showArray];
         } else {
@@ -77,6 +77,7 @@
     [FFGameModel newGameListWithPage:Next_page ServerType:self.serverType Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         if (success) {
             NSArray *dataArray = content[@"data"];
+            syLog(@"new game == %@",content);
             if (dataArray.count > 0) {
                 [self.showArray addObjectsFromArray:dataArray];
                 [self clearUpData:self.showArray];
@@ -102,6 +103,7 @@
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         formatter.dateFormat = @"YYYY-MM-dd";
         timeStr = [formatter stringFromDate:date];
+        syLog(@"sort time === %@",timeStr);
         NSMutableArray *array = dict[timeStr];
         if (array == nil) {
             array = [NSMutableArray array];

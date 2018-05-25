@@ -21,6 +21,7 @@
 #import "FFDetailMineInfoTableViewController.h"
 
 #import <FFTools/FFTools.h>
+#import "FFColorManager.h"
 
 
 @interface FFTestTableViewController : UITableView
@@ -77,7 +78,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navBarBGAlpha = @"0.0";
-
+    [self.navigationController.navigationBar setTintColor:[FFColorManager navigation_bar_white_color]];
 }
 
 - (void)viewDidLoad {

@@ -66,13 +66,18 @@
 }
 
 - (void)setCoin:(NSString *)string {
-    self.coinLabel.text = [NSString stringWithFormat:@"%@",string];
-    CGPoint center = self.coinLabel.center;
-    CGRect bounds = self.coinLabel.bounds;
-    [self.coinLabel sizeToFit];
-    bounds.size.width = self.coinLabel.bounds.size.width + 8;
-    self.coinLabel.bounds = bounds;
-    self.coinLabel.center = center;
+    if (string && [string isKindOfClass:[NSString class]]) {
+        self.coinLabel.hidden = NO;
+        self.coinLabel.text = [NSString stringWithFormat:@"%@",string];
+        CGPoint center = self.coinLabel.center;
+        CGRect bounds = self.coinLabel.bounds;
+        [self.coinLabel sizeToFit];
+        bounds.size.width = self.coinLabel.bounds.size.width + 8;
+        self.coinLabel.bounds = bounds;
+        self.coinLabel.center = center;
+    } else {
+        self.coinLabel.hidden = YES;
+    }
 
 }
 
@@ -145,13 +150,22 @@
 - (void)setModel:(FFTopGameModel *)model {
     if ([model isKindOfClass:[FFTopGameModel class]]) {
         _model = model;
+        self.gameArray = _model.gameArray;
     }
-    [self.contentView addSubview:self.collectionView];
-    [self.collectionView reloadData];
 }
+
+- (void)setGameArray:(NSArray *)gameArray {
+    if ([gameArray isKindOfClass:[NSArray class]]) {
+        _gameArray = gameArray;
+        [self.contentView addSubview:self.collectionView];
+        [self.collectionView reloadData];
+    }
+}
+
 
 - (void)setFrame:(CGRect)frame {
     [super setFrame:frame];
+    self.collectionView.frame = self.bounds;
 }
 
 #pragma mark - collection data source
@@ -160,22 +174,24 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.model.gameArray.count;
+    return self.gameArray.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 
     FFSRcommentCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"collectionViewCell" forIndexPath:indexPath];
-
-    cell.dict = self.model.gameArray[indexPath.row];
+    cell.dict = self.gameArray[indexPath.row];
 
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     syLog(@"click  %ld",indexPath.row);
+    NSDictionary *dict = self.gameArray[indexPath.row];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(FFSRcommentCell:didSelectItemInfo:)]) {
+        [self.delegate FFSRcommentCell:self didSelectItemInfo:dict];
+    }
 }
-
 
 #pragma mark - getter
 - (UICollectionViewFlowLayout *)collectionViewlayout {

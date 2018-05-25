@@ -17,6 +17,8 @@ typedef enum : NSUInteger {
     SecTionTypeLike
 } SecTionType;
 
+typedef void(^SelectLikeButtonBlock)(NSDictionary *info);
+
 
 @interface FFGameDetailSectionModel : NSObject
 
@@ -32,9 +34,14 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) NSString *sectionHeaderTitle;
 @property (nonatomic, strong) NSString *sectionFooterTitle;
 
+@property (nonatomic, assign) CGFloat sectionFooterHeight;
+@property (nonatomic, assign) CGFloat sectionHeaderHeight;
+
 @property (nonatomic, assign) int sectionItemNumber;
 
 @property (nonatomic, strong) id cell;
+
+@property (nonatomic, strong) SelectLikeButtonBlock likeButtonBlock;
 
 
 + (instancetype)initWithType:(SecTionType)type;
@@ -44,6 +51,10 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) UIView *sectionHeaderView;
 @property (nonatomic, strong) UIView *sectionFooterView;
 
+@property (nonatomic, strong) UITableView *tableView;
+
+
+- (void)modelTableView:(UITableView *)tableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 
 
 @end

@@ -245,6 +245,7 @@
 		B5D505AE20898D69000B7B50 /* FFMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D505AD20898D69000B7B50 /* FFMineViewController.m */; };
 		B5D505EB2089DAFE000B7B50 /* FFStatisticsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D505EA2089DAFE000B7B50 /* FFStatisticsModel.m */; };
 		B5E1E54320622E40008F49CA /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B5E1E54220622E40008F49CA /* README.md */; };
+		B5F1492120B7E4BB00044873 /* FFGameGifTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F1492020B7E4BB00044873 /* FFGameGifTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -684,6 +685,8 @@
 		B5D505EA2089DAFE000B7B50 /* FFStatisticsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFStatisticsModel.m; sourceTree = "<group>"; };
 		B5E1E51B206201CD008F49CA /* GameBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5E1E54220622E40008F49CA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		B5F1491F20B7E4BB00044873 /* FFGameGifTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFGameGifTableViewCell.h; sourceTree = "<group>"; };
+		B5F1492020B7E4BB00044873 /* FFGameGifTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFGameGifTableViewCell.m; sourceTree = "<group>"; };
 		C1C09ECF85CDCEAA38284810 /* libPods-GameBox.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GameBox.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9E7C73404CBBD7F21F68365 /* Pods-GameBox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameBox.release.xcconfig"; path = "Pods/Target Support Files/Pods-GameBox/Pods-GameBox.release.xcconfig"; sourceTree = "<group>"; };
 		EE677440EC57745993D7D0F0 /* Pods-GameBox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameBox.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GameBox/Pods-GameBox.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1115,6 +1118,21 @@
 			path = FFOpenVipClass;
 			sourceTree = "<group>";
 		};
+		B51BD18120B7B7B2005B9DE1 /* GameDetailVIew */ = {
+			isa = PBXGroup;
+			children = (
+				B52382C120ADB0F60087733A /* FFGameDetailHeaderView.h */,
+				B52382C220ADB0F60087733A /* FFGameDetailHeaderView.m */,
+				B52382C520AE82830087733A /* FFGameDetailCell.m */,
+				B52382C420AE82830087733A /* FFGameDetailCell.h */,
+				B52382C620AE82830087733A /* FFGameDetailCell.xib */,
+				B5F1491F20B7E4BB00044873 /* FFGameGifTableViewCell.h */,
+				B5F1492020B7E4BB00044873 /* FFGameGifTableViewCell.m */,
+			);
+			name = GameDetailVIew;
+			path = GameDetailCell;
+			sourceTree = "<group>";
+		};
 		B523825520AA73CF0087733A /* FFNewGameClass */ = {
 			isa = PBXGroup;
 			children = (
@@ -1339,12 +1357,7 @@
 		B52382C020ADB0DF0087733A /* ChildView */ = {
 			isa = PBXGroup;
 			children = (
-				B52382CC20AE9E380087733A /* OldVIew */,
-				B52382C120ADB0F60087733A /* FFGameDetailHeaderView.h */,
-				B52382C220ADB0F60087733A /* FFGameDetailHeaderView.m */,
-				B52382C420AE82830087733A /* FFGameDetailCell.h */,
-				B52382C520AE82830087733A /* FFGameDetailCell.m */,
-				B52382C620AE82830087733A /* FFGameDetailCell.xib */,
+				B51BD18120B7B7B2005B9DE1 /* GameDetailVIew */,
 				B51BCFAE20B2BD8A005B9DE1 /* FFGameOpenCell.h */,
 				B51BCFAF20B2BD8A005B9DE1 /* FFGameOpenCell.m */,
 				B51BCFB020B2BD8A005B9DE1 /* FFGameOpenCell.xib */,
@@ -1353,13 +1366,6 @@
 				B51BCFB420B2C8AB005B9DE1 /* FFpackageCell.xib */,
 			);
 			path = ChildView;
-			sourceTree = "<group>";
-		};
-		B52382CC20AE9E380087733A /* OldVIew */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = OldVIew;
 			sourceTree = "<group>";
 		};
 		B52382CD20AE9EF40087733A /* DriveClass */ = {
@@ -2426,6 +2432,7 @@
 				B523832220AE9EF40087733A /* FFDriveController.m in Sources */,
 				B5D5058E2088406A000B7B50 /* FFNewGameViewController.m in Sources */,
 				B58CB7B4207B10830099773D /* SYKeychain.m in Sources */,
+				B5F1492120B7E4BB00044873 /* FFGameGifTableViewCell.m in Sources */,
 				B59D98A22084A2FD0024B11D /* FFBasicSelectView.m in Sources */,
 				B51BD11620B5628F005B9DE1 /* FFGoldCenterViewController.m in Sources */,
 			);

@@ -10,6 +10,7 @@
 #import "FFServersModel.h"
 #import "FFBTServerHeaderView.h"
 #import <UIImageView+WebCache.h>
+#import "FFSRcommentCell.h"
 
 //childe controller
 
@@ -17,7 +18,7 @@
 #define CELL_IDE @"FFCustomizeCell"
 #define CELL_SRCELL @"FFSRcommentCell"
 
-@interface FFBTServerViewController () <FFBTServerHeaderViewDelegate>
+@interface FFBTServerViewController () <FFBTServerHeaderViewDelegate,FFSRcommentCellDelegate>
 
 
 @property (nonatomic, strong) NSArray *bannerArray;
@@ -46,7 +47,7 @@
 
 
 - (void)initDataSource {
-
+    BOX_REGISTER_CELL;
 }
 
 #pragma mark - load data
@@ -56,23 +57,42 @@
     Reset_page;
     [FFGameModel GameServersWithType:self.type Page:New_page Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         [self stopWaiting];
+        syLog(@"game ========= %@",content);
         if (success) {
-//            syLog(@"message  :  bt server data == %@",content);
-            /** init net data */
             self.model.contentDataDict = CONTENT_DATA;
         } else {
-//            syLog(@"error : %s : %@",__func__,content);
+
         }
 
         /** set banner */
         self.tableHeaderView.bannerArray = self.model.bannerArray;
         [self.tableView reloadData];
         [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
     }];
 }
 
 - (void)loadMoreData {
-    [self.tableView.mj_footer endRefreshingWithNoMoreData];
+    [FFGameModel GameServersWithType:self.type Page:Next_page Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        [self stopWaiting];
+        if (success) {
+            NSArray *gameArray = content[@"data"][@"gamelist"];
+            if (gameArray != nil && gameArray.count > 0) {
+
+                [self.model.gameRecomment.gameArray addObjectsFromArray:gameArray];
+                [self.tableView reloadData];
+
+                [self.tableView.mj_footer endRefreshing];
+            } else {
+                [self.tableView.mj_footer endRefreshingWithNoMoreData];
+            }
+        } else {
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+        }
+
+        /** set banner */
+
+    }];
 }
 
 #pragma mark - table view data source
@@ -89,8 +109,9 @@
     if (self.model.sectionArray[indexPath.section].type == SectionOfBoutique) {
         cell = [tableView dequeueReusableCellWithIdentifier:CELL_SRCELL forIndexPath:indexPath];
         [cell setValue:self.model.sectionArray[indexPath.section] forKey:@"model"];
+        ((FFSRcommentCell *)cell).delegate = self;
     } else {
-        cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDE forIndexPath:indexPath];
+        cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDE];
         [cell setValue:self.model.sectionArray[indexPath.section].gameArray[indexPath.row] forKey:@"dict"];
     }
 
@@ -107,10 +128,28 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 30;
 }
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+
+    UIView *backview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 30)];
+    backview.backgroundColor = [FFColorManager navigation_bar_white_color];
+
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 30)];
-    label.text = self.model.sectionArray[section].sectionHeaderTitle;
-    return label;
+    label.backgroundColor = [FFColorManager navigation_bar_white_color];
+    label.text = [NSString stringWithFormat:@"    %@",self.model.sectionArray[section].sectionHeaderTitle];
+
+    [backview addSubview:label];
+
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 1)];
+    line.backgroundColor = [FFColorManager view_separa_line_color];
+    [backview addSubview:line];
+
+//    CALayer *layer = [[CALayer alloc] init];
+//    layer.frame = CGRectMake(0, 0, kSCREEN_WIDTH, 1);
+//    layer.backgroundColor = [FFColorManager view_separa_line_color].CGColor;
+//    [label.layer addSublayer:layer];
+
+    return backview;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
@@ -124,7 +163,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     if (self.model.sectionArray[section].slidePic) {
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 200)];
-        [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:IMAGEURL,self.model.sectionArray[section].slidePic]] placeholderImage:[UIImage imageNamed:@""]];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:IMAGEURL,self.model.sectionArray[section].slidePic]] placeholderImage:[UIImage imageNamed:@"1111"]];
         return imageView;
     } else {
         return nil;
@@ -151,6 +190,30 @@
     syLog(@"搜索!!!!!!!!!!!!");
 }
 
+#pragma mark - cell delegate
+- (void)FFSRcommentCell:(FFSRcommentCell *)cell didSelectItemInfo:(id)info {
+    syLog(@"cell  === %@",info);
+    if ([info isKindOfClass:[NSDictionary class]]) {
+        NSString *gid = [NSString stringWithFormat:@"%@",(info[@"id"]) ? info[@"id"] : info[@"gid"]];
+        if (gid.length && gid.integerValue > 0) {
+            Class FFGameViewController = NSClassFromString(@"FFGameViewController");
+            SEL selector = NSSelectorFromString(@"sharedController");
+            if ([FFGameViewController respondsToSelector:selector]) {
+                IMP imp = [FFGameViewController methodForSelector:selector];
+                UIViewController *(*func)(void) = (void *)imp;
+                UIViewController *vc = func();
+                if (vc) {
+                    [vc setValue:gid forKey:@"gid"];
+                    [self pushViewController:vc];
+                } else {
+                    syLog(@"\n ! %s \n present error :  %s not exist \n ! \n",__func__,sel_getName(selector));
+                }
+            } else {
+                syLog(@"\n ! %s \n present error :  %s not exist \n ! \n",__func__,sel_getName(selector));
+            }
+        }
+    }
+}
 
 #pragma mark - setter
 - (void)setNavigationTitle:(NSString *)title {
@@ -234,6 +297,7 @@
     self.tableView.mj_footer = self.refreshFooter;
     [self.view addSubview:self.tableView];
     [self registCell];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 - (void)registCell {

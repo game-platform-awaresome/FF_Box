@@ -6,8 +6,8 @@
 //  Copyright © 2018年 Yi Shi. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "FFBasicViewController.h"
 
-@interface FFDrivePostStatusViewController : UIViewController
+@interface FFDrivePostStatusViewController : FFBasicViewController
 
 @end

@@ -26,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
+//    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.mj_header = nil;
 }
 

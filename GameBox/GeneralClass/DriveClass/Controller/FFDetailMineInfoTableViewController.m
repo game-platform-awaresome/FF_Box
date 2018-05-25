@@ -21,7 +21,7 @@
 #import "FFDriveModel.h"
 #import "FFUserModel.h"
 #import "FFDriveUserModel.h"
-
+#import "FFColorManager.h"
 
 #define CELL_IDE @"DetailMineInfoCell"
 #define STR_NIL_RETURN if (str == nil || [str isKindOfClass:[NSNull class]]) {\
@@ -111,6 +111,8 @@ const NSUInteger cellTag = 10086;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navBarBGAlpha = @"1.0";
+    [self.navigationController.navigationBar setTintColor:[FFColorManager navigation_bar_black_color]];
+    [self.navigationController.navigationBar setBarTintColor:[FFColorManager navigation_bar_white_color]];
     if (!isRefres) {
         [self.uid isEqualToString:SSKEYCHAIN_UID] ? [self showAccess] : [self hideAccess];
         [self setInfoWith:self.dict];

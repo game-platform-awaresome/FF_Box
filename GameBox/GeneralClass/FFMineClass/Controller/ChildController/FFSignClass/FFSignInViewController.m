@@ -9,9 +9,6 @@
 #import "FFSignInViewController.h"
 #import "FFUserModel.h"
 
-
-#define BOX_ORANG_COLOR RGBCOLOR(251, 158, 52)
-
 @interface FFSignInViewController ()
 
 /** 签到主页 */
@@ -153,7 +150,7 @@
 
 
     NSMutableAttributedString *attributedString1 = [[NSMutableAttributedString alloc] initWithString:string1];
-    [attributedString1 addAttribute:NSForegroundColorAttributeName value:BOX_ORANG_COLOR range:NSMakeRange(0, attributedString1.length)];
+    [attributedString1 addAttribute:NSForegroundColorAttributeName value:[FFColorManager blue_dark] range:NSMakeRange(0, attributedString1.length)];
 
     NSMutableAttributedString *resultString = [[NSMutableAttributedString alloc] initWithString:@"本月已累计签到"];
     [resultString appendAttributedString:attributedString1];
@@ -167,7 +164,7 @@
 
 
     attributedString1 = [[NSMutableAttributedString alloc] initWithString:string2];
-    [attributedString1 addAttribute:NSForegroundColorAttributeName value:BOX_ORANG_COLOR range:NSMakeRange(0, attributedString1.length)];
+    [attributedString1 addAttribute:NSForegroundColorAttributeName value:[FFColorManager blue_dark] range:NSMakeRange(0, attributedString1.length)];
     [resultString appendAttributedString:attributedString1];
 
     attributedString1 = [[NSMutableAttributedString alloc] initWithString:@"天可获得额外奖励"];
@@ -206,7 +203,7 @@
         } else {
             self.signInButton.userInteractionEnabled = YES;
             self.signInButton.selected = NO;
-            self.signInButton.backgroundColor = RGBCOLOR(251, 193, 92);
+            self.signInButton.backgroundColor = [FFColorManager blue_dark];
         }
     }
 }
@@ -223,7 +220,7 @@
             NSString *day = self.self.specialRewardsArray[i][@"num"];
             currentDay = day.integerValue;
             if (signDays == currentDay) {
-                self.dayLabelArray[i].backgroundColor = BOX_ORANG_COLOR;
+                self.dayLabelArray[i].backgroundColor = [FFColorManager blue_dark];
                 self.dayLabelArray[i].textColor = [UIColor whiteColor];
             }
             if (i == (self.specialRewardsArray.count - 1)) {
@@ -265,10 +262,10 @@
 
         [_signInButton setTitle:@"签到" forState:(UIControlStateNormal)];
         [_signInButton setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
-        _signInButton.layer.borderColor = BOX_ORANG_COLOR.CGColor;
+        _signInButton.layer.borderColor = [FFColorManager blue_dark].CGColor;
 
         [_signInButton setTitle:@"已签到" forState:(UIControlStateSelected)];
-        [_signInButton setTitleColor:RGBCOLOR(251, 193, 92) forState:(UIControlStateSelected)];
+        [_signInButton setTitleColor:[FFColorManager blue_dark] forState:(UIControlStateSelected)];
 
         _signInButton.backgroundColor = [UIColor whiteColor];
         _signInButton.titleLabel.font = [UIFont systemFontOfSize:30];
@@ -303,12 +300,12 @@
             label.center = CGPointMake(kSCREEN_WIDTH / 5 * (idx + 1), kSCREEN_WIDTH * 0.426);
             label.text = obj;
             label.textAlignment = NSTextAlignmentCenter;
-            label.textColor = BOX_ORANG_COLOR;
+            label.textColor = [FFColorManager blue_dark];
             label.backgroundColor = [UIColor whiteColor];
             label.font = [UIFont systemFontOfSize:16];
             label.layer.cornerRadius = kSCREEN_WIDTH / 16;
             label.layer.masksToBounds = YES;
-            label.layer.borderColor = BOX_ORANG_COLOR.CGColor;
+            label.layer.borderColor = [FFColorManager blue_dark].CGColor;
             label.layer.borderWidth = 2;
 
 
@@ -349,7 +346,7 @@
         CGFloat width = CGRectGetMidX(self.dayLabelArray.lastObject.frame) - x;
         CGFloat height = 3;
         _line = [[UIView alloc] initWithFrame:CGRectMake(x, y, width, height)];
-        _line.backgroundColor = BOX_ORANG_COLOR;
+        _line.backgroundColor = [FFColorManager blue_dark];
     }
     return _line;
 }

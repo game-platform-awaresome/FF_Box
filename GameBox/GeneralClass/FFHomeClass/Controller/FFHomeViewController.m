@@ -19,7 +19,7 @@
 
 @interface FFHomeViewController () <FFHomeSelectViewDelegate>
 
-
+@property (nonatomic, strong) UIButton *messageButton;
 
 
 @end
@@ -55,8 +55,12 @@
 
     [self.view addSubview:self.navigationView];
     [self.navigationView addSubview:self.homeSelectView];
+    [self.navigationView addSubview:self.messageButton];
 //    [self.navigationController.navigationBar addSubview:self.selectView];
     [self.view addSubview:self.scrollView];
+    self.floatImageView.image = [FFImageManager Home_mission_center_image];
+    self.floatImageView.frame = CGRectMake(kSCREEN_WIDTH - 95, kSCREEN_HEIGHT - 150, 80, 60);
+    self.floatImageView.layer.masksToBounds = NO;
     [self addFLoatView];
 }
 
@@ -100,6 +104,17 @@
         [self pushViewController:vc];
     } else {
         syLog(@"%s error- > %@ not exist",__func__,className);
+    }
+}
+
+- (void)respondsToRightButton {
+    NSString *className = CURRENT_USER.isLogin ? @"FFMyNewsViewController" : @"FFLoginViewController";
+    Class ViewController = NSClassFromString(className);
+    if (ViewController) {
+        id vc = [[ViewController alloc] init];
+        [self pushViewController:vc];
+    } else {
+        syLog(@"%s error -> %@ not exist",__func__,className);
     }
 }
 
@@ -186,6 +201,14 @@
     return _homeSelectView;
 }
 
+- (UIButton *)messageButton {
+    if (!_messageButton) {
+        _messageButton = [UIButton createButtonFrame:CGRectMake(kSCREEN_WIDTH - 60, KSTATUBAR_HEIGHT, 50, 44) title:nil imageName:@"Home_message_light" action:^(UIButton * _Nonnull button) {
+            [self respondsToRightButton];
+        }];
+    }
+    return _messageButton;
+}
 
 
 

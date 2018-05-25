@@ -16,6 +16,9 @@
 
 @interface FFCustomizeCell ()
 
+/** 分割线 */
+@property (weak, nonatomic) IBOutlet UIView *SeparaLine;
+
 /** 游戏名称 */
 @property (weak, nonatomic) IBOutlet UILabel *gameName;
 /** 下载次数 */
@@ -31,6 +34,7 @@
 /** 标签3 */
 @property (weak, nonatomic) IBOutlet UILabel *label3;
 
+@property (weak, nonatomic) IBOutlet UILabel *zkLabel;
 
 
 //约束布局
@@ -51,8 +55,6 @@
 
     self.gameNumber.font = [UIFont systemFontOfSize:12];
     self.gameNumber.textColor = [UIColor lightGrayColor];
-
-    [self.gameDownload setBackgroundImage:[UIImage imageNamed:@"New_cell_returnButton"] forState:(UIControlStateNormal)];
 
     //414  375  320
     if (kSCREEN_WIDTH == 320) {
@@ -77,6 +79,8 @@
         self.gameSize.font = [UIFont systemFontOfSize:15];
         self.gameSize.textColor = [UIColor lightGrayColor];
     }
+
+    self.SeparaLine.backgroundColor = [FFColorManager text_separa_line_color];
     
 }
 
@@ -134,6 +138,19 @@
     NSString *content = dict[@"content"];
     self.gameNumber.text = [NSString stringWithFormat:@"%@",content];
     self.gameNumber.textAlignment = NSTextAlignmentLeft;
+
+    //折扣
+    NSString *discount = dict[@"discount"];
+    if (discount && discount.integerValue > 0) {
+        [self.gameDownload setBackgroundImage:[UIImage imageNamed:@"Home_cell_ZK"] forState:(UIControlStateNormal)];
+        self.zkLabel.hidden = NO;
+        self.zkLabel.text = [NSString stringWithFormat:@" %.1f折 ",discount.floatValue];
+        self.zkLabel.layer.cornerRadius = self.zkLabel.bounds.size.height / 2;
+        self.zkLabel.layer.masksToBounds = YES;
+    } else {
+        [self.gameDownload setBackgroundImage:[UIImage imageNamed:@"Home_cell_BT"] forState:(UIControlStateNormal)];
+        self.zkLabel.hidden = YES;
+    }
 }
 
 

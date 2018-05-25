@@ -10,15 +10,12 @@
 #import "ZLPhotoActionSheet.h"
 #import <Photos/Photos.h>
 #import "FFPostStatusImageCell.h"
-#import <FFTools/FFTools.h>
 #import "FFDriveModel.h"
-#import "MBProgressHUD.h"
 #import "FFPostStatusModel.h"
 #import "FFControllerManager.h"
 
 
 #define CELL_IDE @"FFPostStatusImageCell"
-
 
 
 @interface FFDrivePostStatusViewController ()<UITextViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
@@ -56,23 +53,23 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navBarBGAlpha = @"1.0";
+    [self.navigationController.navigationBar setTintColor:[FFColorManager navigation_bar_black_color]];
+    [self.navigationController.navigationBar setBarTintColor:[FFColorManager navigation_bar_white_color]];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initDataSource];
-    [self initUserInterface];
 }
 
 - (void)initUserInterface {
     self.view.backgroundColor = [UIColor whiteColor];
+    self.navigationItem.rightBarButtonItem = self.sendButton;
     self.navigationItem.title = @"发布状态";
     [self.view addSubview:self.hideButton];
     [self.view addSubview:self.remindLabel];
     [self.view addSubview:self.textView];
     [self.view addSubview:self.remindLabel1];
     [self.view addSubview:self.collectionView];
-    self.navigationItem.rightBarButtonItem = self.sendButton;
 }
 
 - (void)initDataSource {

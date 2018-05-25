@@ -64,10 +64,11 @@
     }
 
     [self.collectionView reloadData];
-    [self.collectionView setContentOffset:CGPointMake(kSCREEN_WIDTH, 0)];
+    [self.collectionView setContentOffset:CGPointMake(self.bounds.size.width, 0)];
 
     self.pageControl.numberOfPages = rollingArray.count;
     self.pageControl.center = CGPointMake(kSCREEN_WIDTH / 2, self.bounds.size.height - 20);
+    [self bringSubviewToFront:self.pageControl];
     [self startTimer];
 }
 
@@ -77,9 +78,10 @@
     if (self.bounds.size.height < 1) {
         [self.pageControl removeFromSuperview];
     } else {
-        self.pageControl.center = CGPointMake(kSCREEN_WIDTH / 2, self.bounds.size.height - 20);
+        self.pageControl.center = CGPointMake(self.bounds.size.width / 2, self.bounds.size.height - 20);
         [self addSubview:self.pageControl];
     }
+    [self bringSubviewToFront:self.pageControl];
     self.layout.itemSize = CGSizeMake(self.bounds.size.width, self.bounds.size.height);
 }
 
@@ -87,7 +89,7 @@
 //定时器的监听
 - (void)autoImage {
     CGFloat offset = self.collectionView.contentOffset.x;
-    [self.collectionView setContentOffset:CGPointMake(offset + kSCREEN_WIDTH, 0) animated:YES];
+    [self.collectionView setContentOffset:CGPointMake(offset + self.bounds.size.width, 0) animated:YES];
 }
 
 // 开启定时器
@@ -105,11 +107,11 @@
 //滚动结束时调用
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     CGFloat offset = scrollView.contentOffset.x;
-    if (offset > kSCREEN_WIDTH * (self.rollingArray.count - 2)) {
-        scrollView.contentOffset = CGPointMake(kSCREEN_WIDTH, 0);
+    if (offset > self.bounds.size.width * (self.rollingArray.count - 2)) {
+        scrollView.contentOffset = CGPointMake(self.bounds.size.width, 0);
     }
-    if (offset < kSCREEN_WIDTH) {
-        scrollView.contentOffset = CGPointMake(kSCREEN_WIDTH * (self.rollingArray.count - 2), 0);
+    if (offset < self.bounds.size.width) {
+        scrollView.contentOffset = CGPointMake(self.bounds.size.width * (self.rollingArray.count - 2), 0);
     }
 }
 
@@ -134,7 +136,7 @@
     // 获得当前偏移量
     CGFloat offsetX = scrollView.contentOffset.x;
     // 转换成页数
-    NSInteger pageNum = offsetX / kSCREEN_WIDTH + 0.5;
+    NSInteger pageNum = offsetX / self.bounds.size.width + 0.5;
     // 设置分页器的当前页数
     self.pageControl.currentPage = pageNum - 1;
 }
@@ -155,6 +157,8 @@
     imageView.backgroundColor = [UIColor orangeColor];
     [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:IMAGEURL,self.rollingArray[indexPath.row][@"slide_pic"]]] placeholderImage:[FFImageManager Basic_Banner_placeholder]];
     [cell addSubview:imageView];
+    cell.layer.cornerRadius = 3;
+    cell.layer.masksToBounds = YES;
     return cell;
 }
 
