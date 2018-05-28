@@ -15,7 +15,7 @@
 #import <WXApi.h>
 
 #import "FFDeviceInfo.h"
-#import "FFStatisticsModel.h"
+//#import "FFStatisticsModel.h"
 
 #define SHARED_WINDOW [FFSharedController sharedWindow]
 #define SHARED_VIEW [FFSharedController sharedView]

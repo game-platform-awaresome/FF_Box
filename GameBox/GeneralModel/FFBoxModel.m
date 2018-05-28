@@ -11,6 +11,7 @@
 #import "FFDeviceInfo.h"
 #import "FFMapModel.h"
 #import <UserNotifications/UserNotifications.h>
+#import <SDWebImageManager.h>
 
 #import "FFUserModel.h"
 
@@ -191,6 +192,45 @@
     }
 }
 
++ (void)postAdvertisingImage {
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setObject:@"2" forKey:@"system"];
+    [dict setObject:Channel forKey:@"channel"];
+    [dict setObject:BOX_SIGN(dict, (@[@"system",@"channel"])) forKey:@"sign"];
+    //    BOX_SIGN(dict, @[@"system",@"channel"])
+    [FFNetWorkManager postRequestWithURL:Map.GAME_GET_START_IMGS Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        REQUEST_STATUS;
+        if (success && status.integerValue == 1) {
+#warning advertising image
+            syLog(@"advertising image === %@",content);
+            [FFBoxModel saveAdvertisingImage:content[@"data"]];
+        }
+    }];
+}
+
++ (NSData *)getAdvertisingImage {
+    NSData *data = [NSData dataWithContentsOfFile:[FFBoxModel AdvertisingImagePath]];
+    return data;
+}
+
++ (void)saveAdvertisingImage:(NSString *)url {
+    if ([url isKindOfClass:[NSString class]] && url.length > 0) {
+        [[[SDWebImageManager sharedManager] imageDownloader] downloadImageWithURL:[NSURL URLWithString:url] options:(SDWebImageDownloaderLowPriority) progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
+            if (finished) {
+                [data writeToFile:[FFBoxModel AdvertisingImagePath] atomically:YES];
+            }
+        }];
+    } else {
+        [[NSFileManager defaultManager] removeItemAtPath:[FFBoxModel AdvertisingImagePath] error:nil];
+    }
+}
+
++ (NSString *)AdvertisingImagePath {
+    NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *path = [pathArray objectAtIndex:0];
+    NSString *filePath = [path stringByAppendingPathComponent:@"AdvertisingImage"];
+    return filePath;
+}
 
 #pragma mark - =========================== push notification ===========================
 //使用 UNNotification 本地通知

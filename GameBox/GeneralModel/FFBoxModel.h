@@ -47,7 +47,7 @@ typedef void (^NotiCompletion)(NSDictionary *  content, BOOL success);
 /** advertising  */
 + (void)postAdvertisingImage;
 
-+ (id *)addAdvertisinImage;
+//+ (id *)addAdvertisinImage;
 
 + (NSData *)getAdvertisingImage;
 

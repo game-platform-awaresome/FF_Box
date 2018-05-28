@@ -221,6 +221,21 @@
 		B590959820A9401B009CD99A /* FFMineViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B590959720A9401B009CD99A /* FFMineViewModel.m */; };
 		B590959C20A95CA2009CD99A /* FFColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B590959B20A95CA2009CD99A /* FFColorManager.m */; };
 		B594A5B220B8260800F9F869 /* FFSearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B594A5B120B8260800F9F869 /* FFSearchModel.m */; };
+		B599691620BB9AD700BC6084 /* FFMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = B599691220BB9AD600BC6084 /* FFMaskView.m */; };
+		B599691720BB9AD700BC6084 /* FFAdvertisingView.m in Sources */ = {isa = PBXBuildFile; fileRef = B599691320BB9AD700BC6084 /* FFAdvertisingView.m */; };
+		B599691A20BB9B4200BC6084 /* FFLaunchScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = B599691820BB9B4200BC6084 /* FFLaunchScreen.m */; };
+		B599692920BBA3EE00BC6084 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B599692820BBA3E700BC6084 /* Security.framework */; };
+		B599692B20BBA40000BC6084 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B599692A20BBA3FC00BC6084 /* CoreTelephony.framework */; };
+		B599692D20BBA40E00BC6084 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B599692C20BBA40A00BC6084 /* AdSupport.framework */; };
+		B599692F20BBA42C00BC6084 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B599692E20BBA42C00BC6084 /* libsqlite3.tbd */; };
+		B599693120BBA46000BC6084 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B599693020BBA45C00BC6084 /* SystemConfiguration.framework */; };
+		B599693320BBA46E00BC6084 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B599693220BBA46A00BC6084 /* CoreLocation.framework */; };
+		B599693520BBA4E500BC6084 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B599693420BBA4DF00BC6084 /* CoreMotion.framework */; };
+		B599693720BBA50400BC6084 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B599693620BBA50300BC6084 /* libz.tbd */; };
+		B599693920BBA51200BC6084 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B599693820BBA51200BC6084 /* libstdc++.tbd */; };
+		B599693A20BBA61F00BC6084 /* TrackingIO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B599692020BB9E8800BC6084 /* TrackingIO.a */; };
+		B599693D20BBA65000BC6084 /* FFStatisticsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B599693C20BBA65000BC6084 /* FFStatisticsModel.m */; };
+		B599694020BBA6E300BC6084 /* FFStatisticsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B599693E20BBA6E200BC6084 /* FFStatisticsModel.m */; };
 		B59D989F2084A2E20024B11D /* FFBasicTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B59D989E2084A2E20024B11D /* FFBasicTableViewController.m */; };
 		B59D98A22084A2FD0024B11D /* FFBasicSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = B59D98A12084A2FD0024B11D /* FFBasicSelectView.m */; };
 		B5D10421208F0DD900CA1949 /* FFBasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D10420208F0DD900CA1949 /* FFBasicViewController.m */; };
@@ -243,7 +258,6 @@
 		B5D5059420884164000B7B50 /* FFClassifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D5059320884164000B7B50 /* FFClassifyViewController.m */; };
 		B5D505A920898D25000B7B50 /* FFDriveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D505A820898D25000B7B50 /* FFDriveViewController.m */; };
 		B5D505AE20898D69000B7B50 /* FFMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D505AD20898D69000B7B50 /* FFMineViewController.m */; };
-		B5D505EB2089DAFE000B7B50 /* FFStatisticsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D505EA2089DAFE000B7B50 /* FFStatisticsModel.m */; };
 		B5E1E54320622E40008F49CA /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B5E1E54220622E40008F49CA /* README.md */; };
 		B5F1492120B7E4BB00044873 /* FFGameGifTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F1492020B7E4BB00044873 /* FFGameGifTableViewCell.m */; };
 		B5F1492520B7F3F200044873 /* FFGameActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F1492420B7F3F200044873 /* FFGameActivityCell.m */; };
@@ -646,6 +660,27 @@
 		B590959B20A95CA2009CD99A /* FFColorManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFColorManager.m; sourceTree = "<group>"; };
 		B594A5B020B8260800F9F869 /* FFSearchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFSearchModel.h; sourceTree = "<group>"; };
 		B594A5B120B8260800F9F869 /* FFSearchModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFSearchModel.m; sourceTree = "<group>"; };
+		B599691220BB9AD600BC6084 /* FFMaskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFMaskView.m; sourceTree = "<group>"; };
+		B599691320BB9AD700BC6084 /* FFAdvertisingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFAdvertisingView.m; sourceTree = "<group>"; };
+		B599691420BB9AD700BC6084 /* FFMaskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFMaskView.h; sourceTree = "<group>"; };
+		B599691520BB9AD700BC6084 /* FFAdvertisingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFAdvertisingView.h; sourceTree = "<group>"; };
+		B599691820BB9B4200BC6084 /* FFLaunchScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFLaunchScreen.m; sourceTree = "<group>"; };
+		B599691920BB9B4200BC6084 /* FFLaunchScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFLaunchScreen.h; sourceTree = "<group>"; };
+		B599692020BB9E8800BC6084 /* TrackingIO.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = TrackingIO.a; sourceTree = "<group>"; };
+		B599692120BB9E8800BC6084 /* TrackingIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackingIO.h; sourceTree = "<group>"; };
+		B599692820BBA3E700BC6084 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		B599692A20BBA3FC00BC6084 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		B599692C20BBA40A00BC6084 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		B599692E20BBA42C00BC6084 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		B599693020BBA45C00BC6084 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		B599693220BBA46A00BC6084 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		B599693420BBA4DF00BC6084 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		B599693620BBA50300BC6084 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		B599693820BBA51200BC6084 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
+		B599693B20BBA65000BC6084 /* FFStatisticsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FFStatisticsModel.h; path = ../../../../FFStatisticsModel.h; sourceTree = "<group>"; };
+		B599693C20BBA65000BC6084 /* FFStatisticsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FFStatisticsModel.m; path = ../../../../FFStatisticsModel.m; sourceTree = "<group>"; };
+		B599693E20BBA6E200BC6084 /* FFStatisticsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFStatisticsModel.m; sourceTree = "<group>"; };
+		B599693F20BBA6E300BC6084 /* FFStatisticsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFStatisticsModel.h; sourceTree = "<group>"; };
 		B59D989D2084A2E20024B11D /* FFBasicTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBasicTableViewController.h; sourceTree = "<group>"; };
 		B59D989E2084A2E20024B11D /* FFBasicTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBasicTableViewController.m; sourceTree = "<group>"; };
 		B59D98A02084A2FD0024B11D /* FFBasicSelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBasicSelectView.h; sourceTree = "<group>"; };
@@ -688,8 +723,6 @@
 		B5D505A820898D25000B7B50 /* FFDriveViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFDriveViewController.m; sourceTree = "<group>"; };
 		B5D505AC20898D69000B7B50 /* FFMineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFMineViewController.h; sourceTree = "<group>"; };
 		B5D505AD20898D69000B7B50 /* FFMineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFMineViewController.m; sourceTree = "<group>"; };
-		B5D505E92089DAFE000B7B50 /* FFStatisticsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFStatisticsModel.h; sourceTree = "<group>"; };
-		B5D505EA2089DAFE000B7B50 /* FFStatisticsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFStatisticsModel.m; sourceTree = "<group>"; };
 		B5E1E51B206201CD008F49CA /* GameBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5E1E54220622E40008F49CA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B5F1491F20B7E4BB00044873 /* FFGameGifTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFGameGifTableViewCell.h; sourceTree = "<group>"; };
@@ -715,8 +748,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B599693520BBA4E500BC6084 /* CoreMotion.framework in Frameworks */,
+				B599693720BBA50400BC6084 /* libz.tbd in Frameworks */,
+				B599693320BBA46E00BC6084 /* CoreLocation.framework in Frameworks */,
+				B599693120BBA46000BC6084 /* SystemConfiguration.framework in Frameworks */,
+				B599692D20BBA40E00BC6084 /* AdSupport.framework in Frameworks */,
+				B599692B20BBA40000BC6084 /* CoreTelephony.framework in Frameworks */,
+				B599692F20BBA42C00BC6084 /* libsqlite3.tbd in Frameworks */,
+				B599692920BBA3EE00BC6084 /* Security.framework in Frameworks */,
 				0543CAF4C1A27767297E9250 /* libPods-GameBox.a in Frameworks */,
 				B523839C20AEA71A0087733A /* TencentOpenAPI.framework in Frameworks */,
+				B599693A20BBA61F00BC6084 /* TrackingIO.a in Frameworks */,
+				B599693920BBA51200BC6084 /* libstdc++.tbd in Frameworks */,
 				B5F1493920B8170A00044873 /* FFTools.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -727,6 +770,15 @@
 		76486CF296C9DFD1ABAED75C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B599693820BBA51200BC6084 /* libstdc++.tbd */,
+				B599693620BBA50300BC6084 /* libz.tbd */,
+				B599693420BBA4DF00BC6084 /* CoreMotion.framework */,
+				B599693220BBA46A00BC6084 /* CoreLocation.framework */,
+				B599693020BBA45C00BC6084 /* SystemConfiguration.framework */,
+				B599692E20BBA42C00BC6084 /* libsqlite3.tbd */,
+				B599692C20BBA40A00BC6084 /* AdSupport.framework */,
+				B599692A20BBA3FC00BC6084 /* CoreTelephony.framework */,
+				B599692820BBA3E700BC6084 /* Security.framework */,
 				B5F1493820B8170A00044873 /* FFTools.framework */,
 				B523839B20AEA71A0087733A /* TencentOpenAPI.framework */,
 				C1C09ECF85CDCEAA38284810 /* libPods-GameBox.a */,
@@ -1747,6 +1799,8 @@
 		B58CB795207B10830099773D /* BasicModel */ = {
 			isa = PBXGroup;
 			children = (
+				B599693B20BBA65000BC6084 /* FFStatisticsModel.h */,
+				B599693C20BBA65000BC6084 /* FFStatisticsModel.m */,
 				B58CB796207B10830099773D /* FFBasicModel.h */,
 				B58CB797207B10830099773D /* FFBasicModel.m */,
 				B58CB798207B10830099773D /* FFDeviceInfo.h */,
@@ -1766,6 +1820,7 @@
 				B58CB79E207B10830099773D /* FFAppDelegate.m */,
 				B58CB79F207B10830099773D /* Info.plist */,
 				B58CB7A0207B10830099773D /* main.m */,
+				B599691120BB9AA600BC6084 /* ChildView */,
 			);
 			path = MainEntry;
 			sourceTree = "<group>";
@@ -1785,6 +1840,7 @@
 		B58CB7A5207B10830099773D /* Third_Library */ = {
 			isa = PBXGroup;
 			children = (
+				B599691F20BB9E8800BC6084 /* trackingio */,
 				B523839120AEA2710087733A /* YBPopupMenu */,
 				B523838A20AEA0C70087733A /* FLAnimatedImage */,
 				B523833F20AE9FAB0087733A /* PhotoBrowser */,
@@ -1863,6 +1919,28 @@
 				B594A5B120B8260800F9F869 /* FFSearchModel.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		B599691120BB9AA600BC6084 /* ChildView */ = {
+			isa = PBXGroup;
+			children = (
+				B599691920BB9B4200BC6084 /* FFLaunchScreen.h */,
+				B599691820BB9B4200BC6084 /* FFLaunchScreen.m */,
+				B599691520BB9AD700BC6084 /* FFAdvertisingView.h */,
+				B599691320BB9AD700BC6084 /* FFAdvertisingView.m */,
+				B599691420BB9AD700BC6084 /* FFMaskView.h */,
+				B599691220BB9AD600BC6084 /* FFMaskView.m */,
+			);
+			path = ChildView;
+			sourceTree = "<group>";
+		};
+		B599691F20BB9E8800BC6084 /* trackingio */ = {
+			isa = PBXGroup;
+			children = (
+				B599692020BB9E8800BC6084 /* TrackingIO.a */,
+				B599692120BB9E8800BC6084 /* TrackingIO.h */,
+			);
+			path = trackingio;
 			sourceTree = "<group>";
 		};
 		B59D989A2084A2AC0024B11D /* BasicView */ = {
@@ -2079,8 +2157,8 @@
 		B5D505E82089DAA6000B7B50 /* GeneralModel */ = {
 			isa = PBXGroup;
 			children = (
-				B5D505E92089DAFE000B7B50 /* FFStatisticsModel.h */,
-				B5D505EA2089DAFE000B7B50 /* FFStatisticsModel.m */,
+				B599693F20BBA6E300BC6084 /* FFStatisticsModel.h */,
+				B599693E20BBA6E200BC6084 /* FFStatisticsModel.m */,
 				B5D10428208F156000CA1949 /* FFGameModel.h */,
 				B5D10429208F156000CA1949 /* FFGameModel.m */,
 				B5781AE120A42CED00CB1464 /* FFUserModel.h */,
@@ -2299,7 +2377,6 @@
 				B523832D20AE9EF40087733A /* DriveInfoCell.m in Sources */,
 				B51BD16B20B650CE005B9DE1 /* FFMyNewsViewController.m in Sources */,
 				B51BD16D20B650CE005B9DE1 /* FFMyNewsCell.m in Sources */,
-				B5D505EB2089DAFE000B7B50 /* FFStatisticsModel.m in Sources */,
 				B5F1492820B8065500044873 /* FFWriteCommentController.m in Sources */,
 				B523833020AE9EF40087733A /* FFDetailHeaderView.m in Sources */,
 				B5781AE020A3F4DE00CB1464 /* FFHomeSelectView.m in Sources */,
@@ -2333,6 +2410,7 @@
 				B51BD03A20B50976005B9DE1 /* FFApplyTransferView.m in Sources */,
 				B5D104352090167D00CA1949 /* FFRankListViewController.m in Sources */,
 				B51BD11320B5628F005B9DE1 /* FFMyPrizeViewController.m in Sources */,
+				B599694020BBA6E300BC6084 /* FFStatisticsModel.m in Sources */,
 				B523833920AE9EF40087733A /* FFMineViewCell.m in Sources */,
 				B51BD08520B53AC8005B9DE1 /* RebateTableViewCell.m in Sources */,
 				B51BD07920B53A5F005B9DE1 /* FFRebateRecordViewController.m in Sources */,
@@ -2373,6 +2451,7 @@
 				B523837B20AE9FAC0087733A /* ZLForceTouchPreviewController.m in Sources */,
 				B523839920AEA2710087733A /* YBPopupMenuPath.m in Sources */,
 				B51BD16A20B650CE005B9DE1 /* FFSystemInfoController.m in Sources */,
+				B599693D20BBA65000BC6084 /* FFStatisticsModel.m in Sources */,
 				B523837820AE9FAC0087733A /* ZLCustomCamera.m in Sources */,
 				B523837C20AE9FAC0087733A /* ZLNoAuthorityViewController.m in Sources */,
 				B523825C20AA86110087733A /* FFZKNewGameController.m in Sources */,
@@ -2462,6 +2541,8 @@
 				B5781AF220A535B900CB1464 /* FFServersModel.m in Sources */,
 				B523832A20AE9EF40087733A /* FFDriveUserModel.m in Sources */,
 				B523832620AE9EF40087733A /* FFMineBaseTableViewController.m in Sources */,
+				B599691A20BB9B4200BC6084 /* FFLaunchScreen.m in Sources */,
+				B599691720BB9AD700BC6084 /* FFAdvertisingView.m in Sources */,
 				B51BD04320B50A76005B9DE1 /* FFRebateSelectView.m in Sources */,
 				B532510620B26D96007D7239 /* FFBoxModel.m in Sources */,
 				B52383A320AEAAD30087733A /* FFOpenServerViewController.m in Sources */,
@@ -2486,6 +2567,7 @@
 				B52383D020AECD100087733A /* FFGameGiftViewController.m in Sources */,
 				B52383D120AECD100087733A /* FFGameOpenServerViewController.m in Sources */,
 				B523838020AE9FAC0087733A /* ZLPhotoConfiguration.m in Sources */,
+				B599691620BB9AD700BC6084 /* FFMaskView.m in Sources */,
 				B523832720AE9EF40087733A /* FFDriveMineViewController.m in Sources */,
 				B51BCFB620B2C8AB005B9DE1 /* FFpackageCell.m in Sources */,
 				B5D505802085CB06000B7B50 /* FFBasicSelectViewController.m in Sources */,
@@ -2620,19 +2702,27 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EE677440EC57745993D7D0F0 /* Pods-GameBox.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JR27SLBFXN;
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				ENABLE_ONLY_ACTIVE_RESOURCES = YES;
+				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.framework *.gch *.xcode* *.xcassets (*) .DS_Store CVS .svn .git .hg *.pbproj *.pbxproj *.a";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/GameBox",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/GameBox/Others/FFPerFixHeader.pch";
+				GCC_USE_STANDARD_INCLUDE_SEARCHING = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/GameBox/MainEntry/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(PROJECT_DIR)/GameBox";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/GameBox/Others/Third_Library/trackingio",
+					"$(PROJECT_DIR)/GameBox",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sy185Box.TWKJ.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2643,19 +2733,27 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C9E7C73404CBBD7F21F68365 /* Pods-GameBox.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JR27SLBFXN;
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				ENABLE_ONLY_ACTIVE_RESOURCES = YES;
+				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.framework *.gch *.xcode* *.xcassets (*) .DS_Store CVS .svn .git .hg *.pbproj *.pbxproj *.a";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/GameBox",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/GameBox/Others/FFPerFixHeader.pch";
+				GCC_USE_STANDARD_INCLUDE_SEARCHING = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/GameBox/MainEntry/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(PROJECT_DIR)/GameBox";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/GameBox/Others/Third_Library/trackingio",
+					"$(PROJECT_DIR)/GameBox",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sy185Box.TWKJ.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;

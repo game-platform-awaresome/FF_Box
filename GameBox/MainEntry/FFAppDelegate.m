@@ -17,6 +17,12 @@
 
 #import "FFMapModel.h"
 #import "FFBoxModel.h"
+#import "FFStatisticsModel.h"
+
+#import "FFMaskView.h"
+#import "FFAdvertisingView.h"
+#import "FFLaunchScreen.h"
+
 
 #define WEIXINAPPID @"wx7ec31aabe8cc710d"
 #define QQAPPID @"1106099979"
@@ -37,8 +43,6 @@
 
     //初始化数据
     [self initializeDataSource];
-
-//    NSLog(@"%@",[FFDateFormatter stringFromeDate:[NSDate date]]);
 
     return YES;
 }
@@ -76,7 +80,6 @@
     //第一次安装
     BOOL isFirstInstall = [FFBoxModel isFirstInstall];
 
-    //加载蒙版
 
     //初始化window
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
@@ -84,26 +87,21 @@
     //    self.window.rootViewController = [UIViewController new];
     [self.window makeKeyAndVisible];
 
-
+    //加载蒙版
     [self addMaskView:isFirstInstall];
-//
-//    //加载引导页
+
+    //加载引导页
     if ([FFBoxModel isFirstLogin]) {
-//        [self.window addSubview:[FFLaunchScreen new]];
+        [self.window addSubview:[FFLaunchScreen new]];
     } else {
-//
-//        //广告
-//        NSData * data = [FFBoxModel getAdvertisingImage];
-//        if (data) {
-//            [FFAdvertisingView initWithImage:data];
-//        }
-//
+        //广告
+        NSData * data = [FFBoxModel getAdvertisingImage];
+        if (data) {
+            [FFAdvertisingView initWithImage:data];
+        }
     }
-//
     //请求广告页面
-//    [FFBoxModel postAdvertisingImage];
-
-
+    [FFBoxModel postAdvertisingImage];
 }
 
 
@@ -129,8 +127,8 @@
     //公告
     [FFBoxModel appAnnouncement];
 
-//    //注册统计
-//    [FFStatisticsModel reigstStatics];
+    //注册统计
+    initStatisticsModel();
 
     //检查更新
     [FFBoxModel checkBoxVersionCompletion:^(NSDictionary *content, BOOL success) {
@@ -166,9 +164,9 @@
 }
 
 - (void)addMaskView:(BOOL)add {
-//    if (add) {
-//        [FFMaskView addMaskViewWithWindow:self.window];
-//    }
+    if (add) {
+        [FFMaskView addMaskViewWithWindow:self.window];
+    }
 }
 
 
