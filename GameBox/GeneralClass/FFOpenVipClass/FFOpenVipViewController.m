@@ -10,6 +10,7 @@
 #import "FFPayModel.h"
 #import "FFWebViewController.h"
 #import "FFUserModel.h"
+#import "FFStatisticsModel.h"
 
 #define CELL_IDE @"openVipViewCell"
 #define BUTTON_TAG 10086
@@ -101,16 +102,15 @@
     [FFPayModel payReadyWithCompletion:^(NSDictionary *content, BOOL success) {
         if (success) {
             syLog(@"可以支付");
-
-//            [FFStatisticsModel customEventsWith:@"open_vip_action" Extra:nil];
+            customEvents(@"open_vip_action", nil);
 
             [FFPayModel payStartWithproductID:dict[@"productID"] payType:[NSString stringWithFormat:@"%ld",(_cellIndex + 1)] amount:dict[@"money"] Completion:^(NSDictionary *content, BOOL success) {
                 syLog(@"支付 ?????????????");
                 if (success) {
                     _payType = [NSString stringWithFormat:@"%ld",(_cellIndex + 1)];
                     _amount = dict[@"money"];
-//                    [FFStatisticsModel statisticsPayWithTransactionID:content[@"data"][@"orderID"] paymentType:_payType currencyAmount:_amount];
 
+                    statisticsPayStart(content[@"data"][@"orderID"], _payType, _amount);
 
                     FFWebViewController *web = [[FFWebViewController alloc] init];
                     NSDictionary *dict = content[@"data"];
@@ -144,7 +144,7 @@
             NSDictionary *dict = content[@"data"];
             NSString *status = dict[@"order_status"];
             if (status.integerValue == 1 || status.integerValue == 2) {
-//                [FFStatisticsModel statisticsPayCallBackWithTransactionID:orderID paymentType:_payType currencyAmount:_amount];
+                statisticsPayCallBack(orderID, _payType, _amount);
             } else {
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [self payQuereWithOrderID:orderID];

@@ -41,12 +41,9 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
+    self.navBarBGAlpha = @"0.0";
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    self.navigationController.navigationBar.hidden = NO;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -56,13 +53,16 @@
 - (void)initUserInterface {
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.title = @"找回密码";
-
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"General_back_black"] style:(UIBarButtonItemStyleDone) target:self action:@selector(respondsToLeftButton)];
     [self.view addSubview:self.phoneNumber];
     [self.view addSubview:self.securityCode];
     [self.view addSubview:self.next];
 }
 
 #pragma mark - responds
+- (void)respondsToLeftButton {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 /** 下一步 */
 - (void)respondsToNext {
     NSString *MOBILE = @"^1\\d{10}$";
@@ -173,14 +173,16 @@
 - (UITextField *)phoneNumber {
     if (!_phoneNumber) {
         _phoneNumber = [[UITextField alloc]init];
-        _phoneNumber.bounds = CGRectMake(0, 0, kSCREEN_WIDTH * 0.8, 44);
+        _phoneNumber.bounds = CGRectMake(0, 0, kSCREEN_WIDTH * 0.9, 44);
         _phoneNumber.center = CGPointMake(kSCREEN_WIDTH / 2, 120);
 
-        _phoneNumber.borderStyle = UITextBorderStyleRoundedRect;
+        _phoneNumber.borderStyle = UITextBorderStyleNone;
         _phoneNumber.placeholder = @"请输入手机号码";
         _phoneNumber.delegate = self;
         _phoneNumber.returnKeyType = UIReturnKeyNext;
         _phoneNumber.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+
+        [_phoneNumber.layer addSublayer:[self creatLineLayerWithFrame:CGRectMake(0, _phoneNumber.bounds.size.height - 1, _phoneNumber.bounds.size.width, 0.5)]];
     }
     return _phoneNumber;
 }
@@ -188,18 +190,20 @@
 - (UITextField *)securityCode {
     if (!_securityCode) {
         _securityCode = [[UITextField alloc]init];
-        _securityCode.bounds = CGRectMake(0, 0, kSCREEN_WIDTH * 0.8, 44);
+        _securityCode.bounds = CGRectMake(0, 0, kSCREEN_WIDTH * 0.9, 44);
         _securityCode.center = CGPointMake(kSCREEN_WIDTH / 2, 185);
 
         _securityCode.rightView = self.sendCodeBtn;
         _securityCode.rightViewMode = UITextFieldViewModeAlways;
 
-        _securityCode.borderStyle = UITextBorderStyleRoundedRect;
+        _securityCode.borderStyle = UITextBorderStyleNone;
         _securityCode.placeholder = @"请输入验证码";
         _securityCode.delegate = self;
 
         _securityCode.returnKeyType = UIReturnKeyNext;
         _securityCode.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+
+        [_securityCode.layer addSublayer:[self creatLineLayerWithFrame:CGRectMake(0, _securityCode.bounds.size.height - 1, _securityCode.bounds.size.width, 0.5)]];
     }
     return _securityCode;
 }
@@ -207,14 +211,23 @@
 - (UIButton *)sendCodeBtn {
     if (!_sendCodeBtn) {
         _sendCodeBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        _sendCodeBtn.frame = CGRectMake(0, 0, kSCREEN_WIDTH * 0.2, 44);
-        [_sendCodeBtn setTitle:@"发送" forState:(UIControlStateNormal)];
-        [_sendCodeBtn setBackgroundColor:[FFColorManager blue_dark]];
+        _sendCodeBtn.frame = CGRectMake(0, 0, kSCREEN_WIDTH / 4, 44);
+        [_sendCodeBtn setTitle:@"获取验证码" forState:(UIControlStateNormal)];
+        [_sendCodeBtn setBackgroundColor:[FFColorManager navigation_bar_white_color]];
+        [_sendCodeBtn setTitleColor:[FFColorManager blue_dark] forState:(UIControlStateNormal)];
         _sendCodeBtn.layer.cornerRadius = 4;
         _sendCodeBtn.layer.masksToBounds = YES;
         [_sendCodeBtn addTarget:self action:@selector(respondsToSendCodeBtn) forControlEvents:(UIControlEventTouchUpInside)];
+        [_sendCodeBtn.layer addSublayer:[self creatLineLayerWithFrame:CGRectMake(0, _sendCodeBtn.bounds.size.height - 1, _sendCodeBtn.bounds.size.width, 0.5)]];
     }
     return _sendCodeBtn;
+}
+
+- (CALayer *)creatLineLayerWithFrame:(CGRect)frame {
+    CALayer *layer = [[CALayer alloc] init];
+    layer.frame = frame;
+    layer.backgroundColor = [FFColorManager text_separa_line_color].CGColor;
+    return layer;
 }
 
 - (UIButton *)next {
@@ -224,7 +237,7 @@
         _next.center = CGPointMake(kSCREEN_WIDTH / 2, 250);
         [_next setTitle:@"下一步" forState:(UIControlStateNormal)];
         [_next setBackgroundColor:[FFColorManager blue_dark]];
-        _next.layer.cornerRadius = 4;
+        _next.layer.cornerRadius = 22;
         _next.layer.masksToBounds = YES;
         [_next addTarget:self action:@selector(respondsToNext) forControlEvents:(UIControlEventTouchUpInside)];
     }

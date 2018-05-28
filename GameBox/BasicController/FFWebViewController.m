@@ -32,6 +32,10 @@
     self.navBarBGAlpha = @"1.0";
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+}
+
 - (void)viewDidLoad {
     self.navBarBGAlpha = @"1.0";
     [super viewDidLoad];
@@ -184,9 +188,6 @@
 
 - (void)dealloc {
     [_webView removeObserver:self forKeyPath:@"estimatedProgress"];
-    // if you have set either WKWebView delegate also set these to nil here
-    [_webView setNavigationDelegate:nil];
-    [_webView setUIDelegate:nil];
 }
 
 

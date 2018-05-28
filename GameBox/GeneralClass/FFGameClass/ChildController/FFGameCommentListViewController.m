@@ -346,6 +346,8 @@
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.showsHorizontalScrollIndicator = NO;
         _tableView.tableFooterView = [UIView new];
+//        _tableView.rowHeight = 80;
+        _tableView.estimatedRowHeight = 100;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         if (@available(iOS 11.0, *)) {
             _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;

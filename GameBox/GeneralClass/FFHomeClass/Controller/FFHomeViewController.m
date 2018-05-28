@@ -49,7 +49,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
 
-    self.navigationItem.title = @"   ";
+    self.navigationItem.title = @" ";
 
     [self setSelectTitleView];
 
@@ -105,6 +105,10 @@
     } else {
         syLog(@"%s error- > %@ not exist",__func__,className);
     }
+}
+
+- (void)respondsToFloatImageViewPan:(UIPanGestureRecognizer *)sender {
+    
 }
 
 - (void)respondsToRightButton {

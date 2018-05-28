@@ -69,7 +69,7 @@ typedef void(^EndOfNetWorkRequestBlock)(BOOL success);
 - (void)showLoginViewController;
 - (void)addFLoatView;
 - (void)respondsToFloatImageViewTap:(UITapGestureRecognizer *)sender;
-
+- (void)respondsToFloatImageViewPan:(UIPanGestureRecognizer *)sender;
 
 @end
 

@@ -9,6 +9,7 @@
 #import "FFExchangeCoinController.h"
 #import "FFUserModel.h"
 #import "FFViewFactory.h"
+#import "FFStatisticsModel.h"
 
 @interface FFExchangeCoinController ()<UITextFieldDelegate>
 
@@ -104,7 +105,7 @@
             syLog(@"exchang == %@",content);
             [self initDataSource];
             BOX_MESSAGE(@"兑换成功");
-//            [FFStatisticsModel customEventsWith:@"exchange_platform_coin" Extra:@{@"number":self.exchangeTextfield.text}];
+            customEvents(@"exchange_platform_coin", @{@"number":self.exchangeTextfield.text});
         } else {
             BOX_MESSAGE(content[@"msg"]);
         }

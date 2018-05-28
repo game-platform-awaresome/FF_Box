@@ -10,6 +10,7 @@
 #import <WebKit/WebKit.h>
 #import "SYKeychain.h"
 #import "FFMyPrizeViewController.h"
+#import "FFStatisticsModel.h"
 
 @interface FFLotteryViewController ()<WKUIDelegate,WKNavigationDelegate,UIWebViewDelegate,WKUIDelegate,UIScrollViewDelegate>
 
@@ -30,13 +31,16 @@
 
 @implementation FFLotteryViewController
 
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
     self.navBarBGAlpha = @"1.0";
     [self.navigationController.navigationBar setTintColor:[FFColorManager navigation_bar_black_color]];
     [self.navigationController.navigationBar setBarTintColor:[FFColorManager navigation_bar_white_color]];
+    customEvents(@"luck_draw", nil);
 }
+
 
 
 - (void)viewDidLoad {
@@ -110,6 +114,7 @@
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+
     self.progressView.frame = CGRectMake(0, CGRectGetMaxY(self.navigationController.navigationBar.frame), 0, 3);
     if ([keyPath isEqual: @"estimatedProgress"] && object == _webView) {
         [self.progressView setAlpha:1.0f];
@@ -125,7 +130,7 @@
             });
         }
     } else {
-        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+//        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
 }
 
@@ -181,6 +186,10 @@
     return _myPrizeViewController;
 }
 
+
+- (void)dealloc {
+    [_webView removeObserver:self forKeyPath:@"estimatedProgress"];
+}
 
 
 @end

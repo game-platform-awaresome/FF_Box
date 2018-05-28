@@ -15,7 +15,7 @@
 #import <WXApi.h>
 
 #import "FFDeviceInfo.h"
-//#import "FFStatisticsModel.h"
+#import "FFStatisticsModel.h"
 
 #define SHARED_WINDOW [FFSharedController sharedWindow]
 #define SHARED_VIEW [FFSharedController sharedView]
@@ -77,7 +77,7 @@ static FFSharedController *controller = nil;
         return;
     }
     IS_INVITE = YES;
-//    [FFStatisticsModel customEventsWith:@"shared_Box" Extra:nil];
+    customEvents(@"shared_Box", @{@"shared_Box":@"邀请好友"});
     [FFSharedController sharedController].sharedType = invitedFirend;
     [FFSharedController sharedController].isShow = YES;
     [FFSharedController sharedController].cancelButton.userInteractionEnabled = NO;
@@ -107,7 +107,7 @@ static FFSharedController *controller = nil;
         }
     }
 
-//    [FFStatisticsModel customEventsWith:@"shared_Game" Extra:@{@"game_name":info[@"gamename"]}];
+    customEvents(@"shared_Game", @{@"game_name":info[@"gamename"]});
 
     if ([FFSharedController sharedController].isShow) {
         return;

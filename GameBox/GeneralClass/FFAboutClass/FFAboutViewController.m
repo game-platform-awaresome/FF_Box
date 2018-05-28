@@ -63,7 +63,7 @@
         _imageView.bounds = CGRectMake(0, 0, 80, 80);
         _imageView.center = CGPointMake(kSCREEN_WIDTH / 2, 140);
 
-        _imageView.image = [UIImage imageNamed:@"aboutus_icon"];
+        _imageView.image = [UIImage imageNamed:@"Mine_logo_image"];
         _imageView.layer.cornerRadius = 8;
         _imageView.layer.masksToBounds = YES;
     }

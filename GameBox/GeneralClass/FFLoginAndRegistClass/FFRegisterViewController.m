@@ -62,6 +62,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
+    self.navBarBGAlpha = @"0.0";
     self.userName.text = @"";
     self.passWord.text = @"";
     self.phoneNumber.text = @"";
@@ -93,7 +94,10 @@
 //    [self.view addSubview:self.changeButton];
     [self.view addSubview:self.selectProtocolButton];
     [self.view addSubview:self.showProtocolButton];
+    
     self.navigationItem.rightBarButtonItem = self.rightChangeButton;
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"General_back_black"] style:(UIBarButtonItemStyleDone) target:self action:@selector(respondsToLeftButton)];
+
     [self phoneView];
 }
 
@@ -114,9 +118,15 @@
     self.changeButton.frame = CGRectMake(CGRectGetMinX(self.passWord.frame), CGRectGetMaxY(self.registerBtn.frame), kSCREEN_WIDTH * 0.8, 30);
     self.rightChangeButton.title = @"用户名注册";
     self.userName.placeholder = @"请输入手机号";
-    self.selectProtocolButton.frame = CGRectMake(CGRectGetMinX(self.passWord.frame), CGRectGetMaxY(self.passWord.frame) + 10, 20, 20);
+
     [self.selectProtocolButton sizeToFit];
-    self.showProtocolButton.frame = CGRectMake(CGRectGetMaxX(self.passWord.frame) - self.showProtocolButton.frame.size.width, CGRectGetMaxY(self.passWord.frame) + 10, self.showProtocolButton.frame.size.width, self.showProtocolButton.frame.size.height);
+    [self.showProtocolButton sizeToFit];
+
+    CGFloat width = self.selectProtocolButton.bounds.size.width + self.showProtocolButton.bounds.size.width;
+    width = kSCREEN_WIDTH - width;
+    self.selectProtocolButton.frame = CGRectMake(width / 2, CGRectGetMaxY(self.registerBtn.frame) + 10, self.selectProtocolButton.bounds.size.width, self.selectProtocolButton.bounds.size.height);
+
+    self.showProtocolButton.frame = CGRectMake(CGRectGetMaxX(self.selectProtocolButton.frame), CGRectGetMinY(self.selectProtocolButton.frame), self.showProtocolButton.frame.size.width, self.showProtocolButton.frame.size.height);
     self.showProtocolButton.center = CGPointMake(self.showProtocolButton.center.x, self.selectProtocolButton.center.y);
 }
 
@@ -132,11 +142,13 @@
         self.userName.placeholder = @"请输入用户名";
         self.selectProtocolButton.frame = CGRectMake(CGRectGetMinX(self.passWord.frame), CGRectGetMaxY(self.passWord.frame) + 10, 20, 20);
         [self.selectProtocolButton sizeToFit];
+        [self.showProtocolButton sizeToFit];
 
-        self.showProtocolButton.frame = CGRectMake(CGRectGetMaxX(self.passWord.frame) - self.showProtocolButton.frame.size.width, CGRectGetMaxY(self.passWord.frame) + 10, self.showProtocolButton.frame.size.width, self.showProtocolButton.frame.size.height);
-
+        CGFloat width = self.selectProtocolButton.bounds.size.width + self.showProtocolButton.bounds.size.width;
+        width = kSCREEN_WIDTH - width;
+        self.selectProtocolButton.frame = CGRectMake(width / 2, CGRectGetMaxY(self.registerBtn.frame) + 10, self.selectProtocolButton.bounds.size.width, self.selectProtocolButton.bounds.size.height);
+        self.showProtocolButton.frame = CGRectMake(CGRectGetMaxX(self.selectProtocolButton.frame), CGRectGetMinY(self.selectProtocolButton.frame), self.showProtocolButton.frame.size.width, self.showProtocolButton.frame.size.height);
         self.showProtocolButton.center = CGPointMake(self.showProtocolButton.center.x, self.selectProtocolButton.center.y);
-
     } completion:^(BOOL finished) {
 
     }];
@@ -156,6 +168,9 @@
 }
 
 #pragma mark - responds
+- (void)respondsToLeftButton {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 /** 切换注册 */
 - (void)respondsToChangeButton {
     syLog(@"???");
@@ -288,55 +303,6 @@
             [UIAlertController showAlertMessage:content[@"msg"] dismissTime:0.7 dismissBlock:nil];
         }
     }];
-
-
-
-//         _isRegisting = NO;
-//         BOX_STOP_ANIMATION;
-//         if (success) {
-//             NSString *loginName = nil;
-//             if ([userName isEqualToString:@""] || userName.length == 0) {
-//                 loginName = phoneNumber;
-//             } else {
-//                 loginName = userName;
-//             }
-
-//             [FFViewFactory showAlertMessage:@"注册成功" dismissTime:0.7 dismiss:^{
-//
-//                 BOX_MESSAGE(@"正在登陆");
-//                 BOX_START_ANIMATION;
-//                 [FFUserModel userLoginWithUserName:loginName PassWord:passWord Completion:^(NSDictionary *content, BOOL success) {
-//                     BOX_STOP_ANIMATION;
-//                     if (success) {
-//                         NSDictionary *dict = CONTENT_DATA;
-//                         //设置用户模型
-//                         [[FFUserModel currentUser] setAllPropertyWithDict:dict];
-//                         //登录
-//                         [FFUserModel login:dict];
-//                         //保存 UID
-//                         [FFUserModel setUID:[FFUserModel currentUser].uid];
-//                         [FFUserModel setUserName:[FFUserModel currentUser].username];
-//                         [FFUserModel currentUser].isLogin = @"1";
-//                         [FFUserModel setPassWord:passWord];
-//                         BOX_MESSAGE(@"登陆成功");
-//
-//                         [[NSNotificationCenter defaultCenter] postNotificationName:@"UserReigsterThanLogin" object:nil userInfo:nil];
-//
-//                         [self.navigationController popToRootViewControllerAnimated:YES];
-//                     } else {
-//                         BOX_MESSAGE(@"登陆失败");
-//                         [self.navigationController popViewControllerAnimated:YES];
-//                     }
-//                 }];
-//             }];
-
-
-
-//         } else {
-//             BOX_MESSAGE(content[@"msg"]);
-//         }
-//
-//     }];
 }
 
 /** 响应发送验证码按钮 */
@@ -447,19 +413,21 @@
 
     textfield.leftView = lefitView;
     textfield.leftViewMode = UITextFieldViewModeAlways;
-    textfield.borderStyle = UITextBorderStyleRoundedRect;
+    textfield.borderStyle = UITextBorderStyleNone;
     textfield.placeholder = placeholder;
     textfield.secureTextEntry = secureTextEntry;
     textfield.delegate = self;
+
     [textfield setAutocorrectionType:UITextAutocorrectionTypeNo];
     [textfield setAutocapitalizationType:UITextAutocapitalizationTypeNone];
 
+    [textfield.layer addSublayer:[self creatLineLayerWithFrame:CGRectMake(0, textfield.bounds.size.height - 1, textfield.bounds.size.width, 0.5)]];
     return textfield;
 }
 
 - (UITextField *)userName {
     if (!_userName) {
-        _userName = [self creatTextFieldWithLeftView:nil WithRightView:nil WithPlaceholder:@"请输用户名" WithBounds:CGRectMake(0, 0, kSCREEN_WIDTH * 0.8, 44) WithsecureTextEntry:NO];
+        _userName = [self creatTextFieldWithLeftView:nil WithRightView:nil WithPlaceholder:@"请输用户名" WithBounds:CGRectMake(0, 0, kSCREEN_WIDTH * 0.9, 44) WithsecureTextEntry:NO];
         _userName.center = CGPointMake(kSCREEN_WIDTH / 2, kSCREEN_HEIGHT * 0.2);
         _userName.returnKeyType = UIReturnKeyNext;
         _userName.keyboardType = UIKeyboardTypeDefault;
@@ -469,22 +437,22 @@
 
 - (UITextField *)securityCode {
     if (!_securityCode) {
-        _securityCode = [self creatTextFieldWithLeftView:nil WithRightView:nil WithPlaceholder:@"请输入验证码" WithBounds:CGRectMake(CGRectGetMidX(self.userName.frame), CGRectGetMaxY(self.userName.frame) + 20, kSCREEN_WIDTH * 0.8, 44) WithsecureTextEntry:NO];
-
+        _securityCode = [self creatTextFieldWithLeftView:nil WithRightView:nil WithPlaceholder:@"请输入验证码" WithBounds:CGRectMake(0, 0, kSCREEN_WIDTH * 0.9, 44) WithsecureTextEntry:NO];
+        _securityCode.center = CGPointMake(kSCREEN_WIDTH / 2, kSCREEN_HEIGHT * 0.2);
+        _securityCode.returnKeyType = UIReturnKeyNext;
+        _securityCode.keyboardType = UIKeyboardTypeDefault;
         _securityCode.rightView = self.sendMessageBtn;
         _securityCode.rightViewMode = UITextFieldViewModeAlways;
-
-        _securityCode.returnKeyType = UIReturnKeyNext;
-        _securityCode.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
-        _securityCode.layer.masksToBounds = YES;
     }
     return _securityCode;
 }
 
 - (UITextField *)passWord {
     if (!_passWord) {
-        _passWord = [self creatTextFieldWithLeftView:nil WithRightView:nil WithPlaceholder:@"请输入密码" WithBounds:CGRectMake(CGRectGetMaxX(self.userName.frame), CGRectGetMaxY(self.securityCode.frame) + 20, kSCREEN_WIDTH * 0.8, 44) WithsecureTextEntry:YES];
+        _passWord = [self creatTextFieldWithLeftView:nil WithRightView:nil WithPlaceholder:@"请输入密码" WithBounds:CGRectMake(0, 0, kSCREEN_WIDTH * 0.9, 44) WithsecureTextEntry:YES];
+        _passWord.center = CGPointMake(kSCREEN_WIDTH / 2, kSCREEN_HEIGHT * 0.2);
         _passWord.returnKeyType = UIReturnKeyNext;
+        _passWord.keyboardType = UIKeyboardTypeDefault;
     }
     return _passWord;
 }
@@ -493,14 +461,22 @@
 
 - (UITextField *)phoneNumber {
     if (!_phoneNumber) {
-        _phoneNumber = [self creatTextFieldWithLeftView:nil WithRightView:nil WithPlaceholder:@"请输入手机号" WithBounds:CGRectMake(0, 0, kSCREEN_WIDTH * 0.8, 44) WithsecureTextEntry:NO];
+        _phoneNumber = [self creatTextFieldWithLeftView:nil WithRightView:nil WithPlaceholder:@"请输入手机号" WithBounds:CGRectMake(0, 0, kSCREEN_WIDTH * 0.9, 44) WithsecureTextEntry:NO];
         _phoneNumber.center = CGPointMake(kSCREEN_WIDTH / 2, kSCREEN_HEIGHT * 0.2);
         _phoneNumber.returnKeyType = UIReturnKeyNext;
         _phoneNumber.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+
+        [_phoneNumber.layer addSublayer:[self creatLineLayerWithFrame:CGRectMake(0, _phoneNumber.bounds.size.height - 1, _phoneNumber.bounds.size.width, 0.5)]];
     }
     return _phoneNumber;
 }
 
+- (CALayer *)creatLineLayerWithFrame:(CGRect)frame {
+    CALayer *layer = [[CALayer alloc] init];
+    layer.frame = frame;
+    layer.backgroundColor = [FFColorManager text_separa_line_color].CGColor;
+    return layer;
+}
 
 - (UITextField *)email {
     if(!_email) {
@@ -515,16 +491,16 @@
 - (UIButton *)selectProtocolButton {
     if (!_selectProtocolButton) {
         _selectProtocolButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        _selectProtocolButton.frame = CGRectMake(CGRectGetMinX(self.passWord.frame), CGRectGetMaxY(self.passWord.frame) + 10, 20, 20);
+        _selectProtocolButton.frame = CGRectMake(CGRectGetMinX(self.passWord.frame), CGRectGetMaxY(self.passWord.frame) + 10, 30, 30);
         [_selectProtocolButton setImage:[UIImage imageNamed:@"Protocol_select_yes"] forState:(UIControlStateSelected)];
         [_selectProtocolButton setImage:[UIImage imageNamed:@"Protocol_select_no"] forState:(UIControlStateNormal)];
         _selectProtocolButton.selected = YES;
-        [_selectProtocolButton setTitle:@"用户协议" forState:(UIControlStateNormal)];
-        [_selectProtocolButton setTitle:@"用户协议" forState:(UIControlStateSelected)];
-        [_selectProtocolButton setTitleColor:[FFColorManager blue_light] forState:(UIControlStateNormal)];
-        [_selectProtocolButton setTitleColor:[FFColorManager blue_light] forState:(UIControlStateSelected)];
+        [_selectProtocolButton setTitle:@"我已阅读并同意" forState:(UIControlStateNormal)];
+        [_selectProtocolButton setTitle:@"我已阅读并同意" forState:(UIControlStateSelected)];
+        [_selectProtocolButton setTitleColor:[FFColorManager navigation_bar_black_color] forState:(UIControlStateNormal)];
+        [_selectProtocolButton setTitleColor:[FFColorManager navigation_bar_black_color] forState:(UIControlStateSelected)];
         [_selectProtocolButton addTarget:self action:@selector(respondsToSelectProtocolButton) forControlEvents:(UIControlEventTouchUpInside)];
-        _selectProtocolButton.titleLabel.font = [UIFont systemFontOfSize:13];
+        _selectProtocolButton.titleLabel.font = [UIFont systemFontOfSize:16];
     }
     return _selectProtocolButton;
 }
@@ -532,11 +508,12 @@
 - (UIButton *)showProtocolButton {
     if (!_showProtocolButton) {
         _showProtocolButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
+        _showProtocolButton.bounds = CGRectMake(0, 0, 30, 30);
         [_showProtocolButton addTarget:self action:@selector(showAlowProtocol) forControlEvents:(UIControlEventTouchUpInside)];
-        [_showProtocolButton setTitle:@"查看用户协议>>>" forState:(UIControlStateNormal)];
-        _showProtocolButton.titleLabel.font = [UIFont systemFontOfSize:14];
+        [_showProtocolButton setTitle:@"《用户协议》" forState:(UIControlStateNormal)];
+        _showProtocolButton.titleLabel.font = [UIFont systemFontOfSize:16];
         [_showProtocolButton sizeToFit];
-        [_showProtocolButton setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
+        [_showProtocolButton setTitleColor:[FFColorManager blue_dark] forState:(UIControlStateNormal)];
     }
     return _showProtocolButton;
 }
@@ -550,7 +527,7 @@
         [_registerBtn setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
         [_registerBtn setTitleColor:[UIColor blueColor] forState:(UIControlStateHighlighted)];
         [_registerBtn setBackgroundColor:[FFColorManager blue_dark]];
-        _registerBtn.layer.cornerRadius = 4;
+        _registerBtn.layer.cornerRadius = 22;
         _registerBtn.layer.masksToBounds = YES;
         [_registerBtn addTarget:self action:@selector(respondsToRegisterBtn) forControlEvents:(UIControlEventTouchUpInside)];
 
@@ -561,12 +538,15 @@
 - (UIButton *)sendMessageBtn {
     if (!_sendMessageBtn) {
         _sendMessageBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        _sendMessageBtn.backgroundColor = [FFColorManager blue_dark];
+        _sendMessageBtn.backgroundColor = [FFColorManager navigation_bar_white_color];
+        [_sendMessageBtn setTitleColor:[FFColorManager blue_dark] forState:(UIControlStateNormal)];
         [_sendMessageBtn setTitle:@"发送验证码" forState:(UIControlStateNormal)];
         [_sendMessageBtn addTarget:self action:@selector(respondsToSendMessageBtn) forControlEvents:(UIControlEventTouchUpInside)];
         _sendMessageBtn.bounds = CGRectMake(0, 0, kSCREEN_WIDTH * 0.3, 44);
         _sendMessageBtn.layer.cornerRadius = 2;
         _sendMessageBtn.layer.masksToBounds = YES;
+
+        [_sendMessageBtn.layer addSublayer:[self creatLineLayerWithFrame:CGRectMake(0, _sendMessageBtn.bounds.size.height - 1, _sendMessageBtn.bounds.size.width, 0.5)]];
     }
     return _sendMessageBtn;
 }

@@ -62,7 +62,7 @@ static FFStatisticsModel *model = nil;
 void initStatisticsModel(void) {
     NSDictionary *dict = @{@"channel":Channel};
     [FFNetWorkManager postRequestWithURL:Map.BOX_INIT Params:@{@"channel":Channel,@"sign":BOX_SIGN(dict, (@[@"channel"]))} Success:^(NSDictionary * _Nonnull content) {
-        syLog(@"统计  == =%@", content);
+        syLog(@"统计  === %@", content);
         NSString *status = content[@"status"];
         NSString *box_static = content[@"data"][@"box_static"];
         if (status.integerValue == 1) {
@@ -89,6 +89,183 @@ void initStatisticsModel(void) {
     }
 }
 
+
+/** 注册统计 */
+void statisticsRegistered(NSString *account) {
+    switch (statisticsModel.registState) {
+        case other:
+            return;
+        case selfBackGround:
+            break;
+        case reyun: {
+            [TrackingIO setRegisterWithAccountID:account];
+            break;
+        }
+        case guangdiantong: {
+            break;
+        }
+
+        default:
+            break;
+    }
+    syLog(@"注册统计");
+}
+
+
+/** 登录统计 */
+void statisticsLogin(NSString * account) {
+    switch (statisticsModel.registState) {
+        case other:
+            return;
+        case selfBackGround:
+
+            break;
+        case reyun: {
+            [TrackingIO setLoginWithAccountID:account];
+            break;
+        }
+        case guangdiantong: {
+            break;
+        }
+        default:
+            break;
+    }
+    syLog(@"登录统计");
+}
+
+/** 开始支付统计 */
+void statisticsPayStart(NSString *_Nonnull transactionID, NSString * _Nonnull payMentType, NSString * _Nonnull amount) {
+    syLog(@"准备支付统计");
+    /** typedef enum : NSUInteger {
+     AliQRcode = 1,
+     Alipay = 2,
+     WechatQRcode = 3,
+     WechatPay = 4,
+     TenPay = 6,
+     ChinaMobile = 7,
+     ChinaTelecom = 8,
+     ChinaUnicom = 9,
+     platformCoin = 10
+     } PayType; */
+    NSString *pay;
+    switch (payMentType.integerValue) {
+        case 1:
+        case 2: pay = @"alipay";
+            break;
+        case 3:
+        case 4: pay = @"weixinpay";
+            break;
+        default:
+            break;
+    }
+
+    switch (statisticsModel.registState) {
+        case other:
+            return;
+        case selfBackGround:
+
+            break;
+        case reyun: {
+            [TrackingIO setryzfStart:transactionID ryzfType:pay currentType:@"CNY" currencyAmount:amount.floatValue];
+            break;
+        }
+        case guangdiantong: {
+
+            break;
+        }
+
+        default:
+            break;
+    }
+}
+
+void statisticsPayCallBack(NSString *_Nonnull transactionID, NSString * _Nonnull payMentType, NSString * _Nonnull amount) {
+    syLog(@"支付回调统计");
+    /** typedef enum : NSUInteger {
+     AliQRcode = 1,
+     Alipay = 2,
+     WechatQRcode = 3,
+     WechatPay = 4,
+     TenPay = 6,
+     ChinaMobile = 7,
+     ChinaTelecom = 8,
+     ChinaUnicom = 9,
+     platformCoin = 10
+     } PayType; */
+    NSString *pay;
+    switch (payMentType.integerValue) {
+        case 1:
+        case 2: pay = @"alipay";
+            break;
+        case 3:
+        case 4: pay = @"weixinpay";
+            break;
+        default:
+            break;
+    }
+
+    switch (statisticsModel.registState) {
+        case other:
+            return;
+        case selfBackGround:
+
+            break;
+        case reyun: {
+            [TrackingIO setryzf:transactionID ryzfType:pay currentType:@"CNY" currencyAmount:amount.floatValue];
+            break;
+        }
+        case guangdiantong: {
+
+            break;
+        }
+
+        default:
+            break;
+    }
+}
+
+/** 自定义 */
+void customEvents(NSString * _Nonnull name, NSDictionary * _Nullable extra) {
+    syLog(@"自定义统计 : %@",name);
+    switch (statisticsModel.registState) {
+        case other:
+            return;
+        case selfBackGround:
+            break;
+        case reyun: {
+            [TrackingIO setEvent:name andExtra:extra];
+            break;
+        }
+        case guangdiantong: {
+            break;
+        }
+        default:
+            break;
+    }
+}
+
+/** 用户统计 */
+void userProfile(NSDictionary * _Nonnull dataDict) {
+    syLog(@"用户统计 : %@",dataDict);
+    switch (statisticsModel.registState) {
+        case other:
+            return;
+        case selfBackGround:
+
+            break;
+        case reyun: {
+            [TrackingIO setProfile:dataDict];
+            break;
+        }
+        case guangdiantong: {
+
+            break;
+        }
+
+        default:
+            break;
+    }
+}
 
 /** app install statistic */
 + (void)installStatistic {

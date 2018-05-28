@@ -234,8 +234,7 @@
 		B599693720BBA50400BC6084 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B599693620BBA50300BC6084 /* libz.tbd */; };
 		B599693920BBA51200BC6084 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B599693820BBA51200BC6084 /* libstdc++.tbd */; };
 		B599693A20BBA61F00BC6084 /* TrackingIO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B599692020BB9E8800BC6084 /* TrackingIO.a */; };
-		B599693D20BBA65000BC6084 /* FFStatisticsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B599693C20BBA65000BC6084 /* FFStatisticsModel.m */; };
-		B599694020BBA6E300BC6084 /* FFStatisticsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B599693E20BBA6E200BC6084 /* FFStatisticsModel.m */; };
+		B599694620BBABF700BC6084 /* FFStatisticsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B599694520BBABF700BC6084 /* FFStatisticsModel.m */; };
 		B59D989F2084A2E20024B11D /* FFBasicTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B59D989E2084A2E20024B11D /* FFBasicTableViewController.m */; };
 		B59D98A22084A2FD0024B11D /* FFBasicSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = B59D98A12084A2FD0024B11D /* FFBasicSelectView.m */; };
 		B5D10421208F0DD900CA1949 /* FFBasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D10420208F0DD900CA1949 /* FFBasicViewController.m */; };
@@ -677,10 +676,8 @@
 		B599693420BBA4DF00BC6084 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		B599693620BBA50300BC6084 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		B599693820BBA51200BC6084 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
-		B599693B20BBA65000BC6084 /* FFStatisticsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FFStatisticsModel.h; path = ../../../../FFStatisticsModel.h; sourceTree = "<group>"; };
-		B599693C20BBA65000BC6084 /* FFStatisticsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FFStatisticsModel.m; path = ../../../../FFStatisticsModel.m; sourceTree = "<group>"; };
-		B599693E20BBA6E200BC6084 /* FFStatisticsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFStatisticsModel.m; sourceTree = "<group>"; };
-		B599693F20BBA6E300BC6084 /* FFStatisticsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFStatisticsModel.h; sourceTree = "<group>"; };
+		B599694420BBABF700BC6084 /* FFStatisticsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFStatisticsModel.h; sourceTree = "<group>"; };
+		B599694520BBABF700BC6084 /* FFStatisticsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFStatisticsModel.m; sourceTree = "<group>"; };
 		B59D989D2084A2E20024B11D /* FFBasicTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBasicTableViewController.h; sourceTree = "<group>"; };
 		B59D989E2084A2E20024B11D /* FFBasicTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBasicTableViewController.m; sourceTree = "<group>"; };
 		B59D98A02084A2FD0024B11D /* FFBasicSelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBasicSelectView.h; sourceTree = "<group>"; };
@@ -1799,8 +1796,6 @@
 		B58CB795207B10830099773D /* BasicModel */ = {
 			isa = PBXGroup;
 			children = (
-				B599693B20BBA65000BC6084 /* FFStatisticsModel.h */,
-				B599693C20BBA65000BC6084 /* FFStatisticsModel.m */,
 				B58CB796207B10830099773D /* FFBasicModel.h */,
 				B58CB797207B10830099773D /* FFBasicModel.m */,
 				B58CB798207B10830099773D /* FFDeviceInfo.h */,
@@ -2157,8 +2152,8 @@
 		B5D505E82089DAA6000B7B50 /* GeneralModel */ = {
 			isa = PBXGroup;
 			children = (
-				B599693F20BBA6E300BC6084 /* FFStatisticsModel.h */,
-				B599693E20BBA6E200BC6084 /* FFStatisticsModel.m */,
+				B599694420BBABF700BC6084 /* FFStatisticsModel.h */,
+				B599694520BBABF700BC6084 /* FFStatisticsModel.m */,
 				B5D10428208F156000CA1949 /* FFGameModel.h */,
 				B5D10429208F156000CA1949 /* FFGameModel.m */,
 				B5781AE120A42CED00CB1464 /* FFUserModel.h */,
@@ -2410,7 +2405,6 @@
 				B51BD03A20B50976005B9DE1 /* FFApplyTransferView.m in Sources */,
 				B5D104352090167D00CA1949 /* FFRankListViewController.m in Sources */,
 				B51BD11320B5628F005B9DE1 /* FFMyPrizeViewController.m in Sources */,
-				B599694020BBA6E300BC6084 /* FFStatisticsModel.m in Sources */,
 				B523833920AE9EF40087733A /* FFMineViewCell.m in Sources */,
 				B51BD08520B53AC8005B9DE1 /* RebateTableViewCell.m in Sources */,
 				B51BD07920B53A5F005B9DE1 /* FFRebateRecordViewController.m in Sources */,
@@ -2451,7 +2445,7 @@
 				B523837B20AE9FAC0087733A /* ZLForceTouchPreviewController.m in Sources */,
 				B523839920AEA2710087733A /* YBPopupMenuPath.m in Sources */,
 				B51BD16A20B650CE005B9DE1 /* FFSystemInfoController.m in Sources */,
-				B599693D20BBA65000BC6084 /* FFStatisticsModel.m in Sources */,
+				B599694620BBABF700BC6084 /* FFStatisticsModel.m in Sources */,
 				B523837820AE9FAC0087733A /* ZLCustomCamera.m in Sources */,
 				B523837C20AE9FAC0087733A /* ZLNoAuthorityViewController.m in Sources */,
 				B523825C20AA86110087733A /* FFZKNewGameController.m in Sources */,

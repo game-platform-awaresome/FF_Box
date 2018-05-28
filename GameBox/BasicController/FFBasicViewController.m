@@ -221,7 +221,7 @@
 
 - (UIImageView *)floatImageView {
     if (!_floatImageView) {
-        _floatImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kSCREEN_WIDTH * 0.8, self.view.bounds.size.height * 0.8, self.floatImageViewSize, self.floatImageViewSize)];
+        _floatImageView = [[UIImageView alloc] initWithFrame:CGRectMake(kSCREEN_WIDTH * 0.8, self.view.bounds.size.height - CGRectGetMaxX(self.tabBarController.tabBar.frame) - 49, self.floatImageViewSize, self.floatImageViewSize)];
 
         _floatImageView.image = [UIImage imageNamed:@"Mine_list_invte"];
         _floatImageView.layer.cornerRadius = self.floatImageViewSize / 2;

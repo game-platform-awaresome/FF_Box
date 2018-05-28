@@ -27,18 +27,19 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = NO;
+    self.navBarBGAlpha = @"0.0";
     self.passWord.text = @"";
     self.affimPassWord.text = @"";
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    [self initUserInterface];
 }
 
 - (void)initUserInterface {
-    self.view.backgroundColor = [UIColor whiteColor];
+    [super initUserInterface];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"General_back_black"] style:(UIBarButtonItemStyleDone) target:self action:@selector(respondsToLeftButton)];
     self.navigationItem.title = @"新密码";
     [self.view addSubview:self.passWord];
     [self.view addSubview:self.affimPassWord];
@@ -46,6 +47,10 @@
 }
 
 #pragma mark - responds
+- (void)respondsToLeftButton {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)respondsToCompleteBtn {
     //密码太短
     if (self.passWord.text.length < 6 || self.affimPassWord.text.length < 6) {
@@ -110,15 +115,16 @@
 - (UITextField *)passWord {
     if (!_passWord) {
         _passWord = [[UITextField alloc]init];
-        _passWord.bounds = CGRectMake(0, 0, kSCREEN_WIDTH * 0.8, 44);
+        _passWord.bounds = CGRectMake(0, 0, kSCREEN_WIDTH * 0.9, 44);
         _passWord.center = CGPointMake(kSCREEN_WIDTH / 2, 120);
 
         _passWord.delegate = self;
-        _passWord.borderStyle = UITextBorderStyleRoundedRect;
+        _passWord.borderStyle = UITextBorderStyleNone;
         _passWord.placeholder = @"请输入新密码";
         _passWord.secureTextEntry = YES;
         _passWord.delegate = self;
         _passWord.returnKeyType = UIReturnKeyNext;
+        [_passWord.layer addSublayer:[self creatLineLayerWithFrame:CGRectMake(0, _passWord.bounds.size.height - 1, _passWord.bounds.size.width, 0.5)]];
     }
     return _passWord;
 }
@@ -126,16 +132,25 @@
 - (UITextField *)affimPassWord {
     if (!_affimPassWord) {
         _affimPassWord = [[UITextField alloc]init];
-        _affimPassWord.bounds = CGRectMake(0, 0, kSCREEN_WIDTH * 0.8, 44);
+        _affimPassWord.bounds = CGRectMake(0, 0, kSCREEN_WIDTH * 0.9, 44);
         _affimPassWord.center = CGPointMake(kSCREEN_WIDTH / 2, 185);
 
-        _affimPassWord.borderStyle = UITextBorderStyleRoundedRect;
+        _affimPassWord.borderStyle = UITextBorderStyleNone;
         _affimPassWord.placeholder = @"确认密码";
         _affimPassWord.secureTextEntry = YES;
         _affimPassWord.delegate = self;
         _affimPassWord.returnKeyType = UIReturnKeyDone;
+
+        [_affimPassWord.layer addSublayer:[self creatLineLayerWithFrame:CGRectMake(0, _affimPassWord.bounds.size.height - 1, _affimPassWord.bounds.size.width, 0.5)]];
     }
     return _affimPassWord;
+}
+
+- (CALayer *)creatLineLayerWithFrame:(CGRect)frame {
+    CALayer *layer = [[CALayer alloc] init];
+    layer.frame = frame;
+    layer.backgroundColor = [FFColorManager text_separa_line_color].CGColor;
+    return layer;
 }
 
 - (UIButton *)completeBtn {
@@ -145,7 +160,7 @@
         _completeBtn.center = CGPointMake(kSCREEN_WIDTH / 2, 250);
         [_completeBtn setTitle:@"完成" forState:(UIControlStateNormal)];
         [_completeBtn setBackgroundColor:[FFColorManager blue_dark]];
-        _completeBtn.layer.cornerRadius = 4;
+        _completeBtn.layer.cornerRadius = 22;
         _completeBtn.layer.masksToBounds = YES;
         [_completeBtn addTarget:self action:@selector(respondsToCompleteBtn) forControlEvents:(UIControlEventTouchUpInside)];
     }

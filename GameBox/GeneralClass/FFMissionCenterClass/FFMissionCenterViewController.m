@@ -38,6 +38,7 @@ typedef enum : NSUInteger {
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    syLog(@"%s",__func__);
     self.navigationController.navigationBar.hidden = NO;
     self.navBarBGAlpha = @"0.0";
     [self.navigationController.navigationBar setTintColor:[FFColorManager navigation_bar_white_color]];
@@ -219,16 +220,20 @@ typedef enum : NSUInteger {
 
 - (void)refreshTableViewWith:(NSUInteger)idx {
     [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:idx inSection:0]] withRowAnimation:(UITableViewRowAnimationNone)];
+    syLog(@"refresh title === idx ==== %lu",idx);
 }
 
 - (void)setCompletion:(NSDictionary *)completionDict {
     for (NSUInteger i = 1; i < 5; i++) {
-        NSString * complete = [NSString stringWithFormat:@"%@",completionDict[[NSString stringWithFormat:@"%lu",i]]];
+        syLog(@"i ==== %lu",i);
+        NSString *title = [NSString stringWithFormat:@"%lu",i];
+        NSString * complete = [NSString stringWithFormat:@"%@",completionDict[title]];
         [self refhresTableViewWith:(i - 1) WithComplete:complete];
     }
 }
 
 - (void)refhresTableViewWith:(NSUInteger)idx WithComplete:(NSString *)complete {
+    syLog(@"idx ==== %lu",idx);
     NSMutableDictionary *mutableDict = [self.dataDict[@(idx)] mutableCopy];
     [mutableDict setObject:complete forKey:@"complete"];
     [self.dataDict setObject:mutableDict forKey:@(idx)];

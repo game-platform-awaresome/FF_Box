@@ -35,6 +35,8 @@
     [super viewWillAppear:animated];
     self.navBarBGAlpha = @"0.0";
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+//    [self.navigationController.navigationBar setBarTintColor:[FFColorManager navigation_bar_black_color]];
+    self.navigationController.navigationBar.hidden = NO;
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -58,7 +60,8 @@
     self.tableView.mj_footer = nil;
 //    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     [self.rightButton setImage:[FFImageManager Mine_setting_image]];
-    self.navigationItem.rightBarButtonItem = self.rightButton;
+//    self.navigationItem.rightBarButtonItem = self.rightButton;
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[FFImageManager Mine_setting_image] style:(UIBarButtonItemStyleDone) target:self action:@selector(respondsToRightButton)];
 }
 
 - (void)initDataSource {
@@ -136,6 +139,7 @@
 
 #pragma mark - responds
 - (void)respondsToRightButton {
+    syLog(@"设置???");
     Class FFSettingViewController = NSClassFromString(@"FFSettingViewController");
     id vc = [FFSettingViewController new];
     [self pushViewController:vc];

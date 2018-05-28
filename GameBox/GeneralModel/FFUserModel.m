@@ -11,6 +11,7 @@
 #import "FFMapModel.h"
 #import "SYKeychain.h"
 #import <UIKit/UIKit.h>
+#import "FFStatisticsModel.h"
 
 #define FF_UID [FFUserModel currentUser].uid
 
@@ -153,7 +154,7 @@ static FFUserModel *model;
     [FFNetWorkManager postRequestWithURL:Map.USER_LOGIN Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         //回调
         NEW_REQUEST_COMPLETION;
-#warning login statistics
+
         syLog(@"login content == %@",content);
         if (success && (status.integerValue == 1)) {
             NSDictionary *dict = CONTENT_DATA;
@@ -163,6 +164,8 @@ static FFUserModel *model;
             [FFUserModel setUID:[FFUserModel currentUser].uid];
             [FFUserModel setUserName:[FFUserModel currentUser].username];
             [FFUserModel setPassWord:password];
+            
+            statisticsLogin([FFUserModel currentUser].username);
         }
     }];
 }
@@ -188,7 +191,7 @@ static FFUserModel *model;
     SS_SIGN;
     [FFNetWorkManager postRequestWithURL:Map.USER_REGISTER Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         NEW_REQUEST_COMPLETION;
-#warning regist statistics
+        statisticsRegistered(userName);
     }];
 }
 

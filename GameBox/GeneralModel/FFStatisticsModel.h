@@ -8,14 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
-
 /** 初始化统计 */
 void initStatisticsModel(void);
 /** 注册统计 */
-void statisticsRegistered(NSString *account);
-
-
-
+void statisticsRegistered(NSString * _Nonnull account);
+/** 登录统计 */
+void statisticsLogin(NSString * _Nonnull account);
+/** 开始支付统计 */
+void statisticsPayStart(NSString * _Nonnull transactionID, NSString * _Nonnull payMentType, NSString * _Nonnull amount);
+/** 支付回调统计 */
+void statisticsPayCallBack(NSString * _Nonnull transactionID, NSString * _Nonnull payMentType, NSString * _Nonnull amount);
+/** 自定义事件统计 */
+void customEvents(NSString * _Nonnull name, NSDictionary * _Nullable extra);
+/** 用户事件 */
+void userProfile(NSDictionary * _Nonnull dataDict);
 
 @interface FFStatisticsModel : NSObject
 
@@ -27,28 +33,6 @@ void statisticsRegistered(NSString *account);
 + (void)startStatistic;
 
 
-/** 注册统计 */
-+ (void)statisticsRegistrationWithAccount:(NSString *)account;
-
-/** 登录统计 */
-+ (void)statisticsLoginWithAccount:(NSString *)account;
-
-/** 支付统计 */
-+ (void)statisticsPayWithTransactionID:(NSString *)transactionID
-                           paymentType:(NSString *)payMentType
-                        currencyAmount:(NSString *)amount;
-
-/** 支付回调统计 */
-+ (void)statisticsPayCallBackWithTransactionID:(NSString *)transactionID
-                                   paymentType:(NSString *)payMentType
-                                currencyAmount:(NSString *)amount;
-
-/** 自定义事件统计 */
-+ (void)customEventsWith:(NSString *)name Extra:(NSDictionary *)dict;
-
-
-/** 用户事件统计 */
-+ (void)profile:(NSDictionary*)dataDic;
 
 
 

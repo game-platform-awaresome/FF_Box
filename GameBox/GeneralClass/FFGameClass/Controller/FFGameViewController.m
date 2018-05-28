@@ -10,6 +10,7 @@
 #import "FFCurrentGameModel.h"
 #import "FFGameHeaderView.h"
 #import "FFGameFooterView.h"
+#import "FFStatisticsModel.h"
 
 #import "FFWriteCommentController.h"
 
@@ -61,6 +62,7 @@ static FFGameViewController *controller = nil;
     } else {
         [self.navigationController.navigationBar setTintColor:self.lastNavColor];
     }
+    [self.navigationController.navigationBar setTintColor:[FFColorManager navigation_bar_white_color]];
 }
 
 - (void)resetNavColor {
@@ -93,7 +95,6 @@ static FFGameViewController *controller = nil;
             }
         }
     }
-
     barBackgroundView.alpha = 0;
 }
 
@@ -309,7 +310,9 @@ static FFGameViewController *controller = nil;
             }
         }];
     }
-//    [FFStatisticsModel customEventsWith:@"down_laod_game" Extra:@{@"game_name":CURRENT_GAME.game_name,@"game_id":CURRENT_GAME.game_id}];
+
+    customEvents(@"down_laod_game", @{@"game_name":CURRENT_GAME.game_name,@"game_id":CURRENT_GAME.game_id});
+
 }
 
 

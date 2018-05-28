@@ -11,7 +11,6 @@
 @interface FFCustomizeTabBar()
 
 
-
 @end
 
 
@@ -71,10 +70,12 @@
 
     CGFloat barHeight = self.bounds.size.height;
 
+    syLog(@"bar height === %lf",barHeight);
+
     NSMutableArray *tabBarButtonArray = [NSMutableArray array];
     for (UIView *view in self.subviews) {
         if ([view isKindOfClass:[UIButton class]]) {
-            view.center = CGPointMake(kSCREEN_WIDTH / 2, barHeight - view.frame.size.height / 2);
+            view.center = CGPointMake(kSCREEN_WIDTH / 2, 10);
         } else if ([view isKindOfClass:NSClassFromString(@"UITabBarButton")]) {
             [tabBarButtonArray addObject:view];
         }
@@ -87,8 +88,7 @@
         } else {
             index = idx + 1;
         }
-
-        obj.frame = CGRectMake(kSCREEN_WIDTH / 5 * index, 0, kSCREEN_WIDTH / 5, barHeight);
+        obj.frame = CGRectMake(kSCREEN_WIDTH / 5 * index, 0, kSCREEN_WIDTH / 5, 49);
     }];
 
     // 把中间按钮带到视图最前面
