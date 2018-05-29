@@ -66,13 +66,13 @@
 }
 
 - (void)setCoin:(NSString *)string {
-    if (string && [string isKindOfClass:[NSString class]]) {
+    if (string && [string isKindOfClass:[NSString class]] && string.length > 0) {
         self.coinLabel.hidden = NO;
         self.coinLabel.text = [NSString stringWithFormat:@"%@",string];
         CGPoint center = self.coinLabel.center;
         CGRect bounds = self.coinLabel.bounds;
-        [self.coinLabel sizeToFit];
-        bounds.size.width = self.coinLabel.bounds.size.width + 8;
+//        [self.coinLabel sizeToFit];
+        bounds.size.width = self.coinLabel.bounds.size.width + 3;
         self.coinLabel.bounds = bounds;
         self.coinLabel.center = center;
     } else {
@@ -93,9 +93,9 @@
 
 - (UILabel *)nameLabel {
     if (!_nameLabel) {
-        _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 70, 80, 20)];
-        _nameLabel.textAlignment = NSTextAlignmentCenter;
-        _nameLabel.font = [UIFont systemFontOfSize:13];
+        _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 70, 60, 20)];
+        _nameLabel.textAlignment = NSTextAlignmentLeft;
+        _nameLabel.font = [UIFont systemFontOfSize:11];
         _nameLabel.textColor = [FFColorManager textColorMiddle];
     }
     return _nameLabel;
@@ -103,9 +103,9 @@
 
 - (UILabel *)coinLabel {
     if (!_coinLabel) {
-        _coinLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 90, 80, 20)];
+        _coinLabel = [[UILabel alloc] initWithFrame:CGRectMake(12, 90, 56, 20)];
         _coinLabel.textAlignment = NSTextAlignmentCenter;
-        _coinLabel.font = [UIFont systemFontOfSize:13];
+        _coinLabel.font = [UIFont systemFontOfSize:11];
         _coinLabel.textColor = [FFColorManager current_version_main_color];
         _coinLabel.layer.borderColor = [FFColorManager current_version_main_color].CGColor;
         _coinLabel.layer.borderWidth = 1;

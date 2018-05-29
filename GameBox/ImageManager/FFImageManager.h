@@ -52,6 +52,7 @@
 + (UIImage *)Game_detail_footer_collection;
 + (UIImage *)Game_detail_footer_nocollection;
 + (UIImage *)Game_detail_footer_comment;
++ (UIImage *)Game_shared_image;
 
 #pragma makr - mine view
 + (UIImage *)Mine_not_login_avatar;
@@ -96,6 +97,9 @@
 + (UIImage *)Mission_sign_in;
 + (UIImage *)Mission_vip;
 
+
+#pragma mark - logo
++ (UIImage *)logoImage;
 
 
 

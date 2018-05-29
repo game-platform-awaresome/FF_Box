@@ -17,6 +17,8 @@
 #import "FFDeviceInfo.h"
 #import "FFStatisticsModel.h"
 
+#import "FFImageManager.h"
+
 #define SHARED_WINDOW [FFSharedController sharedWindow]
 #define SHARED_VIEW [FFSharedController sharedView]
 #define BACKGROUND_VIEW [FFSharedController sharedController].backGroundView
@@ -26,7 +28,7 @@
 #define SHARED_TITLE @"185手游充值大返利!!!!!快来加入!"
 #define SHARED_SUB_TITLE @"邀请你加入!!"
 #define SHARED_INVITE_URL [FFSharedController inviteUrl]
-#define SHARED_INVITE_IMAGE [UIImage imageNamed:@"aboutus_icon"]
+#define SHARED_INVITE_IMAGE [FFImageManager logoImage]
 #define GAME_INFO [FFSharedController sharedController].gameInfo
 #define FFSharedType ([FFSharedController sharedController].sharedType)
 
@@ -236,13 +238,12 @@ static FFSharedController *controller = nil;
                            Url:(NSString *)url
                          Image:(NSData *)imageData {
 
-    QQApiNewsObject *object = [QQApiNewsObject objectWithURL:[NSURL URLWithString:url] title:title description:subTitle previewImageData:imageData];
-
+//    QQApiNewsObject *object = [QQApiNewsObject objectWithURL:[NSURL URLWithString:url] title:title description:subTitle previewImageData:imageData];
+    QQApiNewsObject *object = [QQApiNewsObject objectWithURL:[NSURL URLWithString:url] title:title description:subTitle previewImageURL:[NSURL URLWithString:@"http://www.185sy.com/themes/template/Public/img/c_icon.png"]];
     object.shareDestType = ShareDestTypeQQ;
-
     SendMessageToQQReq *req = [SendMessageToQQReq reqWithContent:object];
-
     [QQApiInterface SendReqToQZone:req];
+
 }
 
 /** QQ 好友 */
@@ -251,13 +252,13 @@ static FFSharedController *controller = nil;
                              Url:(NSString *)url
                            Image:(NSData *)imageData {
 
-    QQApiNewsObject *object = [QQApiNewsObject objectWithURL:[NSURL URLWithString:url] title:title description:subTitle previewImageData:imageData];
+//    QQApiNewsObject *object = [QQApiNewsObject objectWithURL:[NSURL URLWithString:url] title:title description:subTitle previewImageData:imageData];
 
+    QQApiNewsObject *object = [QQApiNewsObject objectWithURL:[NSURL URLWithString:url] title:title description:subTitle previewImageURL:[NSURL URLWithString:@"http://www.185sy.com/themes/template/Public/img/c_icon.png"]];
     object.shareDestType = ShareDestTypeQQ;
-
     SendMessageToQQReq *req = [SendMessageToQQReq reqWithContent:object];
-
     [QQApiInterface sendReq:req];
+
 }
 
 //压缩图片
@@ -301,12 +302,14 @@ static FFSharedController *controller = nil;
 }
 
 + (void)sharedInviteToQQZone {
-    NSData *imageData = UIImagePNGRepresentation(SHARED_INVITE_IMAGE);
+//    NSData *imageData = UIImagePNGRepresentation(SHARED_INVITE_IMAGE);
+    NSData *imageData = UIImageJPEGRepresentation(SHARED_INVITE_IMAGE, 0.1);
     [FFSharedController shareToQQZoneWithTitle:SHARED_TITLE SubTitle:SHARED_SUB_TITLE Url:SHARED_INVITE_URL Image:imageData];
 }
 
 + (void)sharedInviteToQQFriend {
-    NSData *imageData = UIImagePNGRepresentation(SHARED_INVITE_IMAGE);
+//    NSData *imageData = UIImagePNGRepresentation(SHARED_INVITE_IMAGE);
+    NSData *imageData = UIImageJPEGRepresentation(SHARED_INVITE_IMAGE, 0.1);
     [FFSharedController shareToQQFriendWithTitle:SHARED_TITLE SubTitle:SHARED_SUB_TITLE Url:SHARED_INVITE_URL Image:imageData];
 }
 

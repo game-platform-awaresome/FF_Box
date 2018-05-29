@@ -160,7 +160,7 @@
 }
 
 - (void)showInviteView:(BOOL)show {
-    NSString *className = show ? @"FFInviteFriendViewController" : @"FFLoginViweController";
+    NSString *className = show ? @"FFInviteFriendViewController" : @"FFLoginViewController";
     Class ViewController = NSClassFromString(className);
     if (ViewController) {
         id vc = [[ViewController alloc] init];

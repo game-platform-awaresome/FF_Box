@@ -75,8 +75,9 @@
 //    return;
     id cell = [tableView cellForRowAtIndexPath:indexPath];
 
-    Class FFFpackageCell = NSClassFromString(@"FFpackageCell");
-    if ([cell isKindOfClass:FFFpackageCell]) {
+    Class FFCustomizeCell = NSClassFromString(@"FFCustomizeCell");
+    if (![cell isKindOfClass:FFCustomizeCell]) {
+        
         return;
     }
     

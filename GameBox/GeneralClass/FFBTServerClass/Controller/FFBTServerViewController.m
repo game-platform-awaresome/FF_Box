@@ -62,11 +62,22 @@
         if (success) {
             self.model.contentDataDict = CONTENT_DATA;
         } else {
-
+            self.tableView.tableHeaderView = [UIView new];
+            [UIAlertController showAlertMessage:content[@"msg"] dismissTime:0.7 dismissBlock:nil];
         }
 
         /** set banner */
-        self.tableHeaderView.bannerArray = self.model.bannerArray;
+
+        if (self.model.bannerArray != nil && self.model.bannerArray.count > 0) {
+            self.tableHeaderView.bannerArray = self.model.bannerArray;
+        }
+
+        if ((self.tableHeaderView.bannerArray != nil && self.tableHeaderView.bannerArray.count > 0) || self.model.sectionArray.count > 0) {
+            self.tableView.tableHeaderView = self.tableHeaderView;
+        } else {
+            self.tableView.tableHeaderView = [UIView new];
+        }
+
         [self.tableView reloadData];
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];

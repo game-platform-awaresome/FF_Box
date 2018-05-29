@@ -17,6 +17,8 @@
 #import "FFDeviceInfo.h"
 #import "FFUserModel.h"
 
+#import "FFSharedController.h"
+
 @interface FFGameViewController () <FFGameDetailFooterViewDelegate>
 
 
@@ -62,7 +64,6 @@ static FFGameViewController *controller = nil;
     } else {
         [self.navigationController.navigationBar setTintColor:self.lastNavColor];
     }
-    [self.navigationController.navigationBar setTintColor:[FFColorManager navigation_bar_white_color]];
 }
 
 - (void)resetNavColor {
@@ -95,6 +96,7 @@ static FFGameViewController *controller = nil;
             }
         }
     }
+    [self.navigationController.navigationBar setTintColor:[FFColorManager navigation_bar_white_color]];
     barBackgroundView.alpha = 0;
 }
 
@@ -108,6 +110,30 @@ static FFGameViewController *controller = nil;
 //    self.view.backgroundColor = [UIColor blackColor];
     [self setSelectViewInfo];
     [self setNormalView];
+
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[FFImageManager General_back_black] style:(UIBarButtonItemStyleDone) target:self action:@selector(respondsToLeftButton)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[FFImageManager Game_shared_image] style:(UIBarButtonItemStyleDone) target:self action:@selector(respondsToRightButton)];
+}
+
+- (void)respondsToLeftButton {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)respondsToRightButton {
+    syLog(@"分享");
+    if (CURRENT_USER.isLogin) {
+        syLog(@"邀请好友");
+        [FFSharedController inviteFriend];
+    } else {
+        NSString *className = @"FFLoginViewController";
+        Class ViewController = NSClassFromString(className);
+        if (ViewController) {
+            id vc = [[ViewController alloc] init];
+            [self pushViewController:vc];
+        } else {
+            syLog(@"%s error -> %@ not exist",__func__,className);
+        }
+    }
 }
 
 - (void)setNormalView {
@@ -203,6 +229,10 @@ static FFGameViewController *controller = nil;
 #pragma mark - method
 - (void)refreshData {
     if (self.gid.length > 0) {
+
+        [self naviTransParent];
+        [self.navigationController.navigationBar setTintColor:[FFColorManager navigation_bar_white_color]];
+
         [self startWaiting];
         WeakSelf;
         [FFCurrentGameModel refreshCurrentGameWithGameID:self.gid Completion:^(BOOL success) {
@@ -326,6 +356,7 @@ static FFGameViewController *controller = nil;
     _gid = gid;
     [self removeAllview];
     [[FFBasicSSTableViewCell cell] selectViewWithIndex:0];
+
     //刷新游戏
     [self refreshData];
 }

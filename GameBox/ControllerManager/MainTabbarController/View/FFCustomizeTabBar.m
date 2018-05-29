@@ -68,10 +68,6 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
 
-    CGFloat barHeight = self.bounds.size.height;
-
-    syLog(@"bar height === %lf",barHeight);
-
     NSMutableArray *tabBarButtonArray = [NSMutableArray array];
     for (UIView *view in self.subviews) {
         if ([view isKindOfClass:[UIButton class]]) {

@@ -48,7 +48,7 @@
 }
 - (NSArray *)selectControllerName {
     return @[@"FFZKNewGameController",
-             @"FFGuideViewController",
+             @"FFActivityViewController",
              @"FFDiscountController",
              @"FFZKClassifyController"];
 }

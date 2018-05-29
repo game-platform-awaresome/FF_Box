@@ -41,6 +41,7 @@
     self.navigationItem.title = @"新游";
     [self resetTableView];
     self.tableView.showsVerticalScrollIndicator = YES;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 - (void)initDataSource {
@@ -143,10 +144,14 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 20)];
+    view.backgroundColor = [UIColor whiteColor];
+
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 20)];
-    label.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
     label.text = [NSString stringWithFormat:@"   %@",self.timeArray[section]];
-    return label;
+    [view addSubview:label];
+
+    return view;
 }
 
 - (FFCustomizeCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -159,17 +164,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 
-//    FFCustomizeCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-//    NSDictionary *dict = cell.dict;
-//
-//    [FFGameViewController sharedController].gameName = dict[@"gamename"];
-//    [FFGameViewController sharedController].gameLogo = cell.gameLogo.image;
-//    [FFGameViewController sharedController].gameID = dict[@"id"];
-//    HIDE_TABBAR;
-//    HIDE_PARNENT_TABBAR;
-//    [self.navigationController pushViewController:[FFGameViewController sharedController] animated:YES];
-//    SHOW_PARNENT_TABBAR;
-
+    FFCustomizeCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    NSDictionary *dict = cell.dict;
+    [FFGameViewController sharedController].gid = dict[@"id"] ? dict[@"id"] : dict[@"gid"];
     [self pushViewController:[FFGameViewController sharedController]];
 }
 

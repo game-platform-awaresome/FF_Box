@@ -143,9 +143,7 @@
                 [self.navigationController popViewControllerAnimated:YES];
             }];
         } else {
-            [UIAlertController showAlertMessage:@"登录失败" dismissTime:0.7 dismissBlock:^{
-                
-            }];
+            [UIAlertController showAlertMessage:content[@"msg"] dismissTime:0.7 dismissBlock:nil];
         }
     }];
 }

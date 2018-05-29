@@ -235,6 +235,7 @@
 		B599693920BBA51200BC6084 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B599693820BBA51200BC6084 /* libstdc++.tbd */; };
 		B599693A20BBA61F00BC6084 /* TrackingIO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B599692020BB9E8800BC6084 /* TrackingIO.a */; };
 		B599694620BBABF700BC6084 /* FFStatisticsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B599694520BBABF700BC6084 /* FFStatisticsModel.m */; };
+		B599695220BD396400BC6084 /* FFPromiseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B599695120BD396400BC6084 /* FFPromiseViewController.m */; };
 		B59D989F2084A2E20024B11D /* FFBasicTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B59D989E2084A2E20024B11D /* FFBasicTableViewController.m */; };
 		B59D98A22084A2FD0024B11D /* FFBasicSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = B59D98A12084A2FD0024B11D /* FFBasicSelectView.m */; };
 		B5D10421208F0DD900CA1949 /* FFBasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D10420208F0DD900CA1949 /* FFBasicViewController.m */; };
@@ -678,6 +679,8 @@
 		B599693820BBA51200BC6084 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		B599694420BBABF700BC6084 /* FFStatisticsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFStatisticsModel.h; sourceTree = "<group>"; };
 		B599694520BBABF700BC6084 /* FFStatisticsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFStatisticsModel.m; sourceTree = "<group>"; };
+		B599695020BD396400BC6084 /* FFPromiseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFPromiseViewController.h; sourceTree = "<group>"; };
+		B599695120BD396400BC6084 /* FFPromiseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFPromiseViewController.m; sourceTree = "<group>"; };
 		B59D989D2084A2E20024B11D /* FFBasicTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBasicTableViewController.h; sourceTree = "<group>"; };
 		B59D989E2084A2E20024B11D /* FFBasicTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBasicTableViewController.m; sourceTree = "<group>"; };
 		B59D98A02084A2FD0024B11D /* FFBasicSelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBasicSelectView.h; sourceTree = "<group>"; };
@@ -1938,6 +1941,15 @@
 			path = trackingio;
 			sourceTree = "<group>";
 		};
+		B599694C20BD38F000BC6084 /* FFPromiseClass */ = {
+			isa = PBXGroup;
+			children = (
+				B599695020BD396400BC6084 /* FFPromiseViewController.h */,
+				B599695120BD396400BC6084 /* FFPromiseViewController.m */,
+			);
+			path = FFPromiseClass;
+			sourceTree = "<group>";
+		};
 		B59D989A2084A2AC0024B11D /* BasicView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2022,6 +2034,7 @@
 		B5D505812086F17A000B7B50 /* GeneralClass */ = {
 			isa = PBXGroup;
 			children = (
+				B599694C20BD38F000BC6084 /* FFPromiseClass */,
 				B5F1492920B80BA000044873 /* FFSearchClass */,
 				B51BD0C620B54D3F005B9DE1 /* FFCommentClass */,
 				B52382CD20AE9EF40087733A /* DriveClass */,
@@ -2491,6 +2504,7 @@
 				B51BD06A20B519F8005B9DE1 /* FFInviteListNotesController.m in Sources */,
 				B590959C20A95CA2009CD99A /* FFColorManager.m in Sources */,
 				B523825920AA85FF0087733A /* FFBTNewGameController.m in Sources */,
+				B599695220BD396400BC6084 /* FFPromiseViewController.m in Sources */,
 				B51BD12620B595EB005B9DE1 /* FFMissionCenterViewController.m in Sources */,
 				B523838620AE9FAC0087733A /* ZLThumbnailViewController.m in Sources */,
 				B523826E20AABD220087733A /* FFActivityViewController.m in Sources */,

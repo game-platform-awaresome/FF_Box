@@ -53,6 +53,7 @@
 + (UIImage *)Game_detail_footer_collection  {RETURN_IMAGE(@"Game_detail_footer_collection");}
 + (UIImage *)Game_detail_footer_nocollection{RETURN_IMAGE(@"Game_detail_footer_nocollection");}
 + (UIImage *)Game_detail_footer_comment     {RETURN_IMAGE(@"Game_detail_footer_comment");}
++ (UIImage *)Game_shared_image              {RETURN_IMAGE(@"Game_shared_image");}
 
 #pragma makr - mine view
 + (UIImage *)Mine_not_login_avatar          {RETURN_IMAGE(@"Mine_not_login_avatar");}
@@ -97,6 +98,10 @@
 + (UIImage *)Mission_invite                 {RETURN_IMAGE(@"Mission_invite");}
 + (UIImage *)Mission_sign_in                {RETURN_IMAGE(@"Mission_sign_in");}
 + (UIImage *)Mission_vip                    {RETURN_IMAGE(@"Mission_vip");}
+
+
+#pragma makr - logo image
++ (UIImage *)logoImage                      {RETURN_IMAGE(@"Mine_logo_image");}
 
 @end
 

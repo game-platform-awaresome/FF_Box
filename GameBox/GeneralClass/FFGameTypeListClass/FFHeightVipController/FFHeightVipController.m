@@ -21,7 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"满 V";
+    self.navigationItem.title = @"满V游戏";
 }
 
 

@@ -13,6 +13,7 @@
 #import "FFDriveReplyView.h"
 #import "FFDriveCommentCell.h"
 #import <FFTools/FFTools.h>
+#import "FFColorManager.h"
 
 #define CELL_IDE @"FFDriveCommentCell"
 
@@ -61,12 +62,21 @@
     }
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = NO;
+    self.navBarBGAlpha = @"1.0";
+    [self.navigationController.navigationBar setTintColor:[FFColorManager navigation_bar_black_color]];
+    [self.navigationController.navigationBar setBarTintColor:[FFColorManager navigation_bar_white_color]];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 }
 
 - (void)initUserInterface {
     [super initUserInterface];
+    self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.title = @"动态详情";
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.view addSubview:self.footerView];

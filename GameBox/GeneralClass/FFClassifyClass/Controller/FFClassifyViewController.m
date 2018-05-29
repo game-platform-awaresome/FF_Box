@@ -126,11 +126,11 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIView * view = [[UIView alloc ]initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 30)];
-    view.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+    view.backgroundColor = [UIColor colorWithWhite:1 alpha:1];
 
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 2, kSCREEN_WIDTH, 26)];
-    label.backgroundColor = [FFColorManager tabbarColor];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 30)];
     NSString *string = self.showArray[section][@"className"];
+    label.text = [NSString stringWithFormat:@"     %@",string];
 
     UIButton *button = [UIButton buttonWithType:(UIButtonTypeCustom)];
     button.frame  = CGRectMake(kSCREEN_WIDTH - 75, 5, 60, 20);
@@ -141,21 +141,30 @@
     button.tag = SECTIONTAG + section;
     [button addTarget:self action:@selector(respondstoSectionBtn:) forControlEvents:(UIControlEventTouchUpInside)];
 
-    label.text = [NSString stringWithFormat:@"     %@",string];
-
     [view addSubview:label];
     [view addSubview:button];
+
+    CALayer *line = [[CALayer alloc] init];
+    line.frame = CGRectMake(0, 0, kSCREEN_WIDTH, 0.5);
+    line.backgroundColor = [FFColorManager text_separa_line_color].CGColor;
+    [view.layer addSublayer:line];
+
+
     return view;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
 }
 
 #pragma mark - cell delegate
 - (void)FFClassifyTableCell:(FFClassifyTableCell *)cell clickGame:(NSDictionary *)dict {
-    Class FFGameViewController = NSClassFromString(@"FFGameViewController");
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wundeclared-selector"
-    id vc = [FFGameViewController performSelector:@selector(sharedController)];
+    id vc = [NSClassFromString(@"FFGameViewController") performSelector:@selector(sharedController)];
 #pragma clang diagnostic pop
     if (vc) {
+        [vc setValue:dict[@"id"] ? dict[@"id"] : dict[@"gid"] forKey:@"gid"];
         [self pushViewController:vc];
     }
 }

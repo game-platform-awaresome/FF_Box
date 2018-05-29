@@ -50,6 +50,7 @@
     [self addSubview:self.bannerView];
     [self addSubview:self.selectButtonView];
     [self setSelfBounds];
+    self.layer.masksToBounds = YES;
 }
 
 
@@ -80,6 +81,7 @@
 
 #pragma mark - setter
 - (void)setBannerArray:(NSArray *)bannerArray {
+    _bannerArray = bannerArray;
     if ([bannerArray isKindOfClass:[NSArray class]] && bannerArray.count > 0) {
         self.bannerView.rollingArray = [bannerArray mutableCopy];
     } else {
@@ -170,7 +172,7 @@
 #pragma mark - getter
 - (UIView *)searchView {
     if (!_searchView) {
-        _searchView = [[UIView alloc] initWithFrame:CGRectMake(kSCREEN_WIDTH * 0.05, 5, kSCREEN_WIDTH * 0.9, 30)];
+        _searchView = [[UIView alloc] initWithFrame:CGRectMake(kSCREEN_WIDTH * 0.05, 7, kSCREEN_WIDTH * 0.9, 30)];
         _searchView.backgroundColor = [FFColorManager home_search_view_background_color];
         _searchView.layer.cornerRadius = 8;
         _searchView.layer.masksToBounds = YES;
