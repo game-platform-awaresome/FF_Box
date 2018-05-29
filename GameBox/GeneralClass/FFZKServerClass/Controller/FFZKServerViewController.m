@@ -37,7 +37,7 @@
 }
 
 - (NSArray *)selectButtonArray {
-    return @[@"新游",@"活动",@"折扣",@"分类"];
+    return @[@"新游",@"活动",@"超低折扣",@"分类"];
 }
 
 - (NSArray *)selectImageArray {

@@ -258,6 +258,8 @@
 		B5D5059420884164000B7B50 /* FFClassifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D5059320884164000B7B50 /* FFClassifyViewController.m */; };
 		B5D505A920898D25000B7B50 /* FFDriveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D505A820898D25000B7B50 /* FFDriveViewController.m */; };
 		B5D505AE20898D69000B7B50 /* FFMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D505AD20898D69000B7B50 /* FFMineViewController.m */; };
+		B5D613F420BD4B5D0010CA98 /* FFPromiseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D613F220BD4B5D0010CA98 /* FFPromiseCell.m */; };
+		B5D613F520BD4B5D0010CA98 /* FFPromiseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5D613F320BD4B5D0010CA98 /* FFPromiseCell.xib */; };
 		B5E1E54320622E40008F49CA /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B5E1E54220622E40008F49CA /* README.md */; };
 		B5F1492120B7E4BB00044873 /* FFGameGifTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F1492020B7E4BB00044873 /* FFGameGifTableViewCell.m */; };
 		B5F1492520B7F3F200044873 /* FFGameActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F1492420B7F3F200044873 /* FFGameActivityCell.m */; };
@@ -723,6 +725,9 @@
 		B5D505A820898D25000B7B50 /* FFDriveViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFDriveViewController.m; sourceTree = "<group>"; };
 		B5D505AC20898D69000B7B50 /* FFMineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFMineViewController.h; sourceTree = "<group>"; };
 		B5D505AD20898D69000B7B50 /* FFMineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFMineViewController.m; sourceTree = "<group>"; };
+		B5D613F120BD4B5D0010CA98 /* FFPromiseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFPromiseCell.h; sourceTree = "<group>"; };
+		B5D613F220BD4B5D0010CA98 /* FFPromiseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFPromiseCell.m; sourceTree = "<group>"; };
+		B5D613F320BD4B5D0010CA98 /* FFPromiseCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FFPromiseCell.xib; sourceTree = "<group>"; };
 		B5E1E51B206201CD008F49CA /* GameBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5E1E54220622E40008F49CA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B5F1491F20B7E4BB00044873 /* FFGameGifTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFGameGifTableViewCell.h; sourceTree = "<group>"; };
@@ -1946,6 +1951,9 @@
 			children = (
 				B599695020BD396400BC6084 /* FFPromiseViewController.h */,
 				B599695120BD396400BC6084 /* FFPromiseViewController.m */,
+				B5D613F120BD4B5D0010CA98 /* FFPromiseCell.h */,
+				B5D613F220BD4B5D0010CA98 /* FFPromiseCell.m */,
+				B5D613F320BD4B5D0010CA98 /* FFPromiseCell.xib */,
 			);
 			path = FFPromiseClass;
 			sourceTree = "<group>";
@@ -2311,6 +2319,7 @@
 				B5781B0020A5903700CB1464 /* ImageAssets.xcassets in Resources */,
 				B52382AE20AC34FE0087733A /* FFCustomizeCell.xib in Resources */,
 				B523832820AE9EF40087733A /* MyStoryboard.storyboard in Resources */,
+				B5D613F520BD4B5D0010CA98 /* FFPromiseCell.xib in Resources */,
 				B51BD11C20B58319005B9DE1 /* NewImage(Unfinished).xcassets in Resources */,
 				B523829A20AB11D20087733A /* FFActivityCell.xib in Resources */,
 				B51BD03320B50976005B9DE1 /* FFInviteListCell.xib in Resources */,
@@ -2527,6 +2536,7 @@
 				B51BD0D120B553D4005B9DE1 /* FFMyPackageViewController.m in Sources */,
 				B51BD04F20B514B1005B9DE1 /* FFInviteFriendViewController.m in Sources */,
 				B523828220AADF9D0087733A /* FFHeightVipController.m in Sources */,
+				B5D613F420BD4B5D0010CA98 /* FFPromiseCell.m in Sources */,
 				B51BD06D20B539D4005B9DE1 /* FFInviteModel.m in Sources */,
 				B523833420AE9EF40087733A /* FFDriveFansCell.m in Sources */,
 				B51BD16820B650CE005B9DE1 /* FFNotificationViewController.m in Sources */,
@@ -2714,7 +2724,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JR27SLBFXN;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				ENABLE_ONLY_ACTIVE_RESOURCES = YES;
 				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.framework *.gch *.xcode* *.xcassets (*) .DS_Store CVS .svn .git .hg *.pbproj *.pbxproj *.a";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2745,7 +2755,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JR27SLBFXN;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				ENABLE_ONLY_ACTIVE_RESOURCES = YES;
 				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.lproj *.framework *.gch *.xcode* *.xcassets (*) .DS_Store CVS .svn .git .hg *.pbproj *.pbxproj *.a";
 				FRAMEWORK_SEARCH_PATHS = (

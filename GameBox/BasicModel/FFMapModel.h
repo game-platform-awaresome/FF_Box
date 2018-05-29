@@ -146,6 +146,7 @@ typedef void(^Completion)(void);
 @property (nonatomic, strong) NSString *GAME_NEWINDEX;
 
 @property (nonatomic, strong) NSString *TASK_CENTER;        //任务中心
+@property (nonatomic, strong) NSString *APP_PROMISE;        //app 承诺
 
 
 + (instancetype)map;

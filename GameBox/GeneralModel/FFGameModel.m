@@ -349,6 +349,21 @@
     }];
 }
 
+#pragma mark - promise
+/** 185游戏承诺 */
++ (void)gamePromiseCompletion:(RequestCallBackBlock _Nullable)completion {
+    Pamaras_Key((@[@"channel"]));
+    Mutable_Dict(2);
+    [dict setObject:Channel forKey:@"channel"];
+    SS_SIGN;
+    [FFNetWorkManager postRequestWithURL:Map.APP_PROMISE Params:dict Completion:^(NSDictionary *content, BOOL success) {
+        NEW_REQUEST_COMPLETION;
+    }];
+}
+
+
+
+
 
 
 @end

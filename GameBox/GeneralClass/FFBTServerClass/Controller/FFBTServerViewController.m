@@ -30,6 +30,8 @@
 
 @property (nonatomic, strong) NSMutableArray * childController;
 
+@property (nonatomic, assign) NSUInteger selectFotterImageIdx;
+
 @end
 
 @implementation FFBTServerViewController
@@ -107,6 +109,31 @@
     }];
 }
 
+#pragma mark - responds
+- (void)respondsToSectionFooterImage:(UITapGestureRecognizer *)sender {
+    NSString *gid = self.model.sectionArray[_selectFotterImageIdx].slideGid;
+    if (gid != nil && gid.integerValue > 0) {
+        Class FFGameViewController = NSClassFromString(@"FFGameViewController");
+        SEL selector = NSSelectorFromString(@"sharedController");
+        if ([FFGameViewController respondsToSelector:selector]) {
+            IMP imp = [FFGameViewController methodForSelector:selector];
+            UIViewController *(*func)(void) = (void *)imp;
+            UIViewController *vc = func();
+            if (vc) {
+                [vc setValue:gid forKey:@"gid"];
+                [self pushViewController:vc];
+            } else {
+                syLog(@"\n ! %s \n present error :  %s not exist \n ! \n",__func__,sel_getName(selector));
+            }
+        } else {
+            syLog(@"\n ! %s \n present error :  %s not exist \n ! \n",__func__,sel_getName(selector));
+        }
+    } else {
+        syLog(@"gid error -> game not exist %@",gid);
+    }
+
+}
+
 #pragma mark - table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.model.sectionArray.count;
@@ -126,9 +153,7 @@
         cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDE];
         [cell setValue:self.model.sectionArray[indexPath.section].gameArray[indexPath.row] forKey:@"dict"];
     }
-
     [cell setValue:@3 forKey:@"selectionStyle"];
-//    [cell setValue:self.showArray[indexPath.row] forKey:@"dict"];
     return cell;
 }
 
@@ -176,6 +201,14 @@
     if (self.model.sectionArray[section].slidePic) {
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 200)];
         [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:IMAGEURL,self.model.sectionArray[section].slidePic]] placeholderImage:[UIImage imageNamed:@"1111"]];
+
+        _selectFotterImageIdx = section;
+        imageView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(respondsToSectionFooterImage:)];
+        tap.numberOfTapsRequired = 1;
+        tap.numberOfTouchesRequired = 1;
+        [imageView addGestureRecognizer:tap];
+
         return imageView;
     } else {
         return nil;

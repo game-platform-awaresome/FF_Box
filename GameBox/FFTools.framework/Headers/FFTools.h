@@ -16,7 +16,6 @@ FOUNDATION_EXPORT const unsigned char FFToolsVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <FFTools/PublicHeader.h>
 
-#import "FFDateFormatter.h"
 #import "UIAlertController+FFAlertController.h"
 #import "UIButton+FFButton.h"
 #import "UINavigationController+FFGradient.h"

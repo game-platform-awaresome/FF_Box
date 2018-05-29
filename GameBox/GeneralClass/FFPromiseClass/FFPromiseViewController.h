@@ -8,7 +8,7 @@
 
 #import "FFBasicTableViewController.h"
 
-@interface FFPromiseViewController : FFBasicTableViewController
+@interface FFPromiseViewController : FFBasicViewController
 
 
 

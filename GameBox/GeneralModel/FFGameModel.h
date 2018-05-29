@@ -220,6 +220,11 @@ typedef enum : NSUInteger {
  */
 + (void)missionCenterInfoCompletion:(RequestCallBackBlock _Nullable)completion;
 
+#pragma mark - promise
+/** 185游戏承诺 */
++ (void)gamePromiseCompletion:(RequestCallBackBlock _Nullable)completion;
+
+
 
 
 @end
