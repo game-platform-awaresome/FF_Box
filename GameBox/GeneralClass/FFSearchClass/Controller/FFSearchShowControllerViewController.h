@@ -17,7 +17,7 @@
 
 @end
 
-@interface FFSearchShowControllerViewController : UIViewController
+@interface FFSearchShowControllerViewController : FFBasicViewController
 
 
 //加载在controller的下标
@@ -25,7 +25,7 @@
 
 + (instancetype)SharedController;
 
-+ (void)showSearchControllerWith:(UIViewController *)parentController;
++ (void)showSearchControllerWith:(UIViewController *)parentController andSearchType:(FFGameServersType)type;
 
 + (void)hideSearchController;
 

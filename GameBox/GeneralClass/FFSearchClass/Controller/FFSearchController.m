@@ -30,7 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [FFSearchShowControllerViewController showSearchControllerWith:self];
+    [FFSearchShowControllerViewController showSearchControllerWith:self andSearchType:self.ServerType];
 
 }
 
@@ -38,7 +38,9 @@
     [super initUserInterface];
     self.navigationItem.title = @"搜索";
     self.navigationItem.titleView = self.searchBar;
-    [self.leftButton setImage:[FFImageManager General_back_black]];
+    self.leftButton = [[UIBarButtonItem alloc] initWithImage:[FFImageManager General_back_black] style:(UIBarButtonItemStyleDone) target:self action:@selector(respondsToLeftButton)];
+//    self.rightButton = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:(UIBarButtonItemStyleDone) target:self action:@selector(respondsToRightButton)];
+
     self.navigationItem.leftBarButtonItem = self.leftButton;
 }
 
@@ -60,13 +62,18 @@
 //即将开始搜索
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar {
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem new];
-    [FFSearchShowControllerViewController showSearchControllerWith:self];
+    _searchBar.showsCancelButton = YES;
     return YES;
 }
 
 - (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar {
     self.navigationItem.leftBarButtonItem = self.leftButton;
     return YES;
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    [searchBar resignFirstResponder];
+    _searchBar.showsCancelButton = NO;
 }
 
 //点击搜索按钮
@@ -86,14 +93,14 @@
         _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 20)];
 
         _searchBar.barTintColor = [FFColorManager blue_dark];
-        _searchBar.tintColor = [FFColorManager navigation_bar_white_color];
+        _searchBar.tintColor = [FFColorManager navigation_bar_black_color];
         _searchBar.placeholder = @"搜索游戏";
         _searchBar.delegate = self;
 
         UITextField *searchField = [_searchBar valueForKey:@"searchField"];
         if (searchField) {
-            [searchField setBackgroundColor:[FFColorManager blue_dark]];
-            [searchField setTextColor:[FFColorManager navigation_bar_white_color]];
+            [searchField setBackgroundColor:[FFColorManager view_separa_line_color]];
+            [searchField setTextColor:[FFColorManager navigation_bar_black_color]];
         }
 
     }

@@ -11,7 +11,7 @@
 @interface FFSearchModel : NSObject
 
 /** 搜索热门 */
-+ (void)hotGameWithCompletion:(void (^)(NSDictionary * content, BOOL success))completion;
++ (void)hotGameWithPlatform:(NSUInteger)platform Completion:(void (^)(NSDictionary * content, BOOL success))completion;
 
 /** 搜索游戏 */
 + (void)searchGameWithKeyword:(NSString *)keyword Completion:(void (^)(NSDictionary * content, BOOL success))completion;

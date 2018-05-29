@@ -13,10 +13,11 @@
 @implementation FFSearchModel
 
 /** 热门游戏 */ 
-+ (void)hotGameWithCompletion:(void (^)(NSDictionary *, BOOL))completion {
++ (void)hotGameWithPlatform:(NSUInteger)platform Completion:(void (^)(NSDictionary *, BOOL))completion {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:Channel forKey:@"channel"];
     [dict setObject:@"2" forKey:@"system"];
+    [dict setObject:[NSString stringWithFormat:@"%lu",platform] forKey:@"platform"];
     [FFNetWorkManager postRequestWithURL:Map.GAME_GETHOT Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         REQUEST_COMPLETION;
     }];

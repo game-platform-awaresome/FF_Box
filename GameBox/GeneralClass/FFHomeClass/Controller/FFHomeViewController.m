@@ -78,9 +78,10 @@
  
 - (void)initDataSource {
     [super initDataSource];
-    self.homeSelectView.titleArray = @[@"BT服",@"折扣"];
+    self.homeSelectView.titleArray = @[@"BT服",@"折扣",@"承诺"];
     self.selectChildViewControllers = @[[self creatControllerWithString:@"FFBTServerViewController"],
-                                        [self creatControllerWithString:@"FFZKServerViewController"]];
+                                        [self creatControllerWithString:@"FFZKServerViewController"],
+                                        [self creatControllerWithString:@"FFPromiseViewController"]];
 }
 
 - (UIViewController *)creatControllerWithString:(NSString *)controllerString {

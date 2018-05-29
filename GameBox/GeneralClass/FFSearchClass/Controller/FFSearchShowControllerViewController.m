@@ -28,6 +28,9 @@
 /** 清除历史记录 */
 @property (nonatomic, strong) UIButton *clearHistoryBtn;
 
+//类型
+@property (nonatomic, assign) FFGameServersType type;;
+
 
 @end
 
@@ -43,14 +46,9 @@ static FFSearchShowControllerViewController *controller = nil;
     return controller;
 }
 
-+ (void)showSearchControllerWith:(UIViewController *)parentController {
-    if (controller.parentViewController == parentController) {
-        return;
-    }
++ (void)showSearchControllerWith:(UIViewController *)parentController andSearchType:(FFGameServersType)type {
     [FFSearchShowControllerViewController SharedController].delegate = parentController;
-    if (controller.parentViewController && controller.parentViewController != parentController) {
-        [controller.parentViewController performSelector:@selector(clickCancelBtn)];
-    }
+    [FFSearchShowControllerViewController SharedController].type = type;
     [parentController addChildViewController:[FFSearchShowControllerViewController SharedController]];
     [parentController.view addSubview:[FFSearchShowControllerViewController SharedController].view];
     [[FFSearchShowControllerViewController SharedController] didMoveToParentViewController:parentController];
@@ -102,7 +100,7 @@ static FFSearchShowControllerViewController *controller = nil;
 
 //初始化数据源
 - (void)initDataSource {
-    [self hotGame];
+
 }
 
 //初始化用户界面
@@ -112,8 +110,14 @@ static FFSearchShowControllerViewController *controller = nil;
     [self.view addSubview:self.tableView];
 }
 
+- (void)setType:(FFGameServersType)type {
+    _type = type;
+    [self hotGame];
+}
+
 - (void)hotGame {
-    [FFSearchModel hotGameWithCompletion:^(NSDictionary *content, BOOL success) {
+    syLog(@"tyep ==== %lu",self.type);
+    [FFSearchModel hotGameWithPlatform:self.type Completion:^(NSDictionary *content, BOOL success) {
         if (success) {
             NSArray *array = content[@"data"];
             if (array.count > 4) {
@@ -142,14 +146,23 @@ static FFSearchShowControllerViewController *controller = nil;
 
 #pragma mark - cellDelegate
 - (void)FFClassifyTableCell:(FFClassifyTableCell *)cell clickGame:(NSDictionary *)dict {
-    HIDE_TABBAR;
-    HIDE_PARNENT_TABBAR;
-
-    syLog(@"dict ==== ");
-
-
-    SHOW_TABBAR;
-    SHOW_PARNENT_TABBAR;
+    syLog(@"dict ==== %@",dict);
+    Class FFGameViewController = NSClassFromString(@"FFGameViewController");
+    SEL selector = NSSelectorFromString(@"sharedController");
+    if ([FFGameViewController respondsToSelector:selector]) {
+        IMP imp = [FFGameViewController methodForSelector:selector];
+        UIViewController *(*func)(void) = (void *)imp;
+        UIViewController *vc = func();
+        if (vc) {
+            NSString *gid = (dict[@"id"]) ? dict[@"id"] : dict[@"gid"];
+            [vc setValue:gid forKey:@"gid"];
+            [self pushViewController:vc];
+        } else {
+            syLog(@"\n ! %s \n present error :  %s not exist \n ! \n",__func__,sel_getName(selector));
+        }
+    } else {
+        syLog(@"\n ! %s \n present error :  %s not exist \n ! \n",__func__,sel_getName(selector));
+    }
 }
 
 
