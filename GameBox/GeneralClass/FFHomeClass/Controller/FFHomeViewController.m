@@ -14,13 +14,15 @@
 #import "FFClassifyViewController.h"
 #import "FFLoginViewController.h"
 #import "FFUserModel.h"
+#import "FFShowDiscoutModel.h"
+#import "FFStatisticsModel.h"
 
 //#import "FFHomeSelectView.h"
 
 @interface FFHomeViewController () <FFHomeSelectViewDelegate>
 
 @property (nonatomic, strong) UIButton *messageButton;
-
+@property (nonatomic, strong) NSArray *_controllerNameArray;
 
 @end
 
@@ -41,7 +43,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
 }
 
 - (void)initUserInterface {
@@ -78,11 +79,18 @@
  
 - (void)initDataSource {
     [super initDataSource];
-    self.homeSelectView.titleArray = @[@"BT服",@"折扣",@"承诺"];
-    self.selectChildViewControllers = @[[self creatControllerWithString:@"FFBTServerViewController"],
-                                        [self creatControllerWithString:@"FFZKServerViewController"],
-                                        [self creatControllerWithString:@"FFPromiseViewController"]];
+    [self refreshData];
 }
+
+- (void)refreshData {
+    [self startWaiting];
+    initStatisticsModel(^(NSString * _Nonnull showdiscount) {
+        [self stopWaiting];
+        self.homeSelectView.titleArray = showdiscount.boolValue ? @[@"BT服",@"折扣",@"承诺"] : @[@"BT服",@"承诺"];
+        self._controllerNameArray = showdiscount.boolValue ? @[@"FFBTServerViewController",@"FFZKServerViewController",@"FFPromiseViewController"] : @[@"FFBTServerViewController",@"FFPromiseViewController"];
+    });
+}
+
 
 - (UIViewController *)creatControllerWithString:(NSString *)controllerString {
     Class ControllerClass = NSClassFromString(controllerString);
@@ -185,7 +193,14 @@
     self.selectView.frame = CGRectMake(0, 20, kSCREEN_WIDTH * 0.5, 44);
     self.selectView.titleSize = CGSizeMake(kSCREEN_WIDTH / 5, 44);
 }
-
+- (void)set_controllerNameArray:(NSArray *)_controllerNameArray {
+    __controllerNameArray = _controllerNameArray;
+    NSMutableArray *array = [NSMutableArray arrayWithCapacity:_controllerNameArray.count];
+    [_controllerNameArray enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [array addObject:[self creatControllerWithString:obj]];
+    }];
+    self.selectChildViewControllers = array.copy;
+}
 
 #pragma mark - getter
 - (UIView *)navigationView {

@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "c_icon_zhutubiao-_60.png",
+      "filename" : "c_icon_zhutubiao-_60 .png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "c_icon_zhutubiao-_60@2x.png",
+      "filename" : "c_icon_zhutubiao-_60 @2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "c_icon_zhutubiao-_60@3x.png",
+      "filename" : "c_icon_zhutubiao-_60 @3x.png",
       "scale" : "3x"
     }
   ],

@@ -9,6 +9,7 @@
 #import "FFOpenServerViewController.h"
 #import "FFBTOpenServerViewController.h"
 #import "FFZKOpenServerViewController.h"
+#import "FFStatisticsModel.h"
 
 @interface FFOpenServerViewController ()
 
@@ -30,10 +31,16 @@
 }
 
 - (void)initDataSource {
-    self.homeSelectView.titleArray = @[@"BT服",@"折扣"];
-    self.selectChildViewControllers = @[[FFBTOpenServerViewController new],
-                                        [FFZKOpenServerViewController new]];
+    
+    initStatisticsModel(^(NSString * _Nonnull showdiscount) {
+        self.homeSelectView.titleArray = showdiscount.boolValue ? @[@"BT服",@"折扣"] : @[@"BT服"] ;
+        self.selectChildViewControllers = showdiscount.boolValue ?
+                                        @[[FFBTOpenServerViewController new], [FFZKOpenServerViewController new]]:
+                                        @[[FFBTOpenServerViewController new]];
+    });
 }
+
+
 
 - (void)addFLoatView {
     

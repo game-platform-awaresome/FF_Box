@@ -8,8 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void(^initBoxCallBack)(NSString * _Nonnull showdiscount);
+
 /** 初始化统计 */
-void initStatisticsModel(void);
+void initStatisticsModel(initBoxCallBack _Nullable callback);
 /** 注册统计 */
 void statisticsRegistered(NSString * _Nonnull account);
 /** 登录统计 */

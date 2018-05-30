@@ -22,10 +22,11 @@
 #import "FFMaskView.h"
 #import "FFAdvertisingView.h"
 #import "FFLaunchScreen.h"
-
+#import "FFShowDiscoutModel.h"
 
 #define WEIXINAPPID @"wx7ec31aabe8cc710d"
 #define QQAPPID @"1106099979"
+
 
 @interface FFAppDelegate () <UNUserNotificationCenterDelegate>
 
@@ -128,7 +129,9 @@
     [FFBoxModel appAnnouncement];
 
     //注册统计
-    initStatisticsModel();
+    initStatisticsModel(^(NSString * _Nonnull showdiscount) {
+        [FFShowDiscoutModel sharedModel].showDiscount = showdiscount;
+    });
 
     //检查更新
     [FFBoxModel checkBoxVersionCompletion:^(NSDictionary *content, BOOL success) {

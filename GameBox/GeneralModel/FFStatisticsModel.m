@@ -58,25 +58,6 @@ static FFStatisticsModel *model = nil;
     return model;
 }
 
-/** 初始化统计 */
-void initStatisticsModel(void) {
-    NSDictionary *dict = @{@"channel":Channel};
-    [FFNetWorkManager postRequestWithURL:Map.BOX_INIT Params:@{@"channel":Channel,@"sign":BOX_SIGN(dict, (@[@"channel"]))} Success:^(NSDictionary * _Nonnull content) {
-        syLog(@"统计  === %@", content);
-        NSString *status = content[@"status"];
-        NSString *box_static = content[@"data"][@"box_static"];
-        if (status.integerValue == 1) {
-            statisticsModel.registState = (FFStatisticsState)box_static.integerValue;
-        }
-        [FFStatisticsModel startStatics];
-    } Failure:^(NSError * _Nonnull error) {
-        statisticsModel.isStartStatistics = NO;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            initStatisticsModel();
-        });
-    }];
-}
-
 /** 开始统计 */
 + (void)startStatics {
     syLog(@"是否开启统计 : %lu",[self sharedModel].registState);
@@ -87,6 +68,46 @@ void initStatisticsModel(void) {
         case guangdiantong:  break;
         default: break;
     }
+}
+
+/** app install statistic */
++ (void)installStatistic {
+
+
+}
+
+/** app start statistic */
++ (void)startStatistic {
+
+}
+
+@end
+
+/** 初始化统计 */
+void initStatisticsModel(initBoxCallBack callback) {
+    NSDictionary *dict = @{@"channel":Channel};
+    [FFNetWorkManager postRequestWithURL:Map.BOX_INIT Params:@{@"channel":Channel,@"sign":BOX_SIGN(dict, (@[@"channel"]))} Success:^(NSDictionary * _Nonnull content) {
+        syLog(@"统计  === %@", content);
+        NSString *status = content[@"status"];
+        NSString *box_static = content[@"data"][@"box_static"];
+        NSString *showdiscount = CONTENT_DATA[@"discount_enabled"];
+        if (status.integerValue == 1) {
+            statisticsModel.registState = (FFStatisticsState)box_static.integerValue;
+            if (callback) {
+                callback(showdiscount);
+            }
+        } else {
+            if (callback) {
+                callback(@"0");
+            }
+        }
+        [FFStatisticsModel startStatics];
+    } Failure:^(NSError * _Nonnull error) {
+        statisticsModel.isStartStatistics = NO;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            initStatisticsModel(callback);
+        });
+    }];
 }
 
 
@@ -267,18 +288,4 @@ void userProfile(NSDictionary * _Nonnull dataDict) {
     }
 }
 
-/** app install statistic */
-+ (void)installStatistic {
 
-
-}
-
-/** app start statistic */
-+ (void)startStatistic {
-
-}
-
-
-
-
-@end

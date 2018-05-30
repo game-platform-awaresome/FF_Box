@@ -260,6 +260,7 @@
 		B5D505AE20898D69000B7B50 /* FFMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D505AD20898D69000B7B50 /* FFMineViewController.m */; };
 		B5D613F420BD4B5D0010CA98 /* FFPromiseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D613F220BD4B5D0010CA98 /* FFPromiseCell.m */; };
 		B5D613F520BD4B5D0010CA98 /* FFPromiseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5D613F320BD4B5D0010CA98 /* FFPromiseCell.xib */; };
+		B5D6142520BE8C5B0010CA98 /* FFShowDiscoutModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D6142420BE8C5B0010CA98 /* FFShowDiscoutModel.m */; };
 		B5E1E54320622E40008F49CA /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B5E1E54220622E40008F49CA /* README.md */; };
 		B5F1492120B7E4BB00044873 /* FFGameGifTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F1492020B7E4BB00044873 /* FFGameGifTableViewCell.m */; };
 		B5F1492520B7F3F200044873 /* FFGameActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F1492420B7F3F200044873 /* FFGameActivityCell.m */; };
@@ -728,6 +729,8 @@
 		B5D613F120BD4B5D0010CA98 /* FFPromiseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFPromiseCell.h; sourceTree = "<group>"; };
 		B5D613F220BD4B5D0010CA98 /* FFPromiseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFPromiseCell.m; sourceTree = "<group>"; };
 		B5D613F320BD4B5D0010CA98 /* FFPromiseCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FFPromiseCell.xib; sourceTree = "<group>"; };
+		B5D6142320BE8C5B0010CA98 /* FFShowDiscoutModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFShowDiscoutModel.h; sourceTree = "<group>"; };
+		B5D6142420BE8C5B0010CA98 /* FFShowDiscoutModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFShowDiscoutModel.m; sourceTree = "<group>"; };
 		B5E1E51B206201CD008F49CA /* GameBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5E1E54220622E40008F49CA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B5F1491F20B7E4BB00044873 /* FFGameGifTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFGameGifTableViewCell.h; sourceTree = "<group>"; };
@@ -2183,6 +2186,8 @@
 				B532510520B26D96007D7239 /* FFBoxModel.m */,
 				B51BD17E20B69675005B9DE1 /* FFPayModel.h */,
 				B51BD17F20B69675005B9DE1 /* FFPayModel.m */,
+				B5D6142320BE8C5B0010CA98 /* FFShowDiscoutModel.h */,
+				B5D6142420BE8C5B0010CA98 /* FFShowDiscoutModel.m */,
 			);
 			path = GeneralModel;
 			sourceTree = "<group>";
@@ -2480,6 +2485,7 @@
 				B52382A120ABCEF00087733A /* FFBasicSSTableViewCell.m in Sources */,
 				B51BD11520B5628F005B9DE1 /* FFLotteryViewController.m in Sources */,
 				B51BCFC420B2F705005B9DE1 /* FFRegisterViewController.m in Sources */,
+				B5D6142520BE8C5B0010CA98 /* FFShowDiscoutModel.m in Sources */,
 				B523839020AEA0C70087733A /* FLAnimatedImageView.m in Sources */,
 				B51BCFC220B2F705005B9DE1 /* FFNewPasswordViewController.m in Sources */,
 				B51BD17720B6596C005B9DE1 /* FFMissionCell.m in Sources */,
