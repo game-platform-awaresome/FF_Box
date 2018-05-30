@@ -80,7 +80,7 @@
 
     CALayer *layer = [[CALayer alloc] init];
     layer.frame = CGRectMake(0, 60 - 0.5, kSCREEN_WIDTH, 0.5);
-    layer.backgroundColor = [FFColorManager home_select_View_separat_lineColor].CGColor;
+    layer.backgroundColor = [FFColorManager view_separa_line_color].CGColor;
     [cell.contentView.layer addSublayer:layer];
     return cell;
 }

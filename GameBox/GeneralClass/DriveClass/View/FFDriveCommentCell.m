@@ -8,6 +8,7 @@
 
 #import "FFDriveCommentCell.h"
 #import "UIImageView+WebCache.h"
+#import "FFImageManager.h"
 
 @interface FFDriveCommentCell ()
 
@@ -43,7 +44,7 @@
 
     self.likeButton.tintColor = [UIColor grayColor];
     [self.likeButton setTitleColor:[UIColor lightGrayColor] forState:(UIControlStateNormal)];
-
+    [self.likeButton setImage:[FFImageManager Drive_commentlike] forState:(UIControlStateNormal)];
     self.topButton.hidden = YES;
 }
 

@@ -274,7 +274,8 @@
 
 - (UIBarButtonItem *)throughtBarbutton {
     if (!_throughtBarbutton) {
-        _throughtBarbutton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Community_Send"] style:(UIBarButtonItemStyleDone) target:self action:@selector(respondsToThroughtButton)];
+//        _throughtBarbutton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Community_Send"] style:(UIBarButtonItemStyleDone) target:self action:@selector(respondsToThroughtButton)];
+        _throughtBarbutton = [[UIBarButtonItem alloc] initWithTitle:@"穿越" style:(UIBarButtonItemStyleDone) target:self action:@selector(respondsToThroughtButton)];
     }
     return _throughtBarbutton;
 }

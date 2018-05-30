@@ -46,7 +46,9 @@
 
 - (void)viewWillLayoutSubviews {
     self.selectView.frame = CGRectMake(0, 0, self.view.bounds.size.width, 50);
-    self.collectionView.frame = CGRectMake(0, CGRectGetMaxY(self.selectView.frame), kSCREEN_WIDTH, self.view.bounds.size.height - CGRectGetMaxY(self.selectView.frame));
+
+    self.collectionView.frame = CGRectMake(0, CGRectGetMaxY(self.selectView.frame), kSCREEN_WIDTH, kSCREEN_HEIGHT - 44 - KSTATUBAR_HEIGHT - CGRectGetHeight(self.selectView.frame) - kTABBAR_HEIGHT);
+
     CGRect frame = CGRectMake(0, 0, kSCREEN_WIDTH, self.collectionView.frame.size.height);
     self.layout.itemSize = frame.size;
     self.todayOpenServerController.view.frame = frame;
@@ -72,9 +74,16 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:COLLECTION_CELL_IDE forIndexPath:indexPath];
     switch (indexPath.row) {
-        case 0: [cell addSubview:self.todayOpenServerController.view]; break;
-        case 1: [cell addSubview:self.tomorrowOpenserverController.view]; break;
-        case 2: [cell addSubview:self.yesterdayOpenServeController.view]; break;
+        case 0:
+            [cell addSubview:self.todayOpenServerController.view];
+            self.todayOpenServerController.view.frame = cell.bounds;
+            break;
+        case 1: [cell addSubview:self.tomorrowOpenserverController.view];
+            self.tomorrowOpenserverController.view.frame = cell.bounds;
+            break;
+        case 2: [cell addSubview:self.yesterdayOpenServeController.view];
+            self.yesterdayOpenServeController.view.frame = cell.bounds;
+            break;
         default: break;
     }
     cell.backgroundColor = [UIColor blackColor];

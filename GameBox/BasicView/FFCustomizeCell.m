@@ -80,7 +80,7 @@
         self.gameSize.textColor = [UIColor lightGrayColor];
     }
 
-    self.SeparaLine.backgroundColor = [FFColorManager text_separa_line_color];
+    self.SeparaLine.backgroundColor = [FFColorManager view_separa_line_color];
     
 }
 

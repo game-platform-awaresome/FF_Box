@@ -34,7 +34,7 @@
                             <constraint firstAttribute="height" constant="30" id="FvE-ot-LE5"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Nqa-fk-W7f">
@@ -118,7 +118,6 @@
                         <constraints>
                             <constraint firstAttribute="width" constant="60" id="cZC-fh-9Zt"/>
                         </constraints>
-                        <state key="normal" title="Button"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="32R-qv-Idh">
                         <rect key="frame" x="326" y="285.5" width="109" height="30"/>

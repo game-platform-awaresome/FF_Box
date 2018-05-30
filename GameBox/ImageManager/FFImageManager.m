@@ -8,8 +8,7 @@
 
 #import "FFImageManager.h"
 
-#define image(name) [UIImage imageNamed:name]
-#define RETURN_IMAGE(name) return image(name)
+#define RETURN_IMAGE(name) return [UIImage imageNamed:name]
 
 @implementation FFImageManager
 
@@ -102,6 +101,19 @@
 
 #pragma makr - logo image
 + (UIImage *)logoImage                      {RETURN_IMAGE(@"Mine_logo_image");}
+
+
+#pragma mark - drvie class
++ (UIImage *)Drive_like                     {RETURN_IMAGE(@"Drive_like");}
++ (UIImage *)Drive_unlike                   {RETURN_IMAGE(@"Drive_unLike");}
++ (UIImage *)Drive_shared                   {RETURN_IMAGE(@"Drive_shared");}
++ (UIImage *)Drive_comment                  {RETURN_IMAGE(@"Drive_comment");}
++ (UIImage *)Drive_commentlike              {RETURN_IMAGE(@"Drive_commentlike");}
++ (UIImage *)Drive_attention                {RETURN_IMAGE(@"Drive_attention");}
++ (UIImage *)Drive_attention_cancel         {RETURN_IMAGE(@"Drive_attention_cancel");}
+
+
+
 
 @end
 

@@ -32,6 +32,7 @@
     [super initUserInterface];
     [self.view setBackgroundColor:[UIColor blackColor]];
     [self.view addSubview:self.tableView];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 - (void)viewDidLayoutSubviews {
@@ -82,6 +83,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     FFOpenServerCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDE];
     cell.dict = self.showArray[indexPath.row];
+
+    CALayer *layer = [[CALayer alloc] init];
+    layer.frame = CGRectMake(0, 79, kSCREEN_WIDTH, 0.5);
+    layer.backgroundColor = [FFColorManager view_separa_line_color].CGColor;
+    [cell.layer addSublayer:layer];
     return cell;
 }
 

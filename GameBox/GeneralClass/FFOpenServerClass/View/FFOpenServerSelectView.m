@@ -157,7 +157,7 @@
 - (UIView *)lineView {
     if (!_lineView) {
         _lineView = [[UIView alloc] initWithFrame:CGRectMake(0, self.bounds.size.height - 1, kSCREEN_WIDTH, 1)];
-        _lineView.backgroundColor = [UIColor colorWithWhite:0.85 alpha:1];
+        _lineView.backgroundColor = [FFColorManager view_separa_line_color];
     }
     return _lineView;
 }

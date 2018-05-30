@@ -11,6 +11,7 @@
 #import "ZLPhotoActionSheet.h"
 #import "ZLPhotoManager.h"
 #import "SYKeychain.h"
+#import "FFImageManager.h"
 
 @interface FFDetailHeaderView()
 
@@ -122,12 +123,23 @@
 }
 
 - (void)setAttentionWith:(NSString *)str {
+//    if (str.integerValue == 0) {
+//        [self.attentionButton setTitle:@"+关注" forState:(UIControlStateNormal)];
+//        [self.attentionButton setTitleColor:NAVGATION_BAR_COLOR forState:(UIControlStateNormal)];
+//        self.attentionButton.layer.borderColor = NAVGATION_BAR_COLOR.CGColor;
+//    } else {
+//        [self.attentionButton setTitle:@"已关注" forState:(UIControlStateNormal)];
+//        [self.attentionButton setTitleColor:[UIColor grayColor] forState:(UIControlStateNormal)];
+//        self.attentionButton.layer.borderColor = [UIColor grayColor].CGColor;
+//    }
     if (str.integerValue == 0) {
-        [self.attentionButton setTitle:@"+关注" forState:(UIControlStateNormal)];
+//        [self.attentionButton setTitle:@"+关注" forState:(UIControlStateNormal)];
+        [self.attentionButton setImage:[FFImageManager Drive_attention] forState:(UIControlStateNormal)];
         [self.attentionButton setTitleColor:NAVGATION_BAR_COLOR forState:(UIControlStateNormal)];
         self.attentionButton.layer.borderColor = NAVGATION_BAR_COLOR.CGColor;
     } else {
-        [self.attentionButton setTitle:@"已关注" forState:(UIControlStateNormal)];
+//        [self.attentionButton setTitle:@"已关注" forState:(UIControlStateNormal)];
+        [self.attentionButton setImage:[FFImageManager Drive_attention_cancel] forState:(UIControlStateNormal)];
         [self.attentionButton setTitleColor:[UIColor grayColor] forState:(UIControlStateNormal)];
         self.attentionButton.layer.borderColor = [UIColor grayColor].CGColor;
     }

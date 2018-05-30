@@ -16,6 +16,7 @@
 #import "FFDriveCommentCell.h"
 #import "FFDriveModel.h"
 #import "FFViewFactory.h"
+#import "FFImageManager.h"
 
 #define CELL_IDE @"FFDriveCommentCell"
 
@@ -83,10 +84,10 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     //attentionButton
-    self.attentionButton.layer.borderColor = NAVGATION_BAR_COLOR.CGColor;
-    self.attentionButton.layer.borderWidth = 1;
-    self.attentionButton.layer.cornerRadius = 4;
-    self.attentionButton.layer.masksToBounds = YES;
+//    self.attentionButton.layer.borderColor = NAVGATION_BAR_COLOR.CGColor;
+//    self.attentionButton.layer.borderWidth = 1;
+//    self.attentionButton.layer.cornerRadius = 4;
+//    self.attentionButton.layer.masksToBounds = YES;
     self.attentionButton.titleLabel.font = [UIFont systemFontOfSize:14];
     [self.attentionButton addTarget:self action:@selector(respondsToAttentionButton) forControlEvents:(UIControlEventTouchUpInside)];
     //tableview
@@ -114,9 +115,13 @@
     [self addRespondsToButton:self.commentButton];
 
     [self.FavorButton setTintColor:[UIColor grayColor]];
+    [self.FavorButton setImage:[FFImageManager Drive_like] forState:(UIControlStateNormal)];
     [self.unFavorButton setTintColor:[UIColor grayColor]];
+    [self.unFavorButton setImage:[FFImageManager Drive_unlike] forState:(UIControlStateNormal)];
     [self.sharedButton setTintColor:[UIColor grayColor]];
+    [self.sharedButton setImage:[FFImageManager Drive_shared] forState:(UIControlStateNormal)];
     [self.commentButton setTintColor:[UIColor grayColor]];
+    [self.commentButton setImage:[FFImageManager Drive_comment] forState:(UIControlStateNormal)];
 
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(respondsToIcon)];
     tap.numberOfTapsRequired = 1;
@@ -539,13 +544,15 @@
 //是否关注
 - (void)setAttentionWith:(NSString *)str {
     if (str.integerValue == 0) {
-        [self.attentionButton setTitle:@"+关注" forState:(UIControlStateNormal)];
+//        [self.attentionButton setTitle:@"+关注" forState:(UIControlStateNormal)];
+        [self.attentionButton setImage:[FFImageManager Drive_attention] forState:(UIControlStateNormal)];
         [self.attentionButton setTitleColor:NAVGATION_BAR_COLOR forState:(UIControlStateNormal)];
-        self.attentionButton.layer.borderColor = NAVGATION_BAR_COLOR.CGColor;
+//        self.attentionButton.layer.borderColor = NAVGATION_BAR_COLOR.CGColor;
     } else {
-        [self.attentionButton setTitle:@"已关注" forState:(UIControlStateNormal)];
+//        [self.attentionButton setTitle:@"已关注" forState:(UIControlStateNormal)];
+        [self.attentionButton setImage:[FFImageManager Drive_attention_cancel] forState:(UIControlStateNormal)];
         [self.attentionButton setTitleColor:[UIColor grayColor] forState:(UIControlStateNormal)];
-        self.attentionButton.layer.borderColor = [UIColor grayColor].CGColor;
+//        self.attentionButton.layer.borderColor = [UIColor grayColor].CGColor;
     }
 }
 

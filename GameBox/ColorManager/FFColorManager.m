@@ -107,10 +107,10 @@ UIColor *HexColorToUIColor(NSString *hexColorString) {
     return [FFColorManager blue_dark];
 }
 + (UIColor *)home_select_View_separat_lineColor {
-    return [UIColor colorWithWhite:0.85 alpha:1];
+    return [FFColorManager view_separa_line_color];
 }
 + (UIColor *)home_search_view_background_color {
-    return [UIColor colorWithWhite:0.9 alpha:1];
+    return [FFColorManager view_separa_line_color];
 }
 
 + (UIColor *)custom_cell_text1_color {

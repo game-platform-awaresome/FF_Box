@@ -171,7 +171,7 @@ const NSUInteger HomeButtonTag = 10086;
     _totalFrame = CGRectMake(0, 0, totalFrame.size.width, totalFrame.size.height);
     _titleSize.height = totalFrame.size.height;
     self.scrollView.frame = _totalFrame;
-    self.lineView.frame = CGRectMake(0, totalFrame.size.height - 2, kSCREEN_WIDTH, 2);
+    self.lineView.frame = CGRectMake(0, totalFrame.size.height - 2, kSCREEN_WIDTH, 0.5);
     [self bringSubviewToFront:self.lineView];
 }
 - (void)setTitleSize:(CGSize)titleSize {
@@ -298,7 +298,7 @@ const NSUInteger HomeButtonTag = 10086;
 
 - (UIView *)lineView {
     if (!_lineView) {
-        _lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 1)];
+        _lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0.5)];
     }
     return _lineView;
 }

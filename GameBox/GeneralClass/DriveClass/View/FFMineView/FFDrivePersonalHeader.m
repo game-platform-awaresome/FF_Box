@@ -12,6 +12,7 @@
 
 #import "FFViewFactory.h"
 #import "FFDriveModel.h"
+#import "FFImageManager.h"
 
 @interface FFDrivePersonalHeader ()
 
@@ -187,14 +188,26 @@
 //    [_model.present_user_uid isEqualToString:SSKEYCHAIN_UID] ? (self.attentionButton.hidden = YES) : (self.attentionButton.hidden = NO);
     self.attentionButton.hidden = [_model.present_user_uid isEqualToString:SSKEYCHAIN_UID];
 
+//    if (str.integerValue == 0) {
+//        [self.attentionButton setTitle:@"+关注" forState:(UIControlStateNormal)];
+//        [self.attentionButton setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
+//        self.attentionButton.layer.borderColor = [UIColor whiteColor].CGColor;
+//    } else {
+//        [self.attentionButton setTitle:@"已关注" forState:(UIControlStateNormal)];
+//        [self.attentionButton setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
+//        self.attentionButton.layer.borderColor = [UIColor blackColor].CGColor;
+//    }
+
     if (str.integerValue == 0) {
-        [self.attentionButton setTitle:@"+关注" forState:(UIControlStateNormal)];
-        [self.attentionButton setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
-        self.attentionButton.layer.borderColor = [UIColor whiteColor].CGColor;
+//                [self.attentionButton setTitle:@"+关注" forState:(UIControlStateNormal)];
+        [self.attentionButton setImage:[FFImageManager Drive_attention] forState:(UIControlStateNormal)];
+        [self.attentionButton setTitleColor:NAVGATION_BAR_COLOR forState:(UIControlStateNormal)];
+        self.attentionButton.layer.borderColor = NAVGATION_BAR_COLOR.CGColor;
     } else {
-        [self.attentionButton setTitle:@"已关注" forState:(UIControlStateNormal)];
-        [self.attentionButton setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
-        self.attentionButton.layer.borderColor = [UIColor blackColor].CGColor;
+//                [self.attentionButton setTitle:@"已关注" forState:(UIControlStateNormal)];
+        [self.attentionButton setImage:[FFImageManager Drive_attention_cancel] forState:(UIControlStateNormal)];
+        [self.attentionButton setTitleColor:[UIColor grayColor] forState:(UIControlStateNormal)];
+        self.attentionButton.layer.borderColor = [UIColor grayColor].CGColor;
     }
 }
 

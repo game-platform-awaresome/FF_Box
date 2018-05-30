@@ -6,7 +6,22 @@
 //  Copyright © 2018年 Sans. All rights reserved.
 //
 
+
+/**
+
+ 这个页面工作量有点大, 也有点繁琐, app还会时不时的要求动态修改页面.
+ 所以这么个管理类是想的以后可以动态修改图标或者图片. 有点类似更换皮肤 .
+ 因为时间赶的急,所以暂时想的这个点子预留, 感觉有很多不足的地方.
+
+ */
+
+
+
+
+
+
 #import <UIKit/UIKit.h>
+
 
 @interface FFImageManager : NSObject
 
@@ -102,8 +117,14 @@
 + (UIImage *)logoImage;
 
 
-
-
+#pragma mark - drvie class
++ (UIImage *)Drive_like;
++ (UIImage *)Drive_unlike;
++ (UIImage *)Drive_shared;
++ (UIImage *)Drive_comment;
++ (UIImage *)Drive_commentlike;
++ (UIImage *)Drive_attention;
++ (UIImage *)Drive_attention_cancel;
 
 @end
 
