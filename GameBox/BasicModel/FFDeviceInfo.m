@@ -21,6 +21,8 @@
 
 #define KEYCHAINSERVICE @"tenoneTec.com"
 #define DEVICEID @"deviceID%forBOX"
+#define DEVICE_CHANNEL @"device(_Channel"
+#define DEVICE_CHANNEL_STRING @"device(_Channel_string"
 
 
 @implementation FFDeviceInfo
@@ -160,6 +162,32 @@
     // Free memory
     freeifaddrs(interfaces);
     return address;
+}
+
+/** 检查渠道号 */
++ (NSString *)cheackChannel {
+    NSDate* date = [NSDate dateWithTimeIntervalSinceNow:0];//获取当前时间0秒后的时间
+    NSTimeInterval time= [date timeIntervalSince1970] * 1000;// *1000 是精确到毫秒，不乘就是精确到秒
+    NSString *timeString = [NSString stringWithFormat:@"%.0f", time];
+
+    NSString *SaveChannelString = [SYKeychain passwordForService:KEYCHAINSERVICE account:DEVICE_CHANNEL_STRING];
+
+    if (SaveChannelString == nil) {
+        SaveChannelString = [NSString stringWithFormat:@"%@-%@",Channel,timeString];
+        [SYKeychain setPassword:SaveChannelString forService:KEYCHAINSERVICE account:DEVICE_CHANNEL_STRING];
+        [SYKeychain setPassword:Channel forService:KEYCHAINSERVICE account:DEVICE_CHANNEL];
+        return SaveChannelString;
+    } else {
+        NSString *saveChannel = [SYKeychain passwordForService:KEYCHAINSERVICE account:DEVICE_CHANNEL];
+        if ([saveChannel isEqualToString:Channel]) {
+            return SaveChannelString;
+        } else {
+            SaveChannelString = [NSString stringWithFormat:@"%@-%@",Channel,timeString];
+            [SYKeychain setPassword:SaveChannelString forService:KEYCHAINSERVICE account:DEVICE_CHANNEL_STRING];
+            [SYKeychain setPassword:Channel forService:KEYCHAINSERVICE account:DEVICE_CHANNEL];
+            return SaveChannelString;
+        }
+    }
 }
 
 

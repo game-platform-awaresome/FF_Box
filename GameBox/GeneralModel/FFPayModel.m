@@ -102,8 +102,6 @@ static FFPayModel *model = nil;
 }
 
 
-
-
 /** 支付查询 */
 + (void)payQueryWithOrderID:(NSString *)orderID
                  Completion:(void (^)(NSDictionary *, BOOL))completion {
@@ -117,6 +115,9 @@ static FFPayModel *model = nil;
         NEW_REQUEST_COMPLETION;
     }];
 }
+
+
+
 
 
 @end

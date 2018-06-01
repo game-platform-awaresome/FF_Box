@@ -18,6 +18,7 @@
 #import "FFMapModel.h"
 #import "FFBoxModel.h"
 #import "FFStatisticsModel.h"
+#import "FFDeviceInfo.h"
 
 #import "FFMaskView.h"
 #import "FFAdvertisingView.h"
@@ -39,6 +40,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
+    syLog(@"channel === %@",Channel);
     //初始化界面
     [self initializeUserInterface];
 
@@ -80,6 +82,8 @@
 
     //第一次安装
     BOOL isFirstInstall = [FFBoxModel isFirstInstall];
+    //检查渠道号
+    [FFDeviceInfo cheackChannel];
 
 
     //初始化window
@@ -103,6 +107,8 @@
     }
     //请求广告页面
     [FFBoxModel postAdvertisingImage];
+
+
 }
 
 

@@ -85,13 +85,14 @@ static FFStatisticsModel *model = nil;
 
 /** 初始化统计 */
 void initStatisticsModel(initBoxCallBack callback) {
-    NSDictionary *dict = @{@"channel":Channel};
-    [FFNetWorkManager postRequestWithURL:Map.BOX_INIT Params:@{@"channel":Channel,@"sign":BOX_SIGN(dict, (@[@"channel"]))} Success:^(NSDictionary * _Nonnull content) {
+    NSDictionary *dict = @{@"channel":Channel,@"system":@"2"};
+    [FFNetWorkManager postRequestWithURL:Map.BOX_INIT Params:@{@"channel":Channel,@"system":@"2",@"sign":BOX_SIGN(dict, (@[@"channel",@"system"]))} Success:^(NSDictionary * _Nonnull content) {
         syLog(@"统计  === %@", content);
         NSString *status = content[@"status"];
+
+        if (status.integerValue == 1) {
         NSString *box_static = content[@"data"][@"box_static"];
         NSString *showdiscount = CONTENT_DATA[@"discount_enabled"];
-        if (status.integerValue == 1) {
             statisticsModel.registState = (FFStatisticsState)box_static.integerValue;
             if (callback) {
                 callback(showdiscount);

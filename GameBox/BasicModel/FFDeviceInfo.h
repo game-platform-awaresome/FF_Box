@@ -39,6 +39,6 @@
 
 + (NSString *)signWithParms:(NSDictionary *)params WithKeys:(NSArray *)keys;
 
-
++ (NSString *)cheackChannel;
 
 @end

@@ -2747,7 +2747,7 @@
 					"$(PROJECT_DIR)/GameBox/Others/Third_Library/trackingio",
 					"$(PROJECT_DIR)/GameBox",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sy185Box.TWKJ.test;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sy185Box.TWKJ;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -2778,7 +2778,7 @@
 					"$(PROJECT_DIR)/GameBox/Others/Third_Library/trackingio",
 					"$(PROJECT_DIR)/GameBox",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sy185Box.TWKJ.test;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sy185Box.TWKJ;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};

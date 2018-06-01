@@ -12,6 +12,7 @@
 #import "FFDriveMineViewController.h"
 #import "FFDriveUserModel.h"
 #import "FFDriveDetailInfoViewController.h"
+#import "FFColorManager.h"
 
 #define CELL_IDE @"DriveInfoCell"
 
@@ -60,6 +61,7 @@
     self.view.backgroundColor = [UIColor redColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.view addSubview:self.tableView];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 
@@ -309,6 +311,9 @@ static BOOL respondsSuccess;
     }
 
     cell.model = model;
+
+
+
     return cell;
 }
 

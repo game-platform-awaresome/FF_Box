@@ -27,6 +27,7 @@
     [dict setObject:Channel forKey:@"channel_id"];
     NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
     NSString *version = [NSString stringWithFormat:@"%@",[infoDic objectForKey:@"CFBundleVersion"]];
+    syLog(@"versionstring === %@",version);
     [dict setObject:version forKey:@"version"];
     [FFNetWorkManager postRequestWithURL:Map.GAME_CHECK_CLIENT Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         REQUEST_COMPLETION;
@@ -91,12 +92,10 @@
         //每次启动统计
         NSString *uploadFirstInstallSuccess = [[NSUserDefaults standardUserDefaults] stringForKey:@"uploadFirstInstallSuccess"];
         syLog(@"uploadFirstInstallSuccess f2");
-
         if (uploadFirstInstallSuccess) {
             return NO;
         } else {
             syLog(@"uploadFirstInstallSuccess ing ");
-
             [FFBoxModel gameBoxStarUpWithCompletion:^(NSDictionary * _Nullable content, BOOL success) {
                 syLog(@"upload  gamebox star === %@",content);
                 [FFBoxModel gameBoxInstallWithCompletion:^(NSDictionary * _Nullable content, BOOL success) {
@@ -113,9 +112,7 @@
                             [FFBoxModel isFirstInstall];
                         });
                     }
-
                 }];
-
             }];
         }
         return YES;
@@ -128,6 +125,7 @@
 
 /** 盒子启动统计 */
 + (void)gameBoxStarUpWithCompletion:(void (^)(NSDictionary * _Nullable, BOOL))completion {
+    syLog(@"\n!!!!!!!!!!!!!!!!!!!\n盒子启动统计\n!!!!!!!!!!!!!!!!");
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:@"2" forKey:@"system"];
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
@@ -145,7 +143,6 @@
 
 /** 盒子安装 */
 + (void)gameBoxInstallWithCompletion:(void (^)(NSDictionary * _Nullable, BOOL))completion {
-
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:@"2" forKey:@"system"];
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];

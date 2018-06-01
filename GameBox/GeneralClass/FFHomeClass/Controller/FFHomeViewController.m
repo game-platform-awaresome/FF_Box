@@ -84,6 +84,7 @@
 
 - (void)refreshData {
     [self startWaiting];
+
     initStatisticsModel(^(NSString * _Nonnull showdiscount) {
         [self stopWaiting];
         self.homeSelectView.titleArray = showdiscount.boolValue ? @[@"BT服",@"折扣",@"承诺"] : @[@"BT服",@"承诺"];
