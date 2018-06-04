@@ -22,7 +22,7 @@
 @property (nonatomic, assign) CGRect SelectViewFrame;
 
 /** child controllers */
-@property (nonatomic, strong) NSArray<UIViewController *> *selectChildViewControllers;
+@property (nonatomic, strong) NSMutableArray<UIViewController *> *selectChildViewControllers;
 @property (nonatomic, strong) NSArray<NSString *> *selectChildVCNames;
 
 

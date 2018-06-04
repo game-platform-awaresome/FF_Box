@@ -8,28 +8,41 @@
 
 #import "FFNetWorkManager.h"
 
+#define NOTI_SET_DISCOUNT_VIEW @"NOTI_SET_DISCOUNT_VIEW"
+
 typedef void (^MapCompletion)(void);
 typedef void (^NotiCompletion)(NSDictionary *  content, BOOL success);
+typedef void (^BoxInitCallBackBlock)(NSDictionary *content, BOOL success);
 
 
 @interface FFBoxModel : FFNetWorkManager
 
-/** check box version */
-+ (void)checkBoxVersionCompletion:(void(^)(NSDictionary *  content, BOOL success))completion;
+@property (nonatomic, strong) NSString *update_url;         //盒子更新地址
+@property (nonatomic, strong) NSString *start_page;         //启动页
+@property (nonatomic, strong) NSDictionary *app_notice;     //盒子通知
+@property (nonatomic, strong) NSString *box_static;         //盒子统计
+@property (nonatomic, strong) NSString *discount_enabled;   //折扣服开启关闭
+@property (nonatomic, strong) NSString *qq_zixun;           //qq 资讯
 
-/** update box */
-+ (void)boxUpdateWithUrl:(NSString *)url;
++ (FFBoxModel *)sharedModel;
 
-/** first login */
+/** 盒子初始化 V2 */
++ (void)BoxInit;
+
+/** 是否是第一次安装 */
++ (BOOL)FirstInstall;
+
+/** 获取广告页 */
++ (NSData *)getAdvertisingImage;
+
+/** 是否第一次登陆 */
 + (BOOL)isFirstLogin;
 
-/** first install */
-+ (BOOL)isFirstInstall;
-
-/** app  announcement */
-+ (void)appAnnouncement;
-
+/** 自动登陆 */ 
 + (void)login;
+
+
+
 + (NSArray *)notificationList;
 
 /** 注册本地通知 */
@@ -44,14 +57,8 @@ typedef void (^NotiCompletion)(NSDictionary *  content, BOOL success);
 + (void)deleteNotificationWith:(id)dict;
 + (void)deleteAllNotification;
 
-/** advertising  */
-+ (void)postAdvertisingImage;
 
-//+ (id *)addAdvertisinImage;
 
-+ (NSData *)getAdvertisingImage;
-
-+ (void)UnreadMessagesWithCompletion:(MapCompletion)completion;
 
 
 @end

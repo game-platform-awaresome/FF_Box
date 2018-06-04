@@ -36,7 +36,6 @@
 /** 对类的属性赋值 */
 - (void)setAllPropertyWithDict:(NSDictionary *)dict {
     WeakSelf;
-
     NSArray *names = [FFBasicModel getAllPropertyWithClass:self];
     if (dict != nil && dict.count > 0) {
         NSArray *mapArray = [dict allKeys];
@@ -53,8 +52,6 @@
             syLog(@"%@ 多余的属性 %@",className, mapSet);
         }
     }
-
-
     if (dict == nil) {
         for (NSString *name in names) {
             if ([name isEqualToString:@"isLogin"]) {
@@ -70,17 +67,14 @@
             if (!name) {
                 continue;
             }
-
             if ([name isEqualToString:@"isLogin"]) {
 //                [weakSelf setValue:@YES forKey:name];
                 continue;
             }
-
             if ([name isEqualToString:@"uid"]) {
                 [weakSelf setValue:[NSString stringWithFormat:@"%@",dict[@"id"]] forKey:name];
                 continue;
             }
-
             if(dict[name]) {
                 [weakSelf setValue:[NSString stringWithFormat:@"%@",dict[name]] forKey:name];
             }

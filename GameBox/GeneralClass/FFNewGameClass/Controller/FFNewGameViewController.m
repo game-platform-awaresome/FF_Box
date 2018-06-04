@@ -9,7 +9,7 @@
 #import "FFNewGameViewController.h"
 #import "FFGameViewController.h"
 #import "FFCustomizeCell.h"
-#import <FFTools/FFTools.h>
+#import "FFNewGameHeaderView.h"
 
 #define CELL_IDE @"FFCustomizeCell"
 
@@ -20,6 +20,10 @@
 
 /** game dictionary */
 @property (nonatomic, strong) NSMutableDictionary * dataDictionary;
+
+/** table headerview */
+@property (nonatomic, strong) FFNewGameHeaderView *headerView;
+
 
 @end
 
@@ -67,6 +71,10 @@
         } else {
             self.tableView.backgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"wuwangluo"]];
         }
+
+        //
+        self.headerView.dict = @{@"1":@"1"};
+        self.tableView.tableHeaderView = self.headerView;
 
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
@@ -187,12 +195,24 @@
     self.tableView.mj_footer = self.refreshFooter;
     self.tableView.sectionHeaderHeight = 20;
     self.tableView.sectionFooterHeight = 0;
+    self.tableView.backgroundColor = [FFColorManager navigation_bar_white_color];
     self.tableView.tableFooterView = [UIView new];
     [self.view addSubview:self.tableView];
     BOX_REGISTER_CELL;
 }
 
+- (FFNewGameHeaderView *)headerView {
+    if (!_headerView) {
+        _headerView = [[FFNewGameHeaderView alloc] init];
+    }
+    return _headerView;
+}
+
+
 
 
 
 @end
+
+
+

@@ -15,7 +15,7 @@
 #import "FFLoginViewController.h"
 #import "FFUserModel.h"
 #import "FFShowDiscoutModel.h"
-#import "FFStatisticsModel.h"
+#import "FFBoxModel.h"
 
 //#import "FFHomeSelectView.h"
 
@@ -28,6 +28,9 @@
 
 @implementation FFHomeViewController
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -79,19 +82,17 @@
  
 - (void)initDataSource {
     [super initDataSource];
-    [self refreshData];
+    [self startWaiting];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshData) name:NOTI_SET_DISCOUNT_VIEW object:nil];
 }
 
 - (void)refreshData {
-    [self startWaiting];
-
-    initStatisticsModel(^(NSString * _Nonnull showdiscount) {
-        [self stopWaiting];
-        self.homeSelectView.titleArray = showdiscount.boolValue ? @[@"BT服",@"折扣",@"承诺"] : @[@"BT服",@"承诺"];
-        self._controllerNameArray = showdiscount.boolValue ? @[@"FFBTServerViewController",@"FFZKServerViewController",@"FFPromiseViewController"] : @[@"FFBTServerViewController",@"FFPromiseViewController"];
-    });
+    [self stopWaiting];
+    self.selectChildViewControllers = nil;
+    self.homeSelectView.titleArray = [FFBoxModel sharedModel].discount_enabled.boolValue ? @[@"BT服",@"折扣",@"承诺"] : @[@"BT服",@"承诺"];
+    self._controllerNameArray = [FFBoxModel sharedModel].discount_enabled.boolValue ? @[@"FFBTServerViewController",@"FFZKServerViewController",@"FFPromiseViewController"] : @[@"FFBTServerViewController",@"FFPromiseViewController"];
+    [self initUserInterface];
 }
-
 
 - (UIViewController *)creatControllerWithString:(NSString *)controllerString {
     Class ControllerClass = NSClassFromString(controllerString);
@@ -200,6 +201,12 @@
     [_controllerNameArray enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [array addObject:[self creatControllerWithString:obj]];
     }];
+    if (self.selectChildViewControllers) {
+        for (UIViewController *vc in self.selectChildViewControllers) {
+            [vc.view removeFromSuperview];
+            [vc removeFromParentViewController];
+        }
+    }
     self.selectChildViewControllers = array.copy;
 }
 

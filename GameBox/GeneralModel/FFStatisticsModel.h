@@ -11,7 +11,7 @@
 typedef void(^initBoxCallBack)(NSString * _Nonnull showdiscount);
 
 /** 初始化统计 */
-void initStatisticsModel(initBoxCallBack _Nullable callback);
+void initStatisticsModel(NSUInteger state);
 /** 注册统计 */
 void statisticsRegistered(NSString * _Nonnull account);
 /** 登录统计 */
@@ -26,7 +26,6 @@ void customEvents(NSString * _Nonnull name, NSDictionary * _Nullable extra);
 void userProfile(NSDictionary * _Nonnull dataDict);
 
 @interface FFStatisticsModel : NSObject
-
 
 /** app install statistic */
 + (void)installStatistic;

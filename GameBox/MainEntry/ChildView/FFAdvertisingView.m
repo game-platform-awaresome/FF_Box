@@ -77,10 +77,15 @@
         _closebutton = [UIButton buttonWithType:(UIButtonTypeCustom)];
         _closebutton.frame = CGRectMake(kSCREEN_WIDTH * 0.8, kSCREEN_HEIGHT * 0.85, 30, 30);
         [_closebutton setTitle:@" 关闭 " forState:(UIControlStateNormal)];
-        [_closebutton setTitleColor:NAVGATION_BAR_COLOR forState:(UIControlStateNormal)];
+        [_closebutton setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
         _closebutton.titleLabel.font = [UIFont systemFontOfSize:20];
         [_closebutton sizeToFit];
+
         _closebutton.backgroundColor = [UIColor colorWithWhite:0.2 alpha:0.7];
+
+        _closebutton.layer.cornerRadius = _closebutton.bounds.size.height / 2;
+        _closebutton.layer.masksToBounds = YES;
+
         [_closebutton addTarget:self action:@selector(respondsToCloseButton) forControlEvents:(UIControlEventTouchUpInside)];
     }
     return _closebutton;

@@ -239,7 +239,7 @@
 
 - (void)setLineColor:(UIColor *)lineColor {
     if (lineColor) {
-        self.lineView.frame = CGRectMake(0, self.frame.size.height - 2, kSCREEN_WIDTH, 1);
+        self.lineView.frame = CGRectMake(0, self.frame.size.height - 0.5, kSCREEN_WIDTH, 0.5);
         self.lineView.backgroundColor = lineColor;
     }
 }
@@ -298,7 +298,7 @@
 
 - (UIView *)lineView {
     if (!_lineView) {
-        _lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+        _lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0.5)];
         _lineView.backgroundColor = [UIColor clearColor];
     }
     return _lineView;

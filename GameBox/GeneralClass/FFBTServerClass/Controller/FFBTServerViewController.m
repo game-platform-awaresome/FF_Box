@@ -342,6 +342,7 @@
     } else {
 
     }
+    self.tableView.backgroundColor = [FFColorManager navigation_bar_white_color];
     self.tableView.mj_header = self.refreshHeader;
     self.tableView.mj_footer = self.refreshFooter;
     [self.view addSubview:self.tableView];

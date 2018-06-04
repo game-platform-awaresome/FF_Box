@@ -12,54 +12,189 @@
 #import "FFMapModel.h"
 #import <UserNotifications/UserNotifications.h>
 #import <SDWebImageManager.h>
+#import <objc/runtime.h>
 
 #import "FFUserModel.h"
+#import "FFStatisticsModel.h"
+
+@interface FFBoxModel()
+
+@property (nonatomic, strong) NSString *firstInstall;
+
+@end
+
 
 
 @implementation FFBoxModel
 
-#pragma mark - ========================== 检查更新 =====================================
-/** 客户端检查更新 */
-+ (void)checkBoxVersionCompletion:(void(^_Nullable)(NSDictionary * _Nullable content, BOOL success))completion {
+static FFBoxModel *model = nil;
++ (FFBoxModel *)sharedModel {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        if (model == nil) {
+            model = [[FFBoxModel alloc] init];
+            model.firstInstall = @"0";
+        }
+    });
+    return model;
+}
 
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    [dict setObject:@"2" forKey:@"system"];
-    [dict setObject:Channel forKey:@"channel_id"];
-    NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
-    NSString *version = [NSString stringWithFormat:@"%@",[infoDic objectForKey:@"CFBundleVersion"]];
-    syLog(@"versionstring === %@",version);
-    [dict setObject:version forKey:@"version"];
-    [FFNetWorkManager postRequestWithURL:Map.GAME_CHECK_CLIENT Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
-        REQUEST_COMPLETION;
+#pragma mark - setter
+/** 盒子更新 */
+- (void)setUpdate_url:(NSString *)update_url {
+    if (![update_url isKindOfClass:[NSNull class]]) {
+        _update_url = [NSString stringWithFormat:@"%@",update_url];
+        syLog(@"\n-----------------\n盒子有更新,地址 == %@\n-----------------\n",_update_url);
+        [self boxUpdate];
+    } else {
+        syLog(@"\n-----------------\n盒子无更新\n-----------------\n");
+    }
+}
+/** 启动页 */
+- (void)setStart_page:(NSString *)start_page {
+    if ([start_page isKindOfClass:[NSNull class]]) {
+        syLog(@"\n-----------------\n无广告页\n-----------------\n");
+    } else {
+        _start_page = [NSString stringWithFormat:@"%@",start_page];
+        syLog(@"\n-----------------\n保存广告页\n-----------------\n");
+        [FFBoxModel saveAdvertisingImage:_start_page];
+    }
+}
+/** 盒子通知 */
+- (void)setApp_notice:(NSDictionary *)app_notice {
+    if ([app_notice isKindOfClass:[NSDictionary class]]) {
+        syLog(@"\n-----------------\n发布公告\n-----------------\n");
+        [FFBoxModel addAppAnnouncementWith:app_notice];
+    } else {
+        syLog(@"\n-----------------\n没有公告\n-----------------\n");
+    }
+}
+/** 统计开关 */
+- (void)setBox_static:(NSString *)box_static {
+    if (box_static) {
+        _box_static = [NSString stringWithFormat:@"%@",box_static];
+        syLog(@"\n-----------------\n开启统计\n-----------------\n");
+        initStatisticsModel(_box_static.integerValue);
+    }
+}
+/** 折扣开关 */
+- (void)setDiscount_enabled:(NSString *)discount_enabled {
+    if (discount_enabled) {
+        syLog(@"\n-----------------\n折扣服开关\n-----------------\n");
+//#ifdef DEBUG
+//        _discount_enabled = @"1";
+//#else
+        _discount_enabled = [NSString stringWithFormat:@"%@",discount_enabled];
+//#endif
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTI_SET_DISCOUNT_VIEW object:nil];
+    }
+}
+/** QQ 资讯 */
+- (void)setQq_zixun:(NSString *)qq_zixun {
+
+}
+
+
+#pragma mark - method
+/** 盒子初始化  V2  */
++ (void)BoxInit {
+    [self FirstInstall];  //获取初始化;
+    Pamaras_Key((@[@"system",@"version",@"channel",@"maker",
+                   @"machine_code",@"mobile_model",@"system_version",
+                   @"mac",@"is_first_boot"]));
+    SS_DICT;
+    
+    SS_SYSTEM;
+    [dict setObject:[FFDeviceInfo cheackVersion] forKey:@"version"];
+    SS_CHANNEL;
+    [dict setObject:@"Apple" forKey:@"maker"];
+    SS_DEVICEID;
+    [dict setObject:[FFDeviceInfo phoneType] forKey:@"mobile_model"];
+    [dict setObject:[FFDeviceInfo systemVersion] forKey:@"system_version"];
+    [dict setObject:@" " forKey:@"mac"];
+    [dict setObject:[self sharedModel].firstInstall forKey:@"is_first_boot"];
+
+    SS_SIGN;
+
+    syLog(@"init dict == %@",dict);
+
+    syLog(@"box init start with first install == %@",[self sharedModel].firstInstall);
+    [FFNetWorkManager postRequestWithURL:Map.BOX_INIT_V2 Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        syLog(@"box init v2 === %@",content);
+        REQUEST_STATUS;
+        if (success && status.integerValue == 1) {
+            SAVEOBJECT_AT_USERDEFAULTS(@"1", @"isFirstInstall");
+            SAVEOBJECT_AT_USERDEFAULTS(@"1", @"uploadFirstInstallSuccess");
+            [[self sharedModel] setAllPropertyWithDict:CONTENT_DATA];
+        } else {
+            syLog(@"box init failure");
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                syLog(@"box reinit");
+                [self BoxInit];
+            });
+        }
     }];
 }
 
-+ (void)boxUpdateWithUrl:(NSString *)url {
+/** 第一次安装 */
++ (BOOL)FirstInstall {
+    NSString *firstInstall = OBJECT_FOR_USERDEFAULTS(@"isFirstInstall");
+    NSString *uploadFirstInstallSuccess = OBJECT_FOR_USERDEFAULTS(@"uploadFirstInstallSuccess");
+    if (firstInstall && uploadFirstInstallSuccess) {
+        [self sharedModel].firstInstall = @"0";
+        return NO;
+    } else {
+        [self sharedModel].firstInstall = @"1";
+        return YES;
+    }
+}
+
+/** 盒子更新 */
+- (void)boxUpdate {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil  message:@"游戏有更新,前往更新" preferredStyle:UIAlertControllerStyleAlert];
     [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
     [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
     [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        if ([FFNetWorkManager netWorkState] == FFNetworkReachabilityStatusReachableViaWiFi) {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
-        } else {
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"当前为流量" message:@"是否前去更新" preferredStyle:UIAlertControllerStyleAlert];
-            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
-            [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
-            [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
-            }]];
-        }
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.update_url]];
     }]];
 }
 
-
-
+/** 保存广告图片 */
+const NSString *AdvertisingKey = @"AdvertisingKey";
++ (void)saveAdvertisingImage:(NSString *)url {
+    NSString *hasAdvertisingImage = OBJECT_FOR_USERDEFAULTS(@"hasAdvertisingImage");
+    if ([url isKindOfClass:[NSString class]] && url.length > 0) {
+        if (![hasAdvertisingImage isEqualToString:url]) {
+            [[[SDWebImageManager sharedManager] imageDownloader] downloadImageWithURL:[NSURL URLWithString:url] options:(SDWebImageDownloaderLowPriority) progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
+                if (finished) {
+                    [data writeToFile:[FFBoxModel AdvertisingImagePath] atomically:YES];
+                    SAVEOBJECT_AT_USERDEFAULTS(url, @"hasAdvertisingImage");
+                }
+            }];
+        } else {
+            syLog(@"\n-----------------\n广告页已存在\n-----------------\n");
+        }
+    } else {
+        if (hasAdvertisingImage) {
+            [[NSFileManager defaultManager] removeItemAtPath:[FFBoxModel AdvertisingImagePath] error:nil];
+        }
+    }
+}
+/** 获取广告页本地缓存 */
++ (NSData *)getAdvertisingImage {
+    NSData *data = [NSData dataWithContentsOfFile:[FFBoxModel AdvertisingImagePath]];
+    return data;
+}
+/** 广告业到本地 */
++ (NSString *)AdvertisingImagePath {
+    NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *path = [pathArray objectAtIndex:0];
+    NSString *filePath = [path stringByAppendingPathComponent:@"AdvertisingImage"];
+    return filePath;
+}
+/** 是否是第一次登陆 */
 + (BOOL)isFirstLogin {
-    //    return YES;
-    //第一次登陆
-    NSString *isFirstGuide = [[NSUserDefaults standardUserDefaults] stringForKey:@"isFirstGuide"];
-    //    return YES;
-    //    [FFBoxModel isFirstInstall];
+    NSString *isFirstGuide = OBJECT_FOR_USERDEFAULTS(@"isFirstGuide");
     if (isFirstGuide) {
         return NO;
     } else {
@@ -67,7 +202,7 @@
         return YES;
     }
 }
-
+/** 自动登录 */
 + (void)login {
     NSString *username = [FFUserModel UserName];
     NSString *password = [FFUserModel passWord];
@@ -82,97 +217,7 @@
         }];
     }
 }
-
-+ (BOOL)isFirstInstall {
-    NSString *isFirstInstall = [[NSUserDefaults standardUserDefaults] stringForKey:@"isFirstInstall"];
-
-    syLog(@"uploadFirstInstallSuccess f");
-
-    if (!isFirstInstall) {
-        //每次启动统计
-        NSString *uploadFirstInstallSuccess = [[NSUserDefaults standardUserDefaults] stringForKey:@"uploadFirstInstallSuccess"];
-        syLog(@"uploadFirstInstallSuccess f2");
-        if (uploadFirstInstallSuccess) {
-            return NO;
-        } else {
-            syLog(@"uploadFirstInstallSuccess ing ");
-            [FFBoxModel gameBoxStarUpWithCompletion:^(NSDictionary * _Nullable content, BOOL success) {
-                syLog(@"upload  gamebox star === %@",content);
-                [FFBoxModel gameBoxInstallWithCompletion:^(NSDictionary * _Nullable content, BOOL success) {
-                    syLog(@"upload  gamebox install === %@",content);
-                    if (success) {
-                        SAVEOBJECT_AT_USERDEFAULTS(@"1", @"isFirstInstall");
-                        SAVEOBJECT_AT_USERDEFAULTS(@"1", @"uploadFirstInstallSuccess");
-                        [FFUserModel signOut];
-                        syLog(@"uploadFirstInstallSuccess success");
-                    } else {
-                        syLog(@"上传第一次安装失败, 3秒后重新发送请求");
-                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                            syLog(@"重新发送第一次安装请求");
-                            [FFBoxModel isFirstInstall];
-                        });
-                    }
-                }];
-            }];
-        }
-        return YES;
-    } else {
-        //每次启动统计
-        [FFBoxModel gameBoxStarUpWithCompletion:nil];
-        return NO;
-    }
-}
-
-/** 盒子启动统计 */
-+ (void)gameBoxStarUpWithCompletion:(void (^)(NSDictionary * _Nullable, BOOL))completion {
-    syLog(@"\n!!!!!!!!!!!!!!!!!!!\n盒子启动统计\n!!!!!!!!!!!!!!!!");
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    [dict setObject:@"2" forKey:@"system"];
-    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
-    [dict setObject:version forKey:@"version"];
-    [dict setObject:Channel forKey:@"channel"];
-    [dict setObject:[FFDeviceInfo deviceID] forKey:@"code"];
-    [dict setObject:[FFDeviceInfo systemVersion] forKey:@"system_version"];
-    [dict setObject:[FFDeviceInfo DeviceIP] forKey:@"ip"];
-
-    [FFNetWorkManager postRequestWithURL:Map.GAME_BOX_START_INFO Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
-        syLog(@"启动成功");
-        REQUEST_COMPLETION;
-    }];
-}
-
-/** 盒子安装 */
-+ (void)gameBoxInstallWithCompletion:(void (^)(NSDictionary * _Nullable, BOOL))completion {
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    [dict setObject:@"2" forKey:@"system"];
-    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
-    [dict setObject:version forKey:@"version"];
-    [dict setObject:Channel forKey:@"channel"];
-    [dict setObject:@"ios" forKey:@"maker"];
-    [dict setObject:[FFDeviceInfo phoneType] forKey:@"mobile_model"];
-    [dict setObject:[FFDeviceInfo deviceID] forKey:@"code"];
-    [dict setObject:[FFDeviceInfo systemVersion] forKey:@"system_version"];
-    [dict setObject:[FFDeviceInfo DeviceIP] forKey:@"ip"];
-    [FFNetWorkManager postRequestWithURL:Map.GAME_BOX_INSTALL_INFO Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
-        syLog(@"安装成功");
-        REQUEST_COMPLETION;
-    }];
-}
-
-+ (void)appAnnouncement {
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    [dict setObject:Channel forKey:@"cid"];
-    [dict setObject:BOX_SIGN(dict, @[@"cid"]) forKey:@"sign"];
-    [FFNetWorkManager postRequestWithURL:Map.APP_NOTICE Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
-        if (success && [(content[@"data"]) isKindOfClass:[NSDictionary class]]) {
-            [FFBoxModel addAppAnnouncementWith:(content[@"data"])];
-            syLog(@"announcement == %@",content);
-        } else {
-            syLog(@"没有公告");
-        }
-    }];
-}
-
+/** 添加公告 */
 + (void)addAppAnnouncementWith:(NSDictionary *)dict {
     if (@available(iOS 10.0, *)) {
         UNTimeIntervalNotificationTrigger *timeTrigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:5 repeats:NO];
@@ -189,50 +234,12 @@
     }
 }
 
-+ (void)postAdvertisingImage {
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    [dict setObject:@"2" forKey:@"system"];
-    [dict setObject:Channel forKey:@"channel"];
-    [dict setObject:BOX_SIGN(dict, (@[@"system",@"channel"])) forKey:@"sign"];
-    //    BOX_SIGN(dict, @[@"system",@"channel"])
-    [FFNetWorkManager postRequestWithURL:Map.GAME_GET_START_IMGS Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
-        REQUEST_STATUS;
-        if (success && status.integerValue == 1) {
-#warning advertising image
-            syLog(@"advertising image === %@",content);
-            [FFBoxModel saveAdvertisingImage:content[@"data"]];
-        }
-    }];
-}
 
-+ (NSData *)getAdvertisingImage {
-    NSData *data = [NSData dataWithContentsOfFile:[FFBoxModel AdvertisingImagePath]];
-    return data;
-}
 
-+ (void)saveAdvertisingImage:(NSString *)url {
-    if ([url isKindOfClass:[NSString class]] && url.length > 0) {
-        [[[SDWebImageManager sharedManager] imageDownloader] downloadImageWithURL:[NSURL URLWithString:url] options:(SDWebImageDownloaderLowPriority) progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
-            if (finished) {
-                [data writeToFile:[FFBoxModel AdvertisingImagePath] atomically:YES];
-            }
-        }];
-    } else {
-        [[NSFileManager defaultManager] removeItemAtPath:[FFBoxModel AdvertisingImagePath] error:nil];
-    }
-}
-
-+ (NSString *)AdvertisingImagePath {
-    NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *path = [pathArray objectAtIndex:0];
-    NSString *filePath = [path stringByAppendingPathComponent:@"AdvertisingImage"];
-    return filePath;
-}
 
 #pragma mark - =========================== push notification ===========================
 //使用 UNNotification 本地通知
 + (void)registerNotification:(NSInteger )alerTime {
-
     // 使用 UNUserNotificationCenter 来管理通知
     if (@available(iOS 10.0, *)) {
         // 设置触发条件 UNNotificationTrigger
@@ -255,13 +262,9 @@
         UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
         // 将通知请求 add 到 UNUserNotificationCenter
         [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
-
         }];
     }
-
 }
-
-
 
 #pragma mark - add local notification
 + (void)addNotificationWithDict:(NSDictionary *)dict Completion:(NotiCompletion)completion {
@@ -301,7 +304,6 @@
     }
 }
 
-
 + (BOOL)isAddNotificationWithDict:(NSDictionary *)dict {
     NSArray *array = [FFBoxModel allNotifications];
     for (NSDictionary *info in array) {
@@ -318,7 +320,6 @@
 }
 
 + (NSDateFormatter *)dateFromatter {
-
     return [[NSDateFormatter alloc] init];
 }
 
@@ -399,7 +400,6 @@
 }
 
 + (void)deleteNotificationWith:(NSDictionary *)dict {
-
     if (@available(iOS 10.0, *)) {
         [[UNUserNotificationCenter currentNotificationCenter] removePendingNotificationRequestsWithIdentifiers:@[[FFBoxModel notificationIdentifierWithUserInfo:dict]]];
     } else {
@@ -418,5 +418,63 @@
         }
     }
 }
+
+
+#pragma mark - 属性赋值
+/** 获取类的所有属性 */
++ (NSArray *)getAllPropertyWithClass:(id)classType {
+    unsigned int count;// 记录属性个数
+    objc_property_t *properties = class_copyPropertyList([classType class], &count);
+    // 遍历
+    NSMutableArray *mArray = [NSMutableArray array];
+    for (int i = 0; i < count;  i++) {
+        objc_property_t property = properties[i];
+        const char *cName = property_getName(property);
+        NSString *name = [NSString stringWithCString:cName encoding:NSUTF8StringEncoding];
+        [mArray addObject:name];
+    }
+    return [mArray copy];
+}
+
+/** 对类的属性赋值 */
+- (void)setAllPropertyWithDict:(NSDictionary *)dict {
+    WeakSelf;
+    NSArray *names = [FFBoxModel getAllPropertyWithClass:self];
+    if (dict != nil && dict.count > 0) {
+        NSArray *mapArray = [dict allKeys];
+        syLog(@"inpute property count %ld",mapArray.count);
+        syLog(@"original property count %ld",names.count);
+        NSMutableSet *namesSet = [NSMutableSet setWithArray:names];
+        NSMutableSet *mapSet = [NSMutableSet setWithArray:mapArray];
+        NSString *className = NSStringFromClass([weakSelf class]);
+        if (namesSet.count > mapSet.count) {
+            [namesSet minusSet:mapSet];
+            syLog(@"%@ 没有添加的属性 %@",className, namesSet);
+        } else {
+            [mapSet minusSet:namesSet];
+            syLog(@"%@ 多余的属性 %@",className, mapSet);
+        }
+    }
+    if (dict == nil) {
+        for (NSString *name in names) {
+            [weakSelf setValue:nil forKey:name];
+        }
+    } else {
+        for (NSString *name in names) {
+            //如果字典中的值为空，赋值可能会出问题
+            if (!name) {
+                continue;
+            }
+            if(dict[name]) {
+                [weakSelf setValue:dict[name] forKey:name];
+            }
+        }
+    }
+}
+
+
+
+
+
 
 @end

@@ -190,5 +190,11 @@
     }
 }
 
++ (NSString *)cheackVersion {
+    NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
+    NSString *version = [NSString stringWithFormat:@"%@",[infoDic objectForKey:@"CFBundleVersion"]];
+    return version;
+}
+
 
 @end

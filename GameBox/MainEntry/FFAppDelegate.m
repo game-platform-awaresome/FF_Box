@@ -79,75 +79,42 @@
 
 #pragma mark - method
 - (void)initializeUserInterface {
-
-    //第一次安装
-    BOOL isFirstInstall = [FFBoxModel isFirstInstall];
     //检查渠道号
     [FFDeviceInfo cheackChannel];
-
-
     //初始化window
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.rootViewController = [FFControllerManager sharedManager].rootNavController;
     //    self.window.rootViewController = [UIViewController new];
     [self.window makeKeyAndVisible];
-
     //加载蒙版
-    [self addMaskView:isFirstInstall];
-
+    [self addMaskView:[FFBoxModel FirstInstall]];
     //加载引导页
     if ([FFBoxModel isFirstLogin]) {
         [self.window addSubview:[FFLaunchScreen new]];
     } else {
-        //广告
-        NSData * data = [FFBoxModel getAdvertisingImage];
-        if (data) {
-            [FFAdvertisingView initWithImage:data];
+        if ([FFBoxModel getAdvertisingImage]) {
+            [FFAdvertisingView initWithImage:[FFBoxModel getAdvertisingImage]];
         }
     }
-    //请求广告页面
-    [FFBoxModel postAdvertisingImage];
-
-
 }
 
 
 
 - (void)initializeDataSource {
-
-    //获取接口
+    //获取总接口
     [FFMapModel getMapCompletion:^{
         //登录
         [FFBoxModel login];
     }];
-
+    //盒子初始化
+    [FFBoxModel BoxInit];
     //注册微信
     [WXApi registerApp:WEIXINAPPID];
     //注册QQ
     TencentOAuth *oAuth = [[TencentOAuth alloc] initWithAppId:QQAPPID andDelegate:nil];
     [oAuth isSessionValid];
-
-
     //注册通知
     [self resignNotifacation];
-
-    //公告
-    [FFBoxModel appAnnouncement];
-
-    //注册统计
-    initStatisticsModel(^(NSString * _Nonnull showdiscount) {
-        [FFShowDiscoutModel sharedModel].showDiscount = showdiscount;
-    });
-
-    //检查更新
-    [FFBoxModel checkBoxVersionCompletion:^(NSDictionary *content, BOOL success) {
-        syLog(@"box version ==== %@",content);
-        if (success) {
-            if ([content[@"data"] isKindOfClass:[NSString class]]) {
-                [FFBoxModel boxUpdateWithUrl:content[@"data"]];
-            }
-        }
-    }];
 }
 
 /** 注册通知 */

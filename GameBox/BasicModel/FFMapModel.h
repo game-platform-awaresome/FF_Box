@@ -149,6 +149,9 @@ typedef void(^Completion)(void);
 @property (nonatomic, strong) NSString *APP_PROMISE;        //app 承诺
 
 
+/** V2 接口 */
+@property (nonatomic, strong) NSString *BOX_INIT_V2;
+
 + (instancetype)map;
 
 + (void)getMapCompletion:(Completion)completion;

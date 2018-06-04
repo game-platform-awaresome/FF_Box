@@ -9,7 +9,7 @@
 #import "FFOpenServerViewController.h"
 #import "FFBTOpenServerViewController.h"
 #import "FFZKOpenServerViewController.h"
-#import "FFStatisticsModel.h"
+#import "FFBoxModel.h"
 
 @interface FFOpenServerViewController ()
 
@@ -18,6 +18,10 @@
 @end
 
 @implementation FFOpenServerViewController
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -31,13 +35,16 @@
 }
 
 - (void)initDataSource {
-    
-    initStatisticsModel(^(NSString * _Nonnull showdiscount) {
-        self.homeSelectView.titleArray = showdiscount.boolValue ? @[@"BT服",@"折扣"] : @[@"BT服"] ;
-        self.selectChildViewControllers = showdiscount.boolValue ?
-                                        @[[FFBTOpenServerViewController new], [FFZKOpenServerViewController new]]:
-                                        @[[FFBTOpenServerViewController new]];
-    });
+    [self refreshData];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshData) name:NOTI_SET_DISCOUNT_VIEW object:nil];
+}
+
+- (void)refreshData {
+    self.homeSelectView.titleArray = [FFBoxModel sharedModel].discount_enabled.boolValue ? @[@"BT服",@"折扣"] : @[@"BT服"] ;
+    self.selectChildViewControllers = [FFBoxModel sharedModel].discount_enabled.boolValue ?
+    @[[FFBTOpenServerViewController new], [FFZKOpenServerViewController new]].mutableCopy:
+    @[[FFBTOpenServerViewController new]].mutableCopy;
+    [self initUserInterface];
 }
 
 

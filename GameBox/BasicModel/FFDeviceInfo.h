@@ -41,4 +41,12 @@
 
 + (NSString *)cheackChannel;
 
++ (NSString *)cheackVersion;
+
+
 @end
+
+
+
+
+

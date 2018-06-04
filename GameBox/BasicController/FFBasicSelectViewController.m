@@ -120,10 +120,24 @@
 
 #pragma mark - setter
 - (void)setSelectChildViewControllers:(NSArray<UIViewController *> *)selectChildViewControllers {
-    _selectChildViewControllers = selectChildViewControllers;
+    if (selectChildViewControllers == nil) {
+        for (UIViewController *vc in _selectChildViewControllers) {
+            [self childControllerRemove:vc];
+        }
+        [_selectChildViewControllers removeAllObjects];
+        return;
+    }
+    _selectChildViewControllers = selectChildViewControllers.mutableCopy;
     self.scrollView.contentSize = CGSizeMake(kSCREEN_WIDTH * selectChildViewControllers.count, 0);
     [self childControllerAdd:self.selectChildViewControllers[0]];
     [self.scrollView addSubview:self.selectChildViewControllers[0].view];
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    for (UIViewController *vc in self.selectChildViewControllers) {
+        vc.view.frame = CGRectMake(0, 0, kSCREEN_WIDTH, self.scrollView.bounds.size.height);
+    }
 }
 
 

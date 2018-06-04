@@ -171,7 +171,7 @@ const NSUInteger HomeButtonTag = 10086;
     _totalFrame = CGRectMake(0, 0, totalFrame.size.width, totalFrame.size.height);
     _titleSize.height = totalFrame.size.height;
     self.scrollView.frame = _totalFrame;
-    self.lineView.frame = CGRectMake(0, totalFrame.size.height - 2, kSCREEN_WIDTH, 0.5);
+    self.lineView.frame = CGRectMake(0, totalFrame.size.height - 0.5, kSCREEN_WIDTH, 0.5);
     [self bringSubviewToFront:self.lineView];
 }
 - (void)setTitleSize:(CGSize)titleSize {
@@ -184,6 +184,15 @@ const NSUInteger HomeButtonTag = 10086;
 
 - (void)setTitleArray:(NSArray<NSString *> *)titleArray {
     _titleArray = titleArray;
+
+
+    if (self.buttonArray) {
+        for (UIButton *button in self.buttonArray) {
+            [button removeFromSuperview];
+        }
+        self.buttonArray == nil;
+    }
+
     //创建按钮;
     [self creatTitleButtonWithTitleArray:_titleArray];
     //计算 title 的宽度

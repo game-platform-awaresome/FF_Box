@@ -38,7 +38,6 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, assign) FFStatisticsState registState;
 
-
 @end
 
 
@@ -84,31 +83,35 @@ static FFStatisticsModel *model = nil;
 @end
 
 /** 初始化统计 */
-void initStatisticsModel(initBoxCallBack callback) {
-    NSDictionary *dict = @{@"channel":Channel,@"system":@"2"};
-    [FFNetWorkManager postRequestWithURL:Map.BOX_INIT Params:@{@"channel":Channel,@"system":@"2",@"sign":BOX_SIGN(dict, (@[@"channel",@"system"]))} Success:^(NSDictionary * _Nonnull content) {
-        syLog(@"统计  === %@", content);
-        NSString *status = content[@"status"];
+void initStatisticsModel(NSUInteger state) {
+    statisticsModel.registState = state;
+//    NSDictionary *dict = @{@"channel":Channel,@"system":@"2"};
+//
+//    [FFNetWorkManager postRequestWithURL:Map.BOX_INIT Params:@{@"channel":Channel,@"system":@"2",@"sign":BOX_SIGN(dict, (@[@"channel",@"system"]))} Success:^(NSDictionary * _Nonnull content) {
+//        syLog(@"统计  === %@", content);
+//        NSString *status = content[@"status"];
+//
+//        if (status.integerValue == 1) {
+//        NSString *box_static = content[@"data"][@"box_static"];
+//        NSString *showdiscount = CONTENT_DATA[@"discount_enabled"];
+//            statisticsModel.registState = (FFStatisticsState)box_static.integerValue;
+//            if (callback) {
+//                callback(showdiscount);
+//            }
+//        } else {
+//            if (callback) {
+//                callback(@"0");
+//            }
+//        }
 
-        if (status.integerValue == 1) {
-        NSString *box_static = content[@"data"][@"box_static"];
-        NSString *showdiscount = CONTENT_DATA[@"discount_enabled"];
-            statisticsModel.registState = (FFStatisticsState)box_static.integerValue;
-            if (callback) {
-                callback(showdiscount);
-            }
-        } else {
-            if (callback) {
-                callback(@"0");
-            }
-        }
         [FFStatisticsModel startStatics];
-    } Failure:^(NSError * _Nonnull error) {
-        statisticsModel.isStartStatistics = NO;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            initStatisticsModel(callback);
-        });
-    }];
+
+//    } Failure:^(NSError * _Nonnull error) {
+//        statisticsModel.isStartStatistics = NO;
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            initStatisticsModel(callback);
+//        });
+//    }];
 }
 
 

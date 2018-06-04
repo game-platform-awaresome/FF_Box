@@ -180,7 +180,7 @@
             break;
         }
         case 2: {
-            [self cheackVersion];
+//            [self cheackVersion];
             break;
         }
 
@@ -192,16 +192,16 @@
 
 #pragma mark - up date
 //检查版本更新
-- (void)cheackVersion {
-    [FFBoxModel checkBoxVersionCompletion:^(NSDictionary *content, BOOL success) {
-        NSString *update = content[@"data"];
-        if ([update isKindOfClass:[NSNull class]] || update == nil || update.length == 0) {
-            [UIAlertController showAlertMessage:@"当前为最新版本" dismissTime:0.7 dismissBlock:nil];
-        } else {
-            [self boxUpdateWithUrl:update];
-        }
-    }];
-}
+//- (void)cheackVersion {
+//    [FFBoxModel checkBoxVersionCompletion:^(NSDictionary *content, BOOL success) {
+//        NSString *update = content[@"data"];
+//        if ([update isKindOfClass:[NSNull class]] || update == nil || update.length == 0) {
+//            [UIAlertController showAlertMessage:@"当前为最新版本" dismissTime:0.7 dismissBlock:nil];
+//        } else {
+//            [self boxUpdateWithUrl:update];
+//        }
+//    }];
+//}
 
 - (void)boxUpdateWithUrl:(NSString *)url {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil  message:@"游戏有更新,前往更新" preferredStyle:UIAlertControllerStyleAlert];
