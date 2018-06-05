@@ -13,6 +13,16 @@
 #import "FFColorManager.h"
 #import "FFImageManager.h"
 
+#define pushViewController(className)     \
+Class ControllerClass = NSClassFromString(className);\
+if (ControllerClass) {\
+    id vc = [[ControllerClass alloc] init];\
+    [self pushViewController:vc];\
+} else {\
+    syLog(@"%s  error -> %@ not exist",__func__,className);\
+}
+
+
 #define BOX_MESSAGE(Message) [UIAlertController showAlertMessage:Message dismissTime:0.7 dismissBlock:nil]
 
 typedef void(^EndOfNetWorkRequestBlock)(BOOL success);

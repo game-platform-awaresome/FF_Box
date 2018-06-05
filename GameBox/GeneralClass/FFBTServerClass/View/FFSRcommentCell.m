@@ -23,6 +23,7 @@
 @property (nonatomic, strong) UILabel *nameLabel;
 @property (nonatomic, strong) UILabel *coinLabel;
 
+@property (nonatomic, strong) UIButton *discountView;
 
 @end
 
@@ -41,6 +42,7 @@
     [self.contentView addSubview:self.imageView];
     [self.contentView addSubview:self.nameLabel];
     [self.contentView addSubview:self.coinLabel];
+    [self.contentView addSubview:self.discountView];
 }
 
 - (void)setSelected:(BOOL)selected {
@@ -50,10 +52,11 @@
 #pragma mark - setter
 - (void)setDict:(NSDictionary *)dict {
     _dict = dict;
-
     [self setImage:dict[@"logo"]];
     [self setName:dict[@"gamename"]];
     [self setCoin:dict[@"finetopstr"]];
+    [self setDisCount:dict[@"discount"]];
+//    [self setDisCount:@"3.5"];
 }
 
 - (void)setImage:(NSString *)string {
@@ -78,7 +81,17 @@
     } else {
         self.coinLabel.hidden = YES;
     }
+}
 
+- (void)setDisCount:(NSString *)string {
+    if (string && [string isKindOfClass:[NSString class]] && string.length > 0 && ![string isEqualToString:@"0"]) {
+        syLog(@"??????????????????????????????????/");
+        self.discountView.hidden = NO;
+        [self.discountView setTitle:[NSString stringWithFormat:@"%@折",string] forState:(UIControlStateNormal)];
+    } else {
+        syLog(@"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1/");
+        self.discountView.hidden = YES;
+    }
 }
 
 #pragma mark - getter
@@ -113,6 +126,19 @@
         _coinLabel.layer.masksToBounds = YES;
     }
     return _coinLabel;
+}
+
+- (UIButton *)discountView {
+    if (!_discountView) {
+        _discountView = [UIButton buttonWithType:(UIButtonTypeCustom)];
+        _discountView.frame = CGRectMake(45, 8, 30, 15);
+        [_discountView setBackgroundImage:[UIImage imageNamed:@"ZKview_recomment_discount"] forState:(UIControlStateNormal)];
+        [_discountView setTitleColor:[FFColorManager navigation_bar_white_color] forState:(UIControlStateNormal)];
+        _discountView.userInteractionEnabled = NO;
+        _discountView.titleLabel.font = [UIFont systemFontOfSize:11];
+//        _discountView.backgroundColor = [FFColorManager navigation_bar_black_color];
+    }
+    return _discountView;
 }
 
 
@@ -186,7 +212,7 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    syLog(@"click  %ld",indexPath.row);
+    syLog(@"click  %@",self.gameArray[indexPath.row]);
     NSDictionary *dict = self.gameArray[indexPath.row];
     if (self.delegate && [self.delegate respondsToSelector:@selector(FFSRcommentCell:didSelectItemInfo:)]) {
         [self.delegate FFSRcommentCell:self didSelectItemInfo:dict];

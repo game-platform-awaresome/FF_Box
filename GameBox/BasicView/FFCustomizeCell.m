@@ -110,7 +110,12 @@
     //设置名称
     self.gameName.text = _dict[@"gamename"];
     //游戏大小
-    self.gameSize.text = [NSString stringWithFormat:@"%@M",_dict[@"size"]];
+    if (dict[@"size"]) {
+        self.gameSize.hidden = NO;
+        self.gameSize.text = [NSString stringWithFormat:@"%@M",_dict[@"size"]];
+    } else {
+        self.gameSize.hidden = YES;
+    }
     //标签1
     NSString *labelString = dict[@"label"];
     NSArray<UILabel *> *labelArray = @[self.label1,self.label2,self.label3];

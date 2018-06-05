@@ -23,7 +23,7 @@
 @implementation FFGameDetailGuideViewController
 
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+    
 }
 
 - (void)viewDidLoad {

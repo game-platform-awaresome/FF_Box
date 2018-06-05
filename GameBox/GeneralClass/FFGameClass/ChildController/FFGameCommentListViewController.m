@@ -40,7 +40,6 @@
 
 
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
     if (self.canRefresh) {
         [self refreshData];
     }

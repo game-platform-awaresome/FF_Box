@@ -96,7 +96,7 @@ static FFGameViewController *controller = nil;
             }
         }
     }
-    [self.navigationController.navigationBar setTintColor:[FFColorManager navigation_bar_white_color]];
+//    [self.navigationController.navigationBar setTintColor:[FFColorManager navigation_bar_white_color]];
     barBackgroundView.alpha = 0;
 }
 
@@ -229,10 +229,8 @@ static FFGameViewController *controller = nil;
 #pragma mark - method
 - (void)refreshData {
     if (self.gid.length > 0) {
-
         [self naviTransParent];
         [self.navigationController.navigationBar setTintColor:[FFColorManager navigation_bar_white_color]];
-
         [self startWaiting];
         WeakSelf;
         [FFCurrentGameModel refreshCurrentGameWithGameID:self.gid Completion:^(BOOL success) {

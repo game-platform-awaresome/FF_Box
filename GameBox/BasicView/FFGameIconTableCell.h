@@ -7,10 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+@class FFGameIconTableCell;
+
+@protocol FFGameIconTableCellDelegate <NSObject>
+
+- (void)FFGameIconTableCell:(FFGameIconTableCell *)cell selectItemWithInfo:(id)info;
+
+@end;
 
 @interface FFGameIconTableCell : UITableViewCell
 
-@property (nonatomic, strong) NSDictionary *dict;
+@property (nonatomic, weak) id<FFGameIconTableCellDelegate> delegate;
 @property (nonatomic, strong) NSArray *array;
 
 

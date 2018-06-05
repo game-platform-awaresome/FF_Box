@@ -11,6 +11,7 @@
 #import "FFBTServerHeaderView.h"
 #import <UIImageView+WebCache.h>
 #import "FFSRcommentCell.h"
+#import "FFBoxModel.h"
 
 #import "FFSearchController.h"
 //childe controller
@@ -90,6 +91,7 @@
     [FFGameModel GameServersWithType:self.type Page:Next_page Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         [self stopWaiting];
         if (success) {
+//            [[NSNotificationCenter defaultCenter] postNotificationName:NOTI_SET_DISCOUNT_VIEW object:nil];
             NSArray *gameArray = content[@"data"][@"gamelist"];
             if (gameArray != nil && gameArray.count > 0) {
 

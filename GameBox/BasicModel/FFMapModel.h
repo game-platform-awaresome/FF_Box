@@ -152,6 +152,10 @@ typedef void(^Completion)(void);
 /** V2 接口 */
 @property (nonatomic, strong) NSString *BOX_INIT_V2;
 
+/** 新版 新游/热门/排行/满V/超低折扣 */
+@property (nonatomic, strong) NSString *NEW_GAME_TYPE;
+@property (nonatomic, strong) NSString *NEW_GAME_LIST;
+
 + (instancetype)map;
 
 + (void)getMapCompletion:(Completion)completion;

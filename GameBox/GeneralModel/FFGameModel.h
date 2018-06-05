@@ -31,6 +31,11 @@ typedef enum : NSUInteger {
     FFGuide
 } FFActivityType;
 
+typedef enum : NSUInteger {
+    FFBetaGame = 1,
+    FFReservation
+} FFBetaOrReservationType;
+
 #pragma mark - game model
 @interface FFGameModel : FFNetWorkManager
 
@@ -75,6 +80,11 @@ typedef enum : NSUInteger {
 + (void)rankGameListWithPage:(NSString * _Nonnull)page
                   ServerType:(FFGameServersType)serverType
                   Completion:(RequestCallBackBlock _Nullable)completion;
+
+#pragma makr - bate and reservation (内测和预约游戏)
++ (void)betaAndReservationGameWithPage:(NSString * _Nonnull)page
+                                  Type:(FFBetaOrReservationType)type
+                            Completion:(RequestCallBackBlock _Nullable)completion;
 
 #pragma mark - open servers
 /**

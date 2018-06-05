@@ -178,7 +178,9 @@ static FFMapModel *model = nil;
       @"GAME_NEWINDEX":@"http://www.185sy.com/api-game-newIndex",
       @"TASK_CENTER":@"http://api.185sy.com/index.php?g=api&m=userbox&a=task_center",
       @"APP_PROMISE":@"http://api.185sy.com/index.php?g=api&m=userbox&a=app_promise",
-      @"BOX_INIT_V2":@"http://api.185sy.com/index.php?g=api&m=userbox&a=do_init_v2"
+      @"BOX_INIT_V2":@"http://api.185sy.com/index.php?g=api&m=userbox&a=do_init_v2",
+      @"NEW_GAME_TYPE":@"http://www.185sy.com/api-game-newGameType",
+      @"NEW_GAME_LIST":@"http://www.185sy.com/api-game-newgameList"
       };
     return mapDict;
 }

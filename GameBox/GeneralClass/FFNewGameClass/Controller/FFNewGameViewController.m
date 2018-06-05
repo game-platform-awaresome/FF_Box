@@ -13,7 +13,7 @@
 
 #define CELL_IDE @"FFCustomizeCell"
 
-@interface FFNewGameViewController ()
+@interface FFNewGameViewController () <FFNewGameHeaderViewDelegate>
 
 /** time array */
 @property (nonatomic, strong) NSArray<NSString *> * timeArray;
@@ -24,6 +24,7 @@
 /** table headerview */
 @property (nonatomic, strong) FFNewGameHeaderView *headerView;
 
+@property (nonatomic, strong) NSMutableArray *headerDataArray;
 
 @end
 
@@ -52,6 +53,26 @@
 
 }
 
+#pragma mark - header view delegate
+- (void)FFNewGameHeaderView:(FFNewGameHeaderView *)view seletGameItemWithInfo:(id)info {
+    if ([info isKindOfClass:[NSDictionary class]]) {
+        NSString *gid = info[@"id"];
+        [FFGameViewController sharedController].gid = gid;
+        self.hidesBottomBarWhenPushed = YES;
+        [self pushViewController:[FFGameViewController sharedController]];
+    }
+}
+
+- (void)FFNewGameHeaderView:(FFNewGameHeaderView *)view showBetaGame:(id)info {
+    syLog(@"内测游戏");
+    pushViewController(@"FFBetaGameViewController");
+}
+
+- (void)FFNewGameHeaderView:(FFNewGameHeaderView *)view showreservationGame:(id)info {
+    syLog(@"预约游戏");
+    pushViewController(@"FFReservationGameController");
+}
+
 #pragma mark - method
 - (void)refreshData {
     self.currentPage = 1;
@@ -59,9 +80,40 @@
     [FFGameModel newGameListWithPage:New_page ServerType:self.serverType Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         [self stopWaiting];
         if (success) {
+            self.headerDataArray = nil;
             syLog(@"new game == %@",content);
-            self.showArray = [content[@"data"] mutableCopy];
-            [self clearUpData:self.showArray];
+            NSDictionary *dict = content[@"data"];
+
+            @try {
+                self.showArray = [dict[@"list"] mutableCopy];
+                [self clearUpData:self.showArray];
+                //内测游戏
+                NSArray *betaArray = CONTENT_DATA[@"closedBeta"];
+                //预约游戏
+                NSArray *reservationArray = CONTENT_DATA[@"reservation"];
+
+                NSMutableArray *titleArray = [NSMutableArray array];
+                if ([betaArray isKindOfClass:[NSArray class]] && betaArray.count > 0) {
+                    [self.headerDataArray addObject:betaArray];
+                    [titleArray addObject:@"内测游戏"];
+                }
+
+                if ([reservationArray isKindOfClass:[NSArray class]] && reservationArray.count > 0) {
+                    [self.headerDataArray addObject:betaArray];
+                    [titleArray addObject:@"预约游戏"];
+                }
+
+                self.headerView.titleArray = titleArray;
+                self.headerView.array = self.headerDataArray;
+
+            } @catch (NSException *exception) {
+
+            } @finally {
+
+            }
+
+
+
         } else {
 
         }
@@ -72,9 +124,13 @@
             self.tableView.backgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"wuwangluo"]];
         }
 
-        //
-        self.headerView.dict = @{@"1":@"1"};
-        self.tableView.tableHeaderView = self.headerView;
+        if (self.headerDataArray.count > 0) {
+            syLog(@"加载头部视图");
+            self.tableView.tableHeaderView = self.headerView;
+        } else {
+            syLog(@"不加载头部视图");
+            self.tableView.tableHeaderView = nil;
+        }
 
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
@@ -85,7 +141,7 @@
 - (void)loadMoreData {
     [FFGameModel newGameListWithPage:Next_page ServerType:self.serverType Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         if (success) {
-            NSArray *dataArray = content[@"data"];
+            NSArray *dataArray = content[@"data"][@"list"];
             syLog(@"new game == %@",content);
             if (dataArray.count > 0) {
                 [self.showArray addObjectsFromArray:dataArray];
@@ -157,6 +213,7 @@
 
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 20)];
     label.text = [NSString stringWithFormat:@"   %@",self.timeArray[section]];
+    label.textColor = [FFColorManager textColorDark];
     [view addSubview:label];
 
     return view;
@@ -188,7 +245,7 @@
     self.tableView.showsHorizontalScrollIndicator = NO;
     self.tableView.tableFooterView = [UIView new];
     if (@available(iOS 11.0, *)) {
-        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentScrollableAxes;
+        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     } 
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.tableView.mj_header = self.refreshHeader;
@@ -204,8 +261,16 @@
 - (FFNewGameHeaderView *)headerView {
     if (!_headerView) {
         _headerView = [[FFNewGameHeaderView alloc] init];
+        _headerView.delegate = self;
     }
     return _headerView;
+}
+
+- (NSMutableArray *)headerDataArray {
+    if (!_headerDataArray) {
+        _headerDataArray = [NSMutableArray array];
+    }
+    return _headerDataArray;
 }
 
 

@@ -82,12 +82,13 @@
  
 - (void)initDataSource {
     [super initDataSource];
-    [self startWaiting];
+//    [self startWaiting];
+    [self refreshData];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshData) name:NOTI_SET_DISCOUNT_VIEW object:nil];
 }
 
 - (void)refreshData {
-    [self stopWaiting];
+//    [self stopWaiting];
     self.selectChildViewControllers = nil;
     self.homeSelectView.titleArray = [FFBoxModel sharedModel].discount_enabled.boolValue ? @[@"BT服",@"折扣",@"承诺"] : @[@"BT服",@"承诺"];
     self._controllerNameArray = [FFBoxModel sharedModel].discount_enabled.boolValue ? @[@"FFBTServerViewController",@"FFZKServerViewController",@"FFPromiseViewController"] : @[@"FFBTServerViewController",@"FFPromiseViewController"];

@@ -190,8 +190,8 @@ const NSUInteger HomeButtonTag = 10086;
         for (UIButton *button in self.buttonArray) {
             [button removeFromSuperview];
         }
-        self.buttonArray == nil;
     }
+    self.buttonArray = nil;
 
     //创建按钮;
     [self creatTitleButtonWithTitleArray:_titleArray];

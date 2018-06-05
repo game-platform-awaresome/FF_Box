@@ -28,6 +28,10 @@
 
 @implementation FFGameDetailViewController
 
+- (void)viewWillAppear:(BOOL)animated {
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 }

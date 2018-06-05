@@ -18,6 +18,10 @@
 
 @implementation FFGameOpenServerViewController
 
+- (void)viewWillAppear:(BOOL)animated {
+
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.mj_footer = nil;

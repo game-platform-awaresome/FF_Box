@@ -78,7 +78,7 @@
 #pragma mark - getter
 - (UIImageView *)imageView {
     if (!_imageView) {
-        _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 60, 60)];
+        _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 60, 60)];
         _imageView.layer.cornerRadius = 8;
         _imageView.layer.masksToBounds = YES;
     }
@@ -87,8 +87,8 @@
 
 - (UILabel *)nameLabel {
     if (!_nameLabel) {
-        _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 70, 60, 20)];
-        _nameLabel.textAlignment = NSTextAlignmentLeft;
+        _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 65, 60, 20)];
+        _nameLabel.textAlignment = NSTextAlignmentCenter;
         _nameLabel.font = [UIFont systemFontOfSize:11];
         _nameLabel.numberOfLines = 2;
         _nameLabel.textColor = [FFColorManager textColorMiddle];
@@ -127,7 +127,6 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -136,7 +135,14 @@
 
 - (void)setFrame:(CGRect)frame {
     [super setFrame:frame];
+    [self.contentView addSubview:self.collectionView];
     self.collectionView.frame = self.bounds;
+    self.layout.itemSize = CGSizeMake(70, 100);
+}
+
+- (void)setArray:(NSArray *)array {
+    _showArray = array;
+    [self.collectionView reloadData];
 }
 
 
@@ -146,13 +152,22 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 0;
+    return self.showArray.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+
     FFgameIconCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"FFgameIconCell" forIndexPath:indexPath];
     cell.dict = self.showArray[indexPath.row];
+    cell.backgroundColor = [FFColorManager navigation_bar_white_color];
+
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(FFGameIconTableCell:selectItemWithInfo:)]) {
+        [self.delegate FFGameIconTableCell:self selectItemWithInfo:self.showArray[indexPath.row]];
+    }
 }
 
 
@@ -174,6 +189,7 @@
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         [_collectionView registerClass:[FFgameIconCell class] forCellWithReuseIdentifier:@"FFgameIconCell"];
+        _collectionView.backgroundColor = [FFColorManager navigation_bar_white_color];
     }
     return _collectionView;
 }

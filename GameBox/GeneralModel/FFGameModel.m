@@ -60,19 +60,32 @@
     SS_SYSTEM;                                      //系统
     SS_SERVER_TYPE;                                 //服务器类型
     [dict setObject:gameType forKey:@"type"];       //游戏类型
-    [self postRequestWithURL:[self map].GAME_TYPE Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+    [self postRequestWithURL:[self map].NEW_GAME_TYPE Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         REQUEST_COMPLETION;
     }];
 }
 
 /** 新游列表 */
 + (void)newGameListWithPage:(NSString *)page ServerType:(FFGameServersType)serverType Completion:(RequestCallBackBlock)completion {
-    [self gameListWithPage:page ServerType:serverType GameType:@"0" Completion:completion];
+    [self gameListWithPage:page ServerType:serverType GameType:@"1" Completion:completion];
 }
 
 /** 排行榜 */
 + (void)rankGameListWithPage:(NSString *)page ServerType:(FFGameServersType)serverType Completion:(RequestCallBackBlock)completion {
-    [self gameListWithPage:page ServerType:serverType GameType:@"2" Completion:completion];
+    [self gameListWithPage:page ServerType:serverType GameType:@"3" Completion:completion];
+}
+
+#pragma makr - bate and reservation (内测和预约游戏)
+/** 内测或者预约游戏 */
++ (void)betaAndReservationGameWithPage:(NSString *)page Type:(FFBetaOrReservationType)type Completion:(RequestCallBackBlock)completion {
+    Mutable_Dict(5);
+    [dict setObject:page forKey:@"page"];           //页数
+    SS_CHANNEL;                                     //渠道
+    SS_SYSTEM;                                      //系统
+    [dict setObject:[NSString stringWithFormat:@"%lu",(unsigned long)type] forKey:@"type"];       //游戏类型
+    [self postRequestWithURL:[self map].NEW_GAME_LIST Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        REQUEST_COMPLETION;
+    }];
 }
 
 #pragma mark - open servers

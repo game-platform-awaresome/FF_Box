@@ -34,7 +34,7 @@
     [FFGameModel gameListWithPage:New_page ServerType:self.gameServerType GameType:self.gameType Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         [self stopWaiting];
         if (success) {
-            self.showArray = [content[@"data"] mutableCopy];
+            self.showArray = [content[@"data"][@"list"] mutableCopy];
         } else {
 
         }
@@ -54,7 +54,7 @@
 - (void)loadMoreData {
     [FFGameModel gameListWithPage:Next_page ServerType:self.gameServerType GameType:self.gameType Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         if (success) {
-            NSArray *dataArray = content[@"data"];
+            NSArray *dataArray = content[@"data"][@"list"];
             if (dataArray.count > 0) {
                 [self.showArray addObjectsFromArray:dataArray];
                 [self.tableView.mj_footer endRefreshing];
