@@ -82,7 +82,7 @@ UIColor *HexColorToUIColor(NSString *hexColorString) {
 
 //字体灰色
 + (UIColor *)textColorDark {
-    return RGBColor(55, 60, 65);
+    return RGBColor(55, 55, 55);
 }
 + (UIColor *)textColorMiddle {
     return RGBColor(102, 102, 102);

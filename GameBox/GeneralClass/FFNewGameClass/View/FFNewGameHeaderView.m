@@ -50,7 +50,7 @@
 - (void)setArray:(NSArray *)array {
     _showArry = array.copy;
     self.frame = CGRectMake(0, 0, kSCREEN_WIDTH, 130 * array.count);
-
+    syLog(@"show array === %@",_showArry);
     syLog(@"title array === %@",self.titleArray);
     [self.tableView reloadData];
 }
@@ -93,7 +93,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     FFGameIconTableCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDE];
-    cell.array = self.showArry[indexPath.row];
+    cell.array = self.showArry[indexPath.section];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundColor = [FFColorManager navigation_bar_white_color];
     cell.delegate = self;

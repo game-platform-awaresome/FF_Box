@@ -32,5 +32,17 @@
 /** 代理 */
 @property (nonatomic, weak) id<FFCustomizeCellDelegate> delegate;
 
+/** 是否是预约游戏 */
+@property (nonatomic, strong) NSString *betaGame;
+
+@property (nonatomic, strong) NSString *ReservationGame;
+
 
 @end
+
+
+
+
+
+
+

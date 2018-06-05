@@ -108,7 +108,14 @@
 
     //size and download
     NSString *downLoadNumber = (CURRENT_GAME.game_download_number.integerValue > 10000) ? [NSString stringWithFormat:@"%ld万+",(CURRENT_GAME.game_download_number.integerValue / 10000)] : CURRENT_GAME.game_download_number;
-    self.gameSizeAndDownloadLabel.text = [NSString stringWithFormat:@"%@M | %@下载",CURRENT_GAME.game_size,downLoadNumber];
+
+    if (self.betaString.length > 0) {
+        self.gameSizeAndDownloadLabel.text = [NSString stringWithFormat:@"%@M | %@下载 | 公测时间 : %@",CURRENT_GAME.game_size,downLoadNumber,self.betaString];
+    }else if (self.reservationString.length > 0) {
+        self.gameSizeAndDownloadLabel.text = [NSString stringWithFormat:@"%@M | %@下载 | 上线时间 : %@",CURRENT_GAME.game_size,downLoadNumber,self.reservationString];
+    } else {
+        self.gameSizeAndDownloadLabel.text = [NSString stringWithFormat:@"%@M | %@下载",CURRENT_GAME.game_size,downLoadNumber];
+    }
 
     //玩家 Q 群
     self.QQGroupButton.hidden = !(CURRENT_GAME.player_qq_group.length > 0);
@@ -120,6 +127,14 @@
 
 - (void)hideNavigationTitle {
     self.gameNameLabel.hidden = NO;
+}
+
+- (void)setBetaString:(NSString *)betaString {
+    _betaString = betaString;
+}
+
+- (void)setReservationString:(NSString *)reservationString {
+    _reservationString = reservationString;
 }
 
 

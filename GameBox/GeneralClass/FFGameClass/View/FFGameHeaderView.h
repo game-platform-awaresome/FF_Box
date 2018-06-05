@@ -13,6 +13,12 @@ typedef void(^RespondsToQQGroupButtonBlock)(void);
 
 @interface FFGameHeaderView : UIView
 
+/** 内测游戏字段 */
+@property (nonatomic, strong) NSString *betaString;
+
+/** 预约游戏字段 */
+@property (nonatomic, strong) NSString *reservationString;
+
 @property (nonatomic, strong) UIImageView *backgroundView;
 
 @property (nonatomic, strong) RespondsToQQGroupButtonBlock qqGroupButtonBlock;

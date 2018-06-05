@@ -81,7 +81,7 @@
 
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, kSCREEN_WIDTH - 30, 30)];
     if (self.type == FFBetaGame) {
-        label.text = [NSString stringWithFormat:@"内测时间 : %@",timeString];
+        label.text = [NSString stringWithFormat:@"公测时间 : %@",timeString];
     } else {
         label.text = [NSString stringWithFormat:@"上线时间 : %@",timeString];
     }
@@ -100,7 +100,39 @@
     return view;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
+    NSDictionary *dict = self.showArray[indexPath.row];
+    Class FFGameViewController = NSClassFromString(@"FFGameViewController");
+    SEL selector = NSSelectorFromString(@"sharedController");
+    if ([FFGameViewController respondsToSelector:selector]) {
+        IMP imp = [FFGameViewController methodForSelector:selector];
+        UIViewController *(*func)(void) = (void *)imp;
+        UIViewController *vc = func();
+        if (vc) {
+            NSString *gid = (dict[@"id"]) ? dict[@"id"] : dict[@"gid"];
+
+
+            NSString *timeString = [NSString stringWithFormat:@"%@",self.showArray[indexPath.section][@"newgame_time"]];
+            if ([timeString isEqualToString:@"0"] || timeString == nil || timeString.length < 1) {
+                timeString = @"敬请期待";
+            } else {
+                NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeString.integerValue];
+                NSDateFormatter *formatter = [NSDateFormatter new];
+                formatter.dateFormat = @"YYYY-MM-dd";
+                timeString = [formatter stringFromDate:date];
+            }
+            [vc setValue:timeString forKey:(self.type == FFBetaGame) ? @"betaString" :@"reservationString"];
+            [vc setValue:gid forKey:@"gid"];
+            [self pushViewController:vc];
+        } else {
+            syLog(@"\n ! %s \n present error :  %s not exist \n ! \n",__func__,sel_getName(selector));
+        }
+    } else {
+        syLog(@"\n ! %s \n present error :  %s not exist \n ! \n",__func__,sel_getName(selector));
+    }
+}
 
 
 

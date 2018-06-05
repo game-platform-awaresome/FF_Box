@@ -66,6 +66,12 @@ static FFGameViewController *controller = nil;
     }
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    self.gameHeaderView.betaString = nil;
+    self.gameHeaderView.reservationString = nil;
+}
+
 - (void)resetNavColor {
     [self.navigationController.navigationBar setTintColor:[UIColor colorWithWhite:1 alpha:1]];
 }
@@ -357,6 +363,18 @@ static FFGameViewController *controller = nil;
 
     //刷新游戏
     [self refreshData];
+}
+
+/** 内测游戏 */
+- (void)setBetaString:(NSString *)betaString {
+    _betaString = betaString;
+    self.gameHeaderView.betaString = betaString;
+}
+
+/** 预约游戏字段 */
+- (void)setReservationString:(NSString *)reservationString {
+    _reservationString = reservationString;
+    self.gameHeaderView.reservationString = reservationString;
 }
 
 - (void)removeAllview {

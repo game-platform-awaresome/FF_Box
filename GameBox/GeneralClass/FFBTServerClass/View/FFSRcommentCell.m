@@ -85,11 +85,9 @@
 
 - (void)setDisCount:(NSString *)string {
     if (string && [string isKindOfClass:[NSString class]] && string.length > 0 && ![string isEqualToString:@"0"]) {
-        syLog(@"??????????????????????????????????/");
         self.discountView.hidden = NO;
         [self.discountView setTitle:[NSString stringWithFormat:@"%@折",string] forState:(UIControlStateNormal)];
     } else {
-        syLog(@"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1/");
         self.discountView.hidden = YES;
     }
 }

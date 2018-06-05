@@ -158,6 +158,16 @@
     }
 }
 
+- (void)setBetaGame:(NSString *)betaGame {
+    self.zkLabel.hidden = YES;
+    [self.gameDownload setBackgroundImage:[UIImage imageNamed:@"Home_cell_BT"] forState:(UIControlStateNormal)];
+}
+
+- (void)setReservationGame:(NSString *)ReservationGame {
+    self.zkLabel.hidden = YES;
+    [self.gameDownload setBackgroundImage:[UIImage imageNamed:@"Home_cell_BT"] forState:(UIControlStateNormal)];
+}
+
 
 - (IBAction)downLoad:(UIButton *)sender {
     if (self.delegate && [self.delegate respondsToSelector:@selector(FFCustomizeCell:didSelectCellRowAtIndexPathWith:)]) {

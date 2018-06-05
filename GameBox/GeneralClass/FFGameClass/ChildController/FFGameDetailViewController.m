@@ -149,6 +149,7 @@
     } else {
 
     }
+//    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
 }

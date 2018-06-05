@@ -26,7 +26,8 @@
 @property (nonatomic, strong) UIImageView *sectionFooterImageView;
 
 @property (nonatomic, strong) UILabel *sectionHeaderLabel;
-
+@property (nonatomic, strong) UIImageView *sectionHeaderImage;
+@property (nonatomic, strong) UIImageView *sectionFooterImage;
 @property (nonatomic, assign) BOOL isEmpty;
 @property (nonatomic, assign) BOOL isAnimation;
 @property (nonatomic, strong) FFGameGifTableViewCell *gifCell;
@@ -53,12 +54,14 @@
     switch (_sectionType) {
         case SecTionTypeGameIntroduction:
             self.sectionHeaderTitle = @"游戏简介";
+            self.sectionHeaderImage.image = [UIImage imageNamed:@"Game_detail_introduction"];
             self.cell = [self creatGamedetailCell];
             self.contentString = CURRENT_GAME.game_introduction;
             self.sectionFooterHeight = (self.normalHeight == self.openUpHeight) ? 0 : 44;
             break;
         case SecTionTypeFeature:
             self.sectionHeaderTitle = @"游戏特征";
+            self.sectionHeaderImage.image = [UIImage imageNamed:@"Game_detail_feature"];
             self.cell = [self creatGamedetailCell];
             self.contentString = CURRENT_GAME.game_feature;
             self.sectionFooterHeight = (self.normalHeight == self.openUpHeight) ? 0 : 44;
@@ -67,6 +70,7 @@
             //这个功能是后加入的, 回调参数并不是游戏详情统一返回的
             ///!!!!!!!!!!!!!!!!还的动态的很头痛!!!!!!!!!!!!!!\\\
             self.sectionHeaderTitle = @"独家活动";
+            self.sectionHeaderImage.image = [UIImage imageNamed:@"Game_detail_activity"];
             //游戏活动回调
             self.cell = [self creatActivityCell];
             [self setActivityBlock];
@@ -75,18 +79,21 @@
             break;
         case SecTionTypeGif:
             self.sectionHeaderTitle = @"精彩时刻";
+            self.sectionHeaderImage.image = [UIImage imageNamed:@"Game_detail_gif"];
             self.cell = [self creaGametGifCell];
             [self refreshGifCell];
             self.sectionFooterHeight = 0;
             break;
         case SecTionTypeVip:
             self.sectionHeaderTitle = @"VIP 价格";
+            self.sectionHeaderImage.image = [UIImage imageNamed:@"Game_detail_vip"];
             self.cell = [self creatGamedetailCell];
             self.contentString = CURRENT_GAME.game_vip_amount;
             self.sectionFooterHeight = (self.normalHeight == self.openUpHeight) ? 0 : 44;
             break;
         case SecTionTypeLike:
             self.sectionHeaderTitle = @"猜你喜欢";
+            self.sectionHeaderImage.image = [UIImage imageNamed:@"Game_detail_like"];
             self.sectionFooterHeight = 0;
             self.cell = [self creatLikeCell];
             [self.cell setValue:CURRENT_GAME.like forKey:@"gameArray"];
@@ -111,6 +118,7 @@
     }];
 }
 
+/** 独家活动数组 */
 - (void)setActivityArray:(NSArray *)activityArray {
     _activityArray = activityArray;
     if (activityArray.count < 1) {
@@ -122,11 +130,13 @@
         self.sectionHeaderHeight = 44;
         self.sectionFooterHeight = 0;
         self.sectionHeaderLabel.text = @"独家活动";
+//        [self.sectionHeaderLabel setTitle:@"独家活动" forState:(UIControlStateNormal)];
         self.activityCell.acitivityArray = activityArray;
         self.activityCell.frame = CGRectMake(0, 0, kSCREEN_WIDTH, 55 * activityArray.count);
     }
 }
 
+/** 创建活动 CELL */
 - (id)creatActivityCell {
     self.activityCell = [[FFGameActivityCell alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 44 * self.activityArray.count)];;
     WeakSelf;
@@ -138,22 +148,28 @@
     return self.activityCell;
 }
 
+/** 根据 CELL 的类型刷新 cell */
 - (void)refreshDataWith:(SecTionType)type {
     self.sectionType = type;
 }
 
+/** 设置提示标签为展开还是 收起 */
 - (void)setOpenUp:(BOOL)openUp {
     _openUp = openUp;
     self.sectionFooterTitle = openUp ? @"收起" :@"展开";
 }
 
+/** 设置 SECTION footer title */
 - (void)setSectionFooterTitle:(NSString *)sectionFooterTitle {
     _sectionFooterTitle = sectionFooterTitle;
     self.sectionFooterLabel.text = sectionFooterTitle;
     [self.sectionFooterLabel sizeToFit];
     self.sectionFooterLabel.center = CGPointMake(kSCREEN_WIDTH / 2, 22);
-}
 
+    self.sectionFooterImage.image = [UIImage imageNamed:([sectionFooterTitle isEqualToString:@"收起"]) ? @"Game_detail_cell_open" : @"Game_detail_cell_close"];
+    self.sectionFooterImage.center = CGPointMake(CGRectGetMaxX(self.sectionFooterLabel.frame) + 20, 22);
+}
+/** 设置内容 */
 - (void)setContentString:(NSString *)contentString {
     _contentString = contentString;
     _openUpHeight = [self heightForString:contentString] + 10.f;
@@ -201,9 +217,12 @@
     if (self.openUpHeight == 100) return;
 
     _isAnimation = YES;
+    CGPoint offset = tableview.contentOffset;
     [tableview beginUpdates];
+    tableview.contentOffset = offset;
     self.openUp = !self.openUp;
     [tableview endUpdates];
+    tableview.contentOffset = offset;
     _isAnimation = NO;
 }
 
@@ -225,12 +244,13 @@
     return [self sizeForString:string Width:kSCREEN_WIDTH Height:MAXFLOAT].height;
 }
 
-
+ /** section header view  */
 - (UIView *)sectionHeaderView {
     if (!_sectionHeaderView) {
         _sectionHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 44)];
         _sectionHeaderView.backgroundColor = [UIColor whiteColor];
 
+        [_sectionHeaderView addSubview:self.sectionHeaderImage];
         [_sectionHeaderView addSubview:self.sectionHeaderLabel];
 
         CALayer *layer = [[CALayer alloc] init];
@@ -247,9 +267,10 @@
         _sectionFooterView.backgroundColor = [UIColor whiteColor];
 
         [_sectionFooterView addSubview:self.sectionFooterLabel];
+        [_sectionFooterView addSubview:self.sectionFooterImage];
 
         CALayer *layer2 = [[CALayer alloc] init];
-        layer2.frame = CGRectMake(0, 43, kSCREEN_WIDTH, 0.5);
+        layer2.frame = CGRectMake(0, 43.5, kSCREEN_WIDTH, 0.5);
         layer2.backgroundColor = [FFColorManager light_gray_color].CGColor;
         [_sectionFooterView.layer addSublayer:layer2];
 
@@ -271,15 +292,32 @@
         _sectionFooterLabel = [[UILabel alloc] init];
         _sectionFooterLabel.font = [UIFont systemFontOfSize:17];
         _sectionFooterLabel.textAlignment = NSTextAlignmentCenter;
+        _sectionFooterLabel.textColor = [FFColorManager blue_dark];
         _sectionFooterLabel.center = CGPointMake(kSCREEN_WIDTH / 2, 22);
     }
     return _sectionFooterLabel;
 }
 
+- (UIImageView *)sectionFooterImage {
+    if (!_sectionFooterImage) {
+        _sectionFooterImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 17, 10)];
+    }
+    return _sectionFooterImage;
+}
+
+- (UIImageView *)sectionHeaderImage {
+    if (!_sectionHeaderImage) {
+        _sectionHeaderImage = [[UIImageView alloc] initWithFrame:CGRectMake(16, 7, 30, 30)];
+//        _sectionHeaderImage.backgroundColor = [FFColorManager navigation_bar_black_color];
+    }
+    return _sectionHeaderImage;
+}
+
 - (UILabel *)sectionHeaderLabel {
     if (!_sectionHeaderLabel) {
-        _sectionHeaderLabel = [[UILabel alloc] initWithFrame:CGRectMake(16, 0, kSCREEN_WIDTH - 32, 44)];
+        _sectionHeaderLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 0, kSCREEN_WIDTH - 50, 44)];
         _sectionHeaderLabel.font = [UIFont systemFontOfSize:17];
+        _sectionFooterLabel.textColor = [FFColorManager textColorMiddle];
     }
     return _sectionHeaderLabel;
 }

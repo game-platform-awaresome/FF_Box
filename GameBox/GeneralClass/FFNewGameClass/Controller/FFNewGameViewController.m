@@ -99,7 +99,7 @@
                 }
 
                 if ([reservationArray isKindOfClass:[NSArray class]] && reservationArray.count > 0) {
-                    [self.headerDataArray addObject:betaArray];
+                    [self.headerDataArray addObject:reservationArray];
                     [titleArray addObject:@"预约游戏"];
                 }
 
