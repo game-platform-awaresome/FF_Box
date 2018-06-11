@@ -82,7 +82,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 44)];
-    view.backgroundColor = [FFColorManager navigation_bar_black_color];
+    view.backgroundColor = [FFColorManager navigation_bar_white_color];
 
     return view;
 }
