@@ -43,11 +43,11 @@
 
 - (void)initializeDataSource {
     NSArray *viewControllerNames = @[@"FFHomeViewController",
-                                     @"FFOpenServerViewController",
+                                     @"FFBusinessViewController",
                                      @"FFDriveController",
                                      @"FFMineViewController"];
 
-    NSArray *titles = @[@"游戏", @"开服表", @"车站", @"我的"];
+    NSArray *titles = @[@"游戏", @"交易", @"车站", @"我的"];
 
     if (viewControllerNames.count != titles.count) {
         syLog(@"%s error : Array count number not equal",__func__);

@@ -8,10 +8,13 @@
 
 #import "FFBetaGameViewController.h"
 
+#define CELL_IDE @"FFCustomizeCell"
+
 @implementation FFBetaGameViewController
 
 - (void)initUserInterface {
     [super initUserInterface];
+    [self resetTableView];
     self.navigationItem.title = @"内测游戏";
     self.tableView.frame = CGRectMake(0, kNAVIGATION_HEIGHT, kSCREEN_WIDTH, kSCREEN_HEIGHT - kNAVIGATION_HEIGHT);
 }
@@ -22,6 +25,8 @@
     [self startWaiting];
     [FFGameModel betaAndReservationGameWithPage:New_page Type:self.type Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         [self stopWaiting];
+
+        syLog(@"beta game  === %@",content);
         if (success) {
             self.showArray = [CONTENT_DATA mutableCopy];
         }
@@ -62,11 +67,11 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 30;
+    return 20;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 30)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 20)];
     view.backgroundColor = [FFColorManager navigation_bar_white_color];
 
     NSString *timeString = [NSString stringWithFormat:@"%@",self.showArray[section][@"newgame_time"]];
@@ -79,7 +84,7 @@
         timeString = [formatter stringFromDate:date];
     }
 
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, kSCREEN_WIDTH - 30, 30)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, kSCREEN_WIDTH - 30, 20)];
     if (self.type == FFBetaGame) {
         label.text = [NSString stringWithFormat:@"公测时间 : %@",timeString];
     } else {
@@ -135,6 +140,29 @@
 }
 
 
+- (void)resetTableView {
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:(UITableViewStyleGrouped)];
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    self.tableView.showsVerticalScrollIndicator = YES;
+    self.tableView.showsHorizontalScrollIndicator = NO;
+    self.tableView.tableFooterView = [UIView new];
+    if (@available(iOS 11.0, *)) {
+        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
+    self.tableView.sectionHeaderHeight = 0;
+    self.tableView.sectionFooterHeight = 0;
+    self.tableView.tableFooterView = [UIView new];
+    self.tableView.mj_header = self.refreshHeader;
+    self.tableView.mj_footer = self.refreshFooter;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.tableView.backgroundColor = [FFColorManager navigation_bar_white_color];
+
+    [self.tableView registerNib:[UINib nibWithNibName:CELL_IDE bundle:nil] forCellReuseIdentifier:CELL_IDE];
+
+    [self.view addSubview:self.tableView];
+}
 
 - (FFBetaOrReservationType)type {
     return FFBetaGame;

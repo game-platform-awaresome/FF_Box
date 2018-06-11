@@ -195,6 +195,7 @@
 		B532510320B25BE0007D7239 /* FFOpenServerSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = B532510220B25BE0007D7239 /* FFOpenServerSelectView.m */; };
 		B532510620B26D96007D7239 /* FFBoxModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B532510520B26D96007D7239 /* FFBoxModel.m */; };
 		B532510920B299FE007D7239 /* FFGameFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = B532510820B299FE007D7239 /* FFGameFooterView.m */; };
+		B53600F120CA83B600DFE96A /* FFBusinessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B53600F020CA83B600DFE96A /* FFBusinessViewController.m */; };
 		B56700FE20C4EB1400A44C2E /* FFNewGameHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B56700FD20C4EB1400A44C2E /* FFNewGameHeaderView.m */; };
 		B567010320C4EBEA00A44C2E /* FFNewGameViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B567010220C4EBEA00A44C2E /* FFNewGameViewModel.m */; };
 		B567010620C509FF00A44C2E /* FFGameIconTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B567010520C509FF00A44C2E /* FFGameIconTableCell.m */; };
@@ -621,6 +622,8 @@
 		B532510520B26D96007D7239 /* FFBoxModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBoxModel.m; sourceTree = "<group>"; };
 		B532510720B299FE007D7239 /* FFGameFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFGameFooterView.h; sourceTree = "<group>"; };
 		B532510820B299FE007D7239 /* FFGameFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFGameFooterView.m; sourceTree = "<group>"; };
+		B53600EF20CA83B600DFE96A /* FFBusinessViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBusinessViewController.h; sourceTree = "<group>"; };
+		B53600F020CA83B600DFE96A /* FFBusinessViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBusinessViewController.m; sourceTree = "<group>"; };
 		B56700FC20C4EB1400A44C2E /* FFNewGameHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFNewGameHeaderView.h; sourceTree = "<group>"; };
 		B56700FD20C4EB1400A44C2E /* FFNewGameHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFNewGameHeaderView.m; sourceTree = "<group>"; };
 		B567010120C4EBEA00A44C2E /* FFNewGameViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFNewGameViewModel.h; sourceTree = "<group>"; };
@@ -1737,6 +1740,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		B53600ED20CA835900DFE96A /* FFBusinessClass */ = {
+			isa = PBXGroup;
+			children = (
+				B53600EF20CA83B600DFE96A /* FFBusinessViewController.h */,
+				B53600F020CA83B600DFE96A /* FFBusinessViewController.m */,
+			);
+			path = FFBusinessClass;
+			sourceTree = "<group>";
+		};
 		B56700FB20C4EA0E00A44C2E /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -2100,6 +2112,7 @@
 		B5D505812086F17A000B7B50 /* GeneralClass */ = {
 			isa = PBXGroup;
 			children = (
+				B53600ED20CA835900DFE96A /* FFBusinessClass */,
 				B599694C20BD38F000BC6084 /* FFPromiseClass */,
 				B5F1492920B80BA000044873 /* FFSearchClass */,
 				B51BD0C620B54D3F005B9DE1 /* FFCommentClass */,
@@ -2551,6 +2564,7 @@
 				B51BD07720B53A5F005B9DE1 /* FFApplyRebateViewController.m in Sources */,
 				B532510920B299FE007D7239 /* FFGameFooterView.m in Sources */,
 				B523837F20AE9FAC0087733A /* ZLPhotoBrowserCell.m in Sources */,
+				B53600F120CA83B600DFE96A /* FFBusinessViewController.m in Sources */,
 				B523831C20AE9EF40087733A /* FFDriveMyNewsViewController.m in Sources */,
 				B523837720AE9FAC0087733A /* ZLCollectionCell.m in Sources */,
 				B51BD0D520B55736005B9DE1 /* FFMyCollectionViewController.m in Sources */,
