@@ -244,6 +244,13 @@
 		B599695220BD396400BC6084 /* FFPromiseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B599695120BD396400BC6084 /* FFPromiseViewController.m */; };
 		B59D989F2084A2E20024B11D /* FFBasicTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B59D989E2084A2E20024B11D /* FFBasicTableViewController.m */; };
 		B59D98A22084A2FD0024B11D /* FFBasicSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = B59D98A12084A2FD0024B11D /* FFBasicSelectView.m */; };
+		B5B61AAB20CE0DF200D507A6 /* FFBusinessModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B61AAA20CE0DF200D507A6 /* FFBusinessModel.m */; };
+		B5B61AB120CE20A400D507A6 /* FFBusinessLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B61AB020CE20A400D507A6 /* FFBusinessLoginViewController.m */; };
+		B5B61AB420CE266800D507A6 /* FFBusinessRegistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B61AB320CE266800D507A6 /* FFBusinessRegistViewController.m */; };
+		B5B61AB720CE4C4A00D507A6 /* FFBusinessForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B61AB620CE4C4A00D507A6 /* FFBusinessForgetPasswordViewController.m */; };
+		B5B61AC020CE6C5300D507A6 /* FFBusinessTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B61ABE20CE6C5300D507A6 /* FFBusinessTableViewCell.m */; };
+		B5B61AC120CE6C5300D507A6 /* FFBusinessTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5B61ABF20CE6C5300D507A6 /* FFBusinessTableViewCell.xib */; };
+		B5B61AC520CE79B500D507A6 /* FFBusinessHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B61AC420CE79B500D507A6 /* FFBusinessHeaderView.m */; };
 		B5D10421208F0DD900CA1949 /* FFBasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D10420208F0DD900CA1949 /* FFBasicViewController.m */; };
 		B5D1042A208F156000CA1949 /* FFGameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D10429208F156000CA1949 /* FFGameModel.m */; };
 		B5D1042D208F162500CA1949 /* FFMapModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D1042C208F162500CA1949 /* FFMapModel.m */; };
@@ -706,6 +713,19 @@
 		B59D989E2084A2E20024B11D /* FFBasicTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBasicTableViewController.m; sourceTree = "<group>"; };
 		B59D98A02084A2FD0024B11D /* FFBasicSelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBasicSelectView.h; sourceTree = "<group>"; };
 		B59D98A12084A2FD0024B11D /* FFBasicSelectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBasicSelectView.m; sourceTree = "<group>"; };
+		B5B61AA920CE0DF200D507A6 /* FFBusinessModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBusinessModel.h; sourceTree = "<group>"; };
+		B5B61AAA20CE0DF200D507A6 /* FFBusinessModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBusinessModel.m; sourceTree = "<group>"; };
+		B5B61AAF20CE20A400D507A6 /* FFBusinessLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBusinessLoginViewController.h; sourceTree = "<group>"; };
+		B5B61AB020CE20A400D507A6 /* FFBusinessLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBusinessLoginViewController.m; sourceTree = "<group>"; };
+		B5B61AB220CE266800D507A6 /* FFBusinessRegistViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBusinessRegistViewController.h; sourceTree = "<group>"; };
+		B5B61AB320CE266800D507A6 /* FFBusinessRegistViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBusinessRegistViewController.m; sourceTree = "<group>"; };
+		B5B61AB520CE4C4A00D507A6 /* FFBusinessForgetPasswordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBusinessForgetPasswordViewController.h; sourceTree = "<group>"; };
+		B5B61AB620CE4C4A00D507A6 /* FFBusinessForgetPasswordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBusinessForgetPasswordViewController.m; sourceTree = "<group>"; };
+		B5B61ABD20CE6C5300D507A6 /* FFBusinessTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBusinessTableViewCell.h; sourceTree = "<group>"; };
+		B5B61ABE20CE6C5300D507A6 /* FFBusinessTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBusinessTableViewCell.m; sourceTree = "<group>"; };
+		B5B61ABF20CE6C5300D507A6 /* FFBusinessTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FFBusinessTableViewCell.xib; sourceTree = "<group>"; };
+		B5B61AC320CE79B500D507A6 /* FFBusinessHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBusinessHeaderView.h; sourceTree = "<group>"; };
+		B5B61AC420CE79B500D507A6 /* FFBusinessHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBusinessHeaderView.m; sourceTree = "<group>"; };
 		B5D1041F208F0DD900CA1949 /* FFBasicViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBasicViewController.h; sourceTree = "<group>"; };
 		B5D10420208F0DD900CA1949 /* FFBasicViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBasicViewController.m; sourceTree = "<group>"; };
 		B5D10428208F156000CA1949 /* FFGameModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFGameModel.h; sourceTree = "<group>"; };
@@ -1743,6 +1763,9 @@
 		B53600ED20CA835900DFE96A /* FFBusinessClass */ = {
 			isa = PBXGroup;
 			children = (
+				B5B61AB820CE681600D507A6 /* View */,
+				B5B61AAE20CE206800D507A6 /* BussinessLoginClass */,
+				B5B61AAC20CE205400D507A6 /* ChildClass */,
 				B53600EF20CA83B600DFE96A /* FFBusinessViewController.h */,
 				B53600F020CA83B600DFE96A /* FFBusinessViewController.m */,
 			);
@@ -2063,6 +2086,38 @@
 			path = BasicController;
 			sourceTree = "<group>";
 		};
+		B5B61AAC20CE205400D507A6 /* ChildClass */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ChildClass;
+			sourceTree = "<group>";
+		};
+		B5B61AAE20CE206800D507A6 /* BussinessLoginClass */ = {
+			isa = PBXGroup;
+			children = (
+				B5B61AAF20CE20A400D507A6 /* FFBusinessLoginViewController.h */,
+				B5B61AB020CE20A400D507A6 /* FFBusinessLoginViewController.m */,
+				B5B61AB220CE266800D507A6 /* FFBusinessRegistViewController.h */,
+				B5B61AB320CE266800D507A6 /* FFBusinessRegistViewController.m */,
+				B5B61AB520CE4C4A00D507A6 /* FFBusinessForgetPasswordViewController.h */,
+				B5B61AB620CE4C4A00D507A6 /* FFBusinessForgetPasswordViewController.m */,
+			);
+			path = BussinessLoginClass;
+			sourceTree = "<group>";
+		};
+		B5B61AB820CE681600D507A6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B5B61ABD20CE6C5300D507A6 /* FFBusinessTableViewCell.h */,
+				B5B61ABE20CE6C5300D507A6 /* FFBusinessTableViewCell.m */,
+				B5B61ABF20CE6C5300D507A6 /* FFBusinessTableViewCell.xib */,
+				B5B61AC320CE79B500D507A6 /* FFBusinessHeaderView.h */,
+				B5B61AC420CE79B500D507A6 /* FFBusinessHeaderView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		B5D103F4208DBEAD00CA1949 /* ChildDriveController */ = {
 			isa = PBXGroup;
 			children = (
@@ -2258,6 +2313,8 @@
 				B51BD17F20B69675005B9DE1 /* FFPayModel.m */,
 				B5D6142320BE8C5B0010CA98 /* FFShowDiscoutModel.h */,
 				B5D6142420BE8C5B0010CA98 /* FFShowDiscoutModel.m */,
+				B5B61AA920CE0DF200D507A6 /* FFBusinessModel.h */,
+				B5B61AAA20CE0DF200D507A6 /* FFBusinessModel.m */,
 			);
 			path = GeneralModel;
 			sourceTree = "<group>";
@@ -2341,7 +2398,7 @@
 		B5E1E513206201CD008F49CA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0910;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = Sans;
 				TargetAttributes = {
 					B5E1E51A206201CD008F49CA = {
@@ -2410,6 +2467,7 @@
 				B51BD12020B58609005B9DE1 /* OldAssets(Unfinished).xcassets in Resources */,
 				B51BD03120B50976005B9DE1 /* FFCoinDetailCell.xib in Resources */,
 				B51BD03920B50976005B9DE1 /* FFPlatformCell.xib in Resources */,
+				B5B61AC120CE6C5300D507A6 /* FFBusinessTableViewCell.xib in Resources */,
 				B523837220AE9FAC0087733A /* ZLPhotoBrowserCell.xib in Resources */,
 				B51BD03520B50976005B9DE1 /* FFMyprizeCell.xib in Resources */,
 				B5D10447209066FD00CA1949 /* FFClassifyTableCell.xib in Resources */,
@@ -2477,12 +2535,14 @@
 				B51BD0D920B55A2C005B9DE1 /* FFTransferGameViewController.m in Sources */,
 				B51BD04B20B51057005B9DE1 /* FFEverydayCommentController.m in Sources */,
 				B523837E20AE9FAC0087733A /* ZLPhotoBrowser.m in Sources */,
+				B5B61AC020CE6C5300D507A6 /* FFBusinessTableViewCell.m in Sources */,
 				B51BD11720B5628F005B9DE1 /* FFPlatformDetailViewController.m in Sources */,
 				B523826A20AABCCA0087733A /* FFGAViewController.m in Sources */,
 				B5F1493320B80CB300044873 /* FFSearchResultController.m in Sources */,
 				B523833E20AE9F680087733A /* FFViewFactory.m in Sources */,
 				B51BD09720B540BC005B9DE1 /* FFBindMobileViewController.m in Sources */,
 				B51BCFC120B2F705005B9DE1 /* FFLoginViewController.m in Sources */,
+				B5B61AAB20CE0DF200D507A6 /* FFBusinessModel.m in Sources */,
 				B523839A20AEA2710087733A /* YBRectConst.m in Sources */,
 				B523831820AE9EF40087733A /* FFDriveAllInfoViewController.m in Sources */,
 				B523836F20AE9FAC0087733A /* NSBundle+ZLPhotoBrowser.m in Sources */,
@@ -2561,12 +2621,14 @@
 				B523839020AEA0C70087733A /* FLAnimatedImageView.m in Sources */,
 				B51BCFC220B2F705005B9DE1 /* FFNewPasswordViewController.m in Sources */,
 				B51BD17720B6596C005B9DE1 /* FFMissionCell.m in Sources */,
+				B5B61AB120CE20A400D507A6 /* FFBusinessLoginViewController.m in Sources */,
 				B51BD07720B53A5F005B9DE1 /* FFApplyRebateViewController.m in Sources */,
 				B532510920B299FE007D7239 /* FFGameFooterView.m in Sources */,
 				B523837F20AE9FAC0087733A /* ZLPhotoBrowserCell.m in Sources */,
 				B53600F120CA83B600DFE96A /* FFBusinessViewController.m in Sources */,
 				B523831C20AE9EF40087733A /* FFDriveMyNewsViewController.m in Sources */,
 				B523837720AE9FAC0087733A /* ZLCollectionCell.m in Sources */,
+				B5B61AC520CE79B500D507A6 /* FFBusinessHeaderView.m in Sources */,
 				B51BD0D520B55736005B9DE1 /* FFMyCollectionViewController.m in Sources */,
 				B523832120AE9EF40087733A /* FFDetailMineInfoTableViewController.m in Sources */,
 				B523832B20AE9EF40087733A /* FFDynamicModel.m in Sources */,
@@ -2632,6 +2694,7 @@
 				B52382CB20AE84050087733A /* FFGameCommentListViewController.m in Sources */,
 				B51BD07820B53A5F005B9DE1 /* FFRebateNoticeViewController.m in Sources */,
 				B523832F20AE9EF40087733A /* FFDetailFooterView.m in Sources */,
+				B5B61AB420CE266800D507A6 /* FFBusinessRegistViewController.m in Sources */,
 				B532510320B25BE0007D7239 /* FFOpenServerSelectView.m in Sources */,
 				B51BD08E20B53B15005B9DE1 /* FFApplyRebateModel.m in Sources */,
 				B51BD03820B50976005B9DE1 /* FFPlatformCell.m in Sources */,
@@ -2677,6 +2740,7 @@
 				B5F1492120B7E4BB00044873 /* FFGameGifTableViewCell.m in Sources */,
 				B59D98A22084A2FD0024B11D /* FFBasicSelectView.m in Sources */,
 				B51BD11620B5628F005B9DE1 /* FFGoldCenterViewController.m in Sources */,
+				B5B61AB720CE4C4A00D507A6 /* FFBusinessForgetPasswordViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2708,6 +2772,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -2715,6 +2780,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -2763,6 +2829,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -2770,6 +2837,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

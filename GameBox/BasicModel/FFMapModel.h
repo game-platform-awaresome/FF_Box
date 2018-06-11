@@ -156,6 +156,22 @@ typedef void(^Completion)(void);
 @property (nonatomic, strong) NSString *NEW_GAME_TYPE;
 @property (nonatomic, strong) NSString *NEW_GAME_LIST;
 
+
+/** business */
+@property (nonatomic, strong) NSString *BSP_SENDMSG;
+@property (nonatomic, strong) NSString *BSP_REGISTER;
+@property (nonatomic, strong) NSString *BIND_SDKUSER;
+@property (nonatomic, strong) NSString *BSP_FORGETPWD;
+@property (nonatomic, strong) NSString *SDKUSER_LIST;
+@property (nonatomic, strong) NSString *BSP_MODIFYPWD;
+@property (nonatomic, strong) NSString *BSP_USERINFO;
+@property (nonatomic, strong) NSString *UNBIND_SDKUSER;
+@property (nonatomic, strong) NSString *GDT_REPORT;
+@property (nonatomic, strong) NSString *BSP_COMPLETEINFO;
+@property (nonatomic, strong) NSString *JRTT_REPORT;
+@property (nonatomic, strong) NSString *BSP_LOGIN;
+@property (nonatomic, strong) NSString *BSP_EDITUSER;
+
 + (instancetype)map;
 
 + (void)getMapCompletion:(Completion)completion;

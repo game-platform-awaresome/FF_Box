@@ -183,6 +183,17 @@
     line.backgroundColor = [FFColorManager view_separa_line_color];
     [backview addSubview:line];
 
+
+    if (section == 0) {
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(kSCREEN_WIDTH - 100, 0, 90, 30)];
+        [button setTitle:@" 游戏分类" forState:(UIControlStateNormal)];
+        [button setImage:[UIImage imageNamed:@"Home_classify_button"] forState:(UIControlStateNormal)];
+        [button setTitleColor:[FFColorManager blue_dark] forState:(UIControlStateNormal)];
+        button.titleLabel.font = [UIFont systemFontOfSize:15];
+        [button addTarget:self action:@selector(respondsToRightButton) forControlEvents:(UIControlEventTouchUpInside)];
+        [backview addSubview:button];
+    }
+
 //    CALayer *layer = [[CALayer alloc] init];
 //    layer.frame = CGRectMake(0, 0, kSCREEN_WIDTH, 1);
 //    layer.backgroundColor = [FFColorManager view_separa_line_color].CGColor;
@@ -266,6 +277,12 @@
     }
 }
 
+#pragma mark - responds
+/** 跳转分类 */ 
+- (void)respondsToRightButton {
+    pushViewController(@"FFBTClassifyController");
+}
+
 #pragma mark - setter
 - (void)setNavigationTitle:(NSString *)title {
     self.navigationItem.title = @"BT服";
@@ -278,7 +295,7 @@
 }
 
 - (NSArray *)selectButtonArray {
-    return @[@"新游",@"活动",@"满V",@"分类"];
+    return @[@"新游",@"活动",@"满V",@"开服表"];
 }
 
 - (NSArray *)selectImageArray {
@@ -292,7 +309,8 @@
     return @[@"FFBTNewGameController",
              @"FFActivityViewController",
              @"FFHeightVipController",
-             @"FFBTClassifyController"];
+             @"FFBTOpenServerViewController"];
+    /** FFBTClassifyController */
 }
 
 - (NSMutableArray *)childController {

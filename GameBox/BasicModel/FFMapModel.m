@@ -180,7 +180,20 @@ static FFMapModel *model = nil;
       @"APP_PROMISE":@"http://api.185sy.com/index.php?g=api&m=userbox&a=app_promise",
       @"BOX_INIT_V2":@"http://api.185sy.com/index.php?g=api&m=userbox&a=do_init_v2",
       @"NEW_GAME_TYPE":@"http://www.185sy.com/api-game-newGameType",
-      @"NEW_GAME_LIST":@"http://www.185sy.com/api-game-newgameList"
+      @"NEW_GAME_LIST":@"http://www.185sy.com/api-game-newgameList",
+      @"BSP_SENDMSG":@"http://api.185sy.com/index.php?g=api&m=businessplayer&a=send_message",
+      @"BSP_REGISTER":@"http://api.185sy.com/index.php?g=api&m=businessplayer&a=register",
+      @"BIND_SDKUSER":@"http://api.185sy.com/index.php?g=api&m=businessplayer&a=unbind_sdkuser",
+      @"BSP_FORGETPWD":@"http://api.185sy.com/index.php?g=api&m=businessplayer&a=forget_password",
+      @"SDKUSER_LIST":@"http://api.185sy.com/index.php?g=api&m=businessplayer&a=sdkuser_list",
+      @"BSP_MODIFYPWD":@"http://api.185sy.com/index.php?g=api&m=businessplayer&a=modify_password",
+      @"BSP_USERINFO":@"http://api.185sy.com/index.php?g=api&m=businessplayer&a=user_info",
+      @"UNBIND_SDKUSER":@"http://api.185sy.com/index.php?g=api&m=businessplayer&a=unbind_sdkuser",
+      @"GDT_REPORT":@"http://api.185sy.com/index.php?g=api&m=gdtstatic&a=report_data",
+      @"BSP_COMPLETEINFO":@"http://api.185sy.com/index.php?g=api&m=businessplayer&a=is_complete_info",
+      @"JRTT_REPORT":@"http://api.185sy.com/index.php?g=api&m=jrttstatic&a=report_data",
+      @"BSP_LOGIN":@"http://api.185sy.com/index.php?g=api&m=businessplayer&a=login",
+      @"BSP_EDITUSER":@"http://api.185sy.com/index.php?g=api&m=businessplayer&a=edit_user"
       };
     return mapDict;
 }

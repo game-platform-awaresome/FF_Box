@@ -41,6 +41,7 @@
 @implementation FFLoginViewController
 
 
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
@@ -136,7 +137,7 @@
     [self startWaiting];
     [FFUserModel userLoginWithUsername:self.userName.text Password:self.passWord.text Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         [self stopWaiting];
-        _isLogging = NO;
+        self.isLogging = NO;
         if (success) {
             [UIAlertController showAlertMessage:@"登录成功" dismissTime:0.7 dismissBlock:^{
                 [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_LOGIN_SUCCESS object:nil userInfo:nil];
@@ -147,6 +148,7 @@
         }
     }];
 }
+
 
 
 #pragma mark - textfieldDelegate

@@ -28,6 +28,11 @@
 
 @implementation FFBTOpenServerViewController
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = NO;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -42,12 +47,13 @@
     [super initUserInterface];
     [self.view addSubview:self.selectView];
     [self.view addSubview:self.collectionView];
+    self.navigationItem.title = @"开服表";
 }
 
 - (void)viewWillLayoutSubviews {
-    self.selectView.frame = CGRectMake(0, 0, self.view.bounds.size.width, 50);
+    self.selectView.frame = CGRectMake(0, kNAVIGATION_HEIGHT, self.view.bounds.size.width, 50);
 
-    self.collectionView.frame = CGRectMake(0, CGRectGetMaxY(self.selectView.frame), kSCREEN_WIDTH, kSCREEN_HEIGHT - 44 - KSTATUBAR_HEIGHT - CGRectGetHeight(self.selectView.frame) - kTABBAR_HEIGHT);
+    self.collectionView.frame = CGRectMake(0, CGRectGetMaxY(self.selectView.frame), kSCREEN_WIDTH, kSCREEN_HEIGHT - CGRectGetMaxY(self.selectView.frame));
 
     CGRect frame = CGRectMake(0, 0, kSCREEN_WIDTH, self.collectionView.frame.size.height);
     self.layout.itemSize = frame.size;
@@ -117,7 +123,7 @@
         _collectionView.backgroundColor = [UIColor whiteColor];
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;
-        _collectionView.scrollEnabled = NO;
+//        _collectionView.scrollEnabled = NO;
 
     }
 

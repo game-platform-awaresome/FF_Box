@@ -2,14 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "c_icon_jiaoyijilu.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "c_icon_jiaoyijilu@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "c_icon_jiaoyijilu@3x.png",
       "scale" : "3x"
     }
   ],
