@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 
 void clickButton(long idx);
+static float buttonCenter[4];
 
 @interface FFBusinessHeaderView : UIView
+
 
 
 

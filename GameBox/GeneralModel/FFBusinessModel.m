@@ -10,9 +10,14 @@
 #import "FFDeviceInfo.h"
 #import "FFMapModel.h"
 #import <UIKit/UIKit.h>
+#import "SYKeychain.h"
 
 #define SS_Client [dict setObject:@"1" forKey:@"client"];
 
+#define KEYCHAINSERVICE @"tenoneTec.com"
+#define Business_uid @"Business_uid"
+#define Business_username @"Business_username"
+#define Business_password @"Business_password"
 
 static FFBusinessUserModel *_user = NULL;
 FFBusinessUserModel * currentUser(void) {
@@ -27,6 +32,55 @@ FFBusinessUserModel * currentUser(void) {
 
 
 @implementation FFBusinessModel
+
++ (FFBusinessUserModel *)sharedModel {
+    currentUser() -> uid = [self uid] ? [[self uid] UTF8String] : NULL;
+    return currentUser();
+}
+
+
++ (NSString *)uid {
+    return [SYKeychain passwordForService:KEYCHAINSERVICE account:Business_uid];
+}
++ (BOOL)setUid:(NSString *)uid {
+    return [SYKeychain setPassword:uid forService:KEYCHAINSERVICE account:Business_uid];
+}
++ (BOOL)deleteUid {
+    return [SYKeychain deletePasswordForService:KEYCHAINSERVICE account:Business_uid];
+}
++ (NSString *)username {
+    return [SYKeychain passwordForService:KEYCHAINSERVICE account:Business_username];
+}
++ (BOOL)setUsername:(NSString *)username {
+    return [SYKeychain setPassword:username forService:KEYCHAINSERVICE account:Business_username];
+}
++ (BOOL)deleteUsername {
+    return [SYKeychain deletePasswordForService:KEYCHAINSERVICE account:Business_username];
+}
++ (NSString *)password {
+    return [SYKeychain passwordForService:KEYCHAINSERVICE account:Business_password];
+}
++ (BOOL)setPassword:(NSString *)password {
+    return [SYKeychain setPassword:password forService:KEYCHAINSERVICE account:Business_password];
+}
++ (BOOL)deletePassword {
+        return [SYKeychain deletePasswordForService:KEYCHAINSERVICE account:Business_password];
+}
+
++ (BOOL)signOut {
+    [self deleteUid];
+    [self deleteUsername];
+    [self deletePassword];
+    return YES;
+}
+
++ (void)loginSuccessWith:(NSDictionary *)dict {
+    if ([dict isKindOfClass:[NSDictionary class]]) {
+        syLog(@"login dict === %@",dict);
+        NSString *uid = dict[@"uid"];
+        [self setUid:uid];
+    }
+}
 
 /** 发送验证码 */
 + (void)sendMessageWithPhoneNumber:(NSString *)number type:(FFSendMessageType)type Completion:(RequestCallBackBlock)completion {

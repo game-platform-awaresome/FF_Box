@@ -9,6 +9,7 @@
 #import "FFBasicModel.h"
 #import "FFNetWorkManager.h"
 
+#define FFBusinessRegistSuccess @"FFBusinessRegistSuccess"
 
 typedef enum : NSUInteger {
     FFBusinessTypeRegist = 1,
@@ -17,13 +18,30 @@ typedef enum : NSUInteger {
 
 
 typedef struct FFbusinessUserModel {
-    char *uid;
+    const char *uid;
 } FFBusinessUserModel;
 
 FFBusinessUserModel * currentUser(void);
 
 
 @interface FFBusinessModel : FFBasicModel
+
++ (FFBusinessUserModel *)sharedModel;
+
+
++ (NSString *)uid;
++ (BOOL)setUid:(NSString *)uid;
++ (BOOL)deleteUid;
++ (NSString *)username;
++ (BOOL)setUsername:(NSString *)username;
++ (BOOL)deleteUsername;
++ (NSString *)password;
++ (BOOL)setPassword:(NSString *)password;
++ (BOOL)deletePassword;
+
++ (BOOL)signOut;
+
++ (void)loginSuccessWith:(NSDictionary *)dict;
 
 /** 发送短信验证码 */
 + (void)sendMessageWithPhoneNumber:(NSString *)number

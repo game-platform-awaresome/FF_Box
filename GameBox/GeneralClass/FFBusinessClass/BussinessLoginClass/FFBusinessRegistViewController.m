@@ -135,10 +135,11 @@
 
     [self startWaiting];
     [FFBusinessModel registAccountWithPhoneNumber:self.usernameTF.text Code:self.codeTF.text Password:self.passwordTF.text Completion:^(NSDictionary * _Nonnull content, BOOL success) {
-        [self startWaiting];
+        [self stopWaiting];
         self.isRegisting = NO;
         if (success) {
             [UIAlertController showAlertMessage:@"注册成功" dismissTime:0.7 dismissBlock:^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:FFBusinessRegistSuccess object:nil userInfo:@{@"username":self.usernameTF.text,@"password":self.passwordTF.text}];
                 [self.navigationController popViewControllerAnimated:YES];
             }];
         } else {

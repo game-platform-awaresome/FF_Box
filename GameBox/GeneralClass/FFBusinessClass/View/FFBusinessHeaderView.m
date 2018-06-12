@@ -40,6 +40,7 @@
         [button addTarget:self action:@selector(respondsToButton:) forControlEvents:(UIControlEventTouchUpInside)];
         [button setImage:[UIImage imageNamed:[NSString stringWithFormat:@"Business_%d",i]] forState:(UIControlStateNormal)];
         button.frame = CGRectMake((kSCREEN_WIDTH - Button_Height * 4) / 8 + ((kSCREEN_WIDTH - Button_Height * 4) / 4 + Button_Height) * i, 20, Button_Height, Button_Height);
+//        buttonCenter[i] = button.center.x;
         [self addSubview:button];
     }
 }

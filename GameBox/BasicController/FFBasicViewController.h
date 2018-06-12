@@ -46,11 +46,15 @@ typedef void(^EndOfNetWorkRequestBlock)(BOOL success);
 @property (nonatomic, assign) CGFloat floatImageViewSize;
 
 
+@property (nonatomic, strong) CALayer *navLine;
+
+
 /** initialize user interface */
 - (void)initUserInterface;
 /** initialize */
 - (void)initDataSource;
-
+- (CALayer *)creatLineWithFrame:(CGRect)frame;
+- (void)customNavLine;
 /** responds to button */
 - (void)respondsToRightButton;
 - (void)respondsToLeftButton;

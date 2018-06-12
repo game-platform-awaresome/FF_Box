@@ -8,12 +8,13 @@
 
 #import "FFBasicViewController.h"
 #import "FFWaitingManager.h"
-
+#import "UINavigationBar+FFNavigationBar.h"
 
 @interface FFBasicViewController ()
 
 @property (nonatomic, strong) MBProgressHUD *hud;
 @property (nonatomic, assign) NSInteger hudNumber;
+
 
 @end
 
@@ -24,14 +25,26 @@
 //    self.navigationController.navigationBar.hidden = NO;
     [self.navigationController.navigationBar setTintColor:[FFColorManager navigation_bar_black_color]];
     [self.navigationController.navigationBar setBarTintColor:[FFColorManager navigation_bar_white_color]];
+
+//    self.navigationController.navigationBar.lineLayer.frame = CGRectMake(0, self.navigationController.navigationBar.bounds.size.height - 1, kSCREEN_WIDTH, 1);
+
     self.navBarBGAlpha = @"1.0";
 
 //    syLog(@"%@ -> %s",NSStringFromClass([self class]),__func__);
 }
 
+- (void)customNavLine {
+    self.navigationController.navigationBar.lineLayer = self.navLine;
+}
+
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
 //    self.hidesBottomBarWhenPushed = YES;
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    self.navigationController.navigationBar.lineLayer.frame = CGRectMake(0, self.navigationController.navigationBar.bounds.size.height - 1, kSCREEN_WIDTH, 1);
 }
 
 
@@ -50,6 +63,13 @@
 
 - (void)initDataSource {
 
+}
+
+- (CALayer *)creatLineWithFrame:(CGRect)frame {
+    CALayer *layer = [[CALayer alloc] init];
+    layer.frame = frame;
+    layer.backgroundColor = [FFColorManager view_separa_line_color].CGColor;
+    return layer;
 }
 
 - (void)refreshData {
@@ -117,7 +137,7 @@
 }
 
 - (void)respondsToLeftButton {
-
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - GestureRecognize
@@ -242,6 +262,12 @@
     return _floatImageView;
 }
 
+- (CALayer *)navLine {
+    if (!_navLine) {
+        _navLine = [self creatLineWithFrame:CGRectMake(0, self.navigationController.navigationBar.bounds.size.height - 1, kSCREEN_WIDTH, 1)];
+    }
+    return _navLine;
+}
 
 
 @end

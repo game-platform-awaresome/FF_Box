@@ -25,8 +25,24 @@
 
 @implementation FFBusinessLoginViewController
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (instancetype)init {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(registSuccess:) name:FFBusinessRegistSuccess object:nil];
     return [[UIStoryboard storyboardWithName:@"MyStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"FFBusinessLoginViewController"];
+}
+
+- (void)registSuccess:(NSNotification *)noti {
+    NSDictionary *dict = [noti userInfo];
+    NSString *username = dict[@"username"];
+    NSString *password = dict[@"password"];
+    if (username && password) {
+        self.userNameTF.text = username;
+        self.passwordTF.text = password;
+        [self respondsToLoginButton:nil];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -69,12 +85,6 @@
     [self.view addGestureRecognizer:tap];
 }
 
-- (CALayer *)creatLineWithFrame:(CGRect)frame {
-    CALayer *layer = [[CALayer alloc] init];
-    layer.frame = frame;
-    layer.backgroundColor = [FFColorManager view_separa_line_color].CGColor;
-    return layer;
-}
 
 
 #pragma mark - responds
@@ -101,7 +111,7 @@
         return;
     }
     _isRegisting = YES;
-
+    [self respondsToTap:nil];
     //手机号有误
     NSString *MOBILE = @"^1\\d{10}$";
     NSPredicate *regextestmobile = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", MOBILE];
@@ -120,9 +130,11 @@
     [FFBusinessModel loginAccountWithUserName:self.userNameTF.text Password:self.passwordTF.text Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         [self stopWaiting];
         if (success) {
-            [UIAlertController showAlertMessage:@"登录成功" dismissTime:0.7 dismissBlock:^{
-                [self.navigationController popViewControllerAnimated:YES];
-            }];
+            [FFBusinessModel setUsername:self.userNameTF.text];
+            [FFBusinessModel setPassword:self.passwordTF.text];
+            [FFBusinessModel loginSuccessWith:content[@"data"]];
+            [self.navigationController popViewControllerAnimated:YES];
+            [UIAlertController showAlertMessage:@"登录成功" dismissTime:0.7 dismissBlock:nil];
         } else {
             [UIAlertController showAlertMessage:content[@"msg"] dismissTime:0.7 dismissBlock:nil];
         }
