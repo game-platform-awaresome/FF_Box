@@ -136,7 +136,7 @@ FFBusinessUserModel * currentUser(void) {
 + (void)modifyPasswordWithPassword:(NSString *)password NewPassword:(NSString *)newPassword Completion:(RequestCallBackBlock)completion {
     Pamaras_Key((@[@"uid",@"password",@"newpassword"]));
     SS_DICT;
-    [dict setObject:[NSString stringWithUTF8String:currentUser() -> uid] forKey:@"uid"];
+    [dict setObject:[self uid] forKey:@"uid"];
     [dict setObject:password forKey:@"password"];
     [dict setObject:newPassword forKey:@"newpassword"];
     SS_SIGN;
@@ -160,13 +160,13 @@ FFBusinessUserModel * currentUser(void) {
 
 /** 账号资料 */
 + (void)getUserInfoWithCompletion:(RequestCallBackBlock)completion {
-    if (currentUser() -> uid == NULL) {
+    if (![self uid]) {
         completion ? completion(@{@"msg":@"尚未登录"}, false) : 0;
         return;
     }
     Pamaras_Key((@[@"uid"]));
     SS_DICT;
-    [dict setObject:[NSString stringWithUTF8String:currentUser() -> uid] forKey:@"uid"];
+    [dict setObject:[self uid] forKey:@"uid"];
     SS_SIGN;
     [FFNetWorkManager postRequestWithURL:Map.BSP_USERINFO Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         NEW_REQUEST_COMPLETION;
@@ -175,14 +175,14 @@ FFBusinessUserModel * currentUser(void) {
 
 /** 编辑账号资料 */
 + (void)editUserInfoWithQQ:(NSString *)qq AlipayAccount:(NSString *)alipayAccount Icon:(id)icon Completion:(RequestCallBackBlock)completion {
-    if (currentUser() -> uid == NULL) {
+    if (![self uid]) {
         completion ? completion(@{@"msg":@"尚未登录"}, false) : 0;
         return;
     }
     NSMutableArray *pamarasKey = [NSMutableArray array];
     [pamarasKey addObject:@"uid"];
     SS_DICT;
-    [dict setObject:[NSString stringWithUTF8String:currentUser() -> uid] forKey:@"uid"];
+    [dict setObject:[self uid] forKey:@"uid"];
     if (qq) {
         [pamarasKey addObject:@"qq"];
         [dict setObject:qq forKey:@"qq"];
@@ -195,7 +195,7 @@ FFBusinessUserModel * currentUser(void) {
     }
     SS_SIGN;
     if (icon) {
-        [FFNetWorkManager uploadImageWithURL:Map.BSP_EDITUSER Params:dict FileData:@[UIImagePNGRepresentation(icon)] FileName:@"userAvatar" Name:@"img" MimeType:@"image/png" Progress:nil Success:^(NSDictionary * _Nonnull content) {
+        [FFNetWorkManager uploadImageWithURL:Map.BSP_EDITUSER Params:dict FileData:@[UIImagePNGRepresentation(icon)] FileName:@"userAvatar" Name:@"icon_url" MimeType:@"image/png" Progress:nil Success:^(NSDictionary * _Nonnull content) {
             REQUEST_STATUS;
             if (status.integerValue == 1) {
                 if (completion){
@@ -220,14 +220,14 @@ FFBusinessUserModel * currentUser(void) {
 
 /** 验证用户信息完整 */
 + (void)verifyUserInfoWithCompletion:(RequestCallBackBlock)completion {
-    if (currentUser() -> uid == NULL) {
+    if ([self uid] == nil) {
         completion ? completion(@{@"msg":@"尚未登录"}, false) : 0;
         return;
     }
 
     Pamaras_Key((@[@"uid"]));
     SS_DICT;
-    [dict setObject:[NSString stringWithUTF8String:currentUser() -> uid] forKey:@"uid"];
+    [dict setObject:[self uid] forKey:@"uid"];
     SS_SIGN;
     [FFNetWorkManager postRequestWithURL:Map.BSP_COMPLETEINFO Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         NEW_REQUEST_COMPLETION;
@@ -236,14 +236,13 @@ FFBusinessUserModel * currentUser(void) {
 
 /** 关联 SDK 账号 */
 + (void)linkSDKAccountWithSDKAccount:(NSString *)sdkAccount SDKPassword:(NSString *)adkPassword Completion:(RequestCallBackBlock)completion {
-    if (currentUser() -> uid == NULL) {
+    if ([self uid] == nil) {
         completion ? completion(@{@"msg":@"尚未登录"}, false) : 0;
         return;
     }
-
     Pamaras_Key((@[@"uid",@"sdk_username",@"sdk_password"]));
     SS_DICT;
-    [dict setObject:[NSString stringWithUTF8String:currentUser() -> uid] forKey:@"uid"];
+    [dict setObject:[self uid] forKey:@"uid"];
     [dict setObject:sdkAccount forKey:@"sdk_username"];
     [dict setObject:adkPassword forKey:@"sdk_password"];
     SS_SIGN;
@@ -254,13 +253,13 @@ FFBusinessUserModel * currentUser(void) {
 
 /** 取消关联 SDK 账号 */
 + (void)cancelLinkSDKAccountWithSDKAccount:(NSString *)sdkAccount Completion:(RequestCallBackBlock)completion {
-    if (currentUser() -> uid == NULL) {
+    if ([self uid] == nil) {
         completion ? completion(@{@"msg":@"尚未登录"}, false) : 0;
         return;
     }
     Pamaras_Key((@[@"uid",@"sdk_username"]));
     SS_DICT;
-    [dict setObject:[NSString stringWithUTF8String:currentUser() -> uid] forKey:@"uid"];
+    [dict setObject:[self uid] forKey:@"uid"];
     [dict setObject:sdkAccount forKey:@"sdk_username"];
     SS_SIGN;
     [FFNetWorkManager postRequestWithURL:Map.UNBIND_SDKUSER Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
@@ -270,16 +269,112 @@ FFBusinessUserModel * currentUser(void) {
 
 /** 关联 SDK 账号列表 */
 + (void)linkSDKAccountListCompletion:(RequestCallBackBlock)completion {
-    if (currentUser() -> uid == NULL) {
+    if ([self uid] == nil) {
         completion ? completion(@{@"msg":@"尚未登录"}, false) : 0;
         return;
     }
     Pamaras_Key((@[@"uid"]));
     SS_DICT;
-    [dict setObject:[NSString stringWithUTF8String:currentUser() -> uid] forKey:@"uid"];
+    [dict setObject:[self uid] forKey:@"uid"];
     SS_SIGN;
     [FFNetWorkManager postRequestWithURL:Map.SDKUSER_LIST Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         NEW_REQUEST_COMPLETION;
+    }];
+}
+
+/** 发起支付 */
++ (void)payStartWithProductID:(NSString *)productID Uid:(NSString *)uid Type:(FFBusinessPayType)type Completion:(RequestCallBackBlock)completion {
+    if ([self uid] == nil) {
+        completion ? completion(@{@"msg":@"尚未登录"}, false) : 0;
+        return;
+    }
+    Pamaras_Key((@[@"proid",@"buy_id",@"type"]));
+    SS_DICT;
+    [dict setObject:productID forKey:@"proid"];
+    [dict setObject:[self uid] forKey:@"buy_id"];
+    [dict setObject:[NSString stringWithFormat:@"%lu",type] forKey:@"type"];
+    SS_SIGN;
+#warning address
+    [FFNetWorkManager postRequestWithURL:Map.PAY_START Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        NEW_REQUEST_COMPLETION;
+    }];
+}
+
+/** 取消支付 */
++ (void)cancelPaymentWithOrderID:(NSString *)orderID Completion:(RequestCallBackBlock)completion {
+    Pamaras_Key((@[@"orderID"]));
+    SS_DICT;
+    [dict setObject:orderID forKey:@"orderID"];
+    SS_SIGN;
+#warning address
+    [FFNetWorkManager postRequestWithURL:Map.PAY_START Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        NEW_REQUEST_COMPLETION;
+    }];
+}
+
+/** 商品列表 */
++ (void)productListWithGameName:(NSString *)gameName Page:(NSString *)page System:(FFBusinessSystemType)systemType OrderType:(FFBusinessOrderType)orderType OrderMethod:(FFBusinessOrderMethod)orderMethod Completion:(RequestCallBackBlock)completion {
+
+    Pamaras_Key((@[@"game_name",@"system",@"order",@"order_type",@"page"]));
+    SS_DICT;
+    gameName = gameName ?: @"0";
+    [dict setObject:gameName forKey:@"game_name"];
+    page = page ?: @"1";
+    [dict setObject:page forKey:@"page"];
+    systemType = systemType ?: 0;
+    [dict setObject:[NSString stringWithFormat:@"%lu",systemType] forKey:@"system"];
+    orderType = orderType ?: 0;
+    [dict setObject:[NSString stringWithFormat:@"%lu",orderType] forKey:@"order"];
+    orderMethod = orderMethod ?: 0;
+    [dict setObject:[NSString stringWithFormat:@"%lu",orderMethod] forKey:@"order_type"];
+    SS_SIGN;
+
+    [FFNetWorkManager postRequestWithURL:Map.PRODUCT_LIST Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        NEW_REQUEST_COMPLETION;
+    }];
+
+}
+
+
+/** 出售商品 */
++ (void)sellProductWithAppID:(NSString *)appid Title:(NSString *)title SDKUsername:(NSString *)SDKUsername Price:(NSString *)price Description:(NSString *)description SystemType:(FFBusinessSystemType)systemType ServerName:(NSString *)serverName EndTime:(NSString *)endTime Images:(NSArray *)images Completion:(RequestCallBackBlock)completion {
+    if ([self uid] == nil) {
+        if (completion) {
+            completion(@{@"msg":@"请登录"},NO);
+        }
+        return;
+    }
+
+    Pamaras_Key((@[@"uid",@"appid",@"title",@"sdk_username",
+                   @"price",@"desc",@"system",@"server_name",
+                   @"end_time"]));
+    SS_DICT;
+    [dict setObject:[self uid] forKey:@"uid"];
+    [dict setObject:appid forKey:@"appid"];
+    [dict setObject:title forKey:@"title"];
+    [dict setObject:SDKUsername forKey:@"sdk_username"];
+    [dict setObject:price forKey:@"price"];
+    [dict setObject:description forKey:@"desc"];
+    [dict setObject:[NSString stringWithFormat:@"%lu",systemType] forKey:@"system"];
+    [dict setObject:serverName forKey:@"server_name"];
+    [dict setObject:endTime forKey:@"end_time"];
+    SS_SIGN;
+
+    [FFNetWorkManager uploadImageWithURL:Map.SELL_PRODUCTS Params:dict FileData:nil FileName:@"sellProduct" Name:@"imgs" MimeType:@"image/png" Progress:nil Success:^(NSDictionary * _Nonnull content) {
+        REQUEST_STATUS;
+        if (status.integerValue == 1) {
+            if (completion) {
+                completion(content,YES);
+            }
+        } else {
+            if (completion) {
+                completion(content,NO);
+            }
+        }
+    } Failure:^(NSError * _Nonnull error) {
+        if (completion) {
+            completion(@{@"msg":error.localizedDescription},NO);
+        }
     }];
 }
 

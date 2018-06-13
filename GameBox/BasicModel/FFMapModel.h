@@ -171,6 +171,10 @@ typedef void(^Completion)(void);
 @property (nonatomic, strong) NSString *JRTT_REPORT;
 @property (nonatomic, strong) NSString *BSP_LOGIN;
 @property (nonatomic, strong) NSString *BSP_EDITUSER;
+/** 账号可以交易列表 */
+@property (nonatomic, strong) NSString *GAME_BY_SDKUSER;
+@property (nonatomic, strong) NSString *PRODUCT_LIST;
+@property (nonatomic, strong) NSString *SELL_PRODUCTS;
 
 + (instancetype)map;
 

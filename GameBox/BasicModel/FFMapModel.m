@@ -193,7 +193,10 @@ static FFMapModel *model = nil;
       @"BSP_COMPLETEINFO":@"http://api.185sy.com/index.php?g=api&m=businessplayer&a=is_complete_info",
       @"JRTT_REPORT":@"http://api.185sy.com/index.php?g=api&m=jrttstatic&a=report_data",
       @"BSP_LOGIN":@"http://api.185sy.com/index.php?g=api&m=businessplayer&a=login",
-      @"BSP_EDITUSER":@"http://api.185sy.com/index.php?g=api&m=businessplayer&a=edit_user"
+      @"BSP_EDITUSER":@"http://api.185sy.com/index.php?g=api&m=businessplayer&a=edit_user",
+      @"GAME_BY_SDKUSER":@"http://api.185sy.com/index.php?g=api&m=Products&a=game_by_sdkuser",
+      @"PRODUCT_LIST":@"http://api.185sy.com/index.php?g=api&m=Products&a=get_product_list",
+      @"SELL_PRODUCTS":@"http://api.185sy.com/index.php?g=api&m=Products&a=sell_product"
       };
     return mapDict;
 }

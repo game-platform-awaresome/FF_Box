@@ -48,7 +48,6 @@ static FFBusinessViewController *_controller = nil;
 
 - (void)initDataSource {
     [self.tableView registerNib:[UINib nibWithNibName:CELL_IDE bundle:nil] forCellReuseIdentifier:CELL_IDE];
-    self.showArray = @[@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@""].mutableCopy;
 }
 
 - (void)initUserInterface {
@@ -61,7 +60,20 @@ static FFBusinessViewController *_controller = nil;
 }
 
 - (void)refreshData {
-    [self.refreshHeader endRefreshing];
+    Reset_page;
+    [self startWaiting];
+    [FFBusinessModel productListWithGameName:@"" Page:New_page System:(FFBusinessSystemTypeIOS) OrderType:(FFBusinessOrderTypeTime) OrderMethod:(FFBusinessOrderMethodDescending) Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        [self stopWaiting];
+        syLog(@"product === %@",content);
+        if (success) {
+            self.showArray = [CONTENT_DATA[@"list"] mutableCopy];
+        }
+
+        [self.tableView reloadData];
+        [self.refreshHeader endRefreshing];
+        [self.refreshFooter endRefreshing];
+    }];
+
 }
 
 - (void)loadMoreData {

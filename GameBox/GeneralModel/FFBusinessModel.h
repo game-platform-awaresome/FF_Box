@@ -16,10 +16,30 @@ typedef enum : NSUInteger {
     FFBusinessTypePassword
 } FFSendMessageType;
 
+typedef enum : NSUInteger {
+    FFBusinessPayAlipay = 1,
+    FFBusinessPayWechat
+}FFBusinessPayType;
+
+typedef enum : NSUInteger {
+    FFBusinessSystemTypeAndroid = 1,
+    FFBusinessSystemTypeIOS
+} FFBusinessSystemType;
 
 typedef struct FFbusinessUserModel {
     const char *uid;
 } FFBusinessUserModel;
+
+typedef enum : NSUInteger {
+    FFBusinessOrderTypeTime = 1,
+    FFBusinessOrderTypePrice
+} FFBusinessOrderType;
+
+typedef enum : NSUInteger {
+    FFBusinessOrderMethodDescending = 1,
+    FFBusinessOrderMethodAscending,
+} FFBusinessOrderMethod;
+
 
 FFBusinessUserModel * currentUser(void);
 
@@ -94,8 +114,40 @@ FFBusinessUserModel * currentUser(void);
 /** 关联 SDK 账号列表 */
 + (void)linkSDKAccountListCompletion:(RequestCallBackBlock)completion;
 
+/** 发起支付 */
++ (void)payStartWithProductID:(NSString *)productID
+                          Uid:(NSString *)uid
+                         Type:(FFBusinessPayType)type
+                   Completion:(RequestCallBackBlock)completion;
+
+/** 取消支付 */
++ (void)cancelPaymentWithOrderID:(NSString *)orderID
+                      Completion:(RequestCallBackBlock)completion;
 
 
+/** 商品列表 */
++ (void)productListWithGameName:(NSString *)gameName
+                           Page:(NSString *)page
+                         System:(FFBusinessSystemType)systemType
+                      OrderType:(FFBusinessOrderType)orderType
+                    OrderMethod:(FFBusinessOrderMethod)orderMethod
+                     Completion:(RequestCallBackBlock)completion;
+
+
+///** 我的账号 */
+//+ (void)myAccountWith
+
+/** 提交商品,出售商品 */
++ (void)sellProductWithAppID:(NSString *)appid
+                       Title:(NSString *)title
+                 SDKUsername:(NSString *)SDKUsername
+                       Price:(NSString *)price
+                 Description:(NSString *)description
+                  SystemType:(FFBusinessSystemType)systemType
+                  ServerName:(NSString *)serverName
+                     EndTime:(NSString *)endTime
+                      Images:(NSArray *)images
+                  Completion:(RequestCallBackBlock)completion;
 
 @end
 
