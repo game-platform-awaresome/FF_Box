@@ -103,7 +103,7 @@ static FFBusinessProductController *controller = nil;
     self.productDetailText.layer.borderWidth = 0.5;
     self.productDetailText.layer.borderColor = [FFColorManager text_separa_line_color].CGColor;
     self.sellButton.backgroundColor = [FFColorManager blue_dark];
-    self.sellButton.layer.cornerRadius = self.sellButton.bounds.size.width / 2;
+    self.sellButton.layer.cornerRadius = self.sellButton.bounds.size.height / 2;
     self.sellButton.layer.masksToBounds = YES;
 }
 
