@@ -7,6 +7,7 @@
 //
 
 #import "FFBusinessSelectAccountViewController.h"
+#import "FFBusinessSellProductController.h"
 #import "FFBusinessModel.h"
 #import <UIImageView+WebCache.h>
 #import "FFBusinessSDKCell.h"
@@ -124,7 +125,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSDictionary *dict = self.model.listArray[indexPath.section].gameList[indexPath.row];
-    syLog(@"select === %@",dict);
+    FFBusinessProductController *controller = [FFBusinessProductController initwithGameName:[dict[@"game_name"] copy] Account:self.model.listArray[indexPath.section].SDKUsername];
+    [self pushViewController:controller];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

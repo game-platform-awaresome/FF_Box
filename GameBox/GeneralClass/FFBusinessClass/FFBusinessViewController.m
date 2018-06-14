@@ -211,7 +211,6 @@ void clickButton(long idx) {
             layer.backgroundColor = [FFColorManager view_separa_line_color].CGColor;
             [_sectionButtonView.layer addSublayer:layer];
         }
-
     }
     return _sectionButtonView;
 }

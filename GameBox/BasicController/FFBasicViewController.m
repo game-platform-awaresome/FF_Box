@@ -132,13 +132,7 @@
 }
 
 #pragma mark - responds
-- (void)respondsToRightButton {
 
-}
-
-- (void)respondsToLeftButton {
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
 #pragma mark - GestureRecognize
 - (void)respondsToFloatImageViewTap:(UITapGestureRecognizer *)sender {
@@ -221,23 +215,7 @@
     return [FFControllerManager sharedManager].currentNavController;
 }
 
-- (UIBarButtonItem *)leftButton {
-    if (!_leftButton) {
-        _leftButton = [[UIBarButtonItem alloc] init];
-        [_leftButton setTarget:self];
-        [_leftButton setAction:@selector(respondsToLeftButton)];
-    }
-    return _leftButton;
-}
 
-- (UIBarButtonItem *)rightButton {
-    if (!_rightButton) {
-        _rightButton = [[UIBarButtonItem alloc] init];
-        [_rightButton setTarget:self];
-        [_rightButton setAction:@selector(respondsToRightButton)];
-    }
-    return _rightButton;
-}
 
 - (CGFloat)floatImageViewSize {
     return 50;

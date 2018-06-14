@@ -30,8 +30,8 @@
 
 @property (nonatomic, strong) UIButton *hideButton;
 
-@property (nonatomic, strong) ZLPhotoActionSheet *actionSheet;
 @property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic, strong) ZLPhotoActionSheet *actionSheet;
 @property (nonatomic, strong) NSArray *imagesArray;
 @property (nonatomic, strong) UIBarButtonItem *sendButton;
 

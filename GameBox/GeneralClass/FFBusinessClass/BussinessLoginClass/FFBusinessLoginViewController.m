@@ -88,10 +88,6 @@
 
 
 #pragma mark - responds
-- (void)respondsToLeftButton {
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 - (void)respondsToRightButton {
     pushViewController(@"FFBusinessRegistViewController");
 }

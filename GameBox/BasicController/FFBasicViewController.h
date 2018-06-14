@@ -12,6 +12,7 @@
 #import "FFGameModel.h"
 #import "FFColorManager.h"
 #import "FFImageManager.h"
+#import "UIViewController+FFViewController.h"
 
 #define pushViewController(className)     \
 Class ControllerClass = NSClassFromString(className);\
@@ -34,10 +35,6 @@ typedef void(^EndOfNetWorkRequestBlock)(BOOL success);
 
 @property (nonatomic, strong) UINavigationController *currentNav;
 
-/** uinavigation left button  */
-@property (nonatomic, strong) UIBarButtonItem *leftButton;
-/** uinavigation rigth button */
-@property (nonatomic, strong) UIBarButtonItem *rightButton;
 
 @property (nonatomic, assign) BOOL canRefresh;
 
@@ -55,9 +52,7 @@ typedef void(^EndOfNetWorkRequestBlock)(BOOL success);
 - (void)initDataSource;
 - (CALayer *)creatLineWithFrame:(CGRect)frame;
 - (void)customNavLine;
-/** responds to button */
-- (void)respondsToRightButton;
-- (void)respondsToLeftButton;
+
 
 /** start waiting */
 - (void)startWaiting;
@@ -84,6 +79,8 @@ typedef void(^EndOfNetWorkRequestBlock)(BOOL success);
 - (void)addFLoatView;
 - (void)respondsToFloatImageViewTap:(UITapGestureRecognizer *)sender;
 - (void)respondsToFloatImageViewPan:(UIPanGestureRecognizer *)sender;
+
+
 
 @end
 

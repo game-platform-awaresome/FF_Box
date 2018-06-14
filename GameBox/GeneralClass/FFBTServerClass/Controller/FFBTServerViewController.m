@@ -12,6 +12,7 @@
 #import <UIImageView+WebCache.h>
 #import "FFSRcommentCell.h"
 #import "FFBoxModel.h"
+#import "FFWebViewController.h"
 
 #import "FFSearchController.h"
 //childe controller
@@ -230,7 +231,34 @@
 
 #pragma mark - select header delegate
 - (void)FFBTServerHeaderView:(FFBTServerHeaderView *)headerView didSelectImageWithInfo:(NSDictionary *)info {
-
+    syLog(@" banner ====%@",info);
+    NSString *type = info[@"type"];
+    if (type.integerValue == 1) {
+        NSString *gid = [NSString stringWithFormat:@"%@",info[@"gid"]];
+        if (gid != nil && gid.integerValue > 0) {
+            Class FFGameViewController = NSClassFromString(@"FFGameViewController");
+            SEL selector = NSSelectorFromString(@"sharedController");
+            if ([FFGameViewController respondsToSelector:selector]) {
+                IMP imp = [FFGameViewController methodForSelector:selector];
+                UIViewController *(*func)(void) = (void *)imp;
+                UIViewController *vc = func();
+                if (vc) {
+                    [vc setValue:gid forKey:@"gid"];
+                    [self pushViewController:vc];
+                } else {
+                    syLog(@"\n ! %s \n present error :  %s not exist \n ! \n",__func__,sel_getName(selector));
+                }
+            } else {
+                syLog(@"\n ! %s \n present error :  %s not exist \n ! \n",__func__,sel_getName(selector));
+            }
+        } else {
+            syLog(@"gid error -> game not exist %@",gid);
+        }
+    } else {
+        FFWebViewController *webView = [FFWebViewController new];
+        [webView setWebURL:info[@"url"]];
+        [self pushViewController:webView];
+    }
 }
 
 - (void)FFBTServerHeaderView:(FFBTServerHeaderView *)headerView didSelectButtonWithInfo:(id)info {
