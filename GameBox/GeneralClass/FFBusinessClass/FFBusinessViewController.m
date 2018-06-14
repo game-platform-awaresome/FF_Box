@@ -62,7 +62,7 @@ static FFBusinessViewController *_controller = nil;
 - (void)refreshData {
     Reset_page;
     [self startWaiting];
-    [FFBusinessModel productListWithGameName:@"" Page:New_page System:(FFBusinessSystemTypeIOS) OrderType:(FFBusinessOrderTypeTime) OrderMethod:(FFBusinessOrderMethodDescending) Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+    [FFBusinessModel productListWithGameName:@"" Page:New_page System:0 OrderType:(FFBusinessOrderTypeTime) OrderMethod:(FFBusinessOrderMethodDescending) Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         [self stopWaiting];
         syLog(@"product === %@",content);
         if (success) {
