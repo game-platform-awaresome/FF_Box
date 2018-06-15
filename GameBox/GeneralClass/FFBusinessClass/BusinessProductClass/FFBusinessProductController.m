@@ -15,6 +15,8 @@
 #import <Photos/Photos.h>
 #import <FFTools/FFTools.h>
 #import "FFBusinessProductDetailViewController.h"
+#import "FFBusinessModel.h"
+#import "FFWaitingManager.h"
 
 #define CELL_IDE @"FFPostStatusImageCell"
 
@@ -53,6 +55,9 @@ void respondsToTimePicker(NSString *time);
 @property (nonatomic, assign) BOOL isOriginal;
 
 @property (nonatomic, assign) BOOL isRequest;
+
+@property (nonatomic, strong) MBProgressHUD *hud;
+@property (nonatomic, assign) NSInteger hudNumber;
 
 @end
 
@@ -141,7 +146,25 @@ static FFBusinessProductController *controller = nil;
         _isRequest = NO;
         return;
     }
+    if (self.imagesArray.count < 2 || self.imagesArray.count > 7) {
+        Show_message(@"请选择2-7张图片上传");
+        _isRequest = NO;
+        return;
+    }
 
+    FFBusinessSystemType type = [self.systemLabel.text isEqualToString:@"iOS"] ? FFBusinessSystemTypeIOS : FFBusinessSystemTypeAndroid;
+    [self startWaiting];
+    [FFBusinessModel sellProductWithAppID:self.appid Title:self.productTitleTF.text SDKUsername:self.sdkAccountLabel.text Price:self.amountTF.text Description:self.productDetailLabel.text SystemType:type ServerName:self.serverTF.text EndTime:self.timeLabel.text Images:self.imagesArray Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        [self stopWaiting];
+        self.isRequest = NO;
+        syLog(@"sell product === %@",content);
+        if (success) {
+            [self.navigationController popViewControllerAnimated:YES];
+            Show_message(@"发布成功");
+        } else {
+            Show_message(content[@"msg"]);
+        }
+    }];
 }
 
 
@@ -406,6 +429,35 @@ void respondsToTimePicker(NSString *time) {
     return _actionSheet;
 }
 
+#pragma mark - hud
+- (void)startWaiting {
+    if (self.hudNumber <= 0) {
+        self.hud.removeFromSuperViewOnHide = YES;
+        [self.view addSubview:self.hud];
+        [self.hud showAnimated:YES];
+        self.hudNumber = 0;
+        [FFWaitingManager startStatubarWaiting];
+    }
+    self.hudNumber++;
+}
+
+- (void)stopWaiting {
+    self.hudNumber--;
+    if (self.hudNumber <= 0) {
+        self.hud.removeFromSuperViewOnHide = YES;
+        [self.hud hideAnimated:YES];
+        self.hudNumber = 0;
+        [FFWaitingManager stopStatubarWating];
+    }
+}
+
+#pragma mark - getter
+- (MBProgressHUD *)hud {
+    if (!_hud) {
+        _hud = [[MBProgressHUD alloc] initWithView:self.view];
+    }
+    return _hud;
+}
 
 
 

@@ -196,7 +196,15 @@ static FFMapModel *model = nil;
       @"BSP_EDITUSER":@"http://api.185sy.com/index.php?g=api&m=businessplayer&a=edit_user",
       @"GAME_BY_SDKUSER":@"http://api.185sy.com/index.php?g=api&m=Products&a=game_by_sdkuser",
       @"PRODUCT_LIST":@"http://api.185sy.com/index.php?g=api&m=Products&a=get_product_list",
-      @"SELL_PRODUCTS":@"http://api.185sy.com/index.php?g=api&m=Products&a=sell_product"
+      @"SELL_PRODUCTS":@"http://api.185sy.com/index.php?g=api&m=Products&a=sell_product",
+      @"START_PAYMENT":@"http://api.185sy.com/index.php?g=api&m=AccountTrade&a=startPayment",
+      @"LUCKY_DRAW":@"http://api.185sy.com/index.php?g=api&m=luckydraw&a=show",
+      @"PRODUCT_BYUSER":@"http://api.185sy.com/index.php?g=api&m=Products&a=get_product_by_user",
+      @"DELETE_PRODUCTS":@"http://api.185sy.com/index.php?g=api&m=Products&a=delete_product",
+      @"WITHDRAW_PRODUCTS":@"http://api.185sy.com/index.php?g=api&m=Products&a=withdraw_product",
+      @"PRODUCT_CUSTOMER":@"http://api.185sy.com/index.php?g=api&m=Products&a=customer",
+      @"CANCEL_PAYMENT":@"http://api.185sy.com/index.php?g=api&m=AccountTrade&a=cancelPayment",
+      @"PRODUCT_INFO":@"http://api.185sy.com/index.php?g=api&m=Products&a=product_info"
       };
     return mapDict;
 }

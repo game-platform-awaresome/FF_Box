@@ -149,6 +149,14 @@ FFBusinessUserModel * currentUser(void);
                       Images:(NSArray *)images
                   Completion:(RequestCallBackBlock)completion;
 
+/** 商品详情 */
++ (void)ProductInfoWithProductID:(NSString *)pid
+                      Completion:(RequestCallBackBlock)completion;
+
+
+
+
+
 @end
 
 

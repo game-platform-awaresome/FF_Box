@@ -67,7 +67,6 @@
                                                          @"application/json",
                                                          @"image/jpeg",
                                                          @"image/png",
-                                                         @"image/gif",
                                                          nil];
 
     NSURLSessionDataTask *task = [manager POST:url parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {

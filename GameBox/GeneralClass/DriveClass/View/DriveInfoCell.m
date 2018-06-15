@@ -67,6 +67,9 @@
 @property (nonatomic, strong) UIImage *gifImage;
 @property (nonatomic, strong) UIImage *normalImage;
 
+
+@property (nonatomic, strong) NSMutableArray *zlPhotoArray;
+
 @end
 
 
@@ -388,7 +391,7 @@
                             self.gifImage = [ZLPhotoManager transformToGifImageWithData:iamgeData];
                             self.normalImage = [UIImage imageWithData:iamgeData];
                             imageView.image = self.gifImage;
-                            [_images addObject:self.gifImage];
+                            [_images addObject:GetDictForPreviewPhoto(imageView.image, ZLPreviewPhotoTypeUIImage)];
                         });
                     } else {
                         [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:obj] options:SDWebImageDownloaderHighPriority progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
@@ -401,7 +404,7 @@
                                     self.normalImage = [UIImage imageWithData:data];
                                     imageView.image = self.gifImage;
                                     if (self.gifImage) {
-                                        [_images addObject:imageView.image];
+                                        [_images addObject:GetDictForPreviewPhoto(imageView.image, ZLPreviewPhotoTypeUIImage)];
                                     }
                                 });
                             }
@@ -420,7 +423,7 @@
                         self.normalImage = [UIImage imageWithData:data];
                     }
                     if (imageView.image) {
-                        [_images addObject:imageView.image];
+                        [_images addObject:GetDictForPreviewPhoto(imageView.image, ZLPreviewPhotoTypeUIImage)];
                     }
                 }];
             }

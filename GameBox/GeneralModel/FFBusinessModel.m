@@ -187,11 +187,15 @@ FFBusinessUserModel * currentUser(void) {
         [pamarasKey addObject:@"qq"];
         [dict setObject:qq forKey:@"qq"];
     } else {
-
+        [pamarasKey addObject:@"qq"];
+        [dict setObject:@"" forKey:@"qq"];
     }
     if (alipayAccount) {
         [pamarasKey addObject:@"alipay_account"];
         [dict setObject:alipayAccount forKey:@"alipay_account"];
+    } else {
+        [pamarasKey addObject:@"alipay_account"];
+        [dict setObject:@"" forKey:@"alipay_account"];
     }
     SS_SIGN;
     if (icon) {
@@ -360,7 +364,14 @@ FFBusinessUserModel * currentUser(void) {
     [dict setObject:endTime forKey:@"end_time"];
     SS_SIGN;
 
-    [FFNetWorkManager uploadImageWithURL:Map.SELL_PRODUCTS Params:dict FileData:nil FileName:@"sellProduct" Name:@"imgs" MimeType:@"image/png" Progress:nil Success:^(NSDictionary * _Nonnull content) {
+    //上传的多张照片
+    NSMutableArray *dataArray = [NSMutableArray arrayWithCapacity:images.count];
+    for (int i = 0; i < images.count; i++) {
+        NSData *imageData = UIImageJPEGRepresentation(images[i], 0.9);
+        [dataArray addObject:imageData];
+    }
+
+    [FFNetWorkManager uploadImageWithURL:Map.SELL_PRODUCTS Params:dict FileData:dataArray FileName:@"sellProduct.png" Name:@"imgs[]" MimeType:@"" Progress:nil Success:^(NSDictionary * _Nonnull content) {
         REQUEST_STATUS;
         if (status.integerValue == 1) {
             if (completion) {
@@ -375,6 +386,19 @@ FFBusinessUserModel * currentUser(void) {
         if (completion) {
             completion(@{@"msg":error.localizedDescription},NO);
         }
+    }];
+}
+
+
+/** 商品详情 */
++ (void)ProductInfoWithProductID:(NSString *)pid Completion:(RequestCallBackBlock)completion {
+    Pamaras_Key((@[@"product_id",@"system"]));
+    SS_DICT;
+    [dict setObject:pid forKey:@"product_id"];
+    [dict setObject:@"2" forKey:@"system"];
+    SS_SIGN;
+    [FFNetWorkManager postRequestWithURL:Map.PRODUCT_INFO Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        NEW_REQUEST_COMPLETION;
     }];
 }
 

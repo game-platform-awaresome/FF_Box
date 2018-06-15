@@ -124,9 +124,19 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSDictionary *dict = self.model.listArray[indexPath.section].gameList[indexPath.row];
-    FFBusinessProductController *controller = [FFBusinessProductController initwithGameName:[dict[@"game_name"] copy] Account:self.model.listArray[indexPath.section].SDKUsername];
-    [self pushViewController:controller];
+
+    if ([self.alipayAccount isEqualToString:@"还没有绑定支付宝账号"] || [self.alipayAccount isEqualToString:@"关联的支付宝账号 : "]) {
+        [UIAlertController showAlertMessage:@"请先绑定支付宝" dismissTime:0.7 dismissBlock:^{
+            pushViewController(@"FFBusinessBindAlipayViewController");
+        }];
+    } else if (self.model.listArray[indexPath.section].isSelling) {
+        [UIAlertController showAlertMessage:@"账号交易中" dismissTime:0.7 dismissBlock:nil];
+    } else {
+        NSDictionary *dict = self.model.listArray[indexPath.section].gameList[indexPath.row];
+        FFBusinessProductController *controller = [FFBusinessProductController initwithGameName:[dict[@"game_name"] copy] Account:self.model.listArray[indexPath.section].SDKUsername];
+        controller.appid = dict[@"appid"];
+        [self pushViewController:controller];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -219,11 +229,15 @@
     }
 }
 
+- (void)respondsToTap:(UITapGestureRecognizer *)sender {
+    pushViewController(@"FFBusinessBindAlipayViewController");
+}
+
 
 #pragma mark - setter
 - (void)setAlipayAccount:(NSString *)alipayAccount {
     if ([alipayAccount isKindOfClass:[NSString class]] && alipayAccount.length > 1) {
-        _alipayAccount = alipayAccount;
+        _alipayAccount = [NSString stringWithFormat:@"关联的支付宝账号 : %@",[NSString stringWithFormat:@"%@********%@",[alipayAccount substringWithRange:NSMakeRange(0, 1)],[alipayAccount substringWithRange:NSMakeRange(alipayAccount.length - 1, 1)]]];
     } else {
         _alipayAccount = @"还没有绑定支付宝账号";
     }
@@ -233,10 +247,16 @@
 #pragma mark - getter
 - (UIView *)headerView {
     if (!_headerView) {
-        _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 44)];
+        _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 90)];
         _headerView.backgroundColor = [FFColorManager navigation_bar_white_color];
         [_headerView addSubview:self.headerTitle];
-//        [_headerView.layer addSublayer:[self creatLineWithFrame:CGRectMake(0, 43, kSCREEN_WIDTH, 1)]];
+
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(16, 60, kSCREEN_WIDTH - 32, 30)];
+        label.text = @"绑定的交易账号";
+        label.font = [UIFont systemFontOfSize:15];
+        label.textColor = [FFColorManager textColorDark];
+
+        [_headerView addSubview:label];
     }
     return _headerView;
 }
@@ -244,11 +264,16 @@
 - (UIButton *)headerTitle {
     if (!_headerTitle) {
         _headerTitle = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        _headerTitle.frame = CGRectMake(0, 0, kSCREEN_WIDTH, 44);
+        _headerTitle.frame = CGRectMake(4, 0, kSCREEN_WIDTH, 44);
         [_headerTitle setTitleColor:[FFColorManager blue_dark] forState:(UIControlStateNormal)];
         _headerTitle.titleLabel.font = [UIFont systemFontOfSize:16];
         [_headerTitle addTarget:self action:@selector(respondsToHeaderButton) forControlEvents:(UIControlEventTouchUpInside)];
-        [_headerTitle setTitle:@"..." forState:(UIControlStateNormal)];
+        [_headerTitle setTitle:@"关联的支付宝账号 : " forState:(UIControlStateNormal)];
+
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(respondsToTap:)];
+        tap.numberOfTapsRequired = 1;
+        tap.numberOfTouchesRequired = 1;
+        [_headerTitle addGestureRecognizer:tap];
     }
     return _headerTitle;
 }

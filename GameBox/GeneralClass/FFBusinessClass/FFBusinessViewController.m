@@ -96,7 +96,7 @@ static FFBusinessViewController *_controller = nil;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     FFBusinessTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDE];
     cell.backgroundColor = [FFColorManager navigation_bar_white_color];
-
+    cell.dict = self.showArray[indexPath.row];
     return cell;
 }
 
@@ -106,6 +106,24 @@ static FFBusinessViewController *_controller = nil;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+    NSDictionary *dict = self.showArray[indexPath.row];
+    Class FFGameViewController = NSClassFromString(@"FFBusinessCommodityViewController");
+    SEL selector = NSSelectorFromString(@"sharedController");
+    if ([FFGameViewController respondsToSelector:selector]) {
+        IMP imp = [FFGameViewController methodForSelector:selector];
+        UIViewController *(*func)(void) = (void *)imp;
+        UIViewController *vc = func();
+        if (vc) {
+            NSString *pid = (dict[@"id"]) ? dict[@"id"] : dict[@"gid"];
+            [vc setValue:pid forKey:@"pid"];
+            [self pushViewController:vc];
+        } else {
+            syLog(@"\n ! %s \n present error :  %s not exist \n ! \n",__func__,sel_getName(selector));
+        }
+    } else {
+        syLog(@"\n ! %s \n present error :  %s not exist \n ! \n",__func__,sel_getName(selector));
+    }
 
 }
 

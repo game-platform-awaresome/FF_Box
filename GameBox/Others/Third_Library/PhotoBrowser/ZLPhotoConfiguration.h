@@ -119,6 +119,11 @@
 @property (nonatomic, assign) BOOL allowDragSelect;
 
 /**
+ 隐藏裁剪图片界面下方比例工具条
+ */
+@property (nonatomic, assign) BOOL hideClipRatiosToolBar;
+
+/**
  根据需要设置自身需要的裁剪比例
  
  @discussion e.g.:1:1，请使用ZLDefine中所提供方法 GetClipRatio(NSInteger value1, NSInteger value2)，该数组可不设置，有默认比例，为（Custom, 1:1, 4:3, 3:2, 16:9），如果所设置比例只有一个且 为 Custom 或 1:1，则编辑图片界面隐藏下方比例工具条
@@ -189,7 +194,7 @@
 
 /**
  支持开发者自定义图片，但是所自定义图片资源名称必须与被替换的bundle中的图片名称一致
- @example: 开发者需要替换选中与未选中的图片资源，则需要传入的数组为 @[@"btn_selected", @"btn_unselected"]，则框架内会使用开发者项目中的图片资源，而其他图片则用框架bundle中的资源
+ @example: 开发者需要替换选中与未选中的图片资源，则需要传入的数组为 @[@"zl_btn_selected", @"zl_btn_unselected"]，则框架内会使用开发者项目中的图片资源，而其他图片则用框架bundle中的资源
  */
 @property (nonatomic, strong) NSArray<NSString *> *customImageNames;
 
@@ -212,12 +217,12 @@
 @property (nonatomic, strong) NSDictionary<NSString *, NSString *> *customLanguageKeyValue;
 
 /**
- 使用系统相机，默认NO（系统相机则只能进行拍照）
+ 使用系统相机，默认NO
  */
 @property (nonatomic, assign) BOOL useSystemCamera;
 
 /**
- 是否允许录制视频(当useSystemCamera为YES时无效)，默认YES
+ 是否允许录制视频，默认YES
  */
 @property (nonatomic, assign) BOOL allowRecordVideo;
 

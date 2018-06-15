@@ -27,6 +27,7 @@
 
 @property (nonatomic, strong) NSString *gameName;
 @property (nonatomic, strong) NSString *account;
+@property (nonatomic, strong) NSString *appid;
 @property (nonatomic, strong) NSString *time;
 
 + (instancetype)init;

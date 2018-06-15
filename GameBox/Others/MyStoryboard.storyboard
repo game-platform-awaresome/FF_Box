@@ -1264,7 +1264,7 @@
                                                     <rect key="frame" x="252.5" y="14.5" width="75" height="21"/>
                                                     <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="84e-4R-rjN" id="KHL-pe-WMF"/>
                                                     </connections>
@@ -1506,30 +1506,97 @@
             </objects>
             <point key="canvasLocation" x="3492" y="832.53373313343332"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="EBK-dn-g1x">
+        <!--Business Bind Alipay View Controller-->
+        <scene sceneID="Q7Q-bp-psP">
             <objects>
-                <viewController id="WW8-0F-KA0" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="BDe-Kv-dL6">
+                <viewController storyboardIdentifier="FFBusinessBindAlipayViewController" id="Llq-Oo-TuK" customClass="FFBusinessBindAlipayViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2qo-Nz-vkm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="2Xe-Hj-nRM">
-                                <rect key="frame" x="16" y="20" width="343" height="239"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="支付宝账号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v9J-Bv-wWJ">
+                                <rect key="frame" x="16" y="111.5" width="343" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="fEH-lJ-fLN"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Llq-Oo-TuK" id="Oup-gs-gh9"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bnV-C6-dME">
+                                <rect key="frame" x="16" y="230" width="343" height="44"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="319-ZN-SeH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="绑定">
+                                    <color key="titleColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="repondsToLinkButton:" destination="ais-Ml-tqm" eventType="touchUpInside" id="7uc-EU-BMF"/>
+                                    <action selector="respondsBindButton:" destination="Llq-Oo-TuK" eventType="touchUpInside" id="nJY-yE-nfY"/>
+                                    <action selector="respondsToRegist:" destination="Vb8-dm-uWx" eventType="touchUpInside" id="ZsV-qH-2f5"/>
+                                    <action selector="respondsToRegist:" destination="YcV-hz-BNd" eventType="touchUpInside" id="aRT-Cb-8kF"/>
+                                    <action selector="respondsToSureButton:" destination="d67-la-xhd" eventType="touchUpInside" id="fQ2-hZ-9Jl"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="InS-CH-6iv"/>
+                        <constraints>
+                            <constraint firstItem="v9J-Bv-wWJ" firstAttribute="centerY" secondItem="2qo-Nz-vkm" secondAttribute="centerY" multiplier="0.4" id="HJL-j6-ztD"/>
+                            <constraint firstItem="bnV-C6-dME" firstAttribute="leading" secondItem="S49-X3-IWX" secondAttribute="leading" constant="16" id="TRF-fW-Dg1"/>
+                            <constraint firstItem="S49-X3-IWX" firstAttribute="trailing" secondItem="bnV-C6-dME" secondAttribute="trailing" constant="16" id="bgL-2S-aSx"/>
+                            <constraint firstItem="bnV-C6-dME" firstAttribute="top" secondItem="v9J-Bv-wWJ" secondAttribute="bottom" constant="74.5" id="itC-43-RJi"/>
+                            <constraint firstItem="v9J-Bv-wWJ" firstAttribute="leading" secondItem="S49-X3-IWX" secondAttribute="leading" constant="16" id="qu3-zw-nOw"/>
+                            <constraint firstItem="S49-X3-IWX" firstAttribute="trailing" secondItem="v9J-Bv-wWJ" secondAttribute="trailing" constant="16" id="uN8-oI-Shb"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="S49-X3-IWX"/>
                     </view>
+                    <connections>
+                        <outlet property="accountTF" destination="v9J-Bv-wWJ" id="vcQ-Mp-oTJ"/>
+                        <outlet property="bindButton" destination="bnV-C6-dME" id="8v8-Hu-Ycn"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JLO-aj-Gfl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VF9-j1-b2m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4149.6000000000004" y="832.53373313343332"/>
+            <point key="canvasLocation" x="4183" y="833"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="YuP-aK-1aO">
+            <objects>
+                <tableViewController id="qhf-b1-12k" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="bGX-0w-2lr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="jIt-vy-bm5">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Rtv-Ms-O1M">
+                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Rtv-Ms-O1M" id="Ia3-hz-o1x">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="qhf-b1-12k" id="Gfb-ZN-gd0"/>
+                            <outlet property="delegate" destination="qhf-b1-12k" id="XtX-3X-XGl"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="whW-nD-LIT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4844" y="833"/>
         </scene>
     </scenes>
 </document>

@@ -101,6 +101,8 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
+    
     if (!_isFirstAppear) {
         return;
     }
@@ -187,7 +189,7 @@
     [self.view addSubview:_navView];
     
     _btnBack = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_btnBack setImage:GetImageWithName(@"navBackBtn") forState:UIControlStateNormal];
+    [_btnBack setImage:GetImageWithName(@"zl_navBackBtn") forState:UIControlStateNormal];
     [_btnBack setImageEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 0)];
     [_btnBack addTarget:self action:@selector(btnBack_Click) forControlEvents:UIControlEventTouchUpInside];
     [_navView addSubview:_btnBack];
@@ -206,8 +208,8 @@
     //right nav btn
     _navRightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _navRightBtn.frame = CGRectMake(0, 0, 25, 25);
-    UIImage *normalImg = GetImageWithName(@"btn_circle");
-    UIImage *selImg = GetImageWithName(@"btn_selected");
+    UIImage *normalImg = GetImageWithName(@"zl_btn_circle");
+    UIImage *selImg = GetImageWithName(@"zl_btn_selected");
     [_navRightBtn setBackgroundImage:normalImg forState:UIControlStateNormal];
     [_navRightBtn setBackgroundImage:selImg forState:UIControlStateSelected];
     [_navRightBtn addTarget:self action:@selector(navRightBtn_Click:) forControlEvents:UIControlEventTouchUpInside];
@@ -251,8 +253,8 @@
         [_btnOriginalPhoto setTitle:GetLocalLanguageTextValue(ZLPhotoBrowserOriginalText) forState:UIControlStateNormal];
         _btnOriginalPhoto.titleLabel.font = [UIFont systemFontOfSize:15];
         [_btnOriginalPhoto setTitleColor:configuration.bottomBtnsNormalTitleColor forState: UIControlStateNormal];
-        UIImage *normalImg = GetImageWithName(@"btn_original_circle");
-        UIImage *selImg = GetImageWithName(@"btn_selected");
+        UIImage *normalImg = GetImageWithName(@"zl_btn_original_circle");
+        UIImage *selImg = GetImageWithName(@"zl_btn_selected");
         [_btnOriginalPhoto setImage:normalImg forState:UIControlStateNormal];
         [_btnOriginalPhoto setImage:selImg forState:UIControlStateSelected];
         [_btnOriginalPhoto setImageEdgeInsets:UIEdgeInsetsMake(0, -5, 0, 5)];
@@ -472,6 +474,13 @@
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:GetLocalLanguageTextValue(ZLPhotoBrowserCancelText) style:UIAlertActionStyleCancel handler:nil];
     [alert addAction:save];
     [alert addAction:cancel];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)  {
+        alert.popoverPresentationController.sourceView = self.view;
+        alert.popoverPresentationController.sourceRect = CGRectMake(CGRectGetMidX(self.view.frame),
+                                                                    CGRectGetMidY(self.view.frame),
+                                                                    2, 2);
+        alert.popoverPresentationController.permittedArrowDirections = UIPopoverArrowDirectionUp;
+    }
     [self showDetailViewController:alert sender:nil];
 }
 
@@ -493,40 +502,37 @@
     
     if (!configuration.allowEditImage && !configuration.allowEditVideo) return;
 
-    if (!self.models) {
-        ZLPhotoModel *m = self.models[_currentPage-1];
-        BOOL flag = [m.asset.localIdentifier isEqualToString:nav.arrSelectedModels.firstObject.asset.localIdentifier];
-        if ((nav.arrSelectedModels.count == 0 ||
-             (nav.arrSelectedModels.count <= 1 && flag)) &&
-            
-            ((configuration.allowEditImage &&
-              (m.type == ZLAssetMediaTypeImage ||
-               (m.type == ZLAssetMediaTypeGif && !configuration.allowSelectGif) ||
-               (m.type == ZLAssetMediaTypeLivePhoto && !configuration.allowSelectLivePhoto))) ||
-
-             (configuration.allowEditVideo && m.type == ZLAssetMediaTypeVideo && round(m.asset.duration) >= configuration.maxEditVideoTime))) {
-                _btnEdit.hidden = NO;
-            } else {
-                _btnEdit.hidden = YES;
-            }
+    ZLPhotoModel *m = self.models[_currentPage-1];
+    BOOL flag = [m.asset.localIdentifier isEqualToString:nav.arrSelectedModels.firstObject.asset.localIdentifier];
+    
+    if ((nav.arrSelectedModels.count == 0 ||
+         (nav.arrSelectedModels.count <= 1 && flag)) &&
+        
+        ((configuration.allowEditImage &&
+         (m.type == ZLAssetMediaTypeImage ||
+         (m.type == ZLAssetMediaTypeGif && !configuration.allowSelectGif) ||
+         (m.type == ZLAssetMediaTypeLivePhoto && !configuration.allowSelectLivePhoto))) ||
+        
+        (configuration.allowEditVideo && m.type == ZLAssetMediaTypeVideo && round(m.asset.duration) >= configuration.maxEditVideoTime))) {
+        _btnEdit.hidden = NO;
+    } else {
+        _btnEdit.hidden = YES;
     }
-
 }
 
 - (void)resetOriginalBtnState
 {
     ZLPhotoConfiguration *configuration = [(ZLImageNavigationController *)self.navigationController configuration];
-    if (!self.models) {
-        ZLPhotoModel *m = self.models[_currentPage-1];
-        if ((m.type == ZLAssetMediaTypeImage) ||
-            (m.type == ZLAssetMediaTypeGif && !configuration.allowSelectGif) ||
-            (m.type == ZLAssetMediaTypeLivePhoto && !configuration.allowSelectLivePhoto)) {
+    
+    ZLPhotoModel *m = self.models[_currentPage-1];
+    if ((m.type == ZLAssetMediaTypeImage) ||
+         (m.type == ZLAssetMediaTypeGif && !configuration.allowSelectGif) ||
+         (m.type == ZLAssetMediaTypeLivePhoto && !configuration.allowSelectLivePhoto)) {
             _btnOriginalPhoto.hidden = NO;
             self.labPhotosBytes.hidden = NO;
-        } else {
-            _btnOriginalPhoto.hidden = YES;
-            self.labPhotosBytes.hidden = YES;
-        }
+    } else {
+        _btnOriginalPhoto.hidden = YES;
+        self.labPhotosBytes.hidden = YES;
     }
 }
 

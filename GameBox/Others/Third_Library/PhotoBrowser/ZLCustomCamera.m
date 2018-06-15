@@ -47,6 +47,15 @@
 
 @interface CameraToolView : UIView <CAAnimationDelegate, UIGestureRecognizerDelegate>
 {
+    struct {
+        unsigned int takePic : 1;
+        unsigned int startRecord : 1;
+        unsigned int finishRecord : 1;
+        unsigned int retake : 1;
+        unsigned int okClick : 1;
+        unsigned int dismiss : 1;
+    } _delegateFlag;
+    
     //避免动画及长按手势触发两次
     BOOL _stopRecord;
     BOOL _layoutOK;
@@ -94,6 +103,17 @@
         [self setupUI];
     }
     return self;
+}
+
+- (void)setDelegate:(id<CameraToolViewDelegate>)delegate
+{
+    _delegate = delegate;
+    _delegateFlag.takePic = [delegate respondsToSelector:@selector(onTakePicture)];
+    _delegateFlag.startRecord = [delegate respondsToSelector:@selector(onStartRecord)];
+    _delegateFlag.finishRecord = [delegate respondsToSelector:@selector(onFinishRecord)];
+    _delegateFlag.retake = [delegate respondsToSelector:@selector(onRetake)];
+    _delegateFlag.okClick = [delegate respondsToSelector:@selector(onOkClick)];
+    _delegateFlag.dismiss = [delegate respondsToSelector:@selector(onDismiss)];
 }
 
 - (void)layoutSubviews
@@ -155,13 +175,13 @@
     
     self.dismissBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.dismissBtn.frame = CGRectMake(60, self.bounds.size.height/2-25/2, 25, 25);
-    [self.dismissBtn setImage:GetImageWithName(@"arrow_down") forState:UIControlStateNormal];
+    [self.dismissBtn setImage:GetImageWithName(@"zl_arrow_down") forState:UIControlStateNormal];
     [self.dismissBtn addTarget:self action:@selector(dismissVC) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.dismissBtn];
     
     self.cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.cancelBtn.backgroundColor = [kRGB(244, 244, 244) colorWithAlphaComponent:.9];
-    [self.cancelBtn setImage:GetImageWithName(@"retake") forState:UIControlStateNormal];
+    [self.cancelBtn setImage:GetImageWithName(@"zl_retake") forState:UIControlStateNormal];
     [self.cancelBtn addTarget:self action:@selector(retake) forControlEvents:UIControlEventTouchUpInside];
     self.cancelBtn.layer.masksToBounds = YES;
     self.cancelBtn.hidden = YES;
@@ -170,7 +190,7 @@
     self.doneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.doneBtn.frame = self.bottomView.frame;
     self.doneBtn.backgroundColor = [UIColor whiteColor];
-    [self.doneBtn setImage:GetImageWithName(@"takeok") forState:UIControlStateNormal];
+    [self.doneBtn setImage:GetImageWithName(@"zl_takeok") forState:UIControlStateNormal];
     [self.doneBtn addTarget:self action:@selector(doneClick) forControlEvents:UIControlEventTouchUpInside];
     self.doneBtn.layer.masksToBounds = YES;
     self.doneBtn.hidden = YES;
@@ -181,9 +201,7 @@
 - (void)tapAction:(UITapGestureRecognizer *)tap
 {
     [self stopAnimate];
-    if (self.delegate && [self.delegate respondsToSelector:@selector(onTakePicture)]) {
-        [self.delegate performSelector:@selector(onTakePicture)];
-    }
+    if (_delegateFlag.takePic) [self.delegate performSelector:@selector(onTakePicture)];
 }
 
 - (void)longPressAction:(UILongPressGestureRecognizer *)longG
@@ -193,9 +211,7 @@
         {
             //此处不启动动画，由vc界面开始录制之后启动
             _stopRecord = NO;
-            if (self.delegate && [self.delegate respondsToSelector:@selector(onStartRecord)]) {
-                [self.delegate performSelector:@selector(onStartRecord)];
-            }
+            if (_delegateFlag.startRecord) [self.delegate performSelector:@selector(onStartRecord)];
         }
             break;
         case UIGestureRecognizerStateCancelled:
@@ -204,9 +220,7 @@
             if (_stopRecord) return;
             _stopRecord = YES;
             [self stopAnimate];
-            if (self.delegate && [self.delegate respondsToSelector:@selector(onFinishRecord)]) {
-                [self.delegate performSelector:@selector(onFinishRecord)];
-            }
+            if (_delegateFlag.finishRecord) [self.delegate performSelector:@selector(onFinishRecord)];
         }
             break;
             
@@ -266,9 +280,7 @@
     
     _stopRecord = YES;
     [self stopAnimate];
-    if (self.delegate && [self.delegate respondsToSelector:@selector(onFinishRecord)]) {
-        [self.delegate performSelector:@selector(onFinishRecord)];
-    }
+    if (_delegateFlag.finishRecord) [self.delegate performSelector:@selector(onFinishRecord)];
 }
 
 - (void)showCancelDoneBtn
@@ -307,24 +319,18 @@
 #pragma mark - btn actions
 - (void)dismissVC
 {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(onDismiss)]) {
-        [self.delegate performSelector:@selector(onDismiss)];
-    }
+    if (_delegateFlag.dismiss) [self.delegate performSelector:@selector(onDismiss)];
 }
 
 - (void)retake
 {
     [self resetUI];
-    if (self.delegate && [self.delegate respondsToSelector:@selector(onRetake)]) {
-        [self.delegate performSelector:@selector(onRetake)];
-    }
+    if (_delegateFlag.retake) [self.delegate performSelector:@selector(onRetake)];
 }
 
 - (void)doneClick
 {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(onOkClick)]) {
-        [self.delegate performSelector:@selector(onOkClick)];
-    }
+    if (_delegateFlag.okClick) [self.delegate performSelector:@selector(onOkClick)];
 }
 
 @end
@@ -515,7 +521,7 @@
     self.toolView.maxRecordDuration = self.maxRecordDuration;
     [self.view addSubview:self.toolView];
     
-    self.focusCursorImageView = [[UIImageView alloc] initWithImage:GetImageWithName(@"focus")];
+    self.focusCursorImageView = [[UIImageView alloc] initWithImage:GetImageWithName(@"zl_focus")];
     self.focusCursorImageView.contentMode = UIViewContentModeScaleAspectFit;
     self.focusCursorImageView.clipsToBounds = YES;
     self.focusCursorImageView.frame = CGRectMake(0, 0, 80, 80);
@@ -523,7 +529,7 @@
     [self.view addSubview:self.focusCursorImageView];
     
     self.toggleCameraBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.toggleCameraBtn setImage:GetImageWithName(@"toggle_camera") forState:UIControlStateNormal];
+    [self.toggleCameraBtn setImage:GetImageWithName(@"zl_toggle_camera") forState:UIControlStateNormal];
     [self.toggleCameraBtn addTarget:self action:@selector(btnToggleCameraAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.toggleCameraBtn];
     
@@ -650,13 +656,13 @@
         [captureDevice setFocusPointOfInterest:point];
     }
     //曝光模式
-//    if ([captureDevice isExposureModeSupported:exposureMode]) {
-//        [captureDevice setExposureMode:AVCaptureExposureModeAutoExpose];
-//    }
-//    //曝光点
-//    if ([captureDevice isExposurePointOfInterestSupported]) {
-//        [captureDevice setExposurePointOfInterest:point];
-//    }
+    if ([captureDevice isExposureModeSupported:exposureMode]) {
+        [captureDevice setExposureMode:AVCaptureExposureModeAutoExpose];
+    }
+    //曝光点
+    if ([captureDevice isExposurePointOfInterestSupported]) {
+        [captureDevice setExposurePointOfInterest:point];
+    }
     [captureDevice unlockForConfiguration];
 }
 
@@ -815,10 +821,11 @@
 - (void)onOkClick
 {
     [self.playerView reset];
-    if (self.doneBlock) {
-        self.doneBlock(self.takedImage, self.videoUrl);
-    }
-    [self onDismiss];
+    [self dismissViewControllerAnimated:YES completion:^{
+        if (self.doneBlock) {
+            self.doneBlock(self.takedImage, self.videoUrl);
+        }
+    }];
 }
 
 //dismiss

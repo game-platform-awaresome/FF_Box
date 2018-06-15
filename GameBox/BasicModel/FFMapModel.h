@@ -148,6 +148,8 @@ typedef void(^Completion)(void);
 @property (nonatomic, strong) NSString *TASK_CENTER;        //任务中心
 @property (nonatomic, strong) NSString *APP_PROMISE;        //app 承诺
 
+/** ??? */
+@property (nonatomic, strong) NSString *LUCKY_DRAW;
 
 /** V2 接口 */
 @property (nonatomic, strong) NSString *BOX_INIT_V2;
@@ -175,6 +177,14 @@ typedef void(^Completion)(void);
 @property (nonatomic, strong) NSString *GAME_BY_SDKUSER;
 @property (nonatomic, strong) NSString *PRODUCT_LIST;
 @property (nonatomic, strong) NSString *SELL_PRODUCTS;
+
+@property (nonatomic, strong) NSString *START_PAYMENT;
+@property (nonatomic, strong) NSString *PRODUCT_BYUSER;
+@property (nonatomic, strong) NSString *DELETE_PRODUCTS;
+@property (nonatomic, strong) NSString *PRODUCT_CUSTOMER;
+@property (nonatomic, strong) NSString *CANCEL_PAYMENT;
+@property (nonatomic, strong) NSString *PRODUCT_INFO;
+
 
 + (instancetype)map;
 

@@ -12,8 +12,7 @@
 #import <Photos/Photos.h>
 #import "ZLPhotoModel.h"
 #import "ZLPhotoBrowser.h"
-//#import <SDWebImage/UIImageView+WebCache.h>
-#import "UIImageView+WebCache.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 #import "ToastUtils.h"
 
 @interface ZLBigImageCell ()
@@ -756,7 +755,7 @@
 {
     if (!_playBtn) {
         _playBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_playBtn setBackgroundImage:GetImageWithName(@"playVideo") forState:UIControlStateNormal];
+        [_playBtn setBackgroundImage:GetImageWithName(@"zl_playVideo") forState:UIControlStateNormal];
         _playBtn.frame = CGRectMake(0, 0, 80, 80);
         _playBtn.center = self.center;
         [_playBtn addTarget:self action:@selector(playBtnClick) forControlEvents:UIControlEventTouchUpInside];
@@ -771,7 +770,7 @@
         NSMutableAttributedString *str = [[NSMutableAttributedString alloc] init];
         //创建图片附件
         NSTextAttachment *attach = [[NSTextAttachment alloc]init];
-        attach.image = GetImageWithName(@"videoLoadFailed");
+        attach.image = GetImageWithName(@"zl_videoLoadFailed");
         attach.bounds = CGRectMake(0, -10, 30, 30);
         //创建属性字符串 通过图片附件
         NSAttributedString *attrStr = [NSAttributedString attributedStringWithAttachment:attach];
@@ -936,12 +935,13 @@
 
 //!!!!: ZLPreviewNetVideo
 @implementation ZLPreviewNetVideo
+{
+    BOOL _observerIsRemoved;
+}
 
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [self.playLayer.player.currentItem removeObserver:self forKeyPath:@"playbackBufferEmpty"];
-    [self.playLayer.player.currentItem removeObserver:self forKeyPath:@"playbackLikelyToKeepUp"];
 }
 
 - (void)layoutSubviews
@@ -965,7 +965,7 @@
 {
     if (!_playBtn) {
         _playBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_playBtn setBackgroundImage:GetImageWithName(@"playVideo") forState:UIControlStateNormal];
+        [_playBtn setBackgroundImage:GetImageWithName(@"zl_playVideo") forState:UIControlStateNormal];
         _playBtn.frame = CGRectMake(0, 0, 80, 80);
         _playBtn.center = self.center;
         [_playBtn addTarget:self action:@selector(playBtnClick) forControlEvents:UIControlEventTouchUpInside];
@@ -1007,10 +1007,17 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playFinished:) name:AVPlayerItemDidPlayToEndTimeNotification object:player.currentItem];
     [player.currentItem addObserver:self forKeyPath:@"playbackBufferEmpty" options:NSKeyValueObservingOptionNew context:nil];
     [player.currentItem addObserver:self forKeyPath:@"playbackLikelyToKeepUp" options:NSKeyValueObservingOptionNew context:nil];
+    _observerIsRemoved = NO;
 }
 
 - (void)seekToZero
 {
+    if (!_observerIsRemoved) {
+        [self.playLayer.player.currentItem removeObserver:self forKeyPath:@"playbackBufferEmpty"];
+        [self.playLayer.player.currentItem removeObserver:self forKeyPath:@"playbackLikelyToKeepUp"];
+        _observerIsRemoved = YES;
+    }
+    
     AVPlayer *player = self.playLayer.player;
     [player.currentItem seekToTime:kCMTimeZero];
 }

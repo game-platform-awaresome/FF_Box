@@ -84,6 +84,51 @@ static BOOL _sortAscending;
     }
 }
 
++ (void)getGifPhotoAblumList:(BOOL)allowSelectVideo allowSelectImage:(BOOL)allowSelectImage complete:(void (^)(NSArray<ZLAlbumListModel *> *))complete {
+    if (!allowSelectImage && !allowSelectVideo) {
+        if (complete) complete(nil);
+        return;
+    }
+
+    PHFetchOptions *option = [[PHFetchOptions alloc] init];
+    if (!allowSelectVideo) option.predicate = [NSPredicate predicateWithFormat:@"mediaType == %ld", PHAssetMediaTypeImage];
+    if (!allowSelectImage) option.predicate = [NSPredicate predicateWithFormat:@"mediaType == %ld",PHAssetMediaTypeVideo];
+    if (!self.sortAscending) option.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:self.sortAscending]];
+
+    //获取所有智能相册
+    if (@available(iOS 11.0, *)) {
+        PHFetchResult *gifAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeSmartAlbumAnimated options:nil];
+        NSArray *arrAllAlbums = @[gifAlbums,];
+        NSMutableArray<ZLAlbumListModel *> *arrAlbum = [NSMutableArray array];
+        for (PHFetchResult<PHAssetCollection *> *album in arrAllAlbums) {
+            [album enumerateObjectsUsingBlock:^(PHAssetCollection * _Nonnull collection, NSUInteger idx, BOOL *stop) {
+                //过滤PHCollectionList对象
+                if (![collection isKindOfClass:PHAssetCollection.class]) return;
+                //过滤最近删除
+                if (collection.assetCollectionSubtype > 215) return;
+                //获取相册内asset result
+                PHFetchResult<PHAsset *> *result = [PHAsset fetchAssetsInAssetCollection:collection options:option];
+                if (!result.count) return;
+
+                NSString *title = [self getCollectionTitle:collection];
+
+                if (collection.assetCollectionSubtype == 209) {
+                    ZLAlbumListModel *m = [self getAlbumModeWithTitle:title result:result allowSelectVideo:allowSelectVideo allowSelectImage:allowSelectImage];
+                    m.isCameraRoll = YES;
+                    [arrAlbum insertObject:m atIndex:0];
+                } else {
+                    [arrAlbum addObject:[self getAlbumModeWithTitle:title result:result allowSelectVideo:allowSelectVideo allowSelectImage:allowSelectImage]];
+                }
+            }];
+        }
+        if (complete) complete(arrAlbum);
+    } else {
+        if (complete) complete(nil);
+    }
+
+}
+
+
 + (PHAsset *)getAssetFromlocalIdentifier:(NSString *)localIdentifier{
     if(localIdentifier == nil){
         NSLog(@"Cannot get asset from localID because it is nil");
@@ -212,15 +257,17 @@ static BOOL _sortAscending;
         [album enumerateObjectsUsingBlock:^(PHAssetCollection * _Nonnull collection, NSUInteger idx, BOOL *stop) {
             //过滤PHCollectionList对象
             if (![collection isKindOfClass:PHAssetCollection.class]) return;
-            //过滤最近删除
-            if (collection.assetCollectionSubtype > 215) return;
+            //过滤最近删除和已隐藏
+            if (collection.assetCollectionSubtype > 215 ||
+                collection.assetCollectionSubtype == PHAssetCollectionSubtypeSmartAlbumAllHidden) return;
             //获取相册内asset result
             PHFetchResult<PHAsset *> *result = [PHAsset fetchAssetsInAssetCollection:collection options:option];
             if (!result.count) return;
             
             NSString *title = [self getCollectionTitle:collection];
             
-            if (collection.assetCollectionSubtype == 209) {
+            if (collection.assetCollectionSubtype == PHAssetCollectionSubtypeSmartAlbumUserLibrary) {
+                //所有照片
                 ZLAlbumListModel *m = [self getAlbumModeWithTitle:title result:result allowSelectVideo:allowSelectVideo allowSelectImage:allowSelectImage];
                 m.isCameraRoll = YES;
                 [arrAlbum insertObject:m atIndex:0];
@@ -231,50 +278,6 @@ static BOOL _sortAscending;
     }
     
     if (complete) complete(arrAlbum);
-}
-
-+ (void)getGifPhotoAblumList:(BOOL)allowSelectVideo allowSelectImage:(BOOL)allowSelectImage complete:(void (^)(NSArray<ZLAlbumListModel *> *))complete {
-    if (!allowSelectImage && !allowSelectVideo) {
-        if (complete) complete(nil);
-        return;
-    }
-
-    PHFetchOptions *option = [[PHFetchOptions alloc] init];
-    if (!allowSelectVideo) option.predicate = [NSPredicate predicateWithFormat:@"mediaType == %ld", PHAssetMediaTypeImage];
-    if (!allowSelectImage) option.predicate = [NSPredicate predicateWithFormat:@"mediaType == %ld",PHAssetMediaTypeVideo];
-    if (!self.sortAscending) option.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:self.sortAscending]];
-
-    //获取所有智能相册
-    if (@available(iOS 11.0, *)) {
-        PHFetchResult *gifAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeSmartAlbumAnimated options:nil];
-        NSArray *arrAllAlbums = @[gifAlbums,];
-        NSMutableArray<ZLAlbumListModel *> *arrAlbum = [NSMutableArray array];
-        for (PHFetchResult<PHAssetCollection *> *album in arrAllAlbums) {
-            [album enumerateObjectsUsingBlock:^(PHAssetCollection * _Nonnull collection, NSUInteger idx, BOOL *stop) {
-                //过滤PHCollectionList对象
-                if (![collection isKindOfClass:PHAssetCollection.class]) return;
-                //过滤最近删除
-                if (collection.assetCollectionSubtype > 215) return;
-                //获取相册内asset result
-                PHFetchResult<PHAsset *> *result = [PHAsset fetchAssetsInAssetCollection:collection options:option];
-                if (!result.count) return;
-
-                NSString *title = [self getCollectionTitle:collection];
-
-                if (collection.assetCollectionSubtype == 209) {
-                    ZLAlbumListModel *m = [self getAlbumModeWithTitle:title result:result allowSelectVideo:allowSelectVideo allowSelectImage:allowSelectImage];
-                    m.isCameraRoll = YES;
-                    [arrAlbum insertObject:m atIndex:0];
-                } else {
-                    [arrAlbum addObject:[self getAlbumModeWithTitle:title result:result allowSelectVideo:allowSelectVideo allowSelectImage:allowSelectImage]];
-                }
-            }];
-        }
-        if (complete) complete(arrAlbum);
-    } else {
-        if (complete) complete(nil);
-    }
-
 }
 
 + (NSString *)getCollectionTitle:(PHAssetCollection *)collection
@@ -609,16 +612,24 @@ static BOOL _sortAscending;
 
 + (BOOL)judgeAssetisInLocalAblum:(PHAsset *)asset
 {
-    PHImageRequestOptions *option = [[PHImageRequestOptions alloc] init];
-    option.networkAccessAllowed = NO;
-    option.synchronous = YES;
-    
-    __block BOOL isInLocalAblum = YES;
-    
-    [[PHCachingImageManager defaultManager] requestImageDataForAsset:asset options:option resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
-        isInLocalAblum = imageData ? YES : NO;
-    }];
-    return isInLocalAblum;
+    __block BOOL result = NO;
+    if (@available(iOS 10.0, *)) {
+        // https://stackoverflow.com/questions/31966571/check-given-phasset-is-icloud-asset
+        // 这个api虽然是9.0出的，但是9.0会全部返回NO，未知原因，暂时先改为10.0
+        NSArray *resourceArray = [PHAssetResource assetResourcesForAsset:asset];
+        if (resourceArray.count) {
+            result = [[resourceArray.firstObject valueForKey:@"locallyAvailable"] boolValue];
+        }
+    } else {
+        PHImageRequestOptions *option = [[PHImageRequestOptions alloc] init];
+        option.networkAccessAllowed = NO;
+        option.synchronous = YES;
+        
+        [[PHCachingImageManager defaultManager] requestImageDataForAsset:asset options:option resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
+            result = imageData ? YES : NO;
+        }];
+    }
+    return result;
 }
 
 + (void)getPhotosBytesWithArray:(NSArray<ZLPhotoModel *> *)photos completion:(void (^)(NSString *photosBytes))completion
@@ -704,7 +715,7 @@ static BOOL _sortAscending;
             
             CGImageRelease(image);
         }
-
+        
         if (!duration) {
             duration = (1.0f / 10.0f) * count;
         }
@@ -793,7 +804,7 @@ static BOOL _sortAscending;
     
     //每秒的第一帧
     NSMutableArray *arr = [NSMutableArray array];
-    for (int i = 0; i < duration; i += interval) {
+    for (float i = 0; i < duration; i += interval) {
         /*
          CMTimeMake(a,b) a当前第几帧, b每秒钟多少帧
          */
@@ -1063,21 +1074,23 @@ static BOOL _sortAscending;
 
 + (void)addWatermark:(AVMutableVideoComposition *)videoCom renderSize:(CGSize)renderSize watermarkImage:(UIImage *)watermarkImage watermarkLocation:(ZLWatermarkLocation)location imageSize:(CGSize)imageSize effectImage:(UIImage *)effectImage birthRate:(NSInteger)birthRate velocity:(CGFloat)velocity
 {
-//    CATextLayer *titleLayer = [CATextLayer layer];
-//    [titleLayer setFont:(__bridge CFTypeRef)[UIFont systemFontOfSize:25].fontName];
-//    titleLayer.contentsScale = 2;
-//    [titleLayer setFont:@"HiraKakuProN-W3"];
-//    titleLayer.fontSize = 70;
-//    titleLayer.wrapped = YES;
-//    titleLayer.string = @"test";
-//    titleLayer.masksToBounds = YES;
-//    titleLayer.foregroundColor = [[UIColor blueColor] CGColor];
-//    titleLayer.alignmentMode = kCAAlignmentCenter;
-//    titleLayer.frame = CGRectMake(20, 0, renderSize.width-40, 100);
-//    titleLayer.backgroundColor = [UIColor whiteColor].CGColor;
+    CATextLayer *titleLayer = [CATextLayer layer];
+    [titleLayer setFont:(__bridge CFTypeRef)[UIFont systemFontOfSize:25].fontName];
+    titleLayer.contentsScale = 2;
+    [titleLayer setFont:@"HiraKakuProN-W3"];
+    titleLayer.fontSize = 70;
+    titleLayer.wrapped = YES;
+    titleLayer.string = @"just for test";
+    titleLayer.masksToBounds = YES;
+    titleLayer.foregroundColor = [[UIColor blueColor] CGColor];
+    titleLayer.alignmentMode = kCAAlignmentCenter;
+    titleLayer.frame = CGRectMake(20, 100, renderSize.width-40, 100);
+    titleLayer.backgroundColor = [UIColor whiteColor].CGColor;
     
     CALayer *overlayLayer = [CALayer layer];
     overlayLayer.frame = (CGRect){CGPointZero, renderSize};
+    
+    [overlayLayer addSublayer:titleLayer];
     
     //水印图片
     if (watermarkImage) {

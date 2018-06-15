@@ -10,4 +10,7 @@
 
 @interface FFBusinessTableViewCell : UITableViewCell
 
+@property (nonatomic, strong) NSDictionary *dict;
+
+
 @end

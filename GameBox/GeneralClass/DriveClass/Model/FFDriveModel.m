@@ -154,13 +154,7 @@
 
                     if ([dataUTI isEqualToString:(__bridge NSString *)kUTTypeGIF]) {
                         syLog(@"gif  %@ \n image data === %@",info,imageData);
-
-//                        NSData *data = [NSData dataWithData:imageData];
-//                        syLog(@"data ============== %@",data);
                         syLog(@"image size == %.2lf M ",imageData.length / 1024.0 / 1024.0);
-//                        UIImage *image = [UIImage sd_animatedGIFWithData:imageData];
-//                        NSData *data = [self zipGIFWithData:imageData];
-//                        syLog(@"after image size === %.2lf M",data.length / 1024.0 / 1024.0);
                         [formData appendPartWithFileData:imageData name:@"imgs[]" fileName:fileName mimeType:@""];
                     }
                 }];
@@ -169,7 +163,6 @@
             } else {
                 fileName = [NSString stringWithFormat:@"%@.png", str];
                 UIImage *image = images[i];
-//                NSData *imageData = UIImagePNGRepresentation(image);
                 NSData *imageData = UIImageJPEGRepresentation(image, 0.9);
                 syLog(@"image size == %.2lf M ",imageData.length / 1024.0 / 1024.0);
                 [formData appendPartWithFileData:imageData name:@"imgs[]" fileName:fileName mimeType:@""];

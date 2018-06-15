@@ -43,7 +43,7 @@
 + (ZLAlbumListModel *)getCameraRollAlbumList:(BOOL)allowSelectVideo allowSelectImage:(BOOL)allowSelectImage;
 
 
-/** 
+/**
  block 获取相机胶卷相册列表对象
  */
 + (void)getCameraRollAlbumList:(BOOL)allowSelectVideo allowSelectImage:(BOOL)allowSelectImage complete:(void (^)(ZLAlbumListModel *album))complete;
@@ -52,14 +52,6 @@
  * @brief 获取用户所有相册列表
  */
 + (void)getPhotoAblumList:(BOOL)allowSelectVideo allowSelectImage:(BOOL)allowSelectImage complete:(void (^)(NSArray<ZLAlbumListModel *> *))complete;
-
-#warning ffadd
-/**
- * 获取 gif 相册
- */
-
-+ (void)getGifPhotoAblumList:(BOOL)allowSelectVideo allowSelectImage:(BOOL)allowSelectImage complete:(void (^)(NSArray<ZLAlbumListModel *> *))complete;
-
 
 /**
  * @brief 将result中对象转换成ZLPhotoModel
@@ -235,6 +227,7 @@
  */
 + (void)exportVideoForAsset:(PHAsset *)asset type:(ZLExportVideoType)type presetName:(NSString *)presetName effectImage:(UIImage *)effectImage birthRate:(NSInteger)birthRate velocity:(CGFloat)velocity complete:(void (^)(NSString *exportFilePath, NSError *error))complete;
 
++ (void)getGifPhotoAblumList:(BOOL)allowSelectVideo allowSelectImage:(BOOL)allowSelectImage complete:(void (^)(NSArray<ZLAlbumListModel *> *))complete;
 
 /**
  获取保存视频的路径
