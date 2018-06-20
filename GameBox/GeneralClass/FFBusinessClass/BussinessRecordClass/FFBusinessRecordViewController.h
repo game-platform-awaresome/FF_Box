@@ -6,8 +6,10 @@
 //  Copyright © 2018年 Sans. All rights reserved.
 //
 
-#import "FFBasicViewController.h"
+#import "FFBasicSelectViewController.h"
 
-@interface FFBusinessRecordViewController : FFBasicViewController
+@interface FFBusinessRecordViewController : FFBasicSelectViewController
+
+
 
 @end

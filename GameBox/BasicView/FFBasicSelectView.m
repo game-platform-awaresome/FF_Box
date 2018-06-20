@@ -136,7 +136,7 @@
     [super setFrame:frame];
     totalFrame = frame;
     [self setButtonsHight:frame.size.height];
-    self.lineView.frame = CGRectMake(0, frame.size.height - 2, kSCREEN_WIDTH, 2);
+    self.lineView.frame = CGRectMake(0, frame.size.height - 1, kSCREEN_WIDTH, 1);
 }
 
 /** set button hight */
@@ -148,7 +148,7 @@
             button.frame = frame;
         }
         self.cursorCenter_Y = hight - 4;
-        self.lineView.frame = CGRectMake(0, hight - 2, kSCREEN_WIDTH, 2);
+        self.lineView.frame = CGRectMake(0, hight - 1, kSCREEN_WIDTH, 1);
     }
 }
 
@@ -311,7 +311,7 @@
 - (CALayer *)lineLayer {
     if (!_lineLayer) {
         _lineLayer = [[CALayer alloc] init];
-        _lineLayer.bounds = CGRectMake(0, 0, totalFrame.size.width, 2);
+        _lineLayer.bounds = CGRectMake(0, 0, totalFrame.size.width, 1);
     }
     return _lineLayer;
 }

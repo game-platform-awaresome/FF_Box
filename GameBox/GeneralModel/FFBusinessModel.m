@@ -403,6 +403,14 @@ FFBusinessUserModel * currentUser(void) {
 }
 
 
+/** 客服中心 */
++ (void)customerWithCompletion:(RequestCallBackBlock)completion {
+    [FFNetWorkManager postRequestWithURL:Map.PRODUCT_CUSTOMER Params:nil Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        NEW_REQUEST_COMPLETION;
+    }];
+}
+
+
 
 @end
 

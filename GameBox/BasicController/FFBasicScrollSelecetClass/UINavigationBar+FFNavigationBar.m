@@ -17,6 +17,7 @@
     if (layer) {
         [layer removeFromSuperlayer];
     }
+//    [self setShadowImage:[UINavigationBar createImageWithColor:[UIColor whiteColor]]];
     [self setShadowImage:[UIImage new]];
     objc_setAssociatedObject(self, @selector(lineLayer),lineLayer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     [self.layer addSublayer:lineLayer];
@@ -26,7 +27,18 @@
     return objc_getAssociatedObject(self, @selector(lineLayer));
 }
 
++ (UIImage *)createImageWithColor:(UIColor *)color {
+    //设置长宽
+    CGRect rect = CGRectMake(0.0f, 0.0f, kSCREEN_WIDTH, 1);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [[UIColor whiteColor] CGColor]);
+    CGContextFillRect(context, rect);
+    UIImage *resultImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
 
+    return resultImage;
+}
 
 
 

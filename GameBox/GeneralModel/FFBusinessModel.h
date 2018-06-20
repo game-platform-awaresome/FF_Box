@@ -154,6 +154,9 @@ FFBusinessUserModel * currentUser(void);
                       Completion:(RequestCallBackBlock)completion;
 
 
+/** 客服中心 */
++ (void)customerWithCompletion:(RequestCallBackBlock)completion;
+
 
 
 

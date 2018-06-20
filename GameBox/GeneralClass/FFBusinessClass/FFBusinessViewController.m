@@ -46,6 +46,12 @@ static FFBusinessViewController *_controller = nil;
     [self customNavLine];
 }
 
+- (void)customNavLine {
+    [super customNavLine];
+//    self.navigationController.navigationBar.shadowImage = [UIImage new];
+//    [self.navigationController.navigationBar.layer addSublayer:[self cre]]
+}
+
 - (void)initDataSource {
     [self.tableView registerNib:[UINib nibWithNibName:CELL_IDE bundle:nil] forCellReuseIdentifier:CELL_IDE];
 }
