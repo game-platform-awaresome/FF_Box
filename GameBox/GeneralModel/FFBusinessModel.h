@@ -40,6 +40,22 @@ typedef enum : NSUInteger {
     FFBusinessOrderMethodAscending,
 } FFBusinessOrderMethod;
 
+typedef enum : NSUInteger {
+    FFBusinessUserBuyTypePaySuccess = 1,
+    FFBusinessUserBuyTypeCancel = 2,
+    FFBusinessUserBuyTypeBuySuccess = 4,
+    FFBusinessUserBuyTypeAll = 5
+} FFBusinessUserBuyType;
+
+typedef enum : NSUInteger {
+    FFBusinessUserSellTypeAll = 0,
+    FFBusinessUserSellTypeUnderReview,
+    FFBusinessUserSellTypeSelling,
+    FFBusinessUserSellTypeTransacton,
+    FFBusinessUserSellTypeSold,
+    FFBusinessUserSellTypeCancel
+} FFBusinessUserSellType;
+
 
 FFBusinessUserModel * currentUser(void);
 
@@ -124,7 +140,6 @@ FFBusinessUserModel * currentUser(void);
 + (void)cancelPaymentWithOrderID:(NSString *)orderID
                       Completion:(RequestCallBackBlock)completion;
 
-
 /** 商品列表 */
 + (void)productListWithGameName:(NSString *)gameName
                            Page:(NSString *)page
@@ -132,10 +147,6 @@ FFBusinessUserModel * currentUser(void);
                       OrderType:(FFBusinessOrderType)orderType
                     OrderMethod:(FFBusinessOrderMethod)orderMethod
                      Completion:(RequestCallBackBlock)completion;
-
-
-///** 我的账号 */
-//+ (void)myAccountWith
 
 /** 提交商品,出售商品 */
 + (void)sellProductWithAppID:(NSString *)appid
@@ -153,12 +164,21 @@ FFBusinessUserModel * currentUser(void);
 + (void)ProductInfoWithProductID:(NSString *)pid
                       Completion:(RequestCallBackBlock)completion;
 
-
 /** 客服中心 */
 + (void)customerWithCompletion:(RequestCallBackBlock)completion;
 
+/** 买家记录 */
++ (void)userButRecordWithType:(FFBusinessUserBuyType)type
+                   Completion:(RequestCallBackBlock)completion;
 
+/** 卖家记录 */
++ (void)userSellRecordWithPage:(NSString *)page
+                          Type:(FFBusinessUserSellType)type
+                    Completion:(RequestCallBackBlock)completion;
 
+/** 下架商品 */
++ (void)dropOffProductWithID:(NSString *)productID
+                  Completion:(RequestCallBackBlock)completion;
 
 @end
 

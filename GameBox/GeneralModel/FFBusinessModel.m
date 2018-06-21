@@ -411,6 +411,43 @@ FFBusinessUserModel * currentUser(void) {
 }
 
 
+/** 买家记录 */
++ (void)userButRecordWithType:(FFBusinessUserBuyType)type Completion:(RequestCallBackBlock)completion {
+    Pamaras_Key((@[@"uid",@"type"]));
+    SS_DICT;
+    [dict setObject:[self uid] forKey:@"uid"];
+    [dict setObject:[NSString stringWithFormat:@"%lu",type] forKey:@"type"];
+    SS_SIGN;
+    [FFNetWorkManager postRequestWithURL:Map.BUYER_RECORD Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        NEW_REQUEST_COMPLETION;
+    }];
+}
+
+/** 卖家记录 */
++ (void)userSellRecordWithPage:(NSString *)page Type:(FFBusinessUserSellType)type Completion:(RequestCallBackBlock)completion {
+    Pamaras_Key((@[@"uid",@"status",@"page"]));
+    SS_DICT;
+    [dict setObject:[self uid] forKey:@"uid"];
+    [dict setObject:[NSString stringWithFormat:@"%lu",type] forKey:@"status"];
+    [dict setObject:page forKey:@"page"];
+    SS_SIGN;
+    [FFNetWorkManager postRequestWithURL:Map.PRODUCT_BYUSER Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        NEW_REQUEST_COMPLETION;
+    }];
+}
+
+/** 下载商品 */
++ (void)dropOffProductWithID:(NSString *)productID Completion:(RequestCallBackBlock)completion {
+    Pamaras_Key((@[@"uid",@"product_id"]));
+    SS_DICT;
+    [dict setObject:[self uid] forKey:@"uid"];
+    [dict setObject:productID forKey:@"product_id"];
+    SS_SIGN;
+    [FFNetWorkManager postRequestWithURL:Map.WITHDRAW_PRODUCTS Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        NEW_REQUEST_COMPLETION;
+    }];
+}
+
 
 @end
 

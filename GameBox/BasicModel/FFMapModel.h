@@ -189,6 +189,9 @@ typedef void(^Completion)(void);
 /** 下架商品 */
 @property (nonatomic, strong) NSString *WITHDRAW_PRODUCTS;
 
+/** 买家记录 */
+@property (nonatomic, strong) NSString *BUYER_RECORD;
+
 + (instancetype)map;
 
 + (void)getMapCompletion:(Completion)completion;

@@ -25,7 +25,7 @@
 @property (nonatomic, strong) NSMutableArray<UIViewController *> *selectChildViewControllers;
 @property (nonatomic, strong) NSArray<NSString *> *selectChildVCNames;
 
-
+- (void)layoutSubViews;
 - (void)childControllerAdd:(UIViewController *)controller;
 - (void)childControllerRemove:(UIViewController *)controller;
 

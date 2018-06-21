@@ -170,6 +170,7 @@ static FFBusinessCommodityViewController *_controller;
         [_tableView registerNib:[UINib nibWithNibName:CELL_IDE bundle:nil] forCellReuseIdentifier:CELL_IDE];
         _tableView.tableHeaderView = self.headerView;
         _tableView.tableFooterView = self.foorView;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return _tableView;
 }

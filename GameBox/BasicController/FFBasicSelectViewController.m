@@ -133,8 +133,13 @@
     [self.scrollView addSubview:self.selectChildViewControllers[0].view];
 }
 
+
+
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
+}
+
+- (void)layoutSubViews {
     for (UIViewController *vc in self.selectChildViewControllers) {
         vc.view.frame = CGRectMake(0, 0, kSCREEN_WIDTH, self.scrollView.bounds.size.height);
     }

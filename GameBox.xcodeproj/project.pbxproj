@@ -169,6 +169,13 @@
 		B52383D220AECD100087733A /* FFGameDetailGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52383CE20AECD100087733A /* FFGameDetailGuideViewController.m */; };
 		B529172220D9F77300A56F41 /* BusinessCustomerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B529172020D9F77300A56F41 /* BusinessCustomerCell.m */; };
 		B529172320D9F77300A56F41 /* BusinessCustomerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B529172120D9F77300A56F41 /* BusinessCustomerCell.xib */; };
+		B529172720DA255700A56F41 /* FFBusinessBoughtRecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = B529172620DA255700A56F41 /* FFBusinessBoughtRecordController.m */; };
+		B529172A20DA257E00A56F41 /* FFBusinessUnderReviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B529172920DA257E00A56F41 /* FFBusinessUnderReviewController.m */; };
+		B529172D20DA259900A56F41 /* FFBusinessSellingController.m in Sources */ = {isa = PBXBuildFile; fileRef = B529172C20DA259900A56F41 /* FFBusinessSellingController.m */; };
+		B529173020DA25C000A56F41 /* FFBusinessSoldController.m in Sources */ = {isa = PBXBuildFile; fileRef = B529172F20DA25C000A56F41 /* FFBusinessSoldController.m */; };
+		B529173320DA25DF00A56F41 /* FFBusinessWarehouseController.m in Sources */ = {isa = PBXBuildFile; fileRef = B529173220DA25DF00A56F41 /* FFBusinessWarehouseController.m */; };
+		B529173920DA372F00A56F41 /* FFBusinessSellRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B529173720DA372F00A56F41 /* FFBusinessSellRecordCell.m */; };
+		B529173A20DA372F00A56F41 /* FFBusinessSellRecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B529173820DA372F00A56F41 /* FFBusinessSellRecordCell.xib */; };
 		B52ED09B20A9A38700C8CAF4 /* FFSRcommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B52ED09920A9A38700C8CAF4 /* FFSRcommentCell.m */; };
 		B532510320B25BE0007D7239 /* FFOpenServerSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = B532510220B25BE0007D7239 /* FFOpenServerSelectView.m */; };
 		B532510620B26D96007D7239 /* FFBoxModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B532510520B26D96007D7239 /* FFBoxModel.m */; };
@@ -606,6 +613,19 @@
 		B529171F20D9F77300A56F41 /* BusinessCustomerCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BusinessCustomerCell.h; sourceTree = "<group>"; };
 		B529172020D9F77300A56F41 /* BusinessCustomerCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BusinessCustomerCell.m; sourceTree = "<group>"; };
 		B529172120D9F77300A56F41 /* BusinessCustomerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BusinessCustomerCell.xib; sourceTree = "<group>"; };
+		B529172520DA255700A56F41 /* FFBusinessBoughtRecordController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBusinessBoughtRecordController.h; sourceTree = "<group>"; };
+		B529172620DA255700A56F41 /* FFBusinessBoughtRecordController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBusinessBoughtRecordController.m; sourceTree = "<group>"; };
+		B529172820DA257E00A56F41 /* FFBusinessUnderReviewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBusinessUnderReviewController.h; sourceTree = "<group>"; };
+		B529172920DA257E00A56F41 /* FFBusinessUnderReviewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBusinessUnderReviewController.m; sourceTree = "<group>"; };
+		B529172B20DA259900A56F41 /* FFBusinessSellingController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBusinessSellingController.h; sourceTree = "<group>"; };
+		B529172C20DA259900A56F41 /* FFBusinessSellingController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBusinessSellingController.m; sourceTree = "<group>"; };
+		B529172E20DA25BF00A56F41 /* FFBusinessSoldController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBusinessSoldController.h; sourceTree = "<group>"; };
+		B529172F20DA25C000A56F41 /* FFBusinessSoldController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBusinessSoldController.m; sourceTree = "<group>"; };
+		B529173120DA25DF00A56F41 /* FFBusinessWarehouseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBusinessWarehouseController.h; sourceTree = "<group>"; };
+		B529173220DA25DF00A56F41 /* FFBusinessWarehouseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBusinessWarehouseController.m; sourceTree = "<group>"; };
+		B529173620DA372F00A56F41 /* FFBusinessSellRecordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBusinessSellRecordCell.h; sourceTree = "<group>"; };
+		B529173720DA372F00A56F41 /* FFBusinessSellRecordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBusinessSellRecordCell.m; sourceTree = "<group>"; };
+		B529173820DA372F00A56F41 /* FFBusinessSellRecordCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FFBusinessSellRecordCell.xib; sourceTree = "<group>"; };
 		B52ED09820A9A38700C8CAF4 /* FFSRcommentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFSRcommentCell.h; sourceTree = "<group>"; };
 		B52ED09920A9A38700C8CAF4 /* FFSRcommentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFSRcommentCell.m; sourceTree = "<group>"; };
 		B532510120B25BE0007D7239 /* FFOpenServerSelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFOpenServerSelectView.h; sourceTree = "<group>"; };
@@ -1780,6 +1800,33 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		B529172420DA24A200A56F41 /* ChildController */ = {
+			isa = PBXGroup;
+			children = (
+				B529172520DA255700A56F41 /* FFBusinessBoughtRecordController.h */,
+				B529172620DA255700A56F41 /* FFBusinessBoughtRecordController.m */,
+				B529172820DA257E00A56F41 /* FFBusinessUnderReviewController.h */,
+				B529172920DA257E00A56F41 /* FFBusinessUnderReviewController.m */,
+				B529172B20DA259900A56F41 /* FFBusinessSellingController.h */,
+				B529172C20DA259900A56F41 /* FFBusinessSellingController.m */,
+				B529172E20DA25BF00A56F41 /* FFBusinessSoldController.h */,
+				B529172F20DA25C000A56F41 /* FFBusinessSoldController.m */,
+				B529173120DA25DF00A56F41 /* FFBusinessWarehouseController.h */,
+				B529173220DA25DF00A56F41 /* FFBusinessWarehouseController.m */,
+			);
+			path = ChildController;
+			sourceTree = "<group>";
+		};
+		B529173520DA370A00A56F41 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B529173620DA372F00A56F41 /* FFBusinessSellRecordCell.h */,
+				B529173720DA372F00A56F41 /* FFBusinessSellRecordCell.m */,
+				B529173820DA372F00A56F41 /* FFBusinessSellRecordCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		B53600ED20CA835900DFE96A /* FFBusinessClass */ = {
 			isa = PBXGroup;
 			children = (
@@ -1843,6 +1890,8 @@
 			children = (
 				B54457E520CFD337000B63E4 /* FFBusinessRecordViewController.h */,
 				B54457E620CFD337000B63E4 /* FFBusinessRecordViewController.m */,
+				B529173520DA370A00A56F41 /* View */,
+				B529172420DA24A200A56F41 /* ChildController */,
 			);
 			path = BussinessRecordClass;
 			sourceTree = "<group>";
@@ -2671,6 +2720,7 @@
 				B51BD08620B53AC8005B9DE1 /* RebateTableViewCell.xib in Resources */,
 				B58CB7B5207B10830099773D /* Assets.xcassets in Resources */,
 				B51BD16E20B650CE005B9DE1 /* FFMyNewsCell.xib in Resources */,
+				B529173A20DA372F00A56F41 /* FFBusinessSellRecordCell.xib in Resources */,
 				B529172320D9F77300A56F41 /* BusinessCustomerCell.xib in Resources */,
 				B51BD11E20B58319005B9DE1 /* Community(Unfinished).xcassets in Resources */,
 				B51BD12020B58609005B9DE1 /* OldAssets(Unfinished).xcassets in Resources */,
@@ -2795,6 +2845,7 @@
 				B51BD04720B50CF7005B9DE1 /* FFSignInViewController.m in Sources */,
 				B51BD11420B5628F005B9DE1 /* FFExchangeCoinController.m in Sources */,
 				B51BD05820B515F0005B9DE1 /* FFTodayInviteListViewController.m in Sources */,
+				B529172A20DA257E00A56F41 /* FFBusinessUnderReviewController.m in Sources */,
 				B567010B20C63F4400A44C2E /* FFBetaGameViewController.m in Sources */,
 				B51BCFB120B2BD8A005B9DE1 /* FFGameOpenCell.m in Sources */,
 				B52382AD20AC34FE0087733A /* FFCustomizeCell.m in Sources */,
@@ -2821,6 +2872,7 @@
 				B544581520D10BEC000B63E4 /* FFBusinessSDKCell.m in Sources */,
 				B54457D920CFC493000B63E4 /* FFBusinessSelectAccountViewController.m in Sources */,
 				B523833A20AE9EF40087733A /* FFPostStatusImageCell.m in Sources */,
+				B529173320DA25DF00A56F41 /* FFBusinessWarehouseController.m in Sources */,
 				B54457DF20CFC943000B63E4 /* UINavigationBar+FFNavigationBar.m in Sources */,
 				B523832320AE9EF40087733A /* FFDriveAttentionNumbersViewController.m in Sources */,
 				B580A4F820D3939400680194 /* FFCommodityHeaderView.m in Sources */,
@@ -2845,11 +2897,14 @@
 				B529172220D9F77300A56F41 /* BusinessCustomerCell.m in Sources */,
 				B523827920AACA670087733A /* FFGuideViewController.m in Sources */,
 				B58CB7AE207B10830099773D /* FFNetWorkManager.m in Sources */,
+				B529172D20DA259900A56F41 /* FFBusinessSellingController.m in Sources */,
 				B52382A120ABCEF00087733A /* FFBasicSSTableViewCell.m in Sources */,
+				B529173020DA25C000A56F41 /* FFBusinessSoldController.m in Sources */,
 				B54457E320CFD29A000B63E4 /* FFBusinessNoticeViewController.m in Sources */,
 				B51BD11520B5628F005B9DE1 /* FFLotteryViewController.m in Sources */,
 				B580A4F020D35FE000680194 /* FFBusinessBindAlipayViewController.m in Sources */,
 				B51BCFC420B2F705005B9DE1 /* FFRegisterViewController.m in Sources */,
+				B529172720DA255700A56F41 /* FFBusinessBoughtRecordController.m in Sources */,
 				B5D6142520BE8C5B0010CA98 /* FFShowDiscoutModel.m in Sources */,
 				B580A54E20D3C73A00680194 /* ZLNoAuthorityViewController.m in Sources */,
 				B523839020AEA0C70087733A /* FLAnimatedImageView.m in Sources */,
@@ -2946,6 +3001,7 @@
 				B599691A20BB9B4200BC6084 /* FFLaunchScreen.m in Sources */,
 				B599691720BB9AD700BC6084 /* FFAdvertisingView.m in Sources */,
 				B51BD04320B50A76005B9DE1 /* FFRebateSelectView.m in Sources */,
+				B529173920DA372F00A56F41 /* FFBusinessSellRecordCell.m in Sources */,
 				B532510620B26D96007D7239 /* FFBoxModel.m in Sources */,
 				B580A55420D3C73A00680194 /* ZLPhotoModel.m in Sources */,
 				B52383A320AEAAD30087733A /* FFOpenServerViewController.m in Sources */,
