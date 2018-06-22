@@ -192,7 +192,8 @@ static FFGameViewController *controller = nil;
                                   @"FFGameDetailGuideViewController"];
 
     [self.gameHeaderView setQqGroupButtonBlock:^{
-        syLog(@"玩家 QQ 群");
+        syLog(@"玩家 QQ 群 == %@",[FFCurrentGameModel CurrentGame].player_qq_group);
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[FFCurrentGameModel CurrentGame].player_qq_group]];
     }];
 
     //点击了 select view 的下标后 滑动cell 的 scroll view 到指定位置

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Photos/Photos.h>
 
 @interface FFBusinessProductController : UITableViewController
 
@@ -24,14 +25,28 @@
 @property (weak, nonatomic) IBOutlet UITextView *productDetailText;
 
 @property (weak, nonatomic) IBOutlet UILabel *productDetailLabel;
+@property (weak, nonatomic) IBOutlet UIButton *selectPicButton;
 
 @property (nonatomic, strong) NSString *gameName;
 @property (nonatomic, strong) NSString *account;
 @property (nonatomic, strong) NSString *appid;
 @property (nonatomic, strong) NSString *time;
+@property (nonatomic, strong) NSArray *systemArray;
+
+@property (nonatomic, strong) NSDictionary *productInfo;
+@property (nonatomic, assign) BOOL isEdit;
+
+@property (nonatomic, assign) BOOL postType;
+
+@property (nonatomic, strong) NSArray *imagesArray;
+@property (nonatomic, strong) NSArray *imagesName;
+@property (nonatomic, strong) NSMutableArray<UIImage *> *lastSelectPhotos;
+@property (nonatomic, strong) NSMutableArray<PHAsset *> *lastSelectAssets;
 
 + (instancetype)init;
 + (instancetype)initwithGameName:(NSString *)gameName Account:(NSString *)account;
+
+
 
 
 @end

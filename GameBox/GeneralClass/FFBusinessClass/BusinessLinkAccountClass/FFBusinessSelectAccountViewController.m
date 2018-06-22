@@ -135,6 +135,7 @@
         NSDictionary *dict = self.model.listArray[indexPath.section].gameList[indexPath.row];
         FFBusinessProductController *controller = [FFBusinessProductController initwithGameName:[dict[@"game_name"] copy] Account:self.model.listArray[indexPath.section].SDKUsername];
         controller.appid = dict[@"appid"];
+        controller.systemArray = dict[@"system"];
         [self pushViewController:controller];
     }
 }
@@ -200,11 +201,15 @@
     UIButton *imageView = [self.view viewWithTag:Section_image_tag + section];
     [UIView animateWithDuration:0.3 animations:^{
         imageView.transform = self.model.listArray[section].isOpen ? CGAffineTransformMakeRotation(-M_PI / 2) : CGAffineTransformIdentity;
+    } completion:^(BOOL finished) {
+        self.model.listArray[section].isAnimation = NO;
     }];
-    self.model.listArray[section].isOpen = !self.model.listArray[section].isOpen;
+    if (self.model.listArray[section].isOpen) {
+        self.model.listArray[section].isOpen = NO;
+    } else {
+        self.model.listArray[section].isOpen = YES;
+    }
     [self.tableView endUpdates];
-    self.model.listArray[section].isAnimation = NO;
-
 }
 
 - (void)respondsToCancelButton:(UIButton *)sender {

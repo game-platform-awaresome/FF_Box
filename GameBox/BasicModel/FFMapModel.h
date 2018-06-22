@@ -188,9 +188,14 @@ typedef void(^Completion)(void);
 
 /** 下架商品 */
 @property (nonatomic, strong) NSString *WITHDRAW_PRODUCTS;
-
 /** 买家记录 */
 @property (nonatomic, strong) NSString *BUYER_RECORD;
+/** 交易须知 */
+@property (nonatomic, strong) NSString *TRADE_NOTES_H5;
+
+
+@property (nonatomic, strong) NSString *TRADE_NOTES;
+@property (nonatomic, strong) NSString *PRODUCT_ONSALE;
 
 + (instancetype)map;
 

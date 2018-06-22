@@ -7,7 +7,8 @@
 //
 
 #import "FFBasicViewController.h"
+#import "FFWebViewController.h"
 
-@interface FFBusinessNoticeViewController : FFBasicViewController
+@interface FFBusinessNoticeViewController : FFWebViewController
 
 @end

@@ -12,11 +12,11 @@
 #import "FFColorManager.h"
 #import "ZLPhotoActionSheet.h"
 #import "FFPostStatusImageCell.h"
-#import <Photos/Photos.h>
 #import <FFTools/FFTools.h>
 #import "FFBusinessProductDetailViewController.h"
 #import "FFBusinessModel.h"
 #import "FFWaitingManager.h"
+#import <UIImageView+WebCache.h>
 
 #define CELL_IDE @"FFPostStatusImageCell"
 
@@ -34,6 +34,10 @@ void respondsToTimePicker(NSString *time);
 
 @interface FFBusinessPikcerContorller : UIViewController
 
+@property (nonatomic, strong) NSArray *systemArray;
+@property (nonatomic, strong) NSDictionary *systemDict;
+
+
 + (void)PickerWithType:(FFBusinessPikcerType)type;
 
 @end
@@ -48,9 +52,7 @@ void respondsToTimePicker(NSString *time);
 @property (nonatomic, strong) UICollectionViewFlowLayout *layout;
 
 @property (nonatomic, strong) ZLPhotoActionSheet *actionSheet;
-@property (nonatomic, strong) NSArray *imagesArray;
-@property (nonatomic, strong) NSMutableArray<UIImage *> *lastSelectPhotos;
-@property (nonatomic, strong) NSMutableArray<PHAsset *> *lastSelectAssets;
+
 
 @property (nonatomic, assign) BOOL isOriginal;
 
@@ -59,11 +61,13 @@ void respondsToTimePicker(NSString *time);
 @property (nonatomic, strong) MBProgressHUD *hud;
 @property (nonatomic, assign) NSInteger hudNumber;
 
+
 @end
 
 
 
 @implementation FFBusinessProductController
+
 
 + (instancetype)init {
     return [[UIStoryboard storyboardWithName:@"MyStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"FFBusinessProductController"];
@@ -71,18 +75,30 @@ void respondsToTimePicker(NSString *time);
 
 static FFBusinessProductController *controller = nil;
 + (instancetype)initwithGameName:(NSString *)gameName Account:(NSString *)account {
-    controller = [self init];
+    if (controller == nil) {
+        controller = [self init];
+    }
+    controller.isEdit = NO;
+    controller.postType = NO;
     controller.gameName = gameName;
     controller.account = account;
+    controller.productInfo = nil;
+    controller.imagesArray = nil;
     [controller.tableView reloadData];
     return controller;
 }
+
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.gameNameLabel.text = self.gameName;
     self.sdkAccountLabel.text = self.account;
     self.timeLabel.text = self.time;
+    if (self.productInfo != nil) {
+        [self setInfoWith:self.productInfo];
+        self.productInfo = nil;
+    }
+    self.selectPicButton.hidden = !self.isEdit;
 }
 
 
@@ -153,18 +169,24 @@ static FFBusinessProductController *controller = nil;
     }
 
     FFBusinessSystemType type = [self.systemLabel.text isEqualToString:@"iOS"] ? FFBusinessSystemTypeIOS : FFBusinessSystemTypeAndroid;
-    [self startWaiting];
-    [FFBusinessModel sellProductWithAppID:self.appid Title:self.productTitleTF.text SDKUsername:self.sdkAccountLabel.text Price:self.amountTF.text Description:self.productDetailLabel.text SystemType:type ServerName:self.serverTF.text EndTime:self.timeLabel.text Images:self.imagesArray Completion:^(NSDictionary * _Nonnull content, BOOL success) {
-        [self stopWaiting];
-        self.isRequest = NO;
-        syLog(@"sell product === %@",content);
-        if (success) {
-            [self.navigationController popViewControllerAnimated:YES];
-            Show_message(@"发布成功");
-        } else {
-            Show_message(content[@"msg"]);
-        }
-    }];
+
+    if (self.postType) {
+//        [self startWaiting];
+//        [FFBusinessModel dropOnProductWithProductID:<#(NSString *)#> Title:<#(NSString *)#> Price:<#(NSString *)#> Description:<#(NSString *)#> SystemType:<#(FFBusinessSystemType)#> ServerName:<#(NSString *)#> EndTime:<#(NSString *)#> Images:<#(NSArray *)#> Completion:<#^(NSDictionary * _Nonnull content, BOOL success)completion#>]
+    } else {
+        [self startWaiting];
+        [FFBusinessModel sellProductWithAppID:self.appid Title:self.productTitleTF.text SDKUsername:self.sdkAccountLabel.text Price:self.amountTF.text Description:self.productDetailLabel.text SystemType:type ServerName:self.serverTF.text EndTime:self.timeLabel.text Images:self.imagesArray Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+            [self stopWaiting];
+            self.isRequest = NO;
+            if (success) {
+                [UIAlertController showAlertControllerWithViewController:self alertControllerStyle:(UIAlertControllerStyleAlert) title:@"商品发布成功" message:@"商品进入审核阶段,需通过客服审核后才会展示,预计1-3天.如审核失败会告知您原因." cancelButtonTitle:@"确定" destructiveButtonTitle:nil CallBackBlock:^(NSInteger btnIndex) {
+                    [self.navigationController popViewControllerAnimated:YES];
+                } otherButtonTitles: nil];
+            } else {
+                Show_message(content[@"msg"]);
+            }
+        }];
+    }
 }
 
 
@@ -243,7 +265,7 @@ void respondsToTimePicker(NSString *time) {
 - (void)showProductDetailController {
 //    HIDE_TABBAR;
 //    HIDE_PARNENT_TABBAR;
-    [self.navigationController pushViewController:[FFBusinessProductDetailViewController controllerWithCompletBlock:^(NSString *detailString) {
+    [self.navigationController pushViewController:[FFBusinessProductDetailViewController controllerWithContent:self.productDetailLabel.text CompletBlock:^(NSString *detailString) {
         syLog(@"detail string === %@",detailString);
         self.productDetailLabel.text = detailString;
     }] animated:YES];
@@ -256,23 +278,23 @@ void respondsToTimePicker(NSString *time) {
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    if (self.imagesArray.count < 4) {
-        return self.imagesArray.count + 1;
-    } else {
-        return self.imagesArray.count;
-    }
+    return _isEdit ? self.imagesName.count : (self.imagesArray.count < 7) ? self.imagesArray.count + 1 :  self.imagesArray.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     FFPostStatusImageCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CELL_IDE forIndexPath:indexPath];
-
-    if (indexPath.row + 1 > self.imagesArray.count) {
-        cell.type = addImage;
-    } else {
+    if (_isEdit) {
         cell.type = showImage;
-        cell.imageView.image = self.imagesArray[indexPath.row];
-        PHAsset *asset = self.lastSelectAssets[indexPath.row];
-        cell.playImageView.hidden = !(asset.mediaType == PHAssetMediaTypeVideo);
+        [cell.imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.imagesName[indexPath.row]]]];
+    } else {
+        if (indexPath.row + 1 > self.imagesArray.count) {
+            cell.type = addImage;
+        } else {
+            cell.type = showImage;
+            cell.imageView.image = self.imagesArray[indexPath.row];
+            PHAsset *asset = self.lastSelectAssets[indexPath.row];
+            cell.playImageView.hidden = !(asset.mediaType == PHAssetMediaTypeVideo);
+        }
     }
     return cell;
 }
@@ -280,16 +302,26 @@ void respondsToTimePicker(NSString *time) {
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
+    if (_isEdit) {
+        return;
+    }
+
     FFPostStatusImageCell *cell = (FFPostStatusImageCell *)[collectionView cellForItemAtIndexPath:indexPath];
     if (cell.type == addImage) {
-//        [UIAlertController showAlertControllerWithViewController:self alertControllerStyle:(UIAlertControllerStyleActionSheet) title:nil message:nil cancelButtonTitle:@"取消" destructiveButtonTitle:nil CallBackBlock:^(NSInteger btnIndex) {
-//            [self selectPhotoWith:btnIndex];
-//        } otherButtonTitles:@"相册",@"GIF",nil];
         [self showPhotoLibrary];
     } else {
         [self.actionSheet previewSelectedPhotos:self.lastSelectPhotos assets:self.lastSelectAssets index:indexPath.row isOriginal:self.isOriginal];
     }
 }
+
+- (IBAction)respondsToSelectPicButton:(id)sender {
+    [UIAlertController showAlertControllerWithViewController:self alertControllerStyle:(UIAlertControllerStyleAlert) title:nil message:@"点击后将清除之前的所有图片" cancelButtonTitle:@"取消" destructiveButtonTitle:nil CallBackBlock:^(NSInteger btnIndex) {
+        if (btnIndex == 1) {
+            [self showPhotoLibrary];
+        }
+    } otherButtonTitles:@"确定", nil];
+}
+
 
 
 - (void)showPhotoLibrary {
@@ -309,15 +341,42 @@ void respondsToTimePicker(NSString *time) {
 - (void)setAccount:(NSString *)account {
     _account = account;
     self.sdkAccountLabel.text = account;
-    syLog(@"account === %@",account);
-//    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathWithIndex:1]] withRowAnimation:(UITableViewRowAnimationNone)];
 }
 
 - (void)setGameName:(NSString *)gameName {
     _gameName = gameName;
     self.gameNameLabel.text = gameName;
-    syLog(@"gamename ==  %@",gameName);
-//    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathWithIndex:0]] withRowAnimation:(UITableViewRowAnimationNone)];
+}
+
+- (void)setSystemArray:(NSArray *)systemArray {
+    _systemArray = systemArray;
+    self.systemLabel.text = (systemArray.count > 1) ? @"iOS" : ([NSString stringWithFormat:@"%@",systemArray.firstObject].integerValue == 1) ? @"Android" : @"iOS";
+}
+
+- (void)setProductInfo:(NSDictionary *)productInfo {
+    _productInfo = productInfo;
+}
+
+- (void)setInfoWith:(NSDictionary *)productInfo {
+    self.account = productInfo[@"account"];
+    self.gameName = productInfo[@"game_name"];
+    self.serverTF.text = [NSString stringWithFormat:@"%@",productInfo[@"server_name"]];
+    self.systemLabel.text = ([NSString stringWithFormat:@"%@",productInfo[@"system"]].integerValue == 2) ? @"iOS" : @"Android";
+    self.systemArray = productInfo[@"system_enabled"];
+    self.amountTF.text = [NSString stringWithFormat:@"%@",productInfo[@"price"]];
+    self.productTitleTF.text = [NSString stringWithFormat:@"%@",productInfo[@"title"]];
+    self.productDetailLabel.text = [NSString stringWithFormat:@"%@",productInfo[@"desc"]];
+    self.imagesName = productInfo[@"imgs"];
+    [self.collectionView reloadData];
+}
+
+- (void)setIsEdit:(BOOL)isEdit {
+    _isEdit = isEdit;
+    if (isEdit) {
+        self.selectPicButton.hidden = NO;
+    } else {
+        self.selectPicButton.hidden = YES;
+    }
 }
 
 #pragma mark - getter
@@ -413,17 +472,13 @@ void respondsToTimePicker(NSString *time) {
             strongSelf.isOriginal = isOriginal;
             strongSelf.lastSelectAssets = assets.mutableCopy;
             strongSelf.lastSelectPhotos = images.mutableCopy;
+            strongSelf.isEdit = NO;
             [strongSelf.collectionView reloadData];
 
         }];
 
         self.actionSheet.cancleBlock = ^{
-            //        NSLog(@"取消选择图片");
-            //            strongSelf.imagesArray = nil;
-            //            strongSelf.isOriginal = nil;
-            //            strongSelf.lastSelectAssets = nil;
-            //            strongSelf.lastSelectPhotos = nil;
-            //            [strongSelf.collectionView reloadData];
+
         };
     }
     return _actionSheet;
@@ -471,7 +526,7 @@ void respondsToTimePicker(NSString *time) {
 @property (nonatomic, strong) UIPickerView *systemPickView;
 @property (nonatomic, strong) UIDatePicker *datePickerView;
 
-@property (nonatomic, strong) NSArray *systemArray;
+//@property (nonatomic, strong) NSArray *systemArray;
 
 @property (nonatomic, strong) UIButton *sureButton;
 @property (nonatomic, strong) UIButton *cancelButton;
@@ -483,9 +538,10 @@ void respondsToTimePicker(NSString *time) {
 
 
 + (void)PickerWithType:(FFBusinessPikcerType)type {
-    FFBusinessPikcerContorller *controller = [[self alloc] init];
-    controller.type = type;
-    [controller.window makeKeyAndVisible];
+    FFBusinessPikcerContorller *Pickcontroller = [[self alloc] init];
+    Pickcontroller.systemArray = controller.systemArray;
+    Pickcontroller.type = type;
+    [Pickcontroller.window makeKeyAndVisible];
 }
 
 - (void)removeAllPicker {
@@ -537,7 +593,7 @@ void respondsToTimePicker(NSString *time) {
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    return 2;
+    return self.systemArray.count;
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
@@ -569,6 +625,14 @@ void respondsToTimePicker(NSString *time) {
         default:
             break;
     }
+}
+
+- (void)setSystemArray:(NSArray *)systemArray {
+    NSMutableArray *muArray = [NSMutableArray arrayWithCapacity:systemArray.count];
+    for (NSString *obj in systemArray) {
+        [muArray addObject:self.systemDict[[NSString stringWithFormat:@"%@",obj]]];
+    }
+    _systemArray = muArray.copy;
 }
 
 
@@ -605,11 +669,18 @@ void respondsToTimePicker(NSString *time) {
     return _datePickerView;
 }
 
-- (NSArray *)systemArray {
-    if (!_systemArray) {
-        _systemArray = @[@"iOS",@"Android"];
+//- (NSArray *)systemArray {
+//    if (!_systemArray) {
+//        _systemArray = @[@"iOS",@"Android"];
+//    }
+//    return _systemArray;
+//}
+
+- (NSDictionary *)systemDict {
+    if (!_systemDict) {
+        _systemDict = @{@"1":@"Android",@"2":@"iOS"};
     }
-    return _systemArray;
+    return _systemDict;
 }
 
 - (UIButton *)sureButton {

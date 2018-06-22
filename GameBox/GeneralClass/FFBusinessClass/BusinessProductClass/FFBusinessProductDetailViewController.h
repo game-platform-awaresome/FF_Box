@@ -13,8 +13,7 @@ typedef void(^ProductDetailBlock)(NSString *detailString);
 @interface FFBusinessProductDetailViewController : FFBasicViewController
 
 
-+ (instancetype)controllerWithCompletBlock:(ProductDetailBlock)block;
-
++ (instancetype)controllerWithContent:(NSString *)content CompletBlock:(ProductDetailBlock)block;
 
 
 

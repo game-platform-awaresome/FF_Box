@@ -14,6 +14,11 @@
 
 @implementation FFBusinessWarehouseController
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.refreshHeader beginRefreshing];
+}
+
 - (FFBusinessUserSellType)type {
     return FFBusinessUserSellTypeCancel;
 }

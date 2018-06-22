@@ -46,10 +46,11 @@
 #pragma mark - getter
 - (UIView *)footerView {
     if (!_footerView) {
-        _footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 60)];
+        _footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 70)];
         _footerView.backgroundColor = [FFColorManager navigation_bar_white_color];
         [_footerView addSubview:self.modifyPasswordButton];
         [_footerView addSubview:self.signButton];
+        [_footerView.layer addSublayer:[self creatLineWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 1)]];
     }
     return _footerView;
 }
@@ -57,9 +58,11 @@
 - (UIButton *)signButton {
     if (!_signButton) {
         _signButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        _signButton.frame = CGRectMake(kSCREEN_WIDTH / 2, 0, kSCREEN_WIDTH / 2, 44);
+        _signButton.frame = CGRectMake(kSCREEN_WIDTH / 2 + 5, 8, kSCREEN_WIDTH / 2 - 15, 44);
         [_signButton setTitle:@"退出登录" forState:(UIControlStateNormal)];
         _signButton.backgroundColor = [FFColorManager blue_dark];
+        _signButton.layer.cornerRadius = 22;
+        _signButton.layer.masksToBounds = YES;
         [_signButton addTarget:self action:@selector(respondsToSignButton) forControlEvents:(UIControlEventTouchUpInside)];
     }
     return _signButton;
@@ -68,9 +71,11 @@
 - (UIButton *)modifyPasswordButton {
     if (!_modifyPasswordButton) {
         _modifyPasswordButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        _modifyPasswordButton.frame = CGRectMake(0, 0, kSCREEN_WIDTH / 2, 44);
+        _modifyPasswordButton.frame = CGRectMake(10, 8, kSCREEN_WIDTH / 2 - 15, 44);
         [_modifyPasswordButton setTitle:@"修改密码" forState:(UIControlStateNormal)];
         _modifyPasswordButton.backgroundColor = [FFColorManager blue_dark];
+        _modifyPasswordButton.layer.cornerRadius = 22;
+        _modifyPasswordButton.layer.masksToBounds = YES;
         [_modifyPasswordButton addTarget:self action:@selector(respondsToModifyPasswordButton) forControlEvents:(UIControlEventTouchUpInside)];
     }
     return _modifyPasswordButton;

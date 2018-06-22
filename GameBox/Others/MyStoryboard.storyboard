@@ -1385,7 +1385,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点击输入详情" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N9p-9p-4dc">
-                                                    <rect key="frame" x="161.5" y="14.5" width="187.5" height="21"/>
+                                                    <rect key="frame" x="161.5" y="15" width="187.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1438,13 +1438,24 @@
                                                         <outlet property="delegate" destination="84e-4R-rjN" id="2kp-VS-Mwq"/>
                                                     </connections>
                                                 </collectionView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lX5-xO-oje">
+                                                    <rect key="frame" x="297" y="6" width="62" height="30"/>
+                                                    <state key="normal" title="选择图片">
+                                                        <color key="titleColor" red="0.16078431369999999" green="0.63137254899999995" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="respondsToSelectPicButton:" destination="84e-4R-rjN" eventType="touchUpInside" id="8aJ-jF-HmG"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="lX5-xO-oje" secondAttribute="trailing" constant="16" id="0BT-q1-pD9"/>
                                                 <constraint firstItem="CX4-ah-fEc" firstAttribute="trailing" secondItem="aRD-iJ-RlP" secondAttribute="trailingMargin" id="Ewf-G9-zoh"/>
                                                 <constraint firstItem="CX4-ah-fEc" firstAttribute="leading" secondItem="aRD-iJ-RlP" secondAttribute="leadingMargin" id="Ln5-K5-nQg"/>
                                                 <constraint firstItem="CX4-ah-fEc" firstAttribute="top" secondItem="bZv-6r-Y8s" secondAttribute="bottom" constant="10" id="QjC-PZ-5md"/>
                                                 <constraint firstItem="0uC-rI-Afi" firstAttribute="leading" secondItem="aRD-iJ-RlP" secondAttribute="leading" id="UeL-Zu-Koh"/>
                                                 <constraint firstItem="0uC-rI-Afi" firstAttribute="top" secondItem="CX4-ah-fEc" secondAttribute="bottom" id="fUa-SU-agQ"/>
+                                                <constraint firstItem="lX5-xO-oje" firstAttribute="centerY" secondItem="bZv-6r-Y8s" secondAttribute="centerY" id="lSs-Xv-y4f"/>
                                                 <constraint firstItem="bZv-6r-Y8s" firstAttribute="leading" secondItem="aRD-iJ-RlP" secondAttribute="leadingMargin" id="ljp-Ah-qs3"/>
                                                 <constraint firstItem="bZv-6r-Y8s" firstAttribute="top" secondItem="aRD-iJ-RlP" secondAttribute="topMargin" id="sXZ-kp-3uF"/>
                                                 <constraint firstAttribute="bottom" secondItem="0uC-rI-Afi" secondAttribute="bottom" id="wdP-lJ-5Cw"/>
@@ -1496,6 +1507,7 @@
                         <outlet property="productDetailLabel" destination="N9p-9p-4dc" id="lpi-F3-DId"/>
                         <outlet property="productTitleTF" destination="42A-YQ-8j1" id="syd-pW-hsa"/>
                         <outlet property="sdkAccountLabel" destination="VeC-L6-jQS" id="UPI-A2-abA"/>
+                        <outlet property="selectPicButton" destination="lX5-xO-oje" id="rRT-xQ-IYf"/>
                         <outlet property="sellButton" destination="0Oo-4R-aTk" id="i72-Hz-26r"/>
                         <outlet property="serverTF" destination="l3c-fN-bSW" id="mfA-O1-lrT"/>
                         <outlet property="systemLabel" destination="Rtc-eg-hNX" id="6KO-sB-Y3J"/>

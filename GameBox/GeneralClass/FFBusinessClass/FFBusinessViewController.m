@@ -46,23 +46,13 @@ static FFBusinessViewController *_controller = nil;
     [self customNavLine];
 }
 
-- (void)customNavLine {
-    [super customNavLine];
-//    self.navigationController.navigationBar.shadowImage = [UIImage new];
-//    [self.navigationController.navigationBar.layer addSublayer:[self cre]]
-}
-
-- (void)initDataSource {
-    [self.tableView registerNib:[UINib nibWithNibName:CELL_IDE bundle:nil] forCellReuseIdentifier:CELL_IDE];
-}
-
 - (void)initUserInterface {
     [super initUserInterface];
     self.navigationItem.title = @"账号交易";
-    self.tableView.frame = CGRectMake(0, kNAVIGATION_HEIGHT, kSCREEN_WIDTH, kSCREEN_HEIGHT - kNAVIGATION_HEIGHT - kTABBAR_HEIGHT);
     self.navigationItem.rightBarButtonItem = self.userCenter;
     self.navigationItem.leftBarButtonItem = self.searchButton;
-    self.tableView.tableHeaderView = self.headerView;
+    [self resetTableView];
+    [self.view addSubview:self.tableView];
 }
 
 - (void)refreshData {
@@ -112,6 +102,11 @@ static FFBusinessViewController *_controller = nil;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+    if (![FFBusinessModel uid]) {
+        pushViewController(@"FFBusinessLoginViewController");
+        return;
+    }
 
     NSDictionary *dict = self.showArray[indexPath.row];
     Class FFGameViewController = NSClassFromString(@"FFBusinessCommodityViewController");
@@ -174,8 +169,20 @@ void clickButton(long idx) {
 - (void)pushViewControllerWith:(NSUInteger)idx {
     switch (idx) {
         case 0: {pushViewController(@"FFBusinessNoticeViewController");} break;
-        case 1: {pushViewController(@"FFBusinessSelectAccountViewController");} break;
-        case 2: {pushViewController(@"FFBusinessRecordViewController");} break;
+        case 1: {
+            if ([FFBusinessModel uid]) {
+                pushViewController(@"FFBusinessSelectAccountViewController");
+            } else  {
+                pushViewController(@"FFBusinessLoginViewController");
+            }
+        } break;
+        case 2: {
+            if ([FFBusinessModel uid]) {
+                pushViewController(@"FFBusinessRecordViewController");
+            } else  {
+                pushViewController(@"FFBusinessLoginViewController");
+            }
+        } break;
         case 3: {pushViewController(@"FFBusinessCustomerServiceViewController");} break;
         default: break;
     }
@@ -251,6 +258,28 @@ void clickButton(long idx) {
     }
     return _sectionSelectView;
 }
+
+
+- (void)resetTableView {
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kNAVIGATION_HEIGHT, kSCREEN_WIDTH, kSCREEN_HEIGHT - kNAVIGATION_HEIGHT - kTABBAR_HEIGHT) style:(UITableViewStylePlain)];
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    self.tableView.backgroundColor = [FFColorManager tableview_background_color];
+    self.tableView.showsVerticalScrollIndicator = NO;
+    self.tableView.showsHorizontalScrollIndicator = NO;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.tableHeaderView = self.headerView;
+    self.tableView.tableFooterView = [UIView new];
+    if (@available(iOS 11.0, *)) {
+        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
+    self.tableView.mj_header = self.refreshHeader;
+    self.tableView.mj_footer = self.refreshFooter;
+    [self.tableView registerNib:[UINib nibWithNibName:CELL_IDE bundle:nil] forCellReuseIdentifier:CELL_IDE];
+//    self.tableView.estimatedRowHeight = UITableViewAutomaticDimension;
+}
+
+
 
 
 

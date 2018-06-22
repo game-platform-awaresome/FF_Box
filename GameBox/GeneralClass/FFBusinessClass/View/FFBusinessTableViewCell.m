@@ -29,6 +29,9 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+
+    self.postImageView.layer.cornerRadius = 8;
+    self.postImageView.layer.masksToBounds = YES;
 }
 
 

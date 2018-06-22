@@ -7,6 +7,8 @@
 //
 
 #import "FFBusinessNoticeViewController.h"
+#import <WebKit/WebKit.h>
+#import "FFMapModel.h"
 
 @interface FFBusinessNoticeViewController ()
 
@@ -23,6 +25,7 @@
     [super initUserInterface];
     [self.leftButton setImage:[FFImageManager General_back_black]];
     self.navigationItem.leftBarButtonItem = self.leftButton;
+    self.webURL = Map.TRADE_NOTES_H5;
 }
 
 

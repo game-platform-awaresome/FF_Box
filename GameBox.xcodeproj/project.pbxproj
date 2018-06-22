@@ -176,6 +176,8 @@
 		B529173320DA25DF00A56F41 /* FFBusinessWarehouseController.m in Sources */ = {isa = PBXBuildFile; fileRef = B529173220DA25DF00A56F41 /* FFBusinessWarehouseController.m */; };
 		B529173920DA372F00A56F41 /* FFBusinessSellRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B529173720DA372F00A56F41 /* FFBusinessSellRecordCell.m */; };
 		B529173A20DA372F00A56F41 /* FFBusinessSellRecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B529173820DA372F00A56F41 /* FFBusinessSellRecordCell.xib */; };
+		B529173C20DB448B00A56F41 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B529173B20DB448B00A56F41 /* AlipaySDK.bundle */; };
+		B529173E20DB449100A56F41 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B529173D20DB449100A56F41 /* AlipaySDK.framework */; };
 		B52ED09B20A9A38700C8CAF4 /* FFSRcommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B52ED09920A9A38700C8CAF4 /* FFSRcommentCell.m */; };
 		B532510320B25BE0007D7239 /* FFOpenServerSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = B532510220B25BE0007D7239 /* FFOpenServerSelectView.m */; };
 		B532510620B26D96007D7239 /* FFBoxModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B532510520B26D96007D7239 /* FFBoxModel.m */; };
@@ -626,6 +628,8 @@
 		B529173620DA372F00A56F41 /* FFBusinessSellRecordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBusinessSellRecordCell.h; sourceTree = "<group>"; };
 		B529173720DA372F00A56F41 /* FFBusinessSellRecordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBusinessSellRecordCell.m; sourceTree = "<group>"; };
 		B529173820DA372F00A56F41 /* FFBusinessSellRecordCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FFBusinessSellRecordCell.xib; sourceTree = "<group>"; };
+		B529173B20DB448B00A56F41 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AlipaySDK.bundle; path = GameBox/AlipaySDK.bundle; sourceTree = "<group>"; };
+		B529173D20DB449100A56F41 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlipaySDK.framework; path = GameBox/AlipaySDK.framework; sourceTree = "<group>"; };
 		B52ED09820A9A38700C8CAF4 /* FFSRcommentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFSRcommentCell.h; sourceTree = "<group>"; };
 		B52ED09920A9A38700C8CAF4 /* FFSRcommentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFSRcommentCell.m; sourceTree = "<group>"; };
 		B532510120B25BE0007D7239 /* FFOpenServerSelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFOpenServerSelectView.h; sourceTree = "<group>"; };
@@ -895,6 +899,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B529173E20DB449100A56F41 /* AlipaySDK.framework in Frameworks */,
 				B599693520BBA4E500BC6084 /* CoreMotion.framework in Frameworks */,
 				B599693720BBA50400BC6084 /* libz.tbd in Frameworks */,
 				B599693320BBA46E00BC6084 /* CoreLocation.framework in Frameworks */,
@@ -917,6 +922,7 @@
 		76486CF296C9DFD1ABAED75C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B529173D20DB449100A56F41 /* AlipaySDK.framework */,
 				B599693820BBA51200BC6084 /* libstdc++.tbd */,
 				B599693620BBA50300BC6084 /* libz.tbd */,
 				B599693420BBA4DF00BC6084 /* CoreMotion.framework */,
@@ -2577,6 +2583,7 @@
 		B5E1E512206201CD008F49CA = {
 			isa = PBXGroup;
 			children = (
+				B529173B20DB448B00A56F41 /* AlipaySDK.bundle */,
 				B5E1E54220622E40008F49CA /* README.md */,
 				B5781AE420A440C800CB1464 /* Podfile */,
 				B58CB794207B10830099773D /* GameBox */,
@@ -2685,6 +2692,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B529173C20DB448B00A56F41 /* AlipaySDK.bundle in Resources */,
 				B51BD03B20B50976005B9DE1 /* FFApplyTransferView.xib in Resources */,
 				B52383B920AEB2CE0087733A /* FFOpenServerCell.xib in Resources */,
 				B51BCFB220B2BD8A005B9DE1 /* FFGameOpenCell.xib in Resources */,
@@ -3191,7 +3199,7 @@
 					"$(PROJECT_DIR)/GameBox/Others/Third_Library/trackingio",
 					"$(PROJECT_DIR)/GameBox",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sy185Box.TWKJ;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sy185Box.TWKJ.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -3222,7 +3230,7 @@
 					"$(PROJECT_DIR)/GameBox/Others/Third_Library/trackingio",
 					"$(PROJECT_DIR)/GameBox",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sy185Box.TWKJ;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sy185Box.TWKJ.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};

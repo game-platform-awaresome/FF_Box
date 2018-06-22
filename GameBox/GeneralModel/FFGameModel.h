@@ -27,8 +27,8 @@ typedef enum : NSUInteger {
 } FFCollectionType;
 
 typedef enum : NSUInteger {
-    FFActivity = 1,
-    FFGuide
+    FFGuide = 2,
+    FFActivity = 3
 } FFActivityType;
 
 typedef enum : NSUInteger {

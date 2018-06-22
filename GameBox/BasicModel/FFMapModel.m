@@ -206,7 +206,10 @@ static FFMapModel *model = nil;
       @"CANCEL_PAYMENT":@"http://api.185sy.com/index.php?g=api&m=AccountTrade&a=cancelPayment",
       @"PRODUCT_INFO":@"http://api.185sy.com/index.php?g=api&m=Products&a=product_info",
       @"WITHDRAW_PRODUCTS":@"http://api.185sy.com/index.php?g=api&m=Products&a=withdraw_product",
-      @"BUYER_RECORD":@"http://api.185sy.com/index.php?g=api&m=AccountTrade&a=buyerRecord"
+      @"BUYER_RECORD":@"http://api.185sy.com/index.php?g=api&m=AccountTrade&a=buyerRecord",
+      @"TRADE_NOTES_H5":@"http://p.185sy.com/tradenotes.html",
+      @"TRADE_NOTES":@"http://api.185sy.com/index.php?g=api&m=Products&a=trade_notes",
+      @"PRODUCT_ONSALE":@"http://api.185sy.com/index.php?g=api&m=Products&a=apply_onsale"
       };
     return mapDict;
 }

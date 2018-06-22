@@ -17,8 +17,7 @@
 #import <ZLPhotoModel.h>
 #import <ZLPhotoManager.h>
 #import <ZLProgressHUD.h>
-
-
+#import <AlipaySDK/AlipaySDK.h>
 
 #define CELL_IDE @"FFCommodityCell"
 
@@ -40,6 +39,8 @@
 @property (nonatomic, strong) NSMutableArray *imageArr;
 
 @property (nonatomic, assign) BOOL isShowimage;
+
+@property (nonatomic, assign) BOOL isBuying;;
 
 @end
 
@@ -132,6 +133,24 @@ static FFBusinessCommodityViewController *_controller;
 #pragma makr - responds
 - (void)respondsToButButton {
     syLog(@"购买");
+    if (_isBuying) {
+        return;
+    }
+    _isBuying = YES;
+    [self startWaiting];
+    [FFBusinessModel buyProductWithID:self.pid payType:FFBusinessPayAlipay Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        [self stopWaiting];
+        self.isBuying = NO;
+        if (success) {
+            NSString *token = [NSString stringWithFormat:@"%@",CONTENT_DATA[@"token"]];
+            [[AlipaySDK defaultService] payOrder:token fromScheme:@"com.sy185Box.TWKJ.test" callback:^(NSDictionary *resultDic) {
+                syLog(@"alipay sdk result === %@",resultDic);
+            }];
+        } else {
+            [UIAlertController showAlertMessage:content[@"msg"] dismissTime:0.7 dismissBlock:nil];
+        }
+        syLog(@"buy content === %@",content);
+    }];
 }
 
 #pragma mark - setter

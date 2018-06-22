@@ -13,15 +13,16 @@
 @property (nonatomic, strong) UITextView *textView;
 @property (nonatomic, strong) ProductDetailBlock block;
 @property (nonatomic, strong) UIButton *sureButton;
-
+@property (nonatomic, strong) NSString *content;
 
 @end
 
 @implementation FFBusinessProductDetailViewController
 
-+ (instancetype)controllerWithCompletBlock:(ProductDetailBlock)block {
++ (instancetype)controllerWithContent:(NSString *)content CompletBlock:(ProductDetailBlock)block {
     FFBusinessProductDetailViewController *controller = [[FFBusinessProductDetailViewController alloc] init];
     controller.block = block;
+    controller.content = [content isEqualToString:@"点击输入详情"] ? @"" : content;
     return controller;
 }
 
@@ -39,6 +40,13 @@
     [self.view addSubview:self.sureButton];
     self.navigationItem.title = @"商品描述";
 }
+
+- (void)setContent:(NSString *)content {
+    if (content && content.length > 0) {
+        self.textView.text = content;
+    }
+}
+
 
 #pragma mark - getter
 - (UITextView *)textView {

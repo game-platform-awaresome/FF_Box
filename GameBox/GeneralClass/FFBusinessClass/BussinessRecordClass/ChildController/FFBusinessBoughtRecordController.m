@@ -8,24 +8,16 @@
 
 #import "FFBusinessBoughtRecordController.h"
 #import "FFBusinessModel.h"
+#import "FFBusinessSellRecordCell.h"
+
+#define CELL_IDE @"FFBusinessSellRecordCell"
 
 @interface FFBusinessBoughtRecordController ()
+
 
 @end
 
 @implementation FFBusinessBoughtRecordController
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-}
-
-- (void)initDataSource {
-    [super initDataSource];
-}
-
-- (void)initUserInterface {
-    [super initUserInterface];
-}
 
 
 - (void)refreshData {
@@ -33,16 +25,33 @@
     [FFBusinessModel userButRecordWithType:(FFBusinessUserBuyTypeAll) Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         [self stopWaiting];
         if (success) {
-
+            NSArray *array = CONTENT_DATA;
+            if ([array isKindOfClass:[NSArray class]]) {
+                self.showArray = array.mutableCopy;
+            } else {
+                [UIAlertController showAlertMessage:@"暂无购买记录" dismissTime:0.7 dismissBlock:nil];
+            }
+        } else {
+            [UIAlertController showAlertMessage:content[@"msg"] dismissTime:0.7 dismissBlock:nil];
         }
-
-        syLog(@"user recored === %@",content);
+        syLog(@"user sell === %@",content);
         [self.refreshHeader endRefreshing];
         [self.refreshFooter endRefreshing];
+        [self.tableView reloadData];
     }];
 }
 
+- (void)loadMoreData {
+    [self.refreshFooter endRefreshingWithNoMoreData];
+}
 
+
+
+
+#pragma mark - getter
+- (BOOL)isBuy {
+    return YES;
+}
 
 
 

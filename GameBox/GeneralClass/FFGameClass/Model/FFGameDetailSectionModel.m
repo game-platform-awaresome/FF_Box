@@ -69,6 +69,7 @@
         case SecTionTypeActivity:
             //这个功能是后加入的, 回调参数并不是游戏详情统一返回的
             ///!!!!!!!!!!!!!!!!还的动态的很头痛!!!!!!!!!!!!!!\\\
+            sylog(@"独家活动cell === ");
             self.sectionHeaderTitle = @"独家活动";
             self.sectionHeaderImage.image = [UIImage imageNamed:@"Game_detail_activity"];
             //游戏活动回调

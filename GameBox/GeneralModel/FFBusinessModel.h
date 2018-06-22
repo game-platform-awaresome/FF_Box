@@ -180,6 +180,23 @@ FFBusinessUserModel * currentUser(void);
 + (void)dropOffProductWithID:(NSString *)productID
                   Completion:(RequestCallBackBlock)completion;
 
+/** 上架商品 */
++ (void)dropOnProductWithProductID:(NSString *)productID
+                             Title:(NSString *)title
+                             Price:(NSString *)price
+                       Description:(NSString *)description
+                        SystemType:(FFBusinessSystemType)systemType
+                        ServerName:(NSString *)serverName
+                           EndTime:(NSString *)endTime
+                            Images:(NSArray *)images
+                        Completion:(RequestCallBackBlock)completion;
+
+/** 购买商品 */
++ (void)buyProductWithID:(NSString *)productID
+                 payType:(FFBusinessPayType)type
+              Completion:(RequestCallBackBlock)completion;
+
+
 @end
 
 

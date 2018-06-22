@@ -7,7 +7,11 @@
 //
 
 #import "FFBasicTableViewController.h"
+#import "FFBusinessUnderReviewController.h"
 
-@interface FFBusinessBoughtRecordController : FFBasicTableViewController
+@interface FFBusinessBoughtRecordController : FFBusinessUnderReviewController
+
+
+
 
 @end

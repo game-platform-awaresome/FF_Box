@@ -25,7 +25,10 @@
 
 @property (nonatomic, strong) NSDictionary *dict;
 @property (nonatomic, assign) FFBusinessUserSellType type;
+@property (nonatomic, assign) BOOL isBuy;
 
 @property (nonatomic, weak) id<FFBusinessSellRecordCellDelegate> delegate;
+
+
 
 @end

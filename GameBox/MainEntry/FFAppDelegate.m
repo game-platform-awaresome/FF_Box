@@ -12,8 +12,10 @@
 //third library
 #import <WXApi.h>
 #import <TencentOpenAPI/TencentOAuth.h>
+#import <AlipaySDK/AlipaySDK.h>
 
 #import <UserNotifications/UserNotifications.h>
+#import <FFTools/FFTools.h>
 
 #import "FFMapModel.h"
 #import "FFBoxModel.h"
@@ -145,7 +147,24 @@
     }
 }
 
+// NOTE: 9.0以后使用新API接口
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options
+{
+    if ([url.host isEqualToString:@"safepay"]) {
+        // 支付跳转支付宝钱包进行支付，处理支付结果
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+            syLog(@"result 000000000000= %@",resultDic);
+            NSString *status = [NSString stringWithFormat:@"%@",resultDic[@"resultStatus"]];
+            if (status.integerValue == 6004 || status.integerValue == 9000 || status.integerValue == 8000 || status.integerValue == 5000 ) {
+                [UIAlertController showAlertMessage:@"支付成功" dismissTime:0.7 dismissBlock:nil];
+            } else {
+                //取消订单 ??
 
+            }
+        }];
+    }
+    return YES;
+}
 
 
 

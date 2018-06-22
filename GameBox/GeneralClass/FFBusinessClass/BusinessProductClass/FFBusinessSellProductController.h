@@ -10,7 +10,9 @@
 
 @interface FFBusinessSellProductController : FFBusinessProductController
 
-+ (FFBusinessSellProductController *)sharedController;
++ (instancetype)initwithDict:(NSDictionary *)dict;
+
+
 
 
 @end

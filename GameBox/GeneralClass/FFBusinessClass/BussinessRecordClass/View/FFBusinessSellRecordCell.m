@@ -18,6 +18,11 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *statusButton;
 
+@property (weak, nonatomic) IBOutlet UILabel *offReeasonLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *offReasonHeight;
+
+
+
 @end
 
 
@@ -40,9 +45,10 @@
     syLog(@"cell dict == %@",dict);
     [self setGameName:dict[@"game_name"]];
     [self setTitle:dict[@"title"]];
-    [self setAmount:dict[@"price"]];
+    [self setAmount:dict[@"price"] ?: dict[@"money"]];
     [self setTime:dict[@"create_time"]];
     [self setType:[NSString stringWithFormat:@"%@",dict[@"status"]].integerValue];
+    [self setOffReason:dict[@"off_reason"]];
 }
 
 
@@ -69,35 +75,65 @@
 
 - (void)setType:(FFBusinessUserSellType)type {
     self.statusButton.hidden = NO;
-    switch (type) {
-        case FFBusinessUserSellTypeUnderReview: {
-            [self.statusButton setTitle:@"审核中" forState:(UIControlStateNormal)];
-            break;
+    if (self.isBuy) {
+        switch (type) {
+            case 1: {
+                [self.statusButton setTitle:@"支付成功" forState:(UIControlStateNormal)];
+                break;
+            }
+            case 3: {
+                [self.statusButton setTitle:@"退款" forState:(UIControlStateNormal)];
+                break;
+            }
+            case 4: {
+                [self.statusButton setTitle:@"交易完成" forState:(UIControlStateNormal)];
+                break;
+            }
+            default:
+                [self.statusButton setHidden:YES];
+                break;
         }
-        case FFBusinessUserSellTypeSelling: {
-            [self.statusButton setTitle:@"下架" forState:(UIControlStateNormal)];
-            break;
+    } else {
+        switch (type) {
+            case FFBusinessUserSellTypeUnderReview: {
+                [self.statusButton setTitle:@"审核中" forState:(UIControlStateNormal)];
+                break;
+            }
+            case FFBusinessUserSellTypeSelling: {
+                [self.statusButton setTitle:@"下架" forState:(UIControlStateNormal)];
+                break;
+            }
+            case FFBusinessUserSellTypeSold: {
+                [self.statusButton setTitle:@"已出售" forState:(UIControlStateNormal)];
+                break;
+            }
+            case FFBusinessUserSellTypeTransacton: {
+                [self.statusButton setTitle:@"出售中" forState:(UIControlStateNormal)];
+                break;
+            }
+            case FFBusinessUserSellTypeCancel: {
+                [self.statusButton setTitle:@"上架" forState:(UIControlStateNormal)];
+                break;
+            }
+            default:
+                [self.statusButton setHidden:YES];
+                break;
         }
-        case FFBusinessUserSellTypeSold: {
-            [self.statusButton setTitle:@"已出售" forState:(UIControlStateNormal)];
-            break;
-        }
-        case FFBusinessUserSellTypeTransacton: {
-            [self.statusButton setTitle:@"出售中" forState:(UIControlStateNormal)];
-            break;
-        }
-        case FFBusinessUserSellTypeCancel: {
-            [self.statusButton setTitle:@"上架" forState:(UIControlStateNormal)];
-            break;
-        }
-        default:
-            [self.statusButton setHidden:YES];
-            break;
     }
     self.statusButton.layer.cornerRadius = self.statusButton.bounds.size.height / 2;
     self.statusButton.layer.masksToBounds = YES;
     self.statusButton.layer.borderWidth = 1;
     self.statusButton.layer.borderColor = [FFColorManager blue_dark].CGColor;
+}
+
+- (void)setOffReason:(NSString *)string {
+    if (string && [string isKindOfClass:[NSString class]] && [NSString stringWithFormat:@"%@",string].length > 0) {
+        self.offReeasonLabel.text = [NSString stringWithFormat:@"%@",string];
+        self.offReasonHeight.constant = 20;
+    } else {
+        self.offReeasonLabel.text = @"";
+        self.offReasonHeight.constant = 0;
+    }
 }
 
 

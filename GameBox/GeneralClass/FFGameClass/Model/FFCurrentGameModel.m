@@ -43,7 +43,7 @@ static FFCurrentGameModel *model;
 
 + (instancetype)refreshCurrentGameWithGameID:(NSString *)gameID Completion:(RefreshCompleteBlock)block {
     [FFGameModel gameDetailsWithGameID:gameID Completion:^(NSDictionary * _Nonnull content, BOOL success) {
-//        syLog(@"game info ==== %@",content);
+        syLog(@"game info ==== %@",content);
         if (success) {
             [CURRENT_GAME setInfoWithDictionary:content];
         }

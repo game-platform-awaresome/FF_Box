@@ -12,23 +12,18 @@
 
 @end
 
-static FFBusinessSellProductController *controller = nil;
 @implementation FFBusinessSellProductController
 
-+ (FFBusinessSellProductController *)sharedController {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        if (controller == nil) {
-            controller = [[FFBusinessSellProductController alloc] init];
-        }
-    });
+
++ (instancetype)initwithDict:(NSDictionary *)dict {
+    FFBusinessSellProductController * controller = [self init];
+    controller.imagesArray = nil;
+    controller.productInfo = dict;
+    controller.isEdit = YES;
+    controller.postType = YES;
     return controller;
 }
 
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-}
 
 
 

@@ -298,7 +298,6 @@ FFBusinessUserModel * currentUser(void) {
     [dict setObject:[self uid] forKey:@"buy_id"];
     [dict setObject:[NSString stringWithFormat:@"%lu",type] forKey:@"type"];
     SS_SIGN;
-#warning address
     [FFNetWorkManager postRequestWithURL:Map.PAY_START Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         NEW_REQUEST_COMPLETION;
     }];
@@ -310,8 +309,7 @@ FFBusinessUserModel * currentUser(void) {
     SS_DICT;
     [dict setObject:orderID forKey:@"orderID"];
     SS_SIGN;
-#warning address
-    [FFNetWorkManager postRequestWithURL:Map.PAY_START Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+    [FFNetWorkManager postRequestWithURL:Map.CANCEL_PAYMENT Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         NEW_REQUEST_COMPLETION;
     }];
 }
@@ -444,6 +442,66 @@ FFBusinessUserModel * currentUser(void) {
     [dict setObject:productID forKey:@"product_id"];
     SS_SIGN;
     [FFNetWorkManager postRequestWithURL:Map.WITHDRAW_PRODUCTS Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        NEW_REQUEST_COMPLETION;
+    }];
+}
+
+/** 上架商品 */
++ (void)dropOnProductWithProductID:(NSString *)productID Title:(NSString *)title Price:(NSString *)price Description:(NSString *)description SystemType:(FFBusinessSystemType)systemType ServerName:(NSString *)serverName EndTime:(NSString *)endTime Images:(NSArray *)images Completion:(RequestCallBackBlock)completion {
+    if ([self uid] == nil) {
+        if (completion) {
+            completion(@{@"msg":@"请登录"},NO);
+        }
+        return;
+    }
+
+    Pamaras_Key((@[@"uid",@"product_id",@"title",@"price",
+                   @"desc",@"system",@"server_name",@"end_time"]));
+    SS_DICT;
+    [dict setObject:[self uid] forKey:@"uid"];
+    [dict setObject:productID forKey:@"product_id"];
+    [dict setObject:title forKey:@"title"];
+    [dict setObject:price forKey:@"price"];
+    [dict setObject:description forKey:@"desc"];
+    [dict setObject:[NSString stringWithFormat:@"%lu",systemType] forKey:@"system"];
+    [dict setObject:serverName forKey:@"server_name"];
+    [dict setObject:endTime forKey:@"end_time"];
+    SS_SIGN;
+
+    //上传的多张照片
+    NSMutableArray *dataArray = [NSMutableArray arrayWithCapacity:images.count];
+    for (int i = 0; i < images.count; i++) {
+        NSData *imageData = UIImageJPEGRepresentation(images[i], 0.9);
+        [dataArray addObject:imageData];
+    }
+
+    [FFNetWorkManager uploadImageWithURL:Map.PRODUCT_ONSALE Params:dict FileData:dataArray FileName:@"sellProduct.png" Name:@"imgs[]" MimeType:@"" Progress:nil Success:^(NSDictionary * _Nonnull content) {
+        REQUEST_STATUS;
+        if (status.integerValue == 1) {
+            if (completion) {
+                completion(content,YES);
+            }
+        } else {
+            if (completion) {
+                completion(content,NO);
+            }
+        }
+    } Failure:^(NSError * _Nonnull error) {
+        if (completion) {
+            completion(@{@"msg":error.localizedDescription},NO);
+        }
+    }];
+}
+
+/** 购买商品 */
++ (void)buyProductWithID:(NSString *)productID payType:(FFBusinessPayType)type Completion:(RequestCallBackBlock)completion {
+    Pamaras_Key((@[@"proid",@"buy_id",@"type"]));
+    SS_DICT;
+    [dict setObject:productID forKey:@"proid"];
+    [dict setObject:[self uid] forKey:@"buy_id"];
+    [dict setObject:[NSString stringWithFormat:@"%lu",type] forKey:@"type"];
+    SS_SIGN;
+    [FFNetWorkManager postRequestWithURL:Map.START_PAYMENT Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         NEW_REQUEST_COMPLETION;
     }];
 }
