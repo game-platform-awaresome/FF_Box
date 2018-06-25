@@ -7,6 +7,7 @@
 //
 
 #import "FFBusinessSearchViewController.h"
+#import "FFBusinessModel.h"
 
 @interface FFBusinessSearchViewController () <UISearchBarDelegate>
 
@@ -72,6 +73,7 @@
 - (void)respondsToRightButton {
     syLog(@"搜索");
     [self.searchBar resignFirstResponder];
+//    [FFBusinessModel sear]
 }
 
 #pragma mark - getter
@@ -89,7 +91,6 @@
             [searchField setBackgroundColor:[FFColorManager view_separa_line_color]];
             [searchField setTextColor:[FFColorManager textColorMiddle]];
         }
-
     }
     return _searchBar;
 }

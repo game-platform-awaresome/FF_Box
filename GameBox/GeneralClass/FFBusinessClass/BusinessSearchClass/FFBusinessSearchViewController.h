@@ -7,7 +7,20 @@
 //
 
 #import "FFBasicTableViewController.h"
+@class FFBusinessSearchViewController;
+
+@protocol FFBusinessSearchDelegate <NSObject>
+
+- (void)FFBusinessSearchViewController:(FFBusinessSearchViewController *)controller didSelectGameName:(id)gameName;
+
+
+@end
+
 
 @interface FFBusinessSearchViewController : FFBasicTableViewController
+
+@property (nonatomic, weak) id <FFBusinessSearchDelegate> delegate;
+
+
 
 @end

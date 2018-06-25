@@ -202,6 +202,7 @@
 		B567010620C509FF00A44C2E /* FFGameIconTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B567010520C509FF00A44C2E /* FFGameIconTableCell.m */; };
 		B567010B20C63F4400A44C2E /* FFBetaGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B567010A20C63F4300A44C2E /* FFBetaGameViewController.m */; };
 		B567010E20C63F6C00A44C2E /* FFReservationGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = B567010D20C63F6C00A44C2E /* FFReservationGameController.m */; };
+		B56AF4CD20E0F1B200D2F48C /* FFBusinessBuyProoductController.m in Sources */ = {isa = PBXBuildFile; fileRef = B56AF4CC20E0F1B200D2F48C /* FFBusinessBuyProoductController.m */; };
 		B5781AE020A3F4DE00CB1464 /* FFHomeSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5781ADE20A3F4DD00CB1464 /* FFHomeSelectView.m */; };
 		B5781AE320A42CED00CB1464 /* FFUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5781AE220A42CED00CB1464 /* FFUserModel.m */; };
 		B5781AE520A440C900CB1464 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = B5781AE420A440C800CB1464 /* Podfile */; };
@@ -677,6 +678,8 @@
 		B567010A20C63F4300A44C2E /* FFBetaGameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBetaGameViewController.m; sourceTree = "<group>"; };
 		B567010C20C63F6C00A44C2E /* FFReservationGameController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFReservationGameController.h; sourceTree = "<group>"; };
 		B567010D20C63F6C00A44C2E /* FFReservationGameController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFReservationGameController.m; sourceTree = "<group>"; };
+		B56AF4CB20E0F1B200D2F48C /* FFBusinessBuyProoductController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBusinessBuyProoductController.h; sourceTree = "<group>"; };
+		B56AF4CC20E0F1B200D2F48C /* FFBusinessBuyProoductController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBusinessBuyProoductController.m; sourceTree = "<group>"; };
 		B5781ADE20A3F4DD00CB1464 /* FFHomeSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFHomeSelectView.m; sourceTree = "<group>"; };
 		B5781ADF20A3F4DE00CB1464 /* FFHomeSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFHomeSelectView.h; sourceTree = "<group>"; };
 		B5781AE120A42CED00CB1464 /* FFUserModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFUserModel.h; sourceTree = "<group>"; };
@@ -2042,6 +2045,8 @@
 			children = (
 				B580A4F320D38CD400680194 /* FFBusinessCommodityViewController.h */,
 				B580A4F420D38CD400680194 /* FFBusinessCommodityViewController.m */,
+				B56AF4CB20E0F1B200D2F48C /* FFBusinessBuyProoductController.h */,
+				B56AF4CC20E0F1B200D2F48C /* FFBusinessBuyProoductController.m */,
 			);
 			path = BusinessCommodityClass;
 			sourceTree = "<group>";
@@ -2904,6 +2909,7 @@
 				B523826120AAB6850087733A /* FFBTClassifyController.m in Sources */,
 				B529172220D9F77300A56F41 /* BusinessCustomerCell.m in Sources */,
 				B523827920AACA670087733A /* FFGuideViewController.m in Sources */,
+				B56AF4CD20E0F1B200D2F48C /* FFBusinessBuyProoductController.m in Sources */,
 				B58CB7AE207B10830099773D /* FFNetWorkManager.m in Sources */,
 				B529172D20DA259900A56F41 /* FFBusinessSellingController.m in Sources */,
 				B52382A120ABCEF00087733A /* FFBasicSSTableViewCell.m in Sources */,

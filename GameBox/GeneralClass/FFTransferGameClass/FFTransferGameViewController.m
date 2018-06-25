@@ -55,6 +55,7 @@
     [super initUserInterface];
     self.navigationItem.title = @"申请转游";
     self.view.backgroundColor = [FFColorManager tabbarColor];
+    [self.rightButton setTitle:@"转游须知"];
     self.navigationItem.rightBarButtonItem = self.rightButton;
     [self.view addSubview:self.remindLabel];
     [self.view addSubview:self.selectView];

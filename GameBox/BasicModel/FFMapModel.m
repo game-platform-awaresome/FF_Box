@@ -209,7 +209,8 @@ static FFMapModel *model = nil;
       @"BUYER_RECORD":@"http://api.185sy.com/index.php?g=api&m=AccountTrade&a=buyerRecord",
       @"TRADE_NOTES_H5":@"http://p.185sy.com/tradenotes.html",
       @"TRADE_NOTES":@"http://api.185sy.com/index.php?g=api&m=Products&a=trade_notes",
-      @"PRODUCT_ONSALE":@"http://api.185sy.com/index.php?g=api&m=Products&a=apply_onsale"
+      @"PRODUCT_ONSALE":@"http://api.185sy.com/index.php?g=api&m=Products&a=apply_onsale",
+      @"EXCLUSIVE_ACT":@"http://api.185sy.com/index.php?g=api&m=article&a=exclusive_list"
       };
     return mapDict;
 }

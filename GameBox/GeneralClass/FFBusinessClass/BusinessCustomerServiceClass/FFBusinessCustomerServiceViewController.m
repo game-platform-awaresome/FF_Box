@@ -118,6 +118,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BusinessCustomerCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDE forIndexPath:indexPath];
     cell.qq = self.showArray[indexPath.row];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
@@ -128,7 +129,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     NSString *urlStr = [NSString stringWithFormat:@"mqq://im/chat?chat_type=wpa&uin=%@&version=1&src_type=web",self.showArray[indexPath.row]];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:urlStr]]) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];
+    } else {
+        [UIAlertController showAlertMessage:@"没有安装QQ" dismissTime:0.7 dismissBlock:nil];
+    }
 }
 
 #pragma mark - getter

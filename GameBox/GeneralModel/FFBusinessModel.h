@@ -22,8 +22,10 @@ typedef enum : NSUInteger {
 }FFBusinessPayType;
 
 typedef enum : NSUInteger {
+    FFBusinessSystemTypeNull = 0,
     FFBusinessSystemTypeAndroid = 1,
-    FFBusinessSystemTypeIOS
+    FFBusinessSystemTypeIOS,
+    FFBusinessSystemTypeAll
 } FFBusinessSystemType;
 
 typedef struct FFbusinessUserModel {

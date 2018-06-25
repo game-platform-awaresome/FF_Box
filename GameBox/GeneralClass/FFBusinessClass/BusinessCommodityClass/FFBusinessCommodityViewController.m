@@ -20,6 +20,7 @@
 #import <AlipaySDK/AlipaySDK.h>
 
 #define CELL_IDE @"FFCommodityCell"
+#define BuyNotice @"BuyNotice"
 
 @interface FFBusinessCommodityViewController () <UITableViewDelegate,UITableViewDataSource>
 
@@ -81,7 +82,7 @@ static FFBusinessCommodityViewController *_controller;
     [self.leftButton setImage:[FFImageManager General_back_black]];
     self.navigationItem.leftBarButtonItem = self.leftButton;
     self.navigationItem.title = @"商品详情";
-
+    [self.view addSubview:self.foorView];
 }
 
 - (void)refreshData {
@@ -132,25 +133,33 @@ static FFBusinessCommodityViewController *_controller;
 
 #pragma makr - responds
 - (void)respondsToButButton {
+    syLog(@"显示须知");
+    NSString *objct = OBJECT_FOR_USERDEFAULTS(BuyNotice);
+    if (objct) {
+        //显示购买页面
+    } else {
+        //显示须知
+    }
+    pushViewController(@"FFBusinessBuyProoductController");
     syLog(@"购买");
     if (_isBuying) {
         return;
     }
-    _isBuying = YES;
-    [self startWaiting];
-    [FFBusinessModel buyProductWithID:self.pid payType:FFBusinessPayAlipay Completion:^(NSDictionary * _Nonnull content, BOOL success) {
-        [self stopWaiting];
-        self.isBuying = NO;
-        if (success) {
-            NSString *token = [NSString stringWithFormat:@"%@",CONTENT_DATA[@"token"]];
-            [[AlipaySDK defaultService] payOrder:token fromScheme:@"com.sy185Box.TWKJ.test" callback:^(NSDictionary *resultDic) {
-                syLog(@"alipay sdk result === %@",resultDic);
-            }];
-        } else {
-            [UIAlertController showAlertMessage:content[@"msg"] dismissTime:0.7 dismissBlock:nil];
-        }
-        syLog(@"buy content === %@",content);
-    }];
+//    _isBuying = YES;
+//    [self startWaiting];
+//    [FFBusinessModel buyProductWithID:self.pid payType:FFBusinessPayAlipay Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+//        [self stopWaiting];
+//        self.isBuying = NO;
+//        if (success) {
+//            NSString *token = [NSString stringWithFormat:@"%@",CONTENT_DATA[@"token"]];
+//            [[AlipaySDK defaultService] payOrder:token fromScheme:@"com.sy185Box.TWKJ.test" callback:^(NSDictionary *resultDic) {
+//                syLog(@"alipay sdk result === %@",resultDic);
+//            }];
+//        } else {
+//            [UIAlertController showAlertMessage:content[@"msg"] dismissTime:0.7 dismissBlock:nil];
+//        }
+//        syLog(@"buy content === %@",content);
+//    }];
 }
 
 #pragma mark - setter
@@ -180,7 +189,7 @@ static FFBusinessCommodityViewController *_controller;
 
 - (UITableView *)tableView {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kNAVIGATION_HEIGHT, kSCREEN_WIDTH, kSCREEN_HEIGHT - kNAVIGATION_HEIGHT)];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kNAVIGATION_HEIGHT, kSCREEN_WIDTH, kSCREEN_HEIGHT - kNAVIGATION_HEIGHT - 50)];
         _tableView.alpha = 0;
         _tableView.estimatedRowHeight = kSCREEN_WIDTH / 9 * 16;
         _tableView.estimatedRowHeight = UITableViewAutomaticDimension;
@@ -188,7 +197,7 @@ static FFBusinessCommodityViewController *_controller;
         _tableView.dataSource = self;
         [_tableView registerNib:[UINib nibWithNibName:CELL_IDE bundle:nil] forCellReuseIdentifier:CELL_IDE];
         _tableView.tableHeaderView = self.headerView;
-        _tableView.tableFooterView = self.foorView;
+//        _tableView.tableFooterView = self.foorView;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return _tableView;
@@ -197,7 +206,7 @@ static FFBusinessCommodityViewController *_controller;
 
 - (UIView *)foorView {
     if (!_foorView) {
-        _foorView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 100)];
+        _foorView = [[UIView alloc] initWithFrame:CGRectMake(0, kSCREEN_HEIGHT - 50, kSCREEN_WIDTH, 50)];
         _foorView.backgroundColor = [FFColorManager navigation_bar_white_color];
         [_foorView addSubview:self.buyButton];
     }
@@ -207,7 +216,7 @@ static FFBusinessCommodityViewController *_controller;
 - (UIButton *)buyButton {
     if (!_buyButton) {
         _buyButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        _buyButton.frame = CGRectMake(10, 18, kSCREEN_WIDTH - 20, 44);
+        _buyButton.frame = CGRectMake(10, 3, kSCREEN_WIDTH - 20, 44);
         _buyButton.backgroundColor = [FFColorManager blue_dark];
         _buyButton.layer.cornerRadius = 22;
         _buyButton.layer.masksToBounds = YES;

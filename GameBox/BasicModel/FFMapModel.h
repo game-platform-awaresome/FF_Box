@@ -197,6 +197,10 @@ typedef void(^Completion)(void);
 @property (nonatomic, strong) NSString *TRADE_NOTES;
 @property (nonatomic, strong) NSString *PRODUCT_ONSALE;
 
+/** 独家活动 */ 
+@property (nonatomic, strong) NSString *EXCLUSIVE_ACT;
+
+
 + (instancetype)map;
 
 + (void)getMapCompletion:(Completion)completion;

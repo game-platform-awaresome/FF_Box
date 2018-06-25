@@ -21,6 +21,11 @@
     // Do any additional setup after loading the view.
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navBarBGAlpha = @"1.0";
+}
+
 - (void)initUserInterface {
     [super initUserInterface];
     [self.leftButton setImage:[FFImageManager General_back_black]];
