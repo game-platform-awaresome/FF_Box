@@ -145,8 +145,8 @@ static FFBusinessNoticeController *controller = nil;
 
 #pragma mark - responds
 - (void)respondsToSureButton {
-    @"BusinessProtocol"
-    
+//    @"BusinessProtocol";
+
     [self.window resignKeyWindow];
     self.window = nil;
 }
