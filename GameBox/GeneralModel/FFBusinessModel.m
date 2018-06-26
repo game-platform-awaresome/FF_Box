@@ -298,16 +298,16 @@ FFBusinessUserModel * currentUser(void) {
     [dict setObject:[self uid] forKey:@"buy_id"];
     [dict setObject:[NSString stringWithFormat:@"%lu",type] forKey:@"type"];
     SS_SIGN;
-    [FFNetWorkManager postRequestWithURL:Map.PAY_START Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+    [FFNetWorkManager postRequestWithURL:Map.START_PAYMENT Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         NEW_REQUEST_COMPLETION;
     }];
 }
 
 /** 取消支付 */
 + (void)cancelPaymentWithOrderID:(NSString *)orderID Completion:(RequestCallBackBlock)completion {
-    Pamaras_Key((@[@"orderID"]));
+    Pamaras_Key((@[@"id"]));
     SS_DICT;
-    [dict setObject:orderID forKey:@"orderID"];
+    [dict setObject:orderID forKey:@"id"];
     SS_SIGN;
     [FFNetWorkManager postRequestWithURL:Map.CANCEL_PAYMENT Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         NEW_REQUEST_COMPLETION;
@@ -502,6 +502,13 @@ FFBusinessUserModel * currentUser(void) {
     [dict setObject:[NSString stringWithFormat:@"%lu",type] forKey:@"type"];
     SS_SIGN;
     [FFNetWorkManager postRequestWithURL:Map.START_PAYMENT Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        NEW_REQUEST_COMPLETION;
+    }];
+}
+
+/** 须知 */
++ (void)businessNotice:(RequestCallBackBlock)completion {
+    [FFNetWorkManager postRequestWithURL:Map.TRADE_NOTES Params:nil Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         NEW_REQUEST_COMPLETION;
     }];
 }

@@ -43,6 +43,7 @@
 
 + (NSString *)cheackVersion;
 
++ (NSString *)md5:(NSString *)input;
 
 @end
 

@@ -11,6 +11,7 @@
 
 //third library
 #import <WXApi.h>
+#import "WXApiManager.h"
 #import <TencentOpenAPI/TencentOAuth.h>
 #import <AlipaySDK/AlipaySDK.h>
 
@@ -26,8 +27,9 @@
 #import "FFAdvertisingView.h"
 #import "FFLaunchScreen.h"
 #import "FFShowDiscoutModel.h"
+#import "FFBusinessBuyModel.h"
 
-#define WEIXINAPPID @"wx7ec31aabe8cc710d"
+#define WEIXINAPPID @"wx998abec7ee53ed78"
 #define QQAPPID @"1106099979"
 
 
@@ -43,6 +45,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
     syLog(@"channel === %@",Channel);
+    syLog(@"bundle ==== %@",[[NSBundle mainBundle] bundleIdentifier]);
     //初始化界面
     [self initializeUserInterface];
 
@@ -148,23 +151,26 @@
 }
 
 // NOTE: 9.0以后使用新API接口
-- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options
 {
     if ([url.host isEqualToString:@"safepay"]) {
-        // 支付跳转支付宝钱包进行支付，处理支付结果
         [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
-            syLog(@"result 000000000000= %@",resultDic);
             NSString *status = [NSString stringWithFormat:@"%@",resultDic[@"resultStatus"]];
             if (status.integerValue == 6004 || status.integerValue == 9000 || status.integerValue == 8000 || status.integerValue == 5000 ) {
                 [UIAlertController showAlertMessage:@"支付成功" dismissTime:0.7 dismissBlock:nil];
             } else {
                 //取消订单 ??
-
+                [FFBusinessBuyModel cancelOrder:nil];
             }
         }];
+    } else if ([url.host isEqualToString:@"pay"]) {
+        return [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
     }
+
     return YES;
 }
+
+
 
 
 

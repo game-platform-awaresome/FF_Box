@@ -203,6 +203,9 @@
 		B567010B20C63F4400A44C2E /* FFBetaGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B567010A20C63F4300A44C2E /* FFBetaGameViewController.m */; };
 		B567010E20C63F6C00A44C2E /* FFReservationGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = B567010D20C63F6C00A44C2E /* FFReservationGameController.m */; };
 		B56AF4CD20E0F1B200D2F48C /* FFBusinessBuyProoductController.m in Sources */ = {isa = PBXBuildFile; fileRef = B56AF4CC20E0F1B200D2F48C /* FFBusinessBuyProoductController.m */; };
+		B56AF4D020E21A1000D2F48C /* WXApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B56AF4CE20E21A0F00D2F48C /* WXApiManager.m */; };
+		B56AF4D320E2223C00D2F48C /* FFBusinessBuyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B56AF4D220E2223C00D2F48C /* FFBusinessBuyModel.m */; };
+		B56AF4D620E2376800D2F48C /* FFBusinessNoticeController.m in Sources */ = {isa = PBXBuildFile; fileRef = B56AF4D520E2376800D2F48C /* FFBusinessNoticeController.m */; };
 		B5781AE020A3F4DE00CB1464 /* FFHomeSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5781ADE20A3F4DD00CB1464 /* FFHomeSelectView.m */; };
 		B5781AE320A42CED00CB1464 /* FFUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5781AE220A42CED00CB1464 /* FFUserModel.m */; };
 		B5781AE520A440C900CB1464 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = B5781AE420A440C800CB1464 /* Podfile */; };
@@ -680,6 +683,12 @@
 		B567010D20C63F6C00A44C2E /* FFReservationGameController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFReservationGameController.m; sourceTree = "<group>"; };
 		B56AF4CB20E0F1B200D2F48C /* FFBusinessBuyProoductController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBusinessBuyProoductController.h; sourceTree = "<group>"; };
 		B56AF4CC20E0F1B200D2F48C /* FFBusinessBuyProoductController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBusinessBuyProoductController.m; sourceTree = "<group>"; };
+		B56AF4CE20E21A0F00D2F48C /* WXApiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXApiManager.m; sourceTree = "<group>"; };
+		B56AF4CF20E21A1000D2F48C /* WXApiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiManager.h; sourceTree = "<group>"; };
+		B56AF4D120E2223C00D2F48C /* FFBusinessBuyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBusinessBuyModel.h; sourceTree = "<group>"; };
+		B56AF4D220E2223C00D2F48C /* FFBusinessBuyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBusinessBuyModel.m; sourceTree = "<group>"; };
+		B56AF4D420E2376800D2F48C /* FFBusinessNoticeController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBusinessNoticeController.h; sourceTree = "<group>"; };
+		B56AF4D520E2376800D2F48C /* FFBusinessNoticeController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBusinessNoticeController.m; sourceTree = "<group>"; };
 		B5781ADE20A3F4DD00CB1464 /* FFHomeSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFHomeSelectView.m; sourceTree = "<group>"; };
 		B5781ADF20A3F4DE00CB1464 /* FFHomeSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFHomeSelectView.h; sourceTree = "<group>"; };
 		B5781AE120A42CED00CB1464 /* FFUserModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFUserModel.h; sourceTree = "<group>"; };
@@ -1890,6 +1899,8 @@
 			children = (
 				B54457E120CFD29A000B63E4 /* FFBusinessNoticeViewController.h */,
 				B54457E220CFD29A000B63E4 /* FFBusinessNoticeViewController.m */,
+				B56AF4D420E2376800D2F48C /* FFBusinessNoticeController.h */,
+				B56AF4D520E2376800D2F48C /* FFBusinessNoticeController.m */,
 			);
 			path = BusinessNoticeClass;
 			sourceTree = "<group>";
@@ -2047,6 +2058,8 @@
 				B580A4F420D38CD400680194 /* FFBusinessCommodityViewController.m */,
 				B56AF4CB20E0F1B200D2F48C /* FFBusinessBuyProoductController.h */,
 				B56AF4CC20E0F1B200D2F48C /* FFBusinessBuyProoductController.m */,
+				B56AF4CF20E21A1000D2F48C /* WXApiManager.h */,
+				B56AF4CE20E21A0F00D2F48C /* WXApiManager.m */,
 			);
 			path = BusinessCommodityClass;
 			sourceTree = "<group>";
@@ -2581,6 +2594,8 @@
 				B5D6142420BE8C5B0010CA98 /* FFShowDiscoutModel.m */,
 				B5B61AA920CE0DF200D507A6 /* FFBusinessModel.h */,
 				B5B61AAA20CE0DF200D507A6 /* FFBusinessModel.m */,
+				B56AF4D120E2223C00D2F48C /* FFBusinessBuyModel.h */,
+				B56AF4D220E2223C00D2F48C /* FFBusinessBuyModel.m */,
 			);
 			path = GeneralModel;
 			sourceTree = "<group>";
@@ -2807,6 +2822,7 @@
 				B56700FE20C4EB1400A44C2E /* FFNewGameHeaderView.m in Sources */,
 				B51BD09320B53F41005B9DE1 /* FFAboutViewController.m in Sources */,
 				B51BD05220B5158E005B9DE1 /* FFInviteRankListViewController.m in Sources */,
+				B56AF4D320E2223C00D2F48C /* FFBusinessBuyModel.m in Sources */,
 				B523832D20AE9EF40087733A /* DriveInfoCell.m in Sources */,
 				B51BD16B20B650CE005B9DE1 /* FFMyNewsViewController.m in Sources */,
 				B51BD16D20B650CE005B9DE1 /* FFMyNewsCell.m in Sources */,
@@ -2822,6 +2838,7 @@
 				B51BD11720B5628F005B9DE1 /* FFPlatformDetailViewController.m in Sources */,
 				B523826A20AABCCA0087733A /* FFGAViewController.m in Sources */,
 				B580A53B20D3C73A00680194 /* NSBundle+ZLPhotoBrowser.m in Sources */,
+				B56AF4D620E2376800D2F48C /* FFBusinessNoticeController.m in Sources */,
 				B580A55220D3C73A00680194 /* ZLPhotoConfiguration.m in Sources */,
 				B5F1493320B80CB300044873 /* FFSearchResultController.m in Sources */,
 				B523833E20AE9F680087733A /* FFViewFactory.m in Sources */,
@@ -3011,6 +3028,7 @@
 				B5781AF220A535B900CB1464 /* FFServersModel.m in Sources */,
 				B580A54420D3C73A00680194 /* ZLCustomCamera.m in Sources */,
 				B523832A20AE9EF40087733A /* FFDriveUserModel.m in Sources */,
+				B56AF4D020E21A1000D2F48C /* WXApiManager.m in Sources */,
 				B523832620AE9EF40087733A /* FFMineBaseTableViewController.m in Sources */,
 				B599691A20BB9B4200BC6084 /* FFLaunchScreen.m in Sources */,
 				B599691720BB9AD700BC6084 /* FFAdvertisingView.m in Sources */,
@@ -3205,7 +3223,7 @@
 					"$(PROJECT_DIR)/GameBox/Others/Third_Library/trackingio",
 					"$(PROJECT_DIR)/GameBox",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sy185Box.TWKJ.test;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sy185Box.TWKJ;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -3236,7 +3254,7 @@
 					"$(PROJECT_DIR)/GameBox/Others/Third_Library/trackingio",
 					"$(PROJECT_DIR)/GameBox",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sy185Box.TWKJ.test;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sy185Box.TWKJ;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};

@@ -1663,7 +1663,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="33" id="GN5-eX-u1f">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="33" id="GN5-eX-u1f">
                                         <rect key="frame" x="0.0" y="110" width="375" height="33"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GN5-eX-u1f" id="0zv-Fw-2dw">
@@ -1685,29 +1685,30 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="50" id="mj8-uL-vhj">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="50" id="mj8-uL-vhj">
                                         <rect key="frame" x="0.0" y="143" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mj8-uL-vhj" id="TxP-B1-gyf">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Abq-D2-Gae">
-                                                    <rect key="frame" x="16" y="2.5" width="44" height="44"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Business_aliPay" translatesAutoresizingMaskIntoConstraints="NO" id="Abq-D2-Gae">
+                                                    <rect key="frame" x="16" y="9.5" width="30" height="30"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="44" id="gqX-E8-OP8"/>
-                                                        <constraint firstAttribute="height" constant="44" id="ni4-wa-5UB"/>
+                                                        <constraint firstAttribute="width" constant="30" id="gqX-E8-OP8"/>
+                                                        <constraint firstAttribute="height" constant="30" id="ni4-wa-5UB"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="支付宝" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ix-SD-1VH">
-                                                    <rect key="frame" x="68" y="14" width="52" height="21"/>
+                                                    <rect key="frame" x="54" y="14" width="52" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="boJ-Na-SQz">
-                                                    <rect key="frame" x="319" y="9" width="46" height="30"/>
-                                                    <state key="normal" title="Button"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="boJ-Na-SQz">
+                                                    <rect key="frame" x="346" y="13" width="19" height="22"/>
+                                                    <state key="normal" image="Business_pay_deselect"/>
+                                                    <state key="selected" image="Business_pay_select"/>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -1720,7 +1721,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="50" id="4jy-qW-YxG">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="50" id="4jy-qW-YxG">
                                         <rect key="frame" x="0.0" y="193" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4jy-qW-YxG" id="AlU-kw-XHA">
@@ -1735,21 +1736,22 @@
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="微信" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SXv-Tq-bcu">
-                                                    <rect key="frame" x="68" y="14" width="35" height="21"/>
+                                                    <rect key="frame" x="54" y="14" width="35" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="T6E-Jo-7qE">
-                                                    <rect key="frame" x="16" y="2" width="44" height="44"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="New_shared_weixin" translatesAutoresizingMaskIntoConstraints="NO" id="T6E-Jo-7qE">
+                                                    <rect key="frame" x="16" y="9" width="30" height="30"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="44" id="4VP-sa-f4U"/>
-                                                        <constraint firstAttribute="width" constant="44" id="KJg-3j-kFa"/>
+                                                        <constraint firstAttribute="height" constant="30" id="4VP-sa-f4U"/>
+                                                        <constraint firstAttribute="width" constant="30" id="KJg-3j-kFa"/>
                                                     </constraints>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t2r-Kj-TdV">
-                                                    <rect key="frame" x="321" y="9" width="46" height="30"/>
-                                                    <state key="normal" title="Button"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t2r-Kj-TdV">
+                                                    <rect key="frame" x="348" y="13" width="19" height="22"/>
+                                                    <state key="normal" image="Business_pay_deselect"/>
+                                                    <state key="selected" image="Business_pay_select"/>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -1765,11 +1767,11 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="344" id="OcR-dK-4Tf">
-                                        <rect key="frame" x="0.0" y="243" width="375" height="344"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="304" id="OcR-dK-4Tf">
+                                        <rect key="frame" x="0.0" y="243" width="375" height="304"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OcR-dK-4Tf" id="LYC-pS-YVl">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="343.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="303.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="温馨提示 : " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wKq-LP-OhV">
@@ -1837,10 +1839,25 @@
                             <outlet property="delegate" destination="b7D-6T-9Dh" id="10H-bY-Ica"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="alipayButton" destination="boJ-Na-SQz" id="wNj-fG-OQE"/>
+                        <outlet property="amount" destination="Tt9-HJ-5st" id="Yra-E3-aOD"/>
+                        <outlet property="productImageView" destination="Yc8-19-cxF" id="ZZ2-a3-XZZ"/>
+                        <outlet property="productServer" destination="27R-8W-6Kb" id="sEg-Bh-fPs"/>
+                        <outlet property="productSystem" destination="7OU-c5-lbm" id="wJC-DA-Tf0"/>
+                        <outlet property="protuctTitle" destination="HY1-do-IeT" id="BWT-50-jX7"/>
+                        <outlet property="wechatButton" destination="t2r-Kj-TdV" id="YYM-nN-EUk"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tqA-Uz-zhp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4845.6000000000004" y="832.53373313343332"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Business_aliPay" width="20" height="20"/>
+        <image name="Business_pay_deselect" width="19" height="19"/>
+        <image name="Business_pay_select" width="19" height="19"/>
+        <image name="New_shared_weixin" width="45" height="36"/>
+    </resources>
 </document>

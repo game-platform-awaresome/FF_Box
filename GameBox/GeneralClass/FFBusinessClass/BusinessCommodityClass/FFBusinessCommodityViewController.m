@@ -145,27 +145,13 @@ static FFBusinessCommodityViewController *_controller;
     if (_isBuying) {
         return;
     }
-//    _isBuying = YES;
-//    [self startWaiting];
-//    [FFBusinessModel buyProductWithID:self.pid payType:FFBusinessPayAlipay Completion:^(NSDictionary * _Nonnull content, BOOL success) {
-//        [self stopWaiting];
-//        self.isBuying = NO;
-//        if (success) {
-//            NSString *token = [NSString stringWithFormat:@"%@",CONTENT_DATA[@"token"]];
-//            [[AlipaySDK defaultService] payOrder:token fromScheme:@"com.sy185Box.TWKJ.test" callback:^(NSDictionary *resultDic) {
-//                syLog(@"alipay sdk result === %@",resultDic);
-//            }];
-//        } else {
-//            [UIAlertController showAlertMessage:content[@"msg"] dismissTime:0.7 dismissBlock:nil];
-//        }
-//        syLog(@"buy content === %@",content);
-//    }];
 }
 
 #pragma mark - setter
 - (void)setPid:(NSString *)pid {
     _pid = [NSString stringWithFormat:@"%@",pid];
     syLog(@"pid === %@",pid);
+    [FFCommodityModel sharedModel].productID = pid;
     [self.tableView removeFromSuperview];
     self.tableView = nil;
     [self refreshData];

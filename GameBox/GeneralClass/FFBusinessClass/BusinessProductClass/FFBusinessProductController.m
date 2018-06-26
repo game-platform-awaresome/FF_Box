@@ -97,7 +97,10 @@ static FFBusinessProductController *controller = nil;
     if (self.productInfo != nil) {
         [self setInfoWith:self.productInfo];
         self.productInfo = nil;
+    } else {
+        [self setInfoWith:nil];
     }
+
     self.selectPicButton.hidden = !self.isEdit;
 }
 

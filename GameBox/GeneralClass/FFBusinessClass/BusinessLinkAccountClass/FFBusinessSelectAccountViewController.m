@@ -11,6 +11,7 @@
 #import "FFBusinessModel.h"
 #import <UIImageView+WebCache.h>
 #import "FFBusinessSDKCell.h"
+#import "FFBusinessNoticeController.h"
 
 #define ListModel()
 #define CELL_IDE @"FFBusinessSDKCell"
@@ -132,11 +133,15 @@
     } else if (self.model.listArray[indexPath.section].isSelling) {
         [UIAlertController showAlertMessage:@"账号交易中" dismissTime:0.7 dismissBlock:nil];
     } else {
-        NSDictionary *dict = self.model.listArray[indexPath.section].gameList[indexPath.row];
-        FFBusinessProductController *controller = [FFBusinessProductController initwithGameName:[dict[@"game_name"] copy] Account:self.model.listArray[indexPath.section].SDKUsername];
-        controller.appid = dict[@"appid"];
-        controller.systemArray = dict[@"system"];
-        [self pushViewController:controller];
+        if (OBJECT_FOR_USERDEFAULTS(@"BusinessProtocol")) {
+            NSDictionary *dict = self.model.listArray[indexPath.section].gameList[indexPath.row];
+            FFBusinessProductController *controller = [FFBusinessProductController initwithGameName:[dict[@"game_name"] copy] Account:self.model.listArray[indexPath.section].SDKUsername];
+            controller.appid = dict[@"appid"];
+            controller.systemArray = dict[@"system"];
+            [self pushViewController:controller];
+        } else {
+            [FFBusinessNoticeController showNoticeWithType:FFNoticeTypeSell];
+        }
     }
 }
 

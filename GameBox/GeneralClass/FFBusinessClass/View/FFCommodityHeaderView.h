@@ -25,6 +25,7 @@
 @property (nonatomic, strong) NSString *serverName;
 @property (nonatomic, strong) NSString *system;
 @property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *productID;
 
 
 + (FFCommodityModel *)sharedModel;

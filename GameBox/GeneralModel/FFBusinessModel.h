@@ -198,6 +198,12 @@ FFBusinessUserModel * currentUser(void);
                  payType:(FFBusinessPayType)type
               Completion:(RequestCallBackBlock)completion;
 
+/** 须知 */
++ (void)businessNotice:(RequestCallBackBlock)completion;
+
+
+
+
 
 @end
 

@@ -27,7 +27,17 @@
 			<string>com.sy185Box.TWKJ</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.sy185Box.TWKJ.test</string>
+				<string>com.sy185Box.TWKJ</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>wechat</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>wx998abec7ee53ed78</string>
 			</array>
 		</dict>
 	</array>

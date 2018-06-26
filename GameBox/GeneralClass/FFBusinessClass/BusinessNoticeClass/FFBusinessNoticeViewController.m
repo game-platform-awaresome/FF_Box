@@ -23,6 +23,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setBackgroundColor:[FFColorManager navigation_bar_white_color]];
     self.navBarBGAlpha = @"1.0";
 }
 

@@ -12,6 +12,7 @@
 #import "FFBusinessHeaderView.h"
 #import "YBPopupMenu.h"
 #import "FFBusinessSearchViewController.h"
+#import "FFBusinessNoticeController.h"
 
 #define CELL_IDE @"FFBusinessTableViewCell"
 #define Button_tag 10086
@@ -83,6 +84,8 @@ static FFBusinessViewController *_controller = nil;
 }
 
 - (void)refreshData {
+    //刷新须知
+    [FFBusinessNoticeController refreshNotice];
     Reset_page;
     [self startWaiting];
     [FFBusinessModel productListWithGameName:self.gameName Page:New_page System:self.systemType OrderType:self.orderType OrderMethod:(FFBusinessOrderMethodDescending) Completion:^(NSDictionary * _Nonnull content, BOOL success) {
@@ -214,7 +217,11 @@ void clickButton(long idx) {
         case 0: {pushViewController(@"FFBusinessNoticeViewController");} break;
         case 1: {
             if ([FFBusinessModel uid]) {
-                pushViewController(@"FFBusinessSelectAccountViewController");
+                if (OBJECT_FOR_USERDEFAULTS(@"BusinessProtocol")) {
+                    pushViewController(@"FFBusinessSelectAccountViewController");
+                } else {
+                    [FFBusinessNoticeController showNoticeWithType:FFNoticeTypeSell];
+                }
             } else  {
                 pushViewController(@"FFBusinessLoginViewController");
             }
