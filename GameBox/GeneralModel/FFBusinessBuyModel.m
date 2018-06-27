@@ -18,6 +18,7 @@ static FFBusinessBuyModel *model = nil;
     dispatch_once(&onceToken, ^{
         if (model == nil) {
             model = [[FFBusinessBuyModel alloc] init];
+            model.productAmountLimit = @"20";
         }
     });
     return model;
@@ -28,6 +29,15 @@ static FFBusinessBuyModel *model = nil;
     [FFBusinessModel cancelPaymentWithOrderID:[FFBusinessBuyModel sharedModel].orderID Completion:block];
 }
 
+
+- (void)setProductAmountLimit:(NSString *)productAmountLimit {
+    productAmountLimit = [NSString stringWithFormat:@"%@",productAmountLimit];
+    if (productAmountLimit.integerValue > 0) {
+        _productAmountLimit = productAmountLimit;
+    } else {
+        _productAmountLimit = @"20";
+    }
+}
 
 
 @end

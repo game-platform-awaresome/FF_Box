@@ -17,6 +17,7 @@
 #import "FFBusinessModel.h"
 #import "FFWaitingManager.h"
 #import <UIImageView+WebCache.h>
+#import "FFBusinessBuyModel.h"
 
 #define CELL_IDE @"FFPostStatusImageCell"
 
@@ -46,7 +47,7 @@ void respondsToTimePicker(NSString *time);
 
 
 
-@interface FFBusinessProductController () <UICollectionViewDelegate, UICollectionViewDataSource>
+@interface FFBusinessProductController () <UICollectionViewDelegate, UICollectionViewDataSource,UITextFieldDelegate>
 
 
 @property (nonatomic, strong) UICollectionViewFlowLayout *layout;
@@ -97,8 +98,6 @@ static FFBusinessProductController *controller = nil;
     if (self.productInfo != nil) {
         [self setInfoWith:self.productInfo];
         self.productInfo = nil;
-    } else {
-        [self setInfoWith:nil];
     }
 
     self.selectPicButton.hidden = !self.isEdit;
@@ -129,6 +128,7 @@ static FFBusinessProductController *controller = nil;
     self.sellButton.backgroundColor = [FFColorManager blue_dark];
     self.sellButton.layer.cornerRadius = self.sellButton.bounds.size.height / 2;
     self.sellButton.layer.masksToBounds = YES;
+    self.productTitleTF.delegate = self;
 }
 
 #pragma makr - responds
@@ -161,7 +161,14 @@ static FFBusinessProductController *controller = nil;
         return;
     }
     if (self.amountTF.text.length < 1) {
-        Show_message(@"价格");
+        Show_message(@"请输入价格");
+        _isRequest = NO;
+        return;
+    }
+
+    if (self.amountTF.text.floatValue < [FFBusinessBuyModel sharedModel].productAmountLimit.floatValue) {
+        NSString *message = [NSString stringWithFormat:@"价格不能小于%@元",[FFBusinessBuyModel sharedModel].productAmountLimit];
+        Show_message(message);
         _isRequest = NO;
         return;
     }
@@ -218,21 +225,14 @@ void respondsToTimePicker(NSString *time) {
 
 //限制用户名和密码长度
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-//    if (textField == self.userNameTF) {
-//        if (range.length == 1 && string.length == 0) {
-//            return YES;
-//        } else if (self.userNameTF.text.length >= 11) {
-//            self.userNameTF.text = [textField.text substringToIndex:11];
-//            return NO;
-//        }
-//    } else if (textField == self.passwordTF) {
-//        if (range.length == 1 && string.length == 0) {
-//            return YES;
-//        } else if (self.passwordTF.text.length >= 16) {
-//            self.passwordTF.text = [textField.text substringToIndex:16];
-//            return NO;
-//        }
-//    }
+    if (textField == self.productTitleTF) {
+        if (range.length == 1 && string.length == 0) {
+            return YES;
+        } else if (self.productTitleTF.text.length >= 20) {
+            self.productTitleTF.text = [textField.text substringToIndex:20];
+            return NO;
+        }
+    }
     return YES;
 }
 
@@ -361,16 +361,20 @@ void respondsToTimePicker(NSString *time) {
 }
 
 - (void)setInfoWith:(NSDictionary *)productInfo {
-    self.account = productInfo[@"account"];
-    self.gameName = productInfo[@"game_name"];
-    self.serverTF.text = [NSString stringWithFormat:@"%@",productInfo[@"server_name"]];
-    self.systemLabel.text = ([NSString stringWithFormat:@"%@",productInfo[@"system"]].integerValue == 2) ? @"iOS" : @"Android";
-    self.systemArray = productInfo[@"system_enabled"];
-    self.amountTF.text = [NSString stringWithFormat:@"%@",productInfo[@"price"]];
-    self.productTitleTF.text = [NSString stringWithFormat:@"%@",productInfo[@"title"]];
-    self.productDetailLabel.text = [NSString stringWithFormat:@"%@",productInfo[@"desc"]];
-    self.imagesName = productInfo[@"imgs"];
-    [self.collectionView reloadData];
+    if (productInfo != nil) {
+        self.account = productInfo[@"account"];
+        self.gameName = productInfo[@"game_name"];
+        self.serverTF.text = [NSString stringWithFormat:@"%@",productInfo[@"server_name"]];
+        self.systemLabel.text = ([NSString stringWithFormat:@"%@",productInfo[@"system"]].integerValue == 2) ? @"iOS" : @"Android";
+        self.systemArray = productInfo[@"system_enabled"];
+        self.amountTF.text = [NSString stringWithFormat:@"%@",productInfo[@"price"]];
+        self.productTitleTF.text = [NSString stringWithFormat:@"%@",productInfo[@"title"]];
+        self.productDetailLabel.text = [NSString stringWithFormat:@"%@",productInfo[@"desc"]];
+        self.imagesName = productInfo[@"imgs"];
+        [self.collectionView reloadData];
+    } else {
+
+    }
 }
 
 - (void)setIsEdit:(BOOL)isEdit {

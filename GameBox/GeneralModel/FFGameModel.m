@@ -239,7 +239,14 @@
  * 游戏活动
  */
 + (void)gameActivityWithPage:(NSString *)page ServerType:(FFGameServersType)serverType Completion:(RequestCallBackBlock)completion {
-    [self gameGuideAndActivityWithPage:page ServerType:serverType Type:FFActivity Completion:completion];
+    Pamaras_Key(@[@"platform"]);
+    Mutable_Dict(2);
+    [dict setObject:[NSString stringWithFormat:@"%lu",serverType] forKey:@"platform"];
+    SS_SIGN;
+    [FFNetWorkManager postRequestWithURL:Map.EXCLUSIVE_ACT Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        syLog(@"activity ====== %@",content);
+        NEW_REQUEST_COMPLETION;;
+    }];
 }
 
 

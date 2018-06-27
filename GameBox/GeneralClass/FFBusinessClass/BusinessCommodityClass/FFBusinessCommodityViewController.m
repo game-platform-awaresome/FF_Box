@@ -19,6 +19,7 @@
 #import <ZLProgressHUD.h>
 #import <AlipaySDK/AlipaySDK.h>
 
+#import "FFBusinessNoticeController.h"
 #define CELL_IDE @"FFCommodityCell"
 #define BuyNotice @"BuyNotice"
 
@@ -134,17 +135,9 @@ static FFBusinessCommodityViewController *_controller;
 #pragma makr - responds
 - (void)respondsToButButton {
     syLog(@"显示须知");
-    NSString *objct = OBJECT_FOR_USERDEFAULTS(BuyNotice);
-    if (objct) {
-        //显示购买页面
-    } else {
-        //显示须知
-    }
-    pushViewController(@"FFBusinessBuyProoductController");
-    syLog(@"购买");
-    if (_isBuying) {
-        return;
-    }
+    [FFBusinessNoticeController showNoticeWithType:FFNoticeTypeSell ClickButtonBLock:^{
+        pushViewController(@"FFBusinessBuyProoductController");
+    }];
 }
 
 #pragma mark - setter

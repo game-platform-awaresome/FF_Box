@@ -136,6 +136,40 @@
     }
 }
 
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    return (self.type == FFBusinessUserSellTypeCancel);
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewCellEditingStyleDelete;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return @"删除";
+}
+
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (editingStyle ==UITableViewCellEditingStyleDelete) {//如果编辑样式为删除样式
+        if (indexPath.row < [self.showArray count]) {
+            [self startWaiting];
+            [FFBusinessModel deleteProductWIthProductID:self.showArray[indexPath.row][@"id"] Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+                [self stopWaiting];
+                if (success) {
+                    [self.showArray removeObjectAtIndex:indexPath.row];//移除数据源的数据
+                    [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];//移除tableView中的数据
+                } else {
+                    [UIAlertController showAlertMessage:content[@"msg"] dismissTime:0.7 dismissBlock:nil];
+                }
+            }];
+//                syLog(@"delete === %@",self.showArray[indexPath.row][@"id"]);
+
+        }
+    }
+}
+
 #pragma mark - method
 - (void)DropOffProductWith:(NSDictionary *)dict {
     syLog(@"下架商品");

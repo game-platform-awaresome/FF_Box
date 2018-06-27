@@ -201,8 +201,9 @@ FFBusinessUserModel * currentUser(void);
 /** 须知 */
 + (void)businessNotice:(RequestCallBackBlock)completion;
 
-
-
+/** 删除商品 */
++ (void)deleteProductWIthProductID:(NSString *)productID
+                        Completion:(RequestCallBackBlock)completion;
 
 
 @end

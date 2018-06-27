@@ -14,6 +14,9 @@
 
 @property (nonatomic, strong) NSString *orderID;
 
+@property (nonatomic, strong) NSString *productAmountLimit;
+
+
 + (instancetype)sharedModel;
 
 + (void)cancelOrder:(RequestCallBackBlock)block;

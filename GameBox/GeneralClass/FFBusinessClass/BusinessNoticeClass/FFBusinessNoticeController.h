@@ -14,11 +14,15 @@ typedef enum : NSUInteger {
 } FFNoticeType;
 
 
+typedef void(^ClickButtonBLock)(void);
+
 @interface FFBusinessNoticeController : FFBasicViewController
+
+@property (nonatomic, strong) ClickButtonBLock block;
 
 + (void)refreshNotice;
 
-+ (void)showNoticeWithType:(FFNoticeType)type;
++ (void)showNoticeWithType:(FFNoticeType)type ClickButtonBLock:(ClickButtonBLock)block;
 
 
 

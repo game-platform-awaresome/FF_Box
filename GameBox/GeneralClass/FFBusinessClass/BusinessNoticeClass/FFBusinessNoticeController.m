@@ -8,6 +8,7 @@
 
 #import "FFBusinessNoticeController.h"
 #import "FFBusinessModel.h"
+#import "FFBusinessBuyModel.h"
 
 #define Back_View_width kSCREEN_WIDTH * 0.9
 #define Back_View_height kSCREEN_HEIGHT * 0.9
@@ -31,6 +32,9 @@
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIView *headerView;
 @property (nonatomic, strong) UIImageView *headerImage;
+
+
+@property (nonatomic, strong) UIView *footerView;
 
 
 @end
@@ -69,16 +73,18 @@ static FFBusinessNoticeController *controller = nil;
             [self sharedController].buyNotice = CONTENT_DATA[@"buyer_notes"];
             [self sharedController].sellNotice = CONTENT_DATA[@"seller_notes"];
             [self sharedController].businessNotice = CONTENT_DATA[@"business_notice"];
+            [FFBusinessBuyModel sharedModel].productAmountLimit = CONTENT_DATA[@"product_price_limit"];
         }
         syLog(@"notice ================= %@",content);
     }];
 }
 
 
-+ (void)showNoticeWithType:(FFNoticeType)type {
++ (void)showNoticeWithType:(FFNoticeType)type ClickButtonBLock:(ClickButtonBLock)block {
     [self sharedController].type = type;
+    [self sharedController].block = block;
     if (type == FFNoticeTypeBuy) {
-        [self sharedController].headerImage.image = [UIImage imageNamed:@"Business_header_noitce_buy"];
+        [self sharedController].headerImage.image = [UIImage imageNamed:@"Business_header_notice_buy"];
     } else {
         [self sharedController].headerImage.image = [UIImage imageNamed:@"Business_header_noitce_sell"];
     }
@@ -146,10 +152,21 @@ static FFBusinessNoticeController *controller = nil;
 #pragma mark - responds
 - (void)respondsToSureButton {
 //    @"BusinessProtocol";
+    if (self.type == FFNoticeTypeBuy) {
+        SAVEOBJECT_AT_USERDEFAULTS(@"1", @"BusinessBuyProtocol");
+    } else {
+        SAVEOBJECT_AT_USERDEFAULTS(@"1", @"BusinessProtocol");
+    }
+
+    if (self.block) {
+        self.block();
+    }
 
     [self.window resignKeyWindow];
     self.window = nil;
 }
+
+#pragma mark - setter
 
 #pragma mark - getter
 - (UIWindow *)window {
@@ -168,8 +185,18 @@ static FFBusinessNoticeController *controller = nil;
         _backView.backgroundColor = [FFColorManager navigation_bar_white_color];
         [_backView addSubview:self.tableView];
         [_backView addSubview:self.sureButton];
+//        [_backView addSubview:self.footerView];
     }
     return _backView;
+}
+
+- (UIView *)footerView {
+    if (!_footerView) {
+        _footerView = [[UIView alloc] initWithFrame:CGRectMake(0, Back_View_height - 83, Back_View_width, 83)];
+        _footerView.backgroundColor = [UIColor whiteColor];
+        [_footerView addSubview:self.sureButton];
+    }
+    return _footerView;
 }
 
 - (UIButton *)sureButton {

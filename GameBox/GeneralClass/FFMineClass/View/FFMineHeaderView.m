@@ -183,7 +183,7 @@
 
 - (UIImageView *)vipImageView {
     if (!_vipImageView) {
-        _vipImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 21, 21)];
+        _vipImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 22, 28)];
     }
     return _vipImageView;
 }

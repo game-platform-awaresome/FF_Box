@@ -335,7 +335,7 @@
 
 - (NSArray *)selectControllerName {
     return @[@"FFBTNewGameController",
-             @"FFActivityViewController",
+             @"FFBTActivityViewController",
              @"FFHeightVipController",
              @"FFBTOpenServerViewController"];
     /** FFBTClassifyController */

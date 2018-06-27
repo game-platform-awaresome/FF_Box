@@ -93,7 +93,6 @@
 		B523826120AAB6850087733A /* FFBTClassifyController.m in Sources */ = {isa = PBXBuildFile; fileRef = B523826020AAB6850087733A /* FFBTClassifyController.m */; };
 		B523826420AAB6950087733A /* FFZKClassifyController.m in Sources */ = {isa = PBXBuildFile; fileRef = B523826320AAB6950087733A /* FFZKClassifyController.m */; };
 		B523826A20AABCCA0087733A /* FFGAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B523826920AABCCA0087733A /* FFGAViewController.m */; };
-		B523826E20AABD220087733A /* FFActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B523826D20AABD220087733A /* FFActivityViewController.m */; };
 		B523827920AACA670087733A /* FFGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B523827820AACA670087733A /* FFGuideViewController.m */; };
 		B523827E20AADECA0087733A /* FFGameTypeListController.m in Sources */ = {isa = PBXBuildFile; fileRef = B523827D20AADECA0087733A /* FFGameTypeListController.m */; };
 		B523828220AADF9D0087733A /* FFHeightVipController.m in Sources */ = {isa = PBXBuildFile; fileRef = B523828120AADF9D0087733A /* FFHeightVipController.m */; };
@@ -216,6 +215,11 @@
 		B5781AFA20A57B1C00CB1464 /* FFBasicBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5781AF920A57B1C00CB1464 /* FFBasicBannerView.m */; };
 		B5781AFE20A57D3600CB1464 /* FFImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B5781AFD20A57D3600CB1464 /* FFImageManager.m */; };
 		B5781B0020A5903700CB1464 /* ImageAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5781AFF20A5903700CB1464 /* ImageAssets.xcassets */; };
+		B57B53AC20E38223001770A3 /* FFActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B57B53AB20E38223001770A3 /* FFActivityViewController.m */; };
+		B57B53B320E38409001770A3 /* FFActivityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B57B53B120E38409001770A3 /* FFActivityTableViewCell.m */; };
+		B57B53B420E38409001770A3 /* FFActivityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B57B53B220E38409001770A3 /* FFActivityTableViewCell.xib */; };
+		B57B53B720E3888B001770A3 /* FFBTActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B57B53B620E3888B001770A3 /* FFBTActivityViewController.m */; };
+		B57B53BA20E3889B001770A3 /* FFZKActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B57B53B920E3889B001770A3 /* FFZKActivityViewController.m */; };
 		B580A4EC20D26EB700680194 /* FFBusinessProductDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B580A4EB20D26EB700680194 /* FFBusinessProductDetailViewController.m */; };
 		B580A4F020D35FE000680194 /* FFBusinessBindAlipayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B580A4EF20D35FE000680194 /* FFBusinessBindAlipayViewController.m */; };
 		B580A4F520D38CD400680194 /* FFBusinessCommodityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B580A4F420D38CD400680194 /* FFBusinessCommodityViewController.m */; };
@@ -478,8 +482,6 @@
 		B523826320AAB6950087733A /* FFZKClassifyController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFZKClassifyController.m; sourceTree = "<group>"; };
 		B523826820AABCCA0087733A /* FFGAViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFGAViewController.h; sourceTree = "<group>"; };
 		B523826920AABCCA0087733A /* FFGAViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFGAViewController.m; sourceTree = "<group>"; };
-		B523826C20AABD220087733A /* FFActivityViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFActivityViewController.h; sourceTree = "<group>"; };
-		B523826D20AABD220087733A /* FFActivityViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFActivityViewController.m; sourceTree = "<group>"; };
 		B523827720AACA670087733A /* FFGuideViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFGuideViewController.h; sourceTree = "<group>"; };
 		B523827820AACA670087733A /* FFGuideViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFGuideViewController.m; sourceTree = "<group>"; };
 		B523827C20AADECA0087733A /* FFGameTypeListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFGameTypeListController.h; sourceTree = "<group>"; };
@@ -707,6 +709,15 @@
 		B5781AFC20A57D3600CB1464 /* FFImageManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFImageManager.h; sourceTree = "<group>"; };
 		B5781AFD20A57D3600CB1464 /* FFImageManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFImageManager.m; sourceTree = "<group>"; };
 		B5781AFF20A5903700CB1464 /* ImageAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ImageAssets.xcassets; sourceTree = "<group>"; };
+		B57B53AA20E38223001770A3 /* FFActivityViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFActivityViewController.h; sourceTree = "<group>"; };
+		B57B53AB20E38223001770A3 /* FFActivityViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFActivityViewController.m; sourceTree = "<group>"; };
+		B57B53B020E38409001770A3 /* FFActivityTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFActivityTableViewCell.h; sourceTree = "<group>"; };
+		B57B53B120E38409001770A3 /* FFActivityTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFActivityTableViewCell.m; sourceTree = "<group>"; };
+		B57B53B220E38409001770A3 /* FFActivityTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FFActivityTableViewCell.xib; sourceTree = "<group>"; };
+		B57B53B520E3888B001770A3 /* FFBTActivityViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBTActivityViewController.h; sourceTree = "<group>"; };
+		B57B53B620E3888B001770A3 /* FFBTActivityViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBTActivityViewController.m; sourceTree = "<group>"; };
+		B57B53B820E3889B001770A3 /* FFZKActivityViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFZKActivityViewController.h; sourceTree = "<group>"; };
+		B57B53B920E3889B001770A3 /* FFZKActivityViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFZKActivityViewController.m; sourceTree = "<group>"; };
 		B580A4EA20D26EB700680194 /* FFBusinessProductDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBusinessProductDetailViewController.h; sourceTree = "<group>"; };
 		B580A4EB20D26EB700680194 /* FFBusinessProductDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBusinessProductDetailViewController.m; sourceTree = "<group>"; };
 		B580A4EE20D35FE000680194 /* FFBusinessBindAlipayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBusinessBindAlipayViewController.h; sourceTree = "<group>"; };
@@ -1450,8 +1461,6 @@
 		B523826B20AABCF20087733A /* FFActivityController */ = {
 			isa = PBXGroup;
 			children = (
-				B523826C20AABD220087733A /* FFActivityViewController.h */,
-				B523826D20AABD220087733A /* FFActivityViewController.m */,
 			);
 			path = FFActivityController;
 			sourceTree = "<group>";
@@ -2042,6 +2051,38 @@
 			path = ImageManager;
 			sourceTree = "<group>";
 		};
+		B57B53A920E381F5001770A3 /* FFAcitvityClass */ = {
+			isa = PBXGroup;
+			children = (
+				B57B53AF20E383F2001770A3 /* View */,
+				B57B53AA20E38223001770A3 /* FFActivityViewController.h */,
+				B57B53AB20E38223001770A3 /* FFActivityViewController.m */,
+				B57B53AE20E383B0001770A3 /* ChildController */,
+			);
+			path = FFAcitvityClass;
+			sourceTree = "<group>";
+		};
+		B57B53AE20E383B0001770A3 /* ChildController */ = {
+			isa = PBXGroup;
+			children = (
+				B57B53B520E3888B001770A3 /* FFBTActivityViewController.h */,
+				B57B53B620E3888B001770A3 /* FFBTActivityViewController.m */,
+				B57B53B820E3889B001770A3 /* FFZKActivityViewController.h */,
+				B57B53B920E3889B001770A3 /* FFZKActivityViewController.m */,
+			);
+			path = ChildController;
+			sourceTree = "<group>";
+		};
+		B57B53AF20E383F2001770A3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B57B53B020E38409001770A3 /* FFActivityTableViewCell.h */,
+				B57B53B120E38409001770A3 /* FFActivityTableViewCell.m */,
+				B57B53B220E38409001770A3 /* FFActivityTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		B580A4ED20D35F8B00680194 /* BusinessBindAlipayClass */ = {
 			isa = PBXGroup;
 			children = (
@@ -2446,6 +2487,7 @@
 		B5D505812086F17A000B7B50 /* GeneralClass */ = {
 			isa = PBXGroup;
 			children = (
+				B57B53A920E381F5001770A3 /* FFAcitvityClass */,
 				B53600ED20CA835900DFE96A /* FFBusinessClass */,
 				B599694C20BD38F000BC6084 /* FFPromiseClass */,
 				B5F1492920B80BA000044873 /* FFSearchClass */,
@@ -2758,6 +2800,7 @@
 				B544581620D10BEC000B63E4 /* FFBusinessSDKCell.xib in Resources */,
 				B51BD03520B50976005B9DE1 /* FFMyprizeCell.xib in Resources */,
 				B5D10447209066FD00CA1949 /* FFClassifyTableCell.xib in Resources */,
+				B57B53B420E38409001770A3 /* FFActivityTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2826,6 +2869,7 @@
 				B523832D20AE9EF40087733A /* DriveInfoCell.m in Sources */,
 				B51BD16B20B650CE005B9DE1 /* FFMyNewsViewController.m in Sources */,
 				B51BD16D20B650CE005B9DE1 /* FFMyNewsCell.m in Sources */,
+				B57B53B720E3888B001770A3 /* FFBTActivityViewController.m in Sources */,
 				B5F1492820B8065500044873 /* FFWriteCommentController.m in Sources */,
 				B523833020AE9EF40087733A /* FFDetailHeaderView.m in Sources */,
 				B5781AE020A3F4DE00CB1464 /* FFHomeSelectView.m in Sources */,
@@ -2857,6 +2901,7 @@
 				B51BD11820B5628F005B9DE1 /* FFGoldDetailViewController.m in Sources */,
 				B51BD03420B50976005B9DE1 /* FFMyprizeCell.m in Sources */,
 				B580A53F20D3C73A00680194 /* ToastUtils.m in Sources */,
+				B57B53AC20E38223001770A3 /* FFActivityViewController.m in Sources */,
 				B52382C720AE82830087733A /* FFGameDetailCell.m in Sources */,
 				B51BD17120B650CE005B9DE1 /* FFSystemInfoCell.m in Sources */,
 				B5D10431208F3CB300CA1949 /* FFWaitingManager.m in Sources */,
@@ -2922,6 +2967,7 @@
 				B599694620BBABF700BC6084 /* FFStatisticsModel.m in Sources */,
 				B523825C20AA86110087733A /* FFZKNewGameController.m in Sources */,
 				B523828720AADFCE0087733A /* FFDiscountController.m in Sources */,
+				B57B53B320E38409001770A3 /* FFActivityTableViewCell.m in Sources */,
 				B58CB7AC207B10830099773D /* FFBasicModel.m in Sources */,
 				B523826120AAB6850087733A /* FFBTClassifyController.m in Sources */,
 				B529172220D9F77300A56F41 /* BusinessCustomerCell.m in Sources */,
@@ -2980,7 +3026,6 @@
 				B580A55120D3C73A00680194 /* ZLPhotoBrowserCell.m in Sources */,
 				B599695220BD396400BC6084 /* FFPromiseViewController.m in Sources */,
 				B51BD12620B595EB005B9DE1 /* FFMissionCenterViewController.m in Sources */,
-				B523826E20AABD220087733A /* FFActivityViewController.m in Sources */,
 				B52383C020AEC0E60087733A /* FFGameDetailSectionModel.m in Sources */,
 				B52382A920AC30780087733A /* FFCurrentGameModel.m in Sources */,
 				B5D1044320904E1E00CA1949 /* FFGameViewController.m in Sources */,
@@ -3026,6 +3071,7 @@
 				B523828B20AB0C7F0087733A /* FFBasicScrollSelectController.m in Sources */,
 				B5D1044B2090694200CA1949 /* FFWebViewController.m in Sources */,
 				B5781AF220A535B900CB1464 /* FFServersModel.m in Sources */,
+				B57B53BA20E3889B001770A3 /* FFZKActivityViewController.m in Sources */,
 				B580A54420D3C73A00680194 /* ZLCustomCamera.m in Sources */,
 				B523832A20AE9EF40087733A /* FFDriveUserModel.m in Sources */,
 				B56AF4D020E21A1000D2F48C /* WXApiManager.m in Sources */,

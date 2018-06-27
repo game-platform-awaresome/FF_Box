@@ -32,6 +32,7 @@
 
 @property (nonatomic, assign) FFBusinessOrderType orderType;
 @property (nonatomic, assign) FFBusinessSystemType systemType;
+@property (nonatomic, assign) FFBusinessOrderMethod orderMethod;
 @property (nonatomic, strong) NSString *gameName;
 
 
@@ -71,6 +72,7 @@ static FFBusinessViewController *_controller = nil;
     [super initDataSource];
     _systemType = FFBusinessSystemTypeNull;
     _orderType = FFBusinessOrderTypeTime;
+    _orderMethod = FFBusinessOrderMethodDescending;
     _gameName = @"";
 }
 
@@ -88,7 +90,7 @@ static FFBusinessViewController *_controller = nil;
     [FFBusinessNoticeController refreshNotice];
     Reset_page;
     [self startWaiting];
-    [FFBusinessModel productListWithGameName:self.gameName Page:New_page System:self.systemType OrderType:self.orderType OrderMethod:(FFBusinessOrderMethodDescending) Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+    [FFBusinessModel productListWithGameName:self.gameName Page:New_page System:self.systemType OrderType:self.orderType OrderMethod:self.orderMethod Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         [self stopWaiting];
         syLog(@"product === %@",content);
         if (success) {
@@ -155,23 +157,27 @@ static FFBusinessViewController *_controller = nil;
         return;
     }
 
-    NSDictionary *dict = self.showArray[indexPath.row];
-    Class FFGameViewController = NSClassFromString(@"FFBusinessCommodityViewController");
-    SEL selector = NSSelectorFromString(@"sharedController");
-    if ([FFGameViewController respondsToSelector:selector]) {
-        IMP imp = [FFGameViewController methodForSelector:selector];
-        UIViewController *(*func)(void) = (void *)imp;
-        UIViewController *vc = func();
-        if (vc) {
-            NSString *pid = (dict[@"id"]) ? dict[@"id"] : dict[@"gid"];
-            [vc setValue:pid forKey:@"pid"];
-            [self pushViewController:vc];
+//    if (OBJECT_FOR_USERDEFAULTS(@"BusinessBuyProtocol")) {
+        NSDictionary *dict = self.showArray[indexPath.row];
+        Class FFGameViewController = NSClassFromString(@"FFBusinessCommodityViewController");
+        SEL selector = NSSelectorFromString(@"sharedController");
+        if ([FFGameViewController respondsToSelector:selector]) {
+            IMP imp = [FFGameViewController methodForSelector:selector];
+            UIViewController *(*func)(void) = (void *)imp;
+            UIViewController *vc = func();
+            if (vc) {
+                NSString *pid = (dict[@"id"]) ? dict[@"id"] : dict[@"gid"];
+                [vc setValue:pid forKey:@"pid"];
+                [self pushViewController:vc];
+            } else {
+                syLog(@"\n ! %s \n present error :  %s not exist \n ! \n",__func__,sel_getName(selector));
+            }
         } else {
             syLog(@"\n ! %s \n present error :  %s not exist \n ! \n",__func__,sel_getName(selector));
         }
-    } else {
-        syLog(@"\n ! %s \n present error :  %s not exist \n ! \n",__func__,sel_getName(selector));
-    }
+//    } else {
+//        [FFBusinessNoticeController showNoticeWithType:FFNoticeTypeBuy];
+//    }
 
 }
 
@@ -217,11 +223,7 @@ void clickButton(long idx) {
         case 0: {pushViewController(@"FFBusinessNoticeViewController");} break;
         case 1: {
             if ([FFBusinessModel uid]) {
-                if (OBJECT_FOR_USERDEFAULTS(@"BusinessProtocol")) {
-                    pushViewController(@"FFBusinessSelectAccountViewController");
-                } else {
-                    [FFBusinessNoticeController showNoticeWithType:FFNoticeTypeSell];
-                }
+                pushViewController(@"FFBusinessSelectAccountViewController");
             } else  {
                 pushViewController(@"FFBusinessLoginViewController");
             }
@@ -240,7 +242,7 @@ void clickButton(long idx) {
 
 /** 排序选择 */
 - (void)respondsToSortButton:(UIButton *)sender {
-    YBPopupMenu *menu = [YBPopupMenu showRelyOnView:sender titles:@[@"按时间排序",@"按价格排序"] icons:nil menuWidth:sender.bounds.size.width + 10 delegate:self];
+    YBPopupMenu *menu = [YBPopupMenu showRelyOnView:sender titles:@[@"最新发布",@"价格升序",@"价格降序"] icons:nil menuWidth:sender.bounds.size.width + 10 delegate:self];
     menu.tag = Menu_tag + 0;
     menu.fontSize = 10.f;
     menu.type = YBPopupMenuTypeDark;
@@ -259,12 +261,20 @@ void clickButton(long idx) {
     if (menu.tag == Menu_tag + 0) {
         switch (index) {
             case 0: {
-                [self.sortButton setTitle:@"按时间排序" forState:(UIControlStateNormal)];
+                [self.sortButton setTitle:@"最新发布" forState:(UIControlStateNormal)];
+                self.orderMethod = FFBusinessOrderMethodDescending;
                 self.orderType = FFBusinessOrderTypeTime;
                 break;
             }
             case 1: {
-                [self.sortButton setTitle:@"按价格排序" forState:(UIControlStateNormal)];
+                [self.sortButton setTitle:@"价格升序" forState:(UIControlStateNormal)];
+                self.orderMethod = FFBusinessOrderMethodAscending;
+                self.orderType = FFBusinessOrderTypePrice;
+                break;
+            }
+            case 2: {
+                [self.sortButton setTitle:@"价格降序" forState:(UIControlStateNormal)];
+                self.orderMethod = FFBusinessOrderMethodDescending;
                 self.orderType = FFBusinessOrderTypePrice;
                 break;
             }
@@ -297,6 +307,7 @@ void clickButton(long idx) {
                 break;
         }
     }
+    [self begainRefresData];
 }
 
 - (void)respondsToSelectGameButton {
@@ -321,14 +332,12 @@ void clickButton(long idx) {
 - (void)setOrderType:(FFBusinessOrderType)orderType {
     if (_orderType != orderType) {
         _orderType = orderType;
-        [self begainRefresData];
     }
 }
 
 - (void)setSystemType:(FFBusinessSystemType)systemType {
     if (_systemType != systemType) {
         _systemType = systemType;
-        [self begainRefresData];
     }
 }
 

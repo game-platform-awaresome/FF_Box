@@ -8,7 +8,7 @@
 
 #import "FFBusinessWarehouseController.h"
 
-@interface FFBusinessWarehouseController ()
+@interface FFBusinessWarehouseController () <UITableViewDelegate>
 
 @end
 
@@ -22,9 +22,6 @@
 - (FFBusinessUserSellType)type {
     return FFBusinessUserSellTypeCancel;
 }
-
-
-
 
 
 

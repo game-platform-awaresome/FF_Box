@@ -513,6 +513,19 @@ FFBusinessUserModel * currentUser(void) {
     }];
 }
 
+/** 删除商品 */
++ (void)deleteProductWIthProductID:(NSString *)productID Completion:(RequestCallBackBlock)completion {
+    Pamaras_Key((@[@"uid",@"product_id"]));
+    SS_DICT;
+    [dict setObject:productID forKey:@"product_id"];
+    [dict setObject:[self uid] forKey:@"uid"];
+    SS_SIGN;
+    [FFNetWorkManager postRequestWithURL:Map.DELETE_PRODUCTS Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        NEW_REQUEST_COMPLETION;
+    }];
+}
+
+
 
 @end
 

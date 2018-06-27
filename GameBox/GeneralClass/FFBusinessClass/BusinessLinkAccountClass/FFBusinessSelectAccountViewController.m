@@ -31,7 +31,10 @@
 
 @property (nonatomic, assign) BOOL isAnimation;;
 
+
 - (void)setListWithArray:(NSArray *)array;
+
+
 
 @end
 
@@ -42,6 +45,9 @@
 
 @property (nonatomic, strong) UIView *headerView;
 @property (nonatomic, strong) UIButton *headerTitle;
+
+@property (nonatomic, strong) UIView *selectFooterView;
+
 
 @property (nonatomic, strong) FFBusinessSDKListModel *model;
 
@@ -74,9 +80,9 @@
     self.tableView.mj_footer = nil;
     self.tableView.frame = CGRectMake(0, kNAVIGATION_HEIGHT, kSCREEN_WIDTH, kSCREEN_HEIGHT - kNAVIGATION_HEIGHT);
     self.tableView.tableHeaderView = self.headerView;
-    UIView *footerview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 44)];
-    footerview.backgroundColor = [FFColorManager navigation_bar_white_color];
-    self.tableView.tableFooterView = footerview;
+//    UIView *footerview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 44)];
+//    footerview.backgroundColor = [FFColorManager navigation_bar_white_color];
+    self.tableView.tableFooterView = self.selectFooterView;
     [self.rightButton setTitle:@"关联账号"];
     self.navigationItem.rightBarButtonItem = self.rightButton;
 }
@@ -133,15 +139,22 @@
     } else if (self.model.listArray[indexPath.section].isSelling) {
         [UIAlertController showAlertMessage:@"账号交易中" dismissTime:0.7 dismissBlock:nil];
     } else {
-        if (OBJECT_FOR_USERDEFAULTS(@"BusinessProtocol")) {
+//        if (OBJECT_FOR_USERDEFAULTS(@"BusinessProtocol")) {
+//            NSDictionary *dict = self.model.listArray[indexPath.section].gameList[indexPath.row];
+//            FFBusinessProductController *controller = [FFBusinessProductController initwithGameName:[dict[@"game_name"] copy] Account:self.model.listArray[indexPath.section].SDKUsername];
+//            controller.appid = dict[@"appid"];
+//            controller.systemArray = dict[@"system"];
+//            [self pushViewController:controller];
+//        } else {
+        WeakSelf;
+        [FFBusinessNoticeController showNoticeWithType:FFNoticeTypeSell ClickButtonBLock:^{
             NSDictionary *dict = self.model.listArray[indexPath.section].gameList[indexPath.row];
             FFBusinessProductController *controller = [FFBusinessProductController initwithGameName:[dict[@"game_name"] copy] Account:self.model.listArray[indexPath.section].SDKUsername];
             controller.appid = dict[@"appid"];
             controller.systemArray = dict[@"system"];
-            [self pushViewController:controller];
-        } else {
-            [FFBusinessNoticeController showNoticeWithType:FFNoticeTypeSell];
-        }
+            [weakSelf pushViewController:controller];
+        }];
+//        }
     }
 }
 
@@ -293,6 +306,28 @@
         _model = [[FFBusinessSDKListModel alloc] init];
     }
     return _model;
+}
+
+- (UIView *)selectFooterView {
+    if (!_selectFooterView) {
+        _selectFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 60)];
+        _selectFooterView.backgroundColor = [FFColorManager navigation_bar_white_color];
+
+        UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, kSCREEN_WIDTH, 30)];
+        label1.textColor = [FFColorManager textColorLight];
+        label1.text = @"1.只能出售有充值金额的游戏.";
+        label1.font = [UIFont systemFontOfSize:13];
+        [_selectFooterView addSubview:label1];
+
+        UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(10, 30, kSCREEN_WIDTH, 30)];
+        label2.textColor = [FFColorManager textColorLight];
+        label2.text = @"2.提交信息后,账号将会被冻结.";
+        label2.font = [UIFont systemFontOfSize:13];
+        [_selectFooterView addSubview:label2];
+
+        [_selectFooterView.layer addSublayer:[self creatLineWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 1)]];
+    }
+    return _selectFooterView;
 }
 
 

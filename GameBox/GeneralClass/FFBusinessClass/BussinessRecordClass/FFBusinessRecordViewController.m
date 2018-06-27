@@ -35,6 +35,7 @@
     self.navigationItem.leftBarButtonItem = self.leftButton;
     self.navigationItem.title = @"交易记录";
     [self.view addSubview:self.selectView];
+    [self.scrollView setScrollEnabled:NO];
 }
 
 
