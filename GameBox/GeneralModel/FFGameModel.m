@@ -314,7 +314,7 @@
     for(int i = 0; i < CC_SHA1_DIGEST_LENGTH; i++)
         [cha1str appendFormat:@"%02x", digest[i]];
 
-    NSString *sign = [cha1str uppercaseString];
+    NSString *sign = [cha1str uppercaseString]; 
     [dict setObject:sign forKey:@"sign"];
     [dict setObject:Channel forKey:@"channel_id"];
 

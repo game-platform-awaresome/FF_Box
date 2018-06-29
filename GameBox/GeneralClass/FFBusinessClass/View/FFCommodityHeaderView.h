@@ -28,6 +28,9 @@
 @property (nonatomic, strong) NSString *productID;
 
 
+@property (nonatomic, strong) NSMutableDictionary<NSNumber *, NSNumber *> *heightDict;
+
+
 + (FFCommodityModel *)sharedModel;
 
 - (void)setInfoWithDict:(NSDictionary *)dict;

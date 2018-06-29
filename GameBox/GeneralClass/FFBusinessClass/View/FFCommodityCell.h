@@ -13,5 +13,13 @@
 
 @property (nonatomic, strong) NSString *imageUrl;
 
+@property (nonatomic, strong) UITableView *tableView;
+
+@property (nonatomic, strong) NSIndexPath *indexPath;
+
+@property (weak, nonatomic) IBOutlet UIImageView *pimageView;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageHeight;
+
 
 @end

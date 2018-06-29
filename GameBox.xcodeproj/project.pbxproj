@@ -2083,6 +2083,13 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		B57B53BC20E4BFC0001770A3 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		B580A4ED20D35F8B00680194 /* BusinessBindAlipayClass */ = {
 			isa = PBXGroup;
 			children = (
@@ -2223,6 +2230,7 @@
 		B58CB79C207B10830099773D /* MainEntry */ = {
 			isa = PBXGroup;
 			children = (
+				B57B53BC20E4BFC0001770A3 /* New Group */,
 				B58CB79D207B10830099773D /* FFAppDelegate.h */,
 				B58CB79E207B10830099773D /* FFAppDelegate.m */,
 				B58CB79F207B10830099773D /* Info.plist */,

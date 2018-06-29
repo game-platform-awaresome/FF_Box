@@ -32,6 +32,7 @@
 
     self.postImageView.layer.cornerRadius = 8;
     self.postImageView.layer.masksToBounds = YES;
+    [self.postImageView setContentMode:(UIViewContentModeScaleAspectFill)];
 }
 
 

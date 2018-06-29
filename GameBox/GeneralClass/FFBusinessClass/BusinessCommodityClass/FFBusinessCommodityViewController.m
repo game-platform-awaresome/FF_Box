@@ -23,6 +23,8 @@
 #define CELL_IDE @"FFCommodityCell"
 #define BuyNotice @"BuyNotice"
 
+#import <UIImageView+WebCache.h>
+
 @interface FFBusinessCommodityViewController () <UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) FFCommodityHeaderView *headerView;
@@ -120,8 +122,30 @@ static FFBusinessCommodityViewController *_controller;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     FFCommodityCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDE forIndexPath:indexPath];
-    cell.imageUrl = [FFCommodityModel sharedModel].imageArray[indexPath.row];
+
+    NSString *urlStr = [NSString stringWithFormat:@"%@",[FFCommodityModel sharedModel].imageArray[indexPath.row]];
+    NSURL *url = [NSURL URLWithString:urlStr];
+    [cell.pimageView sd_setImageWithURL:url completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        if (image.size.height) {
+            CGFloat ratio = image.size.height / image.size.width;
+            CGFloat imageW = kSCREEN_WIDTH - 32;
+            CGFloat imageH = ratio * imageW + 16;
+            if (![[[FFCommodityModel sharedModel].heightDict allKeys] containsObject:@(indexPath.row)]) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.tableView beginUpdates];
+                    [[FFCommodityModel sharedModel].heightDict setObject:@(imageH) forKey:@(indexPath.row)];
+                    //                [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+                    [self.tableView endUpdates];
+                });
+            }
+        }
+    }];
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    return [FFCommodityModel sharedModel].heightArray[indexPath.row].floatValue;
+    return [[[FFCommodityModel sharedModel].heightDict objectForKey:@(indexPath.row)] floatValue];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -170,8 +194,10 @@ static FFBusinessCommodityViewController *_controller;
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kNAVIGATION_HEIGHT, kSCREEN_WIDTH, kSCREEN_HEIGHT - kNAVIGATION_HEIGHT - 50)];
         _tableView.alpha = 0;
-        _tableView.estimatedRowHeight = kSCREEN_WIDTH / 9 * 16;
-        _tableView.estimatedRowHeight = UITableViewAutomaticDimension;
+
+        _tableView.estimatedRowHeight = 100;
+//        _tableView.rowHeight = UITableViewAutomaticDimension;
+
         _tableView.delegate = self;
         _tableView.dataSource = self;
         [_tableView registerNib:[UINib nibWithNibName:CELL_IDE bundle:nil] forCellReuseIdentifier:CELL_IDE];

@@ -439,6 +439,7 @@ void clickButton(long idx) {
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.tableHeaderView = self.headerView;
     self.tableView.tableFooterView = [UIView new];
+    
     if (@available(iOS 11.0, *)) {
         self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     }

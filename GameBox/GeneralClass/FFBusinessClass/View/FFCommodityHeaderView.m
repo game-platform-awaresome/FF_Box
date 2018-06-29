@@ -289,7 +289,14 @@ static FFCommodityModel *_model = nil;
 }
 
 - (void)setImageArray:(NSArray *)imageArray {
-    if ([imageArray isKindOfClass:[NSArray class]]) _imageArray = imageArray;
+    if ([imageArray isKindOfClass:[NSArray class]])  {
+        _imageArray = imageArray;
+        _heightDict = [NSMutableDictionary dictionaryWithCapacity:imageArray.count];
+//        _heightArray = [NSMutableArray arrayWithCapacity:imageArray.count];
+//        for (id obj in imageArray) {
+//            [_heightArray addObject:[NSNumber numberWithFloat:200.f]];
+//        }
+    }
 }
 
 - (void)setPayMoney:(NSString *)payMoney {
