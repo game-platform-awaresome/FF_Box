@@ -220,6 +220,13 @@
 		B57B53B420E38409001770A3 /* FFActivityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B57B53B220E38409001770A3 /* FFActivityTableViewCell.xib */; };
 		B57B53B720E3888B001770A3 /* FFBTActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B57B53B620E3888B001770A3 /* FFBTActivityViewController.m */; };
 		B57B53BA20E3889B001770A3 /* FFZKActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B57B53B920E3889B001770A3 /* FFZKActivityViewController.m */; };
+		B57B53BF20E5CFAF001770A3 /* FFBoxHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B57B53BE20E5CFAF001770A3 /* FFBoxHandler.m */; };
+		B57B53C220E5E1CF001770A3 /* FFDefaultWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = B57B53C120E5E1CF001770A3 /* FFDefaultWindow.m */; };
+		B57B53C620E5E1F1001770A3 /* FFMainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = B57B53C520E5E1F1001770A3 /* FFMainWindow.m */; };
+		B57B53CB20E6195D001770A3 /* FFBusinessNoticeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B57B53C920E6195D001770A3 /* FFBusinessNoticeCell.m */; };
+		B57B53CC20E6195D001770A3 /* FFBusinessNoticeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B57B53CA20E6195D001770A3 /* FFBusinessNoticeCell.xib */; };
+		B57B53CF20E61E98001770A3 /* FFSBTOpenServerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B57B53CE20E61E98001770A3 /* FFSBTOpenServerViewController.m */; };
+		B57B53D220E61EAF001770A3 /* FFSZKOpenServerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B57B53D120E61EAF001770A3 /* FFSZKOpenServerViewController.m */; };
 		B580A4EC20D26EB700680194 /* FFBusinessProductDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B580A4EB20D26EB700680194 /* FFBusinessProductDetailViewController.m */; };
 		B580A4F020D35FE000680194 /* FFBusinessBindAlipayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B580A4EF20D35FE000680194 /* FFBusinessBindAlipayViewController.m */; };
 		B580A4F520D38CD400680194 /* FFBusinessCommodityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B580A4F420D38CD400680194 /* FFBusinessCommodityViewController.m */; };
@@ -718,6 +725,19 @@
 		B57B53B620E3888B001770A3 /* FFBTActivityViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBTActivityViewController.m; sourceTree = "<group>"; };
 		B57B53B820E3889B001770A3 /* FFZKActivityViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFZKActivityViewController.h; sourceTree = "<group>"; };
 		B57B53B920E3889B001770A3 /* FFZKActivityViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFZKActivityViewController.m; sourceTree = "<group>"; };
+		B57B53BD20E5CFAF001770A3 /* FFBoxHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBoxHandler.h; sourceTree = "<group>"; };
+		B57B53BE20E5CFAF001770A3 /* FFBoxHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBoxHandler.m; sourceTree = "<group>"; };
+		B57B53C020E5E1CF001770A3 /* FFDefaultWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFDefaultWindow.h; sourceTree = "<group>"; };
+		B57B53C120E5E1CF001770A3 /* FFDefaultWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFDefaultWindow.m; sourceTree = "<group>"; };
+		B57B53C420E5E1F1001770A3 /* FFMainWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFMainWindow.h; sourceTree = "<group>"; };
+		B57B53C520E5E1F1001770A3 /* FFMainWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFMainWindow.m; sourceTree = "<group>"; };
+		B57B53C820E6195D001770A3 /* FFBusinessNoticeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBusinessNoticeCell.h; sourceTree = "<group>"; };
+		B57B53C920E6195D001770A3 /* FFBusinessNoticeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBusinessNoticeCell.m; sourceTree = "<group>"; };
+		B57B53CA20E6195D001770A3 /* FFBusinessNoticeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FFBusinessNoticeCell.xib; sourceTree = "<group>"; };
+		B57B53CD20E61E98001770A3 /* FFSBTOpenServerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFSBTOpenServerViewController.h; sourceTree = "<group>"; };
+		B57B53CE20E61E98001770A3 /* FFSBTOpenServerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFSBTOpenServerViewController.m; sourceTree = "<group>"; };
+		B57B53D020E61EAF001770A3 /* FFSZKOpenServerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFSZKOpenServerViewController.h; sourceTree = "<group>"; };
+		B57B53D120E61EAF001770A3 /* FFSZKOpenServerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFSZKOpenServerViewController.m; sourceTree = "<group>"; };
 		B580A4EA20D26EB700680194 /* FFBusinessProductDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBusinessProductDetailViewController.h; sourceTree = "<group>"; };
 		B580A4EB20D26EB700680194 /* FFBusinessProductDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBusinessProductDetailViewController.m; sourceTree = "<group>"; };
 		B580A4EE20D35FE000680194 /* FFBusinessBindAlipayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBusinessBindAlipayViewController.h; sourceTree = "<group>"; };
@@ -1809,6 +1829,10 @@
 				B52383AF20AEAE170087733A /* FFBTOpenServerViewController.m */,
 				B52383BB20AEB6590087733A /* FFZKOpenServerViewController.h */,
 				B52383BC20AEB6590087733A /* FFZKOpenServerViewController.m */,
+				B57B53CD20E61E98001770A3 /* FFSBTOpenServerViewController.h */,
+				B57B53CE20E61E98001770A3 /* FFSBTOpenServerViewController.m */,
+				B57B53D020E61EAF001770A3 /* FFSZKOpenServerViewController.h */,
+				B57B53D120E61EAF001770A3 /* FFSZKOpenServerViewController.m */,
 				B52383A520AEAC400087733A /* FFBasicOpenServerController.h */,
 				B52383A620AEAC400087733A /* FFBasicOpenServerController.m */,
 			);
@@ -2083,11 +2107,24 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		B57B53BC20E4BFC0001770A3 /* New Group */ = {
+		B57B53BC20E4BFC0001770A3 /* Handler */ = {
 			isa = PBXGroup;
 			children = (
+				B57B53BD20E5CFAF001770A3 /* FFBoxHandler.h */,
+				B57B53BE20E5CFAF001770A3 /* FFBoxHandler.m */,
 			);
-			path = "New Group";
+			path = Handler;
+			sourceTree = "<group>";
+		};
+		B57B53C320E5E1D9001770A3 /* FFWindow */ = {
+			isa = PBXGroup;
+			children = (
+				B57B53C420E5E1F1001770A3 /* FFMainWindow.h */,
+				B57B53C520E5E1F1001770A3 /* FFMainWindow.m */,
+				B57B53C020E5E1CF001770A3 /* FFDefaultWindow.h */,
+				B57B53C120E5E1CF001770A3 /* FFDefaultWindow.m */,
+			);
+			path = FFWindow;
 			sourceTree = "<group>";
 		};
 		B580A4ED20D35F8B00680194 /* BusinessBindAlipayClass */ = {
@@ -2230,7 +2267,8 @@
 		B58CB79C207B10830099773D /* MainEntry */ = {
 			isa = PBXGroup;
 			children = (
-				B57B53BC20E4BFC0001770A3 /* New Group */,
+				B57B53C320E5E1D9001770A3 /* FFWindow */,
+				B57B53BC20E4BFC0001770A3 /* Handler */,
 				B58CB79D207B10830099773D /* FFAppDelegate.h */,
 				B58CB79E207B10830099773D /* FFAppDelegate.m */,
 				B58CB79F207B10830099773D /* Info.plist */,
@@ -2442,6 +2480,9 @@
 				B544581220D10BEC000B63E4 /* FFBusinessSDKCell.h */,
 				B544581320D10BEC000B63E4 /* FFBusinessSDKCell.m */,
 				B544581420D10BEC000B63E4 /* FFBusinessSDKCell.xib */,
+				B57B53C820E6195D001770A3 /* FFBusinessNoticeCell.h */,
+				B57B53C920E6195D001770A3 /* FFBusinessNoticeCell.m */,
+				B57B53CA20E6195D001770A3 /* FFBusinessNoticeCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2495,20 +2536,20 @@
 		B5D505812086F17A000B7B50 /* GeneralClass */ = {
 			isa = PBXGroup;
 			children = (
-				B57B53A920E381F5001770A3 /* FFAcitvityClass */,
+				B5D505822086F1A3000B7B50 /* FFHomeClass */,
 				B53600ED20CA835900DFE96A /* FFBusinessClass */,
+				B523839D20AEAA620087733A /* FFOpenServerClass */,
+				B52382CD20AE9EF40087733A /* DriveClass */,
+				B5D505AA20898D34000B7B50 /* FFMineClass */,
+				B5D1043F20904DC200CA1949 /* FFGameClass */,
+				B57B53A920E381F5001770A3 /* FFAcitvityClass */,
 				B599694C20BD38F000BC6084 /* FFPromiseClass */,
 				B5F1492920B80BA000044873 /* FFSearchClass */,
 				B51BD0C620B54D3F005B9DE1 /* FFCommentClass */,
-				B52382CD20AE9EF40087733A /* DriveClass */,
-				B5D1043F20904DC200CA1949 /* FFGameClass */,
-				B5D505822086F1A3000B7B50 /* FFHomeClass */,
-				B523839D20AEAA620087733A /* FFOpenServerClass */,
 				B5781AE620A44AF300CB1464 /* FFBTServerClass */,
 				B5781AF320A573C500CB1464 /* FFZKServerClass */,
 				B523827A20AADE400087733A /* FFGameTypeListClass */,
 				B5D5059F20887B00000B7B50 /* FFDriveClass */,
-				B5D505AA20898D34000B7B50 /* FFMineClass */,
 				B5D104322090164900CA1949 /* FFRankListClass */,
 				B523825520AA73CF0087733A /* FFNewGameClass */,
 				B567010720C63EF700A44C2E /* FFBetaGameClass */,
@@ -2781,6 +2822,7 @@
 				B51BD17220B650CE005B9DE1 /* FFSystemInfoCell.xib in Resources */,
 				B580A4FD20D3BA6700680194 /* FFCommodityCell.xib in Resources */,
 				B523832E20AE9EF40087733A /* DriveInfoCell.xib in Resources */,
+				B57B53CC20E6195D001770A3 /* FFBusinessNoticeCell.xib in Resources */,
 				B5781B0020A5903700CB1464 /* ImageAssets.xcassets in Resources */,
 				B52382AE20AC34FE0087733A /* FFCustomizeCell.xib in Resources */,
 				B523832820AE9EF40087733A /* MyStoryboard.storyboard in Resources */,
@@ -2876,10 +2918,12 @@
 				B56AF4D320E2223C00D2F48C /* FFBusinessBuyModel.m in Sources */,
 				B523832D20AE9EF40087733A /* DriveInfoCell.m in Sources */,
 				B51BD16B20B650CE005B9DE1 /* FFMyNewsViewController.m in Sources */,
+				B57B53C620E5E1F1001770A3 /* FFMainWindow.m in Sources */,
 				B51BD16D20B650CE005B9DE1 /* FFMyNewsCell.m in Sources */,
 				B57B53B720E3888B001770A3 /* FFBTActivityViewController.m in Sources */,
 				B5F1492820B8065500044873 /* FFWriteCommentController.m in Sources */,
 				B523833020AE9EF40087733A /* FFDetailHeaderView.m in Sources */,
+				B57B53BF20E5CFAF001770A3 /* FFBoxHandler.m in Sources */,
 				B5781AE020A3F4DE00CB1464 /* FFHomeSelectView.m in Sources */,
 				B51BD03020B50976005B9DE1 /* FFCoinDetailCell.m in Sources */,
 				B51BD0D920B55A2C005B9DE1 /* FFTransferGameViewController.m in Sources */,
@@ -2891,6 +2935,7 @@
 				B523826A20AABCCA0087733A /* FFGAViewController.m in Sources */,
 				B580A53B20D3C73A00680194 /* NSBundle+ZLPhotoBrowser.m in Sources */,
 				B56AF4D620E2376800D2F48C /* FFBusinessNoticeController.m in Sources */,
+				B57B53D220E61EAF001770A3 /* FFSZKOpenServerViewController.m in Sources */,
 				B580A55220D3C73A00680194 /* ZLPhotoConfiguration.m in Sources */,
 				B5F1493320B80CB300044873 /* FFSearchResultController.m in Sources */,
 				B523833E20AE9F680087733A /* FFViewFactory.m in Sources */,
@@ -2920,6 +2965,7 @@
 				B580A55820D3C73A00680194 /* ZLThumbnailViewController.m in Sources */,
 				B523833920AE9EF40087733A /* FFMineViewCell.m in Sources */,
 				B580A54A20D3C73A00680194 /* ZLDrawItem.m in Sources */,
+				B57B53C220E5E1CF001770A3 /* FFDefaultWindow.m in Sources */,
 				B51BD08520B53AC8005B9DE1 /* RebateTableViewCell.m in Sources */,
 				B51BD07920B53A5F005B9DE1 /* FFRebateRecordViewController.m in Sources */,
 				B523832520AE9EF40087733A /* FFDriveNumbersViewController.m in Sources */,
@@ -2978,6 +3024,7 @@
 				B57B53B320E38409001770A3 /* FFActivityTableViewCell.m in Sources */,
 				B58CB7AC207B10830099773D /* FFBasicModel.m in Sources */,
 				B523826120AAB6850087733A /* FFBTClassifyController.m in Sources */,
+				B57B53CB20E6195D001770A3 /* FFBusinessNoticeCell.m in Sources */,
 				B529172220D9F77300A56F41 /* BusinessCustomerCell.m in Sources */,
 				B523827920AACA670087733A /* FFGuideViewController.m in Sources */,
 				B56AF4CD20E0F1B200D2F48C /* FFBusinessBuyProoductController.m in Sources */,
@@ -2999,6 +3046,7 @@
 				B5B61AB120CE20A400D507A6 /* FFBusinessLoginViewController.m in Sources */,
 				B51BD07720B53A5F005B9DE1 /* FFApplyRebateViewController.m in Sources */,
 				B532510920B299FE007D7239 /* FFGameFooterView.m in Sources */,
+				B57B53CF20E61E98001770A3 /* FFSBTOpenServerViewController.m in Sources */,
 				B53600F120CA83B600DFE96A /* FFBusinessViewController.m in Sources */,
 				B580A54720D3C73A00680194 /* ZLForceTouchPreviewController.m in Sources */,
 				B523831C20AE9EF40087733A /* FFDriveMyNewsViewController.m in Sources */,

@@ -23,7 +23,9 @@
 @implementation FFGameDetailGuideViewController
 
 - (void)viewWillAppear:(BOOL)animated {
-    
+    if (self.canRefresh) {
+        [self refreshData];
+    }
 }
 
 - (void)viewDidLoad {
@@ -51,6 +53,7 @@
     [FFGameModel gameGuideWithGameID:CURRENT_GAME.game_id Completion:^(NSDictionary * _Nonnull content, BOOL success) {
 //        [self stopWaiting];
         if (success) {
+            syLog(@"game guide === %@",content);
             id data = content[@"data"][@"list"];
             if ([data isKindOfClass:[NSNull class]] || data == nil) {
                 self.showArray = nil;

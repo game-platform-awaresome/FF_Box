@@ -7,22 +7,15 @@
 //
 
 #import "FFBTOpenServerViewController.h"
-#import "FFBasicOpenServerController.h"
-#import "FFOpenServerSelectView.h"
+
 
 #define COLLECTION_CELL_IDE @"OPENSERVERCOLLECTIONCELL"
 
 @interface FFBTOpenServerViewController () <UICollectionViewDelegate, UICollectionViewDataSource, FFOpenServerSelectViewDelegate>
 
 
-@property (nonatomic, strong) UICollectionViewFlowLayout *layout;
-@property (nonatomic, strong) UICollectionView *collectionView;
 
-@property (nonatomic, strong) FFBasicOpenServerController *yesterdayOpenServeController;
-@property (nonatomic, strong) FFBasicOpenServerController *todayOpenServerController;
-@property (nonatomic, strong) FFBasicOpenServerController *tomorrowOpenserverController;
 
-@property (nonatomic, strong) FFOpenServerSelectView *selectView;
 
 @end
 
@@ -50,11 +43,10 @@
     self.navigationItem.title = @"开服表";
 }
 
-- (void)viewWillLayoutSubviews {
-    self.selectView.frame = CGRectMake(0, kNAVIGATION_HEIGHT, self.view.bounds.size.width, 50);
-
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    self.selectView.frame = CGRectMake(0,kNAVIGATION_HEIGHT, self.view.bounds.size.width, 50);
     self.collectionView.frame = CGRectMake(0, CGRectGetMaxY(self.selectView.frame), kSCREEN_WIDTH, kSCREEN_HEIGHT - CGRectGetMaxY(self.selectView.frame));
-
     CGRect frame = CGRectMake(0, 0, kSCREEN_WIDTH, self.collectionView.frame.size.height);
     self.layout.itemSize = frame.size;
     self.todayOpenServerController.view.frame = frame;
@@ -123,7 +115,7 @@
         _collectionView.backgroundColor = [UIColor whiteColor];
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;
-//        _collectionView.scrollEnabled = NO;
+        _collectionView.scrollEnabled = NO;
 
     }
 

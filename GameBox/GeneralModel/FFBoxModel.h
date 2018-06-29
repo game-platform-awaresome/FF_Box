@@ -31,12 +31,12 @@ typedef void (^BoxInitCallBackBlock)(NSDictionary *content, BOOL success);
 
 /** 是否是第一次安装 */
 + (BOOL)FirstInstall;
+/** 是否第一次登陆 */
++ (BOOL)isFirstLogin;
 
 /** 获取广告页 */
 + (NSData *)getAdvertisingImage;
 
-/** 是否第一次登陆 */
-+ (BOOL)isFirstLogin;
 
 /** 自动登陆 */ 
 + (void)login;

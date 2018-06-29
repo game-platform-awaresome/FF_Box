@@ -19,7 +19,6 @@
 #import <FFTools/FFTools.h>
 
 #import "FFMapModel.h"
-#import "FFBoxModel.h"
 #import "FFStatisticsModel.h"
 #import "FFDeviceInfo.h"
 
@@ -29,8 +28,13 @@
 #import "FFShowDiscoutModel.h"
 #import "FFBusinessBuyModel.h"
 
+
 #define WEIXINAPPID @"wx998abec7ee53ed78"
 #define QQAPPID @"1106099979"
+
+#import "FFDefaultWindow.h"
+#import "FFMainWindow.h"
+#import "FFBoxHandler.h"
 
 
 @interface FFAppDelegate () <UNUserNotificationCenterDelegate>
@@ -43,15 +47,47 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    syLog(@"\n-----------------------------------------\nchannel === %@\n-----------------------------------------\n",Channel);
+    syLog(@"\n-----------------------------------------\nbundle ==== %@\n-----------------------------------------\n",[[NSBundle mainBundle] bundleIdentifier]);
 
-    syLog(@"channel === %@",Channel);
-    syLog(@"bundle ==== %@",[[NSBundle mainBundle] bundleIdentifier]);
-    //初始化界面
-    [self initializeUserInterface];
-
+    //检查渠道号
+    [FFDeviceInfo cheackChannel];
+    self.window = [FFDefaultWindow window];
+    [self.window makeKeyAndVisible];
+    //获取总接口
+    [FFMapModel getMapCompletion:^{
+        //登录
+        [FFBoxHandler login];
+        //盒子初始化
+        [FFBoxHandler boxInitWithSuccess:^(NSDictionary *content) {
+            syLog(@"box init success === %@",content);
+            
+            if (![FFMainWindow showWindowWithOriWindw:self.window]) {
+                syLog(@"main window error");
+                self.window = [FFDefaultWindow window];
+            } else {
+                 //加载蒙版
+                 [self addMaskView:[FFBoxHandler FirstInstall]];
+                 //加载引导页
+                 if ([FFBoxHandler isFirstLogin]) {
+                     [self.window addSubview:[FFLaunchScreen new]];
+                 } else {
+                     if ([FFBoxHandler getAdvertisingImage]) {
+                         syLog(@"加载广告页");
+                         [FFAdvertisingView initWithImage:[FFBoxHandler getAdvertisingImage]];
+                     }
+                 }
+            }
+        } Failure:nil];
+    }];
     //初始化数据
-    [self initializeDataSource];
-
+    //注册微信
+    [WXApi registerApp:WEIXINAPPID];
+    //注册QQ
+    TencentOAuth *oAuth = [[TencentOAuth alloc] initWithAppId:QQAPPID andDelegate:nil];
+    [oAuth isSessionValid];
+    //注册通知
+    [self resignNotifacation];
     return YES;
 }
 
@@ -84,43 +120,9 @@
 
 #pragma mark - method
 - (void)initializeUserInterface {
-    //检查渠道号
-    [FFDeviceInfo cheackChannel];
-    //初始化window
-    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    self.window.rootViewController = [FFControllerManager sharedManager].rootNavController;
-    //    self.window.rootViewController = [UIViewController new];
-    [self.window makeKeyAndVisible];
-    //加载蒙版
-    [self addMaskView:[FFBoxModel FirstInstall]];
-    //加载引导页
-    if ([FFBoxModel isFirstLogin]) {
-        [self.window addSubview:[FFLaunchScreen new]];
-    } else {
-        if ([FFBoxModel getAdvertisingImage]) {
-            [FFAdvertisingView initWithImage:[FFBoxModel getAdvertisingImage]];
-        }
-    }
+
 }
 
-
-
-- (void)initializeDataSource {
-    //获取总接口
-    [FFMapModel getMapCompletion:^{
-        //登录
-        [FFBoxModel login];
-    }];
-    //盒子初始化
-    [FFBoxModel BoxInit];
-    //注册微信
-    [WXApi registerApp:WEIXINAPPID];
-    //注册QQ
-    TencentOAuth *oAuth = [[TencentOAuth alloc] initWithAppId:QQAPPID andDelegate:nil];
-    [oAuth isSessionValid];
-    //注册通知
-    [self resignNotifacation];
-}
 
 /** 注册通知 */
 - (void)resignNotifacation {

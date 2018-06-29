@@ -200,7 +200,7 @@ static FFGameViewController *controller = nil;
     WeakSelf;
     [self.selectView setSelectBlock:^(NSUInteger idx) {
         [[FFBasicSSTableViewCell cell] selectViewWithIndex:idx];
-        _currentIndex = idx;
+        self -> _currentIndex = idx;
         [weakSelf naviTransParent];
     }];
 
@@ -208,7 +208,7 @@ static FFGameViewController *controller = nil;
     [[FFBasicSSTableViewCell cell] setScrolledBlock:^(CGFloat offset_x) {
         [weakSelf.selectView setCursorView_X:(offset_x)];
         NSUInteger idx = offset_x / kSCREEN_WIDTH;
-        _currentIndex = idx;
+        self -> _currentIndex = idx;
     }];
 
 
@@ -260,7 +260,6 @@ static FFGameViewController *controller = nil;
         vc.canRefresh = YES;
     }
     [weakSelf.selectChildConttoller[_currentIndex] refreshData];
-
 }
 
 
@@ -359,11 +358,16 @@ static FFGameViewController *controller = nil;
 
     _currentIndex = 0;
     _gid = gid;
+    CURRENT_GAME.game_id = [NSString stringWithFormat:@"%@",gid];
     [self removeAllview];
     [[FFBasicSSTableViewCell cell] selectViewWithIndex:0];
 
     //刷新游戏
     [self refreshData];
+    //刷新子视图
+    for (FFBasicViewController *vc in self.selectChildConttoller) {
+        [vc refreshData];
+    }
 }
 
 /** 内测游戏 */

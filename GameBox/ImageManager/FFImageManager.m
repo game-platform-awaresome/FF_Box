@@ -24,6 +24,8 @@
 + (UIImage *)Tabbar_2_Select                {RETURN_IMAGE(@"Tabbar_Station_Select");}
 + (UIImage *)Tabbar_3_Normal                {RETURN_IMAGE(@"Tabbar_User_Normal");}
 + (UIImage *)Tabbar_3_Select                {RETURN_IMAGE(@"Tabbar_User_Select");}
++ (UIImage *)Tabbar_4_Normal                {RETURN_IMAGE(@"Tabbar_Openserver_Normal");}
++ (UIImage *)Tabbar_4_Select                {RETURN_IMAGE(@"Tabbar_Openserver_Select");}
 + (UIImage *)Tabbar_Center_button           {RETURN_IMAGE(@"Tabbar_Center_button");}
 /** banner placeholder image */
 + (UIImage *)Basic_Banner_placeholder       {RETURN_IMAGE(@"Basic_Banner_placeholder");}

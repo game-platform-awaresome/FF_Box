@@ -268,6 +268,9 @@
 + (void)gameActivityWithGameID:(NSString *)gameID
                     Completion:(RequestCallBackBlock)completion {
     Mutable_Dict(4);
+    if (gameID == nil) {
+        return;
+    }
     [dict setObject:gameID forKey:@"game_id"];
     [dict setObject:@"2" forKey:@"type"];
     SS_CHANNEL;

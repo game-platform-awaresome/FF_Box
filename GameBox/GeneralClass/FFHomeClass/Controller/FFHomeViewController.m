@@ -15,7 +15,8 @@
 #import "FFLoginViewController.h"
 #import "FFUserModel.h"
 #import "FFShowDiscoutModel.h"
-#import "FFBoxModel.h"
+//#import "FFBoxModel.h"
+#import "FFBoxHandler.h"
 
 //#import "FFHomeSelectView.h"
 
@@ -52,15 +53,11 @@
     self.navigationItem.title = nil;
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
-
     self.navigationItem.title = @" ";
-
     [self setSelectTitleView];
-
     [self.view addSubview:self.navigationView];
     [self.navigationView addSubview:self.homeSelectView];
     [self.navigationView addSubview:self.messageButton];
-//    [self.navigationController.navigationBar addSubview:self.selectView];
     [self.view addSubview:self.scrollView];
     self.floatImageView.image = [FFImageManager Home_mission_center_image];
     self.floatImageView.frame = CGRectMake(kSCREEN_WIDTH - 95, kSCREEN_HEIGHT - 150, 80, 60);
@@ -68,31 +65,12 @@
     [self addFLoatView];
 }
 
-
-
-- (void)viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
-    self.scrollView.frame = CGRectMake(0, KSTATUBAR_HEIGHT + 44, kSCREEN_WIDTH, kSCREEN_HEIGHT - 44 - KSTATUBAR_HEIGHT - kTABBAR_HEIGHT);
-    int idx = 0;
-    for (UIViewController *vc in self.selectChildViewControllers) {
-        vc.view.frame = CGRectMake(kSCREEN_WIDTH * idx, 0, kSCREEN_WIDTH, kSCREEN_HEIGHT - 44 - KSTATUBAR_HEIGHT - kTABBAR_HEIGHT);
-        idx++;
-    }
-}
  
 - (void)initDataSource {
     [super initDataSource];
-//    [self startWaiting];
-    [self refreshData];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshData) name:NOTI_SET_DISCOUNT_VIEW object:nil];
-}
-
-- (void)refreshData {
-//    [self stopWaiting];
     self.selectChildViewControllers = nil;
-    self.homeSelectView.titleArray = [FFBoxModel sharedModel].discount_enabled.boolValue ? @[@"BT服",@"折扣",@"承诺"] : @[@"BT服",@"承诺"];
-    self._controllerNameArray = [FFBoxModel sharedModel].discount_enabled.boolValue ? @[@"FFBTServerViewController",@"FFZKServerViewController",@"FFPromiseViewController"] : @[@"FFBTServerViewController",@"FFPromiseViewController"];
-    [self initUserInterface];
+    self.homeSelectView.titleArray = [FFBoxHandler sharedInstance].discount_enabled.boolValue ? @[@"BT服",@"折扣",@"承诺"] : @[@"BT服",@"承诺"];
+    self._controllerNameArray = [FFBoxHandler sharedInstance].discount_enabled.boolValue ? @[@"FFBTServerViewController",@"FFZKServerViewController",@"FFPromiseViewController"] : @[@"FFBTServerViewController",@"FFPromiseViewController"];
 }
 
 - (UIViewController *)creatControllerWithString:(NSString *)controllerString {
@@ -105,11 +83,19 @@
     return viewController;
 }
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    self.scrollView.frame = CGRectMake(0, KSTATUBAR_HEIGHT + 44, kSCREEN_WIDTH, kSCREEN_HEIGHT - 44 - KSTATUBAR_HEIGHT - kTABBAR_HEIGHT);
+    int idx = 0;
+    for (UIViewController *vc in self.selectChildViewControllers) {
+        vc.view.frame = CGRectMake(kSCREEN_WIDTH * idx, 0, kSCREEN_WIDTH, kSCREEN_HEIGHT - 44 - KSTATUBAR_HEIGHT - kTABBAR_HEIGHT);
+        idx++;
+    }
+}
+
 #pragma mark - responds
 - (void)respondsToFloatImageViewTap:(UITapGestureRecognizer *)sender {
-
     NSString *className = CURRENT_USER.isLogin ? @"FFMissionCenterViewController" : @"FFLoginViewController";
-
     Class MissonVC = NSClassFromString(className);
     if (MissonVC) {
         id vc = [[MissonVC alloc] init];

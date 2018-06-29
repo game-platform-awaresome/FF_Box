@@ -37,6 +37,8 @@
 + (UIImage *)Tabbar_2_Select;
 + (UIImage *)Tabbar_3_Normal;
 + (UIImage *)Tabbar_3_Select;
++ (UIImage *)Tabbar_4_Normal;
++ (UIImage *)Tabbar_4_Select;
 + (UIImage *)Tabbar_Center_button;
 
 /** banner placeholder image */

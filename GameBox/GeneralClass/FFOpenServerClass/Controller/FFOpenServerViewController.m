@@ -7,8 +7,8 @@
 //
 
 #import "FFOpenServerViewController.h"
-#import "FFBTOpenServerViewController.h"
-#import "FFZKOpenServerViewController.h"
+#import "FFSBTOpenServerViewController.h"
+#import "FFSZKOpenServerViewController.h"
 #import "FFBoxModel.h"
 
 @interface FFOpenServerViewController ()
@@ -23,6 +23,12 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = YES;
+    self.navBarBGAlpha = @"0.0";
+}
+
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     self.hidesBottomBarWhenPushed = NO;
@@ -31,28 +37,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.title = @"开服表";
+//    self.navigationItem.title = @"开服表";
 }
 
 - (void)initDataSource {
-    [self refreshData];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshData) name:NOTI_SET_DISCOUNT_VIEW object:nil];
-}
-
-- (void)refreshData {
+    [super initDataSource];
     self.homeSelectView.titleArray = [FFBoxModel sharedModel].discount_enabled.boolValue ? @[@"BT服",@"折扣"] : @[@"BT服"] ;
     self.selectChildViewControllers = [FFBoxModel sharedModel].discount_enabled.boolValue ?
-    @[[FFBTOpenServerViewController new], [FFZKOpenServerViewController new]].mutableCopy:
-    @[[FFBTOpenServerViewController new]].mutableCopy;
-    [self initUserInterface];
+    @[[FFSBTOpenServerViewController new], [FFSZKOpenServerViewController new]].mutableCopy:
+    @[[FFSBTOpenServerViewController new]].mutableCopy;
 }
 
-
-
-- (void)addFLoatView {
-    
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+//    self.selectView.frame = CGRectMake(0, 0, kSCREEN_WIDTH, 50);
+//    self.scrollView.frame = CGRectMake(0, CGRectGetMaxY(self.selectView.frame), kSCREEN_WIDTH, kSCREEN_HEIGHT - CGRectGetMaxY(self.selectView.frame));
+//    int i = 0;
+//    for (UIViewController *vc in self.selectChildViewControllers) {
+//        vc.view.frame = CGRectMake(kSCREEN_WIDTH * i, 0, kSCREEN_WIDTH, self.scrollView.bounds.size.height);
+//        i++;
+//    }
 }
-
 
 
 

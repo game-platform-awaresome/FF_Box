@@ -143,7 +143,7 @@
         remind = @"10";
     }
     self.remindLabel.text = [NSString stringWithFormat:@"%@平台币起换",remind];
-    self.proportionLabel.text = [NSString stringWithFormat:@"    %@金币换1平台币,少于%@个不能换",self.proportion,remind];
+    self.proportionLabel.text = [NSString stringWithFormat:@"    %@金币换1平台币,少于%@个平台币不能换",self.proportion,remind];
 }
 
 #pragma mark - getter

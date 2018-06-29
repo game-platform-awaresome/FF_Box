@@ -19,12 +19,15 @@
 @implementation FFGameOpenServerViewController
 
 - (void)viewWillAppear:(BOOL)animated {
-
+    if (self.canRefresh) {
+        [self refreshData];
+    }
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.mj_footer = nil;
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     BOX_REGISTER_CELL;
 }
 

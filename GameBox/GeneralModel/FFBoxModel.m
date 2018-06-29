@@ -39,61 +39,6 @@ static FFBoxModel *model = nil;
     return model;
 }
 
-#pragma mark - setter
-/** 盒子更新 */
-- (void)setUpdate_url:(NSString *)update_url {
-    if (![update_url isKindOfClass:[NSNull class]]) {
-        _update_url = [NSString stringWithFormat:@"%@",update_url];
-        syLog(@"\n-----------------\n盒子有更新,地址 == %@\n-----------------\n",_update_url);
-        [self boxUpdate];
-    } else {
-        syLog(@"\n-----------------\n盒子无更新\n-----------------\n");
-    }
-}
-/** 启动页 */
-- (void)setStart_page:(NSString *)start_page {
-    if ([start_page isKindOfClass:[NSNull class]]) {
-        syLog(@"\n-----------------\n无广告页\n-----------------\n");
-    } else {
-        _start_page = [NSString stringWithFormat:@"%@",start_page];
-        syLog(@"\n-----------------\n保存广告页\n-----------------\n");
-        [FFBoxModel saveAdvertisingImage:_start_page];
-    }
-}
-/** 盒子通知 */
-- (void)setApp_notice:(NSDictionary *)app_notice {
-    if ([app_notice isKindOfClass:[NSDictionary class]]) {
-        syLog(@"\n-----------------\n发布公告\n-----------------\n");
-        [FFBoxModel addAppAnnouncementWith:app_notice];
-    } else {
-        syLog(@"\n-----------------\n没有公告\n-----------------\n");
-    }
-}
-/** 统计开关 */
-- (void)setBox_static:(NSString *)box_static {
-    if (box_static) {
-        _box_static = [NSString stringWithFormat:@"%@",box_static];
-        syLog(@"\n-----------------\n开启统计\n-----------------\n");
-        initStatisticsModel(_box_static.integerValue);
-    }
-}
-/** 折扣开关 */
-- (void)setDiscount_enabled:(NSString *)discount_enabled {
-    if (discount_enabled) {
-        syLog(@"\n-----------------\n折扣服开关\n-----------------\n");
-//#ifdef DEBUG
-//        _discount_enabled = @"1";
-//#else
-        _discount_enabled = [NSString stringWithFormat:@"%@",discount_enabled];
-//#endif
-        [[NSNotificationCenter defaultCenter] postNotificationName:NOTI_SET_DISCOUNT_VIEW object:nil];
-    }
-}
-/** QQ 资讯 */
-- (void)setQq_zixun:(NSString *)qq_zixun {
-
-}
-
 
 #pragma mark - method
 /** 盒子初始化  V2  */
@@ -159,39 +104,6 @@ static FFBoxModel *model = nil;
     }]];
 }
 
-/** 保存广告图片 */
-const NSString *AdvertisingKey = @"AdvertisingKey";
-+ (void)saveAdvertisingImage:(NSString *)url {
-    NSString *hasAdvertisingImage = OBJECT_FOR_USERDEFAULTS(@"hasAdvertisingImage");
-    if ([url isKindOfClass:[NSString class]] && url.length > 0) {
-        if (![hasAdvertisingImage isEqualToString:url]) {
-            [[[SDWebImageManager sharedManager] imageDownloader] downloadImageWithURL:[NSURL URLWithString:url] options:(SDWebImageDownloaderLowPriority) progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
-                if (finished) {
-                    [data writeToFile:[FFBoxModel AdvertisingImagePath] atomically:YES];
-                    SAVEOBJECT_AT_USERDEFAULTS(url, @"hasAdvertisingImage");
-                }
-            }];
-        } else {
-            syLog(@"\n-----------------\n广告页已存在\n-----------------\n");
-        }
-    } else {
-        if (hasAdvertisingImage) {
-            [[NSFileManager defaultManager] removeItemAtPath:[FFBoxModel AdvertisingImagePath] error:nil];
-        }
-    }
-}
-/** 获取广告页本地缓存 */
-+ (NSData *)getAdvertisingImage {
-    NSData *data = [NSData dataWithContentsOfFile:[FFBoxModel AdvertisingImagePath]];
-    return data;
-}
-/** 广告业到本地 */
-+ (NSString *)AdvertisingImagePath {
-    NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *path = [pathArray objectAtIndex:0];
-    NSString *filePath = [path stringByAppendingPathComponent:@"AdvertisingImage"];
-    return filePath;
-}
 /** 是否是第一次登陆 */
 + (BOOL)isFirstLogin {
     NSString *isFirstGuide = OBJECT_FOR_USERDEFAULTS(@"isFirstGuide");

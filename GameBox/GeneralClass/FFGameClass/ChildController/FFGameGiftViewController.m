@@ -20,13 +20,16 @@
 @implementation FFGameGiftViewController
 
 - (void)viewWillAppear:(BOOL)animated {
-
+    if (self.canRefresh) {
+        [self refreshData];
+    }
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     self.tableView.mj_footer = nil;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     BOX_REGISTER_CELL;
 }
 
@@ -38,6 +41,7 @@
 
 - (void)refreshData {
     [FFGameModel gameGiftWithGameID:CURRENT_GAME.game_id Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        syLog(@"game gitf -==== %@",content);
         if (success) {
             self.showArray = [content[@"data"][@"list"] mutableCopy];
             [self.tableView reloadData];
