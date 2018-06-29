@@ -310,21 +310,21 @@
 
 - (UIView *)selectFooterView {
     if (!_selectFooterView) {
-        _selectFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 60)];
+        _selectFooterView = [[UIView alloc] init];
         _selectFooterView.backgroundColor = [FFColorManager navigation_bar_white_color];
-
-        UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, kSCREEN_WIDTH, 30)];
-        label1.textColor = [FFColorManager textColorLight];
-        label1.text = @"1.只能出售有充值金额的游戏.";
-        label1.font = [UIFont systemFontOfSize:13];
-        [_selectFooterView addSubview:label1];
-
-        UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(10, 30, kSCREEN_WIDTH, 30)];
-        label2.textColor = [FFColorManager textColorLight];
-        label2.text = @"2.提交信息后,账号将会被冻结.";
-        label2.font = [UIFont systemFontOfSize:13];
-        [_selectFooterView addSubview:label2];
-
+        NSArray *remindArray = @[@"1.只能出售有充值金额的游戏.",
+                                 @"2.交易之前,请先关联支付宝账号用作收款",
+                                 @"3.关联游戏账号后才可以出售",
+                                 @"4.提交出售信息后,账号将会被冻结."];
+        int i = 0;
+        for (NSString *obj in remindArray) {
+            UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(10, 30 * i++, kSCREEN_WIDTH, 30)];
+            label1.textColor = [FFColorManager textColorLight];
+            label1.text = obj;
+            label1.font = [UIFont systemFontOfSize:13];
+            [_selectFooterView addSubview:label1];
+        }
+        _selectFooterView.frame = CGRectMake(0, 0, kSCREEN_WIDTH, 30 * remindArray.count);
         [_selectFooterView.layer addSublayer:[self creatLineWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 1)]];
     }
     return _selectFooterView;

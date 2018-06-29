@@ -9,7 +9,9 @@
 #import "FFBusinessNoticeController.h"
 #import "FFBusinessModel.h"
 #import "FFBusinessBuyModel.h"
+#import "FFBusinessNoticeCell.h"
 
+#define CELL_IDE @"FFBusinessNoticeCell"
 #define Back_View_width kSCREEN_WIDTH * 0.9
 #define Back_View_height kSCREEN_HEIGHT * 0.9
 
@@ -33,8 +35,9 @@
 @property (nonatomic, strong) UIView *headerView;
 @property (nonatomic, strong) UIImageView *headerImage;
 
-
+@property (nonatomic, strong) UILabel *noticeHeader;
 @property (nonatomic, strong) UIView *footerView;
+@property (nonatomic, strong) UIButton *closeButton;
 
 
 @end
@@ -106,24 +109,19 @@ static FFBusinessNoticeController *controller = nil;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BusinessNotice_CELL"];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"BusinessNotice_CELL"];
-    }
-
+    FFBusinessNoticeCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDE];
     if (indexPath.section == 0) {
         if (self.type == FFNoticeTypeBuy) {
-            cell.textLabel.text = [NSString stringWithFormat:@"%@",self.buyNotice[indexPath.row]];
+            cell.contentLabel.text = [NSString stringWithFormat:@"%ld.  %@",indexPath.row + 1,self.buyNotice[indexPath.row]];
         } else {
-            cell.textLabel.text = [NSString stringWithFormat:@"%@",self.sellNotice[indexPath.row]];
+            cell.contentLabel.text = [NSString stringWithFormat:@"%ld. %@",indexPath.row + 1,self.sellNotice[indexPath.row]];
         }
     } else {
-        cell.textLabel.text = [NSString stringWithFormat:@"%@",self.businessNotice[indexPath.row]];
+        cell.contentLabel.text = [NSString stringWithFormat:@"%ld. %@",indexPath.row + 1,self.businessNotice[indexPath.row]];
     }
 
-    cell.textLabel.textColor = [FFColorManager textColorLight];
-    cell.textLabel.font = [UIFont systemFontOfSize:14];
-
+    cell.contentLabel.textColor = [FFColorManager textColorLight];
+    cell.contentLabel.font = [UIFont systemFontOfSize:14];
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
@@ -134,15 +132,15 @@ static FFBusinessNoticeController *controller = nil;
 //}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 44;
+    return 40;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Back_View_width, 44)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Back_View_width, 40)];
     view.backgroundColor = [FFColorManager navigation_bar_white_color];
 
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, Back_View_width - 10, 44)];
-    label.text = (section == 1) ? @"注意事项 : " : (self.type == FFNoticeTypeBuy) ? @"买家须知 : " : @"卖家须知 :";
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, Back_View_width, 40)];
+    label.text = (section == 1) ? @"  如遇以下情况,请警惕骗子 : " : (self.type == FFNoticeTypeBuy) ? @"  买家须知 : " : @"  卖家须知 :";
     [view addSubview:label];
 
     [view.layer addSublayer:[self creatLineWithFrame:CGRectMake(0, 0, Back_View_width, 1)]];
@@ -166,6 +164,12 @@ static FFBusinessNoticeController *controller = nil;
     self.window = nil;
 }
 
+- (void)respondsToCloseButton {
+    [self.window resignKeyWindow];
+    self.window = nil;
+}
+
+
 #pragma mark - setter
 
 #pragma mark - getter
@@ -183,9 +187,13 @@ static FFBusinessNoticeController *controller = nil;
         _backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Back_View_width, Back_View_height)];
         _backView.center = CGPointMake(kSCREEN_WIDTH / 2, kSCREEN_HEIGHT / 2);
         _backView.backgroundColor = [FFColorManager navigation_bar_white_color];
+        [_backView addSubview:self.noticeHeader];
+        [_backView addSubview:self.closeButton];
         [_backView addSubview:self.tableView];
         [_backView addSubview:self.sureButton];
 //        [_backView addSubview:self.footerView];
+        _backView.layer.cornerRadius = 8;
+        _backView.layer.masksToBounds = YES;
     }
     return _backView;
 }
@@ -214,15 +222,17 @@ static FFBusinessNoticeController *controller = nil;
 
 - (UITableView *)tableView {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, Back_View_width, Back_View_height - 50) style:(UITableViewStylePlain)];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.noticeHeader.frame), Back_View_width, Back_View_height - 50 - CGRectGetMaxY(self.noticeHeader.frame)) style:(UITableViewStylePlain)];
 
         _tableView.dataSource = self;
         _tableView.delegate = self;
 
         _tableView.tableHeaderView = self.headerView;
-        _tableView.tableFooterView = [UIView new];
+        _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Back_View_height, 44)];
 
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+
+        [_tableView registerNib:[UINib nibWithNibName:CELL_IDE bundle:nil] forCellReuseIdentifier:CELL_IDE];
     }
     return _tableView;
 }
@@ -248,6 +258,35 @@ static FFBusinessNoticeController *controller = nil;
     return _headerImage;
 }
 
+- (UILabel *)noticeHeader {
+    if (!_noticeHeader) {
+        _noticeHeader = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, Back_View_width, 44)];
+        _noticeHeader.backgroundColor = [FFColorManager blue_dark];
+        _noticeHeader.text = @"交易须知";
+        _noticeHeader.font = [UIFont systemFontOfSize:17];
+        _noticeHeader.textAlignment = NSTextAlignmentCenter;
+        _noticeHeader.textColor = [FFColorManager navigation_bar_white_color];
+    }
+    return _noticeHeader;
+}
+
+- (UIButton *)closeButton {
+    if (!_closeButton) {
+        _closeButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
+        [_closeButton setTitle:@"关闭" forState:(UIControlStateNormal)];
+        [_closeButton sizeToFit];
+        _closeButton.titleLabel.font = [UIFont systemFontOfSize:15];
+        _closeButton.center = CGPointMake(Back_View_width - _closeButton.bounds.size.width, 22);
+        [_closeButton addTarget:self action:@selector(respondsToCloseButton) forControlEvents:(UIControlEventTouchUpInside)];
+    }
+    return _closeButton;
+}
+
+
 
 
 @end
+
+
+
+

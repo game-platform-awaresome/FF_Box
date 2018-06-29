@@ -16,7 +16,7 @@
 + (FFDefaultWindow *)window;
 
 
-
++ (BOOL)resignWindow;
 
 
 @end

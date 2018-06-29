@@ -61,22 +61,22 @@
         //盒子初始化
         [FFBoxHandler boxInitWithSuccess:^(NSDictionary *content) {
             syLog(@"box init success === %@",content);
-            
-            if (![FFMainWindow showWindowWithOriWindw:self.window]) {
-                syLog(@"main window error");
-                self.window = [FFDefaultWindow window];
+            if ((self.window = [FFMainWindow sharedWindow])) {
+                [self.window makeKeyAndVisible];
+                [FFDefaultWindow resignWindow];
+                //加载蒙版
+                [self addMaskView:[FFBoxHandler FirstInstall]];
+                //加载引导页
+                if ([FFBoxHandler isFirstLogin]) {
+                    [self.window addSubview:[FFLaunchScreen new]];
+                } else {
+                    if ([FFBoxHandler getAdvertisingImage]) {
+                        syLog(@"加载广告页");
+                        [FFAdvertisingView initWithImage:[FFBoxHandler getAdvertisingImage]];
+                    }
+                }
             } else {
-                 //加载蒙版
-                 [self addMaskView:[FFBoxHandler FirstInstall]];
-                 //加载引导页
-                 if ([FFBoxHandler isFirstLogin]) {
-                     [self.window addSubview:[FFLaunchScreen new]];
-                 } else {
-                     if ([FFBoxHandler getAdvertisingImage]) {
-                         syLog(@"加载广告页");
-                         [FFAdvertisingView initWithImage:[FFBoxHandler getAdvertisingImage]];
-                     }
-                 }
+                self.window = [FFDefaultWindow window];
             }
         } Failure:nil];
     }];

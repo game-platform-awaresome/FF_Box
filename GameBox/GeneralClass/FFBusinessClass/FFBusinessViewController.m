@@ -45,7 +45,7 @@
 
 @property (nonatomic, strong) FFBusinessSearchViewController *searchController;
 
-
+@property (nonatomic, strong) UIButton *cancelInputeButton;
 
 
 @end
@@ -213,6 +213,11 @@ static FFBusinessViewController *_controller = nil;
     clickButton(sender.tag - Button_tag);
 }
 
+- (void)respondstoCancelInputButton {
+    [self.selectGameTextField resignFirstResponder];
+    [self.cancelInputeButton removeFromSuperview];
+}
+
 void clickButton(long idx) {
     syLog(@"点击 按钮 == %ld",idx);
     [_controller pushViewControllerWith:idx];
@@ -341,11 +346,32 @@ void clickButton(long idx) {
     }
 }
 
-#pragma mark - textfild delegate
+#pragma mark - textfield delegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
+    [self.cancelInputeButton removeFromSuperview];
     self.gameName = textField.text;
     [self begainRefresData];
+    return YES;
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    syLog(@"开始输入 ");
+    return YES;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    syLog(@"结束输入 ");
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    syLog(@"开始输入 2222");
+    [self.view addSubview:self.cancelInputeButton];
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
+    syLog(@"结束输入 22222");
+
     return YES;
 }
 
@@ -511,6 +537,15 @@ void clickButton(long idx) {
         _selectGameTextField.clearButtonMode = UITextFieldViewModeAlways;
     }
     return _selectGameTextField;
+}
+
+- (UIButton *)cancelInputeButton {
+    if (!_cancelInputeButton) {
+        _cancelInputeButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
+        _cancelInputeButton.frame = CGRectMake(0, 0, kSCREEN_WIDTH, kSCREEN_HEIGHT);
+        [_cancelInputeButton addTarget:self action:@selector(respondstoCancelInputButton) forControlEvents:(UIControlEventTouchUpInside)];
+    }
+    return _cancelInputeButton;
 }
 
 
