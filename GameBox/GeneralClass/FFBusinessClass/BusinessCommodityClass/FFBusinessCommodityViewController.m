@@ -159,7 +159,7 @@ static FFBusinessCommodityViewController *_controller;
 #pragma makr - responds
 - (void)respondsToButButton {
     syLog(@"显示须知");
-    [FFBusinessNoticeController showNoticeWithType:FFNoticeTypeSell ClickButtonBLock:^{
+    [FFBusinessNoticeController showNoticeWithType:FFNoticeTypeBuy ClickButtonBLock:^{
         pushViewController(@"FFBusinessBuyProoductController");
     }];
 }

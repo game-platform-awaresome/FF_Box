@@ -15,7 +15,7 @@
 
 @interface FFBusinessUnderReviewController ()<FFBusinessSellRecordCellDelegate,UITableViewDelegate, UITableViewDataSource>
 
-
+@property (nonatomic, strong) UIView *remindeHeader;
 
 
 @end
@@ -184,12 +184,15 @@
 
 - (void)DropOnProductWith:(NSDictionary *)dict {
     syLog(@"上架商品");
+    NSString *pid = [NSString stringWithFormat:@"%@",dict[@"id"]];
     [self startWaiting];
     [FFBusinessModel ProductInfoWithProductID:[NSString stringWithFormat:@"%@",dict[@"id"]] Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         [self stopWaiting];
         syLog(@"product === %@",content);
+        NSMutableDictionary *dict = [CONTENT_DATA mutableCopy];
+        [dict setObject:[NSString stringWithFormat:@"%@",pid] forKey:@"productID"];
         if (success) {
-            [self pushViewController:[FFBusinessSellProductController initwithDict:CONTENT_DATA]];
+            [self pushViewController:[FFBusinessSellProductController initwithDict:dict]];
         } else {
             [UIAlertController showAlertMessage:content[@"msg"] dismissTime:0.7 dismissBlock:nil];
         }
@@ -248,6 +251,8 @@
     }
     return _refreshFooter;
 }
+
+
 
 
 

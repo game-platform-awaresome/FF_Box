@@ -253,7 +253,7 @@ static FFBusinessNoticeController *controller = nil;
 
 - (UIImageView *)headerImage {
     if (!_headerImage) {
-        _headerImage = [[UIImageView alloc] initWithFrame:CGRectMake(4, 44, Back_View_width - 8, Back_View_width * 0.213)];
+        _headerImage = [[UIImageView alloc] initWithFrame:CGRectMake(16, 44, Back_View_width - 32, (Back_View_width - 32) * 0.21)];
     }
     return _headerImage;
 }

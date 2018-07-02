@@ -23,11 +23,12 @@
 
 #define Show_message(message) [UIAlertController showAlertMessage:message dismissTime:0.7 dismissBlock:nil];
 
+#define text_view_holder_string @"请详细描述当前角色的等级、装备、资源等角色信息，可以使您更快完成交易（200字内）"
+
 typedef enum : NSUInteger {
     FFBusinessPickerTypeSystem = 1,
     FFBusinessPickerTypeTime
 } FFBusinessPikcerType;
-
 
 
 void respondsToSystemPicker(NSString *system);
@@ -40,19 +41,11 @@ void respondsToTimePicker(NSString *time);
 
 
 + (void)PickerWithType:(FFBusinessPikcerType)type;
-
+  
 @end
 
 
-
-
-
-@interface FFBusinessProductController () <UICollectionViewDelegate, UICollectionViewDataSource,UITextFieldDelegate>
-
-
-@property (nonatomic, strong) UICollectionViewFlowLayout *layout;
-
-@property (nonatomic, strong) ZLPhotoActionSheet *actionSheet;
+@interface FFBusinessProductController () <UITextFieldDelegate,UITextViewDelegate>
 
 
 @property (nonatomic, assign) BOOL isOriginal;
@@ -63,9 +56,14 @@ void respondsToTimePicker(NSString *time);
 @property (nonatomic, assign) NSInteger hudNumber;
 
 
+@property (nonatomic, assign) BOOL editGameImage;
+@property (nonatomic, assign) BOOL editTradeImage;
+
 @end
 
 
+static BOOL FFBusinessEditGameImage = NO;
+static BOOL FFBusinessEditTradeImage = NO;
 
 @implementation FFBusinessProductController
 
@@ -79,12 +77,15 @@ static FFBusinessProductController *controller = nil;
     if (controller == nil) {
         controller = [self init];
     }
+    FFBusinessEditGameImage = YES;
+    FFBusinessEditTradeImage = YES;
     controller.isEdit = NO;
     controller.postType = NO;
     controller.gameName = gameName;
     controller.account = account;
     controller.productInfo = nil;
-    controller.imagesArray = nil;
+    controller.gameCollectionView.imagesArray = nil;
+    controller.tradeCollectionView.imagesArray = nil;
     [controller.tableView reloadData];
     return controller;
 }
@@ -95,12 +96,14 @@ static FFBusinessProductController *controller = nil;
     self.gameNameLabel.text = self.gameName;
     self.sdkAccountLabel.text = self.account;
     self.timeLabel.text = self.time;
+    self.amountTF.placeholder = [NSString stringWithFormat:@"不能低于 %@",[FFBusinessBuyModel sharedModel].productAmountLimit];
     if (self.productInfo != nil) {
         [self setInfoWith:self.productInfo];
         self.productInfo = nil;
     }
 
     self.selectPicButton.hidden = !self.isEdit;
+    self.selectTradeButton.hidden = !self.isEdit;
 }
 
 
@@ -111,8 +114,14 @@ static FFBusinessProductController *controller = nil;
 }
 
 - (void)initDataSource {
-    [self.collectionView registerClass:NSClassFromString(CELL_IDE) forCellWithReuseIdentifier:CELL_IDE];
-    [self.collectionView setCollectionViewLayout:self.layout];
+    [self.gameCollectionView registerClass:NSClassFromString(CELL_IDE) forCellWithReuseIdentifier:CELL_IDE];
+    [self.gameCollectionView setCollectionViewLayout:self.gameCollectionView.layout];
+    self.gameCollectionView.delegate = self.gameCollectionView;
+    self.gameCollectionView.dataSource = self.gameCollectionView;
+    [self.tradeCollectionView registerClass:NSClassFromString(CELL_IDE) forCellWithReuseIdentifier:CELL_IDE];
+    [self.tradeCollectionView setCollectionViewLayout:self.tradeCollectionView.layout];
+    self.tradeCollectionView.delegate = self.tradeCollectionView;
+    self.tradeCollectionView.dataSource = self.tradeCollectionView;
 }
 
 - (void)initUserInterface {
@@ -121,17 +130,34 @@ static FFBusinessProductController *controller = nil;
     self.navigationItem.leftBarButtonItem = self.leftButton;
     self.gameNameLabel.text = @"游戏";
     self.sdkAccountLabel.text = @"SDK 账号";
-    self.productDetailText.layer.cornerRadius = 8;
-    self.productDetailText.layer.masksToBounds = YES;
-    self.productDetailText.layer.borderWidth = 0.5;
-    self.productDetailText.layer.borderColor = [FFColorManager text_separa_line_color].CGColor;
     self.sellButton.backgroundColor = [FFColorManager blue_dark];
     self.sellButton.layer.cornerRadius = self.sellButton.bounds.size.height / 2;
     self.sellButton.layer.masksToBounds = YES;
     self.productTitleTF.delegate = self;
+    self.productDetailTextView.layer.cornerRadius = 8;
+    self.productDetailTextView.layer.masksToBounds = YES;
+    self.productDetailTextView.layer.borderWidth = 1;
+    self.productDetailTextView.layer.borderColor = [FFColorManager view_separa_line_color].CGColor;
 }
 
 #pragma makr - responds
+- (IBAction)respondsToSelectPicButton:(id)sender {
+    [UIAlertController showAlertControllerWithViewController:self alertControllerStyle:(UIAlertControllerStyleAlert) title:nil message:@"点击后将清除之前的所有图片" cancelButtonTitle:@"取消" destructiveButtonTitle:nil CallBackBlock:^(NSInteger btnIndex) {
+        if (btnIndex == 1) {
+            [self.gameCollectionView showPhotoLibrary];
+        }
+    } otherButtonTitles:@"确定", nil];
+}
+
+- (IBAction)respondsToSelectTradeButton:(id)sender {
+    [UIAlertController showAlertControllerWithViewController:self alertControllerStyle:(UIAlertControllerStyleAlert) title:nil message:@"点击后将清除之前的所有图片" cancelButtonTitle:@"取消" destructiveButtonTitle:nil CallBackBlock:^(NSInteger btnIndex) {
+        if (btnIndex == 1) {
+            [self.tradeCollectionView showPhotoLibrary];
+        }
+    } otherButtonTitles:@"确定", nil];
+}
+
+
 - (IBAction)respondsToSellButton:(id)sender {
     syLog(@"提交订单 !!!!!");
     if (_isRequest) {
@@ -172,22 +198,64 @@ static FFBusinessProductController *controller = nil;
         _isRequest = NO;
         return;
     }
-    if (self.imagesArray.count < 2 || self.imagesArray.count > 7) {
-        Show_message(@"请选择2-7张图片上传");
+
+    if (self.productTitleTF.text.length < 1) {
+        Show_message(@"请输入商品标题");
         _isRequest = NO;
         return;
     }
 
-    FFBusinessSystemType type = [self.systemLabel.text isEqualToString:@"iOS"] ? FFBusinessSystemTypeIOS : FFBusinessSystemTypeAndroid;
+    if (self.productDetailTextView.text.length < 1 || [self.productDetailTextView.text isEqualToString:text_view_holder_string]) {
+        Show_message(@"请输入商品描述");
+        _isRequest = NO;
+        return;
+    }
+
+
+    if (FFBusinessEditGameImage) {
+        if (self.gameCollectionView.imagesArray.count < 2 || self.gameCollectionView.imagesArray.count > 7) {
+            Show_message(@"请选择2-7张游戏截图上传");
+            _isRequest = NO;
+            return;
+        }
+    }
+
+    if (FFBusinessEditTradeImage) {
+        if (self.tradeCollectionView.imagesArray.count < 2 || self.tradeCollectionView.imagesArray.count > 7) {
+            Show_message(@"请选择2-7张充值记录截图上传");
+            _isRequest = NO;
+            return;
+        }
+    }
+
+
+    FFBusinessSystemType type = [self.systemLabel.text isEqualToString:@"iOS"] ? FFBusinessSystemTypeIOS : [self.systemLabel.text isEqualToString:@"Android"] ? FFBusinessSystemTypeAndroid : FFBusinessSystemTypeAll;
 
     if (self.postType) {
-//        [self startWaiting];
-//        [FFBusinessModel dropOnProductWithProductID:<#(NSString *)#> Title:<#(NSString *)#> Price:<#(NSString *)#> Description:<#(NSString *)#> SystemType:<#(FFBusinessSystemType)#> ServerName:<#(NSString *)#> EndTime:<#(NSString *)#> Images:<#(NSArray *)#> Completion:<#^(NSDictionary * _Nonnull content, BOOL success)completion#>]
-    } else {
+        //上架商品
+        syLog(@"上架商品?????");
         [self startWaiting];
-        [FFBusinessModel sellProductWithAppID:self.appid Title:self.productTitleTF.text SDKUsername:self.sdkAccountLabel.text Price:self.amountTF.text Description:self.productDetailLabel.text SystemType:type ServerName:self.serverTF.text EndTime:self.timeLabel.text Images:self.imagesArray Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        [FFBusinessModel dropOnProductWithProductID:self.productID Title:self.productTitleTF.text Price:self.amountTF.text Description:self.productDetailTextView.text SystemType:type ServerName:self.serverTF.text EndTime:self.timeLabel.text Images:self.gameCollectionView.imagesArray TradeImgs:self.tradeCollectionView.imagesArray Completion:^(NSDictionary * _Nonnull content, BOOL success) {
             [self stopWaiting];
             self.isRequest = NO;
+            if (success) {
+                [UIAlertController showAlertControllerWithViewController:self alertControllerStyle:(UIAlertControllerStyleAlert) title:@"商品发布成功" message:@"商品进入审核阶段,需通过客服审核后才会展示,预计1-3天.如审核失败会告知您原因." cancelButtonTitle:@"确定" destructiveButtonTitle:nil CallBackBlock:^(NSInteger btnIndex) {
+                    [self.navigationController popViewControllerAnimated:YES];
+                } otherButtonTitles: nil];
+            } else {
+                Show_message(content[@"msg"]);
+            }
+        }];
+
+    } else {
+        [self startWaiting];
+        //卖出商品
+        [FFBusinessModel sellProductWithAppID:self.appid Title:self.productTitleTF.text SDKUsername:self.sdkAccountLabel.text Price:self.amountTF.text Description:self.productDetailTextView.text SystemType:type ServerName:self.serverTF.text EndTime:self.timeLabel.text Images:self.gameCollectionView.imagesArray TradeImgs:self.tradeCollectionView.imagesArray Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+
+            [self stopWaiting];
+
+            self.isRequest = NO;
+
             if (success) {
                 [UIAlertController showAlertControllerWithViewController:self alertControllerStyle:(UIAlertControllerStyleAlert) title:@"商品发布成功" message:@"商品进入审核阶段,需通过客服审核后才会展示,预计1-3天.如审核失败会告知您原因." cancelButtonTitle:@"确定" destructiveButtonTitle:nil CallBackBlock:^(NSInteger btnIndex) {
                     [self.navigationController popViewControllerAnimated:YES];
@@ -199,12 +267,11 @@ static FFBusinessProductController *controller = nil;
     }
 }
 
-
-
 - (void)hideKeyBoard {
     [self.serverTF resignFirstResponder];
     [self.amountTF resignFirstResponder];
     [self.productTitleTF resignFirstResponder];
+    [self.productDetailTextView resignFirstResponder];
 }
 
 void respondsToSystemPicker(NSString *system) {
@@ -217,7 +284,6 @@ void respondsToTimePicker(NSString *time) {
 }
 
 #pragma mark - text filed delegate
-#pragma mark - textfieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
@@ -234,6 +300,27 @@ void respondsToTimePicker(NSString *time) {
         }
     }
     return YES;
+}
+
+#pragma mark - text view delegate
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+    if ([textView.text isEqualToString:text_view_holder_string]) {
+        textView.text = @"";
+    } 
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView {
+    if ([textView.text isEqualToString:@""] || textView.text.length == 0) {
+        textView.text = text_view_holder_string;
+    }
+}
+
+- (void)textViewDidChange:(UITextView *)textView {
+    if (textView == self.productDetailTextView) {
+        if (self.productDetailTextView.text.length >= 200) {
+            self.productDetailTextView.text = [textView.text substringToIndex:200];
+        }
+    }
 }
 
 #pragma mark - table view
@@ -258,86 +345,23 @@ void respondsToTimePicker(NSString *time) {
             [FFBusinessPikcerContorller PickerWithType:(FFBusinessPickerTypeTime)];
             break;
         case 7:
-            [self showProductDetailController];
+//            [self showProductDetailController];
             break;
         default:
             break;
     }
 }
 
+/*
 - (void)showProductDetailController {
-//    HIDE_TABBAR;
-//    HIDE_PARNENT_TABBAR;
     [self.navigationController pushViewController:[FFBusinessProductDetailViewController controllerWithContent:self.productDetailLabel.text CompletBlock:^(NSString *detailString) {
         syLog(@"detail string === %@",detailString);
         self.productDetailLabel.text = detailString;
     }] animated:YES];
 }
-
-#pragma mark - collection view delegate
-#pragma mark - collection view data source
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 1;
-}
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return _isEdit ? self.imagesName.count : (self.imagesArray.count < 7) ? self.imagesArray.count + 1 :  self.imagesArray.count;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    FFPostStatusImageCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CELL_IDE forIndexPath:indexPath];
-    if (_isEdit) {
-        cell.type = showImage;
-        [cell.imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.imagesName[indexPath.row]]]];
-    } else {
-        if (indexPath.row + 1 > self.imagesArray.count) {
-            cell.type = addImage;
-        } else {
-            cell.type = showImage;
-            cell.imageView.image = self.imagesArray[indexPath.row];
-            PHAsset *asset = self.lastSelectAssets[indexPath.row];
-            cell.playImageView.hidden = !(asset.mediaType == PHAssetMediaTypeVideo);
-        }
-    }
-    return cell;
-}
+*/
 
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-
-    if (_isEdit) {
-        return;
-    }
-
-    FFPostStatusImageCell *cell = (FFPostStatusImageCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    if (cell.type == addImage) {
-        [self showPhotoLibrary];
-    } else {
-        [self.actionSheet previewSelectedPhotos:self.lastSelectPhotos assets:self.lastSelectAssets index:indexPath.row isOriginal:self.isOriginal];
-    }
-}
-
-- (IBAction)respondsToSelectPicButton:(id)sender {
-    [UIAlertController showAlertControllerWithViewController:self alertControllerStyle:(UIAlertControllerStyleAlert) title:nil message:@"点击后将清除之前的所有图片" cancelButtonTitle:@"取消" destructiveButtonTitle:nil CallBackBlock:^(NSInteger btnIndex) {
-        if (btnIndex == 1) {
-            [self showPhotoLibrary];
-        }
-    } otherButtonTitles:@"确定", nil];
-}
-
-
-
-- (void)showPhotoLibrary {
-
-    self.imagesArray = nil;
-    self.lastSelectAssets = nil;
-    self.lastSelectPhotos = nil;
-
-    //设置照片最大选择数
-    self.actionSheet.configuration.maxSelectCount = 7;
-    self.actionSheet.configuration.allowSelectGif = NO;
-    [self.actionSheet showPhotoLibrary];
-}
 
 
 #pragma mark - setter
@@ -353,25 +377,39 @@ void respondsToTimePicker(NSString *time) {
 
 - (void)setSystemArray:(NSArray *)systemArray {
     _systemArray = systemArray;
-    self.systemLabel.text = (systemArray.count > 1) ? @"iOS" : ([NSString stringWithFormat:@"%@",systemArray.firstObject].integerValue == 1) ? @"Android" : @"iOS";
+    self.systemLabel.text = (systemArray.count > 1) ? ([NSString stringWithFormat:@"%@",systemArray.firstObject].integerValue == 1) ? @"Android" : ([NSString stringWithFormat:@"%@",systemArray.firstObject].integerValue == 2) ? @"iOS" : @"双平台" : @"双平台";
 }
 
 - (void)setProductInfo:(NSDictionary *)productInfo {
     _productInfo = productInfo;
 }
 
+- (void)setPostType:(BOOL)postType {
+    _postType = postType;
+    FFBusinessEditGameImage = !postType;
+    FFBusinessEditTradeImage = !postType;
+}
+
 - (void)setInfoWith:(NSDictionary *)productInfo {
     if (productInfo != nil) {
+
+        self.productID = [NSString stringWithFormat:@"%@",productInfo[@"productID"]];
+
         self.account = productInfo[@"account"];
         self.gameName = productInfo[@"game_name"];
         self.serverTF.text = [NSString stringWithFormat:@"%@",productInfo[@"server_name"]];
-        self.systemLabel.text = ([NSString stringWithFormat:@"%@",productInfo[@"system"]].integerValue == 2) ? @"iOS" : @"Android";
+        self.systemLabel.text = ([NSString stringWithFormat:@"%@",productInfo[@"system"]].integerValue == 2) ? @"iOS" : ([NSString stringWithFormat:@"%@",productInfo[@"system"]].integerValue == 1) ? @"Android" : @"双平台";
         self.systemArray = productInfo[@"system_enabled"];
         self.amountTF.text = [NSString stringWithFormat:@"%@",productInfo[@"price"]];
         self.productTitleTF.text = [NSString stringWithFormat:@"%@",productInfo[@"title"]];
-        self.productDetailLabel.text = [NSString stringWithFormat:@"%@",productInfo[@"desc"]];
-        self.imagesName = productInfo[@"imgs"];
-        [self.collectionView reloadData];
+        self.productDetailTextView.text = [NSString stringWithFormat:@"%@",productInfo[@"desc"]];
+
+        self.gameCollectionView.imagesName = productInfo[@"imgs"];
+        self.gameCollectionView.isEdit = self.isEdit;
+        [self.gameCollectionView reloadData];
+        self.tradeCollectionView.imagesName = productInfo[@"trade_imgs"];
+        self.tradeCollectionView.isEdit = self.isEdit;
+        [self.tradeCollectionView reloadData];
     } else {
 
     }
@@ -379,10 +417,14 @@ void respondsToTimePicker(NSString *time) {
 
 - (void)setIsEdit:(BOOL)isEdit {
     _isEdit = isEdit;
+    self.gameCollectionView.isEdit = isEdit;
+    self.tradeCollectionView.isEdit = isEdit;
     if (isEdit) {
         self.selectPicButton.hidden = NO;
+        self.selectTradeButton.hidden = NO;
     } else {
         self.selectPicButton.hidden = YES;
+        self.selectTradeButton.hidden = YES;
     }
 }
 
@@ -396,106 +438,12 @@ void respondsToTimePicker(NSString *time) {
     return _time;
 }
 
-- (UICollectionViewFlowLayout *)layout {
-    if (!_layout) {
-        _layout = [[UICollectionViewFlowLayout alloc] init];
-        _layout.itemSize = CGSizeMake((self.collectionView.bounds.size.width - 12) / 3, (self.collectionView.bounds.size.width - 12) / 3);
-        _layout.minimumInteritemSpacing = 2;
-        _layout.minimumLineSpacing = 2;
-        _layout.sectionInset = UIEdgeInsetsMake(3, 3, 3, 3);
-        _layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    }
-    return _layout;
-}
-
-- (ZLPhotoActionSheet *)actionSheet {
-    if (!_actionSheet) {
-        _actionSheet = [[ZLPhotoActionSheet alloc] init];
-
-        _actionSheet.sender = self;
-
-        _actionSheet.configuration.sortAscending = 0;
-        _actionSheet.configuration.allowSelectImage = YES;
-        _actionSheet.configuration.allowSelectGif = YES;
-        _actionSheet.configuration.allowSelectVideo = NO;
-        _actionSheet.configuration.allowSelectLivePhoto = NO;
-        _actionSheet.configuration.allowForceTouch = YES;
-        _actionSheet.configuration.allowSlideSelect = NO;
-        _actionSheet.configuration.allowMixSelect = NO;
-        _actionSheet.configuration.allowDragSelect = NO;
-
-        //设置相册内部显示拍照按钮
-        _actionSheet.configuration.allowTakePhotoInLibrary = NO;
-        //设置在内部拍照按钮上实时显示相机俘获画面
-        _actionSheet.configuration.showCaptureImageOnTakePhotoBtn = YES;
-        //设置照片最大预览数
-        _actionSheet.configuration.maxPreviewCount = 0;
-        //设置照片最大选择数
-        _actionSheet.configuration.maxSelectCount = 7;
-
-
-        //设置允许选择的视频最大时长
-        _actionSheet.configuration.maxVideoDuration = 0;
-        //设置照片cell弧度
-        _actionSheet.configuration.cellCornerRadio = 4;
-        //单选模式是否显示选择按钮
-        //    actionSheet.configuration.showSelectBtn = YES;
-        //是否在选择图片后直接进入编辑界面
-        //        actionSheet.configuration.editAfterSelectThumbnailImage = self.editAfterSelectImageSwitch.isOn;
-        //是否保存编辑后的图片
-        //    actionSheet.configuration.saveNewImageAfterEdit = NO;
-        //设置编辑比例
-        //    actionSheet.configuration.clipRatios = @[GetClipRatio(7, 1)];
-        //是否在已选择照片上显示遮罩层
-        //        actionSheet.configuration.showSelectedMask = self.maskSwitch.isOn;
-        //颜色，状态栏样式
-        //            actionSheet.configuration.selectedMaskColor = [UIColor purpleColor];
-        _actionSheet.configuration.navBarColor = NAVGATION_BAR_COLOR;
-        //    actionSheet.configuration.navTitleColor = [UIColor blackColor];
-        //        _actionSheet.configuration.bottomBtnsNormalTitleColor = [UIColor blueColor];
-        //        _actionSheet.configuration.bottomBtnsDisableBgColor = [UIColor whiteColor];
-        _actionSheet.configuration.bottomViewBgColor = NAVGATION_BAR_COLOR;
-        //    actionSheet.configuration.statusBarStyle = UIStatusBarStyleDefault;
-        //是否允许框架解析图片
-        _actionSheet.configuration.shouldAnialysisAsset = YES;
-        //框架语言
-        _actionSheet.configuration.languageType = ZLLanguageChineseSimplified;
-
-        //是否使用系统相机
-        _actionSheet.configuration.useSystemCamera = NO;
-        _actionSheet.configuration.sessionPreset = ZLCaptureSessionPreset1920x1080;
-        //        _actionSheet.configuration.exportVideoType = ZLExportVideoTypeMp4;
-        _actionSheet.configuration.allowRecordVideo = NO;
-
-        zl_weakify(self);
-        [self.actionSheet setSelectImageBlock:^(NSArray<UIImage *> * _Nonnull images, NSArray<PHAsset *> * _Nonnull assets, BOOL isOriginal) {
-            zl_strongify(weakSelf);
-            strongSelf.imagesArray = nil;
-            strongSelf.isOriginal = nil;
-            strongSelf.lastSelectAssets = nil;
-            strongSelf.lastSelectPhotos = nil;
-
-            strongSelf.imagesArray = images;
-            strongSelf.isOriginal = isOriginal;
-            strongSelf.lastSelectAssets = assets.mutableCopy;
-            strongSelf.lastSelectPhotos = images.mutableCopy;
-            strongSelf.isEdit = NO;
-            [strongSelf.collectionView reloadData];
-
-        }];
-
-        self.actionSheet.cancleBlock = ^{
-
-        };
-    }
-    return _actionSheet;
-}
 
 #pragma mark - hud
 - (void)startWaiting {
     if (self.hudNumber <= 0) {
         self.hud.removeFromSuperViewOnHide = YES;
-        [self.view addSubview:self.hud];
+        [[FFControllerManager sharedManager].rootNavController.view addSubview:self.hud];
         [self.hud showAnimated:YES];
         self.hudNumber = 0;
         [FFWaitingManager startStatubarWaiting];
@@ -516,7 +464,7 @@ void respondsToTimePicker(NSString *time) {
 #pragma mark - getter
 - (MBProgressHUD *)hud {
     if (!_hud) {
-        _hud = [[MBProgressHUD alloc] initWithView:self.view];
+        _hud = [[MBProgressHUD alloc] initWithView:[FFControllerManager sharedManager].rootNavController.view];
     }
     return _hud;
 }
@@ -533,7 +481,6 @@ void respondsToTimePicker(NSString *time) {
 @property (nonatomic, strong) UIPickerView *systemPickView;
 @property (nonatomic, strong) UIDatePicker *datePickerView;
 
-//@property (nonatomic, strong) NSArray *systemArray;
 
 @property (nonatomic, strong) UIButton *sureButton;
 @property (nonatomic, strong) UIButton *cancelButton;
@@ -685,7 +632,7 @@ void respondsToTimePicker(NSString *time) {
 
 - (NSDictionary *)systemDict {
     if (!_systemDict) {
-        _systemDict = @{@"1":@"Android",@"2":@"iOS"};
+        _systemDict = @{@"1":@"Android",@"2":@"iOS",@"3":@"双平台"};
     }
     return _systemDict;
 }
@@ -714,21 +661,244 @@ void respondsToTimePicker(NSString *time) {
 }
 
 
-
-
-
 @end
 
 
 
 
+/** ============================================================================= */
+@interface FFBusinessSelectImageCollectionView ()
+
+@property (nonatomic, strong) ZLPhotoActionSheet *actionSheet;
+@property (nonatomic, strong) NSMutableArray *netImageArray;
+
+@end
 
 
+@implementation FFBusinessSelectImageCollectionView
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        [self registerClass:NSClassFromString(CELL_IDE) forCellWithReuseIdentifier:CELL_IDE];
+        [self setCollectionViewLayout:self.layout];
+    }
+    return self;
+}
 
 
+#pragma mark - data source
+/** 不调 代理不走下面的方法 ????? */
+
+//- (NSInteger)numberOfSections {
+//    [super numberOfSections];
+//    return 1;
+//}
+
+//- (NSInteger)numberOfItemsInSection:(NSInteger)section {
+//    [super numberOfItemsInSection:section];
+//    return _isEdit ? self.imagesName.count : (self.imagesArray.count < 7) ? self.imagesArray.count + 1 :  self.imagesArray.count;
+//}
+//
+//- (UICollectionViewCell *)cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+//    [super cellForItemAtIndexPath:indexPath];
+//    FFPostStatusImageCell *cell = [self dequeueReusableCellWithReuseIdentifier:CELL_IDE forIndexPath:indexPath];
+//    if (_isEdit) {
+//        cell.type = showImage;
+//        [cell.imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.imagesName[indexPath.row]]]];
+//    } else {
+//        if (indexPath.row + 1 > self.imagesArray.count) {
+//            cell.type = addImage;
+//        } else {
+//            cell.type = showImage;
+//            cell.imageView.image = self.imagesArray[indexPath.row];
+//            PHAsset *asset = self.lastSelectAssets[indexPath.row];
+//            cell.playImageView.hidden = !(asset.mediaType == PHAssetMediaTypeVideo);
+//        }
+//    }
+//    return cell;
+//}
+
+#pragma mark - collectionview dele
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return _isEdit ? self.imagesName.count : (self.imagesArray.count < 7) ? self.imagesArray.count + 1 :  self.imagesArray.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+
+        FFPostStatusImageCell *cell = [self dequeueReusableCellWithReuseIdentifier:CELL_IDE forIndexPath:indexPath];
+        if (_isEdit) {
+            cell.type = showImage;
+            [cell.imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.imagesName[indexPath.row]]]];
+        } else {
+            if (indexPath.row + 1 > self.imagesArray.count) {
+                cell.type = addImage;
+            } else {
+                cell.type = showImage;
+                cell.imageView.image = self.imagesArray[indexPath.row];
+                PHAsset *asset = self.lastSelectAssets[indexPath.row];
+                cell.playImageView.hidden = !(asset.mediaType == PHAssetMediaTypeVideo);
+            }
+        }
+        return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (_isEdit) {
+        if (_netImageArray.count > 0) {
+            [self.actionSheet previewPhotos:_netImageArray index:indexPath.row hideToolBar:YES complete:^(NSArray * _Nonnull photos) {
+
+            }];
+        }
+
+    } else {
+        FFPostStatusImageCell *cell = (FFPostStatusImageCell *)[self cellForItemAtIndexPath:indexPath];
+        if (cell.type == addImage) {
+            [self showPhotoLibrary];
+        } else {
+            [self.actionSheet previewSelectedPhotos:self.lastSelectPhotos assets:self.lastSelectAssets index:indexPath.row isOriginal:self.isOriginal];
+        }
+    }
+}
+
+- (void)showPhotoLibrary {
+
+    self.imagesArray = nil;
+    self.lastSelectAssets = nil;
+    self.lastSelectPhotos = nil;
+
+    //设置照片最大选择数
+    self.actionSheet.configuration.maxSelectCount = 7;
+    self.actionSheet.configuration.allowSelectGif = NO;
+    [self.actionSheet showPhotoLibrary];
+}
 
 
+#pragma mark - setter
+- (void)setFrame:(CGRect)frame {
+    [super setFrame:frame];
+    self.layout.itemSize = CGSizeMake((self.bounds.size.width - 12) / 3, (self.bounds.size.width - 12) / 3);
+}
 
+- (void)setImagesName:(NSArray *)imagesName {
+    _imagesName = imagesName;
+    _netImageArray = [NSMutableArray arrayWithCapacity:imagesName.count];
+    for (NSString *obj in imagesName) {
+        [_netImageArray addObject:GetDictForPreviewPhoto([NSURL URLWithString:obj], ZLPreviewPhotoTypeURLImage)];
+    }
+}
+
+#pragma mark - getter
+- (UICollectionViewFlowLayout *)layout {
+    if (!_layout) {
+        _layout = [[UICollectionViewFlowLayout alloc] init];
+        _layout.itemSize = CGSizeMake((self.bounds.size.width - 12) / 3, (self.bounds.size.width - 12) / 3);
+        _layout.minimumInteritemSpacing = 2;
+        _layout.minimumLineSpacing = 2;
+        _layout.sectionInset = UIEdgeInsetsMake(3, 3, 3, 3);
+        _layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    }
+    return _layout;
+}
+
+- (ZLPhotoActionSheet *)actionSheet {
+    if (!_actionSheet) {
+        _actionSheet = [[ZLPhotoActionSheet alloc] init];
+
+        _actionSheet.sender = [FFControllerManager sharedManager].rootNavController;
+
+        _actionSheet.configuration.sortAscending = 0;
+        _actionSheet.configuration.allowSelectImage = YES;
+        _actionSheet.configuration.allowSelectGif = YES;
+        _actionSheet.configuration.allowSelectVideo = NO;
+        _actionSheet.configuration.allowSelectLivePhoto = NO;
+        _actionSheet.configuration.allowForceTouch = YES;
+        _actionSheet.configuration.allowSlideSelect = NO;
+        _actionSheet.configuration.allowMixSelect = NO;
+        _actionSheet.configuration.allowDragSelect = NO;
+
+        //设置相册内部显示拍照按钮
+        _actionSheet.configuration.allowTakePhotoInLibrary = NO;
+        //设置在内部拍照按钮上实时显示相机俘获画面
+        _actionSheet.configuration.showCaptureImageOnTakePhotoBtn = YES;
+        //设置照片最大预览数
+        _actionSheet.configuration.maxPreviewCount = 0;
+        //设置照片最大选择数
+        _actionSheet.configuration.maxSelectCount = 7;
+
+
+        //设置允许选择的视频最大时长
+        _actionSheet.configuration.maxVideoDuration = 0;
+        //设置照片cell弧度
+        _actionSheet.configuration.cellCornerRadio = 4;
+        //单选模式是否显示选择按钮
+        //    actionSheet.configuration.showSelectBtn = YES;
+        //是否在选择图片后直接进入编辑界面
+        //        actionSheet.configuration.editAfterSelectThumbnailImage = self.editAfterSelectImageSwitch.isOn;
+        //是否保存编辑后的图片
+        //    actionSheet.configuration.saveNewImageAfterEdit = NO;
+        //设置编辑比例
+        //    actionSheet.configuration.clipRatios = @[GetClipRatio(7, 1)];
+        //是否在已选择照片上显示遮罩层
+        //        actionSheet.configuration.showSelectedMask = self.maskSwitch.isOn;
+        //颜色，状态栏样式
+        //            actionSheet.configuration.selectedMaskColor = [UIColor purpleColor];
+        _actionSheet.configuration.navBarColor = NAVGATION_BAR_COLOR;
+        //    actionSheet.configuration.navTitleColor = [UIColor blackColor];
+        //        _actionSheet.configuration.bottomBtnsNormalTitleColor = [UIColor blueColor];
+        //        _actionSheet.configuration.bottomBtnsDisableBgColor = [UIColor whiteColor];
+        _actionSheet.configuration.bottomViewBgColor = NAVGATION_BAR_COLOR;
+        //    actionSheet.configuration.statusBarStyle = UIStatusBarStyleDefault;
+        //是否允许框架解析图片
+        _actionSheet.configuration.shouldAnialysisAsset = YES;
+        //框架语言
+        _actionSheet.configuration.languageType = ZLLanguageChineseSimplified;
+
+        //是否使用系统相机
+        _actionSheet.configuration.useSystemCamera = NO;
+        _actionSheet.configuration.sessionPreset = ZLCaptureSessionPreset1920x1080;
+        //        _actionSheet.configuration.exportVideoType = ZLExportVideoTypeMp4;
+        _actionSheet.configuration.allowRecordVideo = NO;
+
+        zl_weakify(self);
+        [self.actionSheet setSelectImageBlock:^(NSArray<UIImage *> * _Nonnull images, NSArray<PHAsset *> * _Nonnull assets, BOOL isOriginal) {
+            zl_strongify(weakSelf);
+            //            strongSelf.imagesArray = nil;
+            strongSelf.isOriginal = nil;
+            strongSelf.lastSelectAssets = nil;
+            strongSelf.lastSelectPhotos = nil;
+            strongSelf.imagesArray = nil;
+
+            strongSelf.imagesArray = images;
+            strongSelf.isOriginal = isOriginal;
+            strongSelf.lastSelectAssets = assets.mutableCopy;
+            strongSelf.lastSelectPhotos = images.mutableCopy;
+            strongSelf.isEdit = NO;
+
+            if (self == controller.gameCollectionView) {
+                FFBusinessEditGameImage = YES;
+            }
+
+            if (self == controller.tradeCollectionView) {
+                FFBusinessEditTradeImage = YES;
+            }
+
+            [strongSelf reloadData];
+        }];
+
+        self.actionSheet.cancleBlock = ^{
+
+        };
+    }
+    return _actionSheet;
+}
+
+
+@end
 
 
 

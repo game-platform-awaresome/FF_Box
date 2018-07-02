@@ -73,7 +73,7 @@ static NSString * OX72444444444(NSDictionary *dict,NSArray *array);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.productImageView.layer.cornerRadius = 8;
     self.productImageView.layer.masksToBounds = YES;
-
+    self.productImageView.contentMode = UIViewContentModeScaleAspectFill;
     [self.view addSubview:self.buyButton];
     self.alipayButton.selected = YES;
 }

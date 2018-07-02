@@ -339,7 +339,7 @@ FFBusinessUserModel * currentUser(void) {
 
 
 /** 出售商品 */
-+ (void)sellProductWithAppID:(NSString *)appid Title:(NSString *)title SDKUsername:(NSString *)SDKUsername Price:(NSString *)price Description:(NSString *)description SystemType:(FFBusinessSystemType)systemType ServerName:(NSString *)serverName EndTime:(NSString *)endTime Images:(NSArray *)images Completion:(RequestCallBackBlock)completion {
++ (void)sellProductWithAppID:(NSString *)appid Title:(NSString *)title SDKUsername:(NSString *)SDKUsername Price:(NSString *)price Description:(NSString *)description SystemType:(FFBusinessSystemType)systemType ServerName:(NSString *)serverName EndTime:(NSString *)endTime Images:(NSArray *)images TradeImgs:(NSArray *)trade_imgs Completion:(RequestCallBackBlock)completion {
     if ([self uid] == nil) {
         if (completion) {
             completion(@{@"msg":@"请登录"},NO);
@@ -369,7 +369,13 @@ FFBusinessUserModel * currentUser(void) {
         [dataArray addObject:imageData];
     }
 
-    [FFNetWorkManager uploadImageWithURL:Map.SELL_PRODUCTS Params:dict FileData:dataArray FileName:@"sellProduct.png" Name:@"imgs[]" MimeType:@"" Progress:nil Success:^(NSDictionary * _Nonnull content) {
+    NSMutableArray *trade_data = [NSMutableArray arrayWithCapacity:trade_imgs.count];
+    for (int i = 0; i < images.count; i++) {
+        NSData *imageData = UIImageJPEGRepresentation(trade_imgs[i], 0.9);
+        [trade_data addObject:imageData];
+    }
+
+    [FFNetWorkManager uploadImageWithURL:Map.SELL_PRODUCTS Params:dict FileDict:@{@"imgs[]":dataArray,@"trade_imgs[]":trade_data} FileName:@"sellProduct.png" MimeType:@"" Progress:nil Success:^(NSDictionary * _Nonnull content) {
         REQUEST_STATUS;
         if (status.integerValue == 1) {
             if (completion) {
@@ -385,15 +391,33 @@ FFBusinessUserModel * currentUser(void) {
             completion(@{@"msg":error.localizedDescription},NO);
         }
     }];
+
+//    [FFNetWorkManager uploadImageWithURL:Map.SELL_PRODUCTS Params:dict FileData:dataArray FileName:@"sellProduct.png" Name:@"imgs[]" MimeType:@"" Progress:nil Success:^(NSDictionary * _Nonnull content) {
+//        REQUEST_STATUS;
+//        if (status.integerValue == 1) {
+//            if (completion) {
+//                completion(content,YES);
+//            }
+//        } else {
+//            if (completion) {
+//                completion(content,NO);
+//            }
+//        }
+//    } Failure:^(NSError * _Nonnull error) {
+//        if (completion) {
+//            completion(@{@"msg":error.localizedDescription},NO);
+//        }
+//    }];
 }
 
 
 /** 商品详情 */
 + (void)ProductInfoWithProductID:(NSString *)pid Completion:(RequestCallBackBlock)completion {
-    Pamaras_Key((@[@"product_id",@"system"]));
+    Pamaras_Key((@[@"product_id",@"system",@"uid"]));
     SS_DICT;
     [dict setObject:pid forKey:@"product_id"];
     [dict setObject:@"2" forKey:@"system"];
+    [dict setObject:[self uid] ?: @"0" forKey:@"uid"];
     SS_SIGN;
     [FFNetWorkManager postRequestWithURL:Map.PRODUCT_INFO Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         NEW_REQUEST_COMPLETION;
@@ -447,7 +471,7 @@ FFBusinessUserModel * currentUser(void) {
 }
 
 /** 上架商品 */
-+ (void)dropOnProductWithProductID:(NSString *)productID Title:(NSString *)title Price:(NSString *)price Description:(NSString *)description SystemType:(FFBusinessSystemType)systemType ServerName:(NSString *)serverName EndTime:(NSString *)endTime Images:(NSArray *)images Completion:(RequestCallBackBlock)completion {
++ (void)dropOnProductWithProductID:(NSString *)productID Title:(NSString *)title Price:(NSString *)price Description:(NSString *)description SystemType:(FFBusinessSystemType)systemType ServerName:(NSString *)serverName EndTime:(NSString *)endTime Images:(NSArray *)images TradeImgs:(NSArray *)trade_imgs Completion:(RequestCallBackBlock)completion {
     if ([self uid] == nil) {
         if (completion) {
             completion(@{@"msg":@"请登录"},NO);
@@ -469,13 +493,26 @@ FFBusinessUserModel * currentUser(void) {
     SS_SIGN;
 
     //上传的多张照片
-    NSMutableArray *dataArray = [NSMutableArray arrayWithCapacity:images.count];
-    for (int i = 0; i < images.count; i++) {
-        NSData *imageData = UIImageJPEGRepresentation(images[i], 0.9);
-        [dataArray addObject:imageData];
+    NSMutableDictionary *imageDict = [NSMutableDictionary dictionary];
+    if (images && images.count > 0) {
+        NSMutableArray *dataArray = [NSMutableArray arrayWithCapacity:images.count];
+        for (int i = 0; i < images.count; i++) {
+            NSData *imageData = UIImageJPEGRepresentation(images[i], 0.9);
+            [dataArray addObject:imageData];
+        }
+        [imageDict setObject:dataArray forKey:@"imgs[]"];
     }
 
-    [FFNetWorkManager uploadImageWithURL:Map.PRODUCT_ONSALE Params:dict FileData:dataArray FileName:@"sellProduct.png" Name:@"imgs[]" MimeType:@"" Progress:nil Success:^(NSDictionary * _Nonnull content) {
+    if (trade_imgs != nil && trade_imgs.count > 0) {
+        NSMutableArray *trade_data = [NSMutableArray arrayWithCapacity:trade_imgs.count];
+        for (int i = 0; i < images.count; i++) {
+            NSData *imageData = UIImageJPEGRepresentation(trade_imgs[i], 0.9);
+            [trade_data addObject:imageData];
+        }
+        [imageDict setObject:trade_data forKey:@"trade_imgs[]"];
+    }
+
+    [FFNetWorkManager uploadImageWithURL:Map.PRODUCT_ONSALE Params:dict FileDict:imageDict FileName:@"sellProduct.png" MimeType:@"" Progress:nil Success:^(NSDictionary * _Nonnull content) {
         REQUEST_STATUS;
         if (status.integerValue == 1) {
             if (completion) {

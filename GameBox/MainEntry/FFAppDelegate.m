@@ -124,7 +124,10 @@
 }
 
 
-/** 注册通知 */
+/**
+ 注册通知
+ 通知目前只适配了 10.0 以上
+ */
 - (void)resignNotifacation {
     if (@available(iOS 10.0, *)) {
         UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
@@ -152,7 +155,6 @@
     }
 }
 
-// NOTE: 9.0以后使用新API接口
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options
 {
     if ([url.host isEqualToString:@"safepay"]) {

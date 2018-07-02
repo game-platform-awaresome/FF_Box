@@ -93,6 +93,16 @@ typedef NS_ENUM(NSInteger, FFNetworkReachabilityStatus) {
                    Success:(SuccessBlock _Nullable)success
                    Failure:(FailureBlock _Nullable)failure;
 
+/** post Multiple file */
++ (void)uploadImageWithURL:(NSString *)url
+                    Params:(NSDictionary *)params
+                  FileDict:(NSDictionary<NSString *,NSArray<NSData *> *> *)fileDict
+                  FileName:(NSString *)fileName
+                  MimeType:(NSString *)mimeType
+                  Progress:(UploadProgressBlock)progress
+                   Success:(SuccessBlock)success
+                   Failure:(FailureBlock)failure;
+
 
 /** network state */
 + (FFNetworkReachabilityStatus)netWorkState;

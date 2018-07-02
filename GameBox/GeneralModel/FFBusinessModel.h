@@ -160,6 +160,7 @@ FFBusinessUserModel * currentUser(void);
                   ServerName:(NSString *)serverName
                      EndTime:(NSString *)endTime
                       Images:(NSArray *)images
+                   TradeImgs:(NSArray *)trade_imgs      //交易记录截图
                   Completion:(RequestCallBackBlock)completion;
 
 /** 商品详情 */
@@ -191,6 +192,7 @@ FFBusinessUserModel * currentUser(void);
                         ServerName:(NSString *)serverName
                            EndTime:(NSString *)endTime
                             Images:(NSArray *)images
+                         TradeImgs:(NSArray *)trade_imgs      //交易记录截图
                         Completion:(RequestCallBackBlock)completion;
 
 /** 购买商品 */

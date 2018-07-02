@@ -58,6 +58,41 @@
                    Success:(SuccessBlock)success
                    Failure:(FailureBlock)failure
 {
+    [self uploadImageWithURL:url Params:params FileDict:@{name:fileDataArray} FileName:fileName MimeType:mimeType Progress:progress Success:success Failure:failure];
+//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+//    //接收类型
+//    AFJSONRequestSerializer *serializer = [AFJSONRequestSerializer serializer];
+//    [serializer setStringEncoding:NSUTF8StringEncoding];
+//    manager.requestSerializer = serializer;
+//    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:
+//                                                         @"application/json",
+//                                                         @"image/jpeg",
+//                                                         @"image/png",
+//                                                         nil];
+//
+//    NSURLSessionDataTask *task = [manager POST:url parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+//        for (NSData *data in fileDataArray) {
+//            [formData appendPartWithFileData:data name:name fileName:fileName mimeType:mimeType];
+//        }
+//    } progress:^(NSProgress * _Nonnull uploadProgress) {
+//        if (progress) {
+//            progress(uploadProgress);
+//        }
+//    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        if (success) {
+//            success(responseObject);
+//        }
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//        if (failure) {
+//            failure(error);
+//        }
+//    }];
+//
+//    [task resume];
+}
+
++ (void)uploadImageWithURL:(NSString *)url Params:(NSDictionary *)params FileDict:(NSDictionary<NSString *,NSArray<NSData *> *> *)fileDict FileName:(NSString *)fileName MimeType:(NSString *)mimeType Progress:(UploadProgressBlock)progress Success:(SuccessBlock)success Failure:(FailureBlock)failure {
+
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     //接收类型
     AFJSONRequestSerializer *serializer = [AFJSONRequestSerializer serializer];
@@ -70,9 +105,19 @@
                                                          nil];
 
     NSURLSessionDataTask *task = [manager POST:url parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        for (NSData *data in fileDataArray) {
-            [formData appendPartWithFileData:data name:name fileName:fileName mimeType:mimeType];
+
+        NSArray *allkeys = [fileDict allKeys];
+        for (NSString *key in allkeys) {
+
+            NSArray<NSData *> *fileDataArray = [fileDict objectForKey:key];
+
+            for (NSData *data in fileDataArray) {
+                syLog(@"key === %@",key);
+                [formData appendPartWithFileData:data name:key fileName:fileName mimeType:mimeType];
+            }
         }
+
+        syLog(@"hahahah");
     } progress:^(NSProgress * _Nonnull uploadProgress) {
         if (progress) {
             progress(uploadProgress);
@@ -88,7 +133,10 @@
     }];
 
     [task resume];
+
 }
+
+
 
 + (FFNetworkReachabilityStatus)netWorkState {
     return (FFNetworkReachabilityStatus)[AFNetworkReachabilityManager sharedManager].networkReachabilityStatus;

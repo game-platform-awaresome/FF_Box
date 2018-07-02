@@ -17,10 +17,11 @@
 
 + (instancetype)initwithDict:(NSDictionary *)dict {
     FFBusinessSellProductController * controller = [self init];
-    controller.imagesArray = nil;
     controller.productInfo = dict;
     controller.isEdit = YES;
     controller.postType = YES;
+    controller.gameCollectionView.imagesArray = nil;
+    controller.tradeCollectionView.imagesArray = nil;
     return controller;
 }
 
