@@ -114,21 +114,9 @@ static FFBoxModel *model = nil;
         return YES;
     }
 }
-/** 自动登录 */
-+ (void)login {
-    NSString *username = [FFUserModel UserName];
-    NSString *password = [FFUserModel passWord];
-    if (username != nil && password != nil && username.length > 0 && password.length > 0) {
-        [FFUserModel userLoginWithUsername:username Password:password Completion:^(NSDictionary * _Nonnull content, BOOL success) {
-            syLog(@"启动登录  ==%@ ",content);
-            if (success) {
-                syLog(@"自动登录成功");
-            } else {
-                syLog(@"自动登录失败  ->  username == %@    password == %@",username,password);
-            }
-        }];
-    }
-}
+
+
+
 /** 添加公告 */
 + (void)addAppAnnouncementWith:(NSDictionary *)dict {
     if (@available(iOS 10.0, *)) {

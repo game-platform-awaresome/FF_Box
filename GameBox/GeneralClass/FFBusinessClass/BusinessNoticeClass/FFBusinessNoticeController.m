@@ -109,7 +109,9 @@ static FFBusinessNoticeController *controller = nil;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+
     FFBusinessNoticeCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDE];
+    cell.contentLabel.font = [UIFont systemFontOfSize:14];
     if (indexPath.section == 0) {
         if (self.type == FFNoticeTypeBuy) {
             cell.contentLabel.text = [NSString stringWithFormat:@"%ld.  %@",indexPath.row + 1,self.buyNotice[indexPath.row]];
@@ -121,7 +123,6 @@ static FFBusinessNoticeController *controller = nil;
     }
 
     cell.contentLabel.textColor = [FFColorManager textColorLight];
-    cell.contentLabel.font = [UIFont systemFontOfSize:14];
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
@@ -233,6 +234,9 @@ static FFBusinessNoticeController *controller = nil;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
         [_tableView registerNib:[UINib nibWithNibName:CELL_IDE bundle:nil] forCellReuseIdentifier:CELL_IDE];
+
+        _tableView.rowHeight = UITableViewAutomaticDimension;
+        _tableView.estimatedRowHeight = 50;
     }
     return _tableView;
 }

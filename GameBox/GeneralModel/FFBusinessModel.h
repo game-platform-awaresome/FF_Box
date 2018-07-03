@@ -165,6 +165,7 @@ FFBusinessUserModel * currentUser(void);
 
 /** 商品详情 */
 + (void)ProductInfoWithProductID:(NSString *)pid
+                         WithUid:(BOOL)useUid
                       Completion:(RequestCallBackBlock)completion;
 
 /** 客服中心 */

@@ -412,12 +412,12 @@ FFBusinessUserModel * currentUser(void) {
 
 
 /** 商品详情 */
-+ (void)ProductInfoWithProductID:(NSString *)pid Completion:(RequestCallBackBlock)completion {
++ (void)ProductInfoWithProductID:(NSString *)pid WithUid:(BOOL)useUid Completion:(RequestCallBackBlock)completion {
     Pamaras_Key((@[@"product_id",@"system",@"uid"]));
     SS_DICT;
     [dict setObject:pid forKey:@"product_id"];
     [dict setObject:@"2" forKey:@"system"];
-    [dict setObject:[self uid] ?: @"0" forKey:@"uid"];
+    [dict setObject:useUid ? [self uid] : @"0" forKey:@"uid"];
     SS_SIGN;
     [FFNetWorkManager postRequestWithURL:Map.PRODUCT_INFO Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         NEW_REQUEST_COMPLETION;

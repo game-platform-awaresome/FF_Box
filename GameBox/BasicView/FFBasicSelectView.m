@@ -170,9 +170,9 @@
     isAnimation = YES;
 
     [UIView animateWithDuration:0.3 animations:^{
-        self.cursorView.center = CGPointMake(self.titleButtonArray[_selectTitleIndex].center.x, self.cursorView.center.y);
+        self.cursorView.center = CGPointMake(self.titleButtonArray[self -> _selectTitleIndex].center.x, self.cursorView.center.y);
     } completion:^(BOOL finished) {
-        isAnimation = NO;
+        self -> isAnimation = NO;
         [self.scrollView sendSubviewToBack:self.cursorView];
     }];
 }

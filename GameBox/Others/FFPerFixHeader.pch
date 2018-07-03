@@ -28,11 +28,11 @@
 #ifdef DEBUG
 #define syLog(format, ...) NSLog(format, ## __VA_ARGS__)
 #define BOXLOG(log) syLog(@"GAME_BOX === %@",log);
-#define fflog(format, ...) printf(format, ## __VA_ARGS__)
+
 #else
 #define syLog(format, ...)
 #define BOXLOG(log)
-#dfeine fflog(format, ...)
+
 #endif
 
 /** 弱引用 */

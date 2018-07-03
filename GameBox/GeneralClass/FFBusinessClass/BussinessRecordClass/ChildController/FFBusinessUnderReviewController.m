@@ -186,7 +186,7 @@
     syLog(@"上架商品");
     NSString *pid = [NSString stringWithFormat:@"%@",dict[@"id"]];
     [self startWaiting];
-    [FFBusinessModel ProductInfoWithProductID:[NSString stringWithFormat:@"%@",dict[@"id"]] Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+    [FFBusinessModel ProductInfoWithProductID:[NSString stringWithFormat:@"%@",dict[@"id"]] WithUid:YES Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         [self stopWaiting];
         syLog(@"product === %@",content);
         NSMutableDictionary *dict = [CONTENT_DATA mutableCopy];
@@ -225,6 +225,9 @@
         _tableView.estimatedRowHeight = UITableViewAutomaticDimension;
         _tableView.mj_header = self.refreshHeader;
         _tableView.mj_footer = self.refreshFooter;
+
+        _tableView.rowHeight = UITableViewAutomaticDimension;
+        _tableView.estimatedRowHeight = 50;
     }
     return _tableView;
 }

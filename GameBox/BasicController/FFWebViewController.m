@@ -7,14 +7,13 @@
 //
 
 #import "FFWebViewController.h"
-#import <WebKit/WebKit.h>
 #import "FFColorManager.h"
 #import <FFTools/FFTools.h>
 
 @interface FFWebViewController ()<WKUIDelegate,WKNavigationDelegate,UIWebViewDelegate>
 
-/**web视图*/
-@property (nonatomic, strong) WKWebView * webView;
+///**web视图*/
+//@property (nonatomic, strong) WKWebView * webView;
 
 /** 进度条 */
 @property (nonatomic, strong) UIImageView *progressView;

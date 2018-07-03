@@ -8,10 +8,13 @@
 
 #import "FFActivityViewController.h"
 #import "FFActivityTableViewCell.h"
+#import "FFWebViewController.h"
 
 #define CELL_IDE @"FFActivityTableViewCell"
 
 @interface FFActivityViewController ()
+
+@property (nonatomic, strong) FFWebViewController *webViewController;
 
 @end
 
@@ -56,11 +59,25 @@
     return 30 + kSCREEN_WIDTH / 16 * 9;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSDictionary *dict = self.showArray[indexPath.row];
+    self.webViewController.webURL = dict[@"url"];
+    [self pushViewController:self.webViewController];
+}
+
 
 - (FFGameServersType)type {
     return BT_SERVERS;
 }
 
+#pragma mark - getter
+- (FFWebViewController *)webViewController {
+    if (!_webViewController) {
+        _webViewController = [[FFWebViewController alloc] init];
+    }
+    return _webViewController;
+}
 
 
 

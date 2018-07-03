@@ -48,7 +48,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.gameDownload.userInteractionEnabled = NO;
-    
+
     [self setLabel:self.label1 BackgroundColor:[FFColorManager custom_cell_text1_color]];
     [self setLabel:self.label2 BackgroundColor:[FFColorManager custom_cell_text2_color]];
     [self setLabel:self.label3 BackgroundColor:[FFColorManager custom_cell_text3_color]];
@@ -156,16 +156,39 @@
         [self.gameDownload setBackgroundImage:[UIImage imageNamed:@"Home_cell_BT"] forState:(UIControlStateNormal)];
         self.zkLabel.hidden = YES;
     }
+
+    //预约时间
+    if (dict[@"newgame_time"]) {
+        self.gameDownload.hidden = [[NSString stringWithFormat:@"%@",dict[@"newgame_time"]] isEqualToString:@"0"];
+    }
+
+    //设置预约按钮图标
+    if (dict[@"is_reserved"]) {
+        [self setBetaGameImage:[NSString stringWithFormat:@"%@",dict[@"is_reserved"]]];
+    }
+}
+
+- (void)setBetaGameImage:(NSString *)string {
+    self.zkLabel.hidden = YES;
+    self.gameDownload.userInteractionEnabled = YES;
+    [self.gameDownload setBackgroundImage:nil forState:(UIControlStateNormal)];
+    if (string.integerValue == 0) {
+        [self.gameDownload setImage:[UIImage imageNamed:@"Reservation_reservation"] forState:(UIControlStateNormal)];
+    } else {
+        [self.gameDownload setImage:[UIImage imageNamed:@"Reservation_cancel"] forState:(UIControlStateNormal)];
+    }
 }
 
 - (void)setBetaGame:(NSString *)betaGame {
     self.zkLabel.hidden = YES;
-    [self.gameDownload setBackgroundImage:[UIImage imageNamed:@"Home_cell_BT"] forState:(UIControlStateNormal)];
+    self.gameDownload.userInteractionEnabled = YES;
+//    [self.gameDownload setBackgroundImage:nil forState:(UIControlStateNormal)];
+//    [self.gameDownload setImage:[UIImage imageNamed:betaGame] forState:(UIControlStateNormal)];
 }
 
 - (void)setReservationGame:(NSString *)ReservationGame {
     self.zkLabel.hidden = YES;
-    [self.gameDownload setBackgroundImage:[UIImage imageNamed:@"Home_cell_BT"] forState:(UIControlStateNormal)];
+//    [self.gameDownload setBackgroundImage:[UIImage imageNamed:@"Home_cell_BT"] forState:(UIControlStateNormal)];
 }
 
 

@@ -38,8 +38,6 @@ typedef void (^BoxInitCallBackBlock)(NSDictionary *content, BOOL success);
 + (NSData *)getAdvertisingImage;
 
 
-/** 自动登陆 */ 
-+ (void)login;
 
 
 

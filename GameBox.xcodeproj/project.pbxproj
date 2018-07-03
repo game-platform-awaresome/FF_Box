@@ -296,6 +296,7 @@
 		B599695220BD396400BC6084 /* FFPromiseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B599695120BD396400BC6084 /* FFPromiseViewController.m */; };
 		B59D989F2084A2E20024B11D /* FFBasicTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B59D989E2084A2E20024B11D /* FFBasicTableViewController.m */; };
 		B59D98A22084A2FD0024B11D /* FFBasicSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = B59D98A12084A2FD0024B11D /* FFBasicSelectView.m */; };
+		B59DE67C20EB16B40058163E /* FFNotificationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B59DE67B20EB16B40058163E /* FFNotificationHandler.m */; };
 		B5B61AAB20CE0DF200D507A6 /* FFBusinessModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B61AAA20CE0DF200D507A6 /* FFBusinessModel.m */; };
 		B5B61AB120CE20A400D507A6 /* FFBusinessLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B61AB020CE20A400D507A6 /* FFBusinessLoginViewController.m */; };
 		B5B61AB420CE266800D507A6 /* FFBusinessRegistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B61AB320CE266800D507A6 /* FFBusinessRegistViewController.m */; };
@@ -861,6 +862,8 @@
 		B59D989E2084A2E20024B11D /* FFBasicTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBasicTableViewController.m; sourceTree = "<group>"; };
 		B59D98A02084A2FD0024B11D /* FFBasicSelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBasicSelectView.h; sourceTree = "<group>"; };
 		B59D98A12084A2FD0024B11D /* FFBasicSelectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBasicSelectView.m; sourceTree = "<group>"; };
+		B59DE67A20EB16B40058163E /* FFNotificationHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFNotificationHandler.h; sourceTree = "<group>"; };
+		B59DE67B20EB16B40058163E /* FFNotificationHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFNotificationHandler.m; sourceTree = "<group>"; };
 		B5B61AA920CE0DF200D507A6 /* FFBusinessModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBusinessModel.h; sourceTree = "<group>"; };
 		B5B61AAA20CE0DF200D507A6 /* FFBusinessModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBusinessModel.m; sourceTree = "<group>"; };
 		B5B61AAF20CE20A400D507A6 /* FFBusinessLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBusinessLoginViewController.h; sourceTree = "<group>"; };
@@ -2260,6 +2263,8 @@
 				B58CB79B207B10830099773D /* FFNetWorkManager.m */,
 				B5D1042B208F162500CA1949 /* FFMapModel.h */,
 				B5D1042C208F162500CA1949 /* FFMapModel.m */,
+				B59DE67A20EB16B40058163E /* FFNotificationHandler.h */,
+				B59DE67B20EB16B40058163E /* FFNotificationHandler.m */,
 			);
 			path = BasicModel;
 			sourceTree = "<group>";
@@ -3031,6 +3036,7 @@
 				B58CB7AE207B10830099773D /* FFNetWorkManager.m in Sources */,
 				B529172D20DA259900A56F41 /* FFBusinessSellingController.m in Sources */,
 				B52382A120ABCEF00087733A /* FFBasicSSTableViewCell.m in Sources */,
+				B59DE67C20EB16B40058163E /* FFNotificationHandler.m in Sources */,
 				B529173020DA25C000A56F41 /* FFBusinessSoldController.m in Sources */,
 				B54457E320CFD29A000B63E4 /* FFBusinessNoticeViewController.m in Sources */,
 				B51BD11520B5628F005B9DE1 /* FFLotteryViewController.m in Sources */,

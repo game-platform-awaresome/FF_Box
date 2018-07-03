@@ -78,11 +78,12 @@
 #pragma makr - bate and reservation (内测和预约游戏)
 /** 内测或者预约游戏 */
 + (void)betaAndReservationGameWithPage:(NSString *)page Type:(FFBetaOrReservationType)type Completion:(RequestCallBackBlock)completion {
-    Mutable_Dict(5);
+    Mutable_Dict(6);
     [dict setObject:page forKey:@"page"];           //页数
     SS_CHANNEL;                                     //渠道
     SS_SYSTEM;                                      //系统
     [dict setObject:[NSString stringWithFormat:@"%lu",(unsigned long)type] forKey:@"type"];       //游戏类型
+    [FFUserModel uid] ? [dict setObject:[FFUserModel uid] forKey:@"uid"] : 0;
     [self postRequestWithURL:[self map].NEW_GAME_LIST Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         REQUEST_COMPLETION;
     }];
@@ -385,7 +386,17 @@
 }
 
 
-
+/** 新游预约 */
++ (void)reservaGameWithGameID:(NSString * _Nullable)gameID Completion:(RequestCallBackBlock _Nullable)completion {
+    Pamaras_Key((@[@"uid",@"gid"]));
+    Mutable_Dict(3);
+    [dict setObject:[FFUserModel uid] forKey:@"uid"];
+    [dict setObject:gameID forKey:@"gid"];
+    SS_SIGN;
+    [FFNetWorkManager postRequestWithURL:Map.RESERVE_NEWGAME Params:dict Completion:^(NSDictionary *content, BOOL success) {
+        NEW_REQUEST_COMPLETION;
+    }];
+}
 
 
 

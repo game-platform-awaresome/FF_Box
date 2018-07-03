@@ -234,6 +234,11 @@ typedef enum : NSUInteger {
 /** 185游戏承诺 */
 + (void)gamePromiseCompletion:(RequestCallBackBlock _Nullable)completion;
 
+#pragma mark -
+/** 新游预约 */
++ (void)reservaGameWithGameID:(NSString * _Nullable)gameID
+                   Completion:(RequestCallBackBlock _Nullable)completion;
+
 
 
 @end

@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *serverLabel;
 @property (weak, nonatomic) IBOutlet UILabel *systemLabel;
 @property (weak, nonatomic) IBOutlet UILabel *amountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *server2Label;
 
 
 
@@ -45,22 +46,29 @@
     [self setServer:dict[@"server_name"]];
     [self setTime:dict[@"publish_time"]];
     [self setAmount:dict[@"price"]];
+    [self setGameLabel:dict[@"game_name"]];
 }
 
 - (void)setTitle:(NSString *)string {
     self.titleLabel.text = [NSString stringWithFormat:@"%@",string];
 }
 
+- (void)setGameLabel:(NSString *)string {
+    self.serverLabel.text = [NSString stringWithFormat:@"%@",string];
+};
+
 - (void)setServer:(NSString *)string {
-    self.serverLabel.text = [NSString stringWithFormat:@"区服 : %@",string];
+    self.server2Label.text = [NSString stringWithFormat:@"区服 : %@",string];
 }
 
 - (void)setSystem:(NSString *)string {
     NSString *systemStr = [NSString stringWithFormat:@"%@",string];
     if (systemStr.integerValue == 1) {
         self.systemLabel.text = @"Android";
-    } else {
+    } else if(systemStr.integerValue == 2) {
         self.systemLabel.text = @"iOS";
+    } else if (systemStr.integerValue == 3) {
+        self.systemLabel.text = @"双平台";
     }
 }
 

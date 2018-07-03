@@ -90,7 +90,7 @@ static FFBusinessCommodityViewController *_controller;
 
 - (void)refreshData {
     [self startWaiting];
-    [FFBusinessModel ProductInfoWithProductID:self.pid Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+    [FFBusinessModel ProductInfoWithProductID:self.pid WithUid:NO Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         [self stopWaiting];
         syLog(@"product info ===  %@",content);
         if (success) {

@@ -316,7 +316,7 @@ static FFCommodityModel *_model = nil;
 }
 
 - (void)setSystem:(NSString *)system {
-    _system = ([NSString stringWithFormat:@"%@",system].integerValue == 1) ? @"Android" : @"iOS";
+    _system = ([NSString stringWithFormat:@"%@",system].integerValue == 1) ? @"Android" : ([NSString stringWithFormat:@"%@",system].integerValue == 2) ? @"iOS" : @"双平台";
 }
 
 - (void)setTitle:(NSString *)title {

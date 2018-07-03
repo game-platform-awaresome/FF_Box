@@ -210,7 +210,9 @@ static FFMapModel *model = nil;
       @"TRADE_NOTES_H5":@"http://p.185sy.com/tradenotes.html",
       @"TRADE_NOTES":@"http://api.185sy.com/index.php?g=api&m=Products&a=trade_notes",
       @"PRODUCT_ONSALE":@"http://api.185sy.com/index.php?g=api&m=Products&a=apply_onsale",
-      @"EXCLUSIVE_ACT":@"http://api.185sy.com/index.php?g=api&m=article&a=exclusive_list"
+      @"EXCLUSIVE_ACT":@"http://api.185sy.com/index.php?g=api&m=article&a=exclusive_list",
+      @"RESERVE_NEWGAME":@"http://www.185sy.com/api-game-newgame_reserve",
+      @"RESERVE_SUCCESS":@"http://www.185sy.com/api-game-reserve_success"
       };
     return mapDict;
 }

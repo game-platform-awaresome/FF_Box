@@ -33,6 +33,12 @@
     self.navigationItem.leftBarButtonItem = self.leftButton;
     self.automaticallyAdjustsScrollViewInsets = YES;
     self.webURL = Map.TRADE_NOTES_H5;
+    self.automaticallyAdjustsScrollViewInsets = YES;
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    self.webView.frame = CGRectMake(0, kNAVIGATION_HEIGHT, kSCREEN_WIDTH, kSCREEN_HEIGHT - kNAVIGATION_HEIGHT);
 }
 
 

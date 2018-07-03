@@ -785,10 +785,12 @@ void respondsToTimePicker(NSString *time) {
 }
 
 - (void)setImagesName:(NSArray *)imagesName {
-    _imagesName = imagesName;
-    _netImageArray = [NSMutableArray arrayWithCapacity:imagesName.count];
-    for (NSString *obj in imagesName) {
-        [_netImageArray addObject:GetDictForPreviewPhoto([NSURL URLWithString:obj], ZLPreviewPhotoTypeURLImage)];
+    if ([imagesName isKindOfClass:[NSArray class]]) {
+        _imagesName = imagesName;
+        _netImageArray = [NSMutableArray arrayWithCapacity:imagesName.count];
+        for (NSString *obj in imagesName) {
+            [_netImageArray addObject:GetDictForPreviewPhoto([NSURL URLWithString:obj], ZLPreviewPhotoTypeURLImage)];
+        }
     }
 }
 

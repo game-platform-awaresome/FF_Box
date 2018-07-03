@@ -200,6 +200,11 @@ typedef void(^Completion)(void);
 /** 独家活动 */ 
 @property (nonatomic, strong) NSString *EXCLUSIVE_ACT;
 
+/** 预约游戏 */
+@property (nonatomic, strong) NSString *RESERVE_NEWGAME;
+/** 预约成功 */
+@property (nonatomic, strong) NSString *RESERVE_SUCCESS;
+
 
 + (instancetype)map;
 
