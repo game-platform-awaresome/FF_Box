@@ -24,12 +24,14 @@
 @property (nonatomic, strong) UILabel *serverLabel;
 @property (nonatomic, strong) UILabel *systemLabel;
 @property (nonatomic, strong) UILabel *creatTimeLabel;
+@property (nonatomic, strong) UILabel *remindLabel;
 @property (nonatomic, strong) UILabel *amountLabel;
 
 @property (nonatomic, strong) UIView *descriptionBackView;
 @property (nonatomic, strong) CALayer *desLine;
 @property (nonatomic, strong) UILabel *desTitleLabel;
 @property (nonatomic, strong) UILabel *descriptionLabel;
+
 
 
 
@@ -67,6 +69,7 @@
     self.serverLabel.text = [NSString stringWithFormat:@"所在区服 : %@",CommodityModel().serverName];
     self.systemLabel.text = [NSString stringWithFormat:@"游戏平台 : %@",CommodityModel().system];
     self.creatTimeLabel.text = [NSString stringWithFormat:@"账号创建于%@,当前游戏已充值%@元",CommodityModel().creatTime,CommodityModel().payMoney];
+    self.remindLabel.text = [NSString stringWithFormat:@"此账号已经过185官方审核,请放心购买."];
     self.amountLabel.text = [NSString stringWithFormat:@"%@元",CommodityModel().amount];
     [self setDesString:CommodityModel().pdescription];
 
@@ -138,13 +141,14 @@
 
 - (UIView *)productBackView {
     if (!_productBackView) {
-        _productBackView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.gameBackView.frame), kSCREEN_WIDTH, 110)];
+        _productBackView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.gameBackView.frame), kSCREEN_WIDTH, 130)];
         _productBackView.backgroundColor = [FFColorManager navigation_bar_white_color];
 
         [_productBackView addSubview:self.serverLabel];
         [_productBackView addSubview:self.systemLabel];
         [_productBackView addSubview:self.creatTimeLabel];
         [_productBackView addSubview:self.amountLabel];
+        [_productBackView addSubview:self.remindLabel];
 
         [_productBackView.layer addSublayer:[self lineLayerWithFrame:CGRectMake(0, _productBackView.bounds.size.height - 1, kSCREEN_WIDTH, 1)]];
     }
@@ -171,6 +175,15 @@
         _creatTimeLabel.font = [UIFont systemFontOfSize:12];
     }
     return _creatTimeLabel;
+}
+
+- (UILabel *)remindLabel {
+    if (!_remindLabel) {
+        _remindLabel = [self creatLabelWithFrame:CGRectMake(16, CGRectGetMaxY(self.creatTimeLabel.frame), kSCREEN_WIDTH - 32, 20)];
+        _remindLabel.font = [UIFont systemFontOfSize:14];
+        _remindLabel.textColor = [FFColorManager blue_dark];
+    }
+    return _remindLabel;
 }
 
 - (UILabel *)amountLabel {

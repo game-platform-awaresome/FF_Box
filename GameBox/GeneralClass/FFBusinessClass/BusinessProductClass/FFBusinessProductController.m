@@ -64,6 +64,7 @@ void respondsToTimePicker(NSString *time);
 
 static BOOL FFBusinessEditGameImage = NO;
 static BOOL FFBusinessEditTradeImage = NO;
+static NSArray *__systemArray = nil;
 
 @implementation FFBusinessProductController
 
@@ -377,7 +378,8 @@ void respondsToTimePicker(NSString *time) {
 
 - (void)setSystemArray:(NSArray *)systemArray {
     _systemArray = systemArray;
-    self.systemLabel.text = (systemArray.count > 1) ? ([NSString stringWithFormat:@"%@",systemArray.firstObject].integerValue == 1) ? @"Android" : ([NSString stringWithFormat:@"%@",systemArray.firstObject].integerValue == 2) ? @"iOS" : @"双平台" : @"双平台";
+    __systemArray = systemArray.copy;
+    self.systemLabel.text =([NSString stringWithFormat:@"%@",systemArray.firstObject].integerValue == 1) ? @"Android" : ([NSString stringWithFormat:@"%@",systemArray.firstObject].integerValue == 2) ? @"iOS" : @"双平台";
 }
 
 - (void)setProductInfo:(NSDictionary *)productInfo {
@@ -493,7 +495,7 @@ void respondsToTimePicker(NSString *time) {
 
 + (void)PickerWithType:(FFBusinessPikcerType)type {
     FFBusinessPikcerContorller *Pickcontroller = [[self alloc] init];
-    Pickcontroller.systemArray = controller.systemArray;
+    Pickcontroller.systemArray = __systemArray;
     Pickcontroller.type = type;
     [Pickcontroller.window makeKeyAndVisible];
 }

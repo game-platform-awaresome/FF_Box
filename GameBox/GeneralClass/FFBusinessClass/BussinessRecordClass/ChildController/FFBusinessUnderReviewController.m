@@ -165,7 +165,6 @@
                 }
             }];
 //                syLog(@"delete === %@",self.showArray[indexPath.row][@"id"]);
-
         }
     }
 }

@@ -30,8 +30,10 @@
     [FFGameModel rankGameListWithPage:@"1" ServerType:BT_SERVERS Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         [[FFGameViewController sharedController] stopWaiting];
         if (success) {
-            NSArray *array = content[@"data"];
-            [self setGameDict:array.firstObject];
+            NSArray *array = content[@"data"][@"list"];
+            if ([array isKindOfClass:[NSArray class]]) {
+                [self setGameDict:array.firstObject];
+            }
         } else {
             [UIAlertController showAlertMessage:content[@"msg"] dismissTime:0.7 dismissBlock:nil];
         }

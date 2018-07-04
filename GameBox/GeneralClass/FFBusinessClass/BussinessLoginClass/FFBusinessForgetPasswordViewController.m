@@ -48,7 +48,7 @@
 
 - (void)initUserInterface {
     [super initUserInterface];
-    self.navigationItem.title = @"注册";
+    self.navigationItem.title = @"忘记密码";
 
     [self.leftButton setImage:[FFImageManager General_back_black]];
     self.navigationItem.leftBarButtonItem = self.leftButton;
@@ -127,6 +127,7 @@
 
     [self startWaiting];
     [FFBusinessModel recoverPasswordWithPhoneNumber:self.usernameTF.text Code:self.codeTF.text NewPassword:self.passwordTF.text Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+        [self stopWaiting];
         self.isRegisting = NO;
         if (success) {
             [UIAlertController showAlertMessage:@"修改密码成功" dismissTime:0.7 dismissBlock:^{
@@ -147,7 +148,7 @@
         [UIAlertController showAlertMessage:@"手机号码有误" dismissTime:0.7 dismissBlock:nil];
         return;
     }
-    [FFBusinessModel sendMessageWithPhoneNumber:self.usernameTF.text type:(FFBusinessTypeRegist) Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+    [FFBusinessModel sendMessageWithPhoneNumber:self.usernameTF.text type:(FFBusinessTypePassword) Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         if (success) {
             self.currnetTime = 59;
             self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(refreshTime) userInfo:nil repeats:YES];

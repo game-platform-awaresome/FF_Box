@@ -88,7 +88,7 @@
         _isRequest = NO;
         return;
     }
-    if (self.comPasswordTF.text.length < 16) {
+    if (self.comPasswordTF.text.length < 6) {
         [UIAlertController showAlertMessage:@"请输入6位以上的确认密码" dismissTime:0.7 dismissBlock:nil];
         _isRequest = NO;
         return;

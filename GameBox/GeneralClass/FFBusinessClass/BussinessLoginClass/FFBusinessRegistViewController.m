@@ -8,6 +8,8 @@
 
 #import "FFBusinessRegistViewController.h"
 #import "FFBusinessModel.h"
+#import "FFWebViewController.h"
+#import "FFMapModel.h"
 
 @interface FFBusinessRegistViewController () <UITextFieldDelegate>
 
@@ -155,7 +157,11 @@
 
 
 - (IBAction)respondstToAgreementButton:(id)sender {
-
+    syLog(@"用户协议");
+    FFWebViewController *webVC = [FFWebViewController new];
+    webVC.webURL = [FFMapModel map].USER_AGREEMENT;
+    webVC.title = @"用户协议";
+    [self.navigationController pushViewController:webVC animated:YES];
 }
 
 - (void)respondsToSendMessageButton {
