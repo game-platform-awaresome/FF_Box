@@ -1,0 +1,6 @@
+framework module SY185H5SDK {
+  umbrella header "SY185H5SDK.h"
+
+  export *
+  module * { export * }
+}

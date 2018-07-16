@@ -17,17 +17,12 @@
 + (NSArray *)getAllPropertyWithClass:(id)classType {
     unsigned int count;// 记录属性个数
     objc_property_t *properties = class_copyPropertyList([classType class], &count);
-
     // 遍历
     NSMutableArray *mArray = [NSMutableArray array];
     for (int i = 0; i < count;  i++) {
-
         objc_property_t property = properties[i];
-
         const char *cName = property_getName(property);
-
         NSString *name = [NSString stringWithCString:cName encoding:NSUTF8StringEncoding];
-
         [mArray addObject:name];
     }
     return [mArray copy];

@@ -297,6 +297,8 @@
 		B59D989F2084A2E20024B11D /* FFBasicTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B59D989E2084A2E20024B11D /* FFBasicTableViewController.m */; };
 		B59D98A22084A2FD0024B11D /* FFBasicSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = B59D98A12084A2FD0024B11D /* FFBasicSelectView.m */; };
 		B59DE67C20EB16B40058163E /* FFNotificationHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B59DE67B20EB16B40058163E /* FFNotificationHandler.m */; };
+		B5B129A320FCA42F00C1EED5 /* SY185H5SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5B129A220FCA42F00C1EED5 /* SY185H5SDK.framework */; };
+		B5B129A620FCA48600C1EED5 /* H5Handler.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B129A520FCA48600C1EED5 /* H5Handler.m */; };
 		B5B61AAB20CE0DF200D507A6 /* FFBusinessModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B61AAA20CE0DF200D507A6 /* FFBusinessModel.m */; };
 		B5B61AB120CE20A400D507A6 /* FFBusinessLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B61AB020CE20A400D507A6 /* FFBusinessLoginViewController.m */; };
 		B5B61AB420CE266800D507A6 /* FFBusinessRegistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B61AB320CE266800D507A6 /* FFBusinessRegistViewController.m */; };
@@ -864,6 +866,9 @@
 		B59D98A12084A2FD0024B11D /* FFBasicSelectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBasicSelectView.m; sourceTree = "<group>"; };
 		B59DE67A20EB16B40058163E /* FFNotificationHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFNotificationHandler.h; sourceTree = "<group>"; };
 		B59DE67B20EB16B40058163E /* FFNotificationHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFNotificationHandler.m; sourceTree = "<group>"; };
+		B5B129A220FCA42F00C1EED5 /* SY185H5SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SY185H5SDK.framework; path = GameBox/SY185H5SDK.framework; sourceTree = "<group>"; };
+		B5B129A420FCA48600C1EED5 /* H5Handler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = H5Handler.h; sourceTree = "<group>"; };
+		B5B129A520FCA48600C1EED5 /* H5Handler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = H5Handler.m; sourceTree = "<group>"; };
 		B5B61AA920CE0DF200D507A6 /* FFBusinessModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBusinessModel.h; sourceTree = "<group>"; };
 		B5B61AAA20CE0DF200D507A6 /* FFBusinessModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBusinessModel.m; sourceTree = "<group>"; };
 		B5B61AAF20CE20A400D507A6 /* FFBusinessLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBusinessLoginViewController.h; sourceTree = "<group>"; };
@@ -945,6 +950,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5B129A320FCA42F00C1EED5 /* SY185H5SDK.framework in Frameworks */,
 				B529173E20DB449100A56F41 /* AlipaySDK.framework in Frameworks */,
 				B599693520BBA4E500BC6084 /* CoreMotion.framework in Frameworks */,
 				B599693720BBA50400BC6084 /* libz.tbd in Frameworks */,
@@ -968,6 +974,7 @@
 		76486CF296C9DFD1ABAED75C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B5B129A220FCA42F00C1EED5 /* SY185H5SDK.framework */,
 				B529173D20DB449100A56F41 /* AlipaySDK.framework */,
 				B599693820BBA51200BC6084 /* libstdc++.tbd */,
 				B599693620BBA50300BC6084 /* libz.tbd */,
@@ -2245,6 +2252,7 @@
 				B59D989A2084A2AC0024B11D /* BasicView */,
 				B59D989C2084A2C20024B11D /* BasicController */,
 				B5D505E82089DAA6000B7B50 /* GeneralModel */,
+				B5B129A120FCA25700C1EED5 /* H5Class */,
 				B5D505812086F17A000B7B50 /* GeneralClass */,
 				B58CB7A1207B10830099773D /* Others */,
 				B58CB7A8207B10830099773D /* Resource */,
@@ -2452,6 +2460,15 @@
 				B54457DE20CFC943000B63E4 /* UINavigationBar+FFNavigationBar.m */,
 			);
 			path = BasicController;
+			sourceTree = "<group>";
+		};
+		B5B129A120FCA25700C1EED5 /* H5Class */ = {
+			isa = PBXGroup;
+			children = (
+				B5B129A420FCA48600C1EED5 /* H5Handler.h */,
+				B5B129A520FCA48600C1EED5 /* H5Handler.m */,
+			);
+			path = H5Class;
 			sourceTree = "<group>";
 		};
 		B5B61AAE20CE206800D507A6 /* BussinessLoginClass */ = {
@@ -3059,6 +3076,7 @@
 				B5B61AC520CE79B500D507A6 /* FFBusinessHeaderView.m in Sources */,
 				B51BD0D520B55736005B9DE1 /* FFMyCollectionViewController.m in Sources */,
 				B523832120AE9EF40087733A /* FFDetailMineInfoTableViewController.m in Sources */,
+				B5B129A620FCA48600C1EED5 /* H5Handler.m in Sources */,
 				B523832B20AE9EF40087733A /* FFDynamicModel.m in Sources */,
 				B523832420AE9EF40087733A /* FFDriveFansNumbersViewController.m in Sources */,
 				B544581A20D2010F000B63E4 /* FFBusinessModifyPasswordController.m in Sources */,
