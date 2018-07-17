@@ -105,7 +105,7 @@
             syLog(@"exchang == %@",content);
             [self initDataSource];
             BOX_MESSAGE(@"兑换成功");
-            customEvents(@"exchange_platform_coin", @{@"number":self.exchangeTextfield.text});
+            BoxcustomEvents(@"exchange_platform_coin", @{@"number":self.exchangeTextfield.text});
         } else {
             BOX_MESSAGE(content[@"msg"]);
         }

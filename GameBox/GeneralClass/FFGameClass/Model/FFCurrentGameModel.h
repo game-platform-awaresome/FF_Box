@@ -95,6 +95,17 @@ typedef void(^GameActivityCallBackBlock)(NSDictionary *content, BOOL success);
 
 @property (nonatomic, strong) CommentNumberBlock commentNumberBlock;
 
+
+/** 新属性(H5)属性 */
+@property (nonatomic, strong) NSString *platform;
+@property (nonatomic, strong) NSString *appid;
+@property (nonatomic, strong) NSString *app_clientkey;
+@property (nonatomic, strong) NSString *h5_url;
+
+
+
+
+
 /** 游戏信息单例 */
 + (instancetype)CurrentGame;
 /** 根据游戏 id 刷新游戏数据 */

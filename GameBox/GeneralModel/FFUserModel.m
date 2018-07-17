@@ -166,7 +166,7 @@ static FFUserModel *model;
             [FFUserModel setUserName:[FFUserModel currentUser].username];
             [FFUserModel setPassWord:password];
             
-            statisticsLogin([FFUserModel currentUser].username);
+            BoxstatisticsLogin([FFUserModel currentUser].username);
         }
     }];
 }
@@ -193,7 +193,7 @@ static FFUserModel *model;
     SS_SIGN;
     [FFNetWorkManager postRequestWithURL:Map.USER_REGISTER Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         NEW_REQUEST_COMPLETION;
-        statisticsRegistered(userName);
+        BoxstatisticsRegistered(userName);
     }];
 }
 

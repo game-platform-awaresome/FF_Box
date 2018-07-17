@@ -104,30 +104,36 @@ static FFCurrentGameModel *model;
 //设置信息
 - (void)setGameInfo {
 //    syLog(@"gameinf o === %@",self.gameinfo);
-    [self setGame_introduction:GAMEINFO(@"abstract")];
-    [self setGame_is_collection:GAMEINFO(@"collect")];
-    [self setGame_short_introduction:GAMEINFO(@"content")];
-    [self setGame_download_number:GAMEINFO(@"download")];
-    [self setGame_feature:GAMEINFO(@"feature")];
-    [self setGame_name:GAMEINFO(@"gamename")];
-    [self setGif_url:GAMEINFO(@"gif")];
-    [self setGif_model:GAMEINFO(@"gif_model")];
-    [self setGame_id:GAMEINFO(@"id")];
-    [self setShowImageArray:GAMEINFO(@"imgs")];
-    [self setGame_bundle_name:GAMEINFO(@"ios_pack")];
-    [self setGame_download_url:GAMEINFO(@"ios_url")];
-    [self setPlayer_is_score:GAMEINFO(@"isMark")];
-    [self setGame_label:GAMEINFO(@"label")];
-    [self setGame_logo_url:GAMEINFO(@"logo")];
-    [self setPlayer_qq_group:GAMEINFO(@"qq_group")];
-    [self setGame_rebate:GAMEINFO(@"rebate")];
-    [self setGame_score:GAMEINFO(@"score")];
-    [self setGame_size:GAMEINFO(@"size")];
-    [self setGame_tag:GAMEINFO(@"tag")];
-    [self setGame_type:GAMEINFO(@"types")];
-    [self setGame_version:GAMEINFO(@"version")];
-    [self setGame_vip_amount:GAMEINFO(@"vip")];
-    [self setGame_discount:GAMEINFO(@"discount")];
+    [self setGame_introduction:         GAMEINFO(@"abstract")];
+    [self setGame_is_collection:        GAMEINFO(@"collect")];
+    [self setGame_short_introduction:   GAMEINFO(@"content")];
+    [self setGame_download_number:      GAMEINFO(@"download")];
+    [self setGame_feature:              GAMEINFO(@"feature")];
+    [self setGame_name:                 GAMEINFO(@"gamename")];
+    [self setGif_url:                   GAMEINFO(@"gif")];
+    [self setGif_model:                 GAMEINFO(@"gif_model")];
+    [self setGame_id:                   GAMEINFO(@"id")];
+    [self setShowImageArray:            GAMEINFO(@"imgs")];
+    [self setGame_bundle_name:          GAMEINFO(@"ios_pack")];
+    [self setGame_download_url:         GAMEINFO(@"ios_url")];
+    [self setPlayer_is_score:           GAMEINFO(@"isMark")];
+    [self setGame_label:                GAMEINFO(@"label")];
+    [self setGame_logo_url:             GAMEINFO(@"logo")];
+    [self setPlayer_qq_group:           GAMEINFO(@"qq_group")];
+    [self setGame_rebate:               GAMEINFO(@"rebate")];
+    [self setGame_score:                GAMEINFO(@"score")];
+    [self setGame_size:                 GAMEINFO(@"size")];
+    [self setGame_tag:                  GAMEINFO(@"tag")];
+    [self setGame_type:                 GAMEINFO(@"types")];
+    [self setGame_version:              GAMEINFO(@"version")];
+    [self setGame_vip_amount:           GAMEINFO(@"vip")];
+    [self setGame_discount:             GAMEINFO(@"discount")];
+
+    //h5
+    [self setPlatform:                  GAMEINFO(@"platform")];
+    [self setAppid:                     GAMEINFO(@"appid")];
+    [self setApp_clientkey:             GAMEINFO(@"app_clientkey")];
+    [self setH5_url:                    GAMEINFO(@"h5_url")];
 }
 
 
@@ -262,6 +268,27 @@ static FFCurrentGameModel *model;
 /** 用户是否评分 */
 - (void)setPlayer_is_score:(NSString *)player_is_score {
     SET_VALUE(_player_is_score, player_is_score);
+}
+
+
+/** h5 id */
+- (void)setAppid:(NSString *)appid {
+    SET_VALUE(_appid, appid);
+}
+
+/** h5 key */
+- (void)setApp_clientkey:(NSString *)app_clientkey {
+    SET_VALUE(_app_clientkey, app_clientkey);
+}
+
+/** h5 url  */
+- (void)setH5_url:(NSString *)h5_url {
+    SET_VALUE(_h5_url, h5_url);
+}
+
+/** 游戏平台 */
+- (void)setPlatform:(NSString *)platform {
+    SET_VALUE(_platform, platform);
 }
 
 

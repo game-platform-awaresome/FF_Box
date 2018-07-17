@@ -36,6 +36,8 @@
 #import "FFMainWindow.h"
 #import "FFBoxHandler.h"
 
+#import "H5Handler.h"
+
 
 @interface FFAppDelegate () <UNUserNotificationCenterDelegate>
 
@@ -49,7 +51,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     syLog(@"\n-----------------------------------------\nchannel === %@\n-----------------------------------------\n",Channel);
     syLog(@"\n-----------------------------------------\nbundle ==== %@\n-----------------------------------------\n",[[NSBundle mainBundle] bundleIdentifier]);
-
     //检查渠道号
     [FFDeviceInfo cheackChannel];
     self.window = [FFDefaultWindow window];

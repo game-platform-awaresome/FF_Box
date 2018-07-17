@@ -13,11 +13,13 @@
 #import "FFStatisticsModel.h"
 
 #import "FFWriteCommentController.h"
+#import "H5Handler.h"
 
 #import "FFDeviceInfo.h"
 #import "FFUserModel.h"
 
 #import "FFSharedController.h"
+
 
 @interface FFGameViewController () <FFGameDetailFooterViewDelegate>
 
@@ -326,26 +328,31 @@ static FFGameViewController *controller = nil;
 }
 
 - (void)FFGameDetailFooterView:(FFGameFooterView *)detailFooter clickDownLoadBtn:(UIButton *)sender {
-    syLog(@"下载游戏");
-
-    if ([Channel isEqualToString:@"185"]) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:CURRENT_GAME.game_download_url]];
+    if ((CURRENT_GAME.platform.integerValue == 3)) {
+        syLog(@"进入 H5 游戏");
+        [self pushViewController:[H5Handler handler].H5ViewController];
+        [H5Handler initWithAppID:CURRENT_GAME.appid ClientKey:CURRENT_GAME.app_clientkey H5Url:CURRENT_GAME.h5_url];
     } else {
-        [self startWaiting];
-        [FFGameModel getGameDownloadUrlWithTag:CURRENT_GAME.game_tag Completion:^(NSDictionary * _Nonnull content, BOOL success) {
-            [self stopWaiting];
-            id contentData = content[@"data"];
-            if (contentData == nil || [contentData isKindOfClass:[NSNull class]] || ((NSArray *)contentData).count == 0) {
-                BOX_MESSAGE(@"暂无下载链接,请联系客服");
-            } else {
-                NSString *url = content[@"data"][@"download_url"];
-                syLog(@"downLoadUrl == %@",url);
-                ([url isKindOfClass:[NSString class]]) ? ([[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]]) : (BOX_MESSAGE(@"链接出错,请稍后尝试"));
-            }
-        }];
-    }
+        syLog(@"下载游戏");
+        if ([Channel isEqualToString:@"185"]) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:CURRENT_GAME.game_download_url]];
+        } else {
+            [self startWaiting];
+            [FFGameModel getGameDownloadUrlWithTag:CURRENT_GAME.game_tag Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+                [self stopWaiting];
+                id contentData = content[@"data"];
+                if (contentData == nil || [contentData isKindOfClass:[NSNull class]] || ((NSArray *)contentData).count == 0) {
+                    BOX_MESSAGE(@"暂无下载链接,请联系客服");
+                } else {
+                    NSString *url = content[@"data"][@"download_url"];
+                    syLog(@"downLoadUrl == %@",url);
+                    ([url isKindOfClass:[NSString class]]) ? ([[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]]) : (BOX_MESSAGE(@"链接出错,请稍后尝试"));
+                }
+            }];
+        }
 
-    customEvents(@"down_laod_game", @{@"game_name":CURRENT_GAME.game_name,@"game_id":CURRENT_GAME.game_id});
+        BoxcustomEvents(@"down_laod_game", @{@"game_name":CURRENT_GAME.game_name,@"game_id":CURRENT_GAME.game_id});
+    }
 
 }
 

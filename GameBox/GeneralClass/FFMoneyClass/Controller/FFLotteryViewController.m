@@ -38,7 +38,7 @@
     self.navBarBGAlpha = @"1.0";
     [self.navigationController.navigationBar setTintColor:[FFColorManager navigation_bar_black_color]];
     [self.navigationController.navigationBar setBarTintColor:[FFColorManager navigation_bar_white_color]];
-    customEvents(@"luck_draw", nil);
+    BoxcustomEvents(@"luck_draw", nil);
 }
 
 

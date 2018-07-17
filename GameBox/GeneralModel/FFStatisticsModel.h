@@ -11,19 +11,19 @@
 typedef void(^initBoxCallBack)(NSString * _Nonnull showdiscount);
 
 /** 初始化统计 */
-void initStatisticsModel(NSUInteger state);
+void BoxinitStatisticsModel(NSUInteger state);
 /** 注册统计 */
-void statisticsRegistered(NSString * _Nonnull account);
+void BoxstatisticsRegistered(NSString * _Nonnull account);
 /** 登录统计 */
-void statisticsLogin(NSString * _Nonnull account);
+void BoxstatisticsLogin(NSString * _Nonnull account);
 /** 开始支付统计 */
-void statisticsPayStart(NSString * _Nonnull transactionID, NSString * _Nonnull payMentType, NSString * _Nonnull amount);
+void BoxstatisticsPayStart(NSString * _Nonnull transactionID, NSString * _Nonnull payMentType, NSString * _Nonnull amount);
 /** 支付回调统计 */
-void statisticsPayCallBack(NSString * _Nonnull transactionID, NSString * _Nonnull payMentType, NSString * _Nonnull amount);
+void BoxstatisticsPayCallBack(NSString * _Nonnull transactionID, NSString * _Nonnull payMentType, NSString * _Nonnull amount);
 /** 自定义事件统计 */
-void customEvents(NSString * _Nonnull name, NSDictionary * _Nullable extra);
+void BoxcustomEvents(NSString * _Nonnull name, NSDictionary * _Nullable extra);
 /** 用户事件 */
-void userProfile(NSDictionary * _Nonnull dataDict);
+void BoxuserProfile(NSDictionary * _Nonnull dataDict);
 
 @interface FFStatisticsModel : NSObject
 

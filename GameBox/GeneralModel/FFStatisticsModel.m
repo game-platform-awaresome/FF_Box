@@ -83,7 +83,7 @@ static FFStatisticsModel *model = nil;
 @end
 
 /** 初始化统计 */
-void initStatisticsModel(NSUInteger state) {
+void BoxinitStatisticsModel(NSUInteger state) {
     statisticsModel.registState = state;
 //    NSDictionary *dict = @{@"channel":Channel,@"system":@"2"};
 //
@@ -116,7 +116,7 @@ void initStatisticsModel(NSUInteger state) {
 
 
 /** 注册统计 */
-void statisticsRegistered(NSString *account) {
+void BoxstatisticsRegistered(NSString *account) {
     switch (statisticsModel.registState) {
         case other:
             return;
@@ -138,7 +138,7 @@ void statisticsRegistered(NSString *account) {
 
 
 /** 登录统计 */
-void statisticsLogin(NSString * account) {
+void BoxstatisticsLogin(NSString * account) {
     switch (statisticsModel.registState) {
         case other:
             return;
@@ -159,7 +159,7 @@ void statisticsLogin(NSString * account) {
 }
 
 /** 开始支付统计 */
-void statisticsPayStart(NSString *_Nonnull transactionID, NSString * _Nonnull payMentType, NSString * _Nonnull amount) {
+void BoxstatisticsPayStart(NSString *_Nonnull transactionID, NSString * _Nonnull payMentType, NSString * _Nonnull amount) {
     syLog(@"准备支付统计");
     /** typedef enum : NSUInteger {
      AliQRcode = 1,
@@ -204,7 +204,7 @@ void statisticsPayStart(NSString *_Nonnull transactionID, NSString * _Nonnull pa
     }
 }
 
-void statisticsPayCallBack(NSString *_Nonnull transactionID, NSString * _Nonnull payMentType, NSString * _Nonnull amount) {
+void BoxstatisticsPayCallBack(NSString *_Nonnull transactionID, NSString * _Nonnull payMentType, NSString * _Nonnull amount) {
     syLog(@"支付回调统计");
     /** typedef enum : NSUInteger {
      AliQRcode = 1,
@@ -250,7 +250,7 @@ void statisticsPayCallBack(NSString *_Nonnull transactionID, NSString * _Nonnull
 }
 
 /** 自定义 */
-void customEvents(NSString * _Nonnull name, NSDictionary * _Nullable extra) {
+void BoxcustomEvents(NSString * _Nonnull name, NSDictionary * _Nullable extra) {
     syLog(@"自定义统计 : %@",name);
     switch (statisticsModel.registState) {
         case other:
@@ -270,7 +270,7 @@ void customEvents(NSString * _Nonnull name, NSDictionary * _Nullable extra) {
 }
 
 /** 用户统计 */
-void userProfile(NSDictionary * _Nonnull dataDict) {
+void BoxuserProfile(NSDictionary * _Nonnull dataDict) {
     syLog(@"用户统计 : %@",dataDict);
     switch (statisticsModel.registState) {
         case other:

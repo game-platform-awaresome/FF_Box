@@ -79,7 +79,7 @@ static FFSharedController *controller = nil;
         return;
     }
     IS_INVITE = YES;
-    customEvents(@"shared_Box", @{@"shared_Box":@"邀请好友"});
+    BoxcustomEvents(@"shared_Box", @{@"shared_Box":@"邀请好友"});
     [FFSharedController sharedController].sharedType = invitedFirend;
     [FFSharedController sharedController].isShow = YES;
     [FFSharedController sharedController].cancelButton.userInteractionEnabled = NO;
@@ -109,7 +109,7 @@ static FFSharedController *controller = nil;
         }
     }
 
-    customEvents(@"shared_Game", @{@"game_name":info[@"gamename"]});
+    BoxcustomEvents(@"shared_Game", @{@"game_name":info[@"gamename"]});
 
     if ([FFSharedController sharedController].isShow) {
         return;

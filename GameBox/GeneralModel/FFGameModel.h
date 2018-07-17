@@ -11,7 +11,8 @@
 
 typedef enum : NSUInteger {
     BT_SERVERS = 1,
-    ZK_SERVERS
+    ZK_SERVERS,
+    H5_SERVERS
 } FFGameServersType;
 
 typedef enum : NSUInteger {

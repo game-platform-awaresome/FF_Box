@@ -69,8 +69,8 @@
 - (void)initDataSource {
     [super initDataSource];
     self.selectChildViewControllers = nil;
-    self.homeSelectView.titleArray = [FFBoxHandler sharedInstance].discount_enabled.boolValue ? @[@"BT服",@"折扣",@"承诺"] : @[@"BT服",@"承诺"];
-    self._controllerNameArray = [FFBoxHandler sharedInstance].discount_enabled.boolValue ? @[@"FFBTServerViewController",@"FFZKServerViewController",@"FFPromiseViewController"] : @[@"FFBTServerViewController",@"FFPromiseViewController"];
+    self.homeSelectView.titleArray = [FFBoxHandler sharedInstance].discount_enabled.boolValue ? @[@"BT服",@"折扣",@"H5",@"承诺"] : @[@"BT服",@"H5",@"承诺"];
+    self._controllerNameArray = [FFBoxHandler sharedInstance].discount_enabled.boolValue ? @[@"FFBTServerViewController",@"FFZKServerViewController",@"FFH5ServerViewController",@"FFPromiseViewController"] : @[@"FFBTServerViewController",@"FFH5ServerViewController",@"FFPromiseViewController"];
 }
 
 - (UIViewController *)creatControllerWithString:(NSString *)controllerString {

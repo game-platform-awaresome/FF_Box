@@ -123,7 +123,7 @@ static FFBoxHandler *instance = nil;
     if (box_static) {
         _box_static = [NSString stringWithFormat:@"%@",box_static];
         syLog(@"\n-----------------\n开启统计\n-----------------\n");
-        initStatisticsModel(_box_static.integerValue);
+        BoxinitStatisticsModel(_box_static.integerValue);
     }
 }
 /** QQ 资讯 */

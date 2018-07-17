@@ -49,12 +49,14 @@
 
 
 - (void)refresh {
-    BOOL isCollection = CURRENT_GAME.game_is_collection.boolValue;
-    if (isCollection) {
+    if (CURRENT_GAME.game_is_collection.boolValue) {
         [self.collectionBtn setImage:[FFImageManager Game_detail_footer_collection] forState:(UIControlStateNormal)];
     } else {
         [self.collectionBtn setImage:[FFImageManager Game_detail_footer_nocollection] forState:(UIControlStateNormal)];
     }
+
+    [self.downLoadBtn setTitle:(CURRENT_GAME.platform.integerValue == 3) ? @"进入游戏" : @"下载" forState:(UIControlStateNormal)];
+
 }
 
 #pragma mark - respondToButton
