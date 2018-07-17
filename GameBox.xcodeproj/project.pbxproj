@@ -300,8 +300,8 @@
 		B5B129AB20FD867600C1EED5 /* FFH5NetWork.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B129AA20FD867600C1EED5 /* FFH5NetWork.m */; };
 		B5B129B420FD8A0400C1EED5 /* SY_185SDK_RES.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B5B129B320FD8A0400C1EED5 /* SY_185SDK_RES.bundle */; };
 		B5B129B720FD8C4D00C1EED5 /* TrackingIO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B599692020BB9E8800BC6084 /* TrackingIO.a */; };
-		B5B129BA20FD8D1F00C1EED5 /* SY_185SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5B129B120FD89F200C1EED5 /* SY_185SDK.framework */; };
 		B5B129BF20FD92F500C1EED5 /* FFH5ServerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B129BE20FD92F500C1EED5 /* FFH5ServerViewController.m */; };
+		B5B129C320FDF5F400C1EED5 /* SY_185SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5B129C220FDF5F400C1EED5 /* SY_185SDK.framework */; };
 		B5B61AAB20CE0DF200D507A6 /* FFBusinessModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B61AAA20CE0DF200D507A6 /* FFBusinessModel.m */; };
 		B5B61AB120CE20A400D507A6 /* FFBusinessLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B61AB020CE20A400D507A6 /* FFBusinessLoginViewController.m */; };
 		B5B61AB420CE266800D507A6 /* FFBusinessRegistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B61AB320CE266800D507A6 /* FFBusinessRegistViewController.m */; };
@@ -873,10 +873,10 @@
 		B5B129A520FCA48600C1EED5 /* H5Handler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = H5Handler.m; sourceTree = "<group>"; };
 		B5B129A920FD867600C1EED5 /* FFH5NetWork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFH5NetWork.h; sourceTree = "<group>"; };
 		B5B129AA20FD867600C1EED5 /* FFH5NetWork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFH5NetWork.m; sourceTree = "<group>"; };
-		B5B129B120FD89F200C1EED5 /* SY_185SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SY_185SDK.framework; path = GameBox/SY_185SDK.framework; sourceTree = "<group>"; };
 		B5B129B320FD8A0400C1EED5 /* SY_185SDK_RES.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SY_185SDK_RES.bundle; sourceTree = "<group>"; };
 		B5B129BD20FD92F500C1EED5 /* FFH5ServerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFH5ServerViewController.h; sourceTree = "<group>"; };
 		B5B129BE20FD92F500C1EED5 /* FFH5ServerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFH5ServerViewController.m; sourceTree = "<group>"; };
+		B5B129C220FDF5F400C1EED5 /* SY_185SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SY_185SDK.framework; path = GameBox/SY_185SDK.framework; sourceTree = "<group>"; };
 		B5B61AA920CE0DF200D507A6 /* FFBusinessModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBusinessModel.h; sourceTree = "<group>"; };
 		B5B61AAA20CE0DF200D507A6 /* FFBusinessModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBusinessModel.m; sourceTree = "<group>"; };
 		B5B61AAF20CE20A400D507A6 /* FFBusinessLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBusinessLoginViewController.h; sourceTree = "<group>"; };
@@ -958,7 +958,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5B129BA20FD8D1F00C1EED5 /* SY_185SDK.framework in Frameworks */,
+				B5B129C320FDF5F400C1EED5 /* SY_185SDK.framework in Frameworks */,
 				B5B129A320FCA42F00C1EED5 /* SY185H5SDK.framework in Frameworks */,
 				B529173E20DB449100A56F41 /* AlipaySDK.framework in Frameworks */,
 				B599693520BBA4E500BC6084 /* CoreMotion.framework in Frameworks */,
@@ -983,7 +983,7 @@
 		76486CF296C9DFD1ABAED75C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B5B129B120FD89F200C1EED5 /* SY_185SDK.framework */,
+				B5B129C220FDF5F400C1EED5 /* SY_185SDK.framework */,
 				B5B129A220FCA42F00C1EED5 /* SY185H5SDK.framework */,
 				B529173D20DB449100A56F41 /* AlipaySDK.framework */,
 				B599693820BBA51200BC6084 /* libstdc++.tbd */,
