@@ -447,7 +447,7 @@
 
 - (NSArray *)showArray {
     if (!_showArray) {
-        _showArray = @[@"支付宝扫码",@"支付宝支付",@"微信扫码",@"微信支付",@"财付通支付"];
+        _showArray = @[@"支付宝扫码",@"支付宝支付",@"微信扫码",@"微信支付"];
     }
     return _showArray;
 }
