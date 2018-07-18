@@ -150,7 +150,7 @@ static H5Handler *_handler = nil;
 
 - (void)SYH5Instance:(SYH5Instance *)instance respondsToSignOut:(id)info {
     [SY185SDK signOut];
-    [[FFControllerManager sharedManager].currentNavController popViewControllerAnimated:YES];
+//    [[FFControllerManager sharedManager].currentNavController popViewControllerAnimated:YES];
 }
 
 - (void)SYH5Instance:(SYH5Instance *)instance respondsToPay:(id)info {

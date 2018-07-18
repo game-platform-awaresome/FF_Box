@@ -49,8 +49,8 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    syLog(@"\n-----------------------------------------\nchannel === %@\n-----------------------------------------\n",Channel);
-    syLog(@"\n-----------------------------------------\nbundle ==== %@\n-----------------------------------------\n",[[NSBundle mainBundle] bundleIdentifier]);
+    syLog(@"\n----------------------------------\nchannel === %@\n----------------------------------\n",Channel);
+    syLog(@"\n----------------------------------\nbundle ==== %@\n----------------------------------\n",[[NSBundle mainBundle] bundleIdentifier]);
     //检查渠道号
     [FFDeviceInfo cheackChannel];
     self.window = [FFDefaultWindow window];
@@ -164,7 +164,7 @@
             if (status.integerValue == 6004 || status.integerValue == 9000 || status.integerValue == 8000 || status.integerValue == 5000 ) {
                 [UIAlertController showAlertMessage:@"支付成功" dismissTime:0.7 dismissBlock:nil];
             } else {
-                //取消订单 ??
+                //取消订单
                 [FFBusinessBuyModel cancelOrder:nil];
             }
         }];
