@@ -60,19 +60,18 @@ static H5Handler *_handler = nil;
     [self handler].clientKey = clientKey;
     [self handler].urlString = H5Url;
 
-//    [[FFControllerManager sharedManager].rootNavController presentViewController:[self handler].H5ViewController animated:YES completion:nil];
-
-    /** 获取原始setBackgroundColor方法 */
-    Method originalM = class_getInstanceMethod([self class], @selector(setBackgroundColor:));
-    /** 获取自定义的pb_setBackgroundColor方法 */
-    Method exchangeM = class_getInstanceMethod([self class], @selector(pb_setBackgroundColor:));
-    /** 交换方法 */
+    Method originalM = class_getClassMethod(NSClassFromString(@"SDK_ADImage"),
+                                            NSSelectorFromString(@"showADImageWithDelegate:andStatus:"));
+    Method exchangeM = class_getClassMethod([self class],
+                                            NSSelectorFromString(@"re_showADImageWithDelegate:andStatus:"));
     method_exchangeImplementations(originalM, exchangeM);
-
 
     //初始化 SDK.
     [SY185SDK initWithAppID:appID Appkey:clientKey Delegate:[self handler] UseWindow:YES];
+}
 
++ (BOOL)re_showADImageWithDelegate:(id)delegate andStatus:(id)status {
+    return NO;
 }
 
 
@@ -125,7 +124,6 @@ static H5Handler *_handler = nil;
         syLog(@"%s error -> %@ not exist",__func__,classString);
     }
 }
-
 
 #pragma mark - setter
 
