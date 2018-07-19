@@ -62,6 +62,13 @@ static H5Handler *_handler = nil;
 
 //    [[FFControllerManager sharedManager].rootNavController presentViewController:[self handler].H5ViewController animated:YES completion:nil];
 
+    /** 获取原始setBackgroundColor方法 */
+    Method originalM = class_getInstanceMethod([self class], @selector(setBackgroundColor:));
+    /** 获取自定义的pb_setBackgroundColor方法 */
+    Method exchangeM = class_getInstanceMethod([self class], @selector(pb_setBackgroundColor:));
+    /** 交换方法 */
+    method_exchangeImplementations(originalM, exchangeM);
+
 
     //初始化 SDK.
     [SY185SDK initWithAppID:appID Appkey:clientKey Delegate:[self handler] UseWindow:YES];
@@ -170,6 +177,10 @@ static H5Handler *_handler = nil;
 }
 - (void)SYH5Instance:(SYH5Instance *)instance respondsToSubmitData:(id)info {
     NSLog(@"上报数据 == %@",info);
+    if (info == nil) {
+        NSLog(@"上报数据错误");
+        return;
+    }
     NSString *dataType = [NSString stringWithFormat:@"%@",info[@"dataType"]];
     NSString *moneyNum = [NSString stringWithFormat:@"%@",info[@"moneyNum"]];
     NSString *roleID = [NSString stringWithFormat:@"%@",info[@"roleID"]];

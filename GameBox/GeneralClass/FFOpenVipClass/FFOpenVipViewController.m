@@ -28,6 +28,7 @@
 @property (nonatomic, strong) UIButton *lastSelectButton;
 
 @property (nonatomic, assign) NSInteger cellIndex;
+@property (nonatomic, assign) PayType cellPayType;
 
 /** 支付金额 */
 @property (nonatomic, strong) UILabel *amountLabel;
@@ -74,6 +75,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _cellIndex = 0;
+    _cellPayType = Alipay;
 }
 
 - (void)initUserInterface {
@@ -104,10 +106,10 @@
             syLog(@"可以支付");
             BoxcustomEvents(@"open_vip_action", nil);
 
-            [FFPayModel payStartWithproductID:dict[@"productID"] payType:[NSString stringWithFormat:@"%ld",(_cellIndex + 1)] amount:dict[@"money"] Completion:^(NSDictionary *content, BOOL success) {
+            [FFPayModel payStartWithproductID:dict[@"productID"] payType:[NSString stringWithFormat:@"%ld",_cellPayType] amount:dict[@"money"] Completion:^(NSDictionary *content, BOOL success) {
                 syLog(@"支付 ?????????????");
                 if (success) {
-                    _payType = [NSString stringWithFormat:@"%ld",(_cellIndex + 1)];
+                    _payType = [NSString stringWithFormat:@"%ld",_cellPayType];
                     _amount = dict[@"money"];
 
                     BoxstatisticsPayStart(content[@"data"][@"orderID"], _payType, _amount);
@@ -213,6 +215,26 @@
 
 #pragma mark - tableview delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    switch (indexPath.row) {
+        case 0: {
+            _cellPayType = Alipay;
+        }
+            break;
+        case 1: {
+            _cellPayType = AliQRcode;
+        }
+            break;
+        case 2: {
+            _cellPayType = WechatPay;
+        }
+            break;
+        case 3: {
+            _cellPayType = WechatQRcode;
+        }
+            break;
+        default:
+            break;
+    }
     _cellIndex = indexPath.row;
     [tableView reloadData];
 }
@@ -447,7 +469,7 @@
 
 - (NSArray *)showArray {
     if (!_showArray) {
-        _showArray = @[@"支付宝扫码",@"支付宝支付",@"微信扫码",@"微信支付"];
+        _showArray = @[@"支付宝支付",@"支付宝扫码",@"微信支付",@"微信扫码"];
     }
     return _showArray;
 }

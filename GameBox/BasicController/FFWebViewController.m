@@ -73,31 +73,12 @@
 // API是根据WebView对于即将跳转的HTTP请求头信息和相关信息来决定是否跳转
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
 
+    WKNavigationActionPolicy  actionPolicy = WKNavigationActionPolicyAllow;
     NSURLRequest * request = navigationAction.request;
-
     NSURL * url = [request URL];
     syLog(@"url === %@", url);
 
-    WKNavigationActionPolicy  actionPolicy = WKNavigationActionPolicyAllow;
-    if ([[url scheme] isEqualToString:@"weixin"]) {
-        if ([[UIApplication sharedApplication] canOpenURL:url]) {
-            [[UIApplication sharedApplication] openURL:url];
-        } else {
-
-        }
-    }
-
-    if ([[url scheme] isEqualToString:@"alipays"]) {
-        if ([[UIApplication sharedApplication] canOpenURL:url]) {
-            [[UIApplication sharedApplication] openURL:url];
-        } else {
-
-        }
-    }
-
-    if ([[url scheme] isEqualToString:@"alert"]) {
-
-    }
+    !([[url scheme] isEqualToString:@"http"] || [[url scheme] isEqualToString:@"https"]) ? [[UIApplication sharedApplication] openURL:url] : 0;
 
     decisionHandler(actionPolicy);
 }

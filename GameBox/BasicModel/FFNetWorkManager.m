@@ -117,7 +117,6 @@
             }
         }
 
-        syLog(@"hahahah");
     } progress:^(NSProgress * _Nonnull uploadProgress) {
         if (progress) {
             progress(uploadProgress);

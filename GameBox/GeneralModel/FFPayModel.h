@@ -11,7 +11,7 @@
 /** 支付的枚举 */
 typedef enum : NSUInteger {
     AliQRcode = 1,
-    Alipay = 2,
+    Alipay = 11,
     WechatQRcode = 3,
     WechatPay = 4,
     TenPay = 6,
