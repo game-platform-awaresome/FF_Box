@@ -88,7 +88,7 @@
             self.tableView.backgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"wuwangluo"]];
         }
 
-        if (self.classifyArray.count > 0) {
+        if (self.classifyArray.count > 0 && self.showArray.count > 0) {
             self.tableView.tableHeaderView = self.headerView;
         } else {
             self.tableView.tableHeaderView = nil;

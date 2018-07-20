@@ -330,8 +330,12 @@ static FFGameViewController *controller = nil;
 - (void)FFGameDetailFooterView:(FFGameFooterView *)detailFooter clickDownLoadBtn:(UIButton *)sender {
     if ((CURRENT_GAME.platform.integerValue == 3)) {
         syLog(@"进入 H5 游戏");
-        [self pushViewController:[H5Handler handler].H5ViewController];
-        [H5Handler initWithAppID:CURRENT_GAME.appid ClientKey:CURRENT_GAME.app_clientkey H5Url:CURRENT_GAME.h5_url];
+        if ([FFUserModel UserName] && [FFUserModel passWord]) {
+            [self pushViewController:[H5Handler handler].H5ViewController];
+            [H5Handler initWithAppID:CURRENT_GAME.appid ClientKey:CURRENT_GAME.app_clientkey H5Url:CURRENT_GAME.h5_url];
+        } else {
+            pushViewController(@"FFLoginViewController");
+        }
     } else {
         syLog(@"下载游戏");
         if ([Channel isEqualToString:@"185"]) {

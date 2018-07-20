@@ -42,6 +42,8 @@
 + (UIImage *)Home_message_light             {RETURN_IMAGE(@"Home_message_light");}
 + (UIImage *)Home_message_dark              {RETURN_IMAGE(@"Home_message_dark");}
 + (UIImage *)Home_mission_center_image      {RETURN_IMAGE(@"Home_mission_center_image");}
++ (UIImage *)Home_earn_gold                 {RETURN_IMAGE(@"Home_earn_gold");}
+
 
 #pragma mark - game view
 + (UIImage *)Game_header_background_image   {RETURN_IMAGE(@"Game_header_background_image");}

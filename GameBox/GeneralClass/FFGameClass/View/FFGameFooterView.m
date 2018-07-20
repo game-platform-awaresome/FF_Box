@@ -55,7 +55,7 @@
         [self.collectionBtn setImage:[FFImageManager Game_detail_footer_nocollection] forState:(UIControlStateNormal)];
     }
 
-    [self.downLoadBtn setTitle:(CURRENT_GAME.platform.integerValue == 3) ? @"进入游戏" : @"下载" forState:(UIControlStateNormal)];
+    [self.downLoadBtn setTitle:(CURRENT_GAME.platform.integerValue == 3) ? @"开始游戏" : @"下载游戏" forState:(UIControlStateNormal)];
 
 }
 

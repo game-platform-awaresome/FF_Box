@@ -16,7 +16,30 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self exchangeMethodWithClass1:@"SDK_ADImage"
+                           Method1:@"showADImageWithDelegate:andStatus:"
+                            Class2:@"H5Handler"
+                           Method2:@"re_showADImageWithDelegate:andStatus:"];
+    [self exchangeMethodWithClass1:@"LoginController"
+                           Method1:@"showADPicView"
+                            Class2:@"H5Handler"
+                           Method2:@"re_showADPicView"];
+    [self exchangeMethodWithClass1:@"LoginController"
+                           Method1:@"showBingPhoneView"
+                            Class2:@"H5Handler"
+                           Method2:@"re_showBingPhoneView"];
+    [self exchangeMethodWithClass1:@"LoginController"
+                           Method1:@"showBindNameView"
+                            Class2:@"H5Handler"
+                           Method2:@"re_showBindNameView"];
+}
+
+- (void)exchangeMethodWithClass1:(NSString *)class1 Method1:(NSString *)method1 Class2:(NSString *)class2 Method2:(NSString *)method2 {
+    Method originalM = class_getClassMethod(NSClassFromString(class1),
+                                            NSSelectorFromString(method1));
+    Method exchangeM = class_getClassMethod(NSClassFromString(class2),
+                                            NSSelectorFromString(method2));
+    method_exchangeImplementations(originalM, exchangeM);
 }
 
 #pragma mark - setter
@@ -31,7 +54,45 @@
 
 #pragma mark - responds
 - (void)respondsToRightButton {
-    pushViewController(@"FFZKClassifyController");
+    pushViewController(@"FFH5ClassifyController");
+}
+
+- (void)FFBTServerHeaderView:(id)headerView  didSelectButtonWithInfo:(id)info {
+    id vc = nil;
+
+
+    if ([info isKindOfClass:[NSString class]]) {
+        if ([info isEqualToString:@"FFH5EarngoldViewController"]) {
+            [UIAlertController showAlertMessage:@"暂时未开放,敬请期待." dismissTime:0.8 dismissBlock:nil];
+            return;
+        }
+
+        Class Controller = NSClassFromString(info);
+        vc = [[Controller alloc] init];
+        [self pushViewController:vc];
+
+    }
+
+
+    if ([info isKindOfClass:[NSNumber class]]) {
+        NSNumber *number = (NSNumber *)info;
+        if (number.integerValue == 2) {
+            [UIAlertController showAlertMessage:@"暂时未开放,敬请期待." dismissTime:0.8 dismissBlock:nil];
+            return;
+        }
+
+        NSArray *vcs = [self valueForKey:@"childController"];
+        if (vcs) {
+            vc = vcs[((NSNumber *)info).integerValue];
+            [self pushViewController:vc];
+        }
+    }
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    id cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    [cell setValue:@YES forKey:@"isH5Game"];
+    return cell;
 }
 
 #pragma mark - getter
@@ -40,24 +101,28 @@
 }
 
 - (NSArray *)selectButtonArray {
-    return @[@"新游",@"活动",@"超低折扣",@"开服表"];
+    return @[@"新游",@"活动",@"赚金币",@"开服表"];
 }
 
 - (NSArray *)selectImageArray {
     return @[[FFImageManager Home_new_game],
              [FFImageManager Home_activity],
-             [FFImageManager Home_discount],
+             [FFImageManager Home_earn_gold],
              [FFImageManager Home_classify]];
 }
 
 - (NSArray *)selectControllerName {
-    return @[@"FFZKNewGameController",
-             @"FFZKActivityViewController",
-             @"FFDiscountController",
-             @"FFZKOpenServerViewController"];
+    return @[@"FFH5NewGameController",
+             @"FFH5ActivityViewController",
+             @"FFH5EarngoldViewController",
+             @"FFH5OpenServerViewController"];
 }
+
 
 
 
 
 @end
+
+
+

@@ -37,6 +37,9 @@
 
 @property (nonatomic, strong) NSString *ReservationGame;
 
+/** 是否是 H5 的游戏 */
+@property (nonatomic, assign) BOOL isH5Game;
+
 
 @end
 

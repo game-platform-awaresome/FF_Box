@@ -59,13 +59,6 @@ static H5Handler *_handler = nil;
     [self handler].appID = appID;
     [self handler].clientKey = clientKey;
     [self handler].urlString = H5Url;
-
-    Method originalM = class_getClassMethod(NSClassFromString(@"SDK_ADImage"),
-                                            NSSelectorFromString(@"showADImageWithDelegate:andStatus:"));
-    Method exchangeM = class_getClassMethod([self class],
-                                            NSSelectorFromString(@"re_showADImageWithDelegate:andStatus:"));
-    method_exchangeImplementations(originalM, exchangeM);
-
     //初始化 SDK.
     [SY185SDK initWithAppID:appID Appkey:clientKey Delegate:[self handler] UseWindow:YES];
 }
@@ -74,6 +67,32 @@ static H5Handler *_handler = nil;
     return NO;
 }
 
++ (void)re_showADPicView {
+    [H5Handler hidLogin];
+}
+
++ (void)re_showBingPhoneView {
+    [H5Handler hidLogin];
+}
+
++ (void)re_showBindNameView {
+    [H5Handler hidLogin];
+}
+
++ (void)hidLogin {
+    NSString *classString = @"LoginController";
+    Class LoginController = NSClassFromString(classString);
+    if (LoginController) {
+        SEL SharedController = NSSelectorFromString(@"hideLoginView");
+        if ([LoginController respondsToSelector:SharedController]) {
+            IMP imp = [LoginController methodForSelector:SharedController];
+            void (*func)(void) = (void *)imp;
+            func();
+        }
+    } else {
+        syLog(@"%s error -> %@ not exist",__func__,classString);
+    }
+}
 
 - (void)loadRequest {
     if (self.username == nil || self.password == nil) {

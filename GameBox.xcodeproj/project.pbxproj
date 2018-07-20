@@ -302,6 +302,10 @@
 		B5B129B720FD8C4D00C1EED5 /* TrackingIO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B599692020BB9E8800BC6084 /* TrackingIO.a */; };
 		B5B129BF20FD92F500C1EED5 /* FFH5ServerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B129BE20FD92F500C1EED5 /* FFH5ServerViewController.m */; };
 		B5B129C320FDF5F400C1EED5 /* SY_185SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5B129C220FDF5F400C1EED5 /* SY_185SDK.framework */; };
+		B5B12A4221017B7D00C1EED5 /* FFH5NewGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B12A4121017B7D00C1EED5 /* FFH5NewGameController.m */; };
+		B5B12A4521017BF900C1EED5 /* FFH5OpenServerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B12A4421017BF900C1EED5 /* FFH5OpenServerViewController.m */; };
+		B5B12A4821017C4900C1EED5 /* FFH5ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B12A4721017C4900C1EED5 /* FFH5ActivityViewController.m */; };
+		B5B12A4B21017E7B00C1EED5 /* FFH5ClassifyController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B12A4A21017E7B00C1EED5 /* FFH5ClassifyController.m */; };
 		B5B61AAB20CE0DF200D507A6 /* FFBusinessModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B61AAA20CE0DF200D507A6 /* FFBusinessModel.m */; };
 		B5B61AB120CE20A400D507A6 /* FFBusinessLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B61AB020CE20A400D507A6 /* FFBusinessLoginViewController.m */; };
 		B5B61AB420CE266800D507A6 /* FFBusinessRegistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B61AB320CE266800D507A6 /* FFBusinessRegistViewController.m */; };
@@ -877,6 +881,14 @@
 		B5B129BD20FD92F500C1EED5 /* FFH5ServerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFH5ServerViewController.h; sourceTree = "<group>"; };
 		B5B129BE20FD92F500C1EED5 /* FFH5ServerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFH5ServerViewController.m; sourceTree = "<group>"; };
 		B5B129C220FDF5F400C1EED5 /* SY_185SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SY_185SDK.framework; path = GameBox/SY_185SDK.framework; sourceTree = "<group>"; };
+		B5B12A4021017B7D00C1EED5 /* FFH5NewGameController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFH5NewGameController.h; sourceTree = "<group>"; };
+		B5B12A4121017B7D00C1EED5 /* FFH5NewGameController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFH5NewGameController.m; sourceTree = "<group>"; };
+		B5B12A4321017BF900C1EED5 /* FFH5OpenServerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFH5OpenServerViewController.h; sourceTree = "<group>"; };
+		B5B12A4421017BF900C1EED5 /* FFH5OpenServerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFH5OpenServerViewController.m; sourceTree = "<group>"; };
+		B5B12A4621017C4900C1EED5 /* FFH5ActivityViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFH5ActivityViewController.h; sourceTree = "<group>"; };
+		B5B12A4721017C4900C1EED5 /* FFH5ActivityViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFH5ActivityViewController.m; sourceTree = "<group>"; };
+		B5B12A4921017E7B00C1EED5 /* FFH5ClassifyController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFH5ClassifyController.h; sourceTree = "<group>"; };
+		B5B12A4A21017E7B00C1EED5 /* FFH5ClassifyController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFH5ClassifyController.m; sourceTree = "<group>"; };
 		B5B61AA920CE0DF200D507A6 /* FFBusinessModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBusinessModel.h; sourceTree = "<group>"; };
 		B5B61AAA20CE0DF200D507A6 /* FFBusinessModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBusinessModel.m; sourceTree = "<group>"; };
 		B5B61AAF20CE20A400D507A6 /* FFBusinessLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBusinessLoginViewController.h; sourceTree = "<group>"; };
@@ -1442,6 +1454,8 @@
 				B523825820AA85FF0087733A /* FFBTNewGameController.m */,
 				B523825A20AA86110087733A /* FFZKNewGameController.h */,
 				B523825B20AA86110087733A /* FFZKNewGameController.m */,
+				B5B12A4021017B7D00C1EED5 /* FFH5NewGameController.h */,
+				B5B12A4121017B7D00C1EED5 /* FFH5NewGameController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1465,6 +1479,8 @@
 				B523826020AAB6850087733A /* FFBTClassifyController.m */,
 				B523826220AAB6950087733A /* FFZKClassifyController.h */,
 				B523826320AAB6950087733A /* FFZKClassifyController.m */,
+				B5B12A4921017E7B00C1EED5 /* FFH5ClassifyController.h */,
+				B5B12A4A21017E7B00C1EED5 /* FFH5ClassifyController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1849,6 +1865,8 @@
 				B52383AF20AEAE170087733A /* FFBTOpenServerViewController.m */,
 				B52383BB20AEB6590087733A /* FFZKOpenServerViewController.h */,
 				B52383BC20AEB6590087733A /* FFZKOpenServerViewController.m */,
+				B5B12A4321017BF900C1EED5 /* FFH5OpenServerViewController.h */,
+				B5B12A4421017BF900C1EED5 /* FFH5OpenServerViewController.m */,
 				B57B53CD20E61E98001770A3 /* FFSBTOpenServerViewController.h */,
 				B57B53CE20E61E98001770A3 /* FFSBTOpenServerViewController.m */,
 				B57B53D020E61EAF001770A3 /* FFSZKOpenServerViewController.h */,
@@ -2113,6 +2131,8 @@
 				B57B53B620E3888B001770A3 /* FFBTActivityViewController.m */,
 				B57B53B820E3889B001770A3 /* FFZKActivityViewController.h */,
 				B57B53B920E3889B001770A3 /* FFZKActivityViewController.m */,
+				B5B12A4621017C4900C1EED5 /* FFH5ActivityViewController.h */,
+				B5B12A4721017C4900C1EED5 /* FFH5ActivityViewController.m */,
 			);
 			path = ChildController;
 			sourceTree = "<group>";
@@ -3081,6 +3101,7 @@
 				B523831F20AE9EF40087733A /* FFGifThumbnailViewController.m in Sources */,
 				B523839920AEA2710087733A /* YBPopupMenuPath.m in Sources */,
 				B51BD16A20B650CE005B9DE1 /* FFSystemInfoController.m in Sources */,
+				B5B12A4B21017E7B00C1EED5 /* FFH5ClassifyController.m in Sources */,
 				B599694620BBABF700BC6084 /* FFStatisticsModel.m in Sources */,
 				B523825C20AA86110087733A /* FFZKNewGameController.m in Sources */,
 				B523828720AADFCE0087733A /* FFDiscountController.m in Sources */,
@@ -3178,6 +3199,7 @@
 				B523838F20AEA0C70087733A /* FLAnimatedImage.m in Sources */,
 				B51BD0DC20B55A5A005B9DE1 /* FFTransferServerNotesController.m in Sources */,
 				B51BD07C20B53A80005B9DE1 /* FFRRebateViewController.m in Sources */,
+				B5B12A4821017C4900C1EED5 /* FFH5ActivityViewController.m in Sources */,
 				B51BCFCF20B3EA6F005B9DE1 /* FFMineHeaderView.m in Sources */,
 				B51BD16720B650CE005B9DE1 /* FFNewsViewController.m in Sources */,
 				B51BCFC720B2F92C005B9DE1 /* FFNavigationController.m in Sources */,
@@ -3229,7 +3251,9 @@
 				B599691620BB9AD700BC6084 /* FFMaskView.m in Sources */,
 				B523832720AE9EF40087733A /* FFDriveMineViewController.m in Sources */,
 				B580A4EC20D26EB700680194 /* FFBusinessProductDetailViewController.m in Sources */,
+				B5B12A4221017B7D00C1EED5 /* FFH5NewGameController.m in Sources */,
 				B51BCFB620B2C8AB005B9DE1 /* FFpackageCell.m in Sources */,
+				B5B12A4521017BF900C1EED5 /* FFH5OpenServerViewController.m in Sources */,
 				B5D505802085CB06000B7B50 /* FFBasicSelectViewController.m in Sources */,
 				B523832220AE9EF40087733A /* FFDriveController.m in Sources */,
 				B5D5058E2088406A000B7B50 /* FFNewGameViewController.m in Sources */,

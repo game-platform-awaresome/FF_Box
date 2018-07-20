@@ -198,7 +198,11 @@
     }
 }
 
-
+- (void)setIsH5Game:(BOOL)isH5Game {
+    _isH5Game = isH5Game;
+    [self.gameDownload setBackgroundImage:nil forState:(UIControlStateNormal)];
+    [self.gameDownload setImage:[UIImage imageNamed:@"Game_H5_Start_game"] forState:(UIControlStateNormal)];
+}
 
 
 
