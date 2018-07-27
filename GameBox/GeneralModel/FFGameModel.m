@@ -46,6 +46,9 @@
     SS_CHANNEL;
     SS_SERVER_TYPE;
     SS_SYSTEM;
+    if ([FFUserModel uid]) {
+        [dict setObject:[FFUserModel uid] forKey:@"uid"];
+    }
     [FFNetWorkManager postRequestWithURL:Map.GAME_NEWINDEX Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         REQUEST_COMPLETION;
     }];
