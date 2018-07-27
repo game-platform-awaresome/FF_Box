@@ -204,6 +204,11 @@ static FFBoxHandler *instance = nil;
     }
 }
 
+//- (void)setFirstInstall:(NSString *)firstInstall {
+//    _firstInstall = firstInstall;
+////    SAVEOBJECT_AT_USERDEFAULTS(@"1", @"isFirstInstall");
+//}
+
 /** 是否是第一次登陆 */
 + (BOOL)isFirstLogin {
     NSString *isFirstGuide = OBJECT_FOR_USERDEFAULTS(@"isFirstGuide");
@@ -211,6 +216,17 @@ static FFBoxHandler *instance = nil;
         return NO;
     } else {
         SAVEOBJECT_AT_USERDEFAULTS(@"1", @"isFirstGuide");
+        return YES;
+    }
+}
+
+/** 是否加载过蒙版 */
++ (BOOL)isAddmaskView {
+    NSString *addMaskView = OBJECT_FOR_USERDEFAULTS(@"isAddmaskView");
+    if (addMaskView) {
+        return NO;
+    } else {
+        SAVEOBJECT_AT_USERDEFAULTS(@"1", @"isAddmaskView");
         return YES;
     }
 }

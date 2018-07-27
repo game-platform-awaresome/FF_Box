@@ -66,7 +66,8 @@
                 [self.window makeKeyAndVisible];
                 [FFDefaultWindow resignWindow];
                 //加载蒙版
-                [self addMaskView:[FFBoxHandler FirstInstall]];
+                [self addMaskView:[FFBoxHandler isAddmaskView]];
+//                [self addMaskView:YES];
                 //加载引导页
                 if ([FFBoxHandler isFirstLogin]) {
                     [self.window addSubview:[FFLaunchScreen new]];

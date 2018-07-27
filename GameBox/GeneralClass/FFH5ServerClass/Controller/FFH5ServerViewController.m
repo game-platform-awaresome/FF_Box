@@ -101,7 +101,7 @@
 }
 
 - (NSArray *)selectButtonArray {
-    return @[@"新游",@"活动",@"赚金币",@"开服表"];
+    return @[@"新游",@"排行榜",@"赚金币",@"开服表"];
 }
 
 - (NSArray *)selectImageArray {
@@ -113,7 +113,7 @@
 
 - (NSArray *)selectControllerName {
     return @[@"FFH5NewGameController",
-             @"FFH5ActivityViewController",
+             @"FFH5RankViewController",
              @"FFH5EarngoldViewController",
              @"FFH5OpenServerViewController"];
 }

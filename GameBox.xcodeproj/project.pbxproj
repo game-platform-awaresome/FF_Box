@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0543CAF4C1A27767297E9250 /* libPods-GameBox.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C09ECF85CDCEAA38284810 /* libPods-GameBox.a */; };
+		B513218E210AF13600BF0532 /* FFZKRankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B513218D210AF13600BF0532 /* FFZKRankViewController.m */; };
+		B5132191210AF14300BF0532 /* FFH5RankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5132190210AF14300BF0532 /* FFH5RankViewController.m */; };
 		B51BCFB120B2BD8A005B9DE1 /* FFGameOpenCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B51BCFAF20B2BD8A005B9DE1 /* FFGameOpenCell.m */; };
 		B51BCFB220B2BD8A005B9DE1 /* FFGameOpenCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B51BCFB020B2BD8A005B9DE1 /* FFGameOpenCell.xib */; };
 		B51BCFB620B2C8AB005B9DE1 /* FFpackageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B51BCFB320B2C8AA005B9DE1 /* FFpackageCell.m */; };
@@ -347,6 +349,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B513218C210AF13600BF0532 /* FFZKRankViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFZKRankViewController.h; sourceTree = "<group>"; };
+		B513218D210AF13600BF0532 /* FFZKRankViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFZKRankViewController.m; sourceTree = "<group>"; };
+		B513218F210AF14300BF0532 /* FFH5RankViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFH5RankViewController.h; sourceTree = "<group>"; };
+		B5132190210AF14300BF0532 /* FFH5RankViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFH5RankViewController.m; sourceTree = "<group>"; };
 		B51BCFAE20B2BD8A005B9DE1 /* FFGameOpenCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFGameOpenCell.h; sourceTree = "<group>"; };
 		B51BCFAF20B2BD8A005B9DE1 /* FFGameOpenCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFGameOpenCell.m; sourceTree = "<group>"; };
 		B51BCFB020B2BD8A005B9DE1 /* FFGameOpenCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FFGameOpenCell.xib; sourceTree = "<group>"; };
@@ -2588,6 +2594,10 @@
 			children = (
 				B5D104332090167D00CA1949 /* FFRankListViewController.h */,
 				B5D104342090167D00CA1949 /* FFRankListViewController.m */,
+				B513218C210AF13600BF0532 /* FFZKRankViewController.h */,
+				B513218D210AF13600BF0532 /* FFZKRankViewController.m */,
+				B513218F210AF14300BF0532 /* FFH5RankViewController.h */,
+				B5132190210AF14300BF0532 /* FFH5RankViewController.m */,
 			);
 			path = FFRankListClass;
 			sourceTree = "<group>";
@@ -3008,6 +3018,7 @@
 				B5781AE020A3F4DE00CB1464 /* FFHomeSelectView.m in Sources */,
 				B51BD03020B50976005B9DE1 /* FFCoinDetailCell.m in Sources */,
 				B51BD0D920B55A2C005B9DE1 /* FFTransferGameViewController.m in Sources */,
+				B5132191210AF14300BF0532 /* FFH5RankViewController.m in Sources */,
 				B544581E20D20B4A000B63E4 /* FFBusinessProductController.m in Sources */,
 				B51BD04B20B51057005B9DE1 /* FFEverydayCommentController.m in Sources */,
 				B580A55020D3C73A00680194 /* ZLPhotoBrowser.m in Sources */,
@@ -3132,6 +3143,7 @@
 				B51BD07720B53A5F005B9DE1 /* FFApplyRebateViewController.m in Sources */,
 				B532510920B299FE007D7239 /* FFGameFooterView.m in Sources */,
 				B57B53CF20E61E98001770A3 /* FFSBTOpenServerViewController.m in Sources */,
+				B513218E210AF13600BF0532 /* FFZKRankViewController.m in Sources */,
 				B53600F120CA83B600DFE96A /* FFBusinessViewController.m in Sources */,
 				B580A54720D3C73A00680194 /* ZLForceTouchPreviewController.m in Sources */,
 				B523831C20AE9EF40087733A /* FFDriveMyNewsViewController.m in Sources */,
@@ -3413,7 +3425,7 @@
 					"$(PROJECT_DIR)/GameBox/Others/Third_Library/trackingio",
 					"$(PROJECT_DIR)/GameBox",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sy185Box.TWKJ.test;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sy185Box.TWKJ.test555;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -3444,7 +3456,7 @@
 					"$(PROJECT_DIR)/GameBox/Others/Third_Library/trackingio",
 					"$(PROJECT_DIR)/GameBox",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sy185Box.TWKJ.test;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sy185Box.TWKJ.test555;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};

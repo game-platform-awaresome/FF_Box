@@ -276,7 +276,8 @@
         _loginBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
         _loginBtn.bounds = CGRectMake(0, 0, kSCREEN_WIDTH * 0.8, 44);
         _loginBtn.center = CGPointMake(kSCREEN_WIDTH / 2, 360);
-        _loginBtn.backgroundColor = [FFColorManager blue_dark];
+//        _loginBtn.backgroundColor = [FFColorManager blue_dark];
+        _loginBtn.backgroundColor = [UIColor redColor];
         [_loginBtn setTitle:@"登录" forState:(UIControlStateNormal)];
 
         _loginBtn.layer.cornerRadius = 22;
@@ -292,7 +293,7 @@
         _forgetBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
         _forgetBtn.frame = CGRectMake(0, 0, kSCREEN_WIDTH / 4, 30);
         [_forgetBtn setTitle:@"忘记密码?" forState:(UIControlStateNormal)];
-        [_forgetBtn setTitleColor:[FFColorManager blue_dark] forState:UIControlStateNormal];
+        [_forgetBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
         [_forgetBtn addTarget:self action:@selector(respondsToBtn:) forControlEvents:(UIControlEventTouchUpInside)];
     }
     return _forgetBtn;

@@ -35,6 +35,8 @@ typedef void(^BoxFailureBlock)(NSDictionary *content);
 /** 是否第一次登陆 */
 + (BOOL)isFirstLogin;
 
+/** 是否加载过蒙版 */
++ (BOOL)isAddmaskView;
 
 
 /** 自动登录 */

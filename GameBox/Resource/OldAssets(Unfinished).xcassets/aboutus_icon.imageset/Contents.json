@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "a_icon60.png",
+      "filename" : "b_icon_hezi-_60.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "a_icon60@2x.png",
+      "filename" : "b_icon_hezi-_60@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "a_icon60@3x.png",
+      "filename" : "b_icon_hezi-_60@3x.png",
       "scale" : "3x"
     }
   ],

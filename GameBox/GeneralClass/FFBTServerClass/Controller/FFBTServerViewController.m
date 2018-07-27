@@ -17,6 +17,8 @@
 #import "FFSearchController.h"
 //childe controller
 
+#import "FFRankListViewController.h"
+
 
 #define CELL_IDE @"FFCustomizeCell"
 #define CELL_SRCELL @"FFSRcommentCell"
@@ -162,21 +164,21 @@
 
 #pragma mark - table veiw delegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return (self.model.sectionArray[indexPath.section].type == SectionOfBoutique) ? 120 : 80;
+    return (self.model.sectionArray[indexPath.section].type == SectionOfBoutique) ? 140 : 80;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 30;
+    return 40;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 
-    UIView *backview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 30)];
+    UIView *backview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 40)];
     backview.backgroundColor = [FFColorManager navigation_bar_white_color];
 
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 30)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(22, 0, kSCREEN_WIDTH - 10, 40)];
     label.backgroundColor = [FFColorManager navigation_bar_white_color];
-    label.text = [NSString stringWithFormat:@"    %@",self.model.sectionArray[section].sectionHeaderTitle];
+    label.text = [NSString stringWithFormat:@"%@",self.model.sectionArray[section].sectionHeaderTitle];
 
     [backview addSubview:label];
 
@@ -186,7 +188,7 @@
 
 
     if (section == 0) {
-        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(kSCREEN_WIDTH - 100, 0, 90, 30)];
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(kSCREEN_WIDTH - 110, 0, 90, 40)];
         [button setTitle:@" 游戏分类" forState:(UIControlStateNormal)];
         [button setImage:[UIImage imageNamed:@"Home_classify_button"] forState:(UIControlStateNormal)];
         [button setTitleColor:[FFColorManager blue_dark] forState:(UIControlStateNormal)];
@@ -323,7 +325,7 @@
 }
 
 - (NSArray *)selectButtonArray {
-    return @[@"新游",@"活动",@"满V",@"开服表"];
+    return @[@"新游",@"排行榜",@"送满V",@"开服表"];
 }
 
 - (NSArray *)selectImageArray {
@@ -335,7 +337,7 @@
 
 - (NSArray *)selectControllerName {
     return @[@"FFBTNewGameController",
-             @"FFBTActivityViewController",
+             @"FFRankListViewController",
              @"FFHeightVipController",
              @"FFBTOpenServerViewController"];
     /** FFBTClassifyController */

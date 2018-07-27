@@ -37,6 +37,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *zkLabel;
 
 
+@property (strong, nonatomic) UILabel *rankLabel;
+
+
 //约束布局
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *lefLayout;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *rigthLayout;
@@ -166,6 +169,14 @@
     if (dict[@"is_reserved"]) {
         [self setBetaGameImage:[NSString stringWithFormat:@"%@",dict[@"is_reserved"]]];
     }
+    
+    if (dict[@"downloadImage"]) {
+        [self setDownloadImage:dict[@"downloadImage"]];
+    }
+    
+    if (dict[@"rank"]) {
+        [self setRankString:dict[@"rank"]];
+    }
 }
 
 - (void)setBetaGameImage:(NSString *)string {
@@ -202,6 +213,42 @@
     _isH5Game = isH5Game;
     [self.gameDownload setBackgroundImage:nil forState:(UIControlStateNormal)];
     [self.gameDownload setImage:[UIImage imageNamed:@"Game_H5_Start_game"] forState:(UIControlStateNormal)];
+}
+
+- (void)setDownloadImage:(NSString *)imageString {
+    if (imageString) {
+        [self.gameDownload setBackgroundImage:nil forState:(UIControlStateNormal)];
+        [self.gameDownload setImage:[UIImage imageNamed:imageString] forState:(UIControlStateNormal)];
+        self.rankLabel.text = self.dict[@"rank"];
+//        [self.rankLabel sizeToFit];
+        [self.rankLabel sizeToFit];
+        if (self.rankLabel.text.integerValue < 4) {
+            self.rankLabel.center = CGPointMake(self.gameDownload.bounds.size.width / 2, self.gameDownload.bounds.size.height / 2 - 4);
+        } else {
+            self.rankLabel.center = CGPointMake(self.gameDownload.bounds.size.width / 2, self.gameDownload.bounds.size.height / 2);
+        }
+        [self.gameDownload addSubview:self.rankLabel];
+    }
+}
+
+- (void)setRankString:(NSString *)string {
+    if (string) {
+        self.rankLabel.text = string;
+        [self.rankLabel sizeToFit];
+    } else {
+        [self.rankLabel removeFromSuperview];
+    }
+}
+
+
+#pragma mark - getter
+- (UILabel *)rankLabel {
+    if (!_rankLabel) {
+        _rankLabel = [[UILabel alloc] init];
+        _rankLabel.textColor = [UIColor whiteColor];
+        _rankLabel.font = [UIFont boldSystemFontOfSize:13];
+    }
+    return _rankLabel;
 }
 
 

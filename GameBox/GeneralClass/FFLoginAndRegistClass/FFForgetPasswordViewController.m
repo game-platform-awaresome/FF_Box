@@ -169,6 +169,7 @@
     return YES;
 }
 
+#define MainColor [UIColor redColor]
 #pragma mark - getter
 - (UITextField *)phoneNumber {
     if (!_phoneNumber) {
@@ -214,7 +215,7 @@
         _sendCodeBtn.frame = CGRectMake(0, 0, kSCREEN_WIDTH / 4, 44);
         [_sendCodeBtn setTitle:@"获取验证码" forState:(UIControlStateNormal)];
         [_sendCodeBtn setBackgroundColor:[FFColorManager navigation_bar_white_color]];
-        [_sendCodeBtn setTitleColor:[FFColorManager blue_dark] forState:(UIControlStateNormal)];
+        [_sendCodeBtn setTitleColor:MainColor forState:(UIControlStateNormal)];
         _sendCodeBtn.layer.cornerRadius = 4;
         _sendCodeBtn.layer.masksToBounds = YES;
         [_sendCodeBtn addTarget:self action:@selector(respondsToSendCodeBtn) forControlEvents:(UIControlEventTouchUpInside)];
@@ -236,7 +237,7 @@
         _next.bounds = CGRectMake(0, 0, kSCREEN_WIDTH * 0.8, 44);
         _next.center = CGPointMake(kSCREEN_WIDTH / 2, 250);
         [_next setTitle:@"下一步" forState:(UIControlStateNormal)];
-        [_next setBackgroundColor:[FFColorManager blue_dark]];
+        [_next setBackgroundColor:MainColor];
         _next.layer.cornerRadius = 22;
         _next.layer.masksToBounds = YES;
         [_next addTarget:self action:@selector(respondsToNext) forControlEvents:(UIControlEventTouchUpInside)];

@@ -25,6 +25,8 @@
 @property (nonatomic, strong) UIButton *messageButton;
 @property (nonatomic, strong) NSArray *_controllerNameArray;
 
+@property (nonatomic, strong) NSTimer *timer;
+
 @end
 
 @implementation FFHomeViewController
@@ -60,9 +62,40 @@
     [self.navigationView addSubview:self.messageButton];
     [self.view addSubview:self.scrollView];
     self.floatImageView.image = [FFImageManager Home_mission_center_image];
-    self.floatImageView.frame = CGRectMake(kSCREEN_WIDTH - 95, kSCREEN_HEIGHT - 150, 80, 60);
+    self.floatImageView.frame = CGRectMake(kSCREEN_WIDTH - 95, kSCREEN_HEIGHT - 150, 100, 80);
     self.floatImageView.layer.masksToBounds = NO;
     [self addFLoatView];
+
+    UIButton *floatButton  = [UIButton buttonWithType:(UIButtonTypeCustom)];
+    floatButton.frame = self.floatImageView.frame;
+    [floatButton addTarget:self action:@selector(respondsToFloatButton) forControlEvents:(UIControlEventTouchUpInside)];
+    [self.view addSubview:floatButton];
+
+    [self respondsToTimer];
+
+}
+
+- (void)respondsToTimer {
+    [UIView animateWithDuration:1 animations:^{
+        if (self.floatImageView.alpha == 0.5) {
+            self.floatImageView.alpha = 1;
+        } else if (self.floatImageView.alpha == 1) {
+            self.floatImageView.alpha = 0.5;
+        }
+    } completion:^(BOOL finished) {
+        [self respondsToTimer];
+    }];
+}
+
+- (void)respondsToFloatButton {
+    NSString *className = CURRENT_USER.isLogin ? @"FFMissionCenterViewController" : @"FFLoginViewController";
+    Class MissonVC = NSClassFromString(className);
+    if (MissonVC) {
+        id vc = [[MissonVC alloc] init];
+        [self pushViewController:vc];
+    } else {
+        syLog(@"%s error- > %@ not exist",__func__,className);
+    }
 }
 
  
@@ -95,14 +128,15 @@
 
 #pragma mark - responds
 - (void)respondsToFloatImageViewTap:(UITapGestureRecognizer *)sender {
-    NSString *className = CURRENT_USER.isLogin ? @"FFMissionCenterViewController" : @"FFLoginViewController";
-    Class MissonVC = NSClassFromString(className);
-    if (MissonVC) {
-        id vc = [[MissonVC alloc] init];
-        [self pushViewController:vc];
-    } else {
-        syLog(@"%s error- > %@ not exist",__func__,className);
-    }
+
+//    NSString *className = CURRENT_USER.isLogin ? @"FFMissionCenterViewController" : @"FFLoginViewController";
+//    Class MissonVC = NSClassFromString(className);
+//    if (MissonVC) {
+//        id vc = [[MissonVC alloc] init];
+//        [self pushViewController:vc];
+//    } else {
+//        syLog(@"%s error- > %@ not exist",__func__,className);
+//    }
 }
 
 - (void)respondsToFloatImageViewPan:(UIPanGestureRecognizer *)sender {
@@ -225,6 +259,9 @@
     return _messageButton;
 }
 
+- (CGFloat)floatImageViewSize {
+    return 90;
+}
 
 
 

@@ -406,6 +406,8 @@
     return YES;
 }
 
+#define MainColor [UIColor redColor]
+
 #pragma mark - getter
 - (UITextField *)creatTextFieldWithLeftView:(UIImageView *)lefitView WithRightView:(UIImageView *)rigthView WithPlaceholder:(NSString *)placeholder WithBounds:(CGRect)Bounds WithsecureTextEntry:(BOOL)secureTextEntry  {
     UITextField *textfield = [[UITextField alloc] init];
@@ -526,7 +528,7 @@
         [_registerBtn setTitle:@"注册" forState:(UIControlStateNormal)];
         [_registerBtn setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
         [_registerBtn setTitleColor:[UIColor blueColor] forState:(UIControlStateHighlighted)];
-        [_registerBtn setBackgroundColor:[FFColorManager blue_dark]];
+        [_registerBtn setBackgroundColor:MainColor];
         _registerBtn.layer.cornerRadius = 22;
         _registerBtn.layer.masksToBounds = YES;
         [_registerBtn addTarget:self action:@selector(respondsToRegisterBtn) forControlEvents:(UIControlEventTouchUpInside)];
@@ -539,7 +541,7 @@
     if (!_sendMessageBtn) {
         _sendMessageBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
         _sendMessageBtn.backgroundColor = [FFColorManager navigation_bar_white_color];
-        [_sendMessageBtn setTitleColor:[FFColorManager blue_dark] forState:(UIControlStateNormal)];
+        [_sendMessageBtn setTitleColor:MainColor forState:(UIControlStateNormal)];
         [_sendMessageBtn setTitle:@"发送验证码" forState:(UIControlStateNormal)];
         [_sendMessageBtn addTarget:self action:@selector(respondsToSendMessageBtn) forControlEvents:(UIControlEventTouchUpInside)];
         _sendMessageBtn.bounds = CGRectMake(0, 0, kSCREEN_WIDTH * 0.3, 44);

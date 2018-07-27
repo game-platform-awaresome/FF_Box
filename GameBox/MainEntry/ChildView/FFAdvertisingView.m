@@ -26,7 +26,17 @@
 
     view.imageView.image = [UIImage imageWithData:data];
     [[UIApplication sharedApplication].keyWindow addSubview:view];
+    [view.closebutton setTitle:@" 3s " forState:(UIControlStateNormal)];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [view.closebutton setTitle:@" 2s " forState:(UIControlStateNormal)];
+    });
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [view.closebutton setTitle:@" 1s " forState:(UIControlStateNormal)];
+    });
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [view.closebutton setTitle:@" 0s " forState:(UIControlStateNormal)];
+    });
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [view respondsToCloseButton];
     });
 
@@ -75,7 +85,7 @@
 - (UIButton *)closebutton {
     if (!_closebutton) {
         _closebutton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        _closebutton.frame = CGRectMake(kSCREEN_WIDTH * 0.8, kSCREEN_HEIGHT * 0.85, 30, 30);
+        _closebutton.frame = CGRectMake(kSCREEN_WIDTH * 0.8, kSCREEN_HEIGHT * 0.05, 40, 30);
         [_closebutton setTitle:@" 关闭 " forState:(UIControlStateNormal)];
         [_closebutton setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
         _closebutton.titleLabel.font = [UIFont systemFontOfSize:20];
@@ -83,7 +93,7 @@
 
         _closebutton.backgroundColor = [UIColor colorWithWhite:0.2 alpha:0.7];
 
-        _closebutton.layer.cornerRadius = _closebutton.bounds.size.height / 2;
+        _closebutton.layer.cornerRadius = 8;
         _closebutton.layer.masksToBounds = YES;
 
         [_closebutton addTarget:self action:@selector(respondsToCloseButton) forControlEvents:(UIControlEventTouchUpInside)];

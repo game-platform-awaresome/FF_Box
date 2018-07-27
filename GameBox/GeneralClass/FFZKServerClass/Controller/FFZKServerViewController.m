@@ -42,7 +42,7 @@
 }
 
 - (NSArray *)selectButtonArray {
-    return @[@"新游",@"活动",@"超低折扣",@"开服表"];
+    return @[@"新游",@"排行榜",@"超低折扣",@"开服表"];
 }
 
 - (NSArray *)selectImageArray {
@@ -53,7 +53,7 @@
 }
 - (NSArray *)selectControllerName {
     return @[@"FFZKNewGameController",
-             @"FFZKActivityViewController",
+             @"FFZKRankViewController",
              @"FFDiscountController",
              @"FFZKOpenServerViewController"];
 }

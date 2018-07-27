@@ -44,14 +44,14 @@
     self.backgroundColor = [UIColor blackColor];
     self.alpha = 0.8;
     UIBezierPath *bpath = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, kSCREEN_WIDTH, kSCREEN_HEIGHT) ];
-    CGSize scanSize = CGSizeMake(70, 70);
-    CGRect scanRect = CGRectMake(kSCREEN_WIDTH / 2 - 35, kSCREEN_HEIGHT  - 70, scanSize.width, scanSize.height);
+    CGSize scanSize = CGSizeMake(80, 80);
+    CGRect scanRect = CGRectMake(kSCREEN_WIDTH / 2 - scanSize.width / 2, kSCREEN_HEIGHT - scanSize.height, scanSize.width, scanSize.height);
     [bpath appendPath:[[UIBezierPath bezierPathWithOvalInRect:scanRect] bezierPathByReversingPath]];
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
     shapeLayer.path = bpath.CGPath;
     self.layer.mask = shapeLayer;
     [self addSubview:self.imageView];
-    [self addSubview:self.label];
+//    [self addSubview:self.label];
     [self addSubview:self.hideButton];
 
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -76,7 +76,7 @@
 
 - (UIImageView *)imageView {
     if (!_imageView) {
-        _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(kSCREEN_WIDTH / 10, kSCREEN_HEIGHT - kSCREEN_WIDTH / 3 / 0.9 - 45, kSCREEN_WIDTH / 3 - kSCREEN_WIDTH / 20, kSCREEN_WIDTH / 3 / 0.9)];
+        _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(kSCREEN_WIDTH / 10, kSCREEN_HEIGHT - kSCREEN_WIDTH / 75 * 40 - 120, kSCREEN_WIDTH / 75 * 46 , kSCREEN_WIDTH / 75 * 48)];
         _imageView.image = [UIImage imageNamed:@"Community_Arrow"];
     }
     return _imageView;
