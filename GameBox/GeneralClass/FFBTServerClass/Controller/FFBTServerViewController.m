@@ -176,7 +176,7 @@
     UIView *backview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 40)];
     backview.backgroundColor = [FFColorManager navigation_bar_white_color];
 
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(22, 0, kSCREEN_WIDTH - 10, 40)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(8, 0, kSCREEN_WIDTH - 10, 40)];
     label.backgroundColor = [FFColorManager navigation_bar_white_color];
     label.text = [NSString stringWithFormat:@"%@",self.model.sectionArray[section].sectionHeaderTitle];
 
@@ -188,7 +188,7 @@
 
 
     if (section == 0) {
-        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(kSCREEN_WIDTH - 110, 0, 90, 40)];
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(kSCREEN_WIDTH - 100, 0, 90, 40)];
         [button setTitle:@" 游戏分类" forState:(UIControlStateNormal)];
         [button setImage:[UIImage imageNamed:@"Home_classify_button"] forState:(UIControlStateNormal)];
         [button setTitleColor:[FFColorManager blue_dark] forState:(UIControlStateNormal)];

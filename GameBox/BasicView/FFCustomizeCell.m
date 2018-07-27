@@ -68,15 +68,15 @@
         self.gameSize.font = [UIFont systemFontOfSize:12];
         self.gameSize.textColor = [UIColor lightGrayColor];
     } else if (kSCREEN_WIDTH == 375) {
-        _lefLayout.constant = 20;
-        _rigthLayout.constant = 20;
+        _lefLayout.constant = 8;
+        _rigthLayout.constant = 8;
         self.gameName.font = [UIFont systemFontOfSize:14];
         [self.gameName sizeToFit];
         self.gameSize.font = [UIFont systemFontOfSize:13];
         self.gameSize.textColor = [UIColor lightGrayColor];
     } else if (kSCREEN_WIDTH == 414) {
-        _lefLayout.constant = 30;
-        _rigthLayout.constant = 30;
+        _lefLayout.constant = 8;
+        _rigthLayout.constant = 8;
         self.gameName.font = [UIFont systemFontOfSize:16];
         [self.gameName sizeToFit];
         self.gameSize.font = [UIFont systemFontOfSize:15];

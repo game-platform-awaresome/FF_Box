@@ -155,7 +155,7 @@
     UIButton *button = [UIButton createButton];
     [button setImage:[FFImageManager Home_activity] forState:(UIControlStateNormal)];
     button.tag = BTN_TAG + idx;
-    button.frame = CGRectMake(15 + (((kSCREEN_WIDTH - 280) / 3) + 60) * idx, 0, 70, 100);
+    button.frame = CGRectMake(4 + (((kSCREEN_WIDTH - 280 - 8) / 3) + 70) * idx, 0, 70, 100);
     [button addTarget:self action:@selector(respondsToTitleButton:) forControlEvents:(UIControlEventTouchUpInside)];
     [self.selectButtonView addSubview:button];
     return button;
