@@ -26,4 +26,6 @@
 
 @property (nonatomic, strong) NSArray *gameArray;
 
+@property (nonatomic, assign) BOOL isH5Game;
+
 @end

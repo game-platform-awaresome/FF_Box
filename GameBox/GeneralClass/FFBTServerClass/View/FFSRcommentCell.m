@@ -25,6 +25,8 @@
 
 @property (nonatomic, strong) UIButton *discountView;
 
+@property (nonatomic, assign) BOOL isH5Game;
+
 @end
 
 
