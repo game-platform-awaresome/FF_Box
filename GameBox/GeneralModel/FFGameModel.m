@@ -262,8 +262,9 @@
     Mutable_Dict(4);
     [dict setObject:gameID forKey:@"game_id"];
     [dict setObject:@"1" forKey:@"type"];
-    SS_CHANNEL;
+    [dict setObject:Channel forKey:@"channel_id"];
     [dict setObject:@"1" forKey:@"page"];
+
     [FFNetWorkManager postRequestWithURL:Map.GAME_GONGLUE Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         REQUEST_COMPLETION;
     }];
