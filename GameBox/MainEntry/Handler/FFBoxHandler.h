@@ -16,6 +16,7 @@ typedef void(^BoxFailureBlock)(NSDictionary *content);
 
 @property (nonatomic, strong) NSString *update_url;         //盒子更新地址
 @property (nonatomic, strong) NSString *start_page;         //启动页
+@property (nonatomic, strong) NSString *start_page_link;    //启动页广告链接
 @property (nonatomic, strong) NSDictionary *app_notice;     //盒子通知
 @property (nonatomic, strong) NSString *box_static;         //盒子统计
 @property (nonatomic, strong) NSString *qq_zixun;           //qq 资讯

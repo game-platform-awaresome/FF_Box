@@ -69,7 +69,7 @@
 }
 
 - (void)loadMoreData {
-    [FFGameModel gameListWithPage:New_page ServerType:self.gameServerType GameType:self.gameType Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+    [FFGameModel gameListWithPage:Next_page ServerType:self.gameServerType GameType:self.gameType Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         if (success) {
             NSArray *dataArray = content[@"data"][@"list"];
             if (dataArray.count > 0) {
@@ -110,7 +110,7 @@
 }
 
 - (NSString *)gameType {
-    return @"1";
+    return @"3";
 }
 
 

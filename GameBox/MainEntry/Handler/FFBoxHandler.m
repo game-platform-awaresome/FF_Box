@@ -109,6 +109,15 @@ static FFBoxHandler *instance = nil;
         [FFBoxHandler saveAdvertisingImage:_start_page];
     }
 }
+/** 启动页链接 */
+- (void)setStart_page_link:(NSString *)start_page_link {
+    if ([start_page_link isKindOfClass:[NSNull class]]) {
+        syLog(@"\n-----------------\n无广告页链接\n-----------------\n");
+    } else {
+        _start_page_link = [NSString stringWithFormat:@"%@",start_page_link];
+        syLog(@"\n-----------------\n保存广告页链接\n-----------------\n");
+    }
+}
 /** 盒子通知 */
 - (void)setApp_notice:(NSDictionary *)app_notice {
     if ([app_notice isKindOfClass:[NSDictionary class]]) {
@@ -233,12 +242,14 @@ static FFBoxHandler *instance = nil;
 
 /** 盒子更新 */
 - (void)boxUpdate {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil  message:@"游戏有更新,前往更新" preferredStyle:UIAlertControllerStyleAlert];
-    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.update_url]];
-    }]];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil  message:@"游戏有更新,前往更新" preferredStyle:UIAlertControllerStyleAlert];
+        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.update_url]];
+        }]];
+    });
 }
 
 /** 保存广告图片 */

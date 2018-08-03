@@ -7,7 +7,7 @@
 //
 
 #import "FFAdvertisingView.h"
-
+#import "FFBoxHandler.h"
 
 @interface FFAdvertisingView ()
 
@@ -63,10 +63,22 @@
     [self removeFromSuperview];
 }
 
+- (void)respondsToTap {
+    NSURL *url = [NSURL URLWithString:[FFBoxHandler sharedInstance].start_page_link];
+    if (url) {
+        [[UIApplication sharedApplication] openURL:url];
+    }
+}
+
 #pragma mark - getter
 - (UIImageView *)imageView {
     if (!_imageView) {
         _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, kSCREEN_HEIGHT)];
+        _imageView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(respondsToTap)];
+        tap.numberOfTapsRequired = 1;
+        tap.numberOfTouchesRequired = 1;
+        [_imageView addGestureRecognizer:tap];
     }
     return _imageView;
 }
