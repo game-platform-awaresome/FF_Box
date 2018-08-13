@@ -50,8 +50,9 @@
         [dict setObject:[FFUserModel uid] forKey:@"uid"];
     }
     if ([FFUserModel UserName]) {
-        [dict setObject:[FFUserModel uid] forKey:@"username"];
+        [dict setObject:[FFUserModel UserName] forKey:@"username"];
     }
+
     [FFNetWorkManager postRequestWithURL:Map.GAME_NEWINDEX Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         REQUEST_COMPLETION;
     }];

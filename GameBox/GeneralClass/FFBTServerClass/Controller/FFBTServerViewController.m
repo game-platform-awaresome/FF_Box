@@ -20,6 +20,11 @@
 #import "FFRankListViewController.h"
 
 
+#import "UIView+HYBMasonryKit.h"
+#import "UILabel+HYBMasonryKit.h"
+#import "FFGameListBaseCell.h"
+
+
 #define CELL_IDE @"FFCustomizeCell"
 #define CELL_SRCELL @"FFSRcommentCell"
 
@@ -54,7 +59,10 @@
 
 
 - (void)initDataSource {
-    BOX_REGISTER_CELL;
+    [self.tableView registerClass:[FFGameListBaseCell class] forCellReuseIdentifier:GamelistBaseCellIDE];
+
+//    [FFGameListBaseCell registCellToTabelView:self.tableView];
+//    [FFGameListBaseCell registCellToTabelView:self.tableView WithIdentifier]
 }
 
 #pragma mark - load data
@@ -155,8 +163,14 @@
         [cell setValue:self.model.sectionArray[indexPath.section] forKey:@"model"];
         ((FFSRcommentCell *)cell).delegate = self;
     } else {
-        cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDE];
+        cell = [tableView dequeueReusableCellWithIdentifier:GamelistBaseCellIDE];
+        if (!cell) {
+            cell = [[FFGameListBaseCell alloc] initWithStyle:(UITableViewCellStyleValue1) reuseIdentifier:GamelistBaseCellIDE];
+        }
         [cell setValue:self.model.sectionArray[indexPath.section].gameArray[indexPath.row] forKey:@"dict"];
+
+        [cell setValue:@"Home_cell_BT" forKey:@"rigthButtonImage"];
+        
     }
     [cell setValue:@3 forKey:@"selectionStyle"];
     return cell;
@@ -164,7 +178,7 @@
 
 #pragma mark - table veiw delegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return (self.model.sectionArray[indexPath.section].type == SectionOfBoutique) ? 140 : 80;
+    return (self.model.sectionArray[indexPath.section].type == SectionOfBoutique) ? 140 : 100;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -173,34 +187,59 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 
+
     UIView *backview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 40)];
     backview.backgroundColor = [FFColorManager navigation_bar_white_color];
 
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(8, 0, kSCREEN_WIDTH - 10, 40)];
-    label.backgroundColor = [FFColorManager navigation_bar_white_color];
-    label.text = [NSString stringWithFormat:@"%@",self.model.sectionArray[section].sectionHeaderTitle];
+    CGFloat font = 16;
+    if (section == 0) {
+        font = 18;
+    }
 
-    [backview addSubview:label];
+
+    UILabel *titleLabel = [UILabel hyb_labelWithText:[NSString stringWithFormat:@"%@",self.model.sectionArray[section].sectionHeaderTitle] font:font superView:backview constraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(backview).offset(10);
+        make.top.mas_equalTo(backview).offset(0);
+        make.height.mas_equalTo(40);
+    }];
+    titleLabel.backgroundColor = [FFColorManager navigation_bar_white_color];
+
+
+
+    if (section == 0) {
+        UIFont *font = [UIFont boldSystemFontOfSize:18];
+
+        UILabel *dian = [UILabel hyb_labelWithText:@" • " font:18 superView:backview constraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(titleLabel.mas_right).offset(1);
+            make.top.mas_equalTo(backview).offset(0);
+            make.height.mas_equalTo(40);
+        }];
+        dian.font = font;
+
+        UILabel *huobao = [UILabel hyb_labelWithText:@"火爆" font:18 superView:backview constraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(dian.mas_right).offset(1);
+            make.top.mas_equalTo(backview).offset(0);
+            make.height.mas_equalTo(40);
+        }];
+        [huobao setTextColor:kRedColor];
+        huobao.font = font;
+
+        UIButton *button = [UIButton hyb_buttonWithTitle:@" 游戏分类" superView:backview constraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(backview).offset(-10);
+            make.top.mas_equalTo(backview).offset(0);
+            make.height.mas_equalTo(40);
+        } touchUp:^(UIButton *sender) {
+            [self respondsToRightButton];
+        }];
+        [button setImage:[UIImage imageNamed:@"Home_classify_button"] forState:(UIControlStateNormal)];
+        [button setTitleColor:[FFColorManager blue_dark] forState:(UIControlStateNormal)];
+        button.titleLabel.font = [UIFont systemFontOfSize:17];
+    }
+
 
     UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 1)];
     line.backgroundColor = [FFColorManager view_separa_line_color];
     [backview addSubview:line];
-
-
-    if (section == 0) {
-        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(kSCREEN_WIDTH - 100, 0, 90, 40)];
-        [button setTitle:@" 游戏分类" forState:(UIControlStateNormal)];
-        [button setImage:[UIImage imageNamed:@"Home_classify_button"] forState:(UIControlStateNormal)];
-        [button setTitleColor:[FFColorManager blue_dark] forState:(UIControlStateNormal)];
-        button.titleLabel.font = [UIFont systemFontOfSize:15];
-        [button addTarget:self action:@selector(respondsToRightButton) forControlEvents:(UIControlEventTouchUpInside)];
-        [backview addSubview:button];
-    }
-
-//    CALayer *layer = [[CALayer alloc] init];
-//    layer.frame = CGRectMake(0, 0, kSCREEN_WIDTH, 1);
-//    layer.backgroundColor = [FFColorManager view_separa_line_color].CGColor;
-//    [label.layer addSublayer:layer];
 
     return backview;
 }

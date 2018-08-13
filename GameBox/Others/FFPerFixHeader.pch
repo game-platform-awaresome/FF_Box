@@ -76,6 +76,10 @@ return;\
 #define BACKGROUND_COLOR RGBCOLOR(239, 240, 241)
 
 
+/** new  */
+#import "FFQuickKey.h"
+
+
 #endif /* FFPerFixHeader_pch */
 
 

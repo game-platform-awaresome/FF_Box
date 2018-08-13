@@ -13,6 +13,7 @@
 #import "FFColorManager.h"
 #import "FFImageManager.h"
 #import "UIViewController+FFViewController.h"
+#import <Masonry.h>
 
 #define pushViewController(className)     \
 Class ControllerClass = NSClassFromString(className);\

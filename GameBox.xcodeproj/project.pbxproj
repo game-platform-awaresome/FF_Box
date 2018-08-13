@@ -315,6 +315,40 @@
 		B5B61AC020CE6C5300D507A6 /* FFBusinessTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B61ABE20CE6C5300D507A6 /* FFBusinessTableViewCell.m */; };
 		B5B61AC120CE6C5300D507A6 /* FFBusinessTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5B61ABF20CE6C5300D507A6 /* FFBusinessTableViewCell.xib */; };
 		B5B61AC520CE79B500D507A6 /* FFBusinessHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B61AC420CE79B500D507A6 /* FFBusinessHeaderView.m */; };
+		B5BA506121215C71000EA315 /* HYBCommonKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BA501E21215C70000EA315 /* HYBCommonKit.m */; };
+		B5BA506221215C71000EA315 /* HYBHelperKitBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BA502221215C70000EA315 /* HYBHelperKitBaseController.m */; };
+		B5BA506321215C71000EA315 /* HYBHelperKitBaseURLController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BA502421215C70000EA315 /* HYBHelperKitBaseURLController.m */; };
+		B5BA506421215C71000EA315 /* HYBHelperKitTestEntranceController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BA502621215C70000EA315 /* HYBHelperKitTestEntranceController.m */; };
+		B5BA506521215C71000EA315 /* NSArray+HYBHelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BA502A21215C70000EA315 /* NSArray+HYBHelperKit.m */; };
+		B5BA506621215C71000EA315 /* NSDate+HYBHelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BA502C21215C70000EA315 /* NSDate+HYBHelperKit.m */; };
+		B5BA506721215C71000EA315 /* NSDictionary+HYBHelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BA502E21215C70000EA315 /* NSDictionary+HYBHelperKit.m */; };
+		B5BA506821215C71000EA315 /* NSFileManager+HYBHelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BA503021215C70000EA315 /* NSFileManager+HYBHelperKit.m */; };
+		B5BA506921215C71000EA315 /* NSMutableArray+HYBHelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BA503221215C70000EA315 /* NSMutableArray+HYBHelperKit.m */; };
+		B5BA506A21215C71000EA315 /* NSMutableDictionary+HYBHelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BA503421215C70000EA315 /* NSMutableDictionary+HYBHelperKit.m */; };
+		B5BA506B21215C71000EA315 /* NSNumber+HYBHelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BA503621215C70000EA315 /* NSNumber+HYBHelperKit.m */; };
+		B5BA506C21215C71000EA315 /* NSObject+HYBHelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BA503821215C70000EA315 /* NSObject+HYBHelperKit.m */; };
+		B5BA506D21215C71000EA315 /* NSString+HYBHelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BA503A21215C70000EA315 /* NSString+HYBHelperKit.m */; };
+		B5BA506E21215C71000EA315 /* NSTimer+HYBHelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BA503C21215C70000EA315 /* NSTimer+HYBHelperKit.m */; };
+		B5BA506F21215C71000EA315 /* NSUserDefaults+HYBHelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BA503E21215C70000EA315 /* NSUserDefaults+HYBHelperKit.m */; };
+		B5BA507021215C71000EA315 /* UIActionSheet+HYBHelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BA504021215C70000EA315 /* UIActionSheet+HYBHelperKit.m */; };
+		B5BA507121215C71000EA315 /* UIAlertView+HYBHelperKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BA504221215C70000EA315 /* UIAlertView+HYBHelperKit.m */; };
+		B5BA507221215C71000EA315 /* UIButton+HYBHelperBlockKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BA504421215C70000EA315 /* UIButton+HYBHelperBlockKit.m */; };
+		B5BA507321215C71000EA315 /* UICollectionView+HYBMaonsryKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BA504621215C70000EA315 /* UICollectionView+HYBMaonsryKit.m */; };
+		B5BA507421215C71000EA315 /* UIColor+HYBHelperKitUIKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BA504821215C70000EA315 /* UIColor+HYBHelperKitUIKit.m */; };
+		B5BA507521215C71000EA315 /* UIControl+HYBHelperBlockKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BA504A21215C70000EA315 /* UIControl+HYBHelperBlockKit.m */; };
+		B5BA507621215C71000EA315 /* UIDevice+HYBHelperKitUIKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BA504C21215C70000EA315 /* UIDevice+HYBHelperKitUIKit.m */; };
+		B5BA507721215C71000EA315 /* UIGestureRecognizer+HYBHelperBlockKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BA504E21215C70000EA315 /* UIGestureRecognizer+HYBHelperBlockKit.m */; };
+		B5BA507821215C71000EA315 /* UIImageView+HYBMasonryKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BA505021215C70000EA315 /* UIImageView+HYBMasonryKit.m */; };
+		B5BA507921215C71000EA315 /* UILabel+HYBMasonryKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BA505221215C70000EA315 /* UILabel+HYBMasonryKit.m */; };
+		B5BA507A21215C71000EA315 /* UIScrollView+HYBMasonryKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BA505421215C70000EA315 /* UIScrollView+HYBMasonryKit.m */; };
+		B5BA507B21215C71000EA315 /* UITableView+HYBMasonryKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BA505621215C70000EA315 /* UITableView+HYBMasonryKit.m */; };
+		B5BA507C21215C71000EA315 /* UITextField+HYBMasonryKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BA505821215C70000EA315 /* UITextField+HYBMasonryKit.m */; };
+		B5BA507D21215C71000EA315 /* UIView+HYBHelperBlockKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BA505A21215C70000EA315 /* UIView+HYBHelperBlockKit.m */; };
+		B5BA507E21215C71000EA315 /* UIView+HYBHelperKitUIKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BA505C21215C70000EA315 /* UIView+HYBHelperKitUIKit.m */; };
+		B5BA507F21215C71000EA315 /* UIView+HYBMasonryKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BA505E21215C70000EA315 /* UIView+HYBMasonryKit.m */; };
+		B5BA508021215C71000EA315 /* UIWebView+HYBMasonryKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BA506021215C70000EA315 /* UIWebView+HYBMasonryKit.m */; };
+		B5BA50862121601E000EA315 /* FFQuickBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BA50852121601E000EA315 /* FFQuickBaseViewController.m */; };
+		B5BA50892121762E000EA315 /* FFGameListBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BA50882121762E000EA315 /* FFGameListBaseCell.m */; };
 		B5D10421208F0DD900CA1949 /* FFBasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D10420208F0DD900CA1949 /* FFBasicViewController.m */; };
 		B5D1042A208F156000CA1949 /* FFGameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D10429208F156000CA1949 /* FFGameModel.m */; };
 		B5D1042D208F162500CA1949 /* FFMapModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D1042C208F162500CA1949 /* FFMapModel.m */; };
@@ -908,6 +942,79 @@
 		B5B61ABF20CE6C5300D507A6 /* FFBusinessTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FFBusinessTableViewCell.xib; sourceTree = "<group>"; };
 		B5B61AC320CE79B500D507A6 /* FFBusinessHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBusinessHeaderView.h; sourceTree = "<group>"; };
 		B5B61AC420CE79B500D507A6 /* FFBusinessHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBusinessHeaderView.m; sourceTree = "<group>"; };
+		B5BA501D21215C70000EA315 /* HYBCommonKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYBCommonKit.h; sourceTree = "<group>"; };
+		B5BA501E21215C70000EA315 /* HYBCommonKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYBCommonKit.m; sourceTree = "<group>"; };
+		B5BA501F21215C70000EA315 /* HYBHelperBlocksKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYBHelperBlocksKit.h; sourceTree = "<group>"; };
+		B5BA502021215C70000EA315 /* HYBHelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYBHelperKit.h; sourceTree = "<group>"; };
+		B5BA502121215C70000EA315 /* HYBHelperKitBaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYBHelperKitBaseController.h; sourceTree = "<group>"; };
+		B5BA502221215C70000EA315 /* HYBHelperKitBaseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYBHelperKitBaseController.m; sourceTree = "<group>"; };
+		B5BA502321215C70000EA315 /* HYBHelperKitBaseURLController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYBHelperKitBaseURLController.h; sourceTree = "<group>"; };
+		B5BA502421215C70000EA315 /* HYBHelperKitBaseURLController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYBHelperKitBaseURLController.m; sourceTree = "<group>"; };
+		B5BA502521215C70000EA315 /* HYBHelperKitTestEntranceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYBHelperKitTestEntranceController.h; sourceTree = "<group>"; };
+		B5BA502621215C70000EA315 /* HYBHelperKitTestEntranceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYBHelperKitTestEntranceController.m; sourceTree = "<group>"; };
+		B5BA502721215C70000EA315 /* HYBHelperMasonryMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYBHelperMasonryMaker.h; sourceTree = "<group>"; };
+		B5BA502821215C70000EA315 /* HYBHelperUIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYBHelperUIKit.h; sourceTree = "<group>"; };
+		B5BA502921215C70000EA315 /* NSArray+HYBHelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+HYBHelperKit.h"; sourceTree = "<group>"; };
+		B5BA502A21215C70000EA315 /* NSArray+HYBHelperKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+HYBHelperKit.m"; sourceTree = "<group>"; };
+		B5BA502B21215C70000EA315 /* NSDate+HYBHelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+HYBHelperKit.h"; sourceTree = "<group>"; };
+		B5BA502C21215C70000EA315 /* NSDate+HYBHelperKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+HYBHelperKit.m"; sourceTree = "<group>"; };
+		B5BA502D21215C70000EA315 /* NSDictionary+HYBHelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+HYBHelperKit.h"; sourceTree = "<group>"; };
+		B5BA502E21215C70000EA315 /* NSDictionary+HYBHelperKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+HYBHelperKit.m"; sourceTree = "<group>"; };
+		B5BA502F21215C70000EA315 /* NSFileManager+HYBHelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+HYBHelperKit.h"; sourceTree = "<group>"; };
+		B5BA503021215C70000EA315 /* NSFileManager+HYBHelperKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+HYBHelperKit.m"; sourceTree = "<group>"; };
+		B5BA503121215C70000EA315 /* NSMutableArray+HYBHelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+HYBHelperKit.h"; sourceTree = "<group>"; };
+		B5BA503221215C70000EA315 /* NSMutableArray+HYBHelperKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+HYBHelperKit.m"; sourceTree = "<group>"; };
+		B5BA503321215C70000EA315 /* NSMutableDictionary+HYBHelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+HYBHelperKit.h"; sourceTree = "<group>"; };
+		B5BA503421215C70000EA315 /* NSMutableDictionary+HYBHelperKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+HYBHelperKit.m"; sourceTree = "<group>"; };
+		B5BA503521215C70000EA315 /* NSNumber+HYBHelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+HYBHelperKit.h"; sourceTree = "<group>"; };
+		B5BA503621215C70000EA315 /* NSNumber+HYBHelperKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+HYBHelperKit.m"; sourceTree = "<group>"; };
+		B5BA503721215C70000EA315 /* NSObject+HYBHelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+HYBHelperKit.h"; sourceTree = "<group>"; };
+		B5BA503821215C70000EA315 /* NSObject+HYBHelperKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+HYBHelperKit.m"; sourceTree = "<group>"; };
+		B5BA503921215C70000EA315 /* NSString+HYBHelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HYBHelperKit.h"; sourceTree = "<group>"; };
+		B5BA503A21215C70000EA315 /* NSString+HYBHelperKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HYBHelperKit.m"; sourceTree = "<group>"; };
+		B5BA503B21215C70000EA315 /* NSTimer+HYBHelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+HYBHelperKit.h"; sourceTree = "<group>"; };
+		B5BA503C21215C70000EA315 /* NSTimer+HYBHelperKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+HYBHelperKit.m"; sourceTree = "<group>"; };
+		B5BA503D21215C70000EA315 /* NSUserDefaults+HYBHelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+HYBHelperKit.h"; sourceTree = "<group>"; };
+		B5BA503E21215C70000EA315 /* NSUserDefaults+HYBHelperKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+HYBHelperKit.m"; sourceTree = "<group>"; };
+		B5BA503F21215C70000EA315 /* UIActionSheet+HYBHelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActionSheet+HYBHelperKit.h"; sourceTree = "<group>"; };
+		B5BA504021215C70000EA315 /* UIActionSheet+HYBHelperKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIActionSheet+HYBHelperKit.m"; sourceTree = "<group>"; };
+		B5BA504121215C70000EA315 /* UIAlertView+HYBHelperKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+HYBHelperKit.h"; sourceTree = "<group>"; };
+		B5BA504221215C70000EA315 /* UIAlertView+HYBHelperKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+HYBHelperKit.m"; sourceTree = "<group>"; };
+		B5BA504321215C70000EA315 /* UIButton+HYBHelperBlockKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+HYBHelperBlockKit.h"; sourceTree = "<group>"; };
+		B5BA504421215C70000EA315 /* UIButton+HYBHelperBlockKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+HYBHelperBlockKit.m"; sourceTree = "<group>"; };
+		B5BA504521215C70000EA315 /* UICollectionView+HYBMaonsryKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+HYBMaonsryKit.h"; sourceTree = "<group>"; };
+		B5BA504621215C70000EA315 /* UICollectionView+HYBMaonsryKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+HYBMaonsryKit.m"; sourceTree = "<group>"; };
+		B5BA504721215C70000EA315 /* UIColor+HYBHelperKitUIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HYBHelperKitUIKit.h"; sourceTree = "<group>"; };
+		B5BA504821215C70000EA315 /* UIColor+HYBHelperKitUIKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HYBHelperKitUIKit.m"; sourceTree = "<group>"; };
+		B5BA504921215C70000EA315 /* UIControl+HYBHelperBlockKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIControl+HYBHelperBlockKit.h"; sourceTree = "<group>"; };
+		B5BA504A21215C70000EA315 /* UIControl+HYBHelperBlockKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl+HYBHelperBlockKit.m"; sourceTree = "<group>"; };
+		B5BA504B21215C70000EA315 /* UIDevice+HYBHelperKitUIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+HYBHelperKitUIKit.h"; sourceTree = "<group>"; };
+		B5BA504C21215C70000EA315 /* UIDevice+HYBHelperKitUIKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+HYBHelperKitUIKit.m"; sourceTree = "<group>"; };
+		B5BA504D21215C70000EA315 /* UIGestureRecognizer+HYBHelperBlockKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+HYBHelperBlockKit.h"; sourceTree = "<group>"; };
+		B5BA504E21215C70000EA315 /* UIGestureRecognizer+HYBHelperBlockKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+HYBHelperBlockKit.m"; sourceTree = "<group>"; };
+		B5BA504F21215C70000EA315 /* UIImageView+HYBMasonryKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+HYBMasonryKit.h"; sourceTree = "<group>"; };
+		B5BA505021215C70000EA315 /* UIImageView+HYBMasonryKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+HYBMasonryKit.m"; sourceTree = "<group>"; };
+		B5BA505121215C70000EA315 /* UILabel+HYBMasonryKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+HYBMasonryKit.h"; sourceTree = "<group>"; };
+		B5BA505221215C70000EA315 /* UILabel+HYBMasonryKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+HYBMasonryKit.m"; sourceTree = "<group>"; };
+		B5BA505321215C70000EA315 /* UIScrollView+HYBMasonryKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+HYBMasonryKit.h"; sourceTree = "<group>"; };
+		B5BA505421215C70000EA315 /* UIScrollView+HYBMasonryKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+HYBMasonryKit.m"; sourceTree = "<group>"; };
+		B5BA505521215C70000EA315 /* UITableView+HYBMasonryKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+HYBMasonryKit.h"; sourceTree = "<group>"; };
+		B5BA505621215C70000EA315 /* UITableView+HYBMasonryKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+HYBMasonryKit.m"; sourceTree = "<group>"; };
+		B5BA505721215C70000EA315 /* UITextField+HYBMasonryKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+HYBMasonryKit.h"; sourceTree = "<group>"; };
+		B5BA505821215C70000EA315 /* UITextField+HYBMasonryKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+HYBMasonryKit.m"; sourceTree = "<group>"; };
+		B5BA505921215C70000EA315 /* UIView+HYBHelperBlockKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+HYBHelperBlockKit.h"; sourceTree = "<group>"; };
+		B5BA505A21215C70000EA315 /* UIView+HYBHelperBlockKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+HYBHelperBlockKit.m"; sourceTree = "<group>"; };
+		B5BA505B21215C70000EA315 /* UIView+HYBHelperKitUIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+HYBHelperKitUIKit.h"; sourceTree = "<group>"; };
+		B5BA505C21215C70000EA315 /* UIView+HYBHelperKitUIKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+HYBHelperKitUIKit.m"; sourceTree = "<group>"; };
+		B5BA505D21215C70000EA315 /* UIView+HYBMasonryKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+HYBMasonryKit.h"; sourceTree = "<group>"; };
+		B5BA505E21215C70000EA315 /* UIView+HYBMasonryKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+HYBMasonryKit.m"; sourceTree = "<group>"; };
+		B5BA505F21215C70000EA315 /* UIWebView+HYBMasonryKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+HYBMasonryKit.h"; sourceTree = "<group>"; };
+		B5BA506021215C70000EA315 /* UIWebView+HYBMasonryKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+HYBMasonryKit.m"; sourceTree = "<group>"; };
+		B5BA508221215F89000EA315 /* FFQuickKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFQuickKey.h; sourceTree = "<group>"; };
+		B5BA50842121601E000EA315 /* FFQuickBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFQuickBaseViewController.h; sourceTree = "<group>"; };
+		B5BA50852121601E000EA315 /* FFQuickBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFQuickBaseViewController.m; sourceTree = "<group>"; };
+		B5BA50872121762E000EA315 /* FFGameListBaseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFGameListBaseCell.h; sourceTree = "<group>"; };
+		B5BA50882121762E000EA315 /* FFGameListBaseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFGameListBaseCell.m; sourceTree = "<group>"; };
 		B5D1041F208F0DD900CA1949 /* FFBasicViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBasicViewController.h; sourceTree = "<group>"; };
 		B5D10420208F0DD900CA1949 /* FFBasicViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBasicViewController.m; sourceTree = "<group>"; };
 		B5D10428208F156000CA1949 /* FFGameModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFGameModel.h; sourceTree = "<group>"; };
@@ -2279,6 +2386,7 @@
 		B58CB794207B10830099773D /* GameBox */ = {
 			isa = PBXGroup;
 			children = (
+				B5BA508121215F2F000EA315 /* FFQuickTools */,
 				B58CB79C207B10830099773D /* MainEntry */,
 				B58CB7CF207B122D0099773D /* ControllerManager */,
 				B5D1042E208F3CB300CA1949 /* WaitingManager */,
@@ -2342,6 +2450,7 @@
 		B58CB7A5207B10830099773D /* Third_Library */ = {
 			isa = PBXGroup;
 			children = (
+				B5BA501C21215C70000EA315 /* HYBHelperKitSources */,
 				B580A4FE20D3C73900680194 /* PhotoBrowser */,
 				B599691F20BB9E8800BC6084 /* trackingio */,
 				B523839120AEA2710087733A /* YBPopupMenu */,
@@ -2473,6 +2582,8 @@
 				B51BD06520B51952005B9DE1 /* FFTransferNotesCell.xib */,
 				B567010420C509FF00A44C2E /* FFGameIconTableCell.h */,
 				B567010520C509FF00A44C2E /* FFGameIconTableCell.m */,
+				B5BA50872121762E000EA315 /* FFGameListBaseCell.h */,
+				B5BA50882121762E000EA315 /* FFGameListBaseCell.m */,
 			);
 			path = BasicView;
 			sourceTree = "<group>";
@@ -2571,6 +2682,99 @@
 				B57B53CA20E6195D001770A3 /* FFBusinessNoticeCell.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		B5BA501C21215C70000EA315 /* HYBHelperKitSources */ = {
+			isa = PBXGroup;
+			children = (
+				B5BA501D21215C70000EA315 /* HYBCommonKit.h */,
+				B5BA501E21215C70000EA315 /* HYBCommonKit.m */,
+				B5BA501F21215C70000EA315 /* HYBHelperBlocksKit.h */,
+				B5BA502021215C70000EA315 /* HYBHelperKit.h */,
+				B5BA502121215C70000EA315 /* HYBHelperKitBaseController.h */,
+				B5BA502221215C70000EA315 /* HYBHelperKitBaseController.m */,
+				B5BA502321215C70000EA315 /* HYBHelperKitBaseURLController.h */,
+				B5BA502421215C70000EA315 /* HYBHelperKitBaseURLController.m */,
+				B5BA502521215C70000EA315 /* HYBHelperKitTestEntranceController.h */,
+				B5BA502621215C70000EA315 /* HYBHelperKitTestEntranceController.m */,
+				B5BA502721215C70000EA315 /* HYBHelperMasonryMaker.h */,
+				B5BA502821215C70000EA315 /* HYBHelperUIKit.h */,
+				B5BA502921215C70000EA315 /* NSArray+HYBHelperKit.h */,
+				B5BA502A21215C70000EA315 /* NSArray+HYBHelperKit.m */,
+				B5BA502B21215C70000EA315 /* NSDate+HYBHelperKit.h */,
+				B5BA502C21215C70000EA315 /* NSDate+HYBHelperKit.m */,
+				B5BA502D21215C70000EA315 /* NSDictionary+HYBHelperKit.h */,
+				B5BA502E21215C70000EA315 /* NSDictionary+HYBHelperKit.m */,
+				B5BA502F21215C70000EA315 /* NSFileManager+HYBHelperKit.h */,
+				B5BA503021215C70000EA315 /* NSFileManager+HYBHelperKit.m */,
+				B5BA503121215C70000EA315 /* NSMutableArray+HYBHelperKit.h */,
+				B5BA503221215C70000EA315 /* NSMutableArray+HYBHelperKit.m */,
+				B5BA503321215C70000EA315 /* NSMutableDictionary+HYBHelperKit.h */,
+				B5BA503421215C70000EA315 /* NSMutableDictionary+HYBHelperKit.m */,
+				B5BA503521215C70000EA315 /* NSNumber+HYBHelperKit.h */,
+				B5BA503621215C70000EA315 /* NSNumber+HYBHelperKit.m */,
+				B5BA503721215C70000EA315 /* NSObject+HYBHelperKit.h */,
+				B5BA503821215C70000EA315 /* NSObject+HYBHelperKit.m */,
+				B5BA503921215C70000EA315 /* NSString+HYBHelperKit.h */,
+				B5BA503A21215C70000EA315 /* NSString+HYBHelperKit.m */,
+				B5BA503B21215C70000EA315 /* NSTimer+HYBHelperKit.h */,
+				B5BA503C21215C70000EA315 /* NSTimer+HYBHelperKit.m */,
+				B5BA503D21215C70000EA315 /* NSUserDefaults+HYBHelperKit.h */,
+				B5BA503E21215C70000EA315 /* NSUserDefaults+HYBHelperKit.m */,
+				B5BA503F21215C70000EA315 /* UIActionSheet+HYBHelperKit.h */,
+				B5BA504021215C70000EA315 /* UIActionSheet+HYBHelperKit.m */,
+				B5BA504121215C70000EA315 /* UIAlertView+HYBHelperKit.h */,
+				B5BA504221215C70000EA315 /* UIAlertView+HYBHelperKit.m */,
+				B5BA504321215C70000EA315 /* UIButton+HYBHelperBlockKit.h */,
+				B5BA504421215C70000EA315 /* UIButton+HYBHelperBlockKit.m */,
+				B5BA504521215C70000EA315 /* UICollectionView+HYBMaonsryKit.h */,
+				B5BA504621215C70000EA315 /* UICollectionView+HYBMaonsryKit.m */,
+				B5BA504721215C70000EA315 /* UIColor+HYBHelperKitUIKit.h */,
+				B5BA504821215C70000EA315 /* UIColor+HYBHelperKitUIKit.m */,
+				B5BA504921215C70000EA315 /* UIControl+HYBHelperBlockKit.h */,
+				B5BA504A21215C70000EA315 /* UIControl+HYBHelperBlockKit.m */,
+				B5BA504B21215C70000EA315 /* UIDevice+HYBHelperKitUIKit.h */,
+				B5BA504C21215C70000EA315 /* UIDevice+HYBHelperKitUIKit.m */,
+				B5BA504D21215C70000EA315 /* UIGestureRecognizer+HYBHelperBlockKit.h */,
+				B5BA504E21215C70000EA315 /* UIGestureRecognizer+HYBHelperBlockKit.m */,
+				B5BA504F21215C70000EA315 /* UIImageView+HYBMasonryKit.h */,
+				B5BA505021215C70000EA315 /* UIImageView+HYBMasonryKit.m */,
+				B5BA505121215C70000EA315 /* UILabel+HYBMasonryKit.h */,
+				B5BA505221215C70000EA315 /* UILabel+HYBMasonryKit.m */,
+				B5BA505321215C70000EA315 /* UIScrollView+HYBMasonryKit.h */,
+				B5BA505421215C70000EA315 /* UIScrollView+HYBMasonryKit.m */,
+				B5BA505521215C70000EA315 /* UITableView+HYBMasonryKit.h */,
+				B5BA505621215C70000EA315 /* UITableView+HYBMasonryKit.m */,
+				B5BA505721215C70000EA315 /* UITextField+HYBMasonryKit.h */,
+				B5BA505821215C70000EA315 /* UITextField+HYBMasonryKit.m */,
+				B5BA505921215C70000EA315 /* UIView+HYBHelperBlockKit.h */,
+				B5BA505A21215C70000EA315 /* UIView+HYBHelperBlockKit.m */,
+				B5BA505B21215C70000EA315 /* UIView+HYBHelperKitUIKit.h */,
+				B5BA505C21215C70000EA315 /* UIView+HYBHelperKitUIKit.m */,
+				B5BA505D21215C70000EA315 /* UIView+HYBMasonryKit.h */,
+				B5BA505E21215C70000EA315 /* UIView+HYBMasonryKit.m */,
+				B5BA505F21215C70000EA315 /* UIWebView+HYBMasonryKit.h */,
+				B5BA506021215C70000EA315 /* UIWebView+HYBMasonryKit.m */,
+			);
+			path = HYBHelperKitSources;
+			sourceTree = "<group>";
+		};
+		B5BA508121215F2F000EA315 /* FFQuickTools */ = {
+			isa = PBXGroup;
+			children = (
+				B5BA508221215F89000EA315 /* FFQuickKey.h */,
+				B5BA508321215FDD000EA315 /* ControllerKit */,
+			);
+			path = FFQuickTools;
+			sourceTree = "<group>";
+		};
+		B5BA508321215FDD000EA315 /* ControllerKit */ = {
+			isa = PBXGroup;
+			children = (
+				B5BA50842121601E000EA315 /* FFQuickBaseViewController.h */,
+				B5BA50852121601E000EA315 /* FFQuickBaseViewController.m */,
+			);
+			path = ControllerKit;
 			sourceTree = "<group>";
 		};
 		B5D103F4208DBEAD00CA1949 /* ChildDriveController */ = {
@@ -3022,10 +3226,14 @@
 				B544581E20D20B4A000B63E4 /* FFBusinessProductController.m in Sources */,
 				B51BD04B20B51057005B9DE1 /* FFEverydayCommentController.m in Sources */,
 				B580A55020D3C73A00680194 /* ZLPhotoBrowser.m in Sources */,
+				B5BA506F21215C71000EA315 /* NSUserDefaults+HYBHelperKit.m in Sources */,
+				B5BA507C21215C71000EA315 /* UITextField+HYBMasonryKit.m in Sources */,
 				B5B61AC020CE6C5300D507A6 /* FFBusinessTableViewCell.m in Sources */,
 				B51BD11720B5628F005B9DE1 /* FFPlatformDetailViewController.m in Sources */,
 				B523826A20AABCCA0087733A /* FFGAViewController.m in Sources */,
+				B5BA507E21215C71000EA315 /* UIView+HYBHelperKitUIKit.m in Sources */,
 				B580A53B20D3C73A00680194 /* NSBundle+ZLPhotoBrowser.m in Sources */,
+				B5BA507721215C71000EA315 /* UIGestureRecognizer+HYBHelperBlockKit.m in Sources */,
 				B56AF4D620E2376800D2F48C /* FFBusinessNoticeController.m in Sources */,
 				B57B53D220E61EAF001770A3 /* FFSZKOpenServerViewController.m in Sources */,
 				B580A55220D3C73A00680194 /* ZLPhotoConfiguration.m in Sources */,
@@ -3033,15 +3241,18 @@
 				B523833E20AE9F680087733A /* FFViewFactory.m in Sources */,
 				B51BD09720B540BC005B9DE1 /* FFBindMobileViewController.m in Sources */,
 				B51BCFC120B2F705005B9DE1 /* FFLoginViewController.m in Sources */,
+				B5BA507621215C71000EA315 /* UIDevice+HYBHelperKitUIKit.m in Sources */,
 				B5B61AAB20CE0DF200D507A6 /* FFBusinessModel.m in Sources */,
 				B523839A20AEA2710087733A /* YBRectConst.m in Sources */,
 				B523831820AE9EF40087733A /* FFDriveAllInfoViewController.m in Sources */,
 				B51BCFCB20B3C5CF005B9DE1 /* FFSettingViewController.m in Sources */,
 				B5D10448209066FD00CA1949 /* FFClassifyTableCell.m in Sources */,
+				B5BA507221215C71000EA315 /* UIButton+HYBHelperBlockKit.m in Sources */,
 				B54457D120CFB268000B63E4 /* FFBusinessSearchViewController.m in Sources */,
 				B5D1042D208F162500CA1949 /* FFMapModel.m in Sources */,
 				B52383BD20AEB6590087733A /* FFZKOpenServerViewController.m in Sources */,
 				B52382A520AC04890087733A /* FFBasicSSTableViewController.m in Sources */,
+				B5BA506E21215C71000EA315 /* NSTimer+HYBHelperKit.m in Sources */,
 				B51BD03E20B50976005B9DE1 /* FFTransferRecordCell.m in Sources */,
 				B51BD11820B5628F005B9DE1 /* FFGoldDetailViewController.m in Sources */,
 				B51BD03420B50976005B9DE1 /* FFMyprizeCell.m in Sources */,
@@ -3065,6 +3276,7 @@
 				B523832520AE9EF40087733A /* FFDriveNumbersViewController.m in Sources */,
 				B580A4FC20D3BA6700680194 /* FFCommodityCell.m in Sources */,
 				B58CB7B1207B10830099773D /* main.m in Sources */,
+				B5BA506A21215C71000EA315 /* NSMutableDictionary+HYBHelperKit.m in Sources */,
 				B51BD04720B50CF7005B9DE1 /* FFSignInViewController.m in Sources */,
 				B51BD11420B5628F005B9DE1 /* FFExchangeCoinController.m in Sources */,
 				B51BD05820B515F0005B9DE1 /* FFTodayInviteListViewController.m in Sources */,
@@ -3072,6 +3284,7 @@
 				B567010B20C63F4400A44C2E /* FFBetaGameViewController.m in Sources */,
 				B51BCFB120B2BD8A005B9DE1 /* FFGameOpenCell.m in Sources */,
 				B52382AD20AC34FE0087733A /* FFCustomizeCell.m in Sources */,
+				B5BA506821215C71000EA315 /* NSFileManager+HYBHelperKit.m in Sources */,
 				B523831A20AE9EF40087733A /* FFDriveDetailInfoViewController.m in Sources */,
 				B580A54D20D3C73A00680194 /* ZLImageEditTool.m in Sources */,
 				B580A54920D3C73A00680194 /* ZLClipItem.m in Sources */,
@@ -3082,9 +3295,11 @@
 				B523831920AE9EF40087733A /* FFDriveAttentionInfoViewController.m in Sources */,
 				B5781AFE20A57D3600CB1464 /* FFImageManager.m in Sources */,
 				B51BD09F20B5486E005B9DE1 /* FFCustomerServiceViewController.m in Sources */,
+				B5BA506221215C71000EA315 /* HYBHelperKitBaseController.m in Sources */,
 				B580A54820D3C73A00680194 /* ZLBrushBoardImageView.m in Sources */,
 				B580A54C20D3C73A00680194 /* ZLFilterTool.m in Sources */,
 				B51BD17D20B69525005B9DE1 /* FFOpenVipViewController.m in Sources */,
+				B5BA507921215C71000EA315 /* UILabel+HYBMasonryKit.m in Sources */,
 				B523839820AEA2710087733A /* YBPopupMenu.m in Sources */,
 				B580A54B20D3C73A00680194 /* ZLFilterItem.m in Sources */,
 				B5D5058B208715C0000B7B50 /* FFRecommentViewController.m in Sources */,
@@ -3101,6 +3316,7 @@
 				B580A4F820D3939400680194 /* FFCommodityHeaderView.m in Sources */,
 				B594A5B220B8260800F9F869 /* FFSearchModel.m in Sources */,
 				B523832020AE9EF40087733A /* FFMyDynamicsViewController.m in Sources */,
+				B5BA507321215C71000EA315 /* UICollectionView+HYBMaonsryKit.m in Sources */,
 				B580A55320D3C73A00680194 /* ZLPhotoManager.m in Sources */,
 				B58CB7DB207B12DC0099773D /* FFCustomizeTabBar.m in Sources */,
 				B544582120D20BE4000B63E4 /* FFBusinessSellProductController.m in Sources */,
@@ -3143,6 +3359,7 @@
 				B51BD07720B53A5F005B9DE1 /* FFApplyRebateViewController.m in Sources */,
 				B532510920B299FE007D7239 /* FFGameFooterView.m in Sources */,
 				B57B53CF20E61E98001770A3 /* FFSBTOpenServerViewController.m in Sources */,
+				B5BA507821215C71000EA315 /* UIImageView+HYBMasonryKit.m in Sources */,
 				B513218E210AF13600BF0532 /* FFZKRankViewController.m in Sources */,
 				B53600F120CA83B600DFE96A /* FFBusinessViewController.m in Sources */,
 				B580A54720D3C73A00680194 /* ZLForceTouchPreviewController.m in Sources */,
@@ -3161,6 +3378,7 @@
 				B523833320AE9EF40087733A /* FFDriveReplyView.m in Sources */,
 				B580A55720D3C73A00680194 /* ZLShowBigImgViewController.m in Sources */,
 				B590959820A9401B009CD99A /* FFMineViewModel.m in Sources */,
+				B5BA506921215C71000EA315 /* NSMutableArray+HYBHelperKit.m in Sources */,
 				B54457EB20CFD372000B63E4 /* FFBusinessCustomerServiceViewController.m in Sources */,
 				B5781AEE20A44D8D00CB1464 /* FFBTServerHeaderView.m in Sources */,
 				B544581120D0F91C000B63E4 /* FFBusinessLinkSDKViewController.m in Sources */,
@@ -3174,28 +3392,37 @@
 				B5781AFA20A57B1C00CB1464 /* FFBasicBannerView.m in Sources */,
 				B523831B20AE9EF40087733A /* FFDriveHotInfoViewController.m in Sources */,
 				B5D505A920898D25000B7B50 /* FFDriveViewController.m in Sources */,
+				B5BA507521215C71000EA315 /* UIControl+HYBHelperBlockKit.m in Sources */,
 				B51BD06A20B519F8005B9DE1 /* FFInviteListNotesController.m in Sources */,
 				B590959C20A95CA2009CD99A /* FFColorManager.m in Sources */,
 				B523825920AA85FF0087733A /* FFBTNewGameController.m in Sources */,
 				B580A55120D3C73A00680194 /* ZLPhotoBrowserCell.m in Sources */,
 				B599695220BD396400BC6084 /* FFPromiseViewController.m in Sources */,
 				B51BD12620B595EB005B9DE1 /* FFMissionCenterViewController.m in Sources */,
+				B5BA506421215C71000EA315 /* HYBHelperKitTestEntranceController.m in Sources */,
 				B52383C020AEC0E60087733A /* FFGameDetailSectionModel.m in Sources */,
 				B52382A920AC30780087733A /* FFCurrentGameModel.m in Sources */,
+				B5BA506321215C71000EA315 /* HYBHelperKitBaseURLController.m in Sources */,
 				B5D1044320904E1E00CA1949 /* FFGameViewController.m in Sources */,
+				B5BA50862121601E000EA315 /* FFQuickBaseViewController.m in Sources */,
 				B51BD06620B51952005B9DE1 /* FFTransferNotesCell.m in Sources */,
 				B523829920AB11D20087733A /* FFActivityCell.m in Sources */,
 				B523838920AEA00E0087733A /* FFSharedController.m in Sources */,
 				B51BD09B20B54678005B9DE1 /* FFModifyPasswordController.m in Sources */,
 				B580A55620D3C73A00680194 /* ZLProgressHUD.m in Sources */,
+				B5BA507A21215C71000EA315 /* UIScrollView+HYBMasonryKit.m in Sources */,
 				B523833B20AE9EF40087733A /* FFSelectHeaderView.m in Sources */,
 				B5D5059420884164000B7B50 /* FFClassifyViewController.m in Sources */,
 				B51BD16C20B650CE005B9DE1 /* FFMyNewsModel.m in Sources */,
 				B58CB7D6207B12AC0099773D /* FFMainTabbarViewController.m in Sources */,
 				B523831E20AE9EF40087733A /* FFDriveThroughInfoViewController.m in Sources */,
+				B5BA506C21215C71000EA315 /* NSObject+HYBHelperKit.m in Sources */,
+				B5BA506D21215C71000EA315 /* NSString+HYBHelperKit.m in Sources */,
 				B59D989F2084A2E20024B11D /* FFBasicTableViewController.m in Sources */,
 				B54457D520CFC114000B63E4 /* FFBusinessUserCenterViewController.m in Sources */,
+				B5BA508021215C71000EA315 /* UIWebView+HYBMasonryKit.m in Sources */,
 				B544582420D20D3D000B63E4 /* UIViewController+FFViewController.m in Sources */,
+				B5BA507B21215C71000EA315 /* UITableView+HYBMasonryKit.m in Sources */,
 				B5F1492520B7F3F200044873 /* FFGameActivityCell.m in Sources */,
 				B567010620C509FF00A44C2E /* FFGameIconTableCell.m in Sources */,
 				B567010320C4EBEA00A44C2E /* FFNewGameViewModel.m in Sources */,
@@ -3209,6 +3436,7 @@
 				B51BD16820B650CE005B9DE1 /* FFNotificationViewController.m in Sources */,
 				B58CB7AF207B10830099773D /* FFAppDelegate.m in Sources */,
 				B523838F20AEA0C70087733A /* FLAnimatedImage.m in Sources */,
+				B5BA506721215C71000EA315 /* NSDictionary+HYBHelperKit.m in Sources */,
 				B51BD0DC20B55A5A005B9DE1 /* FFTransferServerNotesController.m in Sources */,
 				B51BD07C20B53A80005B9DE1 /* FFRRebateViewController.m in Sources */,
 				B5B12A4821017C4900C1EED5 /* FFH5ActivityViewController.m in Sources */,
@@ -3217,8 +3445,10 @@
 				B51BCFC720B2F92C005B9DE1 /* FFNavigationController.m in Sources */,
 				B51BD05720B515F0005B9DE1 /* FFYesterDayListViewController.m in Sources */,
 				B52382CB20AE84050087733A /* FFGameCommentListViewController.m in Sources */,
+				B5BA50892121762E000EA315 /* FFGameListBaseCell.m in Sources */,
 				B51BD07820B53A5F005B9DE1 /* FFRebateNoticeViewController.m in Sources */,
 				B523832F20AE9EF40087733A /* FFDetailFooterView.m in Sources */,
+				B5BA506B21215C71000EA315 /* NSNumber+HYBHelperKit.m in Sources */,
 				B5B61AB420CE266800D507A6 /* FFBusinessRegistViewController.m in Sources */,
 				B532510320B25BE0007D7239 /* FFOpenServerSelectView.m in Sources */,
 				B51BD08E20B53B15005B9DE1 /* FFApplyRebateModel.m in Sources */,
@@ -3227,13 +3457,16 @@
 				B5D1044B2090694200CA1949 /* FFWebViewController.m in Sources */,
 				B5781AF220A535B900CB1464 /* FFServersModel.m in Sources */,
 				B57B53BA20E3889B001770A3 /* FFZKActivityViewController.m in Sources */,
+				B5BA507D21215C71000EA315 /* UIView+HYBHelperBlockKit.m in Sources */,
 				B580A54420D3C73A00680194 /* ZLCustomCamera.m in Sources */,
 				B523832A20AE9EF40087733A /* FFDriveUserModel.m in Sources */,
 				B56AF4D020E21A1000D2F48C /* WXApiManager.m in Sources */,
 				B523832620AE9EF40087733A /* FFMineBaseTableViewController.m in Sources */,
 				B599691A20BB9B4200BC6084 /* FFLaunchScreen.m in Sources */,
+				B5BA507421215C71000EA315 /* UIColor+HYBHelperKitUIKit.m in Sources */,
 				B599691720BB9AD700BC6084 /* FFAdvertisingView.m in Sources */,
 				B51BD04320B50A76005B9DE1 /* FFRebateSelectView.m in Sources */,
+				B5BA507121215C71000EA315 /* UIAlertView+HYBHelperKit.m in Sources */,
 				B529173920DA372F00A56F41 /* FFBusinessSellRecordCell.m in Sources */,
 				B532510620B26D96007D7239 /* FFBoxModel.m in Sources */,
 				B580A55420D3C73A00680194 /* ZLPhotoModel.m in Sources */,
@@ -3243,13 +3476,16 @@
 				B5D1043E20904DB700CA1949 /* FFClassifyDetailViewController.m in Sources */,
 				B51BD08D20B53B15005B9DE1 /* FFRebateModel.m in Sources */,
 				B51BD08420B53AC8005B9DE1 /* FFRebateRecordCell.m in Sources */,
+				B5BA506621215C71000EA315 /* NSDate+HYBHelperKit.m in Sources */,
 				B567010E20C63F6C00A44C2E /* FFReservationGameController.m in Sources */,
 				B52382B220AC44610087733A /* FFGameHeaderView.m in Sources */,
+				B5BA506521215C71000EA315 /* NSArray+HYBHelperKit.m in Sources */,
 				B5D5059120884126000B7B50 /* FFGameGuideViewController.m in Sources */,
 				B523833120AE9EF40087733A /* FFDriveCommentCell.m in Sources */,
 				B58CB7D2207B12470099773D /* FFControllerManager.m in Sources */,
 				B51BD16F20B650CE005B9DE1 /* FFSystemDetailView.m in Sources */,
 				B54457E720CFD337000B63E4 /* FFBusinessRecordViewController.m in Sources */,
+				B5BA507F21215C71000EA315 /* UIView+HYBMasonryKit.m in Sources */,
 				B52382BC20ADAD280087733A /* FFGameDetailViewController.m in Sources */,
 				B58CB7AD207B10830099773D /* FFDeviceInfo.m in Sources */,
 				B523833620AE9EF40087733A /* FFDriveMyNewsCell.m in Sources */,
@@ -3257,6 +3493,7 @@
 				B5F1493720B80D8A00044873 /* FFSearchController.m in Sources */,
 				B52382C320ADB0F60087733A /* FFGameDetailHeaderView.m in Sources */,
 				B52383D020AECD100087733A /* FFGameGiftViewController.m in Sources */,
+				B5BA506121215C71000EA315 /* HYBCommonKit.m in Sources */,
 				B52383D120AECD100087733A /* FFGameOpenServerViewController.m in Sources */,
 				B580A55520D3C73A00680194 /* ZLPlayer.m in Sources */,
 				B580A54120D3C73A00680194 /* UIImage+ZLPhotoBrowser.m in Sources */,
@@ -3270,6 +3507,7 @@
 				B523832220AE9EF40087733A /* FFDriveController.m in Sources */,
 				B5D5058E2088406A000B7B50 /* FFNewGameViewController.m in Sources */,
 				B580A54620D3C73A00680194 /* ZLEditViewController.m in Sources */,
+				B5BA507021215C71000EA315 /* UIActionSheet+HYBHelperKit.m in Sources */,
 				B5F1492120B7E4BB00044873 /* FFGameGifTableViewCell.m in Sources */,
 				B59D98A22084A2FD0024B11D /* FFBasicSelectView.m in Sources */,
 				B51BD11620B5628F005B9DE1 /* FFGoldCenterViewController.m in Sources */,

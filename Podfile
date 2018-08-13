@@ -16,5 +16,9 @@ target 'GameBox' do
   pod 'Masonry', '~> 1.1.0'
   pod 'GPUImage'
   #pod 'TencentOpenApiSDK', '~> 2.9.5'
-  
+
+  #2018-8-10 add
+  #pod 'HYBHelperKit', '~> 0.2.0'
+
+
 end
