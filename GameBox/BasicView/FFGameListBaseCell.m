@@ -19,7 +19,14 @@
 @property (nonatomic, strong) UILabel *gameNameLabel;
 /** game size label */
 @property (nonatomic, strong) UILabel *gameSizeLabel;
-
+/** game type label */
+@property (nonatomic, strong) UILabel *gameTypeLabel;
+/** game features label 0 */
+@property (nonatomic, strong) UILabel *gameFeaturesLabel0;
+/** game features label 1 */
+@property (nonatomic, strong) UILabel *gameFeaturesLabel1;
+/** game features label 2 */
+@property (nonatomic, strong) UILabel *gameFeaturesLabel2;
 
 
 /** bottom line */
@@ -77,13 +84,16 @@
 
 #pragma mark - view method
 - (void)initUserInterface {
+    CGFloat normalFont = 16;
 
+    //game logo
     self.gameLogoImageView = [UIImageView hyb_imageViewWithSuperView:self.contentView constraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.contentView).offset(10);
         make.left.mas_equalTo(self.contentView).offset(10);
         make.size.mas_equalTo(CGSizeMake(80, 80));
     }];
 
+    // right button
     self.rightButton = [UIButton hyb_buttonWithSuperView:self.contentView constraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(0);
         make.right.mas_equalTo(self.contentView).offset(-10);
@@ -92,19 +102,51 @@
         [self respondsToRigthButton];
     }];
 
-    self.gameNameLabel = [UILabel hyb_labelWithFont:16 superView:self.contentView constraints:^(MASConstraintMaker *make) {
+    //game name label
+    self.gameNameLabel = [UILabel hyb_labelWithFont:normalFont superView:self.contentView constraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.contentView).offset(10);
         make.left.mas_equalTo(self.gameLogoImageView.mas_right).offset(10);
         make.height.mas_equalTo(20);
     }];
 
+    //game size label
     self.gameSizeLabel = [UILabel hyb_labelWithFont:12 superView:self.contentView constraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(self.gameNameLabel.mas_bottom).offset(0);
-        make.right.mas_equalTo(self.rightButton.mas_left).offset(-4);
+        make.right.mas_equalTo(self.rightButton.mas_left).offset(-10);
         make.left.mas_equalTo(self.gameNameLabel.mas_right).offset(4);
     }];
     self.gameSizeLabel.textAlignment = NSTextAlignmentLeft;
     self.gameSizeLabel.textColor = [FFColorManager textColorLight];
+
+    //game type label
+    self.gameTypeLabel = [UILabel hyb_labelWithFont:13 superView:self.contentView constraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.gameLogoImageView.mas_right).offset(10);
+        make.right.mas_equalTo(self.rightButton.mas_left).offset(-10);
+        make.top.mas_equalTo(self.gameNameLabel.mas_bottom).offset(0);
+        make.height.mas_equalTo(20);
+    }];
+    self.gameTypeLabel.textColor = [FFColorManager textColorMiddle];
+
+    //game features label1
+    self.gameFeaturesLabel0 = [UILabel hyb_labelWithFont:14 superView:self.contentView constraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.gameLogoImageView.mas_right).offset(10);
+        make.top.mas_equalTo(self.gameTypeLabel.mas_bottom).offset(0);
+        make.height.mas_equalTo(20);
+    }];
+
+    self.gameFeaturesLabel1 = [UILabel hyb_labelWithFont:14 superView:self.contentView constraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.gameFeaturesLabel0.mas_right).offset(5);
+        make.top.mas_equalTo(self.gameTypeLabel.mas_bottom).offset(0);
+        make.height.mas_equalTo(20);
+    }];
+
+    self.gameFeaturesLabel2 = [UILabel hyb_labelWithFont:14 superView:self.contentView constraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.gameFeaturesLabel1.mas_right).offset(5);
+        make.top.mas_equalTo(self.gameTypeLabel.mas_bottom).offset(0);
+        make.right.mas_equalTo(self.rightButton.mas_left).offset(-10);
+        make.height.mas_equalTo(20);
+    }];
+
 
 
 
@@ -142,6 +184,13 @@
 
     //set game size label
     self.gameSizeLabel.text = [NSString stringWithFormat:@"%@M",dict[@"size"] ?: @"0"];
+
+    //set game type label
+    self.gameTypeLabel.text = [NSString stringWithFormat:@"%@",dict[@"types"] ?: @""];
+
+    
+
+
 
     //标签1
 //    NSString *labelString = dict[@"label"];

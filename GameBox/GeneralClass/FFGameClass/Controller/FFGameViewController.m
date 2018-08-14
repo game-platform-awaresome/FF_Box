@@ -45,6 +45,17 @@
 static FFGameViewController *controller = nil;
 @implementation FFGameViewController
 
++ (FFGameViewController *)showWithGameID:(id)gameID {
+    FFGameViewController *gameViewController = [self sharedController];
+    if ([gameID isKindOfClass:[NSString class]]) {
+        gameViewController.gid = gameID;
+    } else if ([gameID isKindOfClass:[NSDictionary class]]) {
+        gameViewController.gid = [NSString stringWithFormat:@"%@",gameID[@"id"] ?: gameID[@"gid"] ?: @"0"];
+    } else {
+        gameViewController.gid = nil;
+    }
+    return [self sharedController];
+}
 
 + (instancetype)sharedController {
     static dispatch_once_t onceToken;

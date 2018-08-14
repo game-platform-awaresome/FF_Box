@@ -21,6 +21,8 @@
 /** instancetype */ 
 + (instancetype)sharedController;
 
+/** show game view conttroller with gid */
++ (FFGameViewController *)showWithGameID:(id)gameID;
 
 
 @end

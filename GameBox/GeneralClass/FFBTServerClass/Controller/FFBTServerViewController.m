@@ -23,10 +23,14 @@
 #import "UIView+HYBMasonryKit.h"
 #import "UILabel+HYBMasonryKit.h"
 #import "FFGameListBaseCell.h"
+#import "FFGameViewController.h"
 
 
 #define CELL_IDE @"FFCustomizeCell"
 #define CELL_SRCELL @"FFSRcommentCell"
+
+
+#define Section_Footer_tag 20086
 
 @interface FFBTServerViewController () <FFBTServerHeaderViewDelegate,FFSRcommentCellDelegate>
 
@@ -100,9 +104,7 @@
 
 - (void)loadMoreData {
     [FFGameModel GameServersWithType:self.type Page:Next_page Completion:^(NSDictionary * _Nonnull content, BOOL success) {
-        [self stopWaiting];
         if (success) {
-//            [[NSNotificationCenter defaultCenter] postNotificationName:NOTI_SET_DISCOUNT_VIEW object:nil];
             NSArray *gameArray = content[@"data"][@"gamelist"];
             if (gameArray != nil && gameArray.count > 0) {
 
@@ -123,8 +125,8 @@
 }
 
 #pragma mark - responds
-- (void)respondsToSectionFooterImage:(UITapGestureRecognizer *)sender {
-    NSString *gid = self.model.sectionArray[_selectFotterImageIdx].slideGid;
+- (void)respondsToSectionFooterImage:(NSUInteger)sender {
+    NSString *gid = self.model.sectionArray[(sender)].slideGid;
     if (gid != nil && gid.integerValue > 0) {
         Class FFGameViewController = NSClassFromString(@"FFGameViewController");
         SEL selector = NSSelectorFromString(@"sharedController");
@@ -237,38 +239,55 @@
     }
 
 
-    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 1)];
-    line.backgroundColor = [FFColorManager view_separa_line_color];
-    [backview addSubview:line];
+//    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(10, 0, kSCREEN_WIDTH - 20, 1)];
+//    line.backgroundColor = [FFColorManager view_separa_line_color];
+//    [backview addSubview:line];
 
     return backview;
 }
 
+
+#define Section_FooterHeight kSCREEN_WIDTH * 334 / 750
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     if (self.model.sectionArray[section].slidePic) {
-        return kSCREEN_WIDTH * 334 / 750;
+        return Section_FooterHeight;
     } else {
         return 0;
     }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+
     if (self.model.sectionArray[section].slidePic) {
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, kSCREEN_WIDTH * 334 / 750)];
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, Section_FooterHeight)];
+        view.backgroundColor = [UIColor whiteColor];
+
+        UIImageView *imageView = [UIImageView hyb_imageViewWithSuperView:view constraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(view).offset(10);
+            make.right.mas_equalTo(view).offset(-10);
+            make.top.mas_equalTo(view).offset(0);
+            make.bottom.mas_equalTo(view).offset(0);
+        } onTaped:^(UITapGestureRecognizer *sender) {
+            [self respondsToSectionFooterImage:section];
+        }];
         [imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:IMAGEURL,self.model.sectionArray[section].slidePic]] placeholderImage:[UIImage imageNamed:@"1111"]];
+        imageView.layer.cornerRadius = 8;
+        imageView.layer.masksToBounds = YES;
+        return view;
 
-        _selectFotterImageIdx = section;
-        imageView.userInteractionEnabled = YES;
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(respondsToSectionFooterImage:)];
-        tap.numberOfTapsRequired = 1;
-        tap.numberOfTouchesRequired = 1;
-        [imageView addGestureRecognizer:tap];
-
-        return imageView;
     } else {
         return nil;
     }
+
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSDictionary *dict = self.model.sectionArray[indexPath.section].gameArray[indexPath.row];
+    [self pushViewController:[FFGameViewController showWithGameID:dict]];
+}
+
+
 
 #pragma mark - select header delegate
 - (void)FFBTServerHeaderView:(FFBTServerHeaderView *)headerView didSelectImageWithInfo:(NSDictionary *)info {
