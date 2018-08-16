@@ -120,7 +120,6 @@
         [_shardBtn setTitleColor:[FFColorManager blue_dark] forState:(UIControlStateNormal)];
         _shardBtn.titleLabel.font = [UIFont boldSystemFontOfSize:11];
         [_shardBtn layoutButtonWithImageStyle:(FFButtonImageOnTop) imageTitleSpace:5];
-
     }
     return _shardBtn;
 }
