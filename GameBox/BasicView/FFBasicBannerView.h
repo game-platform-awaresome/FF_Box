@@ -12,7 +12,7 @@
 @protocol  FFBasicBannerViewDelegate <NSObject>
 
 - (void)FFBasicBannerView:(FFBasicBannerView *)view didSelectImageWithInfo:(NSDictionary *)info;
-
+    
 @end
 
 @interface FFBasicBannerView : UIView

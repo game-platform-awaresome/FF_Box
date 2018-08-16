@@ -42,24 +42,29 @@
     self.navBarBGAlpha = @"0";
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
 - (void)initUserInterface {
     self.navigationItem.title = nil;
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.navigationItem.title = @" ";
+    self.navigationItem.title = @"游戏大厅";
     [self setSelectTitleView];
     [self.view addSubview:self.navigationView];
     [self.navigationView addSubview:self.homeSelectView];
-    [self.navigationView addSubview:self.messageButton];
+//    [self.navigationView addSubview:self.messageButton];
+
+    self.messageButton = [UIButton hyb_buttonWithImage:@"Home_message_light" superView:self.navigationView constraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(self.navigationView);
+        make.right.mas_equalTo(self.navigationView).offset(-0);
+        make.size.mas_equalTo(CGSizeMake(44, 44));
+    } touchUp:^(UIButton *sender) {
+        [self respondsToRightButton];
+    }];
+
     [self.view addSubview:self.scrollView];
     self.floatImageView.image = [FFImageManager Home_mission_center_image];
     self.floatImageView.frame = CGRectMake(kSCREEN_WIDTH - 95, kSCREEN_HEIGHT - 150, 100, 80);
@@ -71,7 +76,9 @@
     [floatButton addTarget:self action:@selector(respondsToFloatButton) forControlEvents:(UIControlEventTouchUpInside)];
     [self.view addSubview:floatButton];
 
-    [self respondsToTimer];
+
+#warning view error
+//    [self respondsToTimer];
 
 }
 
@@ -86,6 +93,11 @@
         [self respondsToTimer];
     }];
 }
+
+
+
+
+
 
 - (void)respondsToFloatButton {
     NSString *className = CURRENT_USER.isLogin ? @"FFMissionCenterViewController" : @"FFLoginViewController";
@@ -104,6 +116,8 @@
     self.selectChildViewControllers = nil;
     self.homeSelectView.titleArray = [FFBoxHandler sharedInstance].discount_enabled.boolValue ? @[@"BT服",@"折扣",@"H5",@"承诺"] : @[@"BT服",@"H5",@"承诺"];
     self._controllerNameArray = [FFBoxHandler sharedInstance].discount_enabled.boolValue ? @[@"FFBTServerViewController",@"FFZKServerViewController",@"FFH5ServerViewController",@"FFPromiseViewController"] : @[@"FFBTServerViewController",@"FFH5ServerViewController",@"FFPromiseViewController"];
+
+//    self._controllerNameArray = @[@"FFPromiseViewController",@"FFPromiseViewController",@"FFPromiseViewController"];
 }
 
 - (UIViewController *)creatControllerWithString:(NSString *)controllerString {
@@ -246,13 +260,16 @@
         _homeSelectView = [[FFHomeSelectView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, KSTATUBAR_HEIGHT + 44)];
         _homeSelectView.delegate = self;
         _homeSelectView.lineColor = [FFColorManager home_select_View_separat_lineColor];
+
+
+//        _homeSelectView.backgroundColor = kOrangeColor;
     }
     return _homeSelectView;
 }
 
 - (UIButton *)messageButton {
     if (!_messageButton) {
-        _messageButton = [UIButton createButtonFrame:CGRectMake(kSCREEN_WIDTH - 60, KSTATUBAR_HEIGHT, 50, 44) title:nil imageName:@"Home_message_light" action:^(UIButton * _Nonnull button) {
+        _messageButton = [UIButton createButtonFrame:CGRectMake(kSCREEN_WIDTH - 54, KSTATUBAR_HEIGHT, 50, 44) title:nil imageName:@"Home_message_light" action:^(UIButton * _Nonnull button) {
             [self respondsToRightButton];
         }];
     }

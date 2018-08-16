@@ -12,6 +12,7 @@
 #import "FFColorManager.h"
 #import "FFImageManager.h"
 
+
 #define BTN_TAG 12345
 
 @interface FFBTServerHeaderView () <FFBasicBannerViewDelegate>
@@ -46,7 +47,6 @@
 
 - (void)initUserInterface {
     [self addSubview:self.searchView];
-    [self.searchView addSubview:self.searchBarView];
     [self addSubview:self.bannerView];
     [self addSubview:self.selectButtonView];
     [self setSelfBounds];
@@ -172,10 +172,31 @@
 #pragma mark - getter
 - (UIView *)searchView {
     if (!_searchView) {
-        _searchView = [[UIView alloc] initWithFrame:CGRectMake(kSCREEN_WIDTH * 0.05, 12, kSCREEN_WIDTH * 0.9, 34)];
+        _searchView = [[UIView alloc] initWithFrame:CGRectMake(10, 12, kSCREEN_WIDTH - 20, 34)];
+        self.searchHeaderFrame = _searchView.frame;
+        self.searchScrollFrame = CGRectMake(kSCREEN_WIDTH - 54, 12, 44, 44);
         _searchView.backgroundColor = [FFColorManager home_search_view_background_color];
         _searchView.layer.cornerRadius = 8;
         _searchView.layer.masksToBounds = YES;
+
+//        [_searchView addSubview:self.searchBarView];
+
+        self.searchTitleButton = [UIButton hyb_buttonWithImage:[FFImageManager Home_search_image] superView:_searchView constraints:^(MASConstraintMaker *make) {
+            make.center.mas_equalTo(CGPointZero);
+        } touchUp:^(UIButton *sender) {
+
+        }];
+        self.searchTitleButton.titleLabel.font = [UIFont systemFontOfSize:13];
+        [self.searchTitleButton setTitleColor:[FFColorManager textColorLight] forState:(UIControlStateNormal)];
+
+        self.searchScrollImage = [UIImageView hyb_imageViewWithImage:@"Home_scroll_search" superView:_searchView constraints:^(MASConstraintMaker *make) {
+            make.center.mas_equalTo(CGPointZero);
+            make.size.mas_equalTo(CGSizeMake(57, 57));
+        } onTaped:^(UITapGestureRecognizer *sender) {
+            [self respondsToSearchView:sender];
+        }];
+        self.searchScrollImage.backgroundColor = kWhiteColor;
+        self.searchScrollImage.alpha = 0;
 
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(respondsToSearchView:)];
         tap.numberOfTapsRequired = 1;
@@ -184,6 +205,8 @@
     }
     return _searchView;
 }
+
+
 - (UIImageView *)searchBarView {
     if (!_searchBarView) {
         _searchBarView = [[UIImageView alloc] initWithImage:[FFImageManager Home_search_image]];
@@ -195,7 +218,7 @@
 
 - (FFBasicBannerView *)bannerView {
     if (!_bannerView) {
-        _bannerView = [[FFBasicBannerView alloc] initWithFrame:CGRectMake(4, 58, kSCREEN_WIDTH - 8, kSCREEN_WIDTH * 0.4)];
+        _bannerView = [[FFBasicBannerView alloc] initWithFrame:CGRectMake(10, 58, kSCREEN_WIDTH - 20, (kSCREEN_WIDTH - 20) * 0.4)];
         _bannerView.delegate = self;
         _bannerView.layer.masksToBounds = YES;
     }

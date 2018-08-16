@@ -25,6 +25,8 @@
 #import "FFGameListBaseCell.h"
 #import "FFGameViewController.h"
 
+#import "FFBTClassifyController.h"
+
 
 #define CELL_IDE @"FFCustomizeCell"
 #define CELL_SRCELL @"FFSRcommentCell"
@@ -45,6 +47,8 @@
 
 @property (nonatomic, assign) NSUInteger selectFotterImageIdx;
 
+@property (nonatomic, strong) NSString *topGameName;
+
 @end
 
 @implementation FFBTServerViewController
@@ -63,7 +67,6 @@
 
 
 - (void)initDataSource {
-    [self.tableView registerClass:[FFGameListBaseCell class] forCellReuseIdentifier:GamelistBaseCellIDE];
 
 //    [FFGameListBaseCell registCellToTabelView:self.tableView];
 //    [FFGameListBaseCell registCellToTabelView:self.tableView WithIdentifier]
@@ -79,7 +82,9 @@
         syLog(@"game ========= %@",content);
         if (success) {
             self.model.contentDataDict = CONTENT_DATA;
+            self.topGameName = [NSString stringWithFormat:@"%@",CONTENT_DATA[@"topgame"] ?: @" "];
         } else {
+            self.topGameName = @" ";
             self.tableView.tableHeaderView = [UIView new];
             [UIAlertController showAlertMessage:content[@"msg"] dismissTime:0.7 dismissBlock:nil];
         }
@@ -236,12 +241,14 @@
         [button setImage:[UIImage imageNamed:@"Home_classify_button"] forState:(UIControlStateNormal)];
         [button setTitleColor:[FFColorManager blue_dark] forState:(UIControlStateNormal)];
         button.titleLabel.font = [UIFont systemFontOfSize:17];
+
+
+        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(10, 0, kSCREEN_WIDTH - 20, 1)];
+        line.backgroundColor = [FFColorManager view_separa_line_color];
+        [backview addSubview:line];
     }
 
 
-//    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(10, 0, kSCREEN_WIDTH - 20, 1)];
-//    line.backgroundColor = [FFColorManager view_separa_line_color];
-//    [backview addSubview:line];
 
     return backview;
 }
@@ -334,11 +341,72 @@
 
 - (void)FFBTServerHeaderView:(FFBTServerHeaderView *)headerView didSelectSearchViewWithInfo:(id)info {
     syLog(@"搜索!!!!!!!!!!!!");
-    FFSearchController *searchVC = [[FFSearchController alloc] init];
-    searchVC.ServerType = self.type;
-    self.hidesBottomBarWhenPushed = YES;
-    [self pushViewController:searchVC];
+    switch (self.type) {
+        case BT_SERVERS:{
+            pushViewController(@"FFBTClassifyController");
+            vc ? [vc setValue:self.topGameName forKey:@"topGameName"] : 0;
+
+//            [self pushViewController:vc];
+
+//            FFBTClassifyController *vc = [[FFBTClassifyController alloc] init];
+//            vc.topGameName = self.topGameName;
+//            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case ZK_SERVERS:{
+            pushViewController(@"FFZKClassifyController");
+            vc ? [vc setValue:self.topGameName forKey:@"topGameName"] : 0;
+        }
+            break;
+        case H5_SERVERS:{
+            pushViewController(@"FFH5ClassifyController");
+            vc ? [vc setValue:self.topGameName forKey:@"topGameName"] : 0;
+        }
+            break;
+        default:
+            break;
+    }
+
+//    FFSearchController *searchVC = [[FFSearchController alloc] init];
+//    searchVC.ServerType = self.type;
+//    self.hidesBottomBarWhenPushed = YES;
+//    [self pushViewController:searchVC];
 }
+
+#pragma mark -  scroll view delegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    CGFloat offset = scrollView.contentOffset.y;
+
+    if (offset > 0) {
+        if (self.tableHeaderView.isAddView) {
+            return;
+        }
+        self.tableHeaderView.isAddView = YES;
+        self.tableHeaderView.isAddHeader = NO;
+        [self.view addSubview:self.tableHeaderView.searchView];
+
+        [UIView animateWithDuration:0.15 animations:^{
+            self.tableHeaderView.searchScrollImage.alpha = 1;
+            self.tableHeaderView.searchView.layer.cornerRadius = 22;
+            self.tableHeaderView.searchView.frame = self.tableHeaderView.searchScrollFrame;
+        }];
+    } else {
+        if (self.tableHeaderView.isAddHeader) {
+            return;
+        }
+        self.tableHeaderView.isAddHeader = YES;
+        self.tableHeaderView.isAddView = NO;
+
+        [self.tableHeaderView addSubview:self.tableHeaderView.searchView];
+        [UIView animateWithDuration:0.15 animations:^{
+            self.tableHeaderView.searchScrollImage.alpha = 0;
+            self.tableHeaderView.searchView.layer.cornerRadius = 8;
+            self.tableHeaderView.searchView.frame = self.tableHeaderView.searchHeaderFrame;
+        }];
+    }
+}
+
+
 
 #pragma mark - cell delegate
 - (void)FFSRcommentCell:(FFSRcommentCell *)cell didSelectItemInfo:(id)info {
@@ -374,6 +442,11 @@
 #pragma mark - setter
 - (void)setNavigationTitle:(NSString *)title {
     self.navigationItem.title = @"BT服";
+}
+
+- (void)setTopGameName:(NSString *)topGameName {
+    _topGameName = topGameName;
+    [self.tableHeaderView.searchTitleButton setTitle:topGameName forState:(UIControlStateNormal)];
 }
 
 
@@ -459,8 +532,8 @@
 }
 
 - (void)registCell {
-    BOX_REGISTER_CELL;
-    [self.tableView registerClass:NSClassFromString(CELL_SRCELL) forCellReuseIdentifier:CELL_SRCELL];
+    [self.tableView registerClass:[FFSRcommentCell class] forCellReuseIdentifier:CELL_SRCELL];
+    [self.tableView registerClass:[FFGameListBaseCell class] forCellReuseIdentifier:GamelistBaseCellIDE];
     self.tableView.tableHeaderView = self.tableHeaderView;
 }
 

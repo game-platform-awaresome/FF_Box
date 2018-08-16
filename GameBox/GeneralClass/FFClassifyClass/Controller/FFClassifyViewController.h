@@ -12,4 +12,6 @@
 
 @property (nonatomic, assign) FFGameServersType gameServersType;
 
+@property (nonatomic, strong) NSString *topGameName;
+
 @end

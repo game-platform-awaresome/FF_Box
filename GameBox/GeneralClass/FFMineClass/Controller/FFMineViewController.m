@@ -15,12 +15,16 @@
 #import "FFMineViewModel.h"
 #import "FFUserModel.h"
 
+#import "FFRepairViewController.h"
+
 @interface FFMineViewController ()
 
 @property (nonatomic, strong) FFMineHeaderView *headerView;
 
 
 @property (nonatomic, strong) FFMineViewModel *viewModel;
+
+@property (nonatomic, assign) BOOL isShowRepaire;
 
 
 @end
@@ -37,6 +41,12 @@
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
 //    [self.navigationController.navigationBar setBarTintColor:[FFColorManager navigation_bar_black_color]];
     self.navigationController.navigationBar.hidden = NO;
+
+//    [self presentViewController:[FFRepairViewController showRepairView] animated:YES completion:nil];
+    if (!_isShowRepaire) {
+        [FFRepairViewController showRepairView];
+        _isShowRepaire = YES;
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated {

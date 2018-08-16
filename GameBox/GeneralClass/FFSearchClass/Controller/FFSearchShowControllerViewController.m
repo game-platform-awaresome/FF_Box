@@ -230,10 +230,15 @@ static FFSearchShowControllerViewController *controller = nil;
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 44)];
     view.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
-
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 2, kSCREEN_WIDTH, 40)];
+    UILabel *label;
+    if (section == 0) {
+        label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 43)];
+    } else {
+        label = [[UILabel alloc]initWithFrame:CGRectMake(0, 1, kSCREEN_WIDTH, 42)];
+    }
 
     label.backgroundColor = [UIColor whiteColor];
+
     switch (section) {
         case 0: {
             label.text = @"    热门搜索";
@@ -257,7 +262,6 @@ static FFSearchShowControllerViewController *controller = nil;
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-
     return 44;
 }
 

@@ -17,8 +17,9 @@
 
 #define pushViewController(className)     \
 Class ControllerClass = NSClassFromString(className);\
+id vc;\
 if (ControllerClass) {\
-    id vc = [[ControllerClass alloc] init];\
+    vc = [[ControllerClass alloc] init];\
     [self pushViewController:vc];\
 } else {\
     syLog(@"%s  error -> %@ not exist",__func__,className);\

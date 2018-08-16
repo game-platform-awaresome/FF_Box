@@ -37,14 +37,11 @@
     self.navigationController.navigationBar.lineLayer = self.navLine;
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-//    self.hidesBottomBarWhenPushed = YES;
-}
+
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    self.navigationController.navigationBar.lineLayer.frame = CGRectMake(0, self.navigationController.navigationBar.bounds.size.height - 1, kSCREEN_WIDTH, 1);
+//    self.navigationController.navigationBar.lineLayer.frame = CGRectMake(0, self.navigationController.navigationBar.bounds.size.height - 1, kSCREEN_WIDTH, 1);
 }
 
 
@@ -110,6 +107,7 @@
 - (void)pushViewController:(UIViewController *)viewController {
     [self hideTabbar];
     [self.currentNav pushViewController:viewController animated:YES];
+
     if (self.navigationController.viewControllers.count <= 2) {
         [self showTabbar];
     }

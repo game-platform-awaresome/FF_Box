@@ -56,6 +56,7 @@ const NSUInteger HomeButtonTag = 10086;
     [self addSubview:self.scrollView];
     [self.scrollView addSubview:self.cursorView];
     [self addSubview:self.lineView];
+//    [self addSubview:self.cursorView];
 }
 
 - (void)initDataSource {
@@ -106,20 +107,30 @@ const NSUInteger HomeButtonTag = 10086;
         for (NSString *title in titleArray) {
             UIButton *button = [self creatButtonWithIndex:idx WidthTitle:title];
             [_buttonArray addObject:button];
-            [self.scrollView addSubview:button];
             idx++;
         }
     }
 }
 
+
 - (UIButton *)creatButtonWithIndex:(NSUInteger)idx WidthTitle:(NSString *)title {
-    UIButton *button = [UIButton buttonWithType:(UIButtonTypeCustom)];
-    [button setTitle:title forState:(UIControlStateNormal)];
-    [button setTitleColor:self.titleNormalColor forState:(UIControlStateNormal)];
+    static UIButton *lastButton;
+    UIButton *button = [UIButton hyb_buttonWithTitle:title superView:self.scrollView constraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self).offset(KSTATUBAR_HEIGHT);
+        make.left.mas_equalTo(lastButton ? lastButton.mas_right : self).offset(10);
+        make.bottom.mas_equalTo(self);
+        if (idx < self.titleWidthArray.count) {
+            make.width.mas_equalTo(self.titleWidthArray[idx].floatValue + 10);
+        }
+    } touchUp:^(UIButton *sender) {
+        [self respondsToTitleButton:sender];
+    }];
     button.tag = HomeButtonTag + idx;
+    button.titleLabel.textAlignment = NSTextAlignmentLeft;
+    [button setTitleColor:self.titleNormalColor forState:(UIControlStateNormal)];
     button.titleLabel.font = self.titleNormalFont;
     button.backgroundColor = self.titleBackGroundColor;
-    [button addTarget:self action:@selector(respondsToTitleButton:) forControlEvents:(UIControlEventTouchUpInside)];
+    lastButton = button;
     return button;
 }
 
@@ -137,17 +148,16 @@ const NSUInteger HomeButtonTag = 10086;
 
 /** set title frame */
 - (void)setButtonArrayFrame {
-    if (self.buttonArray.count < 1) {
-        syLog(@"标题按钮数组为空");
-        return;
-    }
-    int idx = 0;
-    CGFloat width = self.ButtonSize.width + 20;
-    for (UIButton *button in self.buttonArray) {
-        button.bounds = CGRectMake(0, 0, width, self.ButtonSize.height);
-        button.center = CGPointMake(20 + width / 2 + idx * width, self.ButtonSize.height / 2 + KSTATUBAR_HEIGHT);
-        idx++;
-    }
+//    if (self.buttonArray.count < 1) {
+//        syLog(@"标题按钮数组为空");
+//        return;
+//    }
+//    int idx = 0;
+//    CGFloat width = self.ButtonSize.width + 6;
+//    for (UIButton *button in self.buttonArray) {
+//        button.frame = CGRectMake(10 + idx * width, KSTATUBAR_HEIGHT, width, self.ButtonSize.height);
+//        idx++;
+//    }
 }
 
 #pragma mark - responds
@@ -193,14 +203,17 @@ const NSUInteger HomeButtonTag = 10086;
     }
     self.buttonArray = nil;
 
-    //创建按钮;
-    [self creatTitleButtonWithTitleArray:_titleArray];
     //计算 title 的宽度
     [self signTitleArrayWidthWith:_titleArray];
+
+    //创建按钮;
+    [self creatTitleButtonWithTitleArray:_titleArray];
+
     //设置 button frame
-    [self setButtonArrayFrame];
+//    [self setButtonArrayFrame];
     //选择第一个下标
 //    [self setSelectTitleIndex:_selectTitleIndex];
+
     if (_cursorWidthEqualToTitleWidth) {
         self.cursorView.bounds = CGRectMake(0, 0, (_titleWidthArray[0].floatValue + 5), _cursorView.bounds.size.height);
     } else {
@@ -208,7 +221,27 @@ const NSUInteger HomeButtonTag = 10086;
     }
 
     [self setButtonHighlightedWintIndex:_selectTitleIndex];
+
+//    self.selectTitleIndex = 0;
+
+//    self.cursorView = [UIView hyb_viewWithSuperView:self constraints:^(MASConstraintMaker *make) {
+//        make.centerX.mas_equalTo(self.buttonArray[0].mas_centerX);
+//        make.height.mas_equalTo(3);
+//        make.bottom.mas_equalTo(self.mas_bottom);
+//        make.width.mas_equalTo(self.buttonArray[0].mas_width);
+//    }];
+
     self.cursorView.center = CGPointMake(self.buttonArray[0].center.x, self.bounds.size.height - 3);
+    [self setCursorCenter];
+}
+
+- (void)setCursorCenter {
+    self.selectTitleIndex = 0;
+    if (self.cursorView.center.x == 0) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self setCursorCenter];
+        });
+    }
 }
 
 - (void)setTitleNormalColor:(UIColor *)titleNormalColor {
@@ -255,9 +288,9 @@ const NSUInteger HomeButtonTag = 10086;
     _isAnimating = YES;
 
     [UIView animateWithDuration:0.3 animations:^{
-        self.cursorView.center = CGPointMake(self.buttonArray[_selectTitleIndex].center.x, self.cursorView.center.y);
+        self.cursorView.center = CGPointMake(self.buttonArray[self -> _selectTitleIndex].center.x, self.cursorView.center.y);
     } completion:^(BOOL finished) {
-        _isAnimating = NO;
+        self -> _isAnimating = NO;
         [self.scrollView sendSubviewToBack:self.cursorView];
     }];
 }

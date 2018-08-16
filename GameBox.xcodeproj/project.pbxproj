@@ -349,6 +349,7 @@
 		B5BA508021215C71000EA315 /* UIWebView+HYBMasonryKit.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BA506021215C70000EA315 /* UIWebView+HYBMasonryKit.m */; };
 		B5BA50862121601E000EA315 /* FFQuickBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BA50852121601E000EA315 /* FFQuickBaseViewController.m */; };
 		B5BA50892121762E000EA315 /* FFGameListBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BA50882121762E000EA315 /* FFGameListBaseCell.m */; };
+		B5BA508F2123CC53000EA315 /* FFRepairViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BA508E2123CC53000EA315 /* FFRepairViewController.m */; };
 		B5D10421208F0DD900CA1949 /* FFBasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D10420208F0DD900CA1949 /* FFBasicViewController.m */; };
 		B5D1042A208F156000CA1949 /* FFGameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D10429208F156000CA1949 /* FFGameModel.m */; };
 		B5D1042D208F162500CA1949 /* FFMapModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D1042C208F162500CA1949 /* FFMapModel.m */; };
@@ -1015,6 +1016,8 @@
 		B5BA50852121601E000EA315 /* FFQuickBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFQuickBaseViewController.m; sourceTree = "<group>"; };
 		B5BA50872121762E000EA315 /* FFGameListBaseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFGameListBaseCell.h; sourceTree = "<group>"; };
 		B5BA50882121762E000EA315 /* FFGameListBaseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFGameListBaseCell.m; sourceTree = "<group>"; };
+		B5BA508D2123CC53000EA315 /* FFRepairViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFRepairViewController.h; sourceTree = "<group>"; };
+		B5BA508E2123CC53000EA315 /* FFRepairViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFRepairViewController.m; sourceTree = "<group>"; };
 		B5D1041F208F0DD900CA1949 /* FFBasicViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBasicViewController.h; sourceTree = "<group>"; };
 		B5D10420208F0DD900CA1949 /* FFBasicViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBasicViewController.m; sourceTree = "<group>"; };
 		B5D10428208F156000CA1949 /* FFGameModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFGameModel.h; sourceTree = "<group>"; };
@@ -2777,6 +2780,15 @@
 			path = ControllerKit;
 			sourceTree = "<group>";
 		};
+		B5BA508C2123CC26000EA315 /* FFRepairClass */ = {
+			isa = PBXGroup;
+			children = (
+				B5BA508D2123CC53000EA315 /* FFRepairViewController.h */,
+				B5BA508E2123CC53000EA315 /* FFRepairViewController.m */,
+			);
+			path = FFRepairClass;
+			sourceTree = "<group>";
+		};
 		B5D103F4208DBEAD00CA1949 /* ChildDriveController */ = {
 			isa = PBXGroup;
 			children = (
@@ -2835,6 +2847,7 @@
 				B523839D20AEAA620087733A /* FFOpenServerClass */,
 				B52382CD20AE9EF40087733A /* DriveClass */,
 				B5D505AA20898D34000B7B50 /* FFMineClass */,
+				B5BA508C2123CC26000EA315 /* FFRepairClass */,
 				B5D1043F20904DC200CA1949 /* FFGameClass */,
 				B57B53A920E381F5001770A3 /* FFAcitvityClass */,
 				B599694C20BD38F000BC6084 /* FFPromiseClass */,
@@ -3457,6 +3470,7 @@
 				B5D1044B2090694200CA1949 /* FFWebViewController.m in Sources */,
 				B5781AF220A535B900CB1464 /* FFServersModel.m in Sources */,
 				B57B53BA20E3889B001770A3 /* FFZKActivityViewController.m in Sources */,
+				B5BA508F2123CC53000EA315 /* FFRepairViewController.m in Sources */,
 				B5BA507D21215C71000EA315 /* UIView+HYBHelperBlockKit.m in Sources */,
 				B580A54420D3C73A00680194 /* ZLCustomCamera.m in Sources */,
 				B523832A20AE9EF40087733A /* FFDriveUserModel.m in Sources */,

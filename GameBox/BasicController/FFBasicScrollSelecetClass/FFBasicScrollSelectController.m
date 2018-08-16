@@ -236,7 +236,7 @@
 
 - (UIView *)navigationView {
     if (!_navigationView) {
-        _navigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, kNAVIGATION_HEIGHT)];
+        _navigationView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, KSTATUBAR_HEIGHT + 44)];
         _navigationView.backgroundColor = [FFColorManager game_controller_navigation_color];
         _navigationView.alpha = 0;
     }

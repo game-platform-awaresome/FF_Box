@@ -12,6 +12,13 @@
 #import "FFNavigationController.h"
 #import "FFBoxHandler.h"
 
+
+#import "FFHomeViewController.h"
+#import "FFBusinessViewController.h"
+#import "FFDriveController.h"
+#import "FFMineViewController.h"
+#import "FFOpenServerViewController.h"
+
 @interface FFMainTabbarViewController () <FFCustomizeTabbarDelegate>
 
 @property (nonatomic, strong) NSArray<UINavigationController *> *childVCs;
@@ -47,6 +54,7 @@
     NSArray *titles;
     NSArray *normalImageArray;
     NSArray *hightLightImageArray;
+    NSArray *viewControllers1;
     if ([FFBoxHandler sharedInstance].business_enbaled.boolValue) {
 //    if (NO) {
         viewControllerNames = @[@"FFHomeViewController",
@@ -54,19 +62,23 @@
                                 @"FFDriveController",
                                 @"FFMineViewController"];
         titles = @[@"游戏", @"交易", @"车站", @"我的"];
-        normalImageArray = @[[self creatImageWith:0 Normal:YES],
-                             [self creatImageWith:1 Normal:YES],
-                             [self creatImageWith:2 Normal:YES],
-                             [self creatImageWith:3 Normal:YES]];
-        hightLightImageArray = @[[self creatImageWith:0 Normal:NO],
-                                 [self creatImageWith:1 Normal:NO],
-                                 [self creatImageWith:2 Normal:NO],
-                                 [self creatImageWith:3 Normal:NO]];
+                normalImageArray = @[[self creatImageWith:0 Normal:YES],
+                                     [self creatImageWith:4 Normal:YES],
+                                     [self creatImageWith:2 Normal:YES],
+                                     [self creatImageWith:3 Normal:YES]];
+                hightLightImageArray = @[[self creatImageWith:0 Normal:NO],
+                                         [self creatImageWith:4 Normal:NO],
+                                         [self creatImageWith:2 Normal:NO],
+                                         [self creatImageWith:3 Normal:NO]];
     } else {
         viewControllerNames = @[@"FFHomeViewController",
                                 @"FFOpenServerViewController",
                                 @"FFDriveController",
                                 @"FFMineViewController"];
+        viewControllers1 = @[[FFHomeViewController new],
+                            [FFOpenServerViewController new],
+                            [FFDriveController new],
+                            [FFMineViewController new]];
         titles = @[@"游戏", @"开服表", @"车站", @"我的"];
         normalImageArray = @[[self creatImageWith:0 Normal:YES],
                              [self creatImageWith:4 Normal:YES],
@@ -86,6 +98,7 @@
 
     NSMutableArray *viewControllers = [NSMutableArray arrayWithCapacity:titles.count];
     _vcs = [NSMutableArray arrayWithCapacity:titles.count];
+
     [viewControllerNames enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         UIViewController *viewController = nil;
 
@@ -97,8 +110,14 @@
             syLog(@"%s error : %@ not exist",__func__,obj);
         }
 
-        [self->_vcs addObject:viewController];
+        [self -> _vcs addObject:viewController];
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:viewController];
+
+        //设置默认的返回图片
+        nav.navigationBar.backIndicatorImage = [UIImage imageNamed:@"General_back_black"];
+        nav.navigationBar.backIndicatorTransitionMaskImage = [UIImage imageNamed:@"General_back_black"];
+
+
         //设置title
         viewController.navigationItem.title = titles[idx];
         viewController.navigationController.tabBarItem.title = titles[idx];

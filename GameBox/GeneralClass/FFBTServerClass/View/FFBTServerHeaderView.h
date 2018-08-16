@@ -23,11 +23,20 @@
 
 @property (nonatomic, weak) id<FFBTServerHeaderViewDelegate> delegate;
 
-@property (nonatomic, strong) UIView *searchView;
-@property (nonatomic, strong) UIImageView *searchBarView;
+
+@property (nonatomic, assign) CGRect searchHeaderFrame;
+@property (nonatomic, assign) CGRect searchScrollFrame;
+
+@property (nonatomic, assign) BOOL   isAddHeader;
+@property (nonatomic, assign) BOOL   isAddView;
 
 
-@property (nonatomic, strong) NSArray *bannerArray;
+@property (nonatomic, strong) UIView        *searchView;
+@property (nonatomic, strong) UIImageView   *searchBarView;
+@property (nonatomic, strong) UIImageView   *searchScrollImage;
+@property (nonatomic, strong) UIButton      *searchTitleButton;
+
+@property (nonatomic, strong) NSArray       *bannerArray;
 
 @property (nonatomic, strong) NSArray<NSString *> *titleArray;
 @property (nonatomic, strong) NSArray<UIImage *>  *imageArray;
