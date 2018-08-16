@@ -27,6 +27,9 @@
 
 @property (nonatomic, strong) NSTimer *timer;
 
+
+@property (nonatomic, assign) BOOL leaveBreathe;
+
 @end
 
 @implementation FFHomeViewController
@@ -40,6 +43,13 @@
     self.navigationController.navigationBar.hidden = YES;
     self.hidesBottomBarWhenPushed = NO;
     self.navBarBGAlpha = @"0";
+    _leaveBreathe = NO;
+    [self respondsToTimer];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    _leaveBreathe = YES;
 }
 
 
@@ -75,14 +85,18 @@
     floatButton.frame = self.floatImageView.frame;
     [floatButton addTarget:self action:@selector(respondsToFloatButton) forControlEvents:(UIControlEventTouchUpInside)];
     [self.view addSubview:floatButton];
-
-
-#warning view error
-//    [self respondsToTimer];
-
 }
 
+static BOOL homeviewAnimation;
 - (void)respondsToTimer {
+    if (_leaveBreathe) {
+        return;
+    }
+
+    if (homeviewAnimation) {
+        return;
+    }
+    homeviewAnimation = YES;
     [UIView animateWithDuration:1 animations:^{
         if (self.floatImageView.alpha == 0.5) {
             self.floatImageView.alpha = 1;
@@ -90,6 +104,7 @@
             self.floatImageView.alpha = 0.5;
         }
     } completion:^(BOOL finished) {
+        homeviewAnimation = NO;
         [self respondsToTimer];
     }];
 }

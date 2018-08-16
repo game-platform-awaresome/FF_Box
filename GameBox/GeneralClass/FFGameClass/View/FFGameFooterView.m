@@ -85,10 +85,13 @@
         _collectionBtn.frame = CGRectMake(0, 0, 60, 50);
         [_collectionBtn setImage:[FFImageManager Game_detail_footer_nocollection] forState:(UIControlStateNormal)];
         [_collectionBtn addTarget:self action:@selector(clickCollectButton:) forControlEvents:(UIControlEventTouchUpInside)];
+        [_collectionBtn setTitle:@"收藏" forState:(UIControlStateNormal)];
 //        [_collectionBtn setTitle:@"分享" forState:(UIControlStateNormal)];
 //        [_collectionBtn layoutButtonWithImageStyle:(FFButtonImageOnTop) imageTitleSpace:0];
 //        _collectionBtn.titleLabel.font = [UIFont systemFontOfSize:9];
         [_collectionBtn setTitleColor:[FFColorManager blue_dark] forState:(UIControlStateNormal)];
+        _collectionBtn.titleLabel.font = [UIFont boldSystemFontOfSize:11];
+        [_collectionBtn layoutButtonWithImageStyle:(FFButtonImageOnTop) imageTitleSpace:5];
     }
     return _collectionBtn;
 }
@@ -111,12 +114,13 @@
     if (!_shardBtn) {
         _shardBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
         _shardBtn.frame = CGRectMake(kSCREEN_WIDTH - 60, 0, 60, 50);
-//        [_shardBtn setTitle:@"评论" forState:(UIControlStateNormal)];
+        [_shardBtn setTitle:@"评论" forState:(UIControlStateNormal)];
         [_shardBtn setImage:[FFImageManager Game_detail_footer_comment] forState:(UIControlStateNormal)];
         [_shardBtn addTarget:self action:@selector(clickShareButton:) forControlEvents:(UIControlEventTouchUpInside)];
-//        [_shardBtn layoutButtonWithImageStyle:(FFButtonImageOnTop) imageTitleSpace:-2];
-//        _shardBtn.titleLabel.font = [UIFont systemFontOfSize:9];
         [_shardBtn setTitleColor:[FFColorManager blue_dark] forState:(UIControlStateNormal)];
+        _shardBtn.titleLabel.font = [UIFont boldSystemFontOfSize:11];
+        [_shardBtn layoutButtonWithImageStyle:(FFButtonImageOnTop) imageTitleSpace:5];
+
     }
     return _shardBtn;
 }

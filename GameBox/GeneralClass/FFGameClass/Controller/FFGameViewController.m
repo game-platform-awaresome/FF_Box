@@ -40,6 +40,10 @@
 
 @property (nonatomic, strong) FFWriteCommentController *writeComment;
 
+@property (nonatomic, strong) UIButton *Game_comment_prompt_button;
+@property (nonatomic, assign) BOOL show_Game_comment_prompt;
+
+
 @end
 
 static FFGameViewController *controller = nil;
@@ -77,7 +81,18 @@ static FFGameViewController *controller = nil;
     } else {
         [self.navigationController.navigationBar setTintColor:self.lastNavColor];
     }
+
+    if (!_show_Game_comment_prompt) {
+
+        _show_Game_comment_prompt = YES;
+        self.Game_comment_prompt_button = [UIButton hyb_buttonWithImage:@"" superView:self.view constraints:^(MASConstraintMaker *make) {
+
+        } touchUp:^(UIButton *sender) {
+            [self respondsToShowGameCommentButton];
+        }];
+    }
 }
+
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
@@ -153,6 +168,10 @@ static FFGameViewController *controller = nil;
             syLog(@"%s error -> %@ not exist",__func__,className);
         }
     }
+}
+
+- (void)respondsToShowGameCommentButton {
+    [self.Game_comment_prompt_button removeFromSuperview];
 }
 
 - (void)setNormalView {
