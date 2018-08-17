@@ -14,6 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 
+@property (weak, nonatomic) IBOutlet UILabel *giftDescLabel;
 
 @end
 
@@ -24,6 +25,8 @@
     [self.getBtn addTarget:self action:@selector(clickGetBtn) forControlEvents:(UIControlEventTouchUpInside)];
     self.getBtn.layer.cornerRadius = self.getBtn.bounds.size.height / 2;
     self.getBtn.layer.masksToBounds = YES;
+
+    self.giftDescLabel.textColor = [FFColorManager textColorMiddle];
 }
 
 - (void)clickGetBtn {
@@ -60,6 +63,9 @@
         [self.getBtn setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
         [self.getBtn setBackgroundColor:[FFColorManager light_gray_color]];
     }
+
+    //礼包描述
+    self.giftDescLabel.text = [NSString stringWithFormat:@"%@",_dict[@"pack_abstract"]];
 }
 
 

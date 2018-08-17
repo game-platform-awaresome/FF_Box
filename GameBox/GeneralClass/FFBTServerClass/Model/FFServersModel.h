@@ -20,9 +20,11 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, assign) FFSectionType type;
 
-@property (nonatomic, strong) NSString *sectionHeaderTitle;
-@property (nonatomic, strong) NSString *sectionFooterPic;
-@property (nonatomic, strong) NSString *sectionFooterGid;
+@property (nonatomic, strong) NSString *sectionHeaderTitle;     //标题
+@property (nonatomic, strong) NSString *sectionFooterPic;       //图片
+@property (nonatomic, strong) NSString *sectionFooterGid;       //游戏 id
+@property (nonatomic, strong) NSString *sectionFooterType;
+@property (nonatomic, strong) NSString *sectionFooterUrl;       //链接地址
 @property (nonatomic, strong) NSString *slideGid;
 @property (nonatomic, strong) NSString *slidePic;
 

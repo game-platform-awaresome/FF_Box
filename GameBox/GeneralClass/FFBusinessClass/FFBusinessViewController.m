@@ -33,7 +33,7 @@
 @property (nonatomic, assign) FFBusinessOrderType orderType;
 @property (nonatomic, assign) FFBusinessSystemType systemType;
 @property (nonatomic, assign) FFBusinessOrderMethod orderMethod;
-@property (nonatomic, strong) NSString *gameName;
+
 
 
 @property (nonatomic, strong) UIButton *sortButton;
@@ -56,16 +56,16 @@ static FFBusinessViewController *_controller = nil;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    self.navBarBGAlpha = @"1.0";
     [FFBusinessModel sharedModel];
     [self setUserCenterButtonTitle];
-    self.navBarBGAlpha = @"1.0";
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     _controller = self;
-    [self customNavLine];
+//    [self customNavLine];
 }
 
 - (void)initDataSource {

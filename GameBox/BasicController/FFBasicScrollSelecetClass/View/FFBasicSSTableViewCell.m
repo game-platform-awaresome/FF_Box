@@ -25,17 +25,17 @@
 @end
 
 
-static FFBasicSSTableViewCell *cell = nil;
+static FFBasicSSTableViewCell *SSTableViewCell = nil;
 @implementation FFBasicSSTableViewCell
 
 + (instancetype)cell {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        if (cell == nil) {
-            cell = [[FFBasicSSTableViewCell alloc] initWithFrame:CGRectZero];
+        if (SSTableViewCell == nil) {
+            SSTableViewCell = [[FFBasicSSTableViewCell alloc] initWithFrame:CGRectZero];
         }
     });
-    return cell;
+    return SSTableViewCell;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {

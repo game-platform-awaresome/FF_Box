@@ -10,7 +10,7 @@
 
 @interface FFBusinessViewController : FFBasicTableViewController
 
-
+@property (nonatomic, strong) NSString *gameName;
 
 
 @end

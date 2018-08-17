@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface FFBasicSSSelectView ()
 
 @property (nonatomic, strong) NSMutableArray<UIButton *> *buttonArray;
+@property (nonatomic, strong) NSMutableArray<UILabel *>  *subscriptLabelArray;
 
 @property (nonatomic, strong) UIView *headerLine;
 @property (nonatomic, strong) UIView *footerLine;
@@ -24,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) BOOL isAnimation;
 @property (nonatomic, strong) UIButton *lastButton;
+@property (nonatomic, strong) UILabel  *lastLabel;
 
 @property (nonatomic, assign) NSUInteger selectIndex;
 
@@ -76,6 +78,12 @@ NS_ASSUME_NONNULL_BEGIN
             [button removeFromSuperview];
         }
     }
+
+    if (self.subscriptLabelArray.count > 0) {
+        for (UILabel *label in self.buttonArray) {
+            [label removeFromSuperview];
+        }
+    }
 }
 
 - (void)setSelectIndex:(NSUInteger)selectIndex {
@@ -91,9 +99,15 @@ NS_ASSUME_NONNULL_BEGIN
     if (_lastButton) {
         [_lastButton setTitleColor:self.normalColor forState:(UIControlStateNormal)];
     }
+    if (_lastLabel) {
+        _lastLabel.textColor = self.normalColor;
+    }
     UIButton *button = self.buttonArray[idx];
     [button setTitleColor:self.selectColor forState:(UIControlStateNormal)];
+    UILabel *label = self.subscriptLabelArray[idx];
+    label.textColor = self.selectColor;
     _lastButton = button;
+    _lastLabel = label;
 }
 
 - (void)setCursorView_X:(CGFloat)x {
@@ -113,6 +127,7 @@ NS_ASSUME_NONNULL_BEGIN
     } else {
         [self removeAllButtons];
         _buttonArray = [NSMutableArray arrayWithCapacity:titleArray.count];
+        _subscriptLabelArray = [NSMutableArray arrayWithCapacity:titleArray.count];
         [titleArray enumerateObjectsUsingBlock:^(NSString* obj, NSUInteger idx, BOOL * _Nonnull stop) {
 
             UIButton *button = [UIButton buttonWithType:(UIButtonTypeCustom)];
@@ -125,6 +140,14 @@ NS_ASSUME_NONNULL_BEGIN
             button.tag = Button_tag + idx;
             [button addTarget:self action:@selector(respondsToButton:) forControlEvents:(UIControlEventTouchUpInside)];
             [_buttonArray addObject:button];
+
+
+            UILabel *label = [[UILabel alloc] init];
+            label.font = [UIFont systemFontOfSize:12];
+            label.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1];
+            label.textAlignment = NSTextAlignmentCenter;
+            label.layer.masksToBounds = YES;
+            [_subscriptLabelArray addObject:label];
 
             [self addSubview:button];
         }];
@@ -148,21 +171,25 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setButtonSubscriptWithIdx:(NSUInteger)idx Title:(NSString *)title {
     if (self.buttonArray.count > idx) {
         UIButton *button = self.buttonArray[idx];
+        UILabel *label = self.subscriptLabelArray[idx];
         CGRect frame = [button convertRect:button.titleLabel.frame toView:self];
         CGRect btnFrame = button.frame;
-        self.subscriptLabel.text = title;
-        [self.subscriptLabel sizeToFit];
-        CGRect labelBounds = self.subscriptLabel.bounds;
+        label.text = title;
+        [label sizeToFit];
+        CGRect labelBounds = label.bounds;
         labelBounds.size.width += 4;
         labelBounds.size.height += 2;
+        if (labelBounds.size.width < labelBounds.size.height) {
+            labelBounds.size.width = labelBounds.size.height;
+        }
         frame.size = labelBounds.size;
         frame.origin.x = btnFrame.origin.x + btnFrame.size.width / 2 + 15;
         frame.origin.y = btnFrame.size.height / 2 - 16;
-        self.subscriptLabel.layer.cornerRadius = labelBounds.size.height / 2;
-        self.subscriptLabel.frame = frame;
+        label.layer.cornerRadius = labelBounds.size.height / 2;
+        label.frame = frame;
 
         syLog(@"frame == %@",NSStringFromCGRect(frame));
-        [self addSubview:self.subscriptLabel];
+        [self addSubview:label];
     }
 }
 

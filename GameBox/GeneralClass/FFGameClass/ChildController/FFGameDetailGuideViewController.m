@@ -8,11 +8,12 @@
 
 #import "FFGameDetailGuideViewController.h"
 
-#import "FFGameGuideCell.h"
 #import "FFWebViewController.h"
 #import "FFCurrentGameModel.h"
 
-#define CELL_IDE @"FFGameGuideCell"
+#import "FFGameDetailGuideCell.h"
+
+#define CELL_IDE @"FFGameDetailGuideCell"
 
 @interface FFGameDetailGuideViewController ()
 
@@ -28,18 +29,13 @@
     }
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-}
-
 - (void)initUserInterface {
     [super initUserInterface];
     self.view.backgroundColor = [UIColor whiteColor];
     self.tableView.mj_footer = nil;
     self.tableView.mj_header = self.refreshHeader;
     [self.view addSubview:self.tableView];
-    BOX_REGISTER_CELL;
+    [self.tableView registerClass:[FFGameDetailGuideCell class] forCellReuseIdentifier:CELL_IDE];
     [self.tableView.mj_header beginRefreshing];
 }
 
@@ -49,9 +45,7 @@
 
 - (void)refreshData {
     [super refreshData];
-//    [self startWaiting];
     [FFGameModel gameGuideWithGameID:CURRENT_GAME.game_id Completion:^(NSDictionary * _Nonnull content, BOOL success) {
-//        [self stopWaiting];
         if (success) {
             syLog(@"game guide === %@",content);
             id data = content[@"data"][@"list"];
@@ -67,9 +61,8 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    FFGameGuideCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDE];
+    FFGameDetailGuideCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDE forIndexPath:indexPath];
     cell.dict = self.showArray[indexPath.row];
-    cell.gameLogoImageView.image = CURRENT_GAME.game_logo_image;
     return cell;
 }
 
@@ -80,7 +73,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     self.webViewController.webURL = self.showArray[indexPath.row][@"info_url"];
-
     [self pushViewController:self.webViewController];
 }
 

@@ -19,7 +19,7 @@
 #import "FFUserModel.h"
 
 #import "FFSharedController.h"
-
+#import "FFGameBusinessViewController.h"
 
 @interface FFGameViewController () <FFGameDetailFooterViewDelegate>
 
@@ -76,6 +76,7 @@ static FFGameViewController *controller = nil;
     self.navigationController.navigationBar.hidden = NO;
     self.navBarBGAlpha = @"0.0";
     [self naviTransParent];
+
     if (_isResetNavColor) {
         [self resetNavColor];
     } else {
@@ -83,10 +84,10 @@ static FFGameViewController *controller = nil;
     }
 
     if (!_show_Game_comment_prompt) {
-
         _show_Game_comment_prompt = YES;
-        self.Game_comment_prompt_button = [UIButton hyb_buttonWithImage:@"" superView:self.view constraints:^(MASConstraintMaker *make) {
-
+        self.Game_comment_prompt_button = [UIButton hyb_buttonWithImage:@"Game_comment_prompt" superView:self.view constraints:^(MASConstraintMaker *make) {
+            make.bottom.mas_equalTo(self.view).offset(-50);
+            make.right.mas_equalTo(self.view).offset(-0);
         } touchUp:^(UIButton *sender) {
             [self respondsToShowGameCommentButton];
         }];
@@ -136,12 +137,13 @@ static FFGameViewController *controller = nil;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
 }
 
 - (void)initUserInterface {
     [super initUserInterface];
-//    self.view.backgroundColor = [UIColor blackColor];
+
+
     [self setSelectViewInfo];
     [self setNormalView];
 
@@ -172,9 +174,11 @@ static FFGameViewController *controller = nil;
 
 - (void)respondsToShowGameCommentButton {
     [self.Game_comment_prompt_button removeFromSuperview];
+    self.Game_comment_prompt_button = nil;
 }
 
 - (void)setNormalView {
+
     self.navigationController.navigationBar.hidden = NO;
     [self.navigationController.navigationBar setTintColor:[UIColor colorWithWhite:1 alpha:1]];
     self.navBarBGAlpha = @"0.0";
@@ -182,8 +186,15 @@ static FFGameViewController *controller = nil;
     self.headerView = self.gameHeaderView;
     self.footerView = self.gameFooterView;
     self.sectionView = self.selectView;
+
     [self.view addSubview:self.footerView];
     [self.view addSubview:self.tableView];
+
+    [self.tableView reloadData];
+
+    if (self.Game_comment_prompt_button) {
+        [self.view bringSubviewToFront:self.Game_comment_prompt_button];
+    }
 
     [self.view bringSubviewToFront:self.navigationView];
 }
@@ -244,12 +255,28 @@ static FFGameViewController *controller = nil;
     }];
 
 
+    //设置评论数
     [CURRENT_GAME setCommentNumberBlock:^(NSString *commentNumber) {
         [self.selectView setButtonSubscriptWithIdx:1 Title:commentNumber];
     }];
 
-    
+    //设置礼包数目
+    [CURRENT_GAME setGiftNumberBlock:^(NSString *giftNumber) {
+        [self.selectView setButtonSubscriptWithIdx:2 Title:giftNumber];
+    }];
 
+    //设置攻略数据
+    [CURRENT_GAME setGuideNumberBlock:^(NSString *guideNumberBlock) {
+        [self.selectView setButtonSubscriptWithIdx:4 Title:guideNumberBlock];
+
+    }];
+
+    //响应头部账号交易按钮
+    [CURRENT_GAME setAccountTransaction:^{
+        syLog(@"账号交易!!!!");
+//        [self presentViewController:[FFGameBusinessViewController GameBusiness] animated:YES completion:nil];
+        [self pushViewController:[FFGameBusinessViewController showWithGameName:CURRENT_GAME.game_name]];
+    }];
 
 }
 
@@ -275,10 +302,10 @@ static FFGameViewController *controller = nil;
         [FFCurrentGameModel refreshCurrentGameWithGameID:self.gid Completion:^(BOOL success) {
             [weakSelf stopWaiting];
             if (success) {
-                [weakSelf setNormalView];
                 [weakSelf.gameHeaderView refresh];
                 [weakSelf.gameFooterView refresh];
                 [weakSelf setChildsRefresh];
+                [weakSelf setNormalView];
             } else {
                 [weakSelf.currentNav popViewControllerAnimated:YES];
             }
@@ -400,15 +427,17 @@ static FFGameViewController *controller = nil;
     _currentIndex = 0;
     _gid = gid;
     CURRENT_GAME.game_id = [NSString stringWithFormat:@"%@",gid];
+
     [self removeAllview];
+
     [[FFBasicSSTableViewCell cell] selectViewWithIndex:0];
 
     //刷新游戏
     [self refreshData];
     //刷新子视图
-    for (FFBasicViewController *vc in self.selectChildConttoller) {
-        [vc refreshData];
-    }
+//    for (FFBasicViewController *vc in self.selectChildConttoller) {
+//        [vc refreshData];
+//    }
 }
 
 /** 内测游戏 */
@@ -425,7 +454,10 @@ static FFGameViewController *controller = nil;
 
 - (void)removeAllview {
     [self.tableView removeFromSuperview];
-    self.tableView = nil;
+//    self.tableView = nil;
+    self.canScroll = YES;
+    [self.tableView setContentOffset:CGPointMake(0, 0)];
+    [[FFBasicSSTableViewCell cell] selectViewWithIndex:0];
     self.navigationView.alpha = 0;
     self.footerView = nil;
     [self hideNavigationTitle];

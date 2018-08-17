@@ -131,6 +131,7 @@
 
 #pragma mark - responds
 - (void)respondsToSectionFooterImage:(NSUInteger)sender {
+
     NSString *gid = self.model.sectionArray[(sender)].slideGid;
     if (gid != nil && gid.integerValue > 0) {
         Class FFGameViewController = NSClassFromString(@"FFGameViewController");
@@ -150,6 +151,7 @@
         }
     } else {
         syLog(@"gid error -> game not exist %@",gid);
+        NSString *url = self.model.sectionArray[(sender)].slideGid;
     }
 
 }

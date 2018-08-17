@@ -41,6 +41,8 @@
 
 @property (nonatomic, assign) BOOL canRestView;
 
+@property (nonatomic, assign) BOOL canScroll;
+
 - (void)showNavigationTitle;
 - (void)hideNavigationTitle;
 

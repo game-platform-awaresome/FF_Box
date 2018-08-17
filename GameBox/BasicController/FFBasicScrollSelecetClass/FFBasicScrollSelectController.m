@@ -29,8 +29,6 @@
 @property (nonatomic, assign) CGFloat tableHeaderHeight;
 @property (nonatomic, assign) CGFloat footerViewHeight;
 
-@property (nonatomic, assign) BOOL canScroll;
-
 @property (nonatomic, assign) BOOL isRefreshing;
 
 @end
@@ -88,6 +86,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     FFBasicSSTableViewCell *cell = [FFBasicSSTableViewCell cell];
+    cell.backgroundColor = kBlackColor;
     return cell;
 }
 
@@ -207,6 +206,8 @@
         }
 
         _canScroll = YES;
+//        [[FFBasicSSTableViewCell cell] removeFromSuperview];
+//        [_tableView reloadData];
     }
     return _tableView;
 }

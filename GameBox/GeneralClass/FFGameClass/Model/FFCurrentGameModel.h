@@ -13,12 +13,16 @@
 #define CURRENT_GAME [FFCurrentGameModel CurrentGame]
 
 typedef void(^RefreshCompleteBlock)(BOOL success);
-typedef void(^CommentNumberBlock)(NSString *commentNumber);
 typedef void(^CommentListBlock)(NSDictionary *content, BOOL success);
 typedef void(^GameCompletionBlck)(NSDictionary *content, BOOL success);
 
 typedef void(^GameActivityCallBackBlock)(NSDictionary *content, BOOL success);
 
+typedef void(^CommentNumberBlock)(NSString *commentNumber);
+typedef void(^GiftNumberBlock)   (NSString *giftNumber);
+typedef void(^GuideNumberBlock)  (NSString *guideNumberBlock);
+
+typedef void(^AccountTransaction)(void);
 
 @interface FFCurrentGameModel : FFBasicModel
 
@@ -93,8 +97,23 @@ typedef void(^GameActivityCallBackBlock)(NSDictionary *content, BOOL success);
 /** 折扣 */ 
 @property (nonatomic, strong) NSString *game_discount;
 
-@property (nonatomic, strong) CommentNumberBlock commentNumberBlock;
+/** 是否显示交易 */
+@property (nonatomic, strong) NSString *transaction_switch;
+/** 交易数量 */
+@property (nonatomic, strong) NSString *transaction_number;
+/** 游戏排名,前10返回真实排名,10名以后显示0 */
+@property (nonatomic, strong) NSString *top_number;
 
+
+/** 评论数 block */
+@property (nonatomic, strong) CommentNumberBlock commentNumberBlock;
+/** 礼包数 block */
+@property (nonatomic, strong) GiftNumberBlock    giftNumberBlock;
+/** 攻略数 block */
+@property (nonatomic, strong) GuideNumberBlock   guideNumberBlock;
+
+/** 显示交易界面 */
+@property (nonatomic, strong) AccountTransaction accountTransaction;
 
 /** 新属性(H5)属性 */
 @property (nonatomic, strong) NSString *platform;

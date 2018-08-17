@@ -50,6 +50,15 @@ static FFCurrentGameModel *model;
         if (block) {
             block(success);
         }
+
+        //礼包数
+        if (CURRENT_GAME.giftNumberBlock) {
+            CURRENT_GAME.giftNumberBlock([NSString stringWithFormat:@"%@",CONTENT_DATA[@"gameinfo"][@"pack_counts"] ?: @"0"]);
+        }
+        if (CURRENT_GAME.guideNumberBlock) {
+            CURRENT_GAME.guideNumberBlock([NSString stringWithFormat:@"%@",CONTENT_DATA[@"gameinfo"][@"article_counts"] ?: @"0"]);
+        }
+
     }];
     return CURRENT_GAME;
 }
@@ -134,6 +143,11 @@ static FFCurrentGameModel *model;
     [self setAppid:                     GAMEINFO(@"appid")];
     [self setApp_clientkey:             GAMEINFO(@"app_clientkey")];
     [self setH5_url:                    GAMEINFO(@"h5_url")];
+
+    //2018-08-17 add
+    [self setTransaction_number:        GAMEINFO(@"products")];
+    [self setTransaction_switch:        GAMEINFO(@"trade_open")];
+    [self setTop_number:                GAMEINFO(@"top")];
 }
 
 
@@ -291,6 +305,20 @@ static FFCurrentGameModel *model;
     SET_VALUE(_platform, platform);
 }
 
+/** 账号交易 */
+- (void)setTransaction_switch:(NSString *)transaction_switch {
+    SET_VALUE(_transaction_switch, transaction_switch);
+}
+
+/** 账号交易数量 */
+- (void)setTransaction_number:(NSString *)transaction_number {
+    SET_VALUE(_transaction_number, transaction_number);
+}
+
+/** 排行 */
+- (void)setTop_number:(NSString *)top_number {
+    SET_VALUE(_top_number, top_number);
+}
 
 #pragma mark - comment
 /** 请求评论 */

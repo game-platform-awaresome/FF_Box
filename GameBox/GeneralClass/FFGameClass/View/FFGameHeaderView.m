@@ -29,6 +29,14 @@
 @property (nonatomic, strong) UILabel *gameSizeAndDownloadLabel;
 @property (nonatomic, strong) UIButton *QQGroupButton;
 
+
+/** 账号交易按钮 */
+@property (nonatomic, strong) UIButton *AccountTransactionButton;
+/** 账号交易数量 */
+@property (nonatomic, strong) UILabel *accountTransactionLabel;
+
+
+
 @property (nonatomic, strong) UIView *maskView;
 
 @end
@@ -55,7 +63,19 @@
     [self addSubview:self.backgroundView];
     [self addSubview:self.settingView];
     [self addSubview:self.maskView];
+
+    [self setAccountTransactionButton];
 }
+
+
+
+#pragma mark - responds
+- (void)respondsToAccountTransactionButton {
+    if (CURRENT_GAME.accountTransaction) {
+        CURRENT_GAME.accountTransaction();
+    }
+}
+
 
 - (void)refresh {
     //logo
@@ -119,6 +139,16 @@
 
     //玩家 Q 群
     self.QQGroupButton.hidden = !(CURRENT_GAME.player_qq_group.length > 0);
+
+    //账号交易
+    self.AccountTransactionButton.hidden = !(CURRENT_GAME.transaction_switch.integerValue > 0 && CURRENT_GAME.transaction_number.integerValue > 0);
+
+    //账号交易数量
+    self.accountTransactionLabel.text = [NSString stringWithFormat:@"%@",CURRENT_GAME.transaction_number];
+    [self.accountTransactionLabel sizeToFit];
+    CGSize size = self.accountTransactionLabel.bounds.size;
+    size.width = size.width < 10 ? 12 : size.width;
+    self.accountTransactionLabel.frame = CGRectMake(self.AccountTransactionButton.bounds.size.width - 20, -10, size.width, 12);
 }
 
 - (void)showNavigationTitle {
@@ -164,6 +194,23 @@
         self.backgroundView.frame = CGRectMake(0, 0 + height, self.bounds.size.width, self.bounds.size.height + fabs(height));
     }
 }
+
+- (void)setAccountTransactionButton {
+    self.AccountTransactionButton = [UIButton hyb_buttonWithImage:@"Game_account_transaction" superView:self constraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self).offset(20);
+        make.bottom.mas_equalTo(self).offset(-50);
+        //        make.size.mas_equalTo(CGSizeMake(50, 50));
+    } touchUp:^(UIButton *sender) {
+        [self respondsToAccountTransactionButton];
+    }];
+    [self.AccountTransactionButton setTitle:@"账号交易" forState:(UIControlStateNormal)];
+    [self.AccountTransactionButton setTitleColor:[FFColorManager blue_dark] forState:(UIControlStateNormal)];
+    self.AccountTransactionButton.titleLabel.font = [UIFont systemFontOfSize:12];
+    self.AccountTransactionButton.hidden = YES;
+    [self.AccountTransactionButton layoutButtonWithImageStyle:(FFButtonImageOnTop) imageTitleSpace:0];
+    [self.AccountTransactionButton addSubview:self.accountTransactionLabel];
+}
+
 
 #pragma mark - getter
 - (UIImageView *)backgroundView {
@@ -290,6 +337,19 @@
         _maskView.backgroundColor = [FFColorManager game_header_setview_BKColor];
     }
     return _maskView;
+}
+
+- (UILabel *)accountTransactionLabel {
+    if (!_accountTransactionLabel) {
+        _accountTransactionLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        _accountTransactionLabel.font = [UIFont systemFontOfSize:9];
+        _accountTransactionLabel.backgroundColor = [FFColorManager blue_dark];
+        _accountTransactionLabel.layer.cornerRadius = 6;
+        _accountTransactionLabel.layer.masksToBounds = YES;
+        _accountTransactionLabel.textColor = kWhiteColor;
+        _accountTransactionLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    return _accountTransactionLabel;
 }
 
 
