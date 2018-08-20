@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "d_icon_zhjy.png",
+      "filename" : "i_icon_dp_quxiaoanniiu.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "d_icon_zhjy@2x.png",
+      "filename" : "i_icon_dp_quxiaoanniiu@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "d_icon_zhjy@3x.png",
+      "filename" : "i_icon_dp_quxiaoanniiu@3x.png",
       "scale" : "3x"
     }
   ],
