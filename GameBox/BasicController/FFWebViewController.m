@@ -29,6 +29,8 @@
 //    [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
     self.navBarBGAlpha = @"1.0";
+
+    [self.navigationController.navigationBar setTintColor:[FFColorManager navigation_bar_black_color]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

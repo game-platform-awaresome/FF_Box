@@ -265,7 +265,9 @@
     [dict setObject:@"1" forKey:@"type"];
     [dict setObject:Channel forKey:@"channel_id"];
     [dict setObject:@"1" forKey:@"page"];
-
+    if ([FFUserModel uid]) {
+        [dict setObject:[FFUserModel uid] forKey:@"uid"];
+    }
     [FFNetWorkManager postRequestWithURL:Map.GAME_GONGLUE Params:dict Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         REQUEST_COMPLETION;
     }];
@@ -406,6 +408,31 @@
     }];
 }
 
+/** 攻略赞踩 */
++ (void)guideLikeTypeWith:(FFGuideType)type GuideID:(NSString *)guideID Completion:(RequestCallBackBlock)completion {
+    Pamaras_Key((@[@"uid",@"channel",@"article_id",@"type"]));
+    Mutable_Dict(5);
+    [dict setObject:[FFUserModel uid] forKey:@"uid"];
+    [dict setObject:Channel forKey:@"channel"];
+    [dict setObject:guideID forKey:@"article_id"];
+    [dict setObject:[NSString stringWithFormat:@"%lu",type] forKey:@"type"];
+    SS_SIGN;
+    [FFNetWorkManager postRequestWithURL:Map.ARTICLE_LIKE Params:dict Completion:^(NSDictionary *content, BOOL success) {
+        NEW_REQUEST_COMPLETION;
+    }];
+}
+
+/** 攻略分享 */
++ (void)guideSharedWithGuideID:(NSString *)guideID Completion:(RequestCallBackBlock)completion {
+    Pamaras_Key((@[@"channel",@"article_id"]));
+    Mutable_Dict(3);
+    [dict setObject:Channel forKey:@"channel"];
+    [dict setObject:guideID forKey:@"article_id"];
+    SS_SIGN;
+    [FFNetWorkManager postRequestWithURL:Map.ARITCLE_SHARE Params:dict Completion:^(NSDictionary *content, BOOL success) {
+        NEW_REQUEST_COMPLETION;
+    }];
+}
 
 
 @end

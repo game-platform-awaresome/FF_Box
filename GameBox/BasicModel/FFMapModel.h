@@ -206,6 +206,15 @@ typedef void(^Completion)(void);
 @property (nonatomic, strong) NSString *RESERVE_SUCCESS;
 
 
+//* 2018-08-20
+@property (nonatomic, strong) NSString *SDK_LOGIN_URL;
+@property (nonatomic, strong) NSString *ARITCLE_SHARE;
+@property (nonatomic, strong) NSString *SELLER_RECORD;
+@property (nonatomic, strong) NSString *GAME_PLAYED;
+@property (nonatomic, strong) NSString *ARTICLE_LIKE;
+
+
+
 + (instancetype)map;
 
 + (void)getMapCompletion:(Completion)completion;

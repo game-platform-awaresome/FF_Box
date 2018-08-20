@@ -80,8 +80,15 @@ static FFGameViewController *controller = nil;
     if (_isResetNavColor) {
         [self resetNavColor];
     } else {
-        [self.navigationController.navigationBar setTintColor:self.lastNavColor];
+
     }
+
+    CGFloat maxAlphaOffset = self.headerView.bounds.size.height - kNAVIGATION_HEIGHT;
+    CGFloat offset = self.tableView.contentOffset.y;
+    CGFloat alpha = offset / maxAlphaOffset;
+    self.lastNavColor = [UIColor colorWithWhite:(1 - alpha) alpha:1];
+    [self.navigationController.navigationBar setTintColor:self.lastNavColor];
+
 
     if (!_show_Game_comment_prompt) {
         _show_Game_comment_prompt = YES;

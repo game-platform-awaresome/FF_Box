@@ -11,7 +11,7 @@
 @interface FFGameDetailGuideCell : UITableViewCell
 
 
-
+@property (nonatomic, strong) NSIndexPath *indexPath;
 @property (nonatomic, strong) NSDictionary *dict;
 
 

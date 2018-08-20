@@ -212,7 +212,12 @@ static FFMapModel *model = nil;
       @"PRODUCT_ONSALE":@"http://api.185sy.com/index.php?g=api&m=Products&a=apply_onsale",
       @"EXCLUSIVE_ACT":@"http://api.185sy.com/index.php?g=api&m=article&a=exclusive_list",
       @"RESERVE_NEWGAME":@"http://www.185sy.com/api-game-newgame_reserve",
-      @"RESERVE_SUCCESS":@"http://www.185sy.com/api-game-reserve_success"
+      @"RESERVE_SUCCESS":@"http://www.185sy.com/api-game-reserve_success",
+      @"SDK_LOGIN_URL":@"http://api.185sy.com/index.php?g=api&m=user&a=login",
+      @"ARITCLE_SHARE":@"http://api.185sy.com/index.php?g=api&m=article&a=share",
+      @"SELLER_RECORD":@"http://api.185sy.com/index.php?g=api&m=AccountTrade&a=sellerRecord",
+      @"GAME_PLAYED":@"http://api.185sy.com/index.php?g=api&m=game&a=played",
+      @"ARTICLE_LIKE":@"http://api.185sy.com/index.php?g=api&m=likeinfo&a=article_like",
       };
     return mapDict;
 }

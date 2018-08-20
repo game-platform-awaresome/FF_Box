@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-#define SharedDynamicsSuccess @"SharedDynamicsSuccess"
+#define SharedDynamicsSuccess   @"SharedDynamicsSuccess"
+#define SharedGuideSuccess      @"SharedGuideSuccess"
 
 
 @interface FFSharedController : NSObject
@@ -22,6 +23,8 @@
 /** 分享动态 */
 + (void)sharedDynamicsWithDict:(NSDictionary *)dict;
 
+/** 分享攻略 */
++ (void)sharedGuideWith:(id)info;
 
 
 @end

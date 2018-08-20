@@ -37,6 +37,11 @@ typedef enum : NSUInteger {
     FFReservation
 } FFBetaOrReservationType;
 
+typedef NS_ENUM(NSUInteger, FFGuideType) {
+    FFGuideTypeDislike = 0,
+    FFGuideTypeLike
+};
+
 #pragma mark - game model
 @interface FFGameModel : FFNetWorkManager
 
@@ -239,6 +244,17 @@ typedef enum : NSUInteger {
 /** 新游预约 */
 + (void)reservaGameWithGameID:(NSString * _Nullable)gameID
                    Completion:(RequestCallBackBlock _Nullable)completion;
+
+#pragma mark - guide like or dislike
+/** 攻略赞踩 */
++ (void)guideLikeTypeWith:(FFGuideType)type
+                  GuideID:(NSString * _Nullable )guideID
+               Completion:(RequestCallBackBlock _Nullable)completion;
+
+/** 攻略分享 */
++ (void)guideSharedWithGuideID:(NSString * _Nullable )guideID
+                    Completion:(RequestCallBackBlock _Nullable)completion;
+
 
 
 
