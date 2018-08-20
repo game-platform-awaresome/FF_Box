@@ -17,17 +17,27 @@
 
 @interface FFGameHeaderView ()
 
+/** 设置视图 */
 @property (nonatomic, strong) UIView *settingView;
 
-@property (nonatomic, strong) UIImageView *logoImageView;
-@property (nonatomic, strong) UILabel *gameNameLabel;
-@property (nonatomic, strong) UIButton *discountLabel;
-@property (nonatomic, strong) UIView *starView;
+@property (nonatomic, strong) UIImageView   *logoImageView;
+@property (nonatomic, strong) UILabel       *gameNameLabel;
+@property (nonatomic, strong) UIButton      *discountLabel;
+@property (nonatomic, strong) UIView        *starView;
 @property (nonatomic, strong) NSMutableArray<UIImageView *> *starsArray;
-@property (nonatomic, strong) UIView *gameLabelView;
+@property (nonatomic, strong) UIView        *gameLabelView;
 @property (nonatomic, strong) NSMutableArray<UILabel *> *labelArray;
-@property (nonatomic, strong) UILabel *gameSizeAndDownloadLabel;
-@property (nonatomic, strong) UIButton *QQGroupButton;
+@property (nonatomic, strong) UILabel       *gameSizeAndDownloadLabel;
+@property (nonatomic, strong) UIButton      *QQGroupButton;
+
+
+@property (nonatomic, strong) UIView        *hotBackView;
+@property (nonatomic, strong) UIImageView   *hotTopView;
+@property (nonatomic, strong) UIImageView   *hotBottomView;
+@property (nonatomic, strong) UIImageView   *hotLabelView;
+@property (nonatomic, strong) UILabel       *hotTitleLabel;
+
+@property (nonatomic, strong) UILabel       *hotNumberLabel;
 
 
 /** 账号交易按钮 */
@@ -148,7 +158,20 @@
     [self.accountTransactionLabel sizeToFit];
     CGSize size = self.accountTransactionLabel.bounds.size;
     size.width = size.width < 10 ? 12 : size.width;
+
     self.accountTransactionLabel.frame = CGRectMake(self.AccountTransactionButton.bounds.size.width - 20, -10, size.width, 12);
+
+
+    if (CURRENT_GAME.top_number.integerValue > 0) {
+        [self.settingView addSubview:self.hotBackView];
+        self.hotNumberLabel.text = [NSString stringWithFormat:@"top%@",CURRENT_GAME.top_number];
+        self.frame = CGRectMake(0, 0, kScreenWidth, 300);
+    } else {
+        [self.hotBackView removeFromSuperview];
+        self.frame = CGRectMake(0, 0, kScreenWidth, 250);
+    }
+
+
 }
 
 - (void)showNavigationTitle {
@@ -174,6 +197,8 @@
     self.backgroundView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
 
     self.settingView.frame = CGRectMake(15, kNAVIGATION_HEIGHT, frame.size.width - 30, frame.size.height - kNAVIGATION_HEIGHT);
+    self.hotBackView.frame = CGRectMake(0, CGRectGetMaxY(self.gameSizeAndDownloadLabel.frame) + 2, self.settingView.bounds.size.width, 50);
+
     self.maskView.frame = CGRectMake(15, frame.size.height - 10, frame.size.width - 30, 10);
     [self setSettingChildeViewFrame:self.settingView.frame];
 
@@ -197,8 +222,8 @@
 
 - (void)setAccountTransactionButton {
     self.AccountTransactionButton = [UIButton hyb_buttonWithImage:@"Game_account_transaction" superView:self constraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self).offset(20);
-        make.bottom.mas_equalTo(self).offset(-50);
+        make.left.mas_equalTo(self).offset(10);
+        make.top.mas_equalTo(self.QQGroupButton.mas_bottom).offset(30);
         //        make.size.mas_equalTo(CGSizeMake(50, 50));
     } touchUp:^(UIButton *sender) {
         [self respondsToAccountTransactionButton];
@@ -234,9 +259,52 @@
         [_settingView addSubview:self.gameLabelView];
         [_settingView addSubview:self.gameSizeAndDownloadLabel];
         [_settingView addSubview:self.QQGroupButton];
+        [_settingView addSubview:self.hotBackView];
     }
     return _settingView;
 }
+
+- (UIView *)hotBackView {
+    if (!_hotBackView) {
+        _hotBackView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.gameSizeAndDownloadLabel.frame) + 2, self.settingView.bounds.size.width, 50)];
+        self.hotTopView = [UIImageView hyb_imageViewWithImage:@"Game_hot_top" superView:_hotBackView constraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(self -> _hotBackView).offset(0);
+            make.left.mas_equalTo(self -> _hotBackView).offset(5);
+            make.right.mas_equalTo(self -> _hotBackView).offset(-5);
+            make.height.mas_equalTo(6);
+        }];
+
+        self.hotBottomView = [UIImageView hyb_imageViewWithImage:@"Game_hot_bottom" superView:_hotBackView constraints:^(MASConstraintMaker *make) {
+            make.bottom.mas_equalTo(self -> _hotBackView).offset(0);
+            make.left.mas_equalTo(self -> _hotBackView).offset(5);
+            make.right.mas_equalTo(self -> _hotBackView).offset(-5);
+            make.height.mas_equalTo(6);
+        }];
+
+        self.hotLabelView = [UIImageView hyb_imageViewWithImage:@"Game_hot_label" superView:_hotBackView constraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(self -> _hotBackView).offset(-20);
+            make.centerY.mas_equalTo(0);
+        }];
+
+        self.hotTitleLabel = [UILabel hyb_labelWithFont:18 superView:_hotBackView constraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(self -> _hotBackView).offset(0);
+            make.bottom.mas_equalTo(self -> _hotBackView).offset(0);
+            make.left.mas_equalTo(self -> _hotBackView).offset(10);
+        }];
+        self.hotTitleLabel.textColor = [FFColorManager blue_dark];
+        self.hotTitleLabel.font = [UIFont boldSystemFontOfSize:17];
+        self.hotTitleLabel.text = @"185平台最火游戏";
+
+        self.hotNumberLabel = [UILabel hyb_labelWithFont:15 superView:_hotBackView constraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(self -> _hotBackView).offset(0);
+            make.bottom.mas_equalTo(self -> _hotBackView).offset(0);
+            make.right.mas_equalTo(self.hotLabelView.mas_left).offset(-6);
+        }];
+
+    }
+    return _hotBackView;
+}
+
 
 - (UIImageView *)logoImageView {
     if (!_logoImageView) {
