@@ -10,6 +10,7 @@ target 'GameBox' do
   #2018-3-21add
   pod 'AFNetworking', '~> 3.1.0'
   pod 'SDWebImage', '~> 4.1.0'
+  pod 'SDWebImage/GIF'
   pod 'MJRefresh', '~> 3.1.12'
   pod 'MBProgressHUD', '~> 1.0.0'
   pod 'WechatOpenSDK', '~> 1.8.0'

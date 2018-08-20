@@ -155,8 +155,6 @@
 		B523833B20AE9EF40087733A /* FFSelectHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B523831720AE9EF40087733A /* FFSelectHeaderView.m */; };
 		B523833E20AE9F680087733A /* FFViewFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = B523833C20AE9F680087733A /* FFViewFactory.m */; };
 		B523838920AEA00E0087733A /* FFSharedController.m in Sources */ = {isa = PBXBuildFile; fileRef = B523838820AEA00E0087733A /* FFSharedController.m */; };
-		B523838F20AEA0C70087733A /* FLAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = B523838C20AEA0C70087733A /* FLAnimatedImage.m */; };
-		B523839020AEA0C70087733A /* FLAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B523838E20AEA0C70087733A /* FLAnimatedImageView.m */; };
 		B523839820AEA2710087733A /* YBPopupMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = B523839320AEA2710087733A /* YBPopupMenu.m */; };
 		B523839920AEA2710087733A /* YBPopupMenuPath.m in Sources */ = {isa = PBXBuildFile; fileRef = B523839520AEA2710087733A /* YBPopupMenuPath.m */; };
 		B523839A20AEA2710087733A /* YBRectConst.m in Sources */ = {isa = PBXBuildFile; fileRef = B523839720AEA2710087733A /* YBRectConst.m */; };
@@ -655,10 +653,6 @@
 		B523833D20AE9F680087733A /* FFViewFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFViewFactory.h; sourceTree = "<group>"; };
 		B523838720AEA00E0087733A /* FFSharedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFSharedController.h; sourceTree = "<group>"; };
 		B523838820AEA00E0087733A /* FFSharedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFSharedController.m; sourceTree = "<group>"; };
-		B523838B20AEA0C70087733A /* FLAnimatedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImage.h; sourceTree = "<group>"; };
-		B523838C20AEA0C70087733A /* FLAnimatedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimatedImage.m; sourceTree = "<group>"; };
-		B523838D20AEA0C70087733A /* FLAnimatedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImageView.h; sourceTree = "<group>"; };
-		B523838E20AEA0C70087733A /* FLAnimatedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimatedImageView.m; sourceTree = "<group>"; };
 		B523839220AEA2710087733A /* YBPopupMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBPopupMenu.h; sourceTree = "<group>"; };
 		B523839320AEA2710087733A /* YBPopupMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBPopupMenu.m; sourceTree = "<group>"; };
 		B523839420AEA2710087733A /* YBPopupMenuPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBPopupMenuPath.h; sourceTree = "<group>"; };
@@ -1936,17 +1930,6 @@
 			path = FFMineView;
 			sourceTree = "<group>";
 		};
-		B523838A20AEA0C70087733A /* FLAnimatedImage */ = {
-			isa = PBXGroup;
-			children = (
-				B523838B20AEA0C70087733A /* FLAnimatedImage.h */,
-				B523838C20AEA0C70087733A /* FLAnimatedImage.m */,
-				B523838D20AEA0C70087733A /* FLAnimatedImageView.h */,
-				B523838E20AEA0C70087733A /* FLAnimatedImageView.m */,
-			);
-			path = FLAnimatedImage;
-			sourceTree = "<group>";
-		};
 		B523839120AEA2710087733A /* YBPopupMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -2470,7 +2453,6 @@
 				B580A4FE20D3C73900680194 /* PhotoBrowser */,
 				B599691F20BB9E8800BC6084 /* trackingio */,
 				B523839120AEA2710087733A /* YBPopupMenu */,
-				B523838A20AEA0C70087733A /* FLAnimatedImage */,
 				B58CB7A6207B10830099773D /* SYKeychain.h */,
 			);
 			path = Third_Library;
@@ -3380,7 +3362,6 @@
 				B529172720DA255700A56F41 /* FFBusinessBoughtRecordController.m in Sources */,
 				B5D6142520BE8C5B0010CA98 /* FFShowDiscoutModel.m in Sources */,
 				B580A54E20D3C73A00680194 /* ZLNoAuthorityViewController.m in Sources */,
-				B523839020AEA0C70087733A /* FLAnimatedImageView.m in Sources */,
 				B51BCFC220B2F705005B9DE1 /* FFNewPasswordViewController.m in Sources */,
 				B580A54F20D3C73A00680194 /* ZLPhotoActionSheet.m in Sources */,
 				B51BD17720B6596C005B9DE1 /* FFMissionCell.m in Sources */,
@@ -3465,7 +3446,6 @@
 				B523833420AE9EF40087733A /* FFDriveFansCell.m in Sources */,
 				B51BD16820B650CE005B9DE1 /* FFNotificationViewController.m in Sources */,
 				B58CB7AF207B10830099773D /* FFAppDelegate.m in Sources */,
-				B523838F20AEA0C70087733A /* FLAnimatedImage.m in Sources */,
 				B5BA506721215C71000EA315 /* NSDictionary+HYBHelperKit.m in Sources */,
 				B51BD0DC20B55A5A005B9DE1 /* FFTransferServerNotesController.m in Sources */,
 				B51BD07C20B53A80005B9DE1 /* FFRRebateViewController.m in Sources */,

@@ -41,7 +41,7 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, weak) id<DriveInfoCellDelegate> delegate;
 
-@property (nonatomic, strong) NSMutableArray<UIImage *> *images;
+@property (nonatomic, strong) NSMutableArray<NSDictionary *> *images;
 
 - (void)starGif;
 

@@ -14,6 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - FLAnimatedImage (1.0.12)
   - GPUImage (0.1.7)
   - Masonry (1.1.0)
   - MBProgressHUD (1.0.0)
@@ -21,6 +22,9 @@ PODS:
   - SDWebImage (4.1.0):
     - SDWebImage/Core (= 4.1.0)
   - SDWebImage/Core (4.1.0)
+  - SDWebImage/GIF (4.1.0):
+    - FLAnimatedImage (~> 1.0)
+    - SDWebImage/Core
   - WechatOpenSDK (1.8.0)
 
 DEPENDENCIES:
@@ -30,11 +34,13 @@ DEPENDENCIES:
   - MBProgressHUD (~> 1.0.0)
   - MJRefresh (~> 3.1.12)
   - SDWebImage (~> 4.1.0)
+  - SDWebImage/GIF
   - WechatOpenSDK (~> 1.8.0)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - AFNetworking
+    - FLAnimatedImage
     - GPUImage
     - Masonry
     - MBProgressHUD
@@ -44,6 +50,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
@@ -51,6 +58,6 @@ SPEC CHECKSUMS:
   SDWebImage: 0e435c14e402a6730315a0fb79f95e68654d55a4
   WechatOpenSDK: 0ee07a8d492299d3e47372a33da5af26524a7576
 
-PODFILE CHECKSUM: 98fb31f3d634bb901cc2143e8cb1f97a25c1e5fa
+PODFILE CHECKSUM: 873f8f5996ce37dcc363823b820a18c7d913d851
 
 COCOAPODS: 1.5.0

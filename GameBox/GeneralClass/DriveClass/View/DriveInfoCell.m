@@ -18,6 +18,8 @@
 #import "FFViewFactory.h"
 #import "FFImageManager.h"
 
+#import <FLAnimatedImageView+WebCache.h>
+
 #define CELL_IDE @"FFDriveCommentCell"
 
 @interface DriveInfoCell ()<UITableViewDataSource,UITableViewDelegate>
@@ -368,95 +370,49 @@
 }
 
 - (void)setImageViewWith:(NSArray *)images {
-    if (_imageViews != nil) {
-        for (UIImageView *view in _imageViews) {
-            [view removeFromSuperview];
-        }
+
+    if (_images) {
+        [_images removeAllObjects];
+    } else {
+        _images = [NSMutableArray arrayWithCapacity:4];
     }
 
-    _imageViews = [NSMutableArray arrayWithCapacity:images.count];
-    _images = [NSMutableArray arrayWithCapacity:images.count];
+    for (NSString *obj in images) {
+        [_images addObject:@{ZLPreviewPhotoObj:obj,ZLPreviewPhotoTyp:[NSNumber numberWithInt:ZLPreviewPhotoTypeURLImage]}];
+    }
+
 
     if (images.count > 0) {
-        [images enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            UIImageView *imageView = nil;
-            imageView = [[FLAnimatedImageView alloc] init];
-            
-            if ([obj hasSuffix:@".gif"]) {
-                isGifImage = YES;
-                dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    NSData *iamgeData = [self imageDataFromDiskCacheWithKey:obj];
-                    if (iamgeData) {
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            self.gifImage = [ZLPhotoManager transformToGifImageWithData:iamgeData];
-                            self.normalImage = [UIImage imageWithData:iamgeData];
-                            imageView.image = self.gifImage;
-                            [_images addObject:GetDictForPreviewPhoto(imageView.image, ZLPreviewPhotoTypeUIImage)];
-                        });
-                    } else {
-                        [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:obj] options:SDWebImageDownloaderHighPriority progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
-                        }  completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
-                            if (finished) {
-                                [[[SDWebImageManager sharedManager] imageCache] storeImageDataToDisk:data forKey:obj];
-
-                                dispatch_async(dispatch_get_main_queue(), ^{
-                                    self.gifImage = [ZLPhotoManager transformToGifImageWithData:data];
-                                    self.normalImage = [UIImage imageWithData:data];
-                                    imageView.image = self.gifImage;
-                                    if (self.gifImage) {
-                                        [_images addObject:GetDictForPreviewPhoto(imageView.image, ZLPreviewPhotoTypeUIImage)];
-                                    }
-                                });
-                            }
-
-                        }];
-                    }
-                });
-
-            } else {
-                isGifImage = NO;
-                [imageView sd_setImageWithURL:[NSURL URLWithString:obj] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-                    if ([obj hasSuffix:@".gif"]) {
-                        NSData *data = UIImagePNGRepresentation(image);
-                        imageView.image = [ZLPhotoManager transformToGifImageWithData:data];
-                        self.gifImage = [UIImage imageWithData:data];
-                        self.normalImage = [UIImage imageWithData:data];
-                    }
-                    if (imageView.image) {
-                        [_images addObject:GetDictForPreviewPhoto(imageView.image, ZLPreviewPhotoTypeUIImage)];
-                    }
-                }];
-            }
-
-
-            imageView.tag = idx + 10086;
-            imageView.userInteractionEnabled = YES;
-            [imageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickImage:)]];
-            imageView.contentMode = UIViewContentModeScaleAspectFill;
-            imageView.layer.masksToBounds = YES;
+        int i = 0;
+        for (NSString *obj in images) {
+            self.imageViews[i].hidden = NO;
+            [self.imageViews[i] sd_setImageWithURL:[NSURL URLWithString:obj]];
             CGFloat y = 0;
-            CGFloat x = 2.5 + (imageviewWidth + 5) * idx;
-            if (images.count == 4 && idx < 2) {
+            CGFloat x = 2.5 + (imageviewWidth + 5) * i;
+            if (images.count == 4 && i < 2) {
                 y = 0;
-                x = 2.5 + (imageviewWidth + 5) * idx;
-            } else if (images.count == 4 && idx >= 2) {
+                x = 2.5 + (imageviewWidth + 5) * i;
+            } else if (images.count == 4 && i >= 2) {
                 y = imageviewWidth + 5;
-                x = 2.5 + (imageviewWidth + 5) * (idx - 2);
+                x = 2.5 + (imageviewWidth + 5) * (i - 2);
             } else {
 
             }
-            [_imageViews addObject:imageView];
-            imageView.frame = CGRectMake(x, y, imageviewWidth, imageviewWidth);
-            [self.ImageContentView addSubview:imageView];
+            self.imageViews[i].frame = CGRectMake(x, y, imageviewWidth, imageviewWidth);
+            [self.ImageContentView addSubview:self.imageViews[i]];
+            i++;
+        }
 
-        }];
+        for (; i < self.imageViews.count; i++) {
+            self.imageViews[i].hidden = YES;
+            [self.imageViews[i] removeFromSuperview];
+        }
     }
-
 }
 
 - (void)clickImage:(UITapGestureRecognizer *)sender {
     syLog(@"点击图片");
-    [[self getPas] previewPhotos:self.images index:sender.view.tag - 10086 hideToolBar:YES complete:^(NSArray * _Nonnull photos) {
+    [[self getPas] previewPhotos:_images index:sender.view.tag - 10086 hideToolBar:YES complete:^(NSArray * _Nonnull photos) {
 
     }];
 }
@@ -575,7 +531,6 @@
 /** 设置小编评论 */
 - (void)setEditCommentString:(NSString *)string {
 #warning 小编点评
-
     if (string.length < 1 || string == nil || [string isKindOfClass:[NSNull class]] || [string isEqualToString:@"<null>"]) {
         self.EditCommentLabel.hidden = YES;
         self.EditCommentLabel.text = @"";
@@ -649,20 +604,37 @@
     return [NSData dataWithContentsOfFile:path];
 }
 
-- (void)starGif {
-    if (isGifImage) {
-        [_imageViews enumerateObjectsUsingBlock:^(UIImageView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            obj.image = self.gifImage;
-        }];
+- (NSMutableArray<UIImageView *> *)imageViews {
+    if (!_imageViews) {
+        _imageViews = [NSMutableArray arrayWithCapacity:4];
+        for (int i = 0; i < 4; i++) {
+            FLAnimatedImageView *imageView = [[FLAnimatedImageView alloc] init];
+            imageView.tag = i + 10086;
+            imageView.userInteractionEnabled = YES;
+            [imageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickImage:)]];
+            imageView.contentMode = UIViewContentModeScaleAspectFill;
+            imageView.layer.masksToBounds = YES;
+            [_imageViews addObject:imageView];
+        }
     }
+    return _imageViews;
+}
+
+
+- (void)starGif {
+//    if (isGifImage) {
+//        [_imageViews enumerateObjectsUsingBlock:^(UIImageView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//            obj.image = self.gifImage;
+//        }];
+//    }
 }
 
 - (void)stopGif {
-    if (isGifImage) {
-        [_imageViews enumerateObjectsUsingBlock:^(UIImageView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            obj.image = self.normalImage;
-        }];
-    }
+//    if (isGifImage) {
+//        [_imageViews enumerateObjectsUsingBlock:^(UIImageView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//            obj.image = self.normalImage;
+//        }];
+//    }
 }
 
 - (UILabel *)verifyLabel {
