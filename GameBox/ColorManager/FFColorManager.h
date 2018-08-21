@@ -75,6 +75,9 @@ UIColor *RGBColor(float red, float green, float blue);
 + (UIColor *)text_separa_line_color;
 
 
++ (UIColor *)text_background_color;
+
+
 
 @end
 

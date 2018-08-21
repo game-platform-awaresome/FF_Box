@@ -7,11 +7,17 @@
 //
 
 #import "FFRankListViewController.h"
+#import "FFGameViewController.h"
+#import "FFRankHeaderView.h"
+#import "FFRankListCell.h"
 
-#define CELL_IDE @"FFCustomizeCell"
+//#define CELL_IDE @"FFCustomizeCell"
+#define CELL_IDE @"FFRankListCell"
+
 
 @interface FFRankListViewController ()
 
+@property (nonatomic, strong) FFRankHeaderView  *headerView;
 
 @property (nonatomic, strong) NSString *gameType;
 
@@ -38,7 +44,30 @@
 
 - (void)initDataSource {
     [super initDataSource];
-//    [self setGameType:@"2"];
+    [self.tableView registerClass:[FFRankListCell class] forCellReuseIdentifier:CELL_IDE];
+
+    WeakSelf;
+    [self.headerView setClickGame:^(NSDictionary *dict) {
+        [weakSelf respondsToGame:dict];
+    }];
+}
+
+#pragma makr - responds
+- (void)respondsToGame:(NSDictionary *)dict {
+    [FFGameViewController sharedController].gid = dict[@"id"] ?: dict[@"gid"];
+    BOOL flag = NO;
+    for (id vc in self.navigationController.viewControllers) {
+        if ([vc isKindOfClass:[FFGameViewController class]]) {
+            flag = YES;
+            break;
+        }
+    }
+
+    if (flag) {
+        [self.navigationController popToViewController:[FFGameViewController sharedController] animated:YES];
+    } else {
+        [self pushViewController:[FFGameViewController sharedController]];
+    }
 }
 
 
@@ -50,9 +79,9 @@
         [self stopWaiting];
         
         syLog(@"rank list === %@",content);
+        
         if (success) {
             self.showArray = [content[@"data"][@"list"] mutableCopy];
-            [self.tableView reloadData];
         } else {
 
         }
@@ -63,6 +92,14 @@
             self.tableView.backgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"wuwangluo"]];
         }
 
+        if (self.showArray.count < 3) {
+            self.tableView.tableHeaderView = [UIView new];
+        } else {
+            self.headerView.showArray = @[self.showArray[0],self.showArray[1],self.showArray[2]];
+            self.tableView.tableHeaderView = self.headerView;
+        }
+
+        [self.tableView reloadData];
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
     }];
@@ -86,23 +123,41 @@
     }];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    id cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDE forIndexPath:indexPath];
-    [cell setValue:@3 forKey:@"selectionStyle"];
-    NSMutableDictionary *dict = [self.showArray[indexPath.row] mutableCopy];
-    if (indexPath.row < 3) {
-        [dict setObject:[NSString stringWithFormat:@"Invite_%lu",indexPath.row + 1] forKey:@"downloadImage"];
+#pragma mark - table view data source
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (self.showArray.count < 3) {
+        return self.showArray.count;
     } else {
-        [dict setObject:[NSString stringWithFormat:@"Invite_other"] forKey:@"downloadImage"];
+        return self.showArray.count - 3;
     }
-    
-    [dict setObject:[NSString stringWithFormat:@"%lu",indexPath.row + 1] forKey:@"rank"];
-    [cell setValue:dict forKey:@"dict"];
-    
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    FFRankListCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDE forIndexPath:indexPath];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.indexPath = indexPath;
+    if (self.showArray.count < 3) {
+        cell.dict = self.showArray[indexPath.row];
+        cell.idx = indexPath.row;
+    } else {
+        cell.dict = self.showArray[indexPath.row + 3];
+        cell.idx = indexPath.row + 3;
+    }
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self respondsToGame:self.showArray[indexPath.row]];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 80;
+}
 
 #pragma mark - getter
 - (FFGameServersType)gameServerType {
@@ -111,6 +166,15 @@
 
 - (NSString *)gameType {
     return @"3";
+}
+
+
+- (FFRankHeaderView *)headerView {
+    if (!_headerView) {
+        _headerView = [[FFRankHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 230)];
+        _headerView.backgroundColor = kWhiteColor;
+    }
+    return _headerView;
 }
 
 

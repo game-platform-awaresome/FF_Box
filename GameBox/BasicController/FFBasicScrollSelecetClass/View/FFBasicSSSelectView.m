@@ -7,6 +7,7 @@
 //
 
 #import "FFBasicSSSelectView.h"
+#import "FFColorManager.h"
 
 
 #define Button_tag 10086
@@ -144,7 +145,7 @@ NS_ASSUME_NONNULL_BEGIN
 
             UILabel *label = [[UILabel alloc] init];
             label.font = [UIFont systemFontOfSize:12];
-            label.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1];
+            label.backgroundColor = [FFColorManager text_background_color];
             label.textAlignment = NSTextAlignmentCenter;
             label.layer.masksToBounds = YES;
             [_subscriptLabelArray addObject:label];

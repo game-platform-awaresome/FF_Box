@@ -197,6 +197,11 @@ UIColor *HexColorToUIColor(NSString *hexColorString) {
      return RGBColor(188, 188, 188);
 }
 
+
++ (UIColor *)text_background_color {
+    return RGBColor(242, 242, 242);
+}
+
 @end
 
 

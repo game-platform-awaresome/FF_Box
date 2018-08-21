@@ -86,12 +86,19 @@
     }
 }
 
+- (void)respondsToHotView:(UITapGestureRecognizer *)sender {
+    syLog(@"排行榜");
+    if (self.hotButtonBlock) {
+        self.hotButtonBlock();
+    }
+}
 
 - (void)refresh {
     //logo
     [self.logoImageView sd_setImageWithURL:[NSURL URLWithString:CURRENT_GAME.game_logo_url] placeholderImage:[FFImageManager gameLogoPlaceholderImage] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         CURRENT_GAME.game_logo_image = image;
     }];
+
     //game name logo
     self.gameNameLabel.text = CURRENT_GAME.game_name;
     //discount
@@ -101,6 +108,7 @@
     } else {
         self.discountLabel.hidden = YES;
     }
+
     //stars
     CGFloat stars = CURRENT_GAME.game_score.floatValue;
     for (int i = 0; i < 5; i++) {
@@ -113,6 +121,7 @@
             [_starsArray[i] setImage:[FFImageManager Game_header_stars_dark]];
         }
     }
+
     //label
     int currentIdx = 0;
     for (int idx = 0; idx < CURRENT_GAME.game_label_array.count; idx++) {
@@ -221,13 +230,16 @@
 }
 
 - (void)setAccountTransactionButton {
-    self.AccountTransactionButton = [UIButton hyb_buttonWithImage:@"Game_account_transaction" superView:self constraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self).offset(10);
+
+    self.AccountTransactionButton = [UIButton hyb_buttonWithImage:@"Game_account_transaction" superView:self.settingView constraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(self).offset(10);
+        make.centerX.mas_equalTo(self.QQGroupButton.mas_centerX);
         make.top.mas_equalTo(self.QQGroupButton.mas_bottom).offset(30);
         //        make.size.mas_equalTo(CGSizeMake(50, 50));
     } touchUp:^(UIButton *sender) {
         [self respondsToAccountTransactionButton];
     }];
+
     [self.AccountTransactionButton setTitle:@"账号交易" forState:(UIControlStateNormal)];
     [self.AccountTransactionButton setTitleColor:[FFColorManager blue_dark] forState:(UIControlStateNormal)];
     self.AccountTransactionButton.titleLabel.font = [UIFont systemFontOfSize:12];
@@ -259,14 +271,26 @@
         [_settingView addSubview:self.gameLabelView];
         [_settingView addSubview:self.gameSizeAndDownloadLabel];
         [_settingView addSubview:self.QQGroupButton];
-        [_settingView addSubview:self.hotBackView];
+//        [_settingView addSubview:self.hotBackView];
     }
     return _settingView;
 }
 
 - (UIView *)hotBackView {
     if (!_hotBackView) {
+//        _hotBackView = [UIView hyb_viewWithSuperView:self.settingView onTaped:^(UITapGestureRecognizer *sender) {
+//            if (self.hotButtonBlock) {
+//                self.hotButtonBlock();
+//            }
+//        }];
+//        _hotTopView.frame = CGRectMake(0, CGRectGetMaxY(self.gameSizeAndDownloadLabel.frame) + 2, self.settingView.bounds.size.width, 50);
+
         _hotBackView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.gameSizeAndDownloadLabel.frame) + 2, self.settingView.bounds.size.width, 50)];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(respondsToHotView:)];
+        tap.numberOfTapsRequired = 1;
+        tap.numberOfTouchesRequired = 1;
+        [_hotBackView addGestureRecognizer:tap];
+
         self.hotTopView = [UIImageView hyb_imageViewWithImage:@"Game_hot_top" superView:_hotBackView constraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self -> _hotBackView).offset(0);
             make.left.mas_equalTo(self -> _hotBackView).offset(5);

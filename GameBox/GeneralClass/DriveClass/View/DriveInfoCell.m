@@ -69,6 +69,8 @@
 @property (nonatomic, strong) UIImage *gifImage;
 @property (nonatomic, strong) UIImage *normalImage;
 
+@property (nonatomic, strong) NSArray *imageUrlArray;
+
 
 @property (nonatomic, strong) NSMutableArray *zlPhotoArray;
 
@@ -370,17 +372,17 @@
 }
 
 - (void)setImageViewWith:(NSArray *)images {
-
+    _imageUrlArray = images;
     if (_images) {
         [_images removeAllObjects];
     } else {
         _images = [NSMutableArray arrayWithCapacity:4];
     }
 
+
     for (NSString *obj in images) {
         [_images addObject:@{ZLPreviewPhotoObj:obj,ZLPreviewPhotoTyp:[NSNumber numberWithInt:ZLPreviewPhotoTypeURLImage]}];
     }
-
 
     if (images.count > 0) {
         int i = 0;
@@ -407,14 +409,25 @@
             self.imageViews[i].hidden = YES;
             [self.imageViews[i] removeFromSuperview];
         }
+    } else {
+        for (FLAnimatedImageView *imageView in self.imageViews) {
+            imageView.hidden = YES;
+        }
     }
 }
 
 - (void)clickImage:(UITapGestureRecognizer *)sender {
     syLog(@"点击图片");
-    [[self getPas] previewPhotos:_images index:sender.view.tag - 10086 hideToolBar:YES complete:^(NSArray * _Nonnull photos) {
 
-    }];
+    if (self.imageUrlArray.count == 1) {
+
+        syLog(@"加载 GIF");
+    } else {
+        [[self getPas] previewPhotos:_images index:sender.view.tag - 10086 hideToolBar:YES complete:^(NSArray * _Nonnull photos) {
+
+        }];
+    }
+
 }
 
 - (void)setDynamicsID:(NSString *)dynamicsID {

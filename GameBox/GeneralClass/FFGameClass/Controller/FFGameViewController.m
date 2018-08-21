@@ -285,8 +285,35 @@ static FFGameViewController *controller = nil;
         [self pushViewController:[FFGameBusinessViewController showWithGameName:CURRENT_GAME.game_name]];
     }];
 
+    //点击头部排行榜
+
+    [self.gameHeaderView setHotButtonBlock:^{
+        syLog(@"游戏 排行榜");
+        [weakSelf pushRankList];
+//        [self pushViewController:[FFRankListViewController new]];
+    }];
+
 }
 
+- (void)pushRankList {
+    //"platform": "3", //游戏平台 1 BT 2 折扣 3 H5
+    switch (CURRENT_GAME.platform.integerValue) {
+        case 1:{
+            pushViewController(@"FFRankListViewController");
+        }
+            break;
+        case 2: {
+            pushViewController(@"FFZKRankViewController");
+        }
+            break;
+        case 3: {
+            pushViewController(@"FFH5RankViewController");
+        }
+            break;
+        default:
+            break;
+    }
+}
 
 - (FFBasicSSTableViewController *)creatControllerWithName:(NSString *)name {
     Class ViewController = NSClassFromString(name);

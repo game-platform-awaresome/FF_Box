@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0543CAF4C1A27767297E9250 /* libPods-GameBox.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C09ECF85CDCEAA38284810 /* libPods-GameBox.a */; };
 		B506A16D212A951400DFCBB0 /* FFGameDetailGuideModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B506A16C212A951400DFCBB0 /* FFGameDetailGuideModel.m */; };
+		B506A172212BDE9D00DFCBB0 /* FFRankHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B506A171212BDE9D00DFCBB0 /* FFRankHeaderView.m */; };
+		B506A175212BDFA300DFCBB0 /* FFRankListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B506A174212BDFA300DFCBB0 /* FFRankListCell.m */; };
 		B50F473F2126B0220062B462 /* FFGameBusinessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B50F473E2126B0220062B462 /* FFGameBusinessViewController.m */; };
 		B50F47422126C9F30062B462 /* FFGameDetailGuideCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B50F47412126C9F30062B462 /* FFGameDetailGuideCell.m */; };
 		B513218E210AF13600BF0532 /* FFZKRankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B513218D210AF13600BF0532 /* FFZKRankViewController.m */; };
@@ -387,6 +389,10 @@
 /* Begin PBXFileReference section */
 		B506A16B212A951400DFCBB0 /* FFGameDetailGuideModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFGameDetailGuideModel.h; sourceTree = "<group>"; };
 		B506A16C212A951400DFCBB0 /* FFGameDetailGuideModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFGameDetailGuideModel.m; sourceTree = "<group>"; };
+		B506A170212BDE9D00DFCBB0 /* FFRankHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFRankHeaderView.h; sourceTree = "<group>"; };
+		B506A171212BDE9D00DFCBB0 /* FFRankHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFRankHeaderView.m; sourceTree = "<group>"; };
+		B506A173212BDFA300DFCBB0 /* FFRankListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFRankListCell.h; sourceTree = "<group>"; };
+		B506A174212BDFA300DFCBB0 /* FFRankListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFRankListCell.m; sourceTree = "<group>"; };
 		B50F473D2126B0220062B462 /* FFGameBusinessViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFGameBusinessViewController.h; sourceTree = "<group>"; };
 		B50F473E2126B0220062B462 /* FFGameBusinessViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFGameBusinessViewController.m; sourceTree = "<group>"; };
 		B50F47402126C9F30062B462 /* FFGameDetailGuideCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFGameDetailGuideCell.h; sourceTree = "<group>"; };
@@ -1131,6 +1137,17 @@
 				C1C09ECF85CDCEAA38284810 /* libPods-GameBox.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B506A16F212BBB0C00DFCBB0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B506A170212BDE9D00DFCBB0 /* FFRankHeaderView.h */,
+				B506A171212BDE9D00DFCBB0 /* FFRankHeaderView.m */,
+				B506A173212BDFA300DFCBB0 /* FFRankListCell.h */,
+				B506A174212BDFA300DFCBB0 /* FFRankListCell.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		B51BCFB820B2F6B2005B9DE1 /* FFLoginAndRegistClass */ = {
@@ -2803,6 +2820,7 @@
 		B5D104322090164900CA1949 /* FFRankListClass */ = {
 			isa = PBXGroup;
 			children = (
+				B506A16F212BBB0C00DFCBB0 /* View */,
 				B5D104332090167D00CA1949 /* FFRankListViewController.h */,
 				B5D104342090167D00CA1949 /* FFRankListViewController.m */,
 				B513218C210AF13600BF0532 /* FFZKRankViewController.h */,
@@ -3397,6 +3415,7 @@
 				B523827E20AADECA0087733A /* FFGameTypeListController.m in Sources */,
 				B5D505AE20898D69000B7B50 /* FFMineViewController.m in Sources */,
 				B5D1042A208F156000CA1949 /* FFGameModel.m in Sources */,
+				B506A172212BDE9D00DFCBB0 /* FFRankHeaderView.m in Sources */,
 				B580A54020D3C73A00680194 /* UIButton+EnlargeTouchArea.m in Sources */,
 				B51BD16920B650CE005B9DE1 /* FFSystemDetailController.m in Sources */,
 				B5781AFA20A57B1C00CB1464 /* FFBasicBannerView.m in Sources */,
@@ -3445,6 +3464,7 @@
 				B51BD06D20B539D4005B9DE1 /* FFInviteModel.m in Sources */,
 				B523833420AE9EF40087733A /* FFDriveFansCell.m in Sources */,
 				B51BD16820B650CE005B9DE1 /* FFNotificationViewController.m in Sources */,
+				B506A175212BDFA300DFCBB0 /* FFRankListCell.m in Sources */,
 				B58CB7AF207B10830099773D /* FFAppDelegate.m in Sources */,
 				B5BA506721215C71000EA315 /* NSDictionary+HYBHelperKit.m in Sources */,
 				B51BD0DC20B55A5A005B9DE1 /* FFTransferServerNotesController.m in Sources */,

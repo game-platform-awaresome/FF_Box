@@ -10,6 +10,7 @@
 
 
 typedef void(^RespondsToQQGroupButtonBlock)(void);
+typedef void(^RespondsToHotButtonBlock)(void);
 
 @interface FFGameHeaderView : UIView
 
@@ -21,8 +22,8 @@ typedef void(^RespondsToQQGroupButtonBlock)(void);
 @property (nonatomic, strong) UIImageView   *backgroundView;
 
 
-@property (nonatomic, strong) RespondsToQQGroupButtonBlock qqGroupButtonBlock;
-
+@property (nonatomic, strong) RespondsToQQGroupButtonBlock  qqGroupButtonBlock;
+@property (nonatomic, strong) RespondsToHotButtonBlock      hotButtonBlock;
 
 - (void)refreshBackgroundHeight:(CGFloat)height;
 

@@ -15,4 +15,5 @@
 
 @property (nonatomic, assign) FFGameServersType gameServerType;
 
+
 @end

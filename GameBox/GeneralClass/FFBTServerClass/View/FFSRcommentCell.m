@@ -229,7 +229,7 @@
     if (!_collectionViewlayout) {
         _collectionViewlayout = [[UICollectionViewFlowLayout alloc] init];
         _collectionViewlayout.itemSize = ITEM_SIZE;
-        _collectionViewlayout.minimumLineSpacing = 10;
+        _collectionViewlayout.minimumLineSpacing = 30;
         _collectionViewlayout.minimumInteritemSpacing = 0;
         _collectionViewlayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         _collectionViewlayout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
