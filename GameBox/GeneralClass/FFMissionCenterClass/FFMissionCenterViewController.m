@@ -57,7 +57,7 @@ typedef enum : NSUInteger {
     self.tableView.mj_footer = nil;
     self.tableView.tableHeaderView = self.headerView;
     self.tableView.scrollEnabled = NO;
-    self.navigationItem.title = @"任务中心";
+    self.navigationItem.title = @"";
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH / 2, 30)];
     titleLabel.text = @"任务中心";
     titleLabel.textAlignment = NSTextAlignmentCenter;

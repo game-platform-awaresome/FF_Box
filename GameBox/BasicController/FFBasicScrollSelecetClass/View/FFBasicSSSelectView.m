@@ -173,24 +173,28 @@ NS_ASSUME_NONNULL_BEGIN
     if (self.buttonArray.count > idx) {
         UIButton *button = self.buttonArray[idx];
         UILabel *label = self.subscriptLabelArray[idx];
-        CGRect frame = [button convertRect:button.titleLabel.frame toView:self];
-        CGRect btnFrame = button.frame;
-        label.text = title;
-        [label sizeToFit];
-        CGRect labelBounds = label.bounds;
-        labelBounds.size.width += 4;
-        labelBounds.size.height += 2;
-        if (labelBounds.size.width < labelBounds.size.height) {
-            labelBounds.size.width = labelBounds.size.height;
-        }
-        frame.size = labelBounds.size;
-        frame.origin.x = btnFrame.origin.x + btnFrame.size.width / 2 + 15;
-        frame.origin.y = btnFrame.size.height / 2 - 16;
-        label.layer.cornerRadius = labelBounds.size.height / 2;
-        label.frame = frame;
+        if (title.integerValue) {
+            CGRect frame = [button convertRect:button.titleLabel.frame toView:self];
+            CGRect btnFrame = button.frame;
+            label.text = title;
+            [label sizeToFit];
+            CGRect labelBounds = label.bounds;
+            labelBounds.size.width += 4;
+            labelBounds.size.height += 2;
+            if (labelBounds.size.width < labelBounds.size.height) {
+                labelBounds.size.width = labelBounds.size.height;
+            }
+            frame.size = labelBounds.size;
+            frame.origin.x = btnFrame.origin.x + btnFrame.size.width / 2 + 15;
+            frame.origin.y = btnFrame.size.height / 2 - 16;
+            label.layer.cornerRadius = labelBounds.size.height / 2;
+            label.frame = frame;
 
-        syLog(@"frame == %@",NSStringFromCGRect(frame));
-        [self addSubview:label];
+            syLog(@"frame == %@",NSStringFromCGRect(frame));
+            [self addSubview:label];
+        } else {
+            [label removeFromSuperview];
+        }
     }
 }
 

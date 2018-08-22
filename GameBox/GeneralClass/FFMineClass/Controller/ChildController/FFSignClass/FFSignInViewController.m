@@ -8,33 +8,53 @@
 
 #import "FFSignInViewController.h"
 #import "FFUserModel.h"
+#import "FFColorManager.h"
+#import "FFImageManager.h"
 
 @interface FFSignInViewController ()
 
+/** 上半部分背景 */
+@property (nonatomic, strong) UIImageView       *topImageView;
+/** 签到按钮 */
+@property (nonatomic, strong) UIButton          *signInButton;
+/** 红色签到按钮 */
+@property (nonatomic, strong) UIButton          *redSigninButton;
+/** 签到累计天数虚线 */
+@property (nonatomic, strong) UIImageView       *singinLine;
+/** 累计签到奖励 */
+@property (nonatomic, strong) NSArray<UIButton*>*signDayButtons;
+/** 累计签到天数 */
+@property (nonatomic, strong) NSArray<UILabel *>*signDayLabels;
+/** 下半部分背景 */
+@property (nonatomic, strong) UIView            *bottomView;
+/** 累计签到天数提示 */
+@property (nonatomic, strong) UILabel           *remindLabel;
+
+
+/** 签到说明 */
+@property (nonatomic, strong) UILabel           *signInDescriptionTitle;
+@property (nonatomic, strong) UIView            *signInDescriptionDetail;
+
+/** 签到说明标题数组 */
+@property (nonatomic, strong) NSArray           *descriptionTitleArray;
+/** 签到说明内容数组 */
+@property (nonatomic, strong) NSArray           *descriptionContentArray;
+/** 点到说明数据 */
+@property (nonatomic, strong) NSArray<UILabel *>*descriptionContentLabels;
+
+
+
+#pragma mark - 旧界面 废弃
 /** 签到主页 */
 @property (nonatomic, strong) UIView *signInView;
-/** 签到按钮 */
-@property (nonatomic, strong) UIButton *signInButton;
-@property (nonatomic, strong) UILabel *remindLabel;
+
 @property (nonatomic, strong) NSArray<UILabel *> *dayLabelArray;
 @property (nonatomic, strong) NSArray<UILabel *> *daytitleArray;
 @property (nonatomic, strong) UIView *line;
 
-/** 签到说明 */
-@property (nonatomic, strong) UILabel *signInDescriptionTitle;
-@property (nonatomic, strong) UIView *signInDescriptionDetail;
-/** 签到说明1 */
-@property (nonatomic, strong) UILabel *descriptionTitle1;
-@property (nonatomic, strong) UILabel *descriptionDetail1;
-/** 签到说明2 */
-@property (nonatomic, strong) UILabel *descriptionTitle2;
-@property (nonatomic, strong) UILabel *descriptionDetail2;
-/** 签到说明3 */
-@property (nonatomic, strong) UILabel *descriptionTitle3;
-@property (nonatomic, strong) UILabel *descriptionDetail3;
-/** 签到说明4 */
-@property (nonatomic, strong) UILabel *descriptionTitle4;
-@property (nonatomic, strong) UILabel *descriptionDetail4;
+
+
+
 
 /** 累计特殊奖励 */
 @property (nonatomic, strong) NSArray *specialRewardsArray;
@@ -58,36 +78,167 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
-    self.navBarBGAlpha = @"1.0";
+    self.navBarBGAlpha = @"0.0";
+    [self.navigationController.navigationBar setTintColor:[FFColorManager navigation_bar_white_color]];
     [self signInit];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+}
 
+- (void)initDataSource {
+    [super initDataSource];
 }
 
 
 - (void)initUserInterface {
+    [super initUserInterface];
+    
+    self.navigationItem.title = @"";
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH / 2, 30)];
+    titleLabel.text = @"签到";
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.textColor = [FFColorManager navigation_bar_white_color];
+    titleLabel.font = [UIFont boldSystemFontOfSize:18];
+    self.navigationItem.titleView = titleLabel;
 
-    self.navigationItem.title = @"签到";
-    self.view.backgroundColor = [UIColor lightGrayColor];
-    [self.view addSubview:self.signInView];
-    [self.view addSubview:self.signInDescriptionTitle];
-    [self.view addSubview:self.signInDescriptionDetail];
+    [self.leftButton setImage:[FFImageManager General_back_white]];
+    self.view.backgroundColor = RGBColor(227, 232, 244);
+    [self.navigationController.navigationBar setTintColor:kWhiteColor];
+    [self.navigationController.navigationBar setBarTintColor:kWhiteColor];
+    self.navigationItem.leftBarButtonItem = self.leftButton;
 
-    self.remindLabel.attributedText = [self colocStringWithString1:@" 0 " String2:@" 0 "];
 
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, CGRectGetMaxY(self.navigationController.navigationBar.frame))];
-    view.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:view];
+    /** 添加上半部分背景 */
+    self.topImageView = [UIImageView hyb_imageViewWithImage:@"Sign_top_image" superView:self.view constraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.view).offset(0);
+        make.left.mas_equalTo(self.view).offset(0);
+        make.right.mas_equalTo(self.view).offset(0);
+        make.height.mas_equalTo(kScreenHeight * 0.5);
+    }];
+    self.topImageView.userInteractionEnabled = YES;
+
+
+    /** 添加签到按钮 */
+    self.signInButton = [UIButton hyb_buttonWithImage:@"Sing_button_image" superView:self.topImageView constraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.topImageView).offset(-4);
+        make.top.mas_equalTo(self.topImageView).offset(80);
+    } touchUp:^(UIButton *sender) {
+        [self respondsToSignInButton];
+    }];
+    [self.signInButton setTitle:@" 每日签到" forState:(UIControlStateNormal)];
+    [self.signInButton setTitle:@" 已签到" forState:(UIControlStateSelected)];
+    [self.signInButton setBackgroundImage:[UIImage imageNamed:@"Sign_button_back"] forState:(UIControlStateNormal)];
+
+    /** 添加签到累计天数虚线 */
+    self.singinLine = [UIImageView hyb_imageViewWithImage:@"Sign_day_line" superView:self.topImageView constraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.signInButton.mas_bottom).offset(66);
+        make.left.mas_equalTo(self.topImageView).offset(10);
+        make.right.mas_equalTo(self.topImageView).offset(-10);
+    }];
+
+    /** 添加累计奖励标识 */
+    NSArray *titleArray = @[@"20",@"50",@"100",@"200"];
+    NSMutableArray<UIButton *> *buttonArray = [NSMutableArray arrayWithCapacity:titleArray.count];
+    for (int i = 0; i < titleArray.count; i++) {
+        NSString *title = titleArray[i];
+        UIButton *button = [UIButton hyb_buttonWithTitle:title superView:self.singinLine constraints:^(MASConstraintMaker *make) {
+            make.centerY.mas_equalTo(0);
+            make.centerX.mas_equalTo(kScreenWidth / 5 * (i - 1.5));
+        } touchUp:nil];
+        [button setBackgroundImage:[UIImage imageNamed:@"Sign_day_back"] forState:(UIControlStateNormal)];
+        button.userInteractionEnabled = NO;
+        [buttonArray addObject:button];
+    }
+    self.signDayButtons = buttonArray;
+
+    /** 添加累计天数 */
+    titleArray = @[@"3天",@"7天",@"15天",@"本月"];
+    NSMutableArray<UILabel *> *labelArray = [NSMutableArray arrayWithCapacity:titleArray.count];
+    for (int i = 0; i < titleArray.count; i++) {
+        NSString *title = titleArray[i];
+        UILabel *label = [UILabel hyb_labelWithText:title font:15 superView:self.topImageView constraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(buttonArray[i].mas_centerX).offset(0);
+            make.bottom.mas_equalTo(buttonArray[i].mas_top).offset(-12);
+        }];
+        label.textColor = kWhiteColor;
+        label.font = [UIFont boldSystemFontOfSize:15];
+        [labelArray addObject:label];
+    }
+    self.signDayLabels = labelArray;
+
+    /** 添加下半部分背景 */
+    self.bottomView = [UIView hyb_viewWithSuperView:self.view constraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.topImageView.mas_bottom).offset(-30);
+        make.left.mas_equalTo(self.view).offset(12);
+        make.bottom.mas_equalTo(self.view).offset(-14);
+        make.right.mas_equalTo(self.view).offset(-12);
+    }];
+    self.bottomView.backgroundColor = kWhiteColor;
+    self.bottomView.layer.cornerRadius = 8;
+    self.bottomView.layer.shadowColor = RGBColor(227, 232, 242).CGColor;
+    self.bottomView.layer.shadowOffset = CGSizeMake(0, 0);
+    self.bottomView.layer.shadowOpacity = 1.f;
+
+    /** 添加红色签到按钮 */
+    self.redSigninButton = [UIButton hyb_buttonWithImage:@"Sign_red_button_normal" selectedImage:@"Sign_red_button_select" superView:self.view constraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(self.topImageView.mas_bottom).offset(-10);
+        make.right.mas_equalTo(self.topImageView.mas_right).offset(-35);
+        make.size.mas_equalTo(CGSizeMake(60, 60));
+    } touchUp:^(UIButton *sender) {
+        [self respondsToSignInButton];
+    }];
+
+    /** 签到提示 */
+    self.remindLabel = [UILabel hyb_labelWithFont:14 superView:self.bottomView constraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.bottomView).offset(10);
+        make.left.mas_equalTo(self.bottomView).offset(10);
+        make.right.mas_equalTo(self.bottomView).offset(-10);
+        make.height.mas_equalTo(45);
+    }];
+    self.remindLabel.textAlignment = NSTextAlignmentLeft;
+
+    /** 签到说明 */
+    self.signInDescriptionTitle = [UILabel hyb_labelWithText:@"签到说明" font:18 superView:self.bottomView constraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.remindLabel.mas_bottom).offset(0);
+        make.left.mas_equalTo(self.bottomView).offset(10);
+        make.right.mas_equalTo(self.bottomView).offset(-10);
+    }];
+
+
+    UILabel *lastTitleLabel;
+    UILabel *lastContentLabel;
+    NSMutableArray *mutableArray = [NSMutableArray arrayWithCapacity:self.descriptionTitleArray.count];
+    for (int i = 0; i < self.descriptionTitleArray.count; i++) {
+        UILabel *titlelabel = [UILabel hyb_labelWithText:self.descriptionTitleArray[i] font:16 superView:self.bottomView constraints:^(MASConstraintMaker *make) {
+            if (lastContentLabel) {
+                make.top.mas_equalTo(lastContentLabel.mas_bottom).offset(10);
+            } else {
+                make.top.mas_equalTo(self.signInDescriptionTitle.mas_bottom).offset(10);
+            }
+            make.left.mas_equalTo(self.bottomView).offset(10);
+            make.right.mas_equalTo(self.bottomView).offset(-10);
+        }];
+        UILabel *contentLabel = [UILabel hyb_labelWithText:self.descriptionContentArray[i] font:12 lines:0 superView:self.bottomView constraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(titlelabel.mas_bottom).offset(4);
+            make.left.mas_equalTo(self.bottomView).offset(10);
+            make.right.mas_equalTo(self.bottomView).offset(-10);
+        }];
+        contentLabel.textColor = [FFColorManager textColorMiddle];
+
+        lastTitleLabel = titleLabel;
+        lastContentLabel = contentLabel;
+        [mutableArray addObject:contentLabel];
+    }
+
+    self.descriptionContentLabels = mutableArray;
+
 }
 
 - (void)signInit {
     for (UILabel *label in self.dayLabelArray) {
         label.backgroundColor = [UIColor whiteColor];
-//        label.textColor = RGBCOLOR(<#r#>, <#g#>, <#b#>);
         label.textColor = RGBColor(100, 100, 100);
     }
     self.view.userInteractionEnabled = NO;
@@ -124,8 +275,7 @@
 
 #pragma mark -  responds
 - (void)respondsToLeftButton {
-    //    [self.navigationController popViewControllerAnimated:YES];
-
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)respondsToSignInButton {
@@ -147,30 +297,19 @@
 }
 
 - (NSMutableAttributedString *)colocStringWithString1:(NSString *)string1 String2:(NSString *)string2 {
-
-
     NSMutableAttributedString *attributedString1 = [[NSMutableAttributedString alloc] initWithString:string1];
     [attributedString1 addAttribute:NSForegroundColorAttributeName value:[FFColorManager blue_dark] range:NSMakeRange(0, attributedString1.length)];
-
     NSMutableAttributedString *resultString = [[NSMutableAttributedString alloc] initWithString:@"本月已累计签到"];
     [resultString appendAttributedString:attributedString1];
-
     attributedString1 = [[NSMutableAttributedString alloc] initWithString:@"天,"];
     [resultString appendAttributedString:attributedString1];
-
     attributedString1 = [[NSMutableAttributedString alloc] initWithString:@"继续签到"];
     [resultString appendAttributedString:attributedString1];
-
-
-
     attributedString1 = [[NSMutableAttributedString alloc] initWithString:string2];
     [attributedString1 addAttribute:NSForegroundColorAttributeName value:[FFColorManager blue_dark] range:NSMakeRange(0, attributedString1.length)];
     [resultString appendAttributedString:attributedString1];
-
     attributedString1 = [[NSMutableAttributedString alloc] initWithString:@"天可获得额外奖励"];
     [resultString appendAttributedString:attributedString1];
-
-
     return resultString;
 }
 
@@ -183,13 +322,13 @@
         self.dayLabelArray[idx].text = [NSString stringWithFormat:@"%@",obj[@"bonus"]];
     }];
 
-    self.descriptionDetail2.text = [NSString stringWithFormat:@"累计签到%@天,额外获取%@金币,累计签到%@天,额外获取%@金币,累计签到%@天,额外获取%@金币,本月全部签到,额外获取%@金币.",(_specialRewardsArray[0][@"num"]),(_specialRewardsArray[0][@"bonus"]),(_specialRewardsArray[1][@"num"]),(_specialRewardsArray[1][@"bonus"]),(_specialRewardsArray[2][@"num"]),(_specialRewardsArray[2][@"bonus"]),(_specialRewardsArray[3][@"bonus"])];
+    self.self.descriptionContentLabels[1].text = [NSString stringWithFormat:@"累计签到%@天,额外获取%@金币,累计签到%@天,额外获取%@金币,累计签到%@天,额外获取%@金币,本月全部签到,额外获取%@金币.",(_specialRewardsArray[0][@"num"]),(_specialRewardsArray[0][@"bonus"]),(_specialRewardsArray[1][@"num"]),(_specialRewardsArray[1][@"bonus"]),(_specialRewardsArray[2][@"num"]),(_specialRewardsArray[2][@"bonus"]),(_specialRewardsArray[3][@"bonus"])];
 }
 
 /** 签到奖励 */
 - (void)setNormalRewardsDict:(NSDictionary *)normalRewardsDict {
     _normalRewardsDict = [normalRewardsDict copy];
-    self.descriptionDetail1.text = [NSString stringWithFormat:@"普通用户每日签到随机获取%@金币,vip用户额外获得%@金币.",_normalRewardsDict[@"normal"],_normalRewardsDict[@"vip_extra"]];
+    self.descriptionContentLabels[0].text = [NSString stringWithFormat:@"普通用户每日签到随机获取%@金币,vip用户额外获得%@金币.",_normalRewardsDict[@"normal"],_normalRewardsDict[@"vip_extra"]];
 }
 
 /** 设置是否签到 */
@@ -198,12 +337,14 @@
         _isSign = [NSString stringWithFormat:@"%@",isSign];
         if (isSign.boolValue) {
             self.signInButton.userInteractionEnabled = NO;
-            self.signInButton.backgroundColor = [UIColor whiteColor];
             self.signInButton.selected = YES;
+            self.redSigninButton.userInteractionEnabled = NO;
+            self.redSigninButton.selected = YES;
         } else {
             self.signInButton.userInteractionEnabled = YES;
             self.signInButton.selected = NO;
-            self.signInButton.backgroundColor = [FFColorManager blue_dark];
+            self.redSigninButton.userInteractionEnabled = YES;
+            self.redSigninButton.selected = NO;
         }
     }
 }
@@ -212,10 +353,8 @@
 /** 设置继续签到天数 */
 - (void)setContinueSignDay {
     if (self.specialRewardsArray) {
-
         NSInteger signDays = self.signDays.integerValue;
         NSInteger currentDay = 0;
-
         for (NSInteger i = 0; i < self.specialRewardsArray.count; i++) {
             NSString *day = self.self.specialRewardsArray[i][@"num"];
             currentDay = day.integerValue;
@@ -234,237 +373,36 @@
     }
 }
 
+
 #pragma mark - getter
-- (UIView *)signInView {
-    if (!_signInView) {
-        _signInView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.navigationController.navigationBar.frame), kSCREEN_WIDTH, kSCREEN_HEIGHT * 0.33)];
-        _signInView.backgroundColor = [UIColor whiteColor];
-        [_signInView addSubview:self.signInButton];
-        [_signInView addSubview:self.remindLabel];
-        [_signInView addSubview:self.line];
-        for (UILabel *label in self.dayLabelArray) {
-            [_signInView addSubview:label];
-        }
-        for (UILabel *label in self.daytitleArray) {
-            [_signInView addSubview:label];
-        }
+- (NSArray *)descriptionTitleArray {
+    if (!_descriptionTitleArray) {
+        _descriptionTitleArray = @[@"1.每日签到",
+                                   @"2.签到规则",
+                                   @"3.累计签到奖励",
+                                   @"4.签到金币未到账"];
     }
-    return _signInView;
+    return _descriptionTitleArray;
 }
 
-- (UIButton *)signInButton {
-    if (!_signInButton) {
-        _signInButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        _signInButton.bounds = CGRectMake(0, 0, kSCREEN_WIDTH / 3, kSCREEN_WIDTH * 0.17);
-        _signInButton.center = CGPointMake(kSCREEN_WIDTH / 2, kSCREEN_WIDTH * 0.17);
-        _signInButton.layer.cornerRadius = kSCREEN_WIDTH * 0.085;
-        [_signInButton addTarget:self action:@selector(respondsToSignInButton) forControlEvents:(UIControlEventTouchUpInside)];
-
-        [_signInButton setTitle:@"签到" forState:(UIControlStateNormal)];
-        [_signInButton setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
-        _signInButton.layer.borderColor = [FFColorManager blue_dark].CGColor;
-
-        [_signInButton setTitle:@"已签到" forState:(UIControlStateSelected)];
-        [_signInButton setTitleColor:[FFColorManager blue_dark] forState:(UIControlStateSelected)];
-
-        _signInButton.backgroundColor = [UIColor whiteColor];
-        _signInButton.titleLabel.font = [UIFont systemFontOfSize:30];
-        //        _signInButton.backgroundColor = RGBCOLOR(251, 193, 92);
-        _signInButton.layer.masksToBounds = YES;
-        _signInButton.layer.borderWidth = 3;
+- (NSArray *)descriptionContentArray {
+    if (!_descriptionContentArray) {
+        _descriptionContentArray = @[@"普通用户每日签到随机获取3~10金币,vip用户额外获得66金币.",
+                                     @"累计签到3天,额外获取20金币,累计签到7天,额外获取50金币,累计签到15天,额外获取100金币,本月全部签到,额外获取200金币.",
+                                     @"签到界面展示本月内累计签到天数,本月签到天数只在本月有效,下个月累计签到天数清零,并重新计数.",
+                                     @"请在24小时之内联系客户经理,客服确认信息后,后台会给您补发金币."];
     }
-    return _signInButton;
+    return _descriptionContentArray;
 }
 
-- (UILabel *)remindLabel {
-    if (!_remindLabel) {
-        _remindLabel = [[UILabel alloc] init];
-        _remindLabel.bounds = CGRectMake(0, 0, kSCREEN_WIDTH, 30);
-        CGFloat y = (CGRectGetMinY(self.dayLabelArray.lastObject.frame) + CGRectGetMaxY(self.signInButton.frame)) / 2;
-        _remindLabel.font = [UIFont systemFontOfSize:14];
-        _remindLabel.textAlignment = NSTextAlignmentCenter;
-        _remindLabel.center = CGPointMake(kSCREEN_WIDTH / 2, y);
-        //        _remindLabel.text = @"本月已累计签到2天,继续签到1天可获得额外奖励";
-    }
-    return _remindLabel;
-}
-
-- (NSArray<UILabel *> *)dayLabelArray {
-    if (!_dayLabelArray) {
-        NSMutableArray *array = [NSMutableArray arrayWithCapacity:4];
-        NSArray *titleArray = @[@"3天",@"7天",@"15天",@"本月"];
-        [titleArray enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-
-            UILabel *label = [[UILabel alloc] init];
-            label.bounds = CGRectMake(0, 0, kSCREEN_WIDTH / 8, kSCREEN_WIDTH / 8);
-            label.center = CGPointMake(kSCREEN_WIDTH / 5 * (idx + 1), kSCREEN_WIDTH * 0.426);
-            label.text = obj;
-            label.textAlignment = NSTextAlignmentCenter;
-            label.textColor = [FFColorManager blue_dark];
-            label.backgroundColor = [UIColor whiteColor];
-            label.font = [UIFont systemFontOfSize:16];
-            label.layer.cornerRadius = kSCREEN_WIDTH / 16;
-            label.layer.masksToBounds = YES;
-            label.layer.borderColor = [FFColorManager blue_dark].CGColor;
-            label.layer.borderWidth = 2;
 
 
-            [array addObject:label];
-        }];
-        _dayLabelArray = [array copy];
-    }
-    return _dayLabelArray;
-}
 
-- (NSArray<UILabel *> *)daytitleArray {
-    if (!_daytitleArray) {
-        NSMutableArray *array = [NSMutableArray arrayWithCapacity:4];
-        NSArray *titleArray = @[@"3天",@"7天",@"15天",@"本月"];
 
-        [titleArray enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop) {
 
-            UILabel *label = [[UILabel alloc] init];
-            label.bounds = CGRectMake(0, 0, kSCREEN_WIDTH / 7, 20);
-            label.center = CGPointMake(kSCREEN_WIDTH / 5 * (idx + 1), CGRectGetMaxY(self.dayLabelArray[0].frame) + 13);
-            label.text = obj;
-            label.textAlignment = NSTextAlignmentCenter;
-            label.textColor = [UIColor darkGrayColor];
-            label.backgroundColor = [UIColor whiteColor];
-            label.font = [UIFont systemFontOfSize:13];
 
-            [array addObject:label];
-        }];
-        _daytitleArray = [array copy];
-    }
-    return _daytitleArray;
-}
 
-- (UIView *)line {
-    if (!_line) {
-        CGFloat x = CGRectGetMidX(self.dayLabelArray.firstObject.frame) - 1;
-        CGFloat y = CGRectGetMidY(self.dayLabelArray.firstObject.frame);
-        CGFloat width = CGRectGetMidX(self.dayLabelArray.lastObject.frame) - x;
-        CGFloat height = 3;
-        _line = [[UIView alloc] initWithFrame:CGRectMake(x, y, width, height)];
-        _line.backgroundColor = [FFColorManager blue_dark];
-    }
-    return _line;
-}
 
-- (UILabel *)signInDescriptionTitle {
-    if (!_signInDescriptionTitle) {
-        _signInDescriptionTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.signInView.frame) + 10, kSCREEN_WIDTH, 44)];
-        _signInDescriptionTitle.textAlignment = NSTextAlignmentLeft;
-        _signInDescriptionTitle.backgroundColor = [UIColor whiteColor];
-        _signInDescriptionTitle.text = @"    签到说明:";
-        _signInDescriptionTitle.font = [UIFont systemFontOfSize:18];
-    }
-    return _signInDescriptionTitle;
-}
-
-- (UIView *)signInDescriptionDetail {
-    if (!_signInDescriptionDetail) {
-        _signInDescriptionDetail = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.signInDescriptionTitle.frame) + 3, kSCREEN_WIDTH, kSCREEN_HEIGHT - (CGRectGetMaxY(self.signInDescriptionTitle.frame) + 3))];
-        _signInDescriptionDetail.backgroundColor = [UIColor whiteColor];
-        [_signInDescriptionDetail addSubview:self.descriptionTitle1];
-        [_signInDescriptionDetail addSubview:self.descriptionTitle2];
-        [_signInDescriptionDetail addSubview:self.descriptionTitle3];
-        [_signInDescriptionDetail addSubview:self.descriptionTitle4];
-        [_signInDescriptionDetail addSubview:self.descriptionDetail1];
-        [_signInDescriptionDetail addSubview:self.descriptionDetail2];
-        [_signInDescriptionDetail addSubview:self.descriptionDetail3];
-        [_signInDescriptionDetail addSubview:self.descriptionDetail4];
-    }
-    return _signInDescriptionDetail;
-}
-
-- (UILabel *)descriptionTitle1 {
-    if (!_descriptionTitle1) {
-        _descriptionTitle1 = [[UILabel alloc] init];
-        _descriptionTitle1.frame = CGRectMake(20, 0, kSCREEN_WIDTH - 40, 30);
-        _descriptionTitle1.text = @"1.每日签到";
-    }
-    return _descriptionTitle1;
-}
-
-- (UILabel *)descriptionDetail1 {
-    if (!_descriptionDetail1) {
-        _descriptionDetail1 = [[UILabel alloc] init];
-        _descriptionDetail1.frame = CGRectMake(20, CGRectGetMaxY(self.descriptionTitle1.frame), kSCREEN_WIDTH - 40, 60);
-        _descriptionDetail1.textColor = [UIColor lightGrayColor];
-        _descriptionDetail1.text = @"普通用户每日签到随机获取3~10金币,vip用户额外获得66金币.";
-        _descriptionDetail1.numberOfLines = 0;
-        _descriptionDetail1.font = [UIFont systemFontOfSize:14];
-        [_descriptionDetail1 sizeToFit];
-    }
-    return _descriptionDetail1;
-}
-
-- (UILabel *)descriptionTitle2 {
-    if (!_descriptionTitle2) {
-        _descriptionTitle2 = [[UILabel alloc] init];
-        _descriptionTitle2.frame = CGRectMake(20, CGRectGetMaxY(self.descriptionDetail1.frame), kSCREEN_WIDTH - 40, 30);
-        _descriptionTitle2.text = @"2.累计签到奖励";
-    }
-    return _descriptionTitle2;
-}
-
-- (UILabel *)descriptionDetail2 {
-    if (!_descriptionDetail2) {
-        _descriptionDetail2 = [[UILabel alloc] init];
-        _descriptionDetail2.frame = CGRectMake(20, CGRectGetMaxY(self.descriptionTitle2.frame), kSCREEN_WIDTH - 40, 60);
-        _descriptionDetail2.textColor = [UIColor lightGrayColor];
-        _descriptionDetail2.text = @"累计签到3天,额外获取20金币,累计签到7天,额外获取50金币,累计签到15天,额外获取100金币,本月全部签到,额外获取200金币.";
-        _descriptionDetail2.numberOfLines = 0;
-        _descriptionDetail2.font = [UIFont systemFontOfSize:14];
-        [_descriptionDetail2 sizeToFit];
-    }
-    return _descriptionDetail2;
-}
-
-- (UILabel *)descriptionTitle3 {
-    if (!_descriptionTitle3) {
-        _descriptionTitle3 = [[UILabel alloc] init];
-        _descriptionTitle3.frame = CGRectMake(20, CGRectGetMaxY(self.descriptionDetail2.frame), kSCREEN_WIDTH - 40, 30);
-        _descriptionTitle3.text = @"3.签到规则";
-    }
-    return _descriptionTitle3;
-}
-
-- (UILabel *)descriptionDetail3 {
-    if (!_descriptionDetail3) {
-        _descriptionDetail3 = [[UILabel alloc] init];
-        _descriptionDetail3.frame = CGRectMake(20, CGRectGetMaxY(self.descriptionTitle3.frame), kSCREEN_WIDTH - 40, 60);
-        _descriptionDetail3.textColor = [UIColor lightGrayColor];
-        _descriptionDetail3.text = @"签到界面展示本月内累计签到天数,本月签到天数只在本月有效,下个月累计签到天数清零,并重新计数.";
-        _descriptionDetail3.numberOfLines = 0;
-        _descriptionDetail3.font = [UIFont systemFontOfSize:14];
-        [_descriptionDetail3 sizeToFit];
-    }
-    return _descriptionDetail3;
-}
-
-- (UILabel *)descriptionTitle4 {
-    if (!_descriptionTitle4) {
-        _descriptionTitle4 = [[UILabel alloc] init];
-        _descriptionTitle4.frame = CGRectMake(20, CGRectGetMaxY(self.descriptionDetail3.frame), kSCREEN_WIDTH - 40, 30);
-        _descriptionTitle4.text = @"4.签到金币未到账";
-    }
-    return _descriptionTitle4;
-}
-
-- (UILabel *)descriptionDetail4 {
-    if (!_descriptionDetail4) {
-        _descriptionDetail4 = [[UILabel alloc] init];
-        _descriptionDetail4.frame = CGRectMake(20, CGRectGetMaxY(self.descriptionTitle4.frame), kSCREEN_WIDTH - 40, 60);
-        _descriptionDetail4.textColor = [UIColor lightGrayColor];
-        _descriptionDetail4.text = @"请在24小时之内联系客户经理,客服确认信息后,后台会给您补发金币.";
-        _descriptionDetail4.numberOfLines = 0;
-        _descriptionDetail4.font = [UIFont systemFontOfSize:14];
-        [_descriptionDetail4 sizeToFit];
-    }
-    return _descriptionDetail4;
-}
 
 
 
