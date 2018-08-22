@@ -17,6 +17,7 @@
 #import "FFDriveModel.h"
 #import "FFViewFactory.h"
 #import "FFImageManager.h"
+#import "FFPhotoViewController.h"
 
 #import <FLAnimatedImageView+WebCache.h>
 
@@ -58,7 +59,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *EditCommentLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *EditCommentLabelHeight;
 
-@property (nonatomic, strong) NSMutableArray<UIImageView *> *imageViews;
+@property (nonatomic, strong) NSMutableArray<FLAnimatedImageView *> *imageViews;
 
 /** 审核标签 */
 @property (nonatomic, strong) UILabel *verifyLabel;
@@ -420,7 +421,7 @@
     syLog(@"点击图片");
 
     if (self.imageUrlArray.count == 1) {
-
+        [FFPhotoViewController showPhotoWith:self.imageUrlArray.firstObject];
         syLog(@"加载 GIF");
     } else {
         [[self getPas] previewPhotos:_images index:sender.view.tag - 10086 hideToolBar:YES complete:^(NSArray * _Nonnull photos) {
@@ -617,7 +618,7 @@
     return [NSData dataWithContentsOfFile:path];
 }
 
-- (NSMutableArray<UIImageView *> *)imageViews {
+- (NSMutableArray<FLAnimatedImageView *> *)imageViews {
     if (!_imageViews) {
         _imageViews = [NSMutableArray arrayWithCapacity:4];
         for (int i = 0; i < 4; i++) {
@@ -635,19 +636,21 @@
 
 
 - (void)starGif {
-//    if (isGifImage) {
-//        [_imageViews enumerateObjectsUsingBlock:^(UIImageView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//            obj.image = self.gifImage;
-//        }];
-//    }
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        FLAnimatedImageView *imageView = self.imageViews.firstObject;
+        if (imageView.animatedImage) {
+            [imageView startAnimating];
+        }
+    });
 }
 
 - (void)stopGif {
-//    if (isGifImage) {
-//        [_imageViews enumerateObjectsUsingBlock:^(UIImageView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//            obj.image = self.normalImage;
-//        }];
-//    }
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        FLAnimatedImageView *imageView = self.imageViews.firstObject;
+        if (imageView.animatedImage) {
+            [imageView stopAnimating];
+        }
+    });
 }
 
 - (UILabel *)verifyLabel {

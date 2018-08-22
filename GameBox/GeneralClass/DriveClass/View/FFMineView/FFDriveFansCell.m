@@ -104,7 +104,7 @@
 
 - (void)setAttention:(NSString *)str {
     NSString *attention = [NSString stringWithFormat:@"%@",str];
-    syLog(@"attention === %@",attention);
+//    syLog(@"attention === %@",attention);
     if (attention.integerValue == 0) {
         [self setAttentionButtonTitle:@"+关注" TitleColor:NAVGATION_BAR_COLOR];
     } else if (attention.integerValue == 1) {

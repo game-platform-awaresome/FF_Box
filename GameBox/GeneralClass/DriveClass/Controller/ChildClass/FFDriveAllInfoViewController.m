@@ -14,6 +14,11 @@
 #import "FFDriveDetailInfoViewController.h"
 #import "FFColorManager.h"
 
+#import "FFDriveInfoCell.h"
+
+#import <SDWebImageManager.h>
+#import <SDImageCache.h>
+
 #define CELL_IDE @"DriveInfoCell"
 
 @interface FFDriveAllInfoViewController ()<UITableViewDelegate,UITableViewDataSource,DriveInfoCellDelegate,FFDriveDetailDelegate, UIScrollViewDelegate>
@@ -51,11 +56,25 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+
+
+//    [[SDImageCache sharedImageCache] setShouldDecompressImages:NO];
+    [[SDWebImageDownloader sharedDownloader] setShouldDecompressImages:NO];
+    [[SDImageCache sharedImageCache] setMaxMemoryCost:3000 * 3000];
+
+
     self.dynamicType = allDynamic;
     [self initDataSource];
     [self initUserInterface];
 }
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+
+    [[SDImageCache sharedImageCache] clearMemory];
+}
 
 - (void)initUserInterface {
     self.view.backgroundColor = [UIColor redColor];
@@ -300,6 +319,7 @@ static BOOL respondsSuccess;
     DriveInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDE];
     cell.delegate = self;
     FFDynamicModel *model = self.showArray[indexPath.row];
+
     if ([self dynamicType] == attentionDynamic) {
         model.attention = @"1";
     }
@@ -312,7 +332,9 @@ static BOOL respondsSuccess;
 
     cell.model = model;
 
-
+//    FFDriveInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDE forIndexPath:indexPath];
+//    cell.dict = self.showArray[indexPath.row];
+//    cell.indexPath = indexPath;
 
     return cell;
 }
@@ -344,16 +366,14 @@ static BOOL respondsSuccess;
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     NSArray<DriveInfoCell *> *cells = [self.tableView visibleCells];
-    [cells enumerateObjectsUsingBlock:^(DriveInfoCell * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([obj isKindOfClass:[DriveInfoCell class]]) {
-            CGRect frame = [obj convertRect:obj.bounds toView:self.view];
-            if (frame.origin.y < -100 || frame.origin.y > 300) {
-                [obj stopGif];
-            } else {
-                [obj starGif];
-            }
+    for (DriveInfoCell *cell in cells) {
+        CGRect frame = [cell convertRect:cell.bounds toView:self.view];
+        if (frame.origin.y < -100 || frame.origin.y > 300) {
+            [cell stopGif];
+        } else {
+            [cell starGif];
         }
-    }];
+    }
 }
 
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
@@ -464,6 +484,8 @@ static BOOL respondsSuccess;
 //        _tableView.tableHeaderView = line;
 
         [_tableView registerNib:[UINib nibWithNibName:CELL_IDE bundle:nil] forCellReuseIdentifier:CELL_IDE];
+
+//        [_tableView registerClass:[FFDriveInfoCell class] forCellReuseIdentifier:CELL_IDE];
 
         _tableView.delegate = self;
         _tableView.dataSource = self;

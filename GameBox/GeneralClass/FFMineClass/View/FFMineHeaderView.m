@@ -52,8 +52,17 @@
     return self;
 }
 
+
 - (void)initUserInterface {
+
     self.backgroundColor = [FFColorManager blue_dark];
+    [UIImageView hyb_imageViewWithImage:@"Mine_header_background" superView:self constraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self).offset(0);
+        make.left.mas_equalTo(self).offset(0);
+        make.bottom.mas_equalTo(self).offset(0);
+        make.right.mas_equalTo(self).offset(0);
+    }];
+
     [self addSubview:self.avatarImageView];
     [self addSubview:self.vipImageView];
     [self addSubview:self.nameButton];

@@ -201,6 +201,8 @@
 		B544581E20D20B4A000B63E4 /* FFBusinessProductController.m in Sources */ = {isa = PBXBuildFile; fileRef = B544581D20D20B4A000B63E4 /* FFBusinessProductController.m */; };
 		B544582120D20BE4000B63E4 /* FFBusinessSellProductController.m in Sources */ = {isa = PBXBuildFile; fileRef = B544582020D20BE4000B63E4 /* FFBusinessSellProductController.m */; };
 		B544582420D20D3D000B63E4 /* UIViewController+FFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B544582320D20D3D000B63E4 /* UIViewController+FFViewController.m */; };
+		B546C557212D3AFC007619A5 /* FFDriveInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B546C556212D3AFC007619A5 /* FFDriveInfoCell.m */; };
+		B546C55B212D4CD9007619A5 /* FFPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B546C55A212D4CD9007619A5 /* FFPhotoViewController.m */; };
 		B56700FE20C4EB1400A44C2E /* FFNewGameHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B56700FD20C4EB1400A44C2E /* FFNewGameHeaderView.m */; };
 		B567010320C4EBEA00A44C2E /* FFNewGameViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B567010220C4EBEA00A44C2E /* FFNewGameViewModel.m */; };
 		B567010620C509FF00A44C2E /* FFGameIconTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B567010520C509FF00A44C2E /* FFGameIconTableCell.m */; };
@@ -740,6 +742,10 @@
 		B544582020D20BE4000B63E4 /* FFBusinessSellProductController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBusinessSellProductController.m; sourceTree = "<group>"; };
 		B544582220D20D3D000B63E4 /* UIViewController+FFViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+FFViewController.h"; sourceTree = "<group>"; };
 		B544582320D20D3D000B63E4 /* UIViewController+FFViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+FFViewController.m"; sourceTree = "<group>"; };
+		B546C555212D3AFC007619A5 /* FFDriveInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFDriveInfoCell.h; sourceTree = "<group>"; };
+		B546C556212D3AFC007619A5 /* FFDriveInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFDriveInfoCell.m; sourceTree = "<group>"; };
+		B546C559212D4CD9007619A5 /* FFPhotoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFPhotoViewController.h; sourceTree = "<group>"; };
+		B546C55A212D4CD9007619A5 /* FFPhotoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFPhotoViewController.m; sourceTree = "<group>"; };
 		B56700FC20C4EB1400A44C2E /* FFNewGameHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFNewGameHeaderView.h; sourceTree = "<group>"; };
 		B56700FD20C4EB1400A44C2E /* FFNewGameHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFNewGameHeaderView.m; sourceTree = "<group>"; };
 		B567010120C4EBEA00A44C2E /* FFNewGameViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFNewGameViewModel.h; sourceTree = "<group>"; };
@@ -1836,6 +1842,8 @@
 				B52382E320AE9EF40087733A /* FFDetailMineInfoTableViewController.m */,
 				B52382E420AE9EF40087733A /* FFDriveController.h */,
 				B52382E520AE9EF40087733A /* FFDriveController.m */,
+				B546C559212D4CD9007619A5 /* FFPhotoViewController.h */,
+				B546C55A212D4CD9007619A5 /* FFPhotoViewController.m */,
 				B52382E620AE9EF40087733A /* MineCenterController */,
 			);
 			path = Controller;
@@ -1909,6 +1917,7 @@
 		B52382FC20AE9EF40087733A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B546C558212D3B19007619A5 /* NewView */,
 				B52382FD20AE9EF40087733A /* DriveInfoCell.h */,
 				B52382FE20AE9EF40087733A /* DriveInfoCell.m */,
 				B52382FF20AE9EF40087733A /* DriveInfoCell.xib */,
@@ -2139,6 +2148,15 @@
 				B580A4EB20D26EB700680194 /* FFBusinessProductDetailViewController.m */,
 			);
 			path = BusinessProductClass;
+			sourceTree = "<group>";
+		};
+		B546C558212D3B19007619A5 /* NewView */ = {
+			isa = PBXGroup;
+			children = (
+				B546C555212D3AFC007619A5 /* FFDriveInfoCell.h */,
+				B546C556212D3AFC007619A5 /* FFDriveInfoCell.m */,
+			);
+			path = NewView;
 			sourceTree = "<group>";
 		};
 		B56700FB20C4EA0E00A44C2E /* View */ = {
@@ -3336,11 +3354,13 @@
 				B50F47422126C9F30062B462 /* FFGameDetailGuideCell.m in Sources */,
 				B52383B020AEAE170087733A /* FFBTOpenServerViewController.m in Sources */,
 				B51BD03220B50976005B9DE1 /* FFInviteListCell.m in Sources */,
+				B546C557212D3AFC007619A5 /* FFDriveInfoCell.m in Sources */,
 				B544581520D10BEC000B63E4 /* FFBusinessSDKCell.m in Sources */,
 				B54457D920CFC493000B63E4 /* FFBusinessSelectAccountViewController.m in Sources */,
 				B523833A20AE9EF40087733A /* FFPostStatusImageCell.m in Sources */,
 				B529173320DA25DF00A56F41 /* FFBusinessWarehouseController.m in Sources */,
 				B54457DF20CFC943000B63E4 /* UINavigationBar+FFNavigationBar.m in Sources */,
+				B546C55B212D4CD9007619A5 /* FFPhotoViewController.m in Sources */,
 				B523832320AE9EF40087733A /* FFDriveAttentionNumbersViewController.m in Sources */,
 				B580A4F820D3939400680194 /* FFCommodityHeaderView.m in Sources */,
 				B594A5B220B8260800F9F869 /* FFSearchModel.m in Sources */,

@@ -25,7 +25,6 @@
         return;
     }
 
-//    syLog(@"set dict == %@",dict);
     NSDictionary *dynamics = dict[@"dynamics"];
     if (dynamics != nil) {
         [self setPropertyWithDynamics:dynamics];
@@ -147,9 +146,9 @@
     if ([imageUrlStringArray isKindOfClass:[NSArray class]]) {
         _imageUrlStringArray = imageUrlStringArray;
         NSMutableArray *array = [NSMutableArray arrayWithCapacity:imageUrlStringArray.count];
-        [imageUrlStringArray enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        for (NSString *obj in imageUrlStringArray) {
             [array addObject:[NSURL URLWithString:obj]];
-        }];
+        }
         self.imageUrlArray = array;
     } else {
         _imageUrlStringArray = nil;
@@ -195,7 +194,7 @@
 
 - (void)setAttention:(NSString *)attention {
     _attention = attention;
-    syLog(@"attention === %@",attention);
+//    syLog(@"attention === %@",attention);
 }
 
 

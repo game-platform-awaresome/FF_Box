@@ -77,7 +77,7 @@
     syLog(@"关注 %@",self.model.present_user_uid);
     START_NET_WORK;
     [FFDriveModel userAttentionWith:self.model.present_user_uid Type:(self.model.attention.integerValue == 0) ? attention : cancel  Complete:^(NSDictionary *content, BOOL success) {
-        syLog(@"attention === %@",content);
+//        syLog(@"attention === %@",content);
         STOP_NET_WORK;
         if (success) {
             if (self.model.attention.integerValue == 0) {
