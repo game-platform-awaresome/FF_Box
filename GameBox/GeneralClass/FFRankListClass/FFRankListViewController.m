@@ -152,7 +152,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self respondsToGame:self.showArray[indexPath.row]];
+    if (self.showArray.count < 3) {
+        [self respondsToGame:self.showArray[indexPath.row]];
+    } else {
+        [self respondsToGame:self.showArray[indexPath.row + 3]];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

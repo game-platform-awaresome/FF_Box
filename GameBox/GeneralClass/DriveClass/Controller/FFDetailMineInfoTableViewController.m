@@ -388,7 +388,7 @@ const NSUInteger cellTag = 10086;
         if (success) {
             [self refreshData];
         } else {
-
+            [UIAlertController showAlertMessage:content[@"msg"] dismissTime:0.7 dismissBlock:nil];
         }
     }];
 }

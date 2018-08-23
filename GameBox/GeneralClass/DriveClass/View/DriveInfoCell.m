@@ -419,16 +419,21 @@
 
 - (void)clickImage:(UITapGestureRecognizer *)sender {
     syLog(@"点击图片");
-
     if (self.imageUrlArray.count == 1) {
-        [FFPhotoViewController showPhotoWith:self.imageUrlArray.firstObject];
-        syLog(@"加载 GIF");
+        NSString *imageUrl = self.imageUrlArray.firstObject;
+        if ([imageUrl hasSuffix:@".gif"]) {
+            syLog(@"加载 GIF");
+            [FFPhotoViewController showPhotoWith:self.imageUrlArray.firstObject];
+        } else {
+            [[self getPas] previewPhotos:_images index:sender.view.tag - 10086 hideToolBar:YES complete:^(NSArray * _Nonnull photos) {
+
+            }];
+        }
     } else {
         [[self getPas] previewPhotos:_images index:sender.view.tag - 10086 hideToolBar:YES complete:^(NSArray * _Nonnull photos) {
 
         }];
     }
-
 }
 
 - (void)setDynamicsID:(NSString *)dynamicsID {

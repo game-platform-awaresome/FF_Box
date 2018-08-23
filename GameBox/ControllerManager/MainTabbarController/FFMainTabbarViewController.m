@@ -19,6 +19,8 @@
 #import "FFMineViewController.h"
 #import "FFOpenServerViewController.h"
 
+
+
 @interface FFMainTabbarViewController () <FFCustomizeTabbarDelegate>
 
 @property (nonatomic, strong) NSArray<UINavigationController *> *childVCs;
@@ -34,9 +36,13 @@
     if (self) {
         [self initializeUserInterface];
         [self initializeDataSource];
+
+//        [self onDlopenLoadAtPathAction1];
     }
     return self;
 }
+
+
 
 - (void)initializeUserInterface {
     Class TabbarClass = NSClassFromString(@"FFCustomizeTabBar");

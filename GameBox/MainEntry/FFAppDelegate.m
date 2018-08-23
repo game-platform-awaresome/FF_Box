@@ -39,6 +39,9 @@
 #import "H5Handler.h"
 
 
+#import "OpenUDID.h"
+
+
 @interface FFAppDelegate () <UNUserNotificationCenterDelegate>
 
 
@@ -51,6 +54,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     syLog(@"\n----------------------------------\nchannel === %@\n----------------------------------\n",Channel);
     syLog(@"\n----------------------------------\nbundle ==== %@\n----------------------------------\n",[[NSBundle mainBundle] bundleIdentifier]);
+
+
+//    NSLog(@"\n----------------------------------\nudid ==== %@\n----------------------------------\n",[OpenUDID value]);
+
+
     //检查渠道号
     [FFDeviceInfo cheackChannel];
     self.window = [FFDefaultWindow window];
