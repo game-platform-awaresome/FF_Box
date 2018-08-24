@@ -27,6 +27,8 @@
 @property (nonatomic, strong) UILabel   *gameFeaturesLabel2;
 /** game description label */
 @property (nonatomic, strong) UILabel   *gameDescriptionLabel;
+/** game first label */
+@property (nonatomic, strong) UILabel   *gameFirstLabel;
 
 
 /** bottom line */
@@ -128,6 +130,23 @@
     }];
     self.gameTypeLabel.textColor = [FFColorManager textColorMiddle];
 
+    //game first label
+    self.gameFirstLabel = [UILabel hyb_labelWithText:@"今日首发" font:14 superView:self.contentView constraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.gameTypeLabel.mas_right).offset(4);
+        make.centerY.mas_equalTo(self.gameTypeLabel.mas_centerY);
+        make.size.mas_equalTo(CGSizeMake(66, 18));
+//        make.right.mas_lessThanOrEqualTo(self.rightButton.mas_left).offset(-10);
+    }];
+//    UIColor *color = kRedColor;
+    UIColor *color = RGBColor(210, 0, 255);
+    self.gameFirstLabel.textColor = color;
+    self.gameFirstLabel.layer.cornerRadius = 4;
+    self.gameFirstLabel.layer.masksToBounds = YES;
+    self.gameFirstLabel.layer.borderWidth = 1;
+    self.gameFirstLabel.layer.borderColor = color.CGColor;
+    self.gameFirstLabel.textAlignment = NSTextAlignmentCenter;
+    self.gameFirstLabel.hidden = YES;
+
     //game features label
     self.gameFeaturesLabel0 = [UILabel hyb_labelWithFont:12 superView:self.contentView constraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.gameLogoImageView.mas_right).offset(10);
@@ -214,6 +233,9 @@
     //set game size label
     self.gameSizeLabel.text = [NSString stringWithFormat:@"%@M",dict[@"size"] ?: @"0"];
 
+    //set game first
+    self.gameFirstLabel.hidden = ![NSString stringWithFormat:@"%@",dict[@"first"] ?: @"0"].boolValue;
+
     //set game type label
     self.gameTypeLabel.text = [NSString stringWithFormat:@"%@",dict[@"types"] ?: @""];
 
@@ -247,6 +269,8 @@
     } else {
         self.gameDescriptionLabel.text = @"精品手游";
     }
+
+
 }
 
 - (void)setRigthButtonImage:(id)image {

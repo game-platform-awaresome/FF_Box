@@ -148,6 +148,12 @@ const NSUInteger cellTag = 10086;
         [hud hideAnimated:YES];
         if (success) {
             [self setInfoWith:content[@"data"]];
+            //设置用户模型
+//            [[FFUserModel currentUser] setAllPropertyWithDict:content[@"data"]];
+            [FFUserModel currentUser].icon_url = CONTENT_DATA[@"icon_url"];
+            [FFUserModel currentUser].nick_name = CONTENT_DATA[@"nick_name"];
+            [FFUserModel currentUser].is_vip = CONTENT_DATA[@"vip"];
+            [FFUserModel currentUser].nick_name = CONTENT_DATA[@"nick_name"];
         } else {
             [UIAlertController showAlertMessage:content[@"msg"] dismissTime:0.7 dismissBlock:nil];
         }
@@ -442,12 +448,15 @@ const NSUInteger cellTag = 10086;
         /** 上传图片 */
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow.rootViewController.view animated:YES];
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+//        [FFUserModel userup]
+
         [FFUserModel userUploadPortraitWithImage:image Completion:^(NSDictionary *content, BOOL success) {
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
             if (success) {
-                syLog(@"上传头像成功");
+                syLog(@"上传头像成功 === %@",content);
                 [hud hideAnimated:YES];
                 self.iconImage.image = image;
+                [self refreshData];
             } else {
                 [UIAlertController showAlertMessage:content[@"msg"] dismissTime:0.7 dismissBlock:nil];
             }

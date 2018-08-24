@@ -7,6 +7,7 @@
 //
 
 #import "FFBetaGameViewController.h"
+#import "FFCustomizeCell.h"
 
 #define CELL_IDE @"FFCustomizeCell"
 
@@ -70,6 +71,13 @@
     return 20;
 }
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    FFCustomizeCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDE forIndexPath:indexPath];
+    cell.dict = self.showArray[indexPath.section];
+//    cell.selectionStyle = UITableViewCellSelectionStyleNone
+    return cell;
+}
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 20)];
     view.backgroundColor = [FFColorManager navigation_bar_white_color];
@@ -108,7 +116,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
-    NSDictionary *dict = self.showArray[indexPath.row];
+    NSDictionary *dict = self.showArray[indexPath.section];
+
     Class FFGameViewController = NSClassFromString(@"FFGameViewController");
     SEL selector = NSSelectorFromString(@"sharedController");
     if ([FFGameViewController respondsToSelector:selector]) {
@@ -116,8 +125,7 @@
         UIViewController *(*func)(void) = (void *)imp;
         UIViewController *vc = func();
         if (vc) {
-            NSString *gid = (dict[@"id"]) ? dict[@"id"] : dict[@"gid"];
-
+            NSString *gid = (dict[@"id"]) ?: dict[@"gid"];
 
             NSString *timeString = [NSString stringWithFormat:@"%@",self.showArray[indexPath.section][@"newgame_time"]];
             if ([timeString isEqualToString:@"0"] || timeString == nil || timeString.length < 1) {

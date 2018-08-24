@@ -220,6 +220,7 @@
             make.left.mas_equalTo(self.bottomView).offset(10);
             make.right.mas_equalTo(self.bottomView).offset(-10);
         }];
+        titlelabel.font = [UIFont boldSystemFontOfSize:16];
         UILabel *contentLabel = [UILabel hyb_labelWithText:self.descriptionContentArray[i] font:12 lines:0 superView:self.bottomView constraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(titlelabel.mas_bottom).offset(4);
             make.left.mas_equalTo(self.bottomView).offset(10);
@@ -377,10 +378,10 @@
 #pragma mark - getter
 - (NSArray *)descriptionTitleArray {
     if (!_descriptionTitleArray) {
-        _descriptionTitleArray = @[@"1.每日签到",
-                                   @"2.签到规则",
-                                   @"3.累计签到奖励",
-                                   @"4.签到金币未到账"];
+        _descriptionTitleArray = @[@"每日签到",
+                                   @"签到规则",
+                                   @"累计签到奖励",
+                                   @"签到金币未到账"];
     }
     return _descriptionTitleArray;
 }

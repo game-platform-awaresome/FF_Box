@@ -77,6 +77,7 @@
                 [self addMaskView:[FFBoxHandler isAddmaskView]];
 //                [self addMaskView:YES];
                 //加载引导页
+//                if (/* DISABLES CODE */ (YES)) {
                 if ([FFBoxHandler isFirstLogin]) {
                     [self.window addSubview:[FFLaunchScreen new]];
                 } else {

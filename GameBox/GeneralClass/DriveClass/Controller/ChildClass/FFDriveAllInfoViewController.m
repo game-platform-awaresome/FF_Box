@@ -369,9 +369,13 @@ static BOOL respondsSuccess;
     for (DriveInfoCell *cell in cells) {
         CGRect frame = [cell convertRect:cell.bounds toView:self.view];
         if (frame.origin.y < -100 || frame.origin.y > 300) {
-            [cell stopGif];
+            if ([cell respondsToSelector:@selector(stopGif)]) {
+                [cell stopGif];
+            }
         } else {
-            [cell starGif];
+            if ([cell respondsToSelector:@selector(starGif)]) {
+                [cell starGif];
+            }
         }
     }
 }

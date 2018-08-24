@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "k_icon_shangtuidibang.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "k_icon_shangtuidibang@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "i_icon_shangtuixiufu@3x.png",
+      "filename" : "k_icon_shangtuidibang@3x.png",
       "scale" : "3x"
     }
   ],

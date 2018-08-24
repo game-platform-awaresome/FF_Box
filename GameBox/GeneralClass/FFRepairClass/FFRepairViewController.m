@@ -65,24 +65,25 @@
     }];
 
     self.logImageView = [UIImageView hyb_imageViewWithImage:@"Game_repaire_logo" superView:self.backView constraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.backView).offset(30);
-        make.centerX.mas_equalTo(0);
+//        make.top.mas_equalTo(self.backView).offset(30);
+//        make.centerX.mas_equalTo(0);
+        make.edges.mas_equalTo(self.backView);
     }];
 
-    self.titleLabel = [UILabel hyb_labelWithText:@"防闪退修复工具" font:18 superView:self.backView constraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.logImageView.mas_bottom).offset(10);
-        make.left.mas_equalTo(self.backView).offset(8);
-        make.right.mas_equalTo(self.backView).offset(-8);
-        make.height.mas_equalTo(30);
-    }];
-    self.titleLabel.font = [UIFont boldSystemFontOfSize:18];
-    self.titleLabel.textAlignment = NSTextAlignmentCenter;
+//    self.titleLabel = [UILabel hyb_labelWithText:@"防闪退修复工具" font:18 superView:self.backView constraints:^(MASConstraintMaker *make) {
+//        make.top.mas_equalTo(self.logImageView.mas_bottom).offset(10);
+//        make.left.mas_equalTo(self.backView).offset(8);
+//        make.right.mas_equalTo(self.backView).offset(-8);
+//        make.height.mas_equalTo(30);
+//    }];
+//    self.titleLabel.font = [UIFont boldSystemFontOfSize:18];
+//    self.titleLabel.textAlignment = NSTextAlignmentCenter;
 
     self.installButton = [UIButton hyb_buttonWithTitle:@"立即安装" superView:self.backView constraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(self.backView).offset(-30);
         make.left.mas_equalTo(self.backView).offset(40);
         make.right.mas_equalTo(self.backView).offset(-40);
-        make.height.mas_equalTo(30);
+        make.height.mas_equalTo(44);
     } touchUp:^(UIButton *sender) {
         [self respondsToLeftButton];
     }];

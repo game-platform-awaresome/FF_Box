@@ -375,13 +375,13 @@ static FFUserModel *model;
 /** 上传头像 */
 + (BOOL)userUploadPortraitWithImage:(id)image Completion:(RequestCallBackBlock)completion {
     IS_LOGIN;
-    [FFNetWorkManager uploadImageWithURL:Map.USER_UPLOAD Params:@{@"id":FF_UID} FileData:@[UIImagePNGRepresentation(image)] FileName:@"userAvatar" Name:@"img" MimeType:@"image/png" Progress:nil Success:^(NSDictionary * _Nonnull content) {
+    [FFNetWorkManager uploadImageWithURL:Map.USER_UPLOAD Params:@{@"id":FF_UID} FileData:@[UIImagePNGRepresentation(image)] FileName:@"userAvatar.png" Name:@"img" MimeType:@"" Progress:nil Success:^(NSDictionary * _Nonnull content) {
         if (completion) {
-            completion(@{@"msg" : @"success"}, YES);
+            completion(content, YES);
         }
     } Failure:^(NSError * _Nonnull error) {
         if (completion) {
-            completion(@{@"msdg" : error.localizedDescription}, NO);
+            completion(@{@"msg" : error.localizedDescription}, NO);
         }
     }];
     return YES;

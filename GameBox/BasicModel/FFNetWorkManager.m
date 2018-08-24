@@ -107,6 +107,7 @@
     NSURLSessionDataTask *task = [manager POST:url parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
 
         NSArray *allkeys = [fileDict allKeys];
+
         for (NSString *key in allkeys) {
 
             NSArray<NSData *> *fileDataArray = [fileDict objectForKey:key];

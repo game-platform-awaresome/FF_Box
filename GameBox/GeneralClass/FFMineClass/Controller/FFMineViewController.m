@@ -43,10 +43,14 @@
     self.navigationController.navigationBar.hidden = NO;
 
 //    [self presentViewController:[FFRepairViewController showRepairView] animated:YES completion:nil];
+
     if (!_isShowRepaire) {
         [FFRepairViewController showRepairView];
         _isShowRepaire = YES;
     }
+
+    [self respondsToLoginSuccess:nil];
+    
 }
 
 - (void)viewDidDisappear:(BOOL)animated {

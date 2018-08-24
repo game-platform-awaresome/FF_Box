@@ -79,6 +79,8 @@
     [super viewWillAppear:animated];
     self.navBarBGAlpha = @"0.0";
     [self.navigationController.navigationBar setTintColor:[FFColorManager navigation_bar_white_color]];
+
+    [self refreshNewData];
 }
 
 - (void)viewDidLoad {

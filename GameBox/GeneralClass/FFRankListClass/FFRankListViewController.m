@@ -145,7 +145,7 @@
         cell.idx = indexPath.row;
     } else {
         cell.dict = self.showArray[indexPath.row + 3];
-        cell.idx = indexPath.row + 3;
+        cell.idx = indexPath.row + 4;
     }
     return cell;
 }

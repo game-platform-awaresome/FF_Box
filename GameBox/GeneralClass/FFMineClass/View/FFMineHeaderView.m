@@ -77,6 +77,7 @@
 
 - (void)setLoginView {
     [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:CURRENT_USER.icon_url] placeholderImage:nil];
+
     self.avatarImageView.center = CGPointMake(kSCREEN_WIDTH / 2, 82);
 
     self.vipImageView.center = CGPointMake(CGRectGetMaxX(self.avatarImageView.frame) - 10, CGRectGetMaxY(self.avatarImageView.frame) - 10);
