@@ -10,6 +10,7 @@
 #import "FFCurrentGameModel.h"
 #import "FFpackageCell.h"
 #import <FFTools/FFTools.h>
+#import "FFGiftDetailController.h"
 
 #define CELL_IDE @"FFpackageCell"
 
@@ -60,14 +61,9 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    NSDictionary *dict = self.showArray[indexPath.row];
-
-//    self.detailViewController.pid = [NSString stringWithFormat:@"%@",dict[@"id"]];
-//
-//    HIDE_TABBAR;
-//    HIDE_PARNENT_TABBAR;
-//    [self.navigationController pushViewController:self.detailViewController animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    self.parentViewController.parentViewController.hidesBottomBarWhenPushed = YES;
+    [self pushViewController:[FFGiftDetailController detail:self.showArray[indexPath.row]]];
 
 }
 

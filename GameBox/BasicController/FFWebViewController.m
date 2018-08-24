@@ -51,7 +51,6 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
 
-    //    webURL = @"http://foo.com/hello.mobileprovision";
     url = [NSURL URLWithString:webURL];
     request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];

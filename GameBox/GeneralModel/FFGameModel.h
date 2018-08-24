@@ -222,6 +222,12 @@ typedef NS_ENUM(NSUInteger, FFGuideType) {
 + (void)getUserGiftPackageWithPage:(NSString * _Nonnull)page
                         Completion:(RequestCallBackBlock _Nullable)completion;
 
+/**
+ * 礼包详情
+ */
++ (void)GiftDetailInfoWith:(NSString * _Nonnull)packageID
+                Completion:(RequestCallBackBlock _Nullable)completion;
+
 #pragma mark - get game comment list
 /**
  * 游戏评论列表

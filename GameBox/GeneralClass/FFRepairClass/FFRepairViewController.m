@@ -91,15 +91,15 @@
     self.installButton.layer.cornerRadius = 15;
     self.installButton.layer.masksToBounds = YES;
 
-    self.contentLabel = [UILabel hyb_labelWithText:ContentText font:14 superView:self.backView constraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.titleLabel).offset(8);
-        make.left.mas_equalTo(self.backView).offset(8);
-        make.right.mas_equalTo(self.backView).offset(-8);
-        make.bottom.mas_equalTo(self.installButton.mas_top).offset(-9);
-    }];
-    self.contentLabel.numberOfLines = 0;
-    self.contentLabel.textColor = [FFColorManager textColorLight];
-    self.contentLabel.textAlignment = NSTextAlignmentJustified;
+//    self.contentLabel = [UILabel hyb_labelWithText:ContentText font:14 superView:self.backView constraints:^(MASConstraintMaker *make) {
+//        make.top.mas_equalTo(self.titleLabel).offset(8);
+//        make.left.mas_equalTo(self.backView).offset(8);
+//        make.right.mas_equalTo(self.backView).offset(-8);
+//        make.bottom.mas_equalTo(self.installButton.mas_top).offset(-9);
+//    }];
+//    self.contentLabel.numberOfLines = 0;
+//    self.contentLabel.textColor = [FFColorManager textColorLight];
+//    self.contentLabel.textAlignment = NSTextAlignmentJustified;
 }
 
 #pragma mark - method

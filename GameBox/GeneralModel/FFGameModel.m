@@ -349,6 +349,24 @@
     }];
 }
 
+/**
+ * 礼包详情
+ */
++ (void)GiftDetailInfoWith:(NSString *)packageID
+                Completion:(RequestCallBackBlock)completion {
+    Mutable_dict;
+    [dict setObject:packageID forKey:@"pid"];
+    [dict setObject:CURRENT_USER.username ?: @"" forKey:@"username"];
+    [dict setObject:Channel forKey:@"channel"];
+    [dict setObject:DeviceID forKey:@"machine_code"];
+    [dict setObject:@"2" forKey:@"terminal_type"];
+    [dict setObject:@"2" forKey:@"system"];
+    [dict setObject:BOX_SIGN(dict, (@[@"pid",@"username",@"channel",@"machine_code",@"terminal_type",@"system"])) forKey:@"sign"];
+    [FFNetWorkManager postRequestWithURL:Map.PACKAGE_INFO Params:dict Completion:^(NSDictionary *content, BOOL success) {
+        NEW_REQUEST_COMPLETION;
+    }];
+}
+
 #pragma mark - get game comment list
 /**
  * 游戏评论列表

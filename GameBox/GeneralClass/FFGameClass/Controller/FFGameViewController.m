@@ -21,6 +21,21 @@
 #import "FFSharedController.h"
 #import "FFGameBusinessViewController.h"
 
+@interface FFGameDwonloadView : UIView
+
+
+
++ (FFGameDwonloadView *)show;
+
+- (FFGameDwonloadView *)hide;
+
+
+
+@end
+
+
+
+
 @interface FFGameViewController () <FFGameDetailFooterViewDelegate>
 
 
@@ -428,28 +443,12 @@ static FFGameViewController *controller = nil;
             pushViewController(@"FFLoginViewController");
         }
     } else {
-        syLog(@"下载游戏");
-        if ([Channel isEqualToString:@"185"]) {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:CURRENT_GAME.game_download_url]];
-        } else {
-            [self startWaiting];
-            [FFGameModel getGameDownloadUrlWithTag:CURRENT_GAME.game_tag Completion:^(NSDictionary * _Nonnull content, BOOL success) {
-                [self stopWaiting];
-                id contentData = content[@"data"];
-                if (contentData == nil || [contentData isKindOfClass:[NSNull class]] || ((NSArray *)contentData).count == 0) {
-                    BOX_MESSAGE(@"暂无下载链接,请联系客服");
-                } else {
-                    NSString *url = content[@"data"][@"download_url"];
-                    syLog(@"downLoadUrl == %@",url);
-                    ([url isKindOfClass:[NSString class]]) ? ([[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]]) : (BOX_MESSAGE(@"链接出错,请稍后尝试"));
-                }
-            }];
-        }
-
-        BoxcustomEvents(@"down_laod_game", @{@"game_name":CURRENT_GAME.game_name,@"game_id":CURRENT_GAME.game_id});
+        [FFGameDwonloadView show];
     }
-
 }
+
+
+
 
 
 #pragma mark - setter
@@ -557,10 +556,169 @@ static FFGameViewController *controller = nil;
 
 
 
+@end
+
+
+
+@implementation FFGameDwonloadView
+
+
++ (FFGameDwonloadView *)show {
+    FFGameDwonloadView *view = [[FFGameDwonloadView alloc] init];
+    [[UIApplication sharedApplication].keyWindow addSubview:view];
+    return view;
+}
+
+- (FFGameDwonloadView *)hide {
+    [self removeFromSuperview];
+    return self;
+}
+
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        [self initUserInterface];
+    }
+    return self;
+}
+
+
+- (void)initUserInterface {
+    self.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
+    self.backgroundColor = [UIColor colorWithWhite:0.2 alpha:0.2];
+
+
+    //backview
+    UIView *backView = [UIView hyb_viewWithSuperView:self constraints:^(MASConstraintMaker *make) {
+        make.center.mas_equalTo(CGPointZero);
+        make.size.mas_equalTo(CGSizeMake(kScreenWidth * 0.8, kScreenWidth * 0.8));
+    }];
+    backView.backgroundColor = kWhiteColor;
+    backView.layer.cornerRadius = 8;
+    backView.layer.masksToBounds = YES;
+
+    //title
+    UILabel *titleLable = [UILabel hyb_labelWithText:@"提示" font:18 superView:backView constraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(backView).offset(0);
+        make.left.mas_equalTo(backView).offset(0);
+        make.right.mas_equalTo(backView).offset(0);
+        make.height.mas_equalTo(50);
+    }];
+    titleLable.textAlignment = NSTextAlignmentCenter;
+    titleLable.font = [UIFont boldSystemFontOfSize:18];
+    titleLable.backgroundColor = [FFColorManager blue_dark];
+    titleLable.textColor = kWhiteColor;
+
+    //关闭按钮
+    [UIButton hyb_buttonWithImage:@"Game_repaire_close" superView:backView constraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(backView).offset(2);
+        make.right.mas_equalTo(backView).offset(0);
+        make.size.mas_equalTo(CGSizeMake(44, 44));
+    } touchUp:^(UIButton *sender) {
+        [self respondsToCloseButton];
+    }];
+
+    //line
+    [UIView hyb_addBottomLineToView:titleLable height:1 color:[FFColorManager view_separa_line_color]];
+
+
+    //安装按钮
+    UIButton *downLoadButton = [UIButton hyb_buttonWithTitle:@"下载" superView:backView constraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(backView).offset(-10);
+        make.left.mas_equalTo(backView).offset(20);
+        make.right.mas_equalTo(backView).offset(-20);
+        make.height.mas_equalTo(44);
+    } touchUp:^(UIButton *sender) {
+        [self downloadGame];
+    }];
+    downLoadButton.layer.cornerRadius = 8;
+    downLoadButton.layer.masksToBounds = YES;
+    downLoadButton.backgroundColor = [FFColorManager blue_dark];
+
+    //信任设备  http://foo.com/hello.mobileprovision
+    UIButton *faithButton = [UIButton hyb_buttonWithTitle:@"信任设备" superView:backView constraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(downLoadButton.mas_top).offset(-10);
+        make.left.mas_equalTo(backView).offset(20);
+        make.right.mas_equalTo(backView).offset(-20);
+        make.height.mas_equalTo(44);
+    } touchUp:^(UIButton *sender) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://p.185sy.com/embedded.mobileprovision"]];
+    }];
+    faithButton.layer.cornerRadius = 8;
+    faithButton.layer.borderColor = [FFColorManager blue_dark].CGColor;
+    faithButton.layer.borderWidth = 1;
+    [faithButton setTitleColor:[FFColorManager blue_dark] forState:(UIControlStateNormal)];
+
+    //提示标签
+    UILabel *label1 = [UILabel hyb_labelWithText:@"      正在为您下载,点击[安装]后,可按home键在桌面查看进度." font:15 superView:backView constraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(titleLable.mas_bottom).offset(10);
+        make.left.mas_equalTo(backView).offset(20);
+        make.right.mas_equalTo(backView).offset(-20);
+    }];
+    label1.textColor = [FFColorManager textColorMiddle];
+    label1.numberOfLines = 0;
+
+    UILabel *label2 = [UILabel hyb_labelWithText:@"      由于iOS9以后系统限制,安装完毕后,点击[信任设备],即可正常游戏" font:15 superView:backView constraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(label1.mas_bottom).offset(10);
+        make.left.mas_equalTo(backView).offset(20);
+        make.right.mas_equalTo(backView).offset(-20);
+    }];
+    label2.textColor = [FFColorManager textColorMiddle];
+    label2.numberOfLines = 0;
+}
+
+
+/** 关闭页面 */
+- (void)respondsToCloseButton  {
+    [self hide];
+}
+
+/** 下载游戏 */
+- (void)downloadGame {
+    syLog(@"下载游戏");
+    if ([Channel isEqualToString:@"185"]) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:CURRENT_GAME.game_download_url]];
+    } else {
+        [FFGameModel getGameDownloadUrlWithTag:CURRENT_GAME.game_tag Completion:^(NSDictionary * _Nonnull content, BOOL success) {
+            id contentData = content[@"data"];
+            if (contentData == nil || [contentData isKindOfClass:[NSNull class]] || ((NSArray *)contentData).count == 0) {
+                BOX_MESSAGE(@"暂无下载链接,请联系客服");
+            } else {
+                NSString *url = content[@"data"][@"download_url"];
+                syLog(@"downLoadUrl == %@",url);
+                ([url isKindOfClass:[NSString class]]) ? ([[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]]) : (BOX_MESSAGE(@"链接出错,请稍后尝试"));
+            }
+        }];
+    }
+    BoxcustomEvents(@"down_laod_game", @{@"game_name":CURRENT_GAME.game_name,@"game_id":CURRENT_GAME.game_id});
+}
+
 
 
 
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -209,6 +209,7 @@
 		B546C592212D6E2D007619A5 /* FFTestViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = B546C590212D6E2D007619A5 /* FFTestViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B546C593212D6E2D007619A5 /* FFTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B546C591212D6E2D007619A5 /* FFTestViewController.m */; };
 		B546C5E0212E66E4007619A5 /* OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = B546C5DF212E66E3007619A5 /* OpenUDID.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		B546C633212FE9BA007619A5 /* FFGiftDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = B546C632212FE9B4007619A5 /* FFGiftDetailController.m */; };
 		B56700FE20C4EB1400A44C2E /* FFNewGameHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B56700FD20C4EB1400A44C2E /* FFNewGameHeaderView.m */; };
 		B567010320C4EBEA00A44C2E /* FFNewGameViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B567010220C4EBEA00A44C2E /* FFNewGameViewModel.m */; };
 		B567010620C509FF00A44C2E /* FFGameIconTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B567010520C509FF00A44C2E /* FFGameIconTableCell.m */; };
@@ -783,6 +784,8 @@
 		B546C591212D6E2D007619A5 /* FFTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFTestViewController.m; sourceTree = "<group>"; };
 		B546C5DE212E66E3007619A5 /* OpenUDID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenUDID.h; sourceTree = "<group>"; };
 		B546C5DF212E66E3007619A5 /* OpenUDID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenUDID.m; sourceTree = "<group>"; };
+		B546C631212FE9B4007619A5 /* FFGiftDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFGiftDetailController.h; sourceTree = "<group>"; };
+		B546C632212FE9B4007619A5 /* FFGiftDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFGiftDetailController.m; sourceTree = "<group>"; };
 		B56700FC20C4EB1400A44C2E /* FFNewGameHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFNewGameHeaderView.h; sourceTree = "<group>"; };
 		B56700FD20C4EB1400A44C2E /* FFNewGameHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFNewGameHeaderView.m; sourceTree = "<group>"; };
 		B567010120C4EBEA00A44C2E /* FFNewGameViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFNewGameViewModel.h; sourceTree = "<group>"; };
@@ -2215,6 +2218,15 @@
 			path = FFUpDate;
 			sourceTree = "<group>";
 		};
+		B546C62F212FE96C007619A5 /* FFGiftDetailClass */ = {
+			isa = PBXGroup;
+			children = (
+				B546C631212FE9B4007619A5 /* FFGiftDetailController.h */,
+				B546C632212FE9B4007619A5 /* FFGiftDetailController.m */,
+			);
+			path = FFGiftDetailClass;
+			sourceTree = "<group>";
+		};
 		B56700FB20C4EA0E00A44C2E /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -2933,6 +2945,7 @@
 		B5D505812086F17A000B7B50 /* GeneralClass */ = {
 			isa = PBXGroup;
 			children = (
+				B546C62F212FE96C007619A5 /* FFGiftDetailClass */,
 				B5D505822086F1A3000B7B50 /* FFHomeClass */,
 				B53600ED20CA835900DFE96A /* FFBusinessClass */,
 				B523839D20AEAA620087733A /* FFOpenServerClass */,
@@ -3527,6 +3540,7 @@
 				B523831C20AE9EF40087733A /* FFDriveMyNewsViewController.m in Sources */,
 				B5B61AC520CE79B500D507A6 /* FFBusinessHeaderView.m in Sources */,
 				B51BD0D520B55736005B9DE1 /* FFMyCollectionViewController.m in Sources */,
+				B546C633212FE9BA007619A5 /* FFGiftDetailController.m in Sources */,
 				B523832120AE9EF40087733A /* FFDetailMineInfoTableViewController.m in Sources */,
 				B5B129A620FCA48600C1EED5 /* H5Handler.m in Sources */,
 				B523832B20AE9EF40087733A /* FFDynamicModel.m in Sources */,
