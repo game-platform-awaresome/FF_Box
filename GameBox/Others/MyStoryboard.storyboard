@@ -1606,7 +1606,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="支付宝账号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v9J-Bv-wWJ">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="支付宝账号 :" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v9J-Bv-wWJ">
                                 <rect key="frame" x="16" y="111.5" width="343" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="fEH-lJ-fLN"/>
@@ -1619,7 +1619,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bnV-C6-dME">
-                                <rect key="frame" x="16" y="230" width="343" height="44"/>
+                                <rect key="frame" x="16" y="255.5" width="343" height="44"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="319-ZN-SeH"/>
@@ -1636,26 +1636,51 @@
                                     <action selector="respondsToSureButton:" destination="d67-la-xhd" eventType="touchUpInside" id="fQ2-hZ-9Jl"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入与支付绑定的姓名 :" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tec-rI-EXv">
+                                <rect key="frame" x="16" y="185.5" width="343" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="mPU-Wr-orr"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Llq-Oo-TuK" id="vxl-sw-U4A"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="此支付宝账号为您的收款账号,请填写正确的信息." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XMB-q2-0Xj">
+                                <rect key="frame" x="16" y="307" width="343" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="1" green="0.1971195167" blue="0.1467297853" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="v9J-Bv-wWJ" firstAttribute="centerY" secondItem="2qo-Nz-vkm" secondAttribute="centerY" multiplier="0.4" id="HJL-j6-ztD"/>
+                            <constraint firstItem="S49-X3-IWX" firstAttribute="trailing" secondItem="XMB-q2-0Xj" secondAttribute="trailing" constant="16" id="HrI-QP-dtM"/>
                             <constraint firstItem="bnV-C6-dME" firstAttribute="leading" secondItem="S49-X3-IWX" secondAttribute="leading" constant="16" id="TRF-fW-Dg1"/>
                             <constraint firstItem="S49-X3-IWX" firstAttribute="trailing" secondItem="bnV-C6-dME" secondAttribute="trailing" constant="16" id="bgL-2S-aSx"/>
-                            <constraint firstItem="bnV-C6-dME" firstAttribute="top" secondItem="v9J-Bv-wWJ" secondAttribute="bottom" constant="74.5" id="itC-43-RJi"/>
+                            <constraint firstItem="tec-rI-EXv" firstAttribute="width" secondItem="v9J-Bv-wWJ" secondAttribute="width" id="clz-rh-Rwb"/>
+                            <constraint firstItem="bnV-C6-dME" firstAttribute="top" secondItem="v9J-Bv-wWJ" secondAttribute="bottom" constant="100" id="itC-43-RJi"/>
+                            <constraint firstItem="tec-rI-EXv" firstAttribute="leading" secondItem="v9J-Bv-wWJ" secondAttribute="leading" id="kJh-9A-GHx"/>
+                            <constraint firstItem="tec-rI-EXv" firstAttribute="top" secondItem="v9J-Bv-wWJ" secondAttribute="bottom" constant="30" id="pZQ-5F-ZaY"/>
                             <constraint firstItem="v9J-Bv-wWJ" firstAttribute="leading" secondItem="S49-X3-IWX" secondAttribute="leading" constant="16" id="qu3-zw-nOw"/>
                             <constraint firstItem="S49-X3-IWX" firstAttribute="trailing" secondItem="v9J-Bv-wWJ" secondAttribute="trailing" constant="16" id="uN8-oI-Shb"/>
+                            <constraint firstItem="XMB-q2-0Xj" firstAttribute="leading" secondItem="S49-X3-IWX" secondAttribute="leading" constant="16" id="y1E-eV-2EM"/>
+                            <constraint firstItem="XMB-q2-0Xj" firstAttribute="top" secondItem="bnV-C6-dME" secondAttribute="bottom" constant="8" id="zR4-fi-eaI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="S49-X3-IWX"/>
                     </view>
                     <connections>
                         <outlet property="accountTF" destination="v9J-Bv-wWJ" id="vcQ-Mp-oTJ"/>
                         <outlet property="bindButton" destination="bnV-C6-dME" id="8v8-Hu-Ycn"/>
+                        <outlet property="nameTF" destination="tec-rI-EXv" id="nqw-Yr-nYd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VF9-j1-b2m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4183" y="833"/>
+            <point key="canvasLocation" x="4181.6000000000004" y="832.53373313343332"/>
         </scene>
         <!--Business Buy Prooduct Controller-->
         <scene sceneID="ZQm-f0-A9P">

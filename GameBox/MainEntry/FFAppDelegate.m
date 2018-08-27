@@ -17,6 +17,7 @@
 
 #import <UserNotifications/UserNotifications.h>
 #import <FFTools/FFTools.h>
+#import <TTTracker/TTTracker.h>
 
 #import "FFMapModel.h"
 #import "FFStatisticsModel.h"
@@ -99,6 +100,10 @@
     [oAuth isSessionValid];
     //注册通知
     [self resignNotifacation];
+
+    //
+
+
     return YES;
 }
 
@@ -186,8 +191,43 @@
 }
 
 
+//配置今日头条
+- (void)setToutiao {
+    //配置
+//    [[TTTracker sharedInstance] setConfigParamsBlock:^NSDictionary * _Nullable{
+//        NSMutableDictionary *params = [NSMutableDictionary dictionary];
+//        [params setValue:@"123455" forKey:@"user_unique_id"];
+//
+//        return [params copy];
+//    }];
+//
+//    [[TTTracker sharedInstance] setCustomHeaderBlock:^NSDictionary<NSString *,id> *{
+//        NSMutableDictionary *customParams = [NSMutableDictionary dictionary];
+//        [customParams setValue:@(1) forKey:@"user_is_login"];
+//
+//        return [customParams copy];
+//    }];
+//
+//    //DEBUG模式配置
+//    [[TTTracker sharedInstance] setIsInHouseVersion:YES];
+//    [[TTTracker sharedInstance] setDebugLogServerHost:@"10.2.201.7:10304"];
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    //可控制初始化
+    [[TTTracker sharedInstance] setSessionEnalbe:NO];
+    [TTTracker startWithAppID:@"10008" channel:@"local_test" appName:@"_test"];
 
 
+
+    // 可控制埋点
+    [TTTracker eventV3:@"toutiao" params:@{@"is_log_in":@(1)}];
+
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [TTTracker eventV3:@"tracker" params:@{@"user_id":@"123"}];
+    });
+
+}
 
 
 

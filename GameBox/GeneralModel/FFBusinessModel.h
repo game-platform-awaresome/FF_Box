@@ -115,6 +115,7 @@ FFBusinessUserModel * currentUser(void);
 + (void)editUserInfoWithQQ:(NSString *)qq
              AlipayAccount:(NSString *)alipayAccount
                       Icon:(id)icon
+                      Name:(NSString *)name
                 Completion:(RequestCallBackBlock)completion;
 
 /** 验证交易账号信息完整 */

@@ -174,7 +174,7 @@ FFBusinessUserModel * currentUser(void) {
 }
 
 /** 编辑账号资料 */
-+ (void)editUserInfoWithQQ:(NSString *)qq AlipayAccount:(NSString *)alipayAccount Icon:(id)icon Completion:(RequestCallBackBlock)completion {
++ (void)editUserInfoWithQQ:(NSString *)qq AlipayAccount:(NSString *)alipayAccount Icon:(id)icon Name:(NSString *)name Completion:(RequestCallBackBlock)completion {
     if (![self uid]) {
         completion ? completion(@{@"msg":@"尚未登录"}, false) : 0;
         return;
@@ -190,6 +190,9 @@ FFBusinessUserModel * currentUser(void) {
         [pamarasKey addObject:@"qq"];
         [dict setObject:@"" forKey:@"qq"];
     }
+
+    [dict setObject:name forKey:@"real_name"];
+
     if (alipayAccount) {
         [pamarasKey addObject:@"alipay_account"];
         [dict setObject:alipayAccount forKey:@"alipay_account"];
@@ -197,7 +200,9 @@ FFBusinessUserModel * currentUser(void) {
         [pamarasKey addObject:@"alipay_account"];
         [dict setObject:@"" forKey:@"alipay_account"];
     }
+
     SS_SIGN;
+
     if (icon) {
         [FFNetWorkManager uploadImageWithURL:Map.BSP_EDITUSER Params:dict FileData:@[UIImagePNGRepresentation(icon)] FileName:@"userAvatar" Name:@"icon_url" MimeType:@"image/png" Progress:nil Success:^(NSDictionary * _Nonnull content) {
             REQUEST_STATUS;

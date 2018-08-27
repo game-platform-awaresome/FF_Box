@@ -393,6 +393,7 @@
 		B5F1493420B80CB300044873 /* FFSearchShowControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F1493120B80CB300044873 /* FFSearchShowControllerViewController.m */; };
 		B5F1493720B80D8A00044873 /* FFSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F1493620B80D8A00044873 /* FFSearchController.m */; };
 		B5F1493920B8170A00044873 /* FFTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F1493820B8170A00044873 /* FFTools.framework */; };
+		B5FCB7B421339618007801D9 /* TTTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FCB7B321339618007801D9 /* TTTracker.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1131,6 +1132,7 @@
 		B5F1493520B80D8A00044873 /* FFSearchController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFSearchController.h; sourceTree = "<group>"; };
 		B5F1493620B80D8A00044873 /* FFSearchController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFSearchController.m; sourceTree = "<group>"; };
 		B5F1493820B8170A00044873 /* FFTools.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FFTools.framework; path = GameBox/FFTools.framework; sourceTree = "<group>"; };
+		B5FCB7B321339618007801D9 /* TTTracker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TTTracker.framework; path = GameBox/TTTracker.framework; sourceTree = "<group>"; };
 		C1C09ECF85CDCEAA38284810 /* libPods-GameBox.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GameBox.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9E7C73404CBBD7F21F68365 /* Pods-GameBox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameBox.release.xcconfig"; path = "Pods/Target Support Files/Pods-GameBox/Pods-GameBox.release.xcconfig"; sourceTree = "<group>"; };
 		EE677440EC57745993D7D0F0 /* Pods-GameBox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameBox.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GameBox/Pods-GameBox.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1148,6 +1150,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5FCB7B421339618007801D9 /* TTTracker.framework in Frameworks */,
 				B5B129C320FDF5F400C1EED5 /* SY_185SDK.framework in Frameworks */,
 				B5B129A320FCA42F00C1EED5 /* SY185H5SDK.framework in Frameworks */,
 				B529173E20DB449100A56F41 /* AlipaySDK.framework in Frameworks */,
@@ -1174,6 +1177,7 @@
 		76486CF296C9DFD1ABAED75C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B5FCB7B321339618007801D9 /* TTTracker.framework */,
 				B5B129C220FDF5F400C1EED5 /* SY_185SDK.framework */,
 				B5B129A220FCA42F00C1EED5 /* SY185H5SDK.framework */,
 				B529173D20DB449100A56F41 /* AlipaySDK.framework */,
