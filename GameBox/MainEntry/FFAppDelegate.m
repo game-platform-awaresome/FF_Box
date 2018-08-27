@@ -214,18 +214,18 @@
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    //可控制初始化
-    [[TTTracker sharedInstance] setSessionEnalbe:NO];
-    [TTTracker startWithAppID:@"10008" channel:@"local_test" appName:@"_test"];
-
-
-
-    // 可控制埋点
-    [TTTracker eventV3:@"toutiao" params:@{@"is_log_in":@(1)}];
-
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [TTTracker eventV3:@"tracker" params:@{@"user_id":@"123"}];
-    });
+//    //可控制初始化
+//    [[TTTracker sharedInstance] setSessionEnalbe:NO];
+//    [TTTracker startWithAppID:@"10008" channel:@"local_test" appName:@"_test"];
+//
+//
+//
+//    // 可控制埋点
+//    [TTTracker eventV3:@"toutiao" params:@{@"is_log_in":@(1)}];
+//
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        [TTTracker eventV3:@"tracker" params:@{@"user_id":@"123"}];
+//    });
 
 }
 
