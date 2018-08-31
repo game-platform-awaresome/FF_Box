@@ -27,6 +27,7 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) NSString *sectionFooterUrl;       //链接地址
 @property (nonatomic, strong) NSString *slideGid;
 @property (nonatomic, strong) NSString *slidePic;
+@property (nonatomic, strong) NSString *slideUrl;
 
 // ??使用 CGFloat error ????
 @property (nonatomic, strong) NSString *sectionFooterHeight;

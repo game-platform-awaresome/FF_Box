@@ -36,6 +36,7 @@
 
     self.slideGid = _gameSlide[@"gid"];
     self.slidePic = _gameSlide[@"pic"];
+    self.slideUrl = _gameSlide[@"url"];
 }
 
 - (void)setSlideGid:(NSString *)slideGid {
@@ -49,6 +50,14 @@
     } else {
         _slidePic = nil;
         _sectionFooterHeight = @"0";
+    }
+}
+
+- (void)setSlideUrl:(NSString *)slideUrl {
+    if ([slideUrl isKindOfClass:[NSString class]]) {
+        _slideUrl = [NSString stringWithFormat:@"%@",slideUrl];
+    } else {
+        _slideUrl = @"";
     }
 }
 

@@ -33,6 +33,9 @@ typedef enum : NSUInteger {
  */
 - (void)m185SDKLoginCallBackWithSuccess:(BOOL)success withInformation:(NSDictionary *_Nonnull)dict;
 
+/** 切换账号回调 */
+- (void)m185SDKSwitchAccountCallBackWithSuccess:(BOOL)success withInformation:(NSDictionary *_Nonnull)dict;
+
 /**
  *  登出的回调:
  *  这个回调是从 SDK 登出的回调
@@ -52,6 +55,10 @@ typedef enum : NSUInteger {
 @end
 
 @interface SY185SDK : NSObject
+
+/** 注册为默认SDK */
++ (void)resignDefaultSDK;
+
 
 /**
  *  SDK初始化:

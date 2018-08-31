@@ -133,6 +133,8 @@
 - (void)respondsToSectionFooterImage:(NSUInteger)sender {
 
     NSString *gid = self.model.sectionArray[(sender)].slideGid;
+    syLog(@"广告图 === %@",gid);
+
     if (gid != nil && gid.integerValue > 0) {
         Class FFGameViewController = NSClassFromString(@"FFGameViewController");
         SEL selector = NSSelectorFromString(@"sharedController");
@@ -151,7 +153,12 @@
         }
     } else {
         syLog(@"gid error -> game not exist %@",gid);
-        NSString *url = self.model.sectionArray[(sender)].slideGid;
+        NSString *url = self.model.sectionArray[(sender)].slideUrl;
+        if (url.length) {
+            FFWebViewController *webView = [FFWebViewController new];
+            [webView setWebURL:url];
+            [self pushViewController:webView];
+        }
     }
 
 }
