@@ -256,9 +256,6 @@
         line.backgroundColor = [FFColorManager view_separa_line_color];
         [backview addSubview:line];
     }
-
-
-
     return backview;
 }
 
