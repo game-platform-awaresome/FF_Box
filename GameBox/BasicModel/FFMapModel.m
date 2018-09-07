@@ -10,7 +10,7 @@
 #import "FFNetWorkManager.h"
 
 
-static NSString *const map_url = @ "http://api.185sy.com/index.php?g=api&m=indexbox&a=map";
+static NSString *const map_url = @"http://api.185sy.com/index.php?g=api&m=indexbox&a=map";
 
 
 @interface FFMapModel()
