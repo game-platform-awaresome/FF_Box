@@ -46,7 +46,7 @@
 
 
 #pragma mark - game view
-+ (UIImage *)Game_header_background_image   {RETURN_IMAGE(@"Game_header_background_image");}
++ (UIImage *)Game_header_background_image   {RETURN_IMAGE(@"Game_header_background_image1");}
 + (UIImage *)Game_header_discount_iamge     {RETURN_IMAGE(@"Game_header_discount_image");}
 + (UIImage *)Game_header_stars_half         {RETURN_IMAGE(@"Game_header_stars_half");}
 + (UIImage *)Game_header_stars_light        {RETURN_IMAGE(@"Game_header_stars_light");}

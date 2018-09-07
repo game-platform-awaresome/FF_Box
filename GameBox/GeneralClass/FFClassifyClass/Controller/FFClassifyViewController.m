@@ -115,7 +115,7 @@
     [FFGameModel gameClassifyListWithPage:New_page ServerType:self.gameServersType Completion:^(NSDictionary * _Nonnull content, BOOL success) {
         [self stopWaiting];
         [self.tableView.mj_header endRefreshing];
-        NSLog(@"classify === %@",content);
+//        NSLog(@"classify === %@",content);
         if (success) {
             self.classifyArray = [content[@"data"][@"class"] mutableCopy];
             NSArray *array = content[@"data"][@"classData"];
@@ -221,6 +221,9 @@
 /** 按钮响应事件 */
 - (void)respondsToBtn:(UIButton *)sender {
     self.detailViewController.dict = self.classifyArray[sender.tag - BTNTAG];
+    NSString *message = [NSString stringWithFormat:@"分类_%@",self.classifyArray[sender.tag - BTNTAG][@"name"]];
+    m185Statistics(message, self.gameServersType);
+
     [self pushViewController:self.detailViewController];
 }
 

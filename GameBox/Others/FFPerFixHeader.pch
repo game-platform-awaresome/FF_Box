@@ -26,7 +26,8 @@
 #define KSTATUBAR_HEIGHT    CGRectGetHeight([[UIApplication sharedApplication] statusBarFrame])
 
 #ifdef DEBUG
-#define syLog(format, ...) NSLog(format, ## __VA_ARGS__)
+//#define syLog(format, ...) NSLog(format, ## __VA_ARGS__)
+#define syLog(format, ...)
 #define BOXLOG(log) syLog(@"GAME_BOX === %@",log);
 
 #else
@@ -80,6 +81,7 @@ return;\
 #import "FFQuickKey.h"
 #import <Masonry.h>
 #import "HYBHelperMasonryMaker.h"
+#import "M185StatisticsModel.h"
 
 
 #endif /* FFPerFixHeader_pch */

@@ -436,6 +436,8 @@ static FFGameViewController *controller = nil;
 - (void)FFGameDetailFooterView:(FFGameFooterView *)detailFooter clickDownLoadBtn:(UIButton *)sender {
     if ((CURRENT_GAME.platform.integerValue == 3)) {
         syLog(@"进入 H5 游戏");
+        NSString *message = [NSString stringWithFormat:@"开始游戏_%@",CURRENT_GAME.game_name];
+        m185Statistics(message, CURRENT_GAME.platform.integerValue);
         if ([FFUserModel UserName] && [FFUserModel passWord]) {
             [self pushViewController:[H5Handler handler].H5ViewController];
             [H5Handler initWithAppID:CURRENT_GAME.appid ClientKey:CURRENT_GAME.app_clientkey H5Url:CURRENT_GAME.h5_url];
@@ -512,7 +514,7 @@ static FFGameViewController *controller = nil;
 #pragma mark - getter
 - (FFGameHeaderView *)gameHeaderView {
     if (!_gameHeaderView) {
-        _gameHeaderView = [[FFGameHeaderView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 250)];
+        _gameHeaderView = [[FFGameHeaderView alloc] initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 260)];
     }
     return _gameHeaderView;
 }
@@ -677,6 +679,10 @@ static FFGameViewController *controller = nil;
 /** 下载游戏 */
 - (void)downloadGame {
     syLog(@"下载游戏");
+    NSString *message = [NSString stringWithFormat:@"下载游戏_%@",CURRENT_GAME.game_name];
+
+    m185Statistics(message, CURRENT_GAME.platform.integerValue);
+
     if ([Channel isEqualToString:@"185"]) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:CURRENT_GAME.game_download_url]];
     } else {

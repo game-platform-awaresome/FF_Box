@@ -68,14 +68,14 @@
                                 @"FFDriveController",
                                 @"FFMineViewController"];
         titles = @[@"游戏", @"交易", @"车站", @"我的"];
-                normalImageArray = @[[self creatImageWith:0 Normal:YES],
-                                     [self creatImageWith:4 Normal:YES],
-                                     [self creatImageWith:2 Normal:YES],
-                                     [self creatImageWith:3 Normal:YES]];
-                hightLightImageArray = @[[self creatImageWith:0 Normal:NO],
-                                         [self creatImageWith:4 Normal:NO],
-                                         [self creatImageWith:2 Normal:NO],
-                                         [self creatImageWith:3 Normal:NO]];
+        normalImageArray = @[[self creatImageWith:0 Normal:YES],
+                             [self creatImageWith:1 Normal:YES],
+                             [self creatImageWith:2 Normal:YES],
+                             [self creatImageWith:3 Normal:YES]];
+        hightLightImageArray = @[[self creatImageWith:0 Normal:NO],
+                                 [self creatImageWith:1 Normal:NO],
+                                 [self creatImageWith:2 Normal:NO],
+                                 [self creatImageWith:3 Normal:NO]];
     } else {
         viewControllerNames = @[@"FFHomeViewController",
                                 @"FFOpenServerViewController",

@@ -297,6 +297,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSDictionary *dict = self.model.sectionArray[indexPath.section].gameArray[indexPath.row];
+
+    NSString *message = [NSString stringWithFormat:@"%@_%@",self.model.sectionArray[indexPath.section].sectionHeaderTitle ,dict[@"gamename"]];
+    m185Statistics(message, self.type);
+
     [self pushViewController:[FFGameViewController showWithGameID:dict]];
 }
 
@@ -305,6 +309,11 @@
 #pragma mark - select header delegate
 - (void)FFBTServerHeaderView:(FFBTServerHeaderView *)headerView didSelectImageWithInfo:(NSDictionary *)info {
     syLog(@" banner ====%@",info);
+
+    NSUInteger idx =  [headerView.bannerArray indexOfObject:info];
+
+    m185Statistics([NSString stringWithFormat:@"广告_%lu",idx + 1], self.type);
+    
     NSString *type = info[@"type"];
     if (type.integerValue == 1) {
         NSString *gid = [NSString stringWithFormat:@"%@",info[@"gid"]];
@@ -335,6 +344,9 @@
 }
 
 - (void)FFBTServerHeaderView:(FFBTServerHeaderView *)headerView didSelectButtonWithInfo:(id)info {
+    NSArray *buttonArray = @[@"新游",@"排行榜",@"送满V",@"开服表"];
+    NSString *message = ((NSNumber *)info).integerValue < buttonArray.count ? buttonArray[((NSNumber *)info).integerValue] : @"____";
+    m185Statistics(message, self.type);
     id vc = nil;
     if ([info isKindOfClass:[NSString class]]) {
         Class Controller = NSClassFromString(info);
@@ -417,6 +429,11 @@
 #pragma mark - cell delegate
 - (void)FFSRcommentCell:(FFSRcommentCell *)cell didSelectItemInfo:(id)info {
     syLog(@"cell  === %@",info);
+
+    NSLog(@"info == %@",info);
+    NSString *message = [NSString stringWithFormat:@"精品游戏_%@",info[@"gamename"]];
+    m185Statistics(message, self.type);
+
     if ([info isKindOfClass:[NSDictionary class]]) {
         NSString *gid = [NSString stringWithFormat:@"%@",(info[@"id"]) ? info[@"id"] : info[@"gid"]];
         if (gid.length && gid.integerValue > 0) {
@@ -442,6 +459,7 @@
 #pragma mark - responds
 /** 跳转分类 */ 
 - (void)respondsToRightButton {
+    m185Statistics(@"分类", self.type);
     pushViewController(@"FFBTClassifyController");
 }
 

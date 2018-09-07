@@ -19,4 +19,5 @@
  */
 - (BOOL)hyb_setSafeObject:(id)value forKey:(NSString *)key;
 
+
 @end

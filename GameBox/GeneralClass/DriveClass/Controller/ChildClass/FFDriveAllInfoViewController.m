@@ -135,7 +135,14 @@
             [self.tableView reloadData];
             [self.tableView.mj_footer endRefreshing];
         } else {
-            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+            if (self.dynamicType == throughDynamic) {
+                [self.tableView.mj_footer endRefreshing];
+                self.showArray = nil;
+                [self.tableView reloadData];
+                [self refreshNewData];
+            } else {
+                [self.tableView.mj_footer endRefreshingWithNoMoreData];
+            }
         }
         [self cheackShowArrayIsempty];
     }];

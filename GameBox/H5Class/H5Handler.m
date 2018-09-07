@@ -235,6 +235,9 @@ static H5Handler *_handler = nil;
         [SYH5Instance sharedInstance].delegate = self;
         [SYH5Instance sharedInstance].config = config;
         [[SYH5Instance sharedInstance] loadRequest];
+
+//        NSLog(@"h5 === param - > %@",[SYH5Instance sharedInstance].config);
+
     } else {
         [[SYH5Instance sharedInstance] dismissViewControllerAnimated:YES completion:^{
             [UIAlertController showAlertMessage:@"游戏加载失败,请稍后尝试" dismissTime:0.7 dismissBlock:nil];

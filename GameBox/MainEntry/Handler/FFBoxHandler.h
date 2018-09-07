@@ -23,6 +23,9 @@ typedef void(^BoxFailureBlock)(NSDictionary *content);
 @property (nonatomic, strong) NSString *discount_enabled;   //折扣服开启关闭
 @property (nonatomic, strong) NSString *business_enbaled;   //交易系统开关
 
+/** 2018-09-07 */
+@property (nonatomic, strong) NSString *actstatic_enabled;  //用户行为统计开关
+
 /** 单例 */
 + (FFBoxHandler *)sharedInstance;
 

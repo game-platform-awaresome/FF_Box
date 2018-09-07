@@ -218,6 +218,7 @@ static FFMapModel *model = nil;
       @"SELLER_RECORD":@"http://api.185sy.com/index.php?g=api&m=AccountTrade&a=sellerRecord",
       @"GAME_PLAYED":@"http://api.185sy.com/index.php?g=api&m=game&a=played",
       @"ARTICLE_LIKE":@"http://api.185sy.com/index.php?g=api&m=likeinfo&a=article_like",
+      @"ACT_STATIC":@"http://api.185sy.com/index.php?g=api&m=ActStatic&a=do_report"
       };
     return mapDict;
 }

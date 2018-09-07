@@ -121,6 +121,9 @@ typedef void(^AccountTransaction)(void);
 @property (nonatomic, strong) NSString *app_clientkey;
 @property (nonatomic, strong) NSString *h5_url;
 
+/** 新游戏属性(1.独家 2.联合) */
+@property (nonatomic, strong) NSString *operate;
+
 
 
 

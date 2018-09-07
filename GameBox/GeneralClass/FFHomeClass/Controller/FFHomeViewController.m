@@ -115,6 +115,10 @@ static BOOL homeviewAnimation;
 
 
 - (void)respondsToFloatButton {
+//    NSString *message = [NSString stringWithFormat:@"开始游戏_%@",CURRENT_GAME.game_name];
+
+    m185Statistics(@"首页_赚金币", -1);
+
     NSString *className = CURRENT_USER.isLogin ? @"FFMissionCenterViewController" : @"FFLoginViewController";
     Class MissonVC = NSClassFromString(className);
     if (MissonVC) {

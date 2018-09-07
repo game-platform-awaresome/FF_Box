@@ -33,6 +33,7 @@
 
 #pragma mark - responds
 - (void)respondsToRightButton {
+    m185Statistics(@"分类", self.type);
     pushViewController(@"FFZKClassifyController");
 }
 

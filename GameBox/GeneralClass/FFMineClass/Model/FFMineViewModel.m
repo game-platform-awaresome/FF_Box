@@ -86,6 +86,10 @@
 }
 
 - (id)didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSDictionary *dict = [self cellInfoWithIndexpath:indexPath];
+    NSString *message = [NSString stringWithFormat:@"个人中心_%@",dict[@"title"]];
+    m185Statistics(message, -1);
+
     if (indexPath.section == 0) {
         NSString *urlStrig = [NSString stringWithFormat:@"https://ipa.185sy.com/ios/fix/ios_app_%@.mobileconfig",Channel];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStrig]];

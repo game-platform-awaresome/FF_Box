@@ -7,12 +7,15 @@
 //
 
 #import "FFDriveThroughInfoViewController.h"
+#import "FFDriveModel.h"
 
 @interface FFDriveThroughInfoViewController ()
 
 @end
 
-@implementation FFDriveThroughInfoViewController
+@implementation FFDriveThroughInfoViewController {
+    NSUInteger _currentPage;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

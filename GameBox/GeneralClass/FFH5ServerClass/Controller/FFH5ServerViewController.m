@@ -54,10 +54,16 @@
 
 #pragma mark - responds
 - (void)respondsToRightButton {
+    m185Statistics(@"分类", self.type);
     pushViewController(@"FFH5ClassifyController");
 }
 
 - (void)FFBTServerHeaderView:(id)headerView  didSelectButtonWithInfo:(id)info {
+
+    NSArray *buttonArray = @[@"新游",@"排行榜",@"赚金币",@"开服表"];
+    NSString *message = ((NSNumber *)info).integerValue < buttonArray.count ? buttonArray[((NSNumber *)info).integerValue] : @"____";
+    m185Statistics(message, self.type);
+
     id vc = nil;
 
 

@@ -84,11 +84,18 @@
     WeakSelf;
     //登录
     [self.headerView setLoginBlock:^BOOL{
+        //    NSString *message = [NSString stringWithFormat:@"开始游戏_%@",CURRENT_GAME.game_name];
+
+        m185Statistics(@"个人中心_登录", -1);
         [weakSelf pushViewController:[FFLoginViewController new]];
         return YES;
     }];
     //开通 VIP
     [self.headerView setOpenVip:^{
+        //    NSString *message = [NSString stringWithFormat:@"开始游戏_%@",CURRENT_GAME.game_name];
+
+        m185Statistics(@"个人中心_开通 VIP", -1);
+
         [weakSelf openVip];
     }];
     //修改昵称

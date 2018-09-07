@@ -294,6 +294,9 @@
         if (success) {
             NSString *loginName = ([userName isEqualToString:@""] || userName.length == 0) ? phoneNumber : userName;
             [UIAlertController showAlertMessage:@"注册成功" dismissTime:0.7 dismissBlock:^{
+
+                m185Statistics(@"完成注册", -1);
+
                 [self.navigationController popViewControllerAnimated:YES];
                 if (self.registCompletionBlcok) {
                     self.registCompletionBlcok(loginName,passWord);

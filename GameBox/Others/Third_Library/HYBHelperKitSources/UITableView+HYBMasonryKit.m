@@ -42,7 +42,8 @@
                                   delegate:(id)delegate
                                      style:(UITableViewStyle)style
                                constraints:(HYBConstraintMaker)constraints {
-  UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:style];
+    
+  UITableView *tableView = [[[self class] alloc] initWithFrame:CGRectZero style:style];
   tableView.delegate = delegate;
   tableView.dataSource = delegate;
   tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

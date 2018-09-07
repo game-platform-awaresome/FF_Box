@@ -214,6 +214,10 @@ typedef void(^Completion)(void);
 @property (nonatomic, strong) NSString *ARTICLE_LIKE;
 
 
+// 2018-09-07 新数据统计 ------ 别问,问了也不知道为什么这么设计统计.
+@property (nonatomic, strong) NSString *ACT_STATIC;
+
+
 
 + (instancetype)map;
 

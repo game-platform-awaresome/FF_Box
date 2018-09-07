@@ -21,6 +21,7 @@
 @property (nonatomic, strong) UIView *settingView;
 
 @property (nonatomic, strong) UIImageView   *logoImageView;
+@property (nonatomic, strong) UIImageView   *typeImageView;     //独家 or 联合
 @property (nonatomic, strong) UILabel       *gameNameLabel;
 @property (nonatomic, strong) UIButton      *discountLabel;
 @property (nonatomic, strong) UIView        *starView;
@@ -94,10 +95,16 @@
 }
 
 - (void)refresh {
+    //背景
+    self.backgroundView.image = [UIImage imageNamed:[CURRENT_GAME.operate isEqualToString:@"1"] ? @"Game_header_background_image1" : @"Game_header_background_image2"];
+
     //logo
     [self.logoImageView sd_setImageWithURL:[NSURL URLWithString:CURRENT_GAME.game_logo_url] placeholderImage:[FFImageManager gameLogoPlaceholderImage] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         CURRENT_GAME.game_logo_image = image;
     }];
+
+    //图标
+    self.typeImageView.image = [UIImage imageNamed:[CURRENT_GAME.operate isEqualToString:@"1"] ? @"Game_header_class1" : @"Game_header_class2"];
 
     //game name logo
     self.gameNameLabel.text = CURRENT_GAME.game_name;
@@ -174,10 +181,10 @@
     if (CURRENT_GAME.top_number.integerValue > 0) {
         [self.settingView addSubview:self.hotBackView];
         self.hotNumberLabel.text = [NSString stringWithFormat:@"top%@",CURRENT_GAME.top_number];
-        self.frame = CGRectMake(0, 0, kScreenWidth, 300);
+        self.frame = CGRectMake(0, 0, kScreenWidth, 320);
     } else {
         [self.hotBackView removeFromSuperview];
-        self.frame = CGRectMake(0, 0, kScreenWidth, 250);
+        self.frame = CGRectMake(0, 0, kScreenWidth, 270);
     }
 
 
@@ -215,11 +222,12 @@
 
 - (void)setSettingChildeViewFrame:(CGRect)frame {
     self.logoImageView.center = CGPointMake(frame.size.width / 2, 50);
-    self.gameNameLabel.center = CGPointMake(frame.size.width / 2, 100);
+    self.typeImageView.center = CGPointMake(frame.size.width / 2, 93);
+    self.gameNameLabel.center = CGPointMake(frame.size.width / 2, 120);
     self.discountLabel.center = CGPointMake(frame.size.width - 15 - self.discountLabel.bounds.size.width / 2, self.discountLabel.bounds.size.height / 2);
-    self.starView.center = CGPointMake(frame.size.width / 2, 120);
-    self.gameLabelView.center = CGPointMake(frame.size.width / 2, 130);
-    self.gameSizeAndDownloadLabel.frame = CGRectMake(0, 155, frame.size.width, 20);
+    self.starView.center = CGPointMake(frame.size.width / 2, 140);
+    self.gameLabelView.center = CGPointMake(frame.size.width / 2, 150);
+    self.gameSizeAndDownloadLabel.frame = CGRectMake(0, 175, frame.size.width, 20);
     self.QQGroupButton.center = CGPointMake(40, 40);
 }
 
@@ -265,6 +273,7 @@
         _settingView.layer.masksToBounds = YES;
 
         [_settingView addSubview:self.logoImageView];
+        [_settingView addSubview:self.typeImageView];
         [_settingView addSubview:self.gameNameLabel];
         [_settingView addSubview:self.discountLabel];
         [_settingView addSubview:self.starView];
@@ -278,13 +287,6 @@
 
 - (UIView *)hotBackView {
     if (!_hotBackView) {
-//        _hotBackView = [UIView hyb_viewWithSuperView:self.settingView onTaped:^(UITapGestureRecognizer *sender) {
-//            if (self.hotButtonBlock) {
-//                self.hotButtonBlock();
-//            }
-//        }];
-//        _hotTopView.frame = CGRectMake(0, CGRectGetMaxY(self.gameSizeAndDownloadLabel.frame) + 2, self.settingView.bounds.size.width, 50);
-
         _hotBackView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.gameSizeAndDownloadLabel.frame) + 2, self.settingView.bounds.size.width, 50)];
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(respondsToHotView:)];
         tap.numberOfTapsRequired = 1;
@@ -338,6 +340,15 @@
         _logoImageView.layer.masksToBounds = YES;
     }
     return _logoImageView;
+}
+
+- (UIImageView *)typeImageView {
+    if (!_typeImageView) {
+        _typeImageView = [[UIImageView alloc] init];
+        _typeImageView.bounds = CGRectMake(0, 0, 110, 25);
+        _typeImageView.center = CGPointMake(kScreenWidth / 2, 93);
+    }
+    return _typeImageView;
 }
 
 - (UILabel *)gameNameLabel {

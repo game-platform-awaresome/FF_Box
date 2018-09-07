@@ -148,6 +148,10 @@ static FFCurrentGameModel *model;
     [self setTransaction_number:        GAMEINFO(@"products")];
     [self setTransaction_switch:        GAMEINFO(@"trade_open")];
     [self setTop_number:                GAMEINFO(@"top")];
+
+
+    //2018-09-05
+    [self setOperate:                   GAMEINFO(@"operate")];
 }
 
 
@@ -318,6 +322,11 @@ static FFCurrentGameModel *model;
 /** 排行 */
 - (void)setTop_number:(NSString *)top_number {
     SET_VALUE(_top_number, top_number);
+}
+
+/** 代理类型 */
+- (void)setOperate:(NSString *)operate {
+    SET_VALUE(_operate, operate);
 }
 
 #pragma mark - comment

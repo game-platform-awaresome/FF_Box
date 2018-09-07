@@ -151,6 +151,13 @@ static FFBoxHandler *instance = nil;
     syLog(@"\n-----------------\n交易系统开关 : %@\n-----------------\n",business_enbaled);
 
 }
+/** 用户行为统计开关 */
+- (void)setActstatic_enabled:(NSString *)actstatic_enabled {
+    _actstatic_enabled = [NSString stringWithFormat:@"%@",actstatic_enabled];
+    syLog(@"\n-----------------\n用户行为开关 : %@\n-----------------\n",actstatic_enabled);
+}
+
+
 
 #pragma mark - method
 /** 盒子初始化 */

@@ -77,7 +77,6 @@ static const void *s_hyb_long_gestureKey = "s_hyb_long_gestureKey";
 
 - (void)hyb_private_onTaped:(UITapGestureRecognizer *)sender {
   HYBTapGestureBlock block = [self hyb_onTaped];
-  
   if (block) {
     block(sender);
   }
