@@ -298,7 +298,8 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSDictionary *dict = self.model.sectionArray[indexPath.section].gameArray[indexPath.row];
 
-    NSString *message = [NSString stringWithFormat:@"%@_%@",self.model.sectionArray[indexPath.section].sectionHeaderTitle ,dict[@"gamename"]];
+
+    NSString *message = [NSString stringWithFormat:@"%@_%@",@"其他游戏",dict[@"gamename"]];
     m185Statistics(message, self.type);
 
     [self pushViewController:[FFGameViewController showWithGameID:dict]];
