@@ -77,10 +77,6 @@ void m185Statistics(NSString * message , FFGameServersType type) {
     if (isUpload()) {
         return;
     }
-    if (m185StatisticsModel().dataArray.count == 20) {
-        uploadData();
-        ssLog(@"统计够20条  == %@",[m185StatisticsModel().dataArray componentsJoinedByString:@","]);
-    }
 
     NSString *Prefix = (type == BT_SERVERS) ? @"BT_" : (type == ZK_SERVERS) ? @"折扣_" : (type == H5_SERVERS) ? @"H5_" : @"";
 
@@ -88,6 +84,12 @@ void m185Statistics(NSString * message , FFGameServersType type) {
 
     ssLog(@"统计 === %@",message);
     [m185StatisticsModel().dataArray addObject:message];
+
+    if (m185StatisticsModel().dataArray.count == 20) {
+        uploadData();
+        ssLog(@"统计够20条  == %@",[m185StatisticsModel().dataArray componentsJoinedByString:@","]);
+    }
+
     if ([message hyb_isContainString:@"完成注册"]) {
         uploadData();
     }
