@@ -71,6 +71,7 @@ static const void *s_leftMarginOfCursorKey = "s_leftMarginOfCursor";
                                 delegate:(id<UITextFieldDelegate>)delegate
                                superView:(UIView *)superView
                              constraints:(HYBConstraintMaker)constraints {
+
   UITextField *textField = [[UITextField alloc] init];
   textField.borderStyle = UITextBorderStyleNone;
   textField.leftView = [[UIView alloc] init];

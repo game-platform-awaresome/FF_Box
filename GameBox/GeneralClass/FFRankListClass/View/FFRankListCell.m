@@ -116,13 +116,21 @@
 
     //game size label
     self.gameSizeLabel = [UILabel hyb_labelWithFont:12 superView:self.contentView constraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(self.gameNameLabel.mas_bottom).offset(0);
-        make.left.mas_equalTo(self.gameNameLabel.mas_right).offset(4);
-        make.right.mas_lessThanOrEqualTo(self.gameNumberBackView.mas_left).offset(-5);
+//        make.bottom.mas_equalTo(self.gameNameLabel.mas_bottom).offset(0);
+//        make.left.mas_equalTo(self.gameNameLabel.mas_right).offset(4);
+//        make.right.mas_lessThanOrEqualTo(self.gameNumberBackView.mas_left).offset(-5);
         //        make.right.mas_lessThanOrEqualTo(self.contentView).offset(-60);
+        make.bottom.mas_equalTo(self.gameNameLabel.mas_bottom).offset(-1);
+        make.left.mas_equalTo(self.gameNameLabel.mas_right).offset(4);
+        make.right.mas_lessThanOrEqualTo(self.rightButton.mas_left).offset(-10);
+        make.height.mas_equalTo(18);
     }];
+    self.gameSizeLabel.text = @"独家";
     self.gameSizeLabel.textAlignment = NSTextAlignmentLeft;
-    self.gameSizeLabel.textColor = [FFColorManager textColorLight];
+    self.gameSizeLabel.font = [UIFont boldSystemFontOfSize:13];
+    self.gameSizeLabel.layer.cornerRadius = 9;
+    self.gameSizeLabel.layer.masksToBounds = YES;
+    self.gameSizeLabel.layer.borderWidth = 0.5;
 
     //game type label
     self.gameTypeLabel = [UILabel hyb_labelWithFont:13 superView:self.contentView constraints:^(MASConstraintMaker *make) {
@@ -213,7 +221,14 @@
     [self.gameLogoImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:IMAGEURL,dict[@"logo"]]] placeholderImage:[UIImage imageNamed:@"image_downloading"]];
 
     //set game size label
-    self.gameSizeLabel.text = [NSString stringWithFormat:@"%@M",dict[@"size"] ?: @"0"];
+//    self.gameSizeLabel.text = [NSString stringWithFormat:@"%@M",dict[@"size"] ?: @"0"];
+
+    UIColor *rColor = RGBColor(236, 56, 37);
+    UIColor *pColor = RGBColor(210, 0, 255);
+    //set game size label
+    self.gameSizeLabel.text = [NSString stringWithFormat:@"%@",[dict[@"operate"] isEqualToString:@"1"] ? @"  独家  " : @"  联合  "];
+    self.gameSizeLabel.textColor = [dict[@"operate"] isEqualToString:@"1"] ? rColor: pColor;
+    self.gameSizeLabel.layer.borderColor = [dict[@"operate"] isEqualToString:@"1"] ? rColor.CGColor: pColor.CGColor;
 
     //set game type label
     self.gameTypeLabel.text = [NSString stringWithFormat:@"%@",dict[@"types"] ?: @""];

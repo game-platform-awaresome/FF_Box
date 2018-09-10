@@ -13,8 +13,8 @@
 #import "FFBoxHandler.h"
 
 
-//#define syLog(format, ...)
-#define ssLog(format, ...) NSLog(format, ## __VA_ARGS__)
+#define ssLog(format, ...)
+//#define ssLog(format, ...) NSLog(format, ## __VA_ARGS__)
 
 
 

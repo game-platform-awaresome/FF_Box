@@ -59,28 +59,35 @@
     self.gameNumber.font = [UIFont systemFontOfSize:12];
     self.gameNumber.textColor = [UIColor lightGrayColor];
 
+    self.gameSize.text = @"独家";
+    self.gameSize.textAlignment = NSTextAlignmentLeft;
+    self.gameSize.font = [UIFont boldSystemFontOfSize:13];
+    self.gameSize.layer.cornerRadius = 9;
+    self.gameSize.layer.masksToBounds = YES;
+    self.gameSize.layer.borderWidth = 0.5;
+
     //414  375  320
     if (kSCREEN_WIDTH == 320) {
         _lefLayout.constant = 8;
         _rigthLayout.constant = 8;
         self.gameName.font = [UIFont systemFontOfSize:13];
         [self.gameName sizeToFit];
-        self.gameSize.font = [UIFont systemFontOfSize:12];
-        self.gameSize.textColor = [UIColor lightGrayColor];
+//        self.gameSize.font = [UIFont systemFontOfSize:12];
+//        self.gameSize.textColor = [UIColor lightGrayColor];
     } else if (kSCREEN_WIDTH == 375) {
         _lefLayout.constant = 8;
         _rigthLayout.constant = 8;
         self.gameName.font = [UIFont systemFontOfSize:14];
         [self.gameName sizeToFit];
-        self.gameSize.font = [UIFont systemFontOfSize:13];
-        self.gameSize.textColor = [UIColor lightGrayColor];
+//        self.gameSize.font = [UIFont systemFontOfSize:13];
+//        self.gameSize.textColor = [UIColor lightGrayColor];
     } else if (kSCREEN_WIDTH == 414) {
         _lefLayout.constant = 8;
         _rigthLayout.constant = 8;
         self.gameName.font = [UIFont systemFontOfSize:16];
         [self.gameName sizeToFit];
-        self.gameSize.font = [UIFont systemFontOfSize:15];
-        self.gameSize.textColor = [UIColor lightGrayColor];
+//        self.gameSize.font = [UIFont systemFontOfSize:15];
+//        self.gameSize.textColor = [UIColor lightGrayColor];
     }
 
     self.SeparaLine.backgroundColor = [FFColorManager view_separa_line_color];
@@ -113,12 +120,20 @@
     //设置名称
     self.gameName.text = _dict[@"gamename"];
     //游戏大小
-    if (dict[@"size"]) {
-        self.gameSize.hidden = NO;
-        self.gameSize.text = [NSString stringWithFormat:@"%@M",_dict[@"size"]];
-    } else {
-        self.gameSize.hidden = YES;
-    }
+//    if (dict[@"size"]) {
+//        self.gameSize.hidden = NO;
+//        self.gameSize.text = [NSString stringWithFormat:@"%@M",_dict[@"size"]];
+//    } else {
+//        self.gameSize.hidden = YES;
+//    }
+    UIColor *jColor = RGBColor(287, 98, 879);
+    UIColor *rColor = RGBColor(236, 56, 37);
+    UIColor *pColor = RGBColor(210, 0, 255);
+    //set game size label
+    self.gameSize.text = [NSString stringWithFormat:@"%@",[dict[@"operate"] isEqualToString:@"1"] ? @"  独家  " : @"  联合  "];
+    self.gameSize.textColor = [dict[@"operate"] isEqualToString:@"1"] ? rColor: pColor;
+    self.gameSize.layer.borderColor = [dict[@"operate"] isEqualToString:@"1"] ? rColor.CGColor: pColor.CGColor;
+
     //标签1
     NSString *labelString = dict[@"label"];
     NSArray<UILabel *> *labelArray = @[self.label1,self.label2,self.label3];
