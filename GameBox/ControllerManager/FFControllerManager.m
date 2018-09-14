@@ -7,7 +7,6 @@
 //
 
 #import "FFControllerManager.h"
-#import "FFLoginViewController.h"
 
 static FFControllerManager *manager = nil;
 
@@ -58,19 +57,18 @@ static FFControllerManager *manager = nil;
     return _rootNavController;
 }
 
-- (FFMainTabbarViewController *)mainTabbarController {
+- (id)mainTabbarController {
     if (!_mainTabbarController) {
-        _mainTabbarController = [FFMainTabbarViewController new];
+        Class FFMainTabbarViewController = NSClassFromString(@"FFMainTabbarViewController");
+        if (FFMainTabbarViewController) {
+            _mainTabbarController = [FFMainTabbarViewController new];
+        } else {
+            _mainTabbarController = [UITabBarController new];
+        }
     }
     return _mainTabbarController;
 }
 
-- (FFLoginViewController *)loginViewController {
-    if (!_loginViewController) {
-        _loginViewController = [FFLoginViewController new];
-    }
-    return _loginViewController;
-}
 
 
 

@@ -235,8 +235,8 @@
     //set game logo iamge view
     [self.gameLogoImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:IMAGEURL,dict[@"logo"]]] placeholderImage:[UIImage imageNamed:@"image_downloading"]];
 
-    UIColor *rColor = RGBColor(236, 56, 37);
-    UIColor *pColor = RGBColor(210, 0, 255);
+    UIColor *pColor = RGBColor(236, 56, 37);
+    UIColor *rColor = RGBColor(210, 0, 255);
     //set game size label
     self.gameSizeLabel.text = [NSString stringWithFormat:@"%@",[dict[@"operate"] isEqualToString:@"1"] ? @"  独家  " : @"  联合  "];
     self.gameSizeLabel.textColor = [dict[@"operate"] isEqualToString:@"1"] ? rColor: pColor;

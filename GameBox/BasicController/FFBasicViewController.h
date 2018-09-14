@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import <FFTools/FFTools.h>
-#import "FFControllerManager.h"
-#import "FFGameModel.h"
 #import "FFColorManager.h"
 #import "FFImageManager.h"
 #import "UIViewController+FFViewController.h"

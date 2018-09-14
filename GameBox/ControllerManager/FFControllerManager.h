@@ -7,9 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FFMainTabbarViewController.h"
-//#import "FFLoginViewController.h"
-@class FFLoginViewController;
+
 
 #define Current_NavController ([FFControllerManager sharedManager].currentNavController)
 
@@ -22,9 +20,8 @@
 /** Current View Controller */
 @property (nonatomic, strong) UIViewController *viewController;
 /** Main Tabbar Controller */
-@property (nonatomic, strong) FFMainTabbarViewController *mainTabbarController;
-/** Login View Controller */
-@property (nonatomic, strong) FFLoginViewController *loginViewController;
+@property (nonatomic, strong) id mainTabbarController;
+
 
 /** Shared Instance */
 + (instancetype)sharedManager;

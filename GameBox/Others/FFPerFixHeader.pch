@@ -9,6 +9,10 @@
 #ifndef FFPerFixHeader_pch
 #define FFPerFixHeader_pch
 
+
+#import "FFControllerManager.h"
+#import "FFGameModel.h"
+
 /** 保存系统单利 */
 #define SAVEOBJECT_AT_USERDEFAULTS(object,key) [[NSUserDefaults standardUserDefaults] setObject:object forKey:key]; \
 [[NSUserDefaults standardUserDefaults] synchronize]

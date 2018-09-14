@@ -288,9 +288,10 @@ static BOOL homeviewAnimation;
 
 - (UIButton *)messageButton {
     if (!_messageButton) {
-        _messageButton = [UIButton createButtonFrame:CGRectMake(kSCREEN_WIDTH - 54, KSTATUBAR_HEIGHT, 50, 44) title:nil imageName:@"Home_message_light" action:^(UIButton * _Nonnull button) {
+        _messageButton = [UIButton ff_buttonWithImage:@"Home_message_light" SuperView:nil Constraints:nil TouchUp:^(UIButton *sender) {
             [self respondsToRightButton];
         }];
+        _messageButton.frame = CGRectMake(kSCREEN_WIDTH - 54, KSTATUBAR_HEIGHT, 50, 44);
     }
     return _messageButton;
 }

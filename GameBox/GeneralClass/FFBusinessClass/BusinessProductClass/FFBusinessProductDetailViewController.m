@@ -66,13 +66,13 @@
 
 - (UIButton *)sureButton {
     if (!_sureButton) {
-        _sureButton = [UIButton createButtonFrame:CGRectMake(10, CGRectGetMaxY(self.textView.frame) + 10, kSCREEN_WIDTH - 20, 44) title:@"确定" imageName: nil action:^(UIButton * _Nonnull button) {
+        _sureButton = [UIButton ff_buttonWithTitle:@"确定" SuperView:nil Constraints:nil TouchUp:^(UIButton *sender) {
             if (self.block) {
                 self.block(self.textView.text);
                 [self.navigationController popViewControllerAnimated:YES];
             }
         }];
-        [_sureButton setBackgroundColor:[FFColorManager blue_dark]];
+        _sureButton.frame = CGRectMake(10, CGRectGetMaxY(self.textView.frame) + 10, kSCREEN_WIDTH - 20, 44);        [_sureButton setBackgroundColor:[FFColorManager blue_dark]];
         _sureButton.layer.cornerRadius = 22;
         _sureButton.layer.masksToBounds = YES;
     }

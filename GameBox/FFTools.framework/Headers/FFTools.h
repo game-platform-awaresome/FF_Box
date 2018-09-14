@@ -8,19 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-//! Project version number for FFTools.
-FOUNDATION_EXPORT double FFToolsVersionNumber;
 
-//! Project version string for FFTools.
+FOUNDATION_EXPORT double FFToolsVersionNumber;
 FOUNDATION_EXPORT const unsigned char FFToolsVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <FFTools/PublicHeader.h>
 
-#import "UIAlertController+FFAlertController.h"
-#import "UIButton+FFButton.h"
-#import "UINavigationController+FFGradient.h"
-#import "UIViewController+FFGradient.h"
+#import <FFTools/FFFoundationKit.h>
+#import <FFTools/FFUIKit.h>
+#import <FFTools/FFBlockHeader.h>
+#import <FFTools/FFQuickHeader.h>
 
-
-
+#import <FFTools/FFOpenUDID.h>
 

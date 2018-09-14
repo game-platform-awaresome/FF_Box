@@ -23,3 +23,18 @@ target 'GameBox' do
 
 
 end
+
+
+target 'TestItems' do
+
+pod 'AFNetworking', '~> 3.1.0'
+pod 'SDWebImage', '~> 4.1.0'
+pod 'SDWebImage/GIF'
+pod 'MJRefresh', '~> 3.1.12'
+pod 'MBProgressHUD', '~> 1.0.0'
+pod 'WechatOpenSDK', '~> 1.8.0'
+pod 'Masonry', '~> 1.1.0'
+pod 'GPUImage'
+
+
+end

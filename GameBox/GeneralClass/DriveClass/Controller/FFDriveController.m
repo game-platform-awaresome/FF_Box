@@ -263,9 +263,11 @@
 
 - (UIButton *)postStatusButton {
     if (!_postStatusButton) {
-        _postStatusButton = [UIButton createButtonBounds:CGRectMake(0, 0, 80, 80) center:CGPointMake(kSCREEN_WIDTH - 50, self.view.bounds.size.height - 100) title:nil imageName:@"Driver_drive" action:^(UIButton *button) {
-            [self respondsToPostStatusButton];
-        }];
+        _postStatusButton = [UIButton ff_buttonWithImage:@"Driver_drive" SuperView:nil Constraints:nil TouchUp:^(UIButton *sender) {
+
+        }];[self respondsToPostStatusButton];
+        _postStatusButton.bounds = CGRectMake(0, 0, 80, 80);
+        _postStatusButton.center = CGPointMake(kSCREEN_WIDTH - 50, self.view.bounds.size.height - 100);
 
         [_postStatusButton layoutButtonWithImageStyle:(FFButtonImageOnTop) imageTitleSpace:0];
     }

@@ -120,7 +120,9 @@
         self.buttonArray = [NSMutableArray arrayWithCapacity:titleArray.count];
         [titleArray enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop) {
             UIButton *button = [self creatButtonWithIdx:idx];
-            [button setNormalTitle:obj HighlightedTitle:nil NormalImage:nil HighlightedImage:nil NormalTitleColor:[UIColor blackColor] HighlightedTitleColor:[FFColorManager blue_dark]];
+            [button setTitle:obj forState:(UIControlStateNormal)];
+            [button setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
+            [button setTitleColor:[FFColorManager blue_dark] forState:(UIControlStateHighlighted)];
             [self.buttonArray addObject:button];
         }];
     }
@@ -144,7 +146,8 @@
         self.buttonArray = [NSMutableArray arrayWithCapacity:imageArray.count];
         [imageArray enumerateObjectsUsingBlock:^(UIImage *obj, NSUInteger idx, BOOL * _Nonnull stop) {
             UIButton *button = [self creatButtonWithIdx:idx];
-            [button setNormalTitle:nil HighlightedTitle:nil NormalImage:obj HighlightedImage:nil NormalTitleColor:[UIColor blackColor] HighlightedTitleColor:[FFColorManager blue_dark]];
+            [button setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
+            [button setTitleColor:[FFColorManager blue_dark] forState:(UIControlStateHighlighted)];
             [self.buttonArray addObject:button];
         }];
     }
@@ -152,7 +155,8 @@
 }
 
 - (UIButton *)creatButtonWithIdx:(NSUInteger)idx {
-    UIButton *button = [UIButton createButton];
+    UIButton *button = [UIButton ff_instancetype];
+    [button setTitleColor:[FFColorManager textColorDark] forState:(UIControlStateNormal)];
     [button setImage:[FFImageManager Home_activity] forState:(UIControlStateNormal)];
     button.tag = BTN_TAG + idx;
     button.frame = CGRectMake(4 + (((kSCREEN_WIDTH - 280 - 8) / 3) + 70) * idx, 0, 70, 100);

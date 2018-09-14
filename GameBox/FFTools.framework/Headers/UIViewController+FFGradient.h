@@ -12,4 +12,7 @@
 
 @property (nonatomic, copy) NSString *navBarBGAlpha;
 
+@property (nonatomic, strong) id ff_NavigationBarGeneralBackImage;
+
+
 @end

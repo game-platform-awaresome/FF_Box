@@ -210,7 +210,18 @@
 }
 
 - (UINavigationController *)currentNav {
-    return [FFControllerManager sharedManager].currentNavController;
+    Class FFControllerManager = NSClassFromString(@"FFControllerManager");
+    if (FFControllerManager) {
+        if ([FFControllerManager respondsToSelector:@selector(sharedManager)]) {
+            id sharedManager = [FFControllerManager performSelector:@selector(sharedManager)];
+            id currentNavController = [sharedManager valueForKey:@"currentNavController"];
+            return currentNavController;
+        } else {
+            return nil;
+        }
+    } else {
+        return nil;
+    }
 }
 
 

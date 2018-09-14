@@ -311,7 +311,7 @@
 
 - (UIButton *)goldCenterButton {
     if (!_goldCenterButton) {
-        _goldCenterButton = [UIButton createButtonWithAction:^(UIButton * _Nonnull button) {
+        _goldCenterButton = [UIButton ff_buttonWithTouchUp:^(UIButton *sender) {
             if (self.goldCenter) {
                 self.goldCenter();
             }
@@ -322,7 +322,7 @@
 
 - (UIButton *)platformButton {
     if (!_platformButton) {
-        _platformButton = [UIButton createButtonWithAction:^(UIButton * _Nonnull button) {
+        _platformButton = [UIButton ff_buttonWithTouchUp:^(UIButton *sender) {
             if (self.platform) {
                 self.platform();
             }
