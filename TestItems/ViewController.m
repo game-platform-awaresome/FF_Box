@@ -24,10 +24,12 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.navigationController.navigationBar setTintColor:[FFColorManager navigation_bar_black_color]];
-    [self.navigationController.navigationBar setBarTintColor:RGBCOLOR(242, 242, 242)];
-//    [self.navigationController.navigationBar setShadowImage:[UIColor ff_imageWithColor:[UIColor clearColor] size:CGSizeMake(kScreenWidth, 1)]];
-//    [self.navigationController.navigationBar setBackgroundImage:[UIColor ff_imageWithColor:RGBCOLOR(242, 242, 242) size:CGSizeMake(kScreenWidth, 44)] forBarMetrics:(UIBarMetricsDefault)];
+    self.navigationController.navigationBar.hidden = NO;
+    [self.navigationController.navigationBar setTintColor:fBlackColor];
+    [self.navigationController.navigationBar setBarTintColor:ff_RGBColor(144, 144, 242)];
+    //    [self.navigationController.navigationBar setBackgroundColor:ff_RGBColor(144, 144, 144)];
+    [self.navigationController.navigationBar setShadowImage:[UIColor ff_imageWithColor:[UIColor clearColor] size:CGSizeMake(fScreenWidth, 1)]];
+    //        [self.navigationController.navigationBar setBackgroundImage:[UIColor ff_imageWithColor:ff_RGBColor(242, 242, 242) size:CGSizeMake(fScreenWidth, 44)] forBarMetrics:(UIBarMetricsDefault)];
     self.navBarBGAlpha = @"1.0";
 }
 

@@ -203,6 +203,8 @@
 		B532510620B26D96007D7239 /* FFBoxModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B532510520B26D96007D7239 /* FFBoxModel.m */; };
 		B532510920B299FE007D7239 /* FFGameFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = B532510820B299FE007D7239 /* FFGameFooterView.m */; };
 		B53600F120CA83B600DFE96A /* FFBusinessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B53600F020CA83B600DFE96A /* FFBusinessViewController.m */; };
+		B53FCACE214F9A130012753E /* FFQuestionGameHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B53FCACD214F9A130012753E /* FFQuestionGameHeaderView.m */; };
+		B53FCAD1214F9A2C0012753E /* FFQuestionGameHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B53FCACD214F9A130012753E /* FFQuestionGameHeaderView.m */; };
 		B54457D120CFB268000B63E4 /* FFBusinessSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B54457D020CFB268000B63E4 /* FFBusinessSearchViewController.m */; };
 		B54457D520CFC114000B63E4 /* FFBusinessUserCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B54457D420CFC114000B63E4 /* FFBusinessUserCenterViewController.m */; };
 		B54457D920CFC493000B63E4 /* FFBusinessSelectAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B54457D820CFC493000B63E4 /* FFBusinessSelectAccountViewController.m */; };
@@ -799,6 +801,8 @@
 		B532510820B299FE007D7239 /* FFGameFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFGameFooterView.m; sourceTree = "<group>"; };
 		B53600EF20CA83B600DFE96A /* FFBusinessViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBusinessViewController.h; sourceTree = "<group>"; };
 		B53600F020CA83B600DFE96A /* FFBusinessViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBusinessViewController.m; sourceTree = "<group>"; };
+		B53FCACC214F9A130012753E /* FFQuestionGameHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFQuestionGameHeaderView.h; sourceTree = "<group>"; };
+		B53FCACD214F9A130012753E /* FFQuestionGameHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFQuestionGameHeaderView.m; sourceTree = "<group>"; };
 		B54457CF20CFB268000B63E4 /* FFBusinessSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBusinessSearchViewController.h; sourceTree = "<group>"; };
 		B54457D020CFB268000B63E4 /* FFBusinessSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FFBusinessSearchViewController.m; sourceTree = "<group>"; };
 		B54457D320CFC114000B63E4 /* FFBusinessUserCenterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FFBusinessUserCenterViewController.h; sourceTree = "<group>"; };
@@ -1295,6 +1299,8 @@
 		B505A874214A039100D2C542 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B53FCACC214F9A130012753E /* FFQuestionGameHeaderView.h */,
+				B53FCACD214F9A130012753E /* FFQuestionGameHeaderView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3672,6 +3678,7 @@
 				B505A8D0214A45BC00D2C542 /* FFBasicViewController.m in Sources */,
 				B505A8CF214A456100D2C542 /* FFQuestionViewController.m in Sources */,
 				B505A884214A3D6900D2C542 /* ViewController.m in Sources */,
+				B53FCAD1214F9A2C0012753E /* FFQuestionGameHeaderView.m in Sources */,
 				B505A88F214A3D8000D2C542 /* main.m in Sources */,
 				B505A881214A3D6900D2C542 /* AppDelegate.m in Sources */,
 			);
@@ -3961,6 +3968,7 @@
 				B51BD08E20B53B15005B9DE1 /* FFApplyRebateModel.m in Sources */,
 				B51BD03820B50976005B9DE1 /* FFPlatformCell.m in Sources */,
 				B523828B20AB0C7F0087733A /* FFBasicScrollSelectController.m in Sources */,
+				B53FCACE214F9A130012753E /* FFQuestionGameHeaderView.m in Sources */,
 				B505905F2142142F00425F5D /* M185StatisticsModel.m in Sources */,
 				B5D1044B2090694200CA1949 /* FFWebViewController.m in Sources */,
 				B5781AF220A535B900CB1464 /* FFServersModel.m in Sources */,
